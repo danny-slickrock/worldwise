@@ -1,5 +1,8 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES } from "../data/countries";
+import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION } from "../constants";
+
+const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 
 export const MODES = {
   flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "⚑", accent: "#2E6E7E" },
@@ -35,7 +38,7 @@ function buildOne(type, target) {
   if (type === "capital") {
     const distractors = sample(
       COUNTRIES.filter((c) => c.code !== target.code),
-      3
+      DISTRACTORS
     ).map((c) => c.capital);
     return {
       type,
@@ -48,7 +51,7 @@ function buildOne(type, target) {
   // flag & shape both ask "which country?"
   const distractors = sample(
     COUNTRIES.filter((c) => c.code !== target.code),
-    3
+    DISTRACTORS
   ).map((c) => c.name);
   return {
     type,
@@ -60,13 +63,13 @@ function buildOne(type, target) {
 }
 
 // Build a standard single-mode round.
-export function buildRound(mode, count = 8) {
+export function buildRound(mode, count = ROUND_LENGTH) {
   const targets = sample(COUNTRIES, count);
   return targets.map((t) => buildOne(mode, t));
 }
 
 // Build the mixed Daily Challenge, deterministic per date.
-export function buildDaily(count = 6, date = new Date()) {
+export function buildDaily(count = DAILY_LENGTH, date = new Date()) {
   const seed =
     date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
   const targets = seededPick(COUNTRIES, seed, count);

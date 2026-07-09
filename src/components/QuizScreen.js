@@ -1,17 +1,18 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
-  View, Text, StyleSheet, Pressable, Image, ScrollView, ActivityIndicator,
+  View, Text, StyleSheet, Pressable, Image, ScrollView,
 } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
+import { computeXp } from "../game/scoring";
 import { flagUrl, outlineUrl } from "../data/countries";
 
 // A single reusable quiz surface that powers all game modes.
 export default function QuizScreen({ mode, onExit, onFinish }) {
   const meta = MODES[mode];
   const questions = useMemo(
-    () => (mode === "daily" ? buildDaily(6) : buildRound(mode, 8)),
+    () => (mode === "daily" ? buildDaily() : buildRound(mode)),
     [mode]
   );
 
@@ -23,6 +24,14 @@ export default function QuizScreen({ mode, onExit, onFinish }) {
 
   const q = questions[idx];
   const answered = picked !== null;
+
+  // Prefetch the next question's flag image so it appears instantly.
+  useEffect(() => {
+    const nxt = questions[idx + 1];
+    if (nxt && nxt.type === "flag") {
+      Image.prefetch(flagUrl(nxt.country.code));
+    }
+  }, [idx, questions]);
 
   function choose(opt) {
     if (answered) return;
@@ -37,7 +46,7 @@ export default function QuizScreen({ mode, onExit, onFinish }) {
 
   function next() {
     if (idx + 1 >= questions.length) {
-      const xp = score * 10 + Math.max(0, score - 4) * 5; // bonus for strong rounds
+      const xp = computeXp(score);
       setDone(true);
       onFinish && onFinish({ mode, score, total: questions.length, xp });
     } else {
@@ -47,7 +56,7 @@ export default function QuizScreen({ mode, onExit, onFinish }) {
   }
 
   if (done) {
-    const xp = score * 10 + Math.max(0, score - 4) * 5;
+    const xp = computeXp(score);
     const pct = Math.round((score / questions.length) * 100);
     return (
       <View style={styles.resultWrap}>
