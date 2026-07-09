@@ -1,0 +1,23 @@
+{
+  "name": "worldwise",
+  "version": "0.1.0",
+  "description": "Worldwise — geography learning games (Phase 1 prototype) by Slickrock Studio",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "web": "expo start --web",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~3.2.1",
+    "expo": "~51.0.28",
+    "expo-status-bar": "~1.12.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-svg": "15.2.0",
+    "react-native-web": "~0.19.10"
+  },
+  "private": true
+}

@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "Worldwise",
+    "slug": "worldwise",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F7F4EE",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#1F3A5F"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": { "supportsTablet": true },
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#1F3A5F" }
+    },
+    "web": { "bundler": "metro", "favicon": "./assets/favicon.png" }
+  }
+}
