@@ -7,9 +7,9 @@ Legend: 🎮 game · 🧱 foundation · 💾 data · ✨ polish · 🧪 quality
 
 | Day | Focus | Deliverable |
 |-----|-------|-------------|
-| **0** | 🧱 Prototype | Expo scaffold, quiz engine, Home hub, Flag + Capital + Shape games, Daily Challenge |
-| **1** | 💾 Persistence | Save XP / streak / best scores locally (AsyncStorage) so progress survives restarts |
-| **2** | 💾 Data | Expand dataset to ~100 countries; add region field usage and difficulty tiers |
+| **0** ✅ | 🧱 Prototype | Expo scaffold, quiz engine, Home hub, Flag + Capital + Shape games, Daily Challenge |
+| **1** ✅ | 💾 Persistence | Save XP / streak / best scores locally (AsyncStorage) so progress survives restarts |
+| **2** ⤴️ | 💾 Data | ~~Expand dataset to ~100 countries~~ → **done early: full 196-country dataset landed.** Remaining: difficulty tiers |
 | **3** | 🎮 Game | Capital Quiz reverse mode ("which country has this capital?") + timed option |
 | **4** | 🎮 Game | Add **Country Locator** (tap the country on a mini map) using an SVG world map |
 | **5** | ✨ Polish | Answer animations, haptics on mobile, sound toggle, smoother transitions |
@@ -41,3 +41,14 @@ You can review the commit each morning and steer the next day if priorities chan
 - **Keep it runnable.** Every commit should `npm run web` cleanly.
 - **Data stays light.** Prefer runtime image/data sources over huge embedded assets.
 - **Design consistency.** Reuse `theme.js` tokens; maps stay the hero.
+
+## Parked for Phase 2 (not now)
+
+Ideas raised during Phase 1 that are deliberately out of scope until games are solid:
+
+- **Accounts & login** — so progress follows a person across devices. Day 1's local
+  persistence is the on-ramp; syncing it to an account is the Phase 2 step.
+- **Sharing** — share a Daily Challenge result / score card.
+- **Personalization** — pick regions to focus on, difficulty, streak goals.
+
+These need their own design pass (auth provider, backend, privacy) before any build.
