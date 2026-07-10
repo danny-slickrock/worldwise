@@ -1,6 +1,10 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
-import { COUNTRIES } from "../data/countries";
+import { COUNTRIES, OUTLINE_COUNTRIES } from "../data/countries";
 import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION } from "../constants";
+
+// Countries a given mode is allowed to draw its target from. Shape needs a map
+// outline, so it excludes the handful of countries mapsicon has no outline for.
+const poolFor = (mode) => (mode === "shape" ? OUTLINE_COUNTRIES : COUNTRIES);
 
 const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 
@@ -64,7 +68,7 @@ function buildOne(type, target) {
 
 // Build a standard single-mode round.
 export function buildRound(mode, count = ROUND_LENGTH) {
-  const targets = sample(COUNTRIES, count);
+  const targets = sample(poolFor(mode), count);
   return targets.map((t) => buildOne(mode, t));
 }
 
@@ -74,5 +78,11 @@ export function buildDaily(count = DAILY_LENGTH, date = new Date()) {
     date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
   const targets = seededPick(COUNTRIES, seed, count);
   const types = ["flag", "capital", "shape"];
-  return targets.map((t, i) => buildOne(types[i % types.length], t));
+  return targets.map((t, i) => {
+    // Keep the schedule deterministic, but never ask for the outline of a
+    // country that has none — fall back to its flag instead.
+    let type = types[i % types.length];
+    if (type === "shape" && t.noOutline) type = "flag";
+    return buildOne(type, t);
+  });
 }

@@ -2,11 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import {
   View, Text, StyleSheet, Pressable, Image, ScrollView,
 } from "react-native";
-import { SvgUri } from "react-native-svg";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
-import { flagUrl, outlineUrl } from "../data/countries";
+import { flagUrl } from "../data/countries";
+import CountryOutline from "./CountryOutline";
 
 // A single reusable quiz surface that powers all game modes.
 export default function QuizScreen({ mode, onExit, onFinish }) {
@@ -95,7 +95,7 @@ export default function QuizScreen({ mode, onExit, onFinish }) {
           )}
           {q.type === "shape" && (
             <View style={styles.shapeBox}>
-              <SvgUri uri={outlineUrl(q.country.code)} width="100%" height="100%" fill={colors.navy} />
+              <CountryOutline code={q.country.code} />
             </View>
           )}
           {q.type === "capital" && (
