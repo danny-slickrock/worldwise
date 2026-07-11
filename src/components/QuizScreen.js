@@ -6,15 +6,17 @@ import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
+import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import CountryOutline from "./CountryOutline";
 
 // A single reusable quiz surface that powers all game modes.
-export default function QuizScreen({ mode, onExit, onFinish }) {
+export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, onExit, onFinish }) {
   const meta = MODES[mode];
   const questions = useMemo(
-    () => (mode === "daily" ? buildDaily() : buildRound(mode)),
-    [mode]
+    () => (mode === "daily" ? buildDaily() : buildRound(mode, difficulty)),
+    [mode, difficulty]
   );
+  const difficultyLabel = DIFFICULTIES.find((d) => d.key === difficulty)?.label;
 
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -85,7 +87,10 @@ export default function QuizScreen({ mode, onExit, onFinish }) {
       </View>
 
       <ScrollView contentContainerStyle={styles.body} showsVerticalScrollIndicator={false}>
-        <Text style={styles.counter}>Question {idx + 1} of {questions.length}</Text>
+        <Text style={styles.counter}>
+          Question {idx + 1} of {questions.length}
+          {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
+        </Text>
         <Text style={styles.prompt}>{q.prompt}</Text>
 
         {/* Prompt media */}

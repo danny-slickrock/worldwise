@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES } from "../game/questions";
+import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 
 const GAME_ORDER = ["daily", "flag", "capital", "shape"];
 
 export default function HomeScreen({ progress, onPlay }) {
+  const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
+
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
       {/* Header */}
@@ -20,6 +23,24 @@ export default function HomeScreen({ progress, onPlay }) {
         <Stat label="Best round" value={progress.bestScore ? `${progress.bestScore}/8` : "—"} />
       </View>
 
+      {/* Difficulty */}
+      <Text style={styles.section}>Difficulty</Text>
+      <View style={styles.difficultyRow}>
+        {DIFFICULTIES.map((d) => {
+          const active = d.key === difficulty;
+          return (
+            <Pressable
+              key={d.key}
+              onPress={() => setDifficulty(d.key)}
+              style={[styles.difficultyChip, active && styles.difficultyChipActive]}
+            >
+              <Text style={[styles.difficultyChipText, active && styles.difficultyChipTextActive]}>{d.label}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+      <Text style={styles.difficultyHint}>Applies to Flag, Capital & Shape — Daily always mixes every tier.</Text>
+
       {/* Games */}
       <Text style={styles.section}>Games</Text>
       {GAME_ORDER.map((key) => {
@@ -28,7 +49,7 @@ export default function HomeScreen({ progress, onPlay }) {
         return (
           <Pressable
             key={key}
-            onPress={() => onPlay(key)}
+            onPress={() => onPlay(key, difficulty)}
             style={[styles.card, featured && { backgroundColor: m.accent }]}
           >
             <View style={[styles.iconWrap, featured ? styles.iconWrapLight : { backgroundColor: colors.surfaceAlt }]}>
@@ -73,6 +94,15 @@ const styles = StyleSheet.create({
   statLabel: { ...type.muted, fontSize: 12, marginTop: 2 },
 
   section: { ...type.h2, marginBottom: spacing(1.5) },
+  difficultyRow: { flexDirection: "row", gap: spacing(1), marginBottom: spacing(1) },
+  difficultyChip: {
+    flex: 1, alignItems: "center", paddingVertical: spacing(1.25),
+    borderRadius: radius.pill, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line,
+  },
+  difficultyChipActive: { backgroundColor: colors.navy, borderColor: colors.navy },
+  difficultyChipText: { ...type.pill, color: colors.muted },
+  difficultyChipTextActive: { color: colors.white },
+  difficultyHint: { ...type.muted, fontSize: 12, marginBottom: spacing(3) },
   card: {
     flexDirection: "row", alignItems: "center", backgroundColor: colors.surface,
     borderRadius: radius.lg, padding: spacing(2), marginBottom: spacing(1.5), ...shadow,

@@ -9,7 +9,7 @@ import { loadProgress, saveProgress } from "./src/storage/progress";
 
 // Lightweight state-based navigation keeps the prototype dependency-light.
 export default function App() {
-  const [screen, setScreen] = useState({ name: "home", mode: null });
+  const [screen, setScreen] = useState({ name: "home", mode: null, difficulty: null });
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
@@ -40,11 +40,15 @@ export default function App() {
     <SafeAreaView style={styles.safe}>
       <StatusBar style="dark" />
       {screen.name === "home" ? (
-        <HomeScreen progress={progress} onPlay={(mode) => setScreen({ name: "quiz", mode })} />
+        <HomeScreen
+          progress={progress}
+          onPlay={(mode, difficulty) => setScreen({ name: "quiz", mode, difficulty })}
+        />
       ) : (
         <QuizScreen
           mode={screen.mode}
-          onExit={() => setScreen({ name: "home", mode: null })}
+          difficulty={screen.difficulty}
+          onExit={() => setScreen({ name: "home", mode: null, difficulty: null })}
           onFinish={handleFinish}
         />
       )}

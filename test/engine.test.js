@@ -4,7 +4,7 @@ import { COUNTRIES } from "../src/data/countries";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { applyRoundResult, normalizeProgress, DEFAULT_PROGRESS } from "../src/game/progress";
-import { OPTIONS_PER_QUESTION } from "../src/constants";
+import { OPTIONS_PER_QUESTION, DIFFICULTIES, ROUND_LENGTH } from "../src/constants";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -26,6 +26,16 @@ check(
 check(COUNTRIES.length >= 40, `dataset has >= 40 countries (${COUNTRIES.length})`);
 check(COUNTRIES.length === 196, `dataset has all 196 countries (${COUNTRIES.length})`);
 
+const validTiers = new Set(["easy", "medium", "hard"]);
+check(
+  COUNTRIES.every((c) => validTiers.has(c.difficulty)),
+  "every country has a valid difficulty tier (easy/medium/hard)"
+);
+for (const tier of ["easy", "medium", "hard"]) {
+  const n = COUNTRIES.filter((c) => c.difficulty === tier).length;
+  check(n >= ROUND_LENGTH, `"${tier}" tier has enough countries for a full round (${n})`);
+}
+
 console.log("Rounds");
 for (const mode of ["flag", "capital", "shape"]) {
   const round = buildRound(mode);
@@ -35,6 +45,20 @@ for (const mode of ["flag", "capital", "shape"]) {
     check(new Set(q.options).size === q.options.length, `${mode}: options are unique`);
     check(q.options.includes(q.correct), `${mode}: correct answer is among options`);
     break; // one representative question per mode keeps output readable
+  }
+}
+
+console.log("Difficulty");
+for (const { key } of DIFFICULTIES) {
+  for (const mode of ["flag", "capital", "shape"]) {
+    const round = buildRound(mode, key);
+    check(round.length === ROUND_LENGTH, `${mode}/${key}: round length is ${ROUND_LENGTH}`);
+    if (key !== "all") {
+      check(
+        round.every((q) => q.country.difficulty === key),
+        `${mode}/${key}: every question targets a "${key}" country`
+      );
+    }
   }
 }
 

@@ -75,8 +75,8 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 1 — persist XP/streak
-locally (AsyncStorage)** so progress survives app restarts.
+See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 3 — Capital Quiz reverse
+mode** ("which country has this capital?") with a timed option.
 
 ## The mission (don't lose this)
 

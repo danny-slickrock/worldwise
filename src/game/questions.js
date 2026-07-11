@@ -1,10 +1,14 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES, OUTLINE_COUNTRIES } from "../data/countries";
-import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION } from "../constants";
+import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, so it excludes the handful of countries mapsicon has no outline for.
-const poolFor = (mode) => (mode === "shape" ? OUTLINE_COUNTRIES : COUNTRIES);
+// A difficulty tier (see constants.js) further narrows the pool; "all" leaves it untouched.
+const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
+  const base = mode === "shape" ? OUTLINE_COUNTRIES : COUNTRIES;
+  return difficulty === DEFAULT_DIFFICULTY ? base : base.filter((c) => c.difficulty === difficulty);
+};
 
 const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 
@@ -66,9 +70,12 @@ function buildOne(type, target) {
   };
 }
 
-// Build a standard single-mode round.
-export function buildRound(mode, count = ROUND_LENGTH) {
-  const targets = sample(poolFor(mode), count);
+// Build a standard single-mode round. Falls back to the full pool if a tier
+// doesn't have enough countries to fill the round (keeps hard-mode Shape safe).
+export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_LENGTH) {
+  const tiered = poolFor(mode, difficulty);
+  const pool = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t));
 }
 

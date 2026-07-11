@@ -9,7 +9,7 @@ Legend: 🎮 game · 🧱 foundation · 💾 data · ✨ polish · 🧪 quality
 |-----|-------|-------------|
 | **0** ✅ | 🧱 Prototype | Expo scaffold, quiz engine, Home hub, Flag + Capital + Shape games, Daily Challenge |
 | **1** ✅ | 💾 Persistence | Save XP / streak / best scores locally (AsyncStorage) so progress survives restarts |
-| **2** ⤴️ | 💾 Data | ~~Expand dataset to ~100 countries~~ → **done early: full 196-country dataset landed.** Remaining: difficulty tiers |
+| **2** ✅ | 💾 Data | ~~Expand dataset to ~100 countries~~ → **done early: full 196-country dataset landed.** Difficulty tiers (easy/medium/hard) added per country, selectable on Home before Flag/Capital/Shape |
 | **3** | 🎮 Game | Capital Quiz reverse mode ("which country has this capital?") + timed option |
 | **4** | 🎮 Game | Add **Country Locator** (tap the country on a mini map) using an SVG world map |
 | **5** | ✨ Polish | Answer animations, haptics on mobile, sound toggle, smoother transitions |
@@ -22,6 +22,8 @@ Legend: 🎮 game · 🧱 foundation · 💾 data · ✨ polish · 🧪 quality
 | **12** | ✨ Onboarding | First-run welcome, difficulty pick, and a short "how to play" |
 | **13** | 🧪 Quality | Accessibility pass, empty/offline states, error handling for image loads |
 | **14** | 🧪 Ship | Web deploy (Expo web build), README/screenshots, tag `v0.1` |
+
+**Next up:** Day 3 — Capital Quiz reverse mode ("which country has this capital?") + a timed option.
 
 ## How the daily builds run
 
