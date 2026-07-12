@@ -50,7 +50,7 @@ test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
-Modes: `flag`, `capital`, `shape`, `daily` (a deterministic mixed round, seeded by date).
+Modes: `flag`, `capital`, `capitalReverse`, `shape`, `daily` (a deterministic mixed round, seeded by date).
 
 **Assets are loaded at runtime**, not bundled: flags from flagcdn.com, outlines from the
 mapsicon project (see `data/countries.js`). Keeps the app light and the repo small.
@@ -75,8 +75,8 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 3 — Capital Quiz reverse
-mode** ("which country has this capital?") with a timed option.
+See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 4 — Country Locator**
+(tap the country on a mini map) using an SVG world map.
 
 ## The mission (don't lose this)
 

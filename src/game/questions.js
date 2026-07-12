@@ -1,6 +1,7 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES, OUTLINE_COUNTRIES } from "../data/countries";
 import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
+import { colors } from "../theme";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, so it excludes the handful of countries mapsicon has no outline for.
@@ -15,6 +16,13 @@ const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 export const MODES = {
   flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "⚑", accent: "#2E6E7E" },
   capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "★", accent: "#9C6B3C" },
+  capitalReverse: {
+    key: "capitalReverse",
+    title: "Capital Quiz: Reverse",
+    blurb: "Which country has this capital?",
+    icon: "⇄",
+    accent: colors.sand,
+  },
   shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "◇", accent: "#1F3A5F" },
   daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "◉", accent: "#2F8F5B" },
 };
@@ -54,6 +62,19 @@ function buildOne(type, target) {
       prompt: `What is the capital of ${target.name}?`,
       correct: target.capital,
       options: shuffle([target.capital, ...distractors]),
+    };
+  }
+  if (type === "capitalReverse") {
+    const distractors = sample(
+      COUNTRIES.filter((c) => c.code !== target.code),
+      DISTRACTORS
+    ).map((c) => c.name);
+    return {
+      type,
+      country: target,
+      prompt: `Which country has ${target.capital} as its capital?`,
+      correct: target.name,
+      options: shuffle([target.name, ...distractors]),
     };
   }
   // flag & shape both ask "which country?"

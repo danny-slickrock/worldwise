@@ -4,10 +4,11 @@ import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 
-const GAME_ORDER = ["daily", "flag", "capital", "shape"];
+const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape"];
 
 export default function HomeScreen({ progress, onPlay }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
+  const [timed, setTimed] = useState(false);
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -41,6 +42,17 @@ export default function HomeScreen({ progress, onPlay }) {
       </View>
       <Text style={styles.difficultyHint}>Applies to Flag, Capital & Shape — Daily always mixes every tier.</Text>
 
+      {/* Timed mode */}
+      <Text style={styles.section}>Options</Text>
+      <Pressable
+        onPress={() => setTimed((t) => !t)}
+        style={[styles.timedToggle, timed && styles.timedToggleActive]}
+      >
+        <Text style={[styles.timedToggleText, timed && styles.timedToggleTextActive]}>⏱ Timed Mode</Text>
+        <Text style={[styles.timedToggleState, timed && styles.timedToggleTextActive]}>{timed ? "On" : "Off"}</Text>
+      </Pressable>
+      <Text style={styles.difficultyHint}>10s per question — not applied to Daily.</Text>
+
       {/* Games */}
       <Text style={styles.section}>Games</Text>
       {GAME_ORDER.map((key) => {
@@ -49,7 +61,7 @@ export default function HomeScreen({ progress, onPlay }) {
         return (
           <Pressable
             key={key}
-            onPress={() => onPlay(key, difficulty)}
+            onPress={() => onPlay(key, difficulty, timed)}
             style={[styles.card, featured && { backgroundColor: m.accent }]}
           >
             <View style={[styles.iconWrap, featured ? styles.iconWrapLight : { backgroundColor: colors.surfaceAlt }]}>
@@ -103,6 +115,15 @@ const styles = StyleSheet.create({
   difficultyChipText: { ...type.pill, color: colors.muted },
   difficultyChipTextActive: { color: colors.white },
   difficultyHint: { ...type.muted, fontSize: 12, marginBottom: spacing(3) },
+  timedToggle: {
+    flexDirection: "row", alignItems: "center", justifyContent: "space-between",
+    backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: spacing(1.5),
+    paddingHorizontal: spacing(2), borderWidth: 1, borderColor: colors.line, marginBottom: spacing(1),
+  },
+  timedToggleActive: { backgroundColor: colors.navy, borderColor: colors.navy },
+  timedToggleText: { ...type.body, fontWeight: "700" },
+  timedToggleState: { ...type.muted, fontWeight: "700" },
+  timedToggleTextActive: { color: colors.white },
   card: {
     flexDirection: "row", alignItems: "center", backgroundColor: colors.surface,
     borderRadius: radius.lg, padding: spacing(2), marginBottom: spacing(1.5), ...shadow,

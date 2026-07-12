@@ -13,6 +13,10 @@ export const DIFFICULTIES = [
 ];
 export const DEFAULT_DIFFICULTY = "all";
 
+// Timed mode: seconds allowed to answer each question before it counts as
+// wrong. Not applied to the Daily Challenge — that round stays untimed.
+export const TIMED_SECONDS_PER_QUESTION = 10;
+
 // XP awarded at the end of a round.
 export const XP = {
   perCorrect: 10,

@@ -37,20 +37,24 @@ for (const tier of ["easy", "medium", "hard"]) {
 }
 
 console.log("Rounds");
-for (const mode of ["flag", "capital", "shape"]) {
+for (const mode of ["flag", "capital", "capitalReverse", "shape"]) {
   const round = buildRound(mode);
   check(round.length === 8, `${mode}: default round length is 8`);
   for (const q of round) {
     check(q.options.length === OPTIONS_PER_QUESTION, `${mode}: ${OPTIONS_PER_QUESTION} options`);
     check(new Set(q.options).size === q.options.length, `${mode}: options are unique`);
     check(q.options.includes(q.correct), `${mode}: correct answer is among options`);
+    if (mode === "capitalReverse") {
+      check(q.correct === q.country.name, "capitalReverse: correct answer is the country name");
+      check(q.prompt.includes(q.country.capital), "capitalReverse: prompt names the capital, not the country");
+    }
     break; // one representative question per mode keeps output readable
   }
 }
 
 console.log("Difficulty");
 for (const { key } of DIFFICULTIES) {
-  for (const mode of ["flag", "capital", "shape"]) {
+  for (const mode of ["flag", "capital", "capitalReverse", "shape"]) {
     const round = buildRound(mode, key);
     check(round.length === ROUND_LENGTH, `${mode}/${key}: round length is ${ROUND_LENGTH}`);
     if (key !== "all") {
