@@ -8,6 +8,7 @@
     "web": "expo start --web",
     "android": "expo start --android",
     "ios": "expo start --ios",
+    "build": "expo export --platform web",
     "test": "tsx test/engine.test.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
