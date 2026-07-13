@@ -1,13 +1,15 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
-import { COUNTRIES, OUTLINE_COUNTRIES } from "../data/countries";
+import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
 import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
 import { colors } from "../theme";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
-// outline, so it excludes the handful of countries mapsicon has no outline for.
-// A difficulty tier (see constants.js) further narrows the pool; "all" leaves it untouched.
+// outline, and Locator needs a world-map path, so each excludes the countries
+// that lack its asset. A difficulty tier (see constants.js) further narrows the
+// pool; "all" leaves it untouched.
 const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
-  const base = mode === "shape" ? OUTLINE_COUNTRIES : COUNTRIES;
+  const base =
+    mode === "shape" ? OUTLINE_COUNTRIES : mode === "locator" ? LOCATOR_COUNTRIES : COUNTRIES;
   return difficulty === DEFAULT_DIFFICULTY ? base : base.filter((c) => c.difficulty === difficulty);
 };
 
@@ -24,6 +26,7 @@ export const MODES = {
     accent: colors.sand,
   },
   shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "◇", accent: "#1F3A5F" },
+  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "⌖", accent: colors.navyDeep },
   daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "◉", accent: "#2F8F5B" },
 };
 
@@ -75,6 +78,25 @@ function buildOne(type, target) {
       prompt: `Which country has ${target.capital} as its capital?`,
       correct: target.name,
       options: shuffle([target.name, ...distractors]),
+    };
+  }
+  if (type === "locator") {
+    // The map is the answer surface: highlight a few candidate countries and
+    // ask the player to tap the named one. Distractors must also have a map
+    // path, so they can be drawn as tappable choices. `correct` is the code;
+    // `choices` carries the {code, name} pairs the map needs to render.
+    const distractors = sample(
+      LOCATOR_COUNTRIES.filter((c) => c.code !== target.code),
+      DISTRACTORS
+    );
+    const choices = shuffle([target, ...distractors]).map((c) => ({ code: c.code, name: c.name }));
+    return {
+      type,
+      country: target,
+      prompt: `Where is ${target.name}?`,
+      correct: target.code,
+      options: choices.map((c) => c.name),
+      choices,
     };
   }
   // flag & shape both ask "which country?"

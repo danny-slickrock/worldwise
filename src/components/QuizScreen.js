@@ -9,6 +9,7 @@ import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
 import CountryOutline from "./CountryOutline";
+import WorldMap from "./WorldMap";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
@@ -120,6 +121,19 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
         </Text>
         <Text style={styles.prompt}>{q.prompt}</Text>
 
+        {/* Country Locator: the map is both prompt media and answer surface. */}
+        {mode === "locator" ? (
+          <View style={styles.mapBox}>
+            <WorldMap
+              choices={q.choices}
+              correctCode={q.correct}
+              pickedCode={picked}
+              answered={answered}
+              onPick={choose}
+            />
+          </View>
+        ) : (
+          <>
         {/* Prompt media */}
         <View style={styles.media}>
           {q.type === "flag" && (
@@ -169,11 +183,19 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
             );
           })}
         </View>
+          </>
+        )}
 
         {answered && (
           <View style={styles.feedback}>
             <Text style={styles.feedbackText}>
-              {picked === TIMEOUT ? "Time's up!" : picked === q.correct ? "Nice." : `Answer: ${q.correct}`}
+              {picked === TIMEOUT
+                ? "Time's up!"
+                : picked === q.correct
+                  ? "Nice."
+                  : mode === "locator"
+                    ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
+                    : `Answer: ${q.correct}`}
             </Text>
             <Pressable style={[styles.nextBtn, { backgroundColor: meta.accent }]} onPress={next}>
               <Text style={styles.nextBtnText}>
@@ -222,6 +244,10 @@ const styles = StyleSheet.create({
   shapeBox: {
     width: 240, height: 200, backgroundColor: colors.surface, borderRadius: radius.md,
     padding: spacing(2), ...shadow,
+  },
+  mapBox: {
+    width: "100%", height: 300, backgroundColor: colors.surfaceAlt, borderRadius: radius.md,
+    overflow: "hidden", marginBottom: spacing(2), borderWidth: 1, borderColor: colors.line,
   },
   capitalBadge: {
     borderWidth: 2, borderRadius: radius.lg, paddingVertical: spacing(3),

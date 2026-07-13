@@ -42,15 +42,19 @@ src/
   constants.js             # Tunable gameplay numbers (round length, options, XP formula)
   theme.js                 # Design tokens — the single source of visual truth
   data/countries.js        # Country dataset + flagUrl()/outlineUrl() helpers
+  data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
   components/QuizScreen.js  # One reusable quiz surface powering every mode
+  components/WorldMap.js    # Tappable SVG world map for the Country Locator
   screens/HomeScreen.js    # Game hub
+scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
-Modes: `flag`, `capital`, `capitalReverse`, `shape`, `daily` (a deterministic mixed round, seeded by date).
+Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `daily` (a deterministic mixed round, seeded by date).
+`locator` also carries `choices[]` ({code, name}) — its answer surface is a tappable world map, not text options.
 
 **Assets are loaded at runtime**, not bundled: flags from flagcdn.com, outlines from the
 mapsicon project (see `data/countries.js`). Keeps the app light and the repo small.
@@ -75,8 +79,8 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 4 — Country Locator**
-(tap the country on a mini map) using an SVG world map.
+See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 5 — Polish**
+(answer animations, haptics on mobile, sound toggle, smoother transitions).
 
 ## The mission (don't lose this)
 

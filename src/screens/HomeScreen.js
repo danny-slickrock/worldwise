@@ -4,7 +4,7 @@ import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 
-const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape"];
+const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape", "locator"];
 
 export default function HomeScreen({ progress, onPlay }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
@@ -40,7 +40,7 @@ export default function HomeScreen({ progress, onPlay }) {
           );
         })}
       </View>
-      <Text style={styles.difficultyHint}>Applies to Flag, Capital & Shape — Daily always mixes every tier.</Text>
+      <Text style={styles.difficultyHint}>Applies to every game except Daily, which always mixes every tier.</Text>
 
       {/* Timed mode */}
       <Text style={styles.section}>Options</Text>

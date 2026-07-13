@@ -1,3 +1,5 @@
+import { COUNTRY_PATHS } from "./worldMap";
+
 // Full country dataset: the 196 sovereign states of the world
 // (193 UN members + Taiwan, Vatican City, and Palestine).
 //
@@ -225,6 +227,11 @@ export const COUNTRIES = [
 
 // Countries with a usable map outline (Shape game draws only from these).
 export const OUTLINE_COUNTRIES = COUNTRIES.filter((c) => !c.noOutline);
+
+// Countries that have a shape on the equirectangular world map (Country Locator
+// draws only from these). Micro-states absent from the 1:110m source — and thus
+// too small to tap anyway — are naturally excluded. See src/data/worldMap.js.
+export const LOCATOR_COUNTRIES = COUNTRIES.filter((c) => COUNTRY_PATHS[c.code]);
 
 export const flagUrl = (code) => `https://flagcdn.com/w320/${code}.png`;
 export const outlineUrl = (code) =>

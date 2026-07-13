@@ -1,6 +1,7 @@
 // Pure-logic tests for the quiz engine. Run with: npm test  (uses tsx)
 // No React Native imports here, so it runs fast in plain Node via tsx.
-import { COUNTRIES } from "../src/data/countries";
+import { COUNTRIES, LOCATOR_COUNTRIES } from "../src/data/countries";
+import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { applyRoundResult, normalizeProgress, DEFAULT_PROGRESS } from "../src/game/progress";
@@ -83,6 +84,30 @@ for (let day = 1; day <= 28; day++) {
   }
 }
 check(dailyShapeBad === 0, "daily never renders a shape for an outline-less country");
+
+console.log("Locator");
+check(
+  LOCATOR_COUNTRIES.every((c) => COUNTRY_PATHS[c.code]),
+  "every locator country has a world-map path"
+);
+check(LOCATOR_COUNTRIES.length >= ROUND_LENGTH * 4, `locator pool is large enough (${LOCATOR_COUNTRIES.length})`);
+const locRound = buildRound("locator");
+check(locRound.length === ROUND_LENGTH, `locator: default round length is ${ROUND_LENGTH}`);
+for (const q of locRound) {
+  check(q.type === "locator", "locator: question type is locator");
+  check(q.choices.length === OPTIONS_PER_QUESTION, `locator: ${OPTIONS_PER_QUESTION} candidate choices`);
+  check(q.choices.some((c) => c.code === q.correct), "locator: correct code is among the choices");
+  check(q.choices.every((c) => COUNTRY_PATHS[c.code]), "locator: every candidate has a map path");
+  check(new Set(q.choices.map((c) => c.code)).size === q.choices.length, "locator: candidate codes are unique");
+  check(q.prompt.includes(q.country.name), "locator: prompt names the target country");
+  break; // one representative question keeps output readable
+}
+// Every locator target must be drawable — sample many rounds to catch a stray.
+let locBad = 0;
+for (let i = 0; i < 200; i++) {
+  for (const q of buildRound("locator")) if (!COUNTRY_PATHS[q.correct]) locBad++;
+}
+check(locBad === 0, "locator rounds never target a country without a map path");
 
 console.log("Daily challenge");
 const d = new Date(2026, 6, 8);
