@@ -1,4 +1,4 @@
-# Worldwise — Product Roadmap!
+# Worldwise — Product Roadmap
 
 Worldwise grows in four phases. **Phase 1 is a day-by-day two-week build** (below).
 **Phases 2–4 are milestone-based** — day-level precision over months would be fiction, so
@@ -24,18 +24,35 @@ Small, scoped chunks — one focused commit per day to keep token usage low and 
 | **2** ✅ | 💾 Data | ~~Expand dataset to ~100 countries~~ → **done early: full 196-country dataset landed.** Difficulty tiers (easy/medium/hard) added per country, selectable on Home before Flag/Capital/Shape |
 | **3** ✅ | 🎮 Game | Capital Quiz reverse mode ("which country has this capital?") + timed option |
 | **4** ✅ | 🎮 Game | **Country Locator** — tap the named country on an SVG world map. Uses embedded, pre-projected paths from Natural Earth 110m (public domain; see `scripts/build-worldmap.mjs`) rendered via `<Path>` primitives, so hit-testing works on web + native |
-| **5** ✅ | ✨ Polish | Answer animations, haptics on mobile, sound toggle, smoother transitions |
-| **6** | 🧱 Streaks | Real daily-streak logic (calendar-aware), "come back tomorrow" state, streak freeze |
-| **7** | 🎮 Game | **Landmark / photo guess** mode (image → country) with a small landmark set |
-| **8** | ✨ Results | Richer end-of-round screen: per-question review, "why it matters" context blurb |
-| **9** | 🧱 Navigation | Introduce a proper tab bar (Home · Play · Profile) and a game-select screen |
-| **10** | 💾 Content | Per-country "context card" (one paragraph on why the place matters) shown after answers |
-| **11** | 🎮 Game | **Speed Round** — 60-second mixed sprint with combo multipliers |
-| **12** | ✨ Onboarding | First-run welcome, difficulty pick, and a short "how to play" |
-| **13** | 🧪 Quality | Accessibility pass, empty/offline states, error handling for image loads |
-| **14** | 🧪 Ship | Web deploy (Expo web build), README/screenshots, tag `v0.1` |
+### Remaining — the compressed path to Phase 2
 
-**Next up:** Day 6 — Streaks: real daily-streak logic (calendar-aware), "come back tomorrow" state, streak freeze.
+**Decision (revisited after Day 4):** we have five game modes and a proven engine. *Breadth is
+no longer the bottleneck — depth is.* Only four items are load-bearing before accounts; the rest
+is polish and extra modes that can land any time. So Phase 1 compresses to:
+
+| Day | Focus | Deliverable | Why it's load-bearing |
+|-----|-------|-------------|-----------------------|
+| **A** | 🧱 Streaks | Calendar-aware daily-streak logic, "come back tomorrow" state, streak freeze | Core retention; `last_played_on` already exists in the Phase 2 schema |
+| **B** | ✨ Results | Richer end-of-round screen: per-question review + "why it matters" blurb | **The thesis.** Without context, this is a flag quiz |
+| **C** | 💾 Content | Per-country "context card" (why this place matters) shown after answers | **The thesis.** This is what makes it Worldwise, not Sporcle |
+| **D** | 🧱 Navigation | Proper tab bar (Home · Play · Profile) + game-select screen | Prerequisite: the Profile tab is where sign-in will live |
+
+**Next up:** Day A — calendar-aware streaks.
+
+After Day D, Phase 1 is *functionally* complete and we move straight to **M2.1 — accounts &
+cloud sync**. The backlog below gets picked up opportunistically, not as a gate.
+
+### Deferred to the Phase 1 backlog (not a gate)
+
+Valuable, but none of it blocks accounts or the platform. Pull from here whenever there's an
+appetite for polish, or before a public launch:
+
+- ✅ **Polish** — answer animations, haptics on mobile, sound toggle, smoother transitions *(shipped early by the daily build)*
+- 🎮 **Landmark / photo guess** mode (image → country)
+- 🎮 **Speed Round** — 60-second mixed sprint with combo multipliers
+- ✨ **Onboarding** — first-run welcome, difficulty pick, "how to play" (do this before public launch)
+- 🧪 **Quality** — accessibility pass, empty/offline states, image-load error handling (ongoing)
+- 🧪 **Ship `v0.1`** — README/screenshots, tag the release (web deploy is already live on Vercel)
 
 ### How the daily builds run
 
@@ -45,16 +62,17 @@ usage stays predictable and you can steer the next day.
 
 ### Phase 1 guardrails
 
-- **One item per day.** No scope creep into later phases (no accounts/classroom/AI *yet*).
+- **One item per day.** No scope creep into later phases (no classroom/AI *yet*).
 - **Keep it runnable.** Every commit should `npm run web` cleanly and keep `npm test` green.
 - **Data stays light.** Prefer runtime image/data sources over huge embedded assets.
 - **Design consistency.** Reuse `theme.js` tokens; maps stay the hero.
 
 ### Phase 1 exit criteria (what "done" means)
 
-A polished, deployed web + mobile game suite: several games on a shared engine, a Daily Challenge,
-local progress (XP/streak/best), onboarding, and a game-select hub — tagged `v0.1`. Fun is proven
-before we add depth.
+A deployed web + mobile game suite where **every answer teaches you something**: five+ game modes on
+a shared engine, a Daily Challenge, calendar-aware streaks, local progress, context cards, and a
+tab-bar shell ready for a Profile/sign-in tab. Fun *and* the "why should I care?" layer are proven
+before we add a backend.
 
 ---
 

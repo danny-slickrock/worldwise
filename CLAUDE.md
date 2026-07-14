@@ -79,8 +79,13 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md) for the two-week plan. Next up: **Day 5 — Polish**
-(answer animations, haptics on mobile, sound toggle, smoother transitions).
+See [ROADMAP.md](./ROADMAP.md). Phase 1 has been **compressed** to four load-bearing items
+(A: calendar-aware streaks · B: richer results · C: per-country context cards · D: tab-bar
+navigation). Polish, extra game modes, and onboarding are deferred to a backlog — they are
+*not* a gate. After Day D we go straight to **M2.1 — accounts & cloud sync** (Supabase;
+see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
+
+Next up: **Day A — calendar-aware daily streaks.**
 
 ## The mission (don't lose this)
 

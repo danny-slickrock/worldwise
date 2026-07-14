@@ -26,3 +26,6 @@ yarn-error.*
 
 # local env
 .env*.local
+
+# claude code — machine-local settings (a shared .claude/settings.json may be committed)
+.claude/settings.local.json
