@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { colors } from "./src/theme";
 import HomeScreen from "./src/screens/HomeScreen";
 import QuizScreen from "./src/components/QuizScreen";
-import { DEFAULT_PROGRESS, applyRoundResult } from "./src/game/progress";
+import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress";
 import { loadProgress, saveProgress } from "./src/storage/progress";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
@@ -45,7 +45,7 @@ export default function App() {
   }
 
   function handleFinish({ score, xp }) {
-    setProgress((p) => applyRoundResult(p, { score, xp }));
+    setProgress((p) => applyRoundResult(p, { score, xp }, dayKey(new Date())));
   }
 
   return (

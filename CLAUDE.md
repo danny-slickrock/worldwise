@@ -85,7 +85,7 @@ navigation). Polish, extra game modes, and onboarding are deferred to a backlog 
 *not* a gate. After Day D we go straight to **M2.1 — accounts & cloud sync** (Supabase;
 see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
 
-Next up: **Day A — calendar-aware daily streaks.**
+Day A (calendar-aware streaks) shipped. Next up: **Day B — richer end-of-round results screen.**
 
 ## The mission (don't lose this)
 

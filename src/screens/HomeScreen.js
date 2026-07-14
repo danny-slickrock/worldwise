@@ -3,12 +3,22 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
+import { streakStatus, dayKey } from "../game/progress";
 
 const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape", "locator"];
 
 export default function HomeScreen({ progress, onPlay }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
+
+  const streak = streakStatus(progress, dayKey(new Date()));
+  const streakMsg = !progress.lastPlayedOn
+    ? "Play a round to start your streak."
+    : streak.playedToday
+      ? `${streak.count}-day streak — see you tomorrow!`
+      : streak.atRisk
+        ? `${streak.count}-day streak — play today to keep it going.`
+        : "Your streak lapsed — start a new one today.";
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
@@ -20,8 +30,15 @@ export default function HomeScreen({ progress, onPlay }) {
       {/* Stats */}
       <View style={styles.stats}>
         <Stat label="XP" value={progress.xp} />
-        <Stat label="Day streak" value={progress.streak} />
+        <Stat label="Day streak" value={streak.count} />
         <Stat label="Best round" value={progress.bestScore ? `${progress.bestScore}/8` : "—"} />
+      </View>
+
+      {/* Streak status — the "come back tomorrow" nudge */}
+      <View style={styles.streakBanner}>
+        <Text style={styles.streakFlame}>{streak.alive ? "🔥" : "🌙"}</Text>
+        <Text style={styles.streakMsg}>{streakMsg}</Text>
+        {streak.freezes > 0 && <Text style={styles.freezeBadge}>❄️ {streak.freezes}</Text>}
       </View>
 
       {/* Difficulty */}
@@ -97,13 +114,22 @@ const styles = StyleSheet.create({
   title: { ...type.hero, fontSize: 40, marginTop: spacing(0.5) },
   tagline: { ...type.muted, fontSize: 15, marginTop: spacing(0.5), marginBottom: spacing(3) },
 
-  stats: { flexDirection: "row", gap: spacing(1.5), marginBottom: spacing(3.5) },
+  stats: { flexDirection: "row", gap: spacing(1.5), marginBottom: spacing(1.5) },
   stat: {
     flex: 1, backgroundColor: colors.surface, borderRadius: radius.md,
     paddingVertical: spacing(2), alignItems: "center", ...shadow,
   },
   statValue: { fontSize: 24, fontWeight: "900", color: colors.navy },
   statLabel: { ...type.muted, fontSize: 12, marginTop: 2 },
+  streakBanner: {
+    flexDirection: "row", alignItems: "center", gap: spacing(1),
+    backgroundColor: colors.surface, borderRadius: radius.md,
+    paddingVertical: spacing(1.5), paddingHorizontal: spacing(2),
+    marginBottom: spacing(3.5), ...shadow,
+  },
+  streakFlame: { fontSize: 20 },
+  streakMsg: { ...type.body, fontWeight: "700", flex: 1, color: colors.ink },
+  freezeBadge: { ...type.pill, color: colors.teal },
 
   section: { ...type.h2, marginBottom: spacing(1.5) },
   difficultyRow: { flexDirection: "row", gap: spacing(1), marginBottom: spacing(1) },

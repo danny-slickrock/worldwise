@@ -4,9 +4,20 @@ import { COUNTRIES, LOCATOR_COUNTRIES } from "../src/data/countries";
 import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
-import { applyRoundResult, normalizeProgress, DEFAULT_PROGRESS } from "../src/game/progress";
+import {
+  applyRoundResult,
+  normalizeProgress,
+  streakStatus,
+  dayKey,
+  DEFAULT_PROGRESS,
+} from "../src/game/progress";
 import { normalizeSettings, DEFAULT_SETTINGS } from "../src/game/settings";
-import { OPTIONS_PER_QUESTION, DIFFICULTIES, ROUND_LENGTH } from "../src/constants";
+import {
+  OPTIONS_PER_QUESTION,
+  DIFFICULTIES,
+  ROUND_LENGTH,
+  STREAK_FREEZE_EARN_EVERY,
+} from "../src/constants";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -119,19 +130,15 @@ check(buildDaily(6, d).length === 6, "daily has 6 questions");
 
 console.log("Progress");
 check(
-  applyRoundResult({ xp: 10, streak: 1, bestScore: 5 }, { score: 7, xp: 80 }).xp === 90,
+  applyRoundResult({ xp: 10, streak: 1, bestScore: 5 }, { score: 7, xp: 80 }, "2026-03-01").xp === 90,
   "applyRoundResult accumulates xp"
 );
 check(
-  applyRoundResult({ xp: 0, streak: 2, bestScore: 8 }, { score: 3, xp: 0 }).streak === 3,
-  "applyRoundResult increments streak each round"
-);
-check(
-  applyRoundResult({ xp: 0, streak: 0, bestScore: 8 }, { score: 3, xp: 0 }).bestScore === 8,
+  applyRoundResult({ xp: 0, streak: 0, bestScore: 8 }, { score: 3, xp: 0 }, "2026-03-01").bestScore === 8,
   "applyRoundResult keeps the higher best score"
 );
 check(
-  applyRoundResult({ xp: 0, streak: 0, bestScore: 2 }, { score: 6, xp: 0 }).bestScore === 6,
+  applyRoundResult({ xp: 0, streak: 0, bestScore: 2 }, { score: 6, xp: 0 }, "2026-03-01").bestScore === 6,
   "applyRoundResult raises best score to a new high"
 );
 check(
@@ -147,6 +154,55 @@ check(
   DEFAULT_PROGRESS.xp === 0 && DEFAULT_PROGRESS.streak === 0 && DEFAULT_PROGRESS.bestScore === 0,
   "DEFAULT_PROGRESS starts at zero"
 );
+check(
+  DEFAULT_PROGRESS.lastPlayedOn === null && DEFAULT_PROGRESS.freezes === 0,
+  "DEFAULT_PROGRESS has no last-played day or freezes"
+);
+// Old { xp, streak, bestScore } saves must migrate cleanly to the new shape.
+const migrated = normalizeProgress({ xp: 30, streak: 7, bestScore: 5 });
+check(
+  migrated.lastPlayedOn === null && migrated.freezes === 0,
+  "normalizeProgress migrates old saves (no date/freezes)"
+);
+check(migrated.longestStreak === 7, "normalizeProgress seeds longestStreak from an old streak");
+
+console.log("Streaks (calendar-aware)");
+check(dayKey(new Date(2026, 0, 5)) === "2026-01-05", "dayKey formats a local date as YYYY-MM-DD");
+
+const day1 = applyRoundResult(DEFAULT_PROGRESS, { score: 5, xp: 50 }, "2026-03-01");
+check(day1.streak === 1 && day1.lastPlayedOn === "2026-03-01", "first play starts a 1-day streak");
+
+const sameDay = applyRoundResult(day1, { score: 8, xp: 100 }, "2026-03-01");
+check(sameDay.streak === 1, "a second round the same day does not bump the streak");
+check(sameDay.xp === 150 && sameDay.bestScore === 8, "same-day replay still adds xp + best score");
+
+const day2 = applyRoundResult(day1, { score: 3, xp: 30 }, "2026-03-02");
+check(day2.streak === 2, "playing the next calendar day continues the streak");
+check(day2.longestStreak === 2, "longestStreak tracks the high-water mark");
+
+const missed = applyRoundResult(day2, { score: 3, xp: 30 }, "2026-03-05");
+check(missed.streak === 1, "missing a day with no freeze resets the streak to 1");
+check(missed.longestStreak === 2, "a reset preserves the recorded longest streak");
+
+const withFreeze = { ...day2, freezes: 1 };
+const bridged = applyRoundResult(withFreeze, { score: 3, xp: 30 }, "2026-03-04"); // skipped Mar 3
+check(bridged.streak === 3 && bridged.freezes === 0, "a freeze bridges one missed day and is spent");
+
+// A freeze is earned when the streak reaches its milestone over consecutive days.
+let run = DEFAULT_PROGRESS;
+let dt = new Date(2026, 4, 1);
+for (let i = 0; i < STREAK_FREEZE_EARN_EVERY; i++) {
+  run = applyRoundResult(run, { score: 1, xp: 10 }, dayKey(dt));
+  dt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1);
+}
+check(run.streak === STREAK_FREEZE_EARN_EVERY, `streak reaches ${STREAK_FREEZE_EARN_EVERY} over consecutive days`);
+check(run.freezes === 1, "a freeze is earned at the streak milestone");
+
+check(streakStatus(day1, "2026-03-01").playedToday === true, "streakStatus: played today");
+check(streakStatus(day1, "2026-03-02").atRisk === true, "streakStatus: at risk the next day");
+const lapsed = streakStatus(day1, "2026-03-10");
+check(!lapsed.alive && lapsed.count === 0, "streakStatus: lapsed after too long, count drops to 0");
+check(streakStatus(DEFAULT_PROGRESS, "2026-03-01").alive === false, "streakStatus: never played is not alive");
 
 console.log("Settings");
 check(DEFAULT_SETTINGS.soundEnabled === true, "DEFAULT_SETTINGS starts with sound on");

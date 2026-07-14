@@ -17,6 +17,12 @@ export const DEFAULT_DIFFICULTY = "all";
 // wrong. Not applied to the Daily Challenge — that round stays untimed.
 export const TIMED_SECONDS_PER_QUESTION = 10;
 
+// Streaks: a "freeze" automatically protects your streak across a missed day.
+// Players hold up to STREAK_FREEZE_MAX at once and earn one each time their
+// streak reaches a STREAK_FREEZE_EARN_EVERY-day milestone.
+export const STREAK_FREEZE_MAX = 2;
+export const STREAK_FREEZE_EARN_EVERY = 5;
+
 // XP awarded at the end of a round.
 export const XP = {
   perCorrect: 10,
