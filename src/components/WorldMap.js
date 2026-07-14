@@ -1,7 +1,20 @@
 import React from "react";
+import { Platform } from "react-native";
 import Svg, { Rect, Path } from "react-native-svg";
 import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
 import { colors } from "../theme";
+
+// Bind the tap on the right event per platform. react-native-svg routes <Path>
+// onPress through React Native Web's responder system, which the surrounding
+// ScrollView steals on web — so onPress never fires there. On web we bind a real
+// DOM onClick (passed straight through to the <path>), and keep onPress on native
+// where the responder system works correctly.
+function pickHandler(code, answered, onPick) {
+  if (answered) return null;
+  return Platform.OS === "web"
+    ? { onClick: () => onPick(code) }
+    : { onPress: () => onPick(code) };
+}
 
 // The Country Locator's answer surface. Draws the whole world as inert land for
 // context, then paints the round's candidate countries as tappable targets.
@@ -49,7 +62,7 @@ export default function WorldMap({ choices, correctCode, pickedCode, answered, o
           fill={answered ? resolvedFill(code) : colors.navy}
           stroke={colors.surface}
           strokeWidth={0.6}
-          onPress={answered ? undefined : () => onPick(code)}
+          {...pickHandler(code, answered, onPick)}
         />
       ))}
     </Svg>
