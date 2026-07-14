@@ -1,20 +1,25 @@
 /* global setTimeout, clearTimeout */
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  View, Text, StyleSheet, Pressable, Image, ScrollView,
+  View, Text, StyleSheet, Pressable, Image, ScrollView, Animated,
 } from "react-native";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
+import { correctHaptic, wrongHaptic } from "../haptics";
+import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
 import WorldMap from "./WorldMap";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
 // A single reusable quiz surface that powers all game modes.
-export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, timed = false, onExit, onFinish }) {
+export default function QuizScreen({
+  mode, difficulty = DEFAULT_DIFFICULTY, timed = false, soundEnabled = true,
+  onToggleSound, onExit, onFinish,
+}) {
   const meta = MODES[mode];
   const questions = useMemo(
     () => (mode === "daily" ? buildDaily() : buildRound(mode, difficulty)),
@@ -32,6 +37,29 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
 
   const q = questions[idx];
   const answered = picked !== null;
+
+  // Animated progress-bar fill, a gentle fade/rise-in per question, and a
+  // small pulse on the option the player just tapped.
+  const progressAnim = useRef(new Animated.Value(0)).current;
+  const bodyAnim = useRef(new Animated.Value(0)).current;
+  const pickAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    Animated.timing(progressAnim, {
+      toValue: questions.length ? idx / questions.length : 0,
+      duration: 320,
+      useNativeDriver: false, // animating layout `width`, not a transform
+    }).start();
+  }, [idx, questions.length, progressAnim]);
+
+  useEffect(() => {
+    bodyAnim.setValue(0);
+    Animated.timing(bodyAnim, {
+      toValue: 1,
+      duration: 260,
+      useNativeDriver: true,
+    }).start();
+  }, [idx, bodyAnim]);
 
   // Reset the countdown at the start of each question.
   useEffect(() => {
@@ -61,12 +89,27 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
   function choose(opt) {
     if (answered) return;
     setPicked(opt);
-    if (opt === q.correct) {
+    const isRight = opt === q.correct;
+    if (isRight) {
       setScore((s) => s + 1);
       setStreak((s) => s + 1);
     } else {
       setStreak(0);
     }
+
+    if (isRight) {
+      correctHaptic();
+      if (soundEnabled) playCorrectTone();
+    } else {
+      wrongHaptic();
+      if (soundEnabled) playWrongTone();
+    }
+
+    pickAnim.setValue(1);
+    Animated.sequence([
+      Animated.timing(pickAnim, { toValue: 1.06, duration: 90, useNativeDriver: true }),
+      Animated.spring(pickAnim, { toValue: 1, friction: 4, useNativeDriver: true }),
+    ]).start();
   }
 
   function next() {
@@ -102,19 +145,33 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
       <View style={styles.topBar}>
         <Pressable onPress={onExit} hitSlop={12}><Text style={styles.exit}>✕</Text></Pressable>
         <View style={styles.progressTrack}>
-          <View style={[styles.progressFill, { width: `${(idx / questions.length) * 100}%`, backgroundColor: meta.accent }]} />
+          <Animated.View
+            style={[
+              styles.progressFill,
+              { width: progressAnim.interpolate({ inputRange: [0, 1], outputRange: ["0%", "100%"] }), backgroundColor: meta.accent },
+            ]}
+          />
         </View>
         {timedActive && (
           <View style={[styles.timerPill, timeLeft <= 3 && styles.timerPillLow]}>
             <Text style={[styles.timerText, timeLeft <= 3 && styles.timerTextLow]}>⏱ {timeLeft}s</Text>
           </View>
         )}
+        <Pressable onPress={onToggleSound} hitSlop={12} style={styles.soundPill}>
+          <Text style={styles.soundText}>{soundEnabled ? "🔊" : "🔇"}</Text>
+        </Pressable>
         <View style={styles.streakPill}>
           <Text style={styles.streakText}>🔥 {streak}</Text>
         </View>
       </View>
 
       <ScrollView contentContainerStyle={styles.body} showsVerticalScrollIndicator={false}>
+        <Animated.View
+          style={{
+            opacity: bodyAnim,
+            transform: [{ translateY: bodyAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
+          }}
+        >
         <Text style={styles.counter}>
           Question {idx + 1} of {questions.length}
           {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
@@ -163,28 +220,31 @@ export default function QuizScreen({ mode, difficulty = DEFAULT_DIFFICULTY, time
           {q.options.map((opt) => {
             const isCorrect = answered && opt === q.correct;
             const isWrong = answered && opt === picked && opt !== q.correct;
+            const isPicked = answered && opt === picked;
             return (
-              <Pressable
-                key={opt}
-                onPress={() => choose(opt)}
-                style={[
-                  styles.option,
-                  isCorrect && styles.optionCorrect,
-                  isWrong && styles.optionWrong,
-                ]}
-              >
-                <Text style={[
-                  styles.optionText,
-                  (isCorrect || isWrong) && { color: colors.white, fontWeight: "700" },
-                ]}>{opt}</Text>
-                {isCorrect && <Text style={styles.optionMark}>✓</Text>}
-                {isWrong && <Text style={styles.optionMark}>✕</Text>}
-              </Pressable>
+              <Animated.View key={opt} style={isPicked ? { transform: [{ scale: pickAnim }] } : null}>
+                <Pressable
+                  onPress={() => choose(opt)}
+                  style={[
+                    styles.option,
+                    isCorrect && styles.optionCorrect,
+                    isWrong && styles.optionWrong,
+                  ]}
+                >
+                  <Text style={[
+                    styles.optionText,
+                    (isCorrect || isWrong) && { color: colors.white, fontWeight: "700" },
+                  ]}>{opt}</Text>
+                  {isCorrect && <Text style={styles.optionMark}>✓</Text>}
+                  {isWrong && <Text style={styles.optionMark}>✕</Text>}
+                </Pressable>
+              </Animated.View>
             );
           })}
         </View>
           </>
         )}
+        </Animated.View>
 
         {answered && (
           <View style={styles.feedback}>
@@ -225,6 +285,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...shadow,
   },
   streakText: { fontWeight: "700", color: colors.ink, fontSize: 13 },
+  soundPill: {
+    backgroundColor: colors.surface, borderRadius: radius.pill,
+    width: 32, height: 32, alignItems: "center", justifyContent: "center", ...shadow,
+  },
+  soundText: { fontSize: 14 },
   timerPill: {
     backgroundColor: colors.surface, borderRadius: radius.pill,
     paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...shadow,

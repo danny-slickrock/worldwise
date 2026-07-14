@@ -6,20 +6,24 @@ import HomeScreen from "./src/screens/HomeScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import { DEFAULT_PROGRESS, applyRoundResult } from "./src/game/progress";
 import { loadProgress, saveProgress } from "./src/storage/progress";
+import { DEFAULT_SETTINGS } from "./src/game/settings";
+import { loadSettings, saveSettings } from "./src/storage/settings";
 
 // Lightweight state-based navigation keeps the prototype dependency-light.
 export default function App() {
   const [screen, setScreen] = useState({ name: "home", mode: null, difficulty: null, timed: false });
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     let active = true;
-    loadProgress().then((saved) => {
+    Promise.all([loadProgress(), loadSettings()]).then(([savedProgress, savedSettings]) => {
       if (active) {
-        setProgress(saved);
+        setProgress(savedProgress);
+        setSettings(savedSettings);
         setHydrated(true);
       }
     });
@@ -31,6 +35,14 @@ export default function App() {
   useEffect(() => {
     if (hydrated) saveProgress(progress);
   }, [hydrated, progress]);
+
+  useEffect(() => {
+    if (hydrated) saveSettings(settings);
+  }, [hydrated, settings]);
+
+  function toggleSound() {
+    setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));
+  }
 
   function handleFinish({ score, xp }) {
     setProgress((p) => applyRoundResult(p, { score, xp }));
@@ -49,6 +61,8 @@ export default function App() {
           mode={screen.mode}
           difficulty={screen.difficulty}
           timed={screen.timed}
+          soundEnabled={settings.soundEnabled}
+          onToggleSound={toggleSound}
           onExit={() => setScreen({ name: "home", mode: null, difficulty: null, timed: false })}
           onFinish={handleFinish}
         />

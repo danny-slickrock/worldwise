@@ -5,6 +5,7 @@ import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { applyRoundResult, normalizeProgress, DEFAULT_PROGRESS } from "../src/game/progress";
+import { normalizeSettings, DEFAULT_SETTINGS } from "../src/game/settings";
 import { OPTIONS_PER_QUESTION, DIFFICULTIES, ROUND_LENGTH } from "../src/constants";
 
 let fails = 0;
@@ -145,6 +146,21 @@ check(
 check(
   DEFAULT_PROGRESS.xp === 0 && DEFAULT_PROGRESS.streak === 0 && DEFAULT_PROGRESS.bestScore === 0,
   "DEFAULT_PROGRESS starts at zero"
+);
+
+console.log("Settings");
+check(DEFAULT_SETTINGS.soundEnabled === true, "DEFAULT_SETTINGS starts with sound on");
+check(
+  normalizeSettings(null).soundEnabled === true && normalizeSettings(undefined).soundEnabled === true,
+  "normalizeSettings falls back to defaults for missing data"
+);
+check(
+  normalizeSettings({ soundEnabled: false }).soundEnabled === false,
+  "normalizeSettings preserves a valid boolean"
+);
+check(
+  normalizeSettings({ soundEnabled: "nope" }).soundEnabled === true,
+  "normalizeSettings coerces a bad value back to the default"
 );
 
 console.log("Scoring");

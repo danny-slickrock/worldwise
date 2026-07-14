@@ -24,7 +24,7 @@ Small, scoped chunks — one focused commit per day to keep token usage low and 
 | **2** ✅ | 💾 Data | ~~Expand dataset to ~100 countries~~ → **done early: full 196-country dataset landed.** Difficulty tiers (easy/medium/hard) added per country, selectable on Home before Flag/Capital/Shape |
 | **3** ✅ | 🎮 Game | Capital Quiz reverse mode ("which country has this capital?") + timed option |
 | **4** ✅ | 🎮 Game | **Country Locator** — tap the named country on an SVG world map. Uses embedded, pre-projected paths from Natural Earth 110m (public domain; see `scripts/build-worldmap.mjs`) rendered via `<Path>` primitives, so hit-testing works on web + native |
-| **5** | ✨ Polish | Answer animations, haptics on mobile, sound toggle, smoother transitions |
+| **5** ✅ | ✨ Polish | Answer animations, haptics on mobile, sound toggle, smoother transitions |
 | **6** | 🧱 Streaks | Real daily-streak logic (calendar-aware), "come back tomorrow" state, streak freeze |
 | **7** | 🎮 Game | **Landmark / photo guess** mode (image → country) with a small landmark set |
 | **8** | ✨ Results | Richer end-of-round screen: per-question review, "why it matters" context blurb |
@@ -35,7 +35,7 @@ Small, scoped chunks — one focused commit per day to keep token usage low and 
 | **13** | 🧪 Quality | Accessibility pass, empty/offline states, error handling for image loads |
 | **14** | 🧪 Ship | Web deploy (Expo web build), README/screenshots, tag `v0.1` |
 
-**Next up:** Day 5 — Polish: answer animations, haptics on mobile, sound toggle, smoother transitions.
+**Next up:** Day 6 — Streaks: real daily-streak logic (calendar-aware), "come back tomorrow" state, streak freeze.
 
 ### How the daily builds run
 
