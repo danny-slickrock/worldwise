@@ -14,6 +14,12 @@ import {
 } from "../src/game/progress";
 import { normalizeSettings, DEFAULT_SETTINGS } from "../src/game/settings";
 import {
+  statsRowFromProgress,
+  progressFromStatsRow,
+  resultRowFromRound,
+  mergeProgress,
+} from "../src/game/cloudSync";
+import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
   ROUND_LENGTH,
@@ -236,6 +242,73 @@ check(
 check(
   whyItMatters({ code: "zz", name: "Testlandia", region: "Europe" }) === "Testlandia is part of Europe — every place has a story worth knowing.",
   "whyItMatters() falls back gracefully for an unknown code"
+);
+
+console.log("Cloud sync (M2.1)");
+const fullProgress = {
+  xp: 120,
+  streak: 3,
+  longestStreak: 9,
+  bestScore: 7,
+  lastPlayedOn: "2026-03-02",
+  freezes: 1,
+};
+const statsRow = statsRowFromProgress("user-1", fullProgress);
+check(
+  statsRow.user_id === "user-1" &&
+    statsRow.xp === 120 &&
+    statsRow.current_streak === 3 &&
+    statsRow.longest_streak === 9 &&
+    statsRow.best_score === 7 &&
+    statsRow.freezes === 1 &&
+    statsRow.last_played_on === "2026-03-02",
+  "statsRowFromProgress maps local progress onto the user_stats columns"
+);
+check(
+  JSON.stringify(progressFromStatsRow(statsRow)) === JSON.stringify(fullProgress),
+  "progress → user_stats row → progress round-trips unchanged"
+);
+check(progressFromStatsRow(null) === null, "progressFromStatsRow returns null for a missing row");
+
+const dailyRow = resultRowFromRound(
+  "user-1",
+  { mode: "daily", score: 5, total: 6, xp: 50 },
+  "2026-03-02"
+);
+check(dailyRow.daily_date === "2026-03-02", "resultRowFromRound stamps daily_date on a daily round");
+check(
+  dailyRow.xp_awarded === 50 && dailyRow.difficulty === "all" && dailyRow.timed === false,
+  "resultRowFromRound defaults difficulty/timed and maps xp to xp_awarded"
+);
+check(
+  resultRowFromRound("user-1", { mode: "flag", score: 8, total: 8, xp: 100 }, "2026-03-02")
+    .daily_date === null,
+  "resultRowFromRound leaves daily_date null for non-daily modes"
+);
+
+// The merge must never cost a returning player progress they already earned.
+const localSide = { xp: 100, streak: 2, longestStreak: 4, bestScore: 8, lastPlayedOn: "2026-03-01", freezes: 0 };
+const cloudSide = { xp: 250, streak: 5, longestStreak: 3, bestScore: 6, lastPlayedOn: "2026-03-04", freezes: 1 };
+const merged = mergeProgress(localSide, cloudSide);
+check(merged.xp === 250 && merged.bestScore === 8, "mergeProgress takes the max of each side's totals");
+check(merged.streak === 5 && merged.freezes === 1, "mergeProgress keeps the higher streak and freezes");
+// Each side is normalized first, so the cloud's longestStreak of 3 is lifted to
+// its live streak of 5 before the merge — a longest streak can never sit below
+// the current one, on either side of the sync.
+check(merged.longestStreak === 5, "mergeProgress never reports a longest streak below the current streak");
+check(merged.lastPlayedOn === "2026-03-04", "mergeProgress keeps the later last-played day");
+check(
+  JSON.stringify(mergeProgress(localSide, null)) === JSON.stringify(localSide),
+  "mergeProgress with no cloud row keeps local progress as-is"
+);
+check(
+  mergeProgress(DEFAULT_PROGRESS, cloudSide).xp === 250 &&
+    mergeProgress(DEFAULT_PROGRESS, cloudSide).lastPlayedOn === "2026-03-04",
+  "a fresh device adopts the cloud totals rather than zeroing them"
+);
+check(
+  mergeProgress(null, null).xp === 0 && mergeProgress(null, null).lastPlayedOn === null,
+  "mergeProgress falls back to defaults when both sides are missing"
 );
 
 console.log("Scoring");

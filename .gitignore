@@ -24,8 +24,10 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# local env
+# local env — .env holds the Supabase keys; .env.example stays tracked
+.env
 .env*.local
+!.env.example
 
 # claude code — machine-local settings (a shared .claude/settings.json may be committed)
 .claude/settings.local.json
