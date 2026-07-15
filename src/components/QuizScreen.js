@@ -305,6 +305,16 @@ export default function QuizScreen({
                     ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
                     : `Answer: ${q.correct}`}
             </Text>
+
+            {/* The point of the whole thing: the answer is the hook, this is the
+                payoff. Right or wrong, you leave every question knowing
+                something about the place — not just whether you guessed it. */}
+            <View style={styles.contextCard}>
+              <Text style={styles.contextKicker}>WHY IT MATTERS</Text>
+              <Text style={styles.contextCountry}>{q.country.name}</Text>
+              <Text style={styles.contextFact}>{whyItMatters(q.country)}</Text>
+            </View>
+
             <Pressable style={[styles.nextBtn, { backgroundColor: meta.accent }]} onPress={next}>
               <Text style={styles.nextBtnText}>
                 {idx + 1 >= questions.length ? "Finish" : "Next"}
@@ -382,6 +392,19 @@ const styles = StyleSheet.create({
 
   feedback: { marginTop: spacing(2.5), gap: spacing(1.5) },
   feedbackText: { ...type.h2, color: colors.muted },
+  // The context card leads with the earth accent rather than the mode's colour:
+  // the fact is about the place, and reads the same in every game.
+  contextCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    borderLeftWidth: 3,
+    borderLeftColor: colors.earth,
+    padding: spacing(2),
+    ...shadow,
+  },
+  contextKicker: { ...type.pill, fontSize: 10, letterSpacing: 1.5, color: colors.earth },
+  contextCountry: { ...type.h2, marginTop: 2, marginBottom: spacing(0.75) },
+  contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 20 },
   nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center" },
   nextBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
 

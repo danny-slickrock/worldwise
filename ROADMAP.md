@@ -34,13 +34,25 @@ is polish and extra modes that can land any time. So Phase 1 compresses to:
 |-----|-------|-------------|-----------------------|
 | **A** ✅ | 🧱 Streaks | Calendar-aware daily-streak logic, "come back tomorrow" state, streak freeze | Core retention; `last_played_on` already exists in the Phase 2 schema |
 | **B** ✅ | ✨ Results | Richer end-of-round screen: per-question review + "why it matters" blurb | **The thesis.** Without context, this is a flag quiz |
-| **C** | 💾 Content | Per-country "context card" (why this place matters) shown after answers | **The thesis.** This is what makes it Worldwise, not Sporcle |
-| **D** | 🧱 Navigation | Proper tab bar (Home · Play · Profile) + game-select screen | Prerequisite: the Profile tab is where sign-in will live |
+| **C** ✅ | 💾 Content | Per-country "context card" (why this place matters) shown after answers | **The thesis.** This is what makes it Worldwise, not Sporcle |
+| **D** ✅ | 🧱 Navigation | Tab bar (Home · Profile) — shipped alongside M2.1's sign-in | Prerequisite: the Profile tab is where sign-in will live |
 
-**Next up:** Day C — per-country "context card" shown after each answer during play.
+**Phase 1 is complete.** ✅ All four load-bearing items shipped; the exit criteria below are met.
 
-After Day D, Phase 1 is *functionally* complete and we move straight to **M2.1 — accounts &
-cloud sync**. The backlog below gets picked up opportunistically, not as a gate.
+Two notes on how C and D actually landed, so the history reads honestly:
+
+- **C** shows the context card *during play* — it appears under the answer feedback, right
+  before Next, on every question. Day B had already put "why it matters" on the end-of-round
+  review; C is what makes the payoff immediate, and it shows on a *wrong* answer too. That's
+  the point: you leave every question knowing something, not just whether you guessed it.
+- **D** shipped as **Home · Profile**, not Home · Play · Profile. `HomeScreen` is already the
+  game hub, so a third tab would have duplicated it or forced a Home/Play split that buys
+  nothing today. `TabBar` takes its tabs as data, so adding Play later is a one-line change if
+  a real second destination ever earns its place.
+
+Work is already underway on **M2.1 — accounts & cloud sync** (migration, client, sync adapter,
+and sign-in are in; see Phase 2 below). The backlog below gets picked up opportunistically, not
+as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -100,8 +112,18 @@ teaching *how the world works*, not just *where things are*.
 
 **Milestones (in order):**
 
-- **M2.1 — Accounts & cloud sync 🧱** — auth provider, user model, and migration of Phase 1's local
-  progress into a synced account. This is the foundation everything social/educational builds on.
+- **M2.1 — Accounts & cloud sync 🧱** — *in progress.* Auth provider, user model, and migration of
+  Phase 1's local progress into a synced account. This is the foundation everything
+  social/educational builds on.
+  - ✅ Postgres schema as code (`supabase/migrations/`): profiles, user_stats, game_results, RLS
+    owner policies, signup trigger. Verified against a local Postgres — one player cannot read or
+    write another's rows.
+  - ✅ Supabase client (`src/lib/supabase.js`) + sync adapter (`src/storage/cloudProgress.js`,
+    `src/game/cloudSync.js`), keeping `progress.js` pure and offline-first.
+  - ✅ Sign-in on the Profile tab: email magic-link + Google, wired to the sync layer.
+  - ⏳ **Remaining:** run `supabase db push` against the live project, set the Supabase env vars in
+    Vercel, and prove the round trip end-to-end — a real sign-in, the local→cloud merge, and a
+    finished round landing in `game_results`. All of the above is verified locally, not in prod.
 - **M2.2 — Country pages 💾** — the core learning surface: a beautiful page per country answering
   "why should I care?" (map, key facts, a short story, climate/trade/culture hooks, related games).
   Expands the Phase 1 "context card" into a real hub.

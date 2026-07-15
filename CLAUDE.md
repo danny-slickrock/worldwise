@@ -32,25 +32,61 @@ npm run lint       # eslint (expo config)
 npm run format     # prettier
 ```
 
+Backend (Phase 2+, needs Docker for the local stack):
+
+```bash
+npx supabase start     # local Postgres + Auth on :54321 (Studio :54323)
+npx supabase db reset  # reapply every migration from scratch locally — the real schema check
+npx supabase db push   # apply migrations to the linked cloud project (needs the DB password)
+npx supabase stop      # shut the local stack down
+```
+
 Always keep `npm run web` and `npm test` green before committing.
+
+**Auth/DB changes deserve more than a green test run.** The tests are pure, so they never touch
+Postgres, RLS, or the UI. Two checks have each already caught a real bug that tests and typecheck
+both missed: `supabase db reset` against a local Postgres (RLS policies without table GRANTs =
+"permission denied" on every query), and driving the actual app in a browser (a client option that
+silently dropped every web auth callback). If a change touches the schema or the session, run them.
 
 ## Architecture
 
 ```
-App.js                     # App shell: state-based nav + global progress (xp/streak/best)
+App.js                     # App shell: tab nav (Home · Profile) + global progress + sync wiring
 src/
   constants.js             # Tunable gameplay numbers (round length, options, XP formula)
   theme.js                 # Design tokens — the single source of visual truth
   data/countries.js        # Country dataset + flagUrl()/outlineUrl() helpers
+  data/whyItMatters.js     # Per-country "why it matters" facts (the context card)
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
+  game/progress.js         # PURE progress/streak logic — no storage, no network
+  game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
+  game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
+  auth/redirectPolicy.js   # PURE auth-redirect selection
+  auth/redirect.js         # Platform lookups feeding redirectPolicy
+  auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
+  lib/supabase.js          # Supabase client (env-configured; publishable key)
+  storage/progress.js      # AsyncStorage progress cache
+  storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Tappable SVG world map for the Country Locator
+  components/TabBar.js      # Bottom tabs — takes tabs as data, so it's extensible
   screens/HomeScreen.js    # Game hub
+  screens/ProfileScreen.js # Signed-in identity + synced stats
+  screens/SignInScreen.js  # Magic link + Continue with Google
+supabase/migrations/       # Schema as code (user domain + RLS + signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
+
+**The pure/IO split is the load-bearing convention.** `test/engine.test.js` runs in plain Node via
+tsx, so anything it imports must not reach React Native, expo, or the network. That's why each
+piece of cloud/auth logic is split in two: the *decision* is pure and tested (`cloudSync.js`,
+`syncPolicy.js`, `redirectPolicy.js`), and the *IO* sits beside it (`cloudProgress.js`,
+`redirect.js`). Put new logic on the pure side by default; a module that imports RN can't be
+tested here at all.
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
 Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `daily` (a deterministic mixed round, seeded by date).
@@ -79,13 +115,18 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 
 ## Roadmap
 
-See [ROADMAP.md](./ROADMAP.md). Phase 1 has been **compressed** to four load-bearing items
-(A: calendar-aware streaks · B: richer results · C: per-country context cards · D: tab-bar
-navigation). Polish, extra game modes, and onboarding are deferred to a backlog — they are
-*not* a gate. After Day D we go straight to **M2.1 — accounts & cloud sync** (Supabase;
-see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
+See [ROADMAP.md](./ROADMAP.md). **Phase 1 is complete** — all four load-bearing items shipped
+(A: calendar-aware streaks · B: richer results · C: per-country context cards · D: tab bar).
+Polish, extra game modes, and onboarding stay in the backlog — they are *not* a gate.
 
-Day A (calendar-aware streaks) shipped. Next up: **Day B — richer end-of-round results screen.**
+We are now in **Phase 2, M2.1 — accounts & cloud sync** (Supabase; see
+[docs/phase-2-data-model.md](./docs/phase-2-data-model.md)). Shipped: the user-domain migration
+with RLS, the client, the sync adapter, and sign-in (magic link + Google) on the Profile tab.
+
+**Next up — finish M2.1 by proving it in production:** `supabase db push` to the live project,
+set `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in Vercel, then verify a
+real sign-in, the local→cloud merge, and a round landing in `game_results`. Everything so far is
+verified locally only. After that, **M2.2 — country pages**.
 
 ## The mission (don't lose this)
 
