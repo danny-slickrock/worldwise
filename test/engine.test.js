@@ -4,6 +4,7 @@ import { COUNTRIES, LOCATOR_COUNTRIES } from "../src/data/countries";
 import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
+import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import {
   applyRoundResult,
   normalizeProgress,
@@ -217,6 +218,24 @@ check(
 check(
   normalizeSettings({ soundEnabled: "nope" }).soundEnabled === true,
   "normalizeSettings coerces a bad value back to the default"
+);
+
+console.log("Why it matters");
+check(
+  COUNTRIES.every((c) => typeof WHY_IT_MATTERS[c.code] === "string" && WHY_IT_MATTERS[c.code].length > 0),
+  "every country has a hand-written 'why it matters' fact"
+);
+check(
+  new Set(Object.values(WHY_IT_MATTERS)).size === Object.values(WHY_IT_MATTERS).length,
+  "'why it matters' facts are all unique (no copy-paste duplicates)"
+);
+check(
+  COUNTRIES.every((c) => whyItMatters(c) === WHY_IT_MATTERS[c.code]),
+  "whyItMatters() returns the hand-written fact for every known country"
+);
+check(
+  whyItMatters({ code: "zz", name: "Testlandia", region: "Europe" }) === "Testlandia is part of Europe — every place has a story worth knowing.",
+  "whyItMatters() falls back gracefully for an unknown code"
 );
 
 console.log("Scoring");

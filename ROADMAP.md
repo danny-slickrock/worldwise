@@ -33,11 +33,11 @@ is polish and extra modes that can land any time. So Phase 1 compresses to:
 | Day | Focus | Deliverable | Why it's load-bearing |
 |-----|-------|-------------|-----------------------|
 | **A** ✅ | 🧱 Streaks | Calendar-aware daily-streak logic, "come back tomorrow" state, streak freeze | Core retention; `last_played_on` already exists in the Phase 2 schema |
-| **B** | ✨ Results | Richer end-of-round screen: per-question review + "why it matters" blurb | **The thesis.** Without context, this is a flag quiz |
+| **B** ✅ | ✨ Results | Richer end-of-round screen: per-question review + "why it matters" blurb | **The thesis.** Without context, this is a flag quiz |
 | **C** | 💾 Content | Per-country "context card" (why this place matters) shown after answers | **The thesis.** This is what makes it Worldwise, not Sporcle |
 | **D** | 🧱 Navigation | Proper tab bar (Home · Play · Profile) + game-select screen | Prerequisite: the Profile tab is where sign-in will live |
 
-**Next up:** Day B — richer end-of-round results screen (per-question review + "why it matters" blurb).
+**Next up:** Day C — per-country "context card" shown after each answer during play.
 
 After Day D, Phase 1 is *functionally* complete and we move straight to **M2.1 — accounts &
 cloud sync**. The backlog below gets picked up opportunistically, not as a gate.

@@ -7,6 +7,7 @@ import { colors, spacing, radius, type, shadow } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
+import { whyItMatters } from "../data/whyItMatters";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
 import { correctHaptic, wrongHaptic } from "../haptics";
 import { playCorrectTone, playWrongTone } from "../audio/sound";
@@ -34,6 +35,7 @@ export default function QuizScreen({
   const [picked, setPicked] = useState(null); // selected option
   const [done, setDone] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIMED_SECONDS_PER_QUESTION);
+  const [history, setHistory] = useState([]); // per-question record, for the results review
 
   const q = questions[idx];
   const answered = picked !== null;
@@ -112,12 +114,26 @@ export default function QuizScreen({
     ]).start();
   }
 
+  // Resolve what to show for a picked value — for locator, `picked` is a
+  // country code, so it needs mapping back to the name the player saw.
+  function answerLabel(question, value) {
+    if (value === TIMEOUT) return "No answer";
+    if (question.type === "locator") {
+      return question.choices.find((c) => c.code === value)?.name ?? value;
+    }
+    return value;
+  }
+
   function next() {
+    const entry = { question: q, picked, isRight: picked === q.correct };
+    const nextHistory = [...history, entry];
     if (idx + 1 >= questions.length) {
       const xp = computeXp(score);
+      setHistory(nextHistory);
       setDone(true);
       onFinish && onFinish({ mode, score, total: questions.length, xp });
     } else {
+      setHistory(nextHistory);
       setIdx((i) => i + 1);
       setPicked(null);
     }
@@ -127,15 +143,36 @@ export default function QuizScreen({
     const xp = computeXp(score);
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <View style={styles.resultWrap}>
+      <ScrollView style={styles.resultWrap} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
         <Text style={styles.resultKicker}>{meta.title}</Text>
         <Text style={styles.resultScore}>{score}/{questions.length}</Text>
         <Text style={styles.resultPct}>{pct}% correct</Text>
         <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
+
+        <Text style={styles.reviewHeading}>Round review</Text>
+        <View style={styles.reviewList}>
+          {history.map((entry, i) => (
+            <View key={i} style={styles.reviewCard}>
+              <View style={styles.reviewRow}>
+                <Text style={[styles.reviewMark, entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong]}>
+                  {entry.isRight ? "✓" : "✕"}
+                </Text>
+                <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+              </View>
+              {!entry.isRight && (
+                <Text style={styles.reviewAnswer}>
+                  You said {answerLabel(entry.question, entry.picked)} — the answer was {entry.question.correct}
+                </Text>
+              )}
+              <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
+            </View>
+          ))}
+        </View>
+
         <Pressable style={[styles.primaryBtn, { backgroundColor: meta.accent }]} onPress={onExit}>
           <Text style={styles.primaryBtnText}>Back to games</Text>
         </Pressable>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -337,15 +374,34 @@ const styles = StyleSheet.create({
   nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center" },
   nextBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
 
-  resultWrap: { flex: 1, backgroundColor: colors.bg, alignItems: "center", justifyContent: "center", padding: spacing(3) },
+  resultWrap: { flex: 1, backgroundColor: colors.bg },
+  resultContent: { alignItems: "center", padding: spacing(3), paddingBottom: spacing(6) },
   resultKicker: { ...type.muted, textTransform: "uppercase", letterSpacing: 1, fontWeight: "700" },
   resultScore: { fontSize: 64, fontWeight: "900", color: colors.navy, marginTop: spacing(1) },
   resultPct: { ...type.h2, color: colors.muted, marginBottom: spacing(2) },
   xpPill: {
     backgroundColor: colors.successBg, borderRadius: radius.pill,
-    paddingHorizontal: spacing(2.5), paddingVertical: spacing(1), marginBottom: spacing(4),
+    paddingHorizontal: spacing(2.5), paddingVertical: spacing(1), marginBottom: spacing(3),
   },
   xpPillText: { color: colors.success, fontWeight: "800", fontSize: 16 },
+
+  reviewHeading: {
+    ...type.muted, alignSelf: "flex-start", textTransform: "uppercase",
+    letterSpacing: 1, fontWeight: "700", marginBottom: spacing(1.5),
+  },
+  reviewList: { width: "100%", gap: spacing(1.5), marginBottom: spacing(3) },
+  reviewCard: {
+    backgroundColor: colors.surface, borderRadius: radius.md, borderWidth: 1,
+    borderColor: colors.line, padding: spacing(2), gap: spacing(1), ...shadow,
+  },
+  reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(1) },
+  reviewMark: { fontSize: 16, fontWeight: "800", width: 20 },
+  reviewMarkRight: { color: colors.success },
+  reviewMarkWrong: { color: colors.error },
+  reviewPrompt: { ...type.body, fontWeight: "700", flex: 1 },
+  reviewAnswer: { ...type.muted, fontSize: 13 },
+  reviewFact: { ...type.body, fontSize: 14, color: colors.muted, fontStyle: "italic" },
+
   primaryBtn: { borderRadius: radius.md, paddingVertical: spacing(2), paddingHorizontal: spacing(5) },
   primaryBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
 });
