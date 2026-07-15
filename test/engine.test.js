@@ -19,6 +19,8 @@ import {
   resultRowFromRound,
   mergeProgress,
 } from "../src/game/cloudSync";
+import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
+import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
@@ -309,6 +311,61 @@ check(
 check(
   mergeProgress(null, null).xp === 0 && mergeProgress(null, null).lastPlayedOn === null,
   "mergeProgress falls back to defaults when both sides are missing"
+);
+
+console.log("Sync policy (M2.1)");
+check(
+  roundSinks({ id: "user-1" }).cloud === true && roundSinks({ id: "user-1" }).local === true,
+  "a signed-in round is written to both local cache and cloud"
+);
+check(
+  roundSinks(null).cloud === false && roundSinks(null).local === true,
+  "a signed-out round is written local-only"
+);
+// A user object without an id can't own a row — RLS would reject the insert.
+check(roundSinks({}).cloud === false, "a user with no id is not treated as signed in");
+check(
+  shouldMigrate({ user: { id: "user-1" }, migrated: false }) === true,
+  "the local→cloud merge runs on a first sign-in"
+);
+check(
+  shouldMigrate({ user: { id: "user-1" }, migrated: true }) === false,
+  "the merge does not run again once the device is flagged as migrated"
+);
+check(
+  shouldMigrate({ user: null, migrated: false }) === false,
+  "the merge never runs while signed out"
+);
+
+console.log("Auth redirect (M2.1)");
+check(
+  pickRedirectUrl({ platform: "web", origin: "https://worldwise.vercel.app", nativeUrl: "worldwise://auth/callback" }) ===
+    "https://worldwise.vercel.app",
+  "web redirects back to its own origin, ignoring the native deep link"
+);
+check(
+  pickRedirectUrl({ platform: "web", origin: "http://localhost:8081", nativeUrl: null }) === "http://localhost:8081",
+  "web uses the dev origin, so one build works locally and on Vercel"
+);
+check(
+  pickRedirectUrl({ platform: "ios", origin: null, nativeUrl: "worldwise://auth/callback" }) ===
+    "worldwise://auth/callback",
+  "native redirects to the app's deep link"
+);
+check(
+  pickRedirectUrl({ platform: "android", origin: "https://ignored.example", nativeUrl: "exp://127.0.0.1:8081/--/auth/callback" }) ===
+    "exp://127.0.0.1:8081/--/auth/callback",
+  "native prefers its deep link even if a window origin somehow exists"
+);
+// Returning null lets Supabase fall back to its configured Site URL, which beats
+// sending it a redirect built from a missing origin.
+check(
+  pickRedirectUrl({ platform: "web", origin: null, nativeUrl: null }) === null,
+  "web with no origin yields no redirect rather than a malformed one"
+);
+check(
+  pickRedirectUrl({ platform: "ios", origin: null, nativeUrl: null }) === null,
+  "native with no deep link yields no redirect"
 );
 
 console.log("Scoring");

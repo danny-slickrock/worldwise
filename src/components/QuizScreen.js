@@ -131,7 +131,18 @@ export default function QuizScreen({
       const xp = computeXp(score);
       setHistory(nextHistory);
       setDone(true);
-      onFinish && onFinish({ mode, score, total: questions.length, xp });
+      // Report what the round actually was, not what was requested: the Daily
+      // ignores both difficulty and the timer, and game_results should record
+      // the round that happened.
+      onFinish &&
+        onFinish({
+          mode,
+          difficulty: mode === "daily" ? DEFAULT_DIFFICULTY : difficulty,
+          timed: timedActive,
+          score,
+          total: questions.length,
+          xp,
+        });
     } else {
       setHistory(nextHistory);
       setIdx((i) => i + 1);

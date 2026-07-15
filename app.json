@@ -3,6 +3,7 @@
     "name": "Worldwise",
     "slug": "worldwise",
     "version": "0.1.0",
+    "scheme": "worldwise",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
     "backgroundColor": "#F7F4EE",

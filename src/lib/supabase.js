@@ -2,6 +2,7 @@
 // URL polyfill must come first: supabase-js parses URLs internally, and React
 // Native's URL implementation is incomplete without it.
 import "react-native-url-polyfill/auto";
+import { Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 // supabase-js imports @opentelemetry/api without declaring it, and Metro has no
 // notion of an optional dependency — so it's pinned in package.json purely to
@@ -30,8 +31,14 @@ export const supabase = createClient(supabaseUrl, supabasePublishableKey, {
     storage: AsyncStorage,
     persistSession: true,
     autoRefreshToken: true,
-    // No OAuth redirect callbacks to parse yet; enable this when web social
-    // sign-in lands, or it will try to read tokens out of every URL.
-    detectSessionInUrl: false,
+    // PKCE keeps the token exchange off the URL on every platform: the callback
+    // carries a short-lived `code`, and the verifier stays in AsyncStorage.
+    // It's also the only flow that works for native deep links.
+    flowType: "pkce",
+    // Web lands back on a real URL carrying ?code=, so let supabase-js consume
+    // it automatically. Native has no such URL — it hands the code to
+    // exchangeCodeForSession() from the deep-link handler in AuthProvider — and
+    // leaving this on there would make it hunt for tokens in URLs that never come.
+    detectSessionInUrl: Platform.OS === "web",
   },
 });
