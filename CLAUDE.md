@@ -119,14 +119,16 @@ See [ROADMAP.md](./ROADMAP.md). **Phase 1 is complete** — all four load-bearin
 (A: calendar-aware streaks · B: richer results · C: per-country context cards · D: tab bar).
 Polish, extra game modes, and onboarding stay in the backlog — they are *not* a gate.
 
-We are now in **Phase 2, M2.1 — accounts & cloud sync** (Supabase; see
-[docs/phase-2-data-model.md](./docs/phase-2-data-model.md)). Shipped: the user-domain migration
-with RLS, the client, the sync adapter, and sign-in (magic link + Google) on the Profile tab.
+We are in **Phase 2** (Supabase; see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
+**M2.1 — accounts & cloud sync is complete and verified in production:** the user-domain migration
+with RLS is applied to the live project, and a real sign-in syncs progress, runs the one-time
+local→cloud merge, and writes finished rounds to `game_results`. Vercel carries the Supabase env
+vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
 
-**Next up — finish M2.1 by proving it in production:** `supabase db push` to the live project,
-set `EXPO_PUBLIC_SUPABASE_URL` / `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY` in Vercel, then verify a
-real sign-in, the local→cloud merge, and a round landing in `game_results`. Everything so far is
-verified locally only. After that, **M2.2 — country pages**.
+**Next up — M2.2 — country pages:** the core learning surface, a page per country answering "why
+should I care?" (map, key facts, a short story, related games). It expands the Phase 1 context
+card into a real hub. Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable
+chunk at a time.
 
 ## The mission (don't lose this)
 

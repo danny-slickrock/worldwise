@@ -50,9 +50,9 @@ Two notes on how C and D actually landed, so the history reads honestly:
   nothing today. `TabBar` takes its tabs as data, so adding Play later is a one-line change if
   a real second destination ever earns its place.
 
-Work is already underway on **M2.1 — accounts & cloud sync** (migration, client, sync adapter,
-and sign-in are in; see Phase 2 below). The backlog below gets picked up opportunistically, not
-as a gate.
+**M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
+adapter, and sign-in all shipped; see Phase 2 below). Next milestone: **M2.2 — country pages**. The
+backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -112,18 +112,17 @@ teaching *how the world works*, not just *where things are*.
 
 **Milestones (in order):**
 
-- **M2.1 — Accounts & cloud sync 🧱** — *in progress.* Auth provider, user model, and migration of
-  Phase 1's local progress into a synced account. This is the foundation everything
+- **M2.1 — Accounts & cloud sync 🧱** — ✅ **complete, verified in production.** Auth provider, user
+  model, and migration of Phase 1's local progress into a synced account. The foundation everything
   social/educational builds on.
   - ✅ Postgres schema as code (`supabase/migrations/`): profiles, user_stats, game_results, RLS
-    owner policies, signup trigger. Verified against a local Postgres — one player cannot read or
-    write another's rows.
+    owner policies, signup trigger. Applied to the live project; isolation checked (one player
+    cannot read or write another's rows).
   - ✅ Supabase client (`src/lib/supabase.js`) + sync adapter (`src/storage/cloudProgress.js`,
     `src/game/cloudSync.js`), keeping `progress.js` pure and offline-first.
   - ✅ Sign-in on the Profile tab: email magic-link + Google, wired to the sync layer.
-  - ⏳ **Remaining:** run `supabase db push` against the live project, set the Supabase env vars in
-    Vercel, and prove the round trip end-to-end — a real sign-in, the local→cloud merge, and a
-    finished round landing in `game_results`. All of the above is verified locally, not in prod.
+  - ✅ Proven end-to-end in prod: a real sign-in syncs progress, the local→cloud merge runs once,
+    and a finished round lands in `game_results`. Vercel carries the Supabase env vars.
 - **M2.2 — Country pages 💾** — the core learning surface: a beautiful page per country answering
   "why should I care?" (map, key facts, a short story, climate/trade/culture hooks, related games).
   Expands the Phase 1 "context card" into a real hub.
