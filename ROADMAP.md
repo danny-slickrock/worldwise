@@ -126,6 +126,29 @@ teaching *how the world works*, not just *where things are*.
 - **M2.2 — Country pages 💾** — the core learning surface: a beautiful page per country answering
   "why should I care?" (map, key facts, a short story, climate/trade/culture hooks, related games).
   Expands the Phase 1 "context card" into a real hub.
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip):
+    1. ☐ **Content model first (pure + tested).** Extend the country content shape in `src/data/`
+       (build on `countries.js` + `whyItMatters.js`): `summary`/story, key facts (population, area,
+       lat/lng), region, neighbors[], relatedGameModes[]. Keep it **versioned JSON, not Postgres**
+       — content only moves into a `content.*` schema later, when it must be queried against user
+       data (per `docs/phase-2-data-model.md`). Add a pure accessor (e.g. `getCountryPage(code)`)
+       with a graceful fallback for sparse countries, and tests in `test/engine.test.js`.
+    2. ☐ **Navigation seam.** Add a lightweight way to open a country page by code
+       (`openCountry(code)`) that fits the current state-based nav in `App.js`. No nav library
+       unless the screen count truly justifies it — decide deliberately, note the trade-off.
+    3. ☐ **One static CountryPage screen.** Nail the layout for a single country: map (reuse
+       `WorldMap`/`CountryOutline`), name + key facts, the short story, neighbor chips, and
+       "related games" buttons. Reuse `theme.js` tokens; **maps are the hero.**
+    4. ☐ **Make it data-driven** across all 196 countries from the content module, with clean
+       empty/partial states where a story or facts are missing.
+    5. ☐ **Wire entry points.** From the post-answer context card ("Learn more about {country}"),
+       from a browsable country index, and (once M2.3 lands) from the map.
+    6. ☐ **Polish + a11y.** Transitions consistent with the design system, WCAG AA contrast,
+       large tap targets, offline/image-load fallbacks.
+  - **Guardrails for this milestone:** honor the pure/IO split so the tsx tests keep running; any
+    Supabase work stays migrations-as-files with RLS + explicit CRUD grants (never `db push`/`link`,
+    never handle secrets — leave those as manual steps). Gate each commit on
+    `npm test` + typecheck + lint + web bundle.
 - **M2.3 — Interactive maps 🌐** — pan/zoom world and region maps; tap a place to explore it; the map
   as the primary way to navigate learning (maps stay the hero).
 - **M2.4 — Learning paths 🎓** — guided, mastery-based sequences that "expand outward"
