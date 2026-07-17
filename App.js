@@ -14,6 +14,7 @@ import { loadProgress, saveProgress } from "./src/storage/progress";
 import { saveRoundResult, migrateLocalToCloud } from "./src/storage/cloudProgress";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
+import { DEFAULT_DIFFICULTY } from "./src/constants";
 
 const TABS = [
   { key: "home", label: "Home", icon: "⌂" },
@@ -123,7 +124,11 @@ function AppShell() {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar style="dark" />
-        <CountryPageScreen code={screen.code} onExit={leaveOverlay} />
+        <CountryPageScreen
+          code={screen.code}
+          onExit={leaveOverlay}
+          onPlay={(mode) => setScreen({ name: "quiz", mode, difficulty: DEFAULT_DIFFICULTY, timed: false })}
+        />
       </SafeAreaView>
     );
   }

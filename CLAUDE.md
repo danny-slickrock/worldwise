@@ -77,6 +77,7 @@ src/
   screens/HomeScreen.js    # Game hub
   screens/ProfileScreen.js # Signed-in identity + synced stats
   screens/SignInScreen.js  # Magic link + Continue with Google
+  screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
 supabase/migrations/       # Schema as code (user domain + RLS + signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 test/engine.test.js        # Pure-logic tests (no RN imports)

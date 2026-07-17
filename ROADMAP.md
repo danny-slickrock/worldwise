@@ -147,10 +147,14 @@ teaching *how the world works*, not just *where things are*.
        library is needed yet (tab state is held separately, so `leaveOverlay()` returns you to
        the tab you came from). A temporary "Explore Brazil" preview entry point on `HomeScreen`
        makes it reachable while step 3 builds the real screen.
-    3. ☐ **Hero CountryPage — Brazil, fully polished.** Build the screen against Brazil until it's
-       genuinely beautiful and demo-ready: map (reuse `WorldMap`/`CountryOutline`), name + key facts,
-       the story, neighbor chips, "related games" buttons, transitions. Reuse `theme.js` tokens;
-       **maps are the hero.** This is the design target the rest inherit.
+    3. ✅ **Hero CountryPage — Brazil.** `src/screens/CountryPageScreen.js` renders from
+       `getCountryPage(code)`: the country outline as the navy hero (reuses `CountryOutline`),
+       region kicker + name + capital, People/Area/Neighbors stat tiles, the story, labelled
+       climate/trade/culture rows, neighbor chips (codes → names via `countries.js`), and
+       "related games" buttons that start a round in that mode via `onPlay`. Theme tokens only;
+       maps are the hero. Reused across all 196 in step 4 — component already degrades gracefully
+       for unauthored countries. *(Note: `WorldMap` is Locator-specific — choices/answer surface —
+       so the outline, not the world map, is the right hero for a single country.)*
     4. ☐ **Generalize to all 196 countries** from the content module, driven by the same component,
        with clean empty/partial states where a story or facts are missing.
     5. ☐ **Wire entry points.** From the post-answer context card ("Learn more about {country}"),
