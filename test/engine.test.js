@@ -5,6 +5,7 @@ import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
+import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
 import {
   applyRoundResult,
   normalizeProgress,
@@ -244,6 +245,44 @@ check(
 check(
   whyItMatters({ code: "zz", name: "Testlandia", region: "Europe" }) === "Testlandia is part of Europe — every place has a story worth knowing.",
   "whyItMatters() falls back gracefully for an unknown code"
+);
+
+console.log("Country pages (M2.2)");
+const validCodes = new Set(COUNTRIES.map((c) => c.code));
+const validModes = new Set(["flag", "capital", "capitalReverse", "shape", "locator"]);
+check(getCountryPage("zz") === null, "getCountryPage returns null for an unknown code");
+
+const brazil = getCountryPage("br");
+check(brazil.hasFullContent === true, "Brazil (the hero entry) has full content");
+check(brazil.name === "Brazil" && brazil.capital === "Brasília", "getCountryPage merges in the base country record");
+check(typeof brazil.summary === "string" && brazil.summary.length > 100, "Brazil has a real story, not a one-liner");
+check(brazil.population > 0 && brazil.areaKm2 > 0, "Brazil has population and area facts");
+check(typeof brazil.lat === "number" && typeof brazil.lng === "number", "Brazil has map coordinates");
+check(brazil.neighbors.length > 0, "Brazil lists its neighbors");
+check(
+  brazil.neighbors.every((code) => validCodes.has(code)),
+  "every Brazil neighbor code is a real country in the dataset"
+);
+check(!brazil.neighbors.includes("br"), "Brazil is not its own neighbor");
+check(
+  brazil.relatedGameModes.length > 0 && brazil.relatedGameModes.every((m) => validModes.has(m)),
+  "Brazil's related game modes are all real, country-targeted modes"
+);
+check(brazil.facts && typeof brazil.facts.climate === "string", "Brazil has climate/trade/culture facts");
+
+for (const code of Object.keys(COUNTRY_PAGES)) {
+  check(validCodes.has(code), `COUNTRY_PAGES key "${code}" is a real country code`);
+}
+
+// A country with no hand-authored page must still render something reasonable.
+const sparse = getCountryPage("fr");
+check(sparse.hasFullContent === false, "an unauthored country reports hasFullContent: false");
+check(sparse.summary === whyItMatters(COUNTRIES.find((c) => c.code === "fr")), "an unauthored country falls back to its whyItMatters fact");
+check(sparse.population === null && sparse.areaKm2 === null, "an unauthored country has no fabricated facts");
+check(Array.isArray(sparse.neighbors) && sparse.neighbors.length === 0, "an unauthored country has an empty neighbor list, not a guess");
+check(
+  sparse.relatedGameModes.length > 0 && sparse.relatedGameModes.every((m) => validModes.has(m)),
+  "an unauthored country still gets sensible default game-mode suggestions"
 );
 
 console.log("Cloud sync (M2.1)");

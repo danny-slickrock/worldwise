@@ -51,8 +51,10 @@ Two notes on how C and D actually landed, so the history reads honestly:
   a real second destination ever earns its place.
 
 **M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
-adapter, and sign-in all shipped; see Phase 2 below). Next milestone: **M2.2 — country pages**. The
-backlog below gets picked up opportunistically, not as a gate.
+adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is underway:** the
+content model + Brazil hero content landed (`src/data/countryPages.js`); next up is the navigation
+seam (`openCountry(code)`), then the polished Brazil `CountryPage` screen itself. The backlog below
+gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -129,13 +131,17 @@ teaching *how the world works*, not just *where things are*.
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
     Strategy: **build one fully-polished "hero" country page (Brazil) end-to-end first**, so there's
     something impressive and real to react to — *then* generalize it across all 196.
-    1. ☐ **Content model + hero content (pure + tested).** Define the country-page content shape in
+    1. ✅ **Content model + hero content (pure + tested).** Define the country-page content shape in
        `src/data/` (build on `countries.js` + `whyItMatters.js`): `summary`/story, key facts
        (population, area, lat/lng), region, neighbors[], relatedGameModes[]. Author **Brazil** fully
        as the reference entry. Keep it **versioned JSON, not Postgres** — content only moves into a
        `content.*` schema later, when it must be queried against user data (per
        `docs/phase-2-data-model.md`). Add a pure accessor (`getCountryPage(code)`) with a graceful
        fallback for sparse countries, and tests in `test/engine.test.js`.
+       Landed as `src/data/countryPages.js`: `COUNTRY_PAGES` holds hand-authored entries (Brazil
+       fully fleshed out — summary, population, area, lat/lng, neighbors, related modes,
+       climate/trade/culture facts) and `getCountryPage(code)` merges that with `countries.js` +
+       `whyItMatters()` so every known country renders a reasonable page today, even unauthored ones.
     2. ☐ **Navigation seam.** Add a lightweight way to open a country page by code
        (`openCountry(code)`) that fits the current state-based nav in `App.js`. No nav library
        unless the screen count truly justifies it — decide deliberately, note the trade-off.

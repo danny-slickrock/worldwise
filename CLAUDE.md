@@ -58,6 +58,7 @@ src/
   theme.js                 # Design tokens — the single source of visual truth
   data/countries.js        # Country dataset + flagUrl()/outlineUrl() helpers
   data/whyItMatters.js     # Per-country "why it matters" facts (the context card)
+  data/countryPages.js     # M2.2 country-page content model: getCountryPage(code) + hero (Brazil)
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
