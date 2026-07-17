@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { colors } from "./src/theme";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
+import CountryPageScreen from "./src/screens/CountryPageScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import TabBar from "./src/components/TabBar";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -81,6 +82,17 @@ function AppShell() {
     setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));
   }
 
+  // Navigation seam for M2.2 country pages. Country pages open as a full-screen
+  // overlay over the tab shell — same pattern as a quiz round — so no navigation
+  // library is needed yet. leaveOverlay() returns to the tab you came from
+  // (tab state is held separately from screen state, so it's preserved).
+  function openCountry(code) {
+    setScreen({ name: "country", code });
+  }
+  function leaveOverlay() {
+    setScreen({ name: "home", mode: null, difficulty: null, timed: false });
+  }
+
   function handleFinish(round) {
     const next = applyRoundResult(progress, { score: round.score, xp: round.xp }, dayKey(new Date()));
     setProgress(next);
@@ -100,9 +112,18 @@ function AppShell() {
           timed={screen.timed}
           soundEnabled={settings.soundEnabled}
           onToggleSound={toggleSound}
-          onExit={() => setScreen({ name: "home", mode: null, difficulty: null, timed: false })}
+          onExit={leaveOverlay}
           onFinish={handleFinish}
         />
+      </SafeAreaView>
+    );
+  }
+
+  if (screen.name === "country") {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar style="dark" />
+        <CountryPageScreen code={screen.code} onExit={leaveOverlay} />
       </SafeAreaView>
     );
   }
@@ -115,6 +136,7 @@ function AppShell() {
           <HomeScreen
             progress={progress}
             onPlay={(mode, difficulty, timed) => setScreen({ name: "quiz", mode, difficulty, timed })}
+            onOpenCountry={openCountry}
           />
         ) : (
           <ProfileScreen progress={progress} />

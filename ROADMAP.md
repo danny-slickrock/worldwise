@@ -142,9 +142,11 @@ teaching *how the world works*, not just *where things are*.
        fully fleshed out — summary, population, area, lat/lng, neighbors, related modes,
        climate/trade/culture facts) and `getCountryPage(code)` merges that with `countries.js` +
        `whyItMatters()` so every known country renders a reasonable page today, even unauthored ones.
-    2. ☐ **Navigation seam.** Add a lightweight way to open a country page by code
-       (`openCountry(code)`) that fits the current state-based nav in `App.js`. No nav library
-       unless the screen count truly justifies it — decide deliberately, note the trade-off.
+    2. ✅ **Navigation seam.** `openCountry(code)` in `App.js` opens a country page as a
+       full-screen overlay over the tab shell — the same pattern as a quiz round — so no nav
+       library is needed yet (tab state is held separately, so `leaveOverlay()` returns you to
+       the tab you came from). A temporary "Explore Brazil" preview entry point on `HomeScreen`
+       makes it reachable while step 3 builds the real screen.
     3. ☐ **Hero CountryPage — Brazil, fully polished.** Build the screen against Brazil until it's
        genuinely beautiful and demo-ready: map (reuse `WorldMap`/`CountryOutline`), name + key facts,
        the story, neighbor chips, "related games" buttons, transitions. Reuse `theme.js` tokens;
