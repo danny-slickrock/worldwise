@@ -64,5 +64,6 @@ export function getCountryPage(code) {
     relatedGameModes: page?.relatedGameModes ?? DEFAULT_RELATED_MODES,
     facts: page?.facts ?? null,
     hasFullContent: Boolean(page),
+    noOutline: Boolean(country.noOutline),
   };
 }

@@ -285,6 +285,24 @@ check(
   "an unauthored country still gets sensible default game-mode suggestions"
 );
 
+// Step 4 (generalize to all 196): every country in the dataset — not just the
+// hand-authored ones — must render a usable page, and the hero must know when
+// to fall back (mapsicon has no outline for four codes; see countries.js).
+check(
+  COUNTRIES.every((c) => getCountryPage(c.code) !== null),
+  "getCountryPage resolves every one of the 196 countries, not just authored ones"
+);
+check(
+  COUNTRIES.every((c) => getCountryPage(c.code).noOutline === Boolean(c.noOutline)),
+  "getCountryPage reports noOutline in lockstep with the dataset's noOutline flag"
+);
+const noOutlineCodes = COUNTRIES.filter((c) => c.noOutline).map((c) => c.code);
+check(noOutlineCodes.length > 0, "the dataset has at least one noOutline country to guard against");
+check(
+  noOutlineCodes.every((code) => getCountryPage(code).noOutline === true),
+  "every noOutline country's page flags noOutline so the hero can fall back cleanly"
+);
+
 console.log("Cloud sync (M2.1)");
 const fullProgress = {
   xp: 120,

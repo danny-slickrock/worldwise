@@ -52,10 +52,20 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
     <View style={styles.wrap}>
       <BackBar onExit={onExit} />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Hero — the outline is the star. */}
+        {/* Hero — the outline is the star, except for the handful of places
+            mapsicon has no vector for (see countries.js noOutline), where a
+            broken image would undercut the "maps are the hero" premise more
+            than a clean placeholder does. */}
         <View style={styles.hero}>
           <View style={styles.outlineBox}>
-            <CountryOutline code={page.code} />
+            {page.noOutline ? (
+              <View style={styles.outlineFallback}>
+                <Text style={styles.outlineFallbackGlyph}>◇</Text>
+                <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
+              </View>
+            ) : (
+              <CountryOutline code={page.code} />
+            )}
           </View>
         </View>
 
@@ -161,6 +171,14 @@ const styles = StyleSheet.create({
     ...shadow,
   },
   outlineBox: { width: "100%", height: 200 },
+  outlineFallback: { flex: 1, alignItems: "center", justifyContent: "center" },
+  outlineFallbackGlyph: { fontSize: 56, color: "rgba(255,255,255,0.35)" },
+  outlineFallbackText: {
+    ...type.muted,
+    color: "rgba(255,255,255,0.7)",
+    fontSize: 13,
+    marginTop: spacing(1),
+  },
 
   kicker: { color: colors.earth, fontWeight: "800", letterSpacing: 2, fontSize: 12 },
   name: { ...type.hero, fontSize: 38, marginTop: spacing(0.5) },

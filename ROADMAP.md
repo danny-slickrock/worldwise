@@ -52,9 +52,11 @@ Two notes on how C and D actually landed, so the history reads honestly:
 
 **M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
 adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is underway:** the
-content model + Brazil hero content landed (`src/data/countryPages.js`); next up is the navigation
-seam (`openCountry(code)`), then the polished Brazil `CountryPage` screen itself. The backlog below
-gets picked up opportunistically, not as a gate.
+content model, navigation seam, polished Brazil hero page, and generalization to all 196 countries
+(with a clean hero fallback for the 4 without a mapsicon outline) have landed. Next up is step 5 —
+wire real entry points (context-card "Learn more", a browsable country index) beyond the temporary
+"Explore Brazil" preview button on Home. The backlog below gets picked up opportunistically, not as
+a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -155,8 +157,15 @@ teaching *how the world works*, not just *where things are*.
        maps are the hero. Reused across all 196 in step 4 — component already degrades gracefully
        for unauthored countries. *(Note: `WorldMap` is Locator-specific — choices/answer surface —
        so the outline, not the world map, is the right hero for a single country.)*
-    4. ☐ **Generalize to all 196 countries** from the content module, driven by the same component,
+    4. ✅ **Generalize to all 196 countries** from the content module, driven by the same component,
        with clean empty/partial states where a story or facts are missing.
+       `getCountryPage(code)` already resolved every country (not just hand-authored ones) as of
+       step 1, and `CountryPageScreen` already hid sections gracefully when facts/neighbors were
+       absent — so the actual gap was the hero: 4 of 196 countries (`ps`, `mh`, `fm`, `tv`) have no
+       mapsicon outline (see `countries.js` `noOutline`), which would have rendered a blank/broken
+       hero. `getCountryPage()` now reports `noOutline`, and the hero swaps in a clean "map outline
+       coming soon" placeholder for those four instead of an empty `CountryOutline`. Covered by a
+       loop test in `test/engine.test.js` over all 196 codes.
     5. ☐ **Wire entry points.** From the post-answer context card ("Learn more about {country}"),
        from a browsable country index, and (once M2.3 lands) from the map.
     6. ☐ **Polish + a11y pass** across the generalized pages: transitions consistent with the design
