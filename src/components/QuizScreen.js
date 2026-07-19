@@ -19,7 +19,7 @@ const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, exp
 // A single reusable quiz surface that powers all game modes.
 export default function QuizScreen({
   mode, difficulty = DEFAULT_DIFFICULTY, timed = false, soundEnabled = true,
-  onToggleSound, onExit, onFinish,
+  onToggleSound, onExit, onFinish, onOpenCountry,
 }) {
   const meta = MODES[mode];
   const questions = useMemo(
@@ -313,6 +313,11 @@ export default function QuizScreen({
               <Text style={styles.contextKicker}>WHY IT MATTERS</Text>
               <Text style={styles.contextCountry}>{q.country.name}</Text>
               <Text style={styles.contextFact}>{whyItMatters(q.country)}</Text>
+              {onOpenCountry && (
+                <Pressable onPress={() => onOpenCountry(q.country.code)} hitSlop={8}>
+                  <Text style={styles.contextLink}>Learn more about {q.country.name} →</Text>
+                </Pressable>
+              )}
             </View>
 
             <Pressable style={[styles.nextBtn, { backgroundColor: meta.accent }]} onPress={next}>
@@ -405,6 +410,7 @@ const styles = StyleSheet.create({
   contextKicker: { ...type.pill, fontSize: 10, letterSpacing: 1.5, color: colors.earth },
   contextCountry: { ...type.h2, marginTop: 2, marginBottom: spacing(0.75) },
   contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 20 },
+  contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1) },
   nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center" },
   nextBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
 

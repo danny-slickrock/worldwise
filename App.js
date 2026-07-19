@@ -115,6 +115,7 @@ function AppShell() {
           onToggleSound={toggleSound}
           onExit={leaveOverlay}
           onFinish={handleFinish}
+          onOpenCountry={openCountry}
         />
       </SafeAreaView>
     );

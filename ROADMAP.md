@@ -52,11 +52,11 @@ Two notes on how C and D actually landed, so the history reads honestly:
 
 **M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
 adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is underway:** the
-content model, navigation seam, polished Brazil hero page, and generalization to all 196 countries
-(with a clean hero fallback for the 4 without a mapsicon outline) have landed. Next up is step 5 —
-wire real entry points (context-card "Learn more", a browsable country index) beyond the temporary
-"Explore Brazil" preview button on Home. The backlog below gets picked up opportunistically, not as
-a gate.
+content model, navigation seam, polished Brazil hero page, generalization to all 196 countries
+(with a clean hero fallback for the 4 without a mapsicon outline), and the first real entry point —
+a "Learn more about {country}" link on the in-play context card — have landed. Next up is a
+browsable country index (still beyond the temporary "Explore Brazil" preview button on Home). The
+backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -166,8 +166,15 @@ teaching *how the world works*, not just *where things are*.
        hero. `getCountryPage()` now reports `noOutline`, and the hero swaps in a clean "map outline
        coming soon" placeholder for those four instead of an empty `CountryOutline`. Covered by a
        loop test in `test/engine.test.js` over all 196 codes.
-    5. ☐ **Wire entry points.** From the post-answer context card ("Learn more about {country}"),
-       from a browsable country index, and (once M2.3 lands) from the map.
+    5. **Wire entry points.** Split into three, landing one at a time:
+       - ✅ **Post-answer context card.** The in-play "WHY IT MATTERS" card (shown after every
+         answer, right before Next) now carries a "Learn more about {country} →" link that opens
+         the full country page via the existing `openCountry`/overlay seam — `QuizScreen` takes an
+         `onOpenCountry` prop, wired from `App.js`. Tapping it mid-round leaves the round
+         unsubmitted (same trade-off as the existing ✕ exit); no round is scored.
+       - ☐ **Browsable country index.** A screen listing all 196 countries, searchable/filterable,
+         each row opening its country page.
+       - ☐ **From the map** (blocked on M2.3 — interactive maps).
     6. ☐ **Polish + a11y pass** across the generalized pages: transitions consistent with the design
        system, WCAG AA contrast, large tap targets, offline/image-load fallbacks.
   - **Guardrails for this milestone:** honor the pure/IO split so the tsx tests keep running; any
