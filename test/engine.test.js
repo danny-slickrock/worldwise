@@ -21,6 +21,7 @@ import {
   mergeProgress,
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
+import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import {
   OPTIONS_PER_QUESTION,
@@ -301,6 +302,50 @@ check(noOutlineCodes.length > 0, "the dataset has at least one noOutline country
 check(
   noOutlineCodes.every((code) => getCountryPage(code).noOutline === true),
   "every noOutline country's page flags noOutline so the hero can fall back cleanly"
+);
+
+console.log("Country index (M2.2 step 5b)");
+check(
+  searchCountries(COUNTRIES).length === COUNTRIES.length,
+  "no query/region returns every country"
+);
+check(
+  searchCountries(COUNTRIES)[0].name < searchCountries(COUNTRIES)[1].name,
+  "results sort alphabetically by name"
+);
+check(
+  searchCountries(COUNTRIES, { region: "Oceania" }).every((c) => c.region === "Oceania"),
+  "a region filter returns only countries in that region"
+);
+check(
+  searchCountries(COUNTRIES, { region: "Oceania" }).length < COUNTRIES.length,
+  "a region filter narrows the full list"
+);
+check(
+  searchCountries(COUNTRIES, { query: "brazil" }).length === 1 &&
+    searchCountries(COUNTRIES, { query: "brazil" })[0].code === "br",
+  "a name query matches case-insensitively and by substring"
+);
+check(
+  searchCountries(COUNTRIES, { query: "PARIS" })[0]?.code === "fr",
+  "a query also matches by capital, case-insensitively"
+);
+check(
+  searchCountries(COUNTRIES, { query: "zzzznotacountry" }).length === 0,
+  "a query with no matches returns an empty list, not a fallback"
+);
+check(
+  searchCountries(COUNTRIES, { query: "  BRAZIL  " }).length === 1,
+  "surrounding whitespace in the query is trimmed"
+);
+check(
+  searchCountries(COUNTRIES, { query: "san", region: "Europe" })
+    .every((c) => c.region === "Europe" && (c.name.toLowerCase().includes("san") || c.capital.toLowerCase().includes("san"))),
+  "query and region filters combine (both must match)"
+);
+check(
+  REGIONS[0] === "All" && new Set(REGIONS.slice(1)).size === new Set(COUNTRIES.map((c) => c.region)).size,
+  "REGIONS covers 'All' plus every distinct region in the dataset, once each"
 );
 
 console.log("Cloud sync (M2.1)");

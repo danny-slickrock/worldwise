@@ -7,7 +7,7 @@ import { streakStatus, dayKey } from "../game/progress";
 
 const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape", "locator"];
 
-export default function HomeScreen({ progress, onPlay, onOpenCountry }) {
+export default function HomeScreen({ progress, onPlay, onOpenCountryIndex }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
 
@@ -93,13 +93,18 @@ export default function HomeScreen({ progress, onPlay, onOpenCountry }) {
         );
       })}
 
-      {/* TEMPORARY — M2.2 preview entry point so the Brazil country page is
-          reachable while it's being built. Replaced by real entry points
-          (context card "Learn more", country index, map) in later M2.2 steps. */}
-      {onOpenCountry && (
-        <Pressable onPress={() => onOpenCountry("br")} style={styles.previewCard}>
-          <Text style={styles.previewTag}>PREVIEW</Text>
-          <Text style={styles.previewText}>Explore Brazil →</Text>
+      {/* M2.2 step 5b — the browsable country index, a real entry point
+          replacing the earlier "Explore Brazil" preview. */}
+      {onOpenCountryIndex && (
+        <Pressable onPress={onOpenCountryIndex} style={styles.exploreCard}>
+          <View style={[styles.iconWrap, { backgroundColor: colors.surfaceAlt }]}>
+            <Text style={[styles.icon, { color: colors.earth }]}>🌍</Text>
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardTitle}>Explore every country</Text>
+            <Text style={styles.cardBlurb}>Browse all 196 places to find out why they matter</Text>
+          </View>
+          <Text style={styles.chev}>›</Text>
         </Pressable>
       )}
 
@@ -176,24 +181,8 @@ const styles = StyleSheet.create({
 
   footer: { ...type.muted, textAlign: "center", marginTop: spacing(2), fontSize: 12 },
 
-  previewCard: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(1.5),
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    borderWidth: 1,
-    borderStyle: "dashed",
-    borderColor: colors.sand,
-    paddingVertical: spacing(1.75),
-    paddingHorizontal: spacing(2),
-    marginTop: spacing(2),
+  exploreCard: {
+    flexDirection: "row", alignItems: "center", backgroundColor: colors.surface,
+    borderRadius: radius.lg, padding: spacing(2), marginTop: spacing(1), ...shadow,
   },
-  previewTag: {
-    ...type.pill,
-    fontSize: 10,
-    letterSpacing: 1.5,
-    color: colors.earth,
-  },
-  previewText: { ...type.body, fontWeight: "800", color: colors.navy },
 });

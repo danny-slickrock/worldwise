@@ -5,6 +5,7 @@ import { colors } from "./src/theme";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import CountryPageScreen from "./src/screens/CountryPageScreen";
+import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import TabBar from "./src/components/TabBar";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -87,11 +88,25 @@ function AppShell() {
   // overlay over the tab shell — same pattern as a quiz round — so no navigation
   // library is needed yet. leaveOverlay() returns to the tab you came from
   // (tab state is held separately from screen state, so it's preserved).
-  function openCountry(code) {
-    setScreen({ name: "country", code });
+  //
+  // `returnTo` lets a country page opened from the browsable index (step 5b)
+  // hand its Back button to the index instead of Home, without a real nav
+  // stack — just one extra field on the overlay's own screen state.
+  function openCountry(code, returnTo = "home") {
+    setScreen({ name: "country", code, returnTo });
+  }
+  function openCountryIndex() {
+    setScreen({ name: "countryIndex" });
   }
   function leaveOverlay() {
     setScreen({ name: "home", mode: null, difficulty: null, timed: false });
+  }
+  function exitCountry() {
+    if (screen.name === "country" && screen.returnTo === "countryIndex") {
+      openCountryIndex();
+    } else {
+      leaveOverlay();
+    }
   }
 
   function handleFinish(round) {
@@ -127,9 +142,18 @@ function AppShell() {
         <StatusBar style="dark" />
         <CountryPageScreen
           code={screen.code}
-          onExit={leaveOverlay}
+          onExit={exitCountry}
           onPlay={(mode) => setScreen({ name: "quiz", mode, difficulty: DEFAULT_DIFFICULTY, timed: false })}
         />
+      </SafeAreaView>
+    );
+  }
+
+  if (screen.name === "countryIndex") {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar style="dark" />
+        <CountryIndexScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "countryIndex")} />
       </SafeAreaView>
     );
   }
@@ -142,7 +166,7 @@ function AppShell() {
           <HomeScreen
             progress={progress}
             onPlay={(mode, difficulty, timed) => setScreen({ name: "quiz", mode, difficulty, timed })}
-            onOpenCountry={openCountry}
+            onOpenCountryIndex={openCountryIndex}
           />
         ) : (
           <ProfileScreen progress={progress} />
