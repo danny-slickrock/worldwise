@@ -23,6 +23,7 @@ import {
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
+import { colors, contrastRatio } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
@@ -347,6 +348,17 @@ check(
   REGIONS[0] === "All" && new Set(REGIONS.slice(1)).size === new Set(COUNTRIES.map((c) => c.region)).size,
   "REGIONS covers 'All' plus every distinct region in the dataset, once each"
 );
+
+console.log("Design tokens / a11y (M2.2 step 6a)");
+// AA for normal text requires 4.5:1 (WCAG 2.1 SC 1.4.3). The country-page
+// kicker and fact-label text render at 11-12px bold, well under the "large
+// text" threshold (18.66px bold / 24px regular) that would relax this to 3:1.
+check(contrastRatio(colors.earth, colors.bg) >= 4.5, "earth text on bg meets WCAG AA (kicker/context-card labels)");
+check(contrastRatio(colors.earth, colors.surface) >= 4.5, "earth text on surface meets WCAG AA (fact labels on cards)");
+check(contrastRatio(colors.muted, colors.bg) >= 4.5, "muted text on bg meets WCAG AA (capital/stat labels)");
+check(contrastRatio(colors.navy, colors.bg) >= 4.5, "navy text on bg meets WCAG AA (hero name/title)");
+check(contrastRatio(colors.teal, colors.bg) >= 4.5, "teal text on bg meets WCAG AA (Back link)");
+check(contrastRatio(colors.ink, colors.surface) >= 4.5, "ink text on surface meets WCAG AA (story/fact body copy)");
 
 console.log("Cloud sync (M2.1)");
 const fullProgress = {

@@ -55,9 +55,10 @@ adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages i
 content model, navigation seam, polished Brazil hero page, generalization to all 196 countries
 (with a clean hero fallback for the 4 without a mapsicon outline), and two of three entry points —
 a "Learn more about {country}" link on the in-play context card, and a searchable/filterable
-country index reachable from Home — have landed. Next up is the third entry point, from the map,
-which is blocked on M2.3, so the remaining opportunistic work is the polish + a11y pass. The
-backlog below gets picked up opportunistically, not as a gate.
+country index reachable from Home — have landed. The third entry point, from the map, is blocked
+on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit is done; next up
+is large tap targets, then offline/image-load fallbacks for `CountryOutline`, then transitions.
+The backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -181,8 +182,22 @@ teaching *how the world works*, not just *where things are*.
          every country" entry point. `App.js`'s overlay nav gained a lightweight `returnTo`
          field so Back from a country page opened via the index returns to the index, not Home.
        - ☐ **From the map** (blocked on M2.3 — interactive maps).
-    6. ☐ **Polish + a11y pass** across the generalized pages: transitions consistent with the design
-       system, WCAG AA contrast, large tap targets, offline/image-load fallbacks.
+    6. **Polish + a11y pass** across the generalized pages, broken into its own ordered chunks:
+       1. ✅ **WCAG AA contrast audit.** Added a pure `contrastRatio()` to `theme.js` (relative
+          luminance, no RN/DOM) and asserted it in `test/engine.test.js` for every text/background
+          pair the country page renders. `colors.earth` (the kicker + fact-label color) failed AA
+          at small sizes — 4.18:1 against `bg`, under the 4.5:1 normal-text minimum — so it's
+          darkened to `#8C6036` (now ~4.98:1 on `bg`, ~5.47:1 on `surface`). It's a shared token,
+          so Home/Profile/Sign-in/the in-play context card pick up the fix too; everything else
+          checked (navy, muted, teal, ink) already passed.
+       2. ☐ **Large tap targets.** Audit interactive elements on the country page and index
+          (related-game buttons, index rows) for a comfortable hit area; add `hitSlop` where a
+          target is smaller than ~44×44.
+       3. ☐ **Offline/image-load fallbacks.** `CountryOutline` (native `SvgUri`, web CSS mask) has
+          no failure state if the remote mapsicon SVG doesn't load — add one, consistent with the
+          existing `noOutline` placeholder.
+       4. ☐ **Transitions.** Bring the country-page overlay's open/close in line with the rest of
+          the app's transition feel.
   - **Guardrails for this milestone:** honor the pure/IO split so the tsx tests keep running; any
     Supabase work stays migrations-as-files with RLS + explicit CRUD grants (never `db push`/`link`,
     never handle secrets — leave those as manual steps). Gate each commit on

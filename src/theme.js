@@ -3,7 +3,10 @@ export const colors = {
   navy: "#1F3A5F",
   navyDeep: "#16293F",
   teal: "#2E6E7E",
-  earth: "#9C6B3C",
+  // Darkened from #9C6B3C (M2.2 polish + a11y pass): the lighter earth failed
+  // WCAG AA (4.5:1) as small kicker/label text on `bg`. This still reads as
+  // earth, just dark enough to pass everywhere it's used.
+  earth: "#8C6036",
   sand: "#C9A66B",
   bg: "#F7F4EE", // warm off-white
   surface: "#FFFFFF",
@@ -38,3 +41,20 @@ export const shadow = {
   shadowOffset: { width: 0, height: 6 },
   elevation: 3,
 };
+
+// WCAG contrast ratio between two hex colors — pure, no RN/DOM, so it's
+// testable in test/engine.test.js and doubles as a guard against future
+// token changes silently breaking text contrast.
+function relativeLuminance(hex) {
+  const n = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16) / 255);
+  const linear = (c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * linear(r) + 0.7152 * linear(g) + 0.0722 * linear(b);
+}
+
+export function contrastRatio(hexA, hexB) {
+  const lA = relativeLuminance(hexA);
+  const lB = relativeLuminance(hexB);
+  const [lighter, darker] = lA > lB ? [lA, lB] : [lB, lA];
+  return (lighter + 0.05) / (darker + 0.05);
+}
