@@ -42,6 +42,7 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
             <Pressable
               key={r}
               onPress={() => setRegion(r)}
+              hitSlop={8}
               style={[styles.regionChip, active && styles.regionChipActive]}
             >
               <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>{r}</Text>

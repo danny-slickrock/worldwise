@@ -124,6 +124,7 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
                   <Pressable
                     key={m}
                     onPress={() => onPlay(m)}
+                    hitSlop={8}
                     style={[styles.gameBtn, { borderColor: meta.accent }]}
                   >
                     <Text style={[styles.gameIcon, { color: meta.accent }]}>{meta.icon}</Text>

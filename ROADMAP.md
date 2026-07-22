@@ -56,8 +56,8 @@ content model, navigation seam, polished Brazil hero page, generalization to all
 (with a clean hero fallback for the 4 without a mapsicon outline), and two of three entry points —
 a "Learn more about {country}" link on the in-play context card, and a searchable/filterable
 country index reachable from Home — have landed. The third entry point, from the map, is blocked
-on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit is done; next up
-is large tap targets, then offline/image-load fallbacks for `CountryOutline`, then transitions.
+on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit and large tap
+targets are done; next up is offline/image-load fallbacks for `CountryOutline`, then transitions.
 The backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -190,9 +190,12 @@ teaching *how the world works*, not just *where things are*.
           darkened to `#8C6036` (now ~4.98:1 on `bg`, ~5.47:1 on `surface`). It's a shared token,
           so Home/Profile/Sign-in/the in-play context card pick up the fix too; everything else
           checked (navy, muted, teal, ink) already passed.
-       2. ☐ **Large tap targets.** Audit interactive elements on the country page and index
-          (related-game buttons, index rows) for a comfortable hit area; add `hitSlop` where a
-          target is smaller than ~44×44.
+       2. ✅ **Large tap targets.** Audited interactive elements on the country page and index.
+          Index rows and both Back buttons already clear ~44×44 from their existing padding. Two
+          targets didn't: the related-game buttons (`CountryPageScreen`, ~41px tall) and the
+          region-filter chips (`CountryIndexScreen`, ~28px tall) — both gained `hitSlop={8}`,
+          chosen to clear 44×44 without overlapping into a neighboring chip's touch area given
+          each row's existing `gap`.
        3. ☐ **Offline/image-load fallbacks.** `CountryOutline` (native `SvgUri`, web CSS mask) has
           no failure state if the remote mapsicon SVG doesn't load — add one, consistent with the
           existing `noOutline` placeholder.
