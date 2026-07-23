@@ -56,8 +56,8 @@ content model, navigation seam, polished Brazil hero page, generalization to all
 (with a clean hero fallback for the 4 without a mapsicon outline), and two of three entry points —
 a "Learn more about {country}" link on the in-play context card, and a searchable/filterable
 country index reachable from Home — have landed. The third entry point, from the map, is blocked
-on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit and large tap
-targets are done; next up is offline/image-load fallbacks for `CountryOutline`, then transitions.
+on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit, large tap
+targets, and `CountryOutline` offline/image-load fallbacks are done; next up is transitions.
 The backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -196,9 +196,13 @@ teaching *how the world works*, not just *where things are*.
           region-filter chips (`CountryIndexScreen`, ~28px tall) — both gained `hitSlop={8}`,
           chosen to clear 44×44 without overlapping into a neighboring chip's touch area given
           each row's existing `gap`.
-       3. ☐ **Offline/image-load fallbacks.** `CountryOutline` (native `SvgUri`, web CSS mask) has
-          no failure state if the remote mapsicon SVG doesn't load — add one, consistent with the
-          existing `noOutline` placeholder.
+       3. ✅ **Offline/image-load fallbacks.** `CountryOutline` now tracks a `failed` state and
+          renders a self-contained navy placeholder (◇ glyph + "Outline unavailable") instead of a
+          blank/broken box when the remote mapsicon SVG doesn't load — on native via `SvgUri`'s
+          `onError`, on web via a zero-opacity `<Image>` probe on the same URL (a CSS mask has no
+          load-failure signal of its own). Same visual language as the existing `noOutline`
+          placeholder, but self-contained so it also reads correctly on the Shape game's light
+          `shapeBox`, not just the country page's navy hero.
        4. ☐ **Transitions.** Bring the country-page overlay's open/close in line with the rest of
           the app's transition feel.
   - **Guardrails for this milestone:** honor the pure/IO split so the tsx tests keep running; any
