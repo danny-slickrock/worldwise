@@ -4,8 +4,8 @@
 // its neighbors, and ways to jump into a game. Brazil is the reference entry
 // (see data/countryPages.js); every other country renders from the same shape,
 // degrading gracefully where content isn't authored yet.
-import React from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
 import { colors, spacing, radius, type, shadow } from "../theme";
 import { getCountryPage } from "../data/countryPages";
 import { COUNTRIES } from "../data/countries";
@@ -33,14 +33,29 @@ const FACT_ORDER = [
 export default function CountryPageScreen({ code, onExit, onPlay }) {
   const page = getCountryPage(code);
 
+  // Fade/rise-in on open, matching QuizScreen's per-question transition;
+  // fade/settle-out on close, so leaving the page doesn't cut instantly —
+  // the exit callback fires once the animation finishes, not on tap.
+  const screenAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(screenAnim, { toValue: 1, duration: 260, useNativeDriver: true }).start();
+  }, [screenAnim]);
+  function handleExit() {
+    Animated.timing(screenAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(onExit);
+  }
+  const screenStyle = {
+    opacity: screenAnim,
+    transform: [{ translateY: screenAnim.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }],
+  };
+
   if (!page) {
     return (
-      <View style={styles.wrap}>
-        <BackBar onExit={onExit} />
+      <Animated.View style={[styles.wrap, screenStyle]}>
+        <BackBar onExit={handleExit} />
         <View style={styles.empty}>
           <Text style={styles.emptyText}>We don't have a page for that place yet.</Text>
         </View>
-      </View>
+      </Animated.View>
     );
   }
 
@@ -49,8 +64,8 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
   const relatedModes = (page.relatedGameModes ?? []).filter((m) => MODES[m]);
 
   return (
-    <View style={styles.wrap}>
-      <BackBar onExit={onExit} />
+    <Animated.View style={[styles.wrap, screenStyle]}>
+      <BackBar onExit={handleExit} />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero — the outline is the star, except for the handful of places
             mapsicon has no vector for (see countries.js noOutline), where a
@@ -136,7 +151,7 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
           </>
         )}
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 }
 

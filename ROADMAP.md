@@ -56,9 +56,11 @@ content model, navigation seam, polished Brazil hero page, generalization to all
 (with a clean hero fallback for the 4 without a mapsicon outline), and two of three entry points —
 a "Learn more about {country}" link on the in-play context card, and a searchable/filterable
 country index reachable from Home — have landed. The third entry point, from the map, is blocked
-on M2.3. The polish + a11y pass (step 6) is underway: the WCAG AA contrast audit, large tap
-targets, and `CountryOutline` offline/image-load fallbacks are done; next up is transitions.
-The backlog below gets picked up opportunistically, not as a gate.
+on M2.3. The polish + a11y pass (step 6) is **complete**: WCAG AA contrast, large tap targets,
+`CountryOutline` offline/image-load fallbacks, and the country-page open/close transition are all
+done. **M2.2 is now done except for the map entry point, which stays blocked on M2.3.** Next up:
+either start M2.3 (interactive maps) to unblock it, or pull from the Phase 1 backlog below.
+The backlog gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -203,8 +205,13 @@ teaching *how the world works*, not just *where things are*.
           load-failure signal of its own). Same visual language as the existing `noOutline`
           placeholder, but self-contained so it also reads correctly on the Shape game's light
           `shapeBox`, not just the country page's navy hero.
-       4. ☐ **Transitions.** Bring the country-page overlay's open/close in line with the rest of
-          the app's transition feel.
+       4. ✅ **Transitions.** `CountryPageScreen` now fades/rises in on open and fades/settles out
+          on close (`Animated.timing`, `useNativeDriver: true`), matching the fade/rise-in
+          `QuizScreen` already uses per question. The Back button's exit is deferred until the
+          close animation finishes, instead of cutting away instantly. `onPlay` (jumping straight
+          into a related game) still switches screens immediately — that path already lands on
+          `QuizScreen`'s own entrance transition, so no double-animation is needed there.
+          **M2.2 step 6 (polish + a11y) is now fully done.**
   - **Guardrails for this milestone:** honor the pure/IO split so the tsx tests keep running; any
     Supabase work stays migrations-as-files with RLS + explicit CRUD grants (never `db push`/`link`,
     never handle secrets — leave those as manual steps). Gate each commit on
