@@ -72,12 +72,15 @@ src/
   storage/progress.js      # AsyncStorage progress cache
   storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
   components/QuizScreen.js  # One reusable quiz surface powering every mode
-  components/WorldMap.js    # Tappable SVG world map for the Country Locator
+  components/WorldMap.js    # Tappable SVG world map for the Country Locator (candidates/answer state)
+  components/ExploreMap.js  # M2.3: tappable SVG world map for free exploration (no round/answer state)
   components/TabBar.js      # Bottom tabs — takes tabs as data, so it's extensible
   screens/HomeScreen.js    # Game hub
   screens/ProfileScreen.js # Signed-in identity + synced stats
   screens/SignInScreen.js  # Magic link + Continue with Google
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
+  screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
+  screens/WorldMapScreen.js # M2.3 step 1: tap-to-explore world map (static; pan/zoom is next)
 supabase/migrations/       # Schema as code (user domain + RLS + signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 test/engine.test.js        # Pure-logic tests (no RN imports)
@@ -127,10 +130,10 @@ with RLS is applied to the live project, and a real sign-in syncs progress, runs
 local→cloud merge, and writes finished rounds to `game_results`. Vercel carries the Supabase env
 vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
 
-**Next up — M2.2 — country pages:** the core learning surface, a page per country answering "why
-should I care?" (map, key facts, a short story, related games). It expands the Phase 1 context
-card into a real hub. Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable
-chunk at a time.
+**M2.2 — country pages is done** except its "from the map" entry point, which stays blocked on
+M2.3. **Next up — M2.3 — interactive maps:** pan/zoom world and region maps, tap a place to
+explore it. Step 1 (a static tap-to-explore World Map screen) has landed; pan/zoom is next.
+Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)
 

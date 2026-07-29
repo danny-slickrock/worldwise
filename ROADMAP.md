@@ -218,6 +218,22 @@ teaching *how the world works*, not just *where things are*.
     `npm test` + typecheck + lint + web bundle.
 - **M2.3 — Interactive maps 🌐** — pan/zoom world and region maps; tap a place to explore it; the map
   as the primary way to navigate learning (maps stay the hero).
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
+    1. ✅ **World Map screen (tap-to-explore, static).** `src/components/ExploreMap.js` renders every
+       country with map data as an inert, tappable SVG shape (no candidates/answer state, unlike the
+       Locator's `WorldMap`); `src/screens/WorldMapScreen.js` wraps it with a header and Back button.
+       Tapping a country opens `CountryPageScreen` via the existing `openCountry` overlay seam
+       (`returnTo: "worldMap"` sends Back back to the map, mirroring the country index's own
+       `returnTo`). Reachable from a new "World Map" card on Home. No pan/zoom yet — that's next.
+    2. ☐ **Pan & zoom.** Pinch-to-zoom + drag-to-pan on the World Map screen (web + native), so an SVG
+       map with 167 small country shapes is actually usable — right now everything renders at a
+       fixed, cramped scale.
+    3. ☐ **Tap affordance polish.** Hover/pressed states (web), larger effective hit-targets for small
+       countries, and a country-name label near the tap point before the page opens.
+    4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item
+       done and add a matching way back to the map from a country page.
+    5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
+       focused exploration without hunting for tiny countries.
 - **M2.4 — Learning paths 🎓** — guided, mastery-based sequences that "expand outward"
   (hemisphere → continent → region → country), unlocking as the learner demonstrates mastery.
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible

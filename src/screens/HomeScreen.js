@@ -7,7 +7,7 @@ import { streakStatus, dayKey } from "../game/progress";
 
 const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape", "locator"];
 
-export default function HomeScreen({ progress, onPlay, onOpenCountryIndex }) {
+export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpenWorldMap }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
 
@@ -103,6 +103,21 @@ export default function HomeScreen({ progress, onPlay, onOpenCountryIndex }) {
           <View style={styles.cardBody}>
             <Text style={styles.cardTitle}>Explore every country</Text>
             <Text style={styles.cardBlurb}>Browse all 196 places to find out why they matter</Text>
+          </View>
+          <Text style={styles.chev}>›</Text>
+        </Pressable>
+      )}
+
+      {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
+          country to open its page. No pan/zoom yet. */}
+      {onOpenWorldMap && (
+        <Pressable onPress={onOpenWorldMap} style={[styles.exploreCard, { marginTop: spacing(1) }]}>
+          <View style={[styles.iconWrap, { backgroundColor: colors.surfaceAlt }]}>
+            <Text style={[styles.icon, { color: colors.teal }]}>🗺️</Text>
+          </View>
+          <View style={styles.cardBody}>
+            <Text style={styles.cardTitle}>World Map</Text>
+            <Text style={styles.cardBlurb}>Tap anywhere on the map to explore it</Text>
           </View>
           <Text style={styles.chev}>›</Text>
         </Pressable>

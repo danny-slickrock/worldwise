@@ -6,6 +6,7 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import CountryPageScreen from "./src/screens/CountryPageScreen";
 import CountryIndexScreen from "./src/screens/CountryIndexScreen";
+import WorldMapScreen from "./src/screens/WorldMapScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import TabBar from "./src/components/TabBar";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -90,13 +91,17 @@ function AppShell() {
   // (tab state is held separately from screen state, so it's preserved).
   //
   // `returnTo` lets a country page opened from the browsable index (step 5b)
-  // hand its Back button to the index instead of Home, without a real nav
-  // stack — just one extra field on the overlay's own screen state.
+  // or the World Map (M2.3 step 1) hand its Back button back to where it was
+  // opened from instead of Home, without a real nav stack — just one extra
+  // field on the overlay's own screen state.
   function openCountry(code, returnTo = "home") {
     setScreen({ name: "country", code, returnTo });
   }
   function openCountryIndex() {
     setScreen({ name: "countryIndex" });
+  }
+  function openWorldMap() {
+    setScreen({ name: "worldMap" });
   }
   function leaveOverlay() {
     setScreen({ name: "home", mode: null, difficulty: null, timed: false });
@@ -104,6 +109,8 @@ function AppShell() {
   function exitCountry() {
     if (screen.name === "country" && screen.returnTo === "countryIndex") {
       openCountryIndex();
+    } else if (screen.name === "country" && screen.returnTo === "worldMap") {
+      openWorldMap();
     } else {
       leaveOverlay();
     }
@@ -158,6 +165,15 @@ function AppShell() {
     );
   }
 
+  if (screen.name === "worldMap") {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar style="dark" />
+        <WorldMapScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "worldMap")} />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar style="dark" />
@@ -167,6 +183,7 @@ function AppShell() {
             progress={progress}
             onPlay={(mode, difficulty, timed) => setScreen({ name: "quiz", mode, difficulty, timed })}
             onOpenCountryIndex={openCountryIndex}
+            onOpenWorldMap={openWorldMap}
           />
         ) : (
           <ProfileScreen progress={progress} />
