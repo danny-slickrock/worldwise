@@ -29,3 +29,9 @@ export const XP = {
   strongBonusThreshold: 4, // correct answers above this earn a bonus
   strongBonusPerCorrect: 5,
 };
+
+// World Map screen (M2.3 step 2a): zoom bounds for pinch/scroll-to-zoom, and
+// how fast a wheel/trackpad tick changes scale on web.
+export const MAP_ZOOM_MIN = 1;
+export const MAP_ZOOM_MAX = 4;
+export const MAP_WHEEL_ZOOM_SPEED = 0.0016;

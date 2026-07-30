@@ -22,6 +22,7 @@ import {
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
+import { clampScale, pinchScale, wheelZoom, touchDistance } from "../src/game/mapZoom";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -504,6 +505,39 @@ check(
 check(
   pickRedirectUrl({ platform: "ios", origin: null, nativeUrl: null }) === null,
   "native with no deep link yields no redirect"
+);
+
+console.log("World Map zoom (M2.3 step 2a)");
+check(clampScale(0.2, 1, 4) === 1, "clampScale floors below the minimum");
+check(clampScale(9, 1, 4) === 4, "clampScale ceilings above the maximum");
+check(clampScale(2.5, 1, 4) === 2.5, "clampScale leaves an in-range value alone");
+check(
+  touchDistance({ pageX: 0, pageY: 0 }, { pageX: 3, pageY: 4 }) === 5,
+  "touchDistance is the straight-line distance between two touches (3-4-5 triangle)"
+);
+check(
+  pinchScale(10, 20, 1, 1, 4) === 2,
+  "pinchScale doubles when the touches move twice as far apart"
+);
+check(
+  pinchScale(10, 5, 2, 1, 4) === 1,
+  "pinchScale halves when the touches move together, clamped at the minimum"
+);
+check(
+  pinchScale(0, 20, 1, 1, 4) === 1,
+  "pinchScale ignores a degenerate zero start-distance instead of dividing by zero"
+);
+check(
+  wheelZoom(1, -100, 0.01, 1, 4) === 2,
+  "wheelZoom zooms in (scrolling up) by deltaY * speed"
+);
+check(
+  wheelZoom(2, 500, 0.01, 1, 4) === 1,
+  "wheelZoom zooms back out (scrolling down), clamped at the minimum"
+);
+check(
+  wheelZoom(1, -10000, 0.01, 1, 4) === 4,
+  "wheelZoom clamps at the maximum however far the wheel scrolls"
 );
 
 console.log("Scoring");

@@ -225,9 +225,21 @@ teaching *how the world works*, not just *where things are*.
        Tapping a country opens `CountryPageScreen` via the existing `openCountry` overlay seam
        (`returnTo: "worldMap"` sends Back back to the map, mirroring the country index's own
        `returnTo`). Reachable from a new "World Map" card on Home. No pan/zoom yet — that's next.
-    2. ☐ **Pan & zoom.** Pinch-to-zoom + drag-to-pan on the World Map screen (web + native), so an SVG
-       map with 167 small country shapes is actually usable — right now everything renders at a
-       fixed, cramped scale.
+    2. **Pan & zoom.** Pinch-to-zoom + drag-to-pan on the World Map screen (web + native), so an SVG
+       map with 167 small country shapes is actually usable. Broken into its own ordered chunks:
+       1. ✅ **Pinch/scroll-to-zoom.** `WorldMapScreen` now scales the map: two-finger pinch on
+          native (via a `PanResponder` that only claims the responder for a 2-touch gesture, so a
+          single tap still reaches `ExploreMap`'s `<Path>`s untouched), or the mouse wheel/trackpad
+          on web (bound straight to the underlying DOM node, since RN's synthetic events don't
+          expose `wheel`). The scale math itself — clamping, pinch-distance ratio, wheel delta — is
+          pure (`src/game/mapZoom.js`), tested in `test/engine.test.js`. Zoom is centered on the
+          map box, not the gesture point, since there's no pan yet to compensate with.
+       2. ☐ **Drag-to-pan.** Translate the zoomed map on single-finger/mouse drag, so content beyond
+          the initial fit is actually reachable.
+       3. ☐ **Bounds, reset & polish.** Clamp pan so the map can't be dragged fully out of view, add
+          a way to reset zoom (e.g. double-tap), and revisit perf if plain `useState`-driven
+          transforms feel laggy under fast pinch/drag (an `Animated.Value` + native driver would be
+          the fix).
     3. ☐ **Tap affordance polish.** Hover/pressed states (web), larger effective hit-targets for small
        countries, and a country-name label near the tap point before the page opens.
     4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item

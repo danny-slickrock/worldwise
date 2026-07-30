@@ -65,6 +65,7 @@ src/
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
+  game/mapZoom.js          # PURE zoom-scale math for the World Map screen (pinch/wheel, clamped)
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
