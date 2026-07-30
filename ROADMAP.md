@@ -364,6 +364,36 @@ teaching *how the world works*, not just *where things are*.
   first paint. Keep the pure/IO split: cache-invalidation *decisions* pure and tested, Supabase IO
   beside them. Seed via a JSON→Postgres migration script; existing `countryPages.js` becomes the seed
   source, then the app reads from the API.
+- **M2.3.6 — Learner interests 🧭 (the personalization signal)** — ask a new account what it's curious
+  about, then let that steer what we surface. One short, **entirely optional** prompt at sign-up with a
+  real Skip — the app must be fully usable having answered nothing, and a skipper is never re-nagged
+  (offer it once more, much later, at most). This is the input M2.9 personalizes on, so the sooner it
+  ships the more accounts already carry the signal when the AI hub arrives.
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
+    1. ☐ **The one prompt: "Select your interests."** A single multi-select on a card after sign-up —
+       *Economics · History · Agriculture · Military · Tourism · Geopolitics · Climate · Culture ·
+       Wildlife · Food* — with **Skip** given equal visual weight to Continue (no dark patterns; a
+       skipped answer is a valid answer). Multi-select, no minimum, no maximum. Ships as one screen
+       and nothing else — resist bundling difficulty/region pickers in, those are M2.8.
+    2. ☐ **The catalog, pure.** `src/data/interests.js` — slug + label + glyph per interest, ordered
+       for display. Store **stable slugs** (`"geopolitics"`), never display strings, so labels and
+       ordering can change without a migration or a data backfill. `src/game/interestPolicy.js` stays
+       pure and tested: validate a selection against the catalog, drop unknown slugs (an old client
+       may send a retired one), and normalize order so two equivalent selections compare equal.
+    3. ☐ **Schema.** A `public.profile_interests` join table (`user_id`, `interest_slug`, `created_at`)
+       rather than a `text[]` on `profiles` — interest-weighted retrieval in M2.9 becomes a plain SQL
+       join, and "how many learners care about X" stays one `GROUP BY` instead of array gymnastics.
+       Migration-as-file with owner-only RLS **and explicit CRUD grants** (the grant-less-RLS trap
+       from M2.1 cost a debugging session once already).
+    4. ☐ **Offline-first + the merge seam.** Selections are cached locally first, then synced — same
+       shape as progress. Reuse the established local→cloud path (`syncPolicy.js` decides the sink,
+       `cloudSync.js` maps local ⇄ row) rather than inventing a second sync mechanism; a person who
+       picks interests before signing in keeps them through sign-up.
+    5. ☐ **Editable later.** An "Interests" row on the Profile tab opening the same component, so the
+       answer is revisable and a skipper has a non-nagging way in. One surface, two entry points.
+  - **Dependencies:** none beyond M2.1 (accounts), which is done — this does **not** need M2.3.5 and is
+    deliberately placed before M2.9 only because that milestone consumes it. Pull it earlier if you want
+    the signal accruing sooner; it's a small, self-contained milestone.
 - **M2.9 — AI knowledge hub (RAG) 🤖** — let learners "dive deeper" into a place or topic they're
   curious about, with AI that frames discoveries **grounded in our own verified content** (no
   free-floating hallucination — critical because the audience includes students).
@@ -380,11 +410,28 @@ teaching *how the world works*, not just *where things are*.
        abuse/rate limit and a per-user cap to control cost.
     5. ☐ **App UI.** On a country page / discovery surface: "Ask about {place}" and suggested
        "dive deeper" prompts. Streamed responses, loading + error states, offline fallback.
-    6. ☐ **Cost + eval.** Cache common answers; cap tokens; track spend per user. A small eval set
-       (known Q→expected-facts) so answer quality is measured, not vibes.
+    6. ☐ **Interest-aware facts (consumes M2.3.6).** Tag content chunks with the same interest slugs
+       at ingestion, then let a learner's selections **re-rank** retrieval and steer generation: the
+       same country page opens on trade routes for an Economics pick and on borders for Geopolitics.
+       Two rules keep this honest:
+       - **Re-rank, never filter.** Interests reorder what surfaces; they never make content
+         unreachable. A learner who picked Tourism can still read about a country's economy — the goal
+         is a better first impression, not a bubble.
+       - **Degrade to general.** Zero interests (the skip path) is a first-class state, not an edge
+         case: it yields the unweighted, everyone-gets-this answer. Build and test that path *first*,
+         so personalization is a layer on top of something that already works.
+       Keep the ranking *decision* pure and tested (`interests + chunk tags → ordered chunks`) with
+       the Edge Function IO beside it — the pure/IO split, same as everywhere else.
+    7. ☐ **Cost + eval.** Cache common answers; cap tokens; track spend per user. A small eval set
+       (known Q→expected-facts) so answer quality is measured, not vibes. Extend it with a
+       personalization check: the same question under two different interest sets should return
+       *differently ordered but equally factual* answers — catching a re-ranker that has quietly
+       started inventing facts to match a preference.
   - **Dependencies:** M2.3.5 (content in Postgres) must land first — you can't retrieve over content
-    you haven't stored. This also becomes the engine behind the **Phase 3 teacher AI** (lesson/quiz
-    generation), so build it as a reusable retrieval+generation service, not a one-off.
+    you haven't stored. M2.3.6 (interests) gates **step 6 only**; steps 1–5 ship without it, so the
+    hub is useful before any personalization exists. This also becomes the engine behind the
+    **Phase 3 teacher AI** (lesson/quiz generation), so build it as a reusable retrieval+generation
+    service, not a one-off.
 - **M2.4 — Learning paths 🎓** — guided, mastery-based sequences that "expand outward"
   (hemisphere → continent → region → country), unlocking as the learner demonstrates mastery.
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
@@ -395,18 +442,23 @@ teaching *how the world works*, not just *where things are*.
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
   Currency, Language, National Animal, Food Origin, and City games — breadth without new bespoke code.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
-  recommendations for weak areas.
+  recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
+  milestone owns *what you're curious about* (topics), this one owns *how you want to practice*
+  (regions, difficulty, goals). Both live behind the same Profile surface so preferences read as one
+  thing to the learner, not two systems.
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`
-schema with CDN media; add `pgvector` + a Supabase **Edge Function** retrieval/generation service for
+schema with CDN media; add a learner-preference model (opt-in interests) that content retrieval can
+weight against; add `pgvector` + a Supabase **Edge Function** retrieval/generation service for
 the AI hub (LLM API keys server-side only). Wire the first **Premium Individual** tier (unlimited
 games, learning paths, offline mode, advanced analytics, collections); AI usage likely gates here for
 cost control.
 
 **Exit criteria:** a signed-in learner has synced progress, explores country pages and interactive
 maps, follows at least one learning path to mastery, earns achievements, competes on a leaderboard,
-and can upgrade to Premium.
+and can upgrade to Premium. A learner who shared interests sees facts framed around them; a learner
+who skipped has an equally complete experience — that second case is the one to actually verify.
 
 ---
 
