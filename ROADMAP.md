@@ -553,3 +553,71 @@ Slickrock subject without a rewrite.
 Worldwise exists to help people understand the world — not by memorizing facts, but by discovering the
 stories, relationships, and context that make every place meaningful. Geography is the first subject
 because it provides the context for every other discipline.
+
+---
+
+# DANNY TO DO
+
+Everything here is **human-only** — secrets, passwords, billing, and product/legal calls that an AI
+collaborator must not make or handle. Sorted by what it unblocks. Nothing in M2.3.6 is blocked by
+items in the M2.9 group; those just need lead time.
+
+**Never paste a DB password, API key, or service-role key into a chat, a commit, `.env`, or an
+`EXPO_PUBLIC_*` variable.** Anything prefixed `EXPO_PUBLIC_` is compiled into the web bundle and is
+readable by every visitor — that prefix is for publishable keys only. Server secrets go to Supabase
+via `npx supabase secrets set`, and nowhere else.
+
+## Before M2.3.6 (interests) can ship
+
+- ☐ **Lock the interest list.** The roadmap proposes *Economics · History · Agriculture · Military ·
+  Tourism · Geopolitics · Climate · Culture · Wildlife · Food*. Add/cut freely **now** — once real
+  accounts have picked slugs they live in the database, and changing them later means a data
+  backfill. Labels stay editable forever; the slugs behind them are the sticky part.
+- ☐ **Start Docker Desktop.** It's installed but not running, so `npx supabase db reset` — the check
+  that actually catches a missing GRANT — can't run. Needed before the migration is trustworthy.
+- ☐ **Apply the migration to the live project:** `npx supabase db push`. Needs the DB password, so
+  it stays manual per CLAUDE.md. Run `npx supabase db reset` locally first and confirm it's green.
+- ☐ **Decide when it ships.** It's written as M2.3.6 but only depends on M2.1, so it can jump ahead
+  of M2.3. Earlier = more accounts already carry interests when the AI hub lands. Your call; tell me
+  and I'll reorder the milestones.
+- ☐ *(nothing needed on Vercel)* — interests add no new client env vars. Listed so you don't go
+  looking for one.
+
+## Before M2.9 (RAG) — start early, these have lead time
+
+- ☐ **Create an Anthropic API key** and set it as a Supabase **Edge Function secret**
+  (`npx supabase secrets set ANTHROPIC_API_KEY=...`). It must never reach `.env`, the repo, or the
+  client bundle. The Edge Function is the only thing that should ever see it.
+- ☐ **Set a hard spend cap and a billing alert** on the Anthropic account before the first call —
+  not after the first surprise invoice. Decide the monthly ceiling and the per-user cap; the roadmap
+  builds to whatever numbers you pick.
+- ☐ **Confirm the Supabase plan** covers Edge Functions and allows the `pgvector` extension on the
+  live project. Cheap to verify now, expensive to discover mid-milestone.
+- ☐ **Pick the embedding model + provider** (can differ from the generation model) so ingestion cost
+  can be estimated against the real content volume.
+
+## Privacy & policy — decide before collecting, not after
+
+- ☐ **Update the privacy policy** to cover interests. It's opt-in preference data tied to an account,
+  which is a different category from gameplay stats, and it starts being collected the day the prompt
+  ships.
+- ☐ **Decide the under-13 posture.** The stated audience includes students. If under-13 accounts are
+  in scope, COPPA (and parental-consent mechanics) shape whether this prompt can be shown to them at
+  all — a product/legal decision that has to precede the UI, and one I shouldn't make for you. Worth
+  a lawyer's eye before Phase 3 classrooms, where it stops being hypothetical.
+- ☐ **Confirm account deletion removes interests.** `profile_interests` needs to be in whatever
+  delete path exists (or `on delete cascade` from `auth.users`), so a deleted account leaves nothing
+  behind.
+
+## Standing habits
+
+- ☐ **`git pull --rebase` before you start working.** The daily cloud agent pushes to `main` at
+  7am MDT; this is what avoids the rejected-push situation from last time.
+- ☐ **Don't hand-edit the agent's in-flight milestone files** while it's mid-run, for the same reason.
+
+## What I can do without you
+
+Schema-as-a-migration-file, the pure catalog and policy modules with tests, the UI, the sync wiring,
+the Edge Function code, and local verification (`npm test` + typecheck + lint + web bundle, plus
+`supabase db reset` once Docker is running). I stop at anything needing a password, a secret, a
+payment method, or a legal judgment — those are the checkboxes above.
