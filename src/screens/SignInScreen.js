@@ -2,7 +2,7 @@
 // so the pitch is what an account gets you, not a wall in front of the games.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, ActivityIndicator, ScrollView } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { useAuth } from "../auth/AuthProvider";
 
 export default function SignInScreen() {
@@ -48,7 +48,7 @@ export default function SignInScreen() {
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <Text style={styles.kicker}>YOUR PROFILE</Text>
+      <Text style={styles.kicker}>Your profile</Text>
       <Text style={styles.title}>Take your progress with you</Text>
       <Text style={styles.tagline}>
         Sign in to keep your XP, streak, and best round safe — on every device you play from.
@@ -83,7 +83,7 @@ export default function SignInScreen() {
           style={[styles.primaryBtn, (sending || !email.trim()) && styles.btnDisabled]}
         >
           {sending ? (
-            <ActivityIndicator color={colors.white} />
+            <ActivityIndicator color={colors.navyDeep} />
           ) : (
             <Text style={styles.primaryBtnText}>Email me a magic link</Text>
           )}
@@ -125,55 +125,56 @@ export default function SignInScreen() {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(3), paddingTop: spacing(7), paddingBottom: spacing(6) },
-  kicker: { color: colors.earth, fontWeight: "800", letterSpacing: 2, fontSize: 12 },
-  title: { ...type.hero, fontSize: 30, marginTop: spacing(0.5) },
-  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(0.75), marginBottom: spacing(3) },
+  content: { padding: spacing(2.5), paddingTop: spacing(5), paddingBottom: spacing(6) },
+  kicker: { ...type.kicker, fontSize: 12 },
+  title: { ...type.hero, fontSize: 32, marginTop: spacing(0.5), lineHeight: 38 },
+  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(3) },
 
-  card: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing(2.5), ...shadow },
-  label: { ...type.pill, color: colors.muted, marginBottom: spacing(0.75) },
+  card: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing(2.5), ...depth() },
+  label: { ...type.section, fontSize: 11, marginBottom: spacing(0.75) },
+  // Inset against the card it sits in — the one place in this UI that recedes
+  // instead of standing proud.
   input: {
-    backgroundColor: colors.bg,
-    borderWidth: 1,
-    borderColor: colors.line,
+    backgroundColor: colors.navy,
     borderRadius: radius.sm,
     paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1.5),
+    paddingVertical: spacing(1.75),
     ...type.body,
+    color: colors.headline,
     marginBottom: spacing(2),
   },
 
   primaryBtn: {
-    backgroundColor: colors.navy,
+    backgroundColor: colors.teal,
     borderRadius: radius.pill,
     paddingVertical: spacing(1.75),
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 52,
+    minHeight: 54,
+    ...depth(5, colors.navyDeep),
   },
-  primaryBtnText: { ...type.body, color: colors.white, fontWeight: "800" },
+  primaryBtnText: { ...type.body, color: colors.navyDeep, fontWeight: "900" },
   btnDisabled: { opacity: 0.5 },
 
   dividerRow: { flexDirection: "row", alignItems: "center", gap: spacing(1.5), marginVertical: spacing(2) },
   dividerLine: { flex: 1, height: 1, backgroundColor: colors.line },
-  dividerText: { ...type.muted, fontSize: 13 },
+  dividerText: { ...type.section, fontSize: 11 },
 
   googleBtn: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: spacing(1),
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.line,
+    backgroundColor: colors.surfaceAlt,
     borderRadius: radius.pill,
     paddingVertical: spacing(1.75),
-    minHeight: 52,
+    minHeight: 54,
+    ...depth(),
   },
   googleMark: { fontSize: 17, fontWeight: "900", color: colors.teal },
-  googleBtnText: { ...type.body, fontWeight: "800", color: colors.ink },
+  googleBtnText: { ...type.body, fontWeight: "900", color: colors.headline },
 
-  note: { marginTop: spacing(2), borderRadius: radius.sm, padding: spacing(1.5) },
+  note: { marginTop: spacing(2), borderRadius: radius.sm, padding: spacing(1.75) },
   noteOk: { backgroundColor: colors.successBg },
   noteOkText: { ...type.body, color: colors.success, fontWeight: "700" },
   noteBad: { backgroundColor: colors.errorBg },

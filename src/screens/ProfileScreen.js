@@ -2,7 +2,7 @@
 // and what the cloud has for you.
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator, ScrollView } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchProgress } from "../storage/cloudProgress";
 import { streakStatus, dayKey } from "../game/progress";
@@ -14,7 +14,7 @@ export default function ProfileScreen({ progress }) {
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={colors.navy} />
+        <ActivityIndicator color={colors.teal} />
       </View>
     );
   }
@@ -52,16 +52,16 @@ function SignedIn({ user, localProgress, onSignOut }) {
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <Text style={styles.kicker}>YOUR PROFILE</Text>
+      <Text style={styles.kicker}>Your profile</Text>
 
       <View style={styles.identity}>
-        {avatar ? (
-          <Image source={{ uri: avatar }} style={styles.avatar} />
-        ) : (
-          <View style={[styles.avatar, styles.avatarFallback]}>
+        <View style={styles.avatarDisc}>
+          {avatar ? (
+            <Image source={{ uri: avatar }} style={styles.avatar} />
+          ) : (
             <Text style={styles.avatarInitial}>{initial}</Text>
-          </View>
-        )}
+          )}
+        </View>
         <View style={styles.identityBody}>
           {!!name && <Text style={styles.name}>{name}</Text>}
           <Text style={[styles.email, !name && styles.emailOnly]} numberOfLines={1}>
@@ -70,6 +70,7 @@ function SignedIn({ user, localProgress, onSignOut }) {
         </View>
       </View>
 
+      <Text style={styles.section}>Your record</Text>
       <View style={styles.stats}>
         <Stat label="XP" value={stats.xp} />
         <Stat label="Day streak" value={streak.count} />
@@ -105,8 +106,8 @@ function Stat({ label, value }) {
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.bg },
   wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(3), paddingTop: spacing(7), paddingBottom: spacing(6) },
-  kicker: { color: colors.earth, fontWeight: "800", letterSpacing: 2, fontSize: 12, marginBottom: spacing(2) },
+  content: { padding: spacing(2.5), paddingTop: spacing(5), paddingBottom: spacing(6) },
+  kicker: { ...type.kicker, fontSize: 12, marginBottom: spacing(2) },
 
   identity: {
     flexDirection: "row",
@@ -115,41 +116,51 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing(2),
-    marginBottom: spacing(2),
-    ...shadow,
+    marginBottom: spacing(3.5),
+    ...depth(),
   },
-  avatar: { width: 56, height: 56, borderRadius: radius.pill, backgroundColor: colors.surfaceAlt },
-  avatarFallback: { alignItems: "center", justifyContent: "center", backgroundColor: colors.navy },
-  avatarInitial: { fontSize: 24, fontWeight: "900", color: colors.white },
+  // Avatar sits on a warm disc, the way the reference profile does — a
+  // photo-less account still gets a piece of colour rather than a grey circle.
+  avatarDisc: {
+    width: 64,
+    height: 64,
+    borderRadius: radius.pill,
+    backgroundColor: colors.sand,
+    alignItems: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+  },
+  avatar: { width: "100%", height: "100%" },
+  avatarInitial: { fontSize: 26, fontWeight: "900", color: colors.navyDeep },
   identityBody: { flex: 1 },
-  name: { ...type.h2, marginBottom: 2 },
+  name: { ...type.h2, fontSize: 20, marginBottom: 2 },
   email: { ...type.muted, fontSize: 13 },
-  emailOnly: { ...type.h2, fontSize: 16, color: colors.ink },
+  emailOnly: { ...type.h2, fontSize: 16 },
 
-  stats: { flexDirection: "row", gap: spacing(1.5), marginBottom: spacing(1.5) },
+  section: { ...type.section, marginBottom: spacing(1.5) },
+  stats: { flexDirection: "row", gap: spacing(1.25), marginBottom: spacing(1.5) },
   stat: {
     flex: 1,
     backgroundColor: colors.surface,
     borderRadius: radius.md,
-    paddingVertical: spacing(2),
+    paddingVertical: spacing(2.25),
     alignItems: "center",
-    ...shadow,
+    ...depth(),
   },
-  statValue: { fontSize: 24, fontWeight: "900", color: colors.navy },
-  statLabel: { ...type.muted, fontSize: 12, marginTop: 2 },
+  statValue: { fontSize: 26, fontWeight: "900", color: colors.headline },
+  statLabel: { ...type.section, fontSize: 10, marginTop: spacing(0.5) },
 
-  syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(3) },
-  syncText: { ...type.muted, fontSize: 13 },
+  syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(3.5) },
+  syncText: { ...type.muted, fontSize: 13, color: colors.success },
 
   signOutBtn: {
-    borderWidth: 1,
-    borderColor: colors.line,
     backgroundColor: colors.surface,
     borderRadius: radius.pill,
     paddingVertical: spacing(1.75),
     alignItems: "center",
+    ...depth(),
   },
-  signOutText: { ...type.body, fontWeight: "800", color: colors.error },
+  signOutText: { ...type.pill, fontSize: 14, color: colors.error, letterSpacing: 1, textTransform: "uppercase" },
 
   footer: { ...type.muted, textAlign: "center", marginTop: spacing(2), fontSize: 12 },
 });

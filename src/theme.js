@@ -1,46 +1,91 @@
 // Worldwise design tokens — premium, map-first, timeless.
+//
+// The surface treatment is a dark, tactile "slab" language: deep navy-charcoal
+// base, slightly lifted cards, and depth expressed as a solid un-blurred bottom
+// edge (see `depth()`) rather than a soft shadow. Everything is pressable-looking
+// and chunky, but the palette stays Worldwise — navy base, teal/earth/sand
+// accents — so maps still read as the hero rather than the chrome.
 export const colors = {
-  navy: "#1F3A5F",
-  navyDeep: "#16293F",
-  teal: "#2E6E7E",
-  // Darkened from #9C6B3C (M2.2 polish + a11y pass): the lighter earth failed
-  // WCAG AA (4.5:1) as small kicker/label text on `bg`. This still reads as
-  // earth, just dark enough to pass everywhere it's used.
-  earth: "#8C6036",
-  sand: "#C9A66B",
-  bg: "#F7F4EE", // warm off-white
-  surface: "#FFFFFF",
-  surfaceAlt: "#EEF2F5",
-  ink: "#20242B",
-  muted: "#5A6470",
-  line: "#DCE3E8",
-  success: "#2F8F5B",
-  successBg: "#E4F3EA",
-  error: "#C0492F",
-  errorBg: "#F7E6E1",
-  white: "#FFFFFF",
+  // Brand deeps. On a dark UI these are structure (panels, the map stage),
+  // not accents on white.
+  navy: "#1B2534",
+  navyDeep: "#131A25",
+
+  // Surfaces, in stacking order: bg → surface (cards) → surfaceAlt (insets).
+  bg: "#232A36",
+  surface: "#2E3644",
+  surfaceAlt: "#3A4453",
+  // The solid underside every card and button sits on. Darker than `bg` so the
+  // extrusion reads on both the base and on top of another card.
+  lip: "#161C26",
+
+  // Accents, brightened to hold 4.5:1 against the dark surfaces. Each game mode
+  // draws its accent from here (see game/questions.js MODES).
+  teal: "#5FC4D8",
+  earth: "#D89B5E",
+  sand: "#E6C179",
+  sky: "#82AEE6",
+  iris: "#A79BE8",
+  leaf: "#7BD3A4",
+
+  // The warm off-white that used to be the page background now carries type.
+  headline: "#F7F4EE",
+  ink: "#E9E5DD",
+  muted: "#AAB5C4",
+  line: "#3F4A5A",
+
+  success: "#5FCB8E",
+  successBg: "#1E3B2C",
+  error: "#F08A70",
+  errorBg: "#3C2320",
 };
+
+// No `white` token on purpose. Every fill bright enough to carry text on the
+// dark base is too bright for white text on top — reach for `navyDeep` there,
+// and `headline` on the dark surfaces.
 
 export const spacing = (n) => n * 8;
 
-export const radius = { sm: 10, md: 16, lg: 24, pill: 999 };
+// Chunkier than a typical app: the slab language needs generous corners or the
+// solid bottom edge reads as a mistake rather than a deliberate extrusion.
+export const radius = { sm: 12, md: 18, lg: 24, pill: 999 };
 
 export const type = {
-  hero: { fontSize: 34, fontWeight: "800", color: colors.navy, letterSpacing: 0.5 },
-  title: { fontSize: 24, fontWeight: "800", color: colors.navy },
-  h2: { fontSize: 18, fontWeight: "700", color: colors.ink },
+  hero: { fontSize: 34, fontWeight: "900", color: colors.headline, letterSpacing: -0.5 },
+  title: { fontSize: 24, fontWeight: "900", color: colors.headline },
+  h2: { fontSize: 18, fontWeight: "800", color: colors.headline },
   body: { fontSize: 16, color: colors.ink },
   muted: { fontSize: 14, color: colors.muted },
-  pill: { fontSize: 13, fontWeight: "700" },
+  pill: { fontSize: 13, fontWeight: "800" },
+  // All-caps, tight-tracked labels are this UI's structural voice: `section`
+  // separates blocks, `kicker` tags a single card or screen.
+  section: {
+    fontSize: 13,
+    fontWeight: "900",
+    color: colors.muted,
+    letterSpacing: 1.2,
+    textTransform: "uppercase",
+  },
+  kicker: {
+    fontSize: 11,
+    fontWeight: "900",
+    color: colors.earth,
+    letterSpacing: 1.6,
+    textTransform: "uppercase",
+  },
 };
 
-export const shadow = {
-  shadowColor: "#1F3A5F",
-  shadowOpacity: 0.1,
-  shadowRadius: 12,
-  shadowOffset: { width: 0, height: 6 },
-  elevation: 3,
-};
+// The depth primitive, replacing the old blurred `shadow`. A solid bottom edge
+// makes every card and button read as a physical slab you can press. It's one
+// style object rather than a wrapper view, and unlike shadow/elevation it
+// renders identically on web, iOS, and Android.
+//
+// Spread it last: it sets borderBottomWidth, which a later `borderWidth` in the
+// same object would flatten.
+export const depth = (h = 4, color = colors.lip) => ({
+  borderBottomWidth: h,
+  borderBottomColor: color,
+});
 
 // WCAG contrast ratio between two hex colors — pure, no RN/DOM, so it's
 // testable in test/engine.test.js and doubles as a guard against future

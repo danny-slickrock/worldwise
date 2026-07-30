@@ -44,13 +44,13 @@ export default function WorldMap({ choices, correctCode, pickedCode, answered, o
 
   return (
     <Svg viewBox={LOCATOR_VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-      {/* Ocean */}
-      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.surfaceAlt} />
+      {/* Ocean — the deepest token, so land and targets both read as lit on top */}
+      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.navyDeep} />
 
       {/* Inert land — every country, for geographic context */}
       {ALL_CODES.map((code) =>
         candidateCodes.has(code) ? null : (
-          <Path key={code} d={COUNTRY_PATHS[code]} fill={colors.line} stroke={colors.surface} strokeWidth={0.4} />
+          <Path key={code} d={COUNTRY_PATHS[code]} fill={colors.surfaceAlt} stroke={colors.navy} strokeWidth={0.4} />
         )
       )}
 
@@ -59,8 +59,8 @@ export default function WorldMap({ choices, correctCode, pickedCode, answered, o
         <Path
           key={code}
           d={COUNTRY_PATHS[code]}
-          fill={answered ? resolvedFill(code) : colors.navy}
-          stroke={colors.surface}
+          fill={answered ? resolvedFill(code) : colors.teal}
+          stroke={colors.navyDeep}
           strokeWidth={0.6}
           {...pickHandler(code, answered, onPick)}
         />

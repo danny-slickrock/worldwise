@@ -353,12 +353,36 @@ console.log("Design tokens / a11y (M2.2 step 6a)");
 // AA for normal text requires 4.5:1 (WCAG 2.1 SC 1.4.3). The country-page
 // kicker and fact-label text render at 11-12px bold, well under the "large
 // text" threshold (18.66px bold / 24px regular) that would relax this to 3:1.
-check(contrastRatio(colors.earth, colors.bg) >= 4.5, "earth text on bg meets WCAG AA (kicker/context-card labels)");
-check(contrastRatio(colors.earth, colors.surface) >= 4.5, "earth text on surface meets WCAG AA (fact labels on cards)");
-check(contrastRatio(colors.muted, colors.bg) >= 4.5, "muted text on bg meets WCAG AA (capital/stat labels)");
-check(contrastRatio(colors.navy, colors.bg) >= 4.5, "navy text on bg meets WCAG AA (hero name/title)");
-check(contrastRatio(colors.teal, colors.bg) >= 4.5, "teal text on bg meets WCAG AA (Back link)");
-check(contrastRatio(colors.ink, colors.surface) >= 4.5, "ink text on surface meets WCAG AA (story/fact body copy)");
+//
+// The dark UI multiplies the pairings worth guarding: text lands on several
+// surface levels, and every accent doubles as a button fill carrying `navyDeep`
+// text — so each is checked both ways round.
+//
+// Neutral type has to hold on all three surface levels. Accents are only
+// guarded on bg and surface, which is everywhere they carry text: surfaceAlt is
+// the lightest layer and exists purely as a fill (icon tiles, the Google
+// button, inert map land), so an accent never sits on it as type. Dimming it
+// far enough for that hypothetical would collapse it into `surface` and cost
+// the layering it's there to provide.
+for (const fg of ["headline", "ink", "muted"]) {
+  for (const bg of ["bg", "surface", "surfaceAlt"]) {
+    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} text on ${bg} meets WCAG AA`);
+  }
+}
+for (const fg of ["teal", "earth", "sand", "sky", "iris", "leaf"]) {
+  for (const bg of ["bg", "surface"]) {
+    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} accent text on ${bg} meets WCAG AA`);
+  }
+}
+// Accents used as filled button/tile backgrounds take dark ink, not white:
+// bright enough to carry text on the dark base means too bright for white on top.
+for (const fill of ["teal", "earth", "sand", "sky", "iris", "leaf", "success", "error"]) {
+  check(contrastRatio(colors.navyDeep, colors[fill]) >= 4.5, `navyDeep text on a ${fill} fill meets WCAG AA`);
+}
+check(contrastRatio(colors.headline, colors.navy) >= 4.5, "headline text on navy panels meets WCAG AA (hero, insets)");
+check(contrastRatio(colors.muted, colors.navy) >= 4.5, "muted text on navy panels meets WCAG AA (tab labels)");
+check(contrastRatio(colors.success, colors.successBg) >= 4.5, "success text on its own tint meets WCAG AA");
+check(contrastRatio(colors.error, colors.errorBg) >= 4.5, "error text on its own tint meets WCAG AA");
 
 console.log("Cloud sync (M2.1)");
 const fullProgress = {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
 
-const GAME_ORDER = ["daily", "flag", "capital", "capitalReverse", "shape", "locator"];
+// Daily leads as a full-width hero; the rest tile two-up underneath.
+const FEATURED = "daily";
+const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator"];
 
 export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpenWorldMap }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
@@ -20,184 +22,284 @@ export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpe
         ? `${streak.count}-day streak — play today to keep it going.`
         : "Your streak lapsed — start a new one today.";
 
+  const featured = MODES[FEATURED];
+
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      {/* Header */}
-      <Text style={styles.kicker}>SLICKROCK STUDIO</Text>
-      <Text style={styles.title}>Worldwise</Text>
+      {/* Status strip — the numbers worth glancing at, above everything else.
+          Freezes only earn a pill when you actually have one. */}
+      <View style={styles.statusRow}>
+        <View style={styles.statusPill}>
+          <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
+          <Text style={styles.statusValue}>{streak.count}</Text>
+        </View>
+        <View style={styles.statusPill}>
+          <Text style={styles.statusGlyph}>✦</Text>
+          <Text style={styles.statusValue}>{progress.xp}</Text>
+          <Text style={styles.statusUnit}>XP</Text>
+        </View>
+        {streak.freezes > 0 && (
+          <View style={styles.statusPill}>
+            <Text style={styles.statusGlyph}>❄️</Text>
+            <Text style={styles.statusValue}>{streak.freezes}</Text>
+          </View>
+        )}
+      </View>
+
+      {/* Wordmark */}
+      <View style={styles.brandRow}>
+        <Text style={styles.wordmark}>Worldwise</Text>
+        <Text style={styles.brandTag}>geography</Text>
+      </View>
       <Text style={styles.tagline}>Learn the world through curiosity.</Text>
 
-      {/* Stats */}
-      <View style={styles.stats}>
-        <Stat label="XP" value={progress.xp} />
-        <Stat label="Day streak" value={streak.count} />
-        <Stat label="Best round" value={progress.bestScore ? `${progress.bestScore}/8` : "—"} />
-      </View>
-
-      {/* Streak status — the "come back tomorrow" nudge */}
+      {/* Streak nudge */}
       <View style={styles.streakBanner}>
-        <Text style={styles.streakFlame}>{streak.alive ? "🔥" : "🌙"}</Text>
         <Text style={styles.streakMsg}>{streakMsg}</Text>
-        {streak.freezes > 0 && <Text style={styles.freezeBadge}>❄️ {streak.freezes}</Text>}
+        <Text style={styles.streakBest}>
+          Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
+        </Text>
       </View>
 
-      {/* Difficulty */}
+      {/* Today */}
+      <Text style={styles.section}>Today</Text>
+      <Pressable
+        onPress={() => onPlay(FEATURED, difficulty, timed)}
+        style={[styles.heroCard, { backgroundColor: featured.accent }]}
+      >
+        <Text style={styles.heroKicker}>Daily challenge</Text>
+        <Text style={styles.heroTitle}>{featured.icon}  A mixed round,{"\n"}every day</Text>
+        <View style={styles.heroCta}>
+          <Text style={styles.heroCtaText}>PLAY</Text>
+        </View>
+      </Pressable>
+
+      {/* Games */}
+      <Text style={styles.section}>All games</Text>
+      <View style={styles.grid}>
+        {GAME_GRID.map((key) => {
+          const m = MODES[key];
+          return (
+            <Pressable key={key} onPress={() => onPlay(key, difficulty, timed)} style={styles.tile}>
+              <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
+                <Text style={styles.tileGlyph}>{m.icon}</Text>
+              </View>
+              <Text style={styles.tileTitle}>{m.title}</Text>
+              <Text style={styles.tileBlurb}>{m.blurb}</Text>
+            </Pressable>
+          );
+        })}
+
+        {/* M2.2 step 5b — the browsable country index, a real entry point
+            replacing the earlier "Explore Brazil" preview. It shares the grid
+            with the games because browsing is a peer of playing, not a footnote. */}
+        {onOpenCountryIndex && (
+          <Pressable onPress={onOpenCountryIndex} style={styles.tile}>
+            <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
+              <Text style={styles.tileGlyph}>🌍</Text>
+            </View>
+            <Text style={styles.tileTitle}>Explore</Text>
+            <Text style={styles.tileBlurb}>All 196 places, and why they matter</Text>
+          </Pressable>
+        )}
+
+        {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
+            country to open its page. No pan/zoom yet. Shares the neutral tile
+            treatment with the country index; both are exploring, not playing. */}
+        {onOpenWorldMap && (
+          <Pressable onPress={onOpenWorldMap} style={styles.tile}>
+            <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
+              <Text style={styles.tileGlyph}>🗺️</Text>
+            </View>
+            <Text style={styles.tileTitle}>World Map</Text>
+            <Text style={styles.tileBlurb}>Tap anywhere on the map to explore it</Text>
+          </Pressable>
+        )}
+      </View>
+
+      {/* Difficulty — a segmented control, so the whole choice reads at a glance. */}
       <Text style={styles.section}>Difficulty</Text>
-      <View style={styles.difficultyRow}>
+      <View style={styles.segment}>
         {DIFFICULTIES.map((d) => {
           const active = d.key === difficulty;
           return (
             <Pressable
               key={d.key}
               onPress={() => setDifficulty(d.key)}
-              style={[styles.difficultyChip, active && styles.difficultyChipActive]}
+              style={[styles.segmentItem, active && styles.segmentItemActive]}
             >
-              <Text style={[styles.difficultyChipText, active && styles.difficultyChipTextActive]}>{d.label}</Text>
+              <Text style={[styles.segmentText, active && styles.segmentTextActive]}>{d.label}</Text>
             </Pressable>
           );
         })}
       </View>
-      <Text style={styles.difficultyHint}>Applies to every game except Daily, which always mixes every tier.</Text>
+      <Text style={styles.hint}>Applies to every game except Daily, which always mixes every tier.</Text>
 
       {/* Timed mode */}
       <Text style={styles.section}>Options</Text>
-      <Pressable
-        onPress={() => setTimed((t) => !t)}
-        style={[styles.timedToggle, timed && styles.timedToggleActive]}
-      >
-        <Text style={[styles.timedToggleText, timed && styles.timedToggleTextActive]}>⏱ Timed Mode</Text>
-        <Text style={[styles.timedToggleState, timed && styles.timedToggleTextActive]}>{timed ? "On" : "Off"}</Text>
+      <Pressable onPress={() => setTimed((t) => !t)} style={[styles.toggle, timed && styles.toggleActive]}>
+        <Text style={[styles.toggleText, timed && styles.toggleTextActive]}>⏱  Timed mode</Text>
+        <View style={[styles.toggleState, timed && styles.toggleStateActive]}>
+          <Text style={[styles.toggleStateText, timed && styles.toggleStateTextActive]}>
+            {timed ? "ON" : "OFF"}
+          </Text>
+        </View>
       </Pressable>
-      <Text style={styles.difficultyHint}>10s per question — not applied to Daily.</Text>
+      <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
 
-      {/* Games */}
-      <Text style={styles.section}>Games</Text>
-      {GAME_ORDER.map((key) => {
-        const m = MODES[key];
-        const featured = key === "daily";
-        return (
-          <Pressable
-            key={key}
-            onPress={() => onPlay(key, difficulty, timed)}
-            style={[styles.card, featured && { backgroundColor: m.accent }]}
-          >
-            <View style={[styles.iconWrap, featured ? styles.iconWrapLight : { backgroundColor: colors.surfaceAlt }]}>
-              <Text style={[styles.icon, { color: featured ? colors.white : m.accent }]}>{m.icon}</Text>
-            </View>
-            <View style={styles.cardBody}>
-              <Text style={[styles.cardTitle, featured && { color: colors.white }]}>{m.title}</Text>
-              <Text style={[styles.cardBlurb, featured && { color: "rgba(255,255,255,0.85)" }]}>{m.blurb}</Text>
-            </View>
-            <Text style={[styles.chev, featured && { color: colors.white }]}>›</Text>
-          </Pressable>
-        );
-      })}
-
-      {/* M2.2 step 5b — the browsable country index, a real entry point
-          replacing the earlier "Explore Brazil" preview. */}
-      {onOpenCountryIndex && (
-        <Pressable onPress={onOpenCountryIndex} style={styles.exploreCard}>
-          <View style={[styles.iconWrap, { backgroundColor: colors.surfaceAlt }]}>
-            <Text style={[styles.icon, { color: colors.earth }]}>🌍</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Text style={styles.cardTitle}>Explore every country</Text>
-            <Text style={styles.cardBlurb}>Browse all 196 places to find out why they matter</Text>
-          </View>
-          <Text style={styles.chev}>›</Text>
-        </Pressable>
-      )}
-
-      {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
-          country to open its page. No pan/zoom yet. */}
-      {onOpenWorldMap && (
-        <Pressable onPress={onOpenWorldMap} style={[styles.exploreCard, { marginTop: spacing(1) }]}>
-          <View style={[styles.iconWrap, { backgroundColor: colors.surfaceAlt }]}>
-            <Text style={[styles.icon, { color: colors.teal }]}>🗺️</Text>
-          </View>
-          <View style={styles.cardBody}>
-            <Text style={styles.cardTitle}>World Map</Text>
-            <Text style={styles.cardBlurb}>Tap anywhere on the map to explore it</Text>
-          </View>
-          <Text style={styles.chev}>›</Text>
-        </Pressable>
-      )}
-
-      <Text style={styles.footer}>Phase 1 prototype · more games coming</Text>
+      <Text style={styles.footer}>Slickrock Studio · Phase 1 prototype</Text>
     </ScrollView>
-  );
-}
-
-function Stat({ label, value }) {
-  return (
-    <View style={styles.stat}>
-      <Text style={styles.statValue}>{value}</Text>
-      <Text style={styles.statLabel}>{label}</Text>
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(3), paddingTop: spacing(7), paddingBottom: spacing(6) },
-  kicker: { color: colors.earth, fontWeight: "800", letterSpacing: 2, fontSize: 12 },
-  title: { ...type.hero, fontSize: 40, marginTop: spacing(0.5) },
-  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(0.5), marginBottom: spacing(3) },
+  content: { padding: spacing(2.5), paddingTop: spacing(3), paddingBottom: spacing(6) },
 
-  stats: { flexDirection: "row", gap: spacing(1.5), marginBottom: spacing(1.5) },
-  stat: {
-    flex: 1, backgroundColor: colors.surface, borderRadius: radius.md,
-    paddingVertical: spacing(2), alignItems: "center", ...shadow,
+  statusRow: { flexDirection: "row", gap: spacing(1), marginBottom: spacing(3) },
+  statusPill: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing(0.75),
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    paddingVertical: spacing(0.75),
+    paddingHorizontal: spacing(1.5),
+    ...depth(3),
   },
-  statValue: { fontSize: 24, fontWeight: "900", color: colors.navy },
-  statLabel: { ...type.muted, fontSize: 12, marginTop: 2 },
+  statusGlyph: { fontSize: 15, color: colors.sand },
+  statusValue: { fontSize: 16, fontWeight: "900", color: colors.headline },
+  statusUnit: { ...type.pill, fontSize: 10, color: colors.muted, letterSpacing: 1 },
+
+  brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
+  wordmark: { ...type.hero, fontSize: 38 },
+  brandTag: { ...type.pill, fontSize: 15, color: colors.teal, letterSpacing: -0.2 },
+  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(0.5), marginBottom: spacing(2.5) },
+
   streakBanner: {
-    flexDirection: "row", alignItems: "center", gap: spacing(1),
-    backgroundColor: colors.surface, borderRadius: radius.md,
-    paddingVertical: spacing(1.5), paddingHorizontal: spacing(2),
-    marginBottom: spacing(3.5), ...shadow,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: spacing(1.5),
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    paddingVertical: spacing(1.75),
+    paddingHorizontal: spacing(2),
+    marginBottom: spacing(3.5),
+    ...depth(),
   },
-  streakFlame: { fontSize: 20 },
-  streakMsg: { ...type.body, fontWeight: "700", flex: 1, color: colors.ink },
-  freezeBadge: { ...type.pill, color: colors.teal },
+  streakMsg: { ...type.body, fontWeight: "700", flexShrink: 1, color: colors.ink },
+  streakBest: { ...type.pill, fontSize: 11, color: colors.muted, textTransform: "uppercase", letterSpacing: 0.8 },
 
-  section: { ...type.h2, marginBottom: spacing(1.5) },
-  difficultyRow: { flexDirection: "row", gap: spacing(1), marginBottom: spacing(1) },
-  difficultyChip: {
-    flex: 1, alignItems: "center", paddingVertical: spacing(1.25),
-    borderRadius: radius.pill, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.line,
-  },
-  difficultyChipActive: { backgroundColor: colors.navy, borderColor: colors.navy },
-  difficultyChipText: { ...type.pill, color: colors.muted },
-  difficultyChipTextActive: { color: colors.white },
-  difficultyHint: { ...type.muted, fontSize: 12, marginBottom: spacing(3) },
-  timedToggle: {
-    flexDirection: "row", alignItems: "center", justifyContent: "space-between",
-    backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(2), borderWidth: 1, borderColor: colors.line, marginBottom: spacing(1),
-  },
-  timedToggleActive: { backgroundColor: colors.navy, borderColor: colors.navy },
-  timedToggleText: { ...type.body, fontWeight: "700" },
-  timedToggleState: { ...type.muted, fontWeight: "700" },
-  timedToggleTextActive: { color: colors.white },
-  card: {
-    flexDirection: "row", alignItems: "center", backgroundColor: colors.surface,
-    borderRadius: radius.lg, padding: spacing(2), marginBottom: spacing(1.5), ...shadow,
-  },
-  iconWrap: {
-    width: 52, height: 52, borderRadius: radius.md, alignItems: "center", justifyContent: "center",
-  },
-  iconWrapLight: { backgroundColor: "rgba(255,255,255,0.2)" },
-  icon: { fontSize: 24, fontWeight: "800" },
-  cardBody: { flex: 1, marginLeft: spacing(2) },
-  cardTitle: { fontSize: 18, fontWeight: "800", color: colors.ink },
-  cardBlurb: { ...type.muted, marginTop: 2 },
-  chev: { fontSize: 28, color: colors.line, fontWeight: "700" },
+  section: { ...type.section, marginBottom: spacing(1.5) },
+  hint: { ...type.muted, fontSize: 12, marginTop: spacing(1.25), marginBottom: spacing(3) },
 
-  footer: { ...type.muted, textAlign: "center", marginTop: spacing(2), fontSize: 12 },
+  heroCard: {
+    borderRadius: radius.lg,
+    padding: spacing(2.5),
+    marginBottom: spacing(3.5),
+    ...depth(6, colors.navyDeep),
+  },
+  heroKicker: {
+    ...type.pill,
+    fontSize: 11,
+    letterSpacing: 1.6,
+    textTransform: "uppercase",
+    color: colors.navyDeep,
+    opacity: 0.7,
+  },
+  heroTitle: {
+    fontSize: 26,
+    fontWeight: "900",
+    color: colors.navyDeep,
+    lineHeight: 32,
+    marginTop: spacing(0.75),
+    marginBottom: spacing(2),
+  },
+  heroCta: {
+    alignSelf: "flex-start",
+    backgroundColor: colors.navyDeep,
+    borderRadius: radius.pill,
+    paddingVertical: spacing(1.25),
+    paddingHorizontal: spacing(3),
+  },
+  heroCtaText: { ...type.pill, fontSize: 14, color: colors.headline, letterSpacing: 1.4 },
 
-  exploreCard: {
-    flexDirection: "row", alignItems: "center", backgroundColor: colors.surface,
-    borderRadius: radius.lg, padding: spacing(2), marginTop: spacing(1), ...shadow,
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    marginBottom: spacing(2),
+  },
+  tile: {
+    width: "48.5%",
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    padding: spacing(1.75),
+    marginBottom: spacing(1.5),
+    minHeight: 152,
+    ...depth(),
+  },
+  tileIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: radius.sm,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: spacing(1.5),
+    ...depth(3, colors.navyDeep),
+  },
+  tileGlyph: { fontSize: 20, fontWeight: "900", color: colors.navyDeep },
+  tileTitle: { fontSize: 16, fontWeight: "800", color: colors.headline },
+  tileBlurb: { ...type.muted, fontSize: 12, marginTop: 2, lineHeight: 16 },
+
+  segment: {
+    flexDirection: "row",
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    padding: spacing(0.5),
+    ...depth(3),
+  },
+  segmentItem: {
+    flex: 1,
+    alignItems: "center",
+    paddingVertical: spacing(1.25),
+    borderRadius: radius.pill,
+  },
+  segmentItemActive: { backgroundColor: colors.teal },
+  segmentText: { ...type.pill, color: colors.muted },
+  segmentTextActive: { color: colors.navyDeep },
+
+  toggle: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    paddingVertical: spacing(1.75),
+    paddingHorizontal: spacing(2),
+    ...depth(),
+  },
+  toggleActive: { backgroundColor: colors.teal },
+  toggleText: { ...type.body, fontWeight: "800", color: colors.ink },
+  toggleTextActive: { color: colors.navyDeep },
+  toggleState: {
+    backgroundColor: colors.surfaceAlt,
+    borderRadius: radius.pill,
+    paddingVertical: spacing(0.5),
+    paddingHorizontal: spacing(1.25),
+  },
+  toggleStateActive: { backgroundColor: colors.navyDeep },
+  toggleStateText: { ...type.pill, fontSize: 11, color: colors.muted, letterSpacing: 1 },
+  toggleStateTextActive: { color: colors.headline },
+
+  footer: {
+    ...type.pill,
+    fontSize: 11,
+    color: colors.muted,
+    textAlign: "center",
+    marginTop: spacing(1),
+    letterSpacing: 1,
+    textTransform: "uppercase",
   },
 });

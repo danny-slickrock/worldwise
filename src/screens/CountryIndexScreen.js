@@ -4,7 +4,7 @@
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { COUNTRIES } from "../data/countries";
 import { searchCountries, REGIONS } from "../game/countryIndex";
 
@@ -74,22 +74,23 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(3), paddingTop: spacing(2), paddingBottom: spacing(1) },
-  backText: { ...type.body, color: colors.teal, fontWeight: "700" },
+  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
-  header: { paddingHorizontal: spacing(3), marginBottom: spacing(2) },
-  title: { ...type.hero, fontSize: 32 },
-  subtitle: { ...type.muted, marginTop: spacing(0.5) },
+  header: { paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  title: { ...type.hero, fontSize: 34 },
+  subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
 
+  // Inset field: darker than the card layer, so it reads as carved in rather
+  // than sitting on top like the slabs around it.
   input: {
-    marginHorizontal: spacing(3),
-    backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.line,
+    marginHorizontal: spacing(2.5),
+    backgroundColor: colors.navy,
     borderRadius: radius.sm,
     paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1.5),
+    paddingVertical: spacing(1.75),
     ...type.body,
+    color: colors.headline,
     marginBottom: spacing(1.5),
   },
 
@@ -97,36 +98,35 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: spacing(1),
-    paddingHorizontal: spacing(3),
-    marginBottom: spacing(1.5),
+    paddingHorizontal: spacing(2.5),
+    marginBottom: spacing(2),
   },
   regionChip: {
-    paddingVertical: spacing(0.75),
-    paddingHorizontal: spacing(1.5),
+    paddingVertical: spacing(1),
+    paddingHorizontal: spacing(1.75),
     borderRadius: radius.pill,
     backgroundColor: colors.surface,
-    borderWidth: 1,
-    borderColor: colors.line,
+    ...depth(3),
   },
-  regionChipActive: { backgroundColor: colors.navy, borderColor: colors.navy },
+  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
   regionChipText: { ...type.pill, color: colors.muted },
-  regionChipTextActive: { color: colors.white },
+  regionChipTextActive: { color: colors.navyDeep },
 
-  list: { paddingHorizontal: spacing(3), paddingBottom: spacing(6) },
+  list: { paddingHorizontal: spacing(2.5), paddingBottom: spacing(6) },
   row: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.surface,
     borderRadius: radius.md,
-    paddingVertical: spacing(1.5),
+    paddingVertical: spacing(1.75),
     paddingHorizontal: spacing(2),
-    marginBottom: spacing(1),
-    ...shadow,
+    marginBottom: spacing(1.25),
+    ...depth(),
   },
   rowBody: { flex: 1 },
-  rowName: { ...type.body, fontWeight: "700", color: colors.ink },
+  rowName: { ...type.body, fontWeight: "800", color: colors.headline },
   rowCapital: { ...type.muted, fontSize: 13, marginTop: 2 },
-  chev: { fontSize: 24, color: colors.line, fontWeight: "700" },
+  chev: { fontSize: 24, color: colors.muted, fontWeight: "800" },
 
   empty: { ...type.muted, textAlign: "center", marginTop: spacing(4) },
 });

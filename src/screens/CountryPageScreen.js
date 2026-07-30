@@ -6,7 +6,7 @@
 // degrading gracefully where content isn't authored yet.
 import React, { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { getCountryPage } from "../data/countryPages";
 import { COUNTRIES } from "../data/countries";
 import { MODES } from "../game/questions";
@@ -140,9 +140,9 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
                     key={m}
                     onPress={() => onPlay(m)}
                     hitSlop={8}
-                    style={[styles.gameBtn, { borderColor: meta.accent }]}
+                    style={[styles.gameBtn, { backgroundColor: meta.accent }]}
                   >
-                    <Text style={[styles.gameIcon, { color: meta.accent }]}>{meta.icon}</Text>
+                    <Text style={styles.gameIcon}>{meta.icon}</Text>
                     <Text style={styles.gameBtnText}>{meta.title}</Text>
                   </Pressable>
                 );
@@ -174,9 +174,9 @@ function Stat({ value, label }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(3), paddingTop: spacing(2), paddingBottom: spacing(1) },
-  backText: { ...type.body, color: colors.teal, fontWeight: "700" },
-  content: { padding: spacing(3), paddingTop: spacing(1), paddingBottom: spacing(6) },
+  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  content: { padding: spacing(2.5), paddingTop: spacing(1), paddingBottom: spacing(6) },
 
   hero: {
     backgroundColor: colors.navy,
@@ -184,19 +184,14 @@ const styles = StyleSheet.create({
     padding: spacing(3),
     alignItems: "center",
     marginBottom: spacing(2.5),
-    ...shadow,
+    ...depth(6, colors.navyDeep),
   },
   outlineBox: { width: "100%", height: 200 },
   outlineFallback: { flex: 1, alignItems: "center", justifyContent: "center" },
-  outlineFallbackGlyph: { fontSize: 56, color: "rgba(255,255,255,0.35)" },
-  outlineFallbackText: {
-    ...type.muted,
-    color: "rgba(255,255,255,0.7)",
-    fontSize: 13,
-    marginTop: spacing(1),
-  },
+  outlineFallbackGlyph: { fontSize: 56, color: colors.surfaceAlt },
+  outlineFallbackText: { ...type.muted, fontSize: 13, marginTop: spacing(1) },
 
-  kicker: { color: colors.earth, fontWeight: "800", letterSpacing: 2, fontSize: 12 },
+  kicker: { ...type.kicker, fontSize: 12 },
   name: { ...type.hero, fontSize: 38, marginTop: spacing(0.5) },
   capital: { ...type.muted, fontSize: 15, marginTop: spacing(0.5), marginBottom: spacing(2.5) },
 
@@ -207,48 +202,50 @@ const styles = StyleSheet.create({
     borderRadius: radius.md,
     paddingVertical: spacing(2),
     alignItems: "center",
-    ...shadow,
+    ...depth(),
   },
-  statValue: { fontSize: 22, fontWeight: "900", color: colors.navy },
-  statLabel: { ...type.muted, fontSize: 12, marginTop: 2 },
+  statValue: { fontSize: 22, fontWeight: "900", color: colors.headline },
+  statLabel: { ...type.section, fontSize: 10, marginTop: spacing(0.5) },
 
   card: {
     backgroundColor: colors.surface,
     borderRadius: radius.lg,
     padding: spacing(2.5),
     marginBottom: spacing(2.5),
-    ...shadow,
+    ...depth(),
   },
   summary: { ...type.body, lineHeight: 24 },
 
   factRow: { paddingVertical: spacing(1.25) },
   factRowDivider: { borderTopWidth: 1, borderTopColor: colors.line, marginTop: spacing(0.25) },
-  factLabel: { ...type.pill, fontSize: 11, letterSpacing: 1, color: colors.earth, marginBottom: 2 },
+  factLabel: { ...type.kicker, marginBottom: spacing(0.5) },
   factText: { ...type.body, fontSize: 14, color: colors.ink, lineHeight: 20 },
 
-  section: { ...type.h2, marginBottom: spacing(1.5) },
+  section: { ...type.section, marginBottom: spacing(1.5) },
   chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(1), marginBottom: spacing(2.5) },
   chip: {
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: colors.surface,
     borderRadius: radius.pill,
-    paddingVertical: spacing(0.75),
-    paddingHorizontal: spacing(1.5),
+    paddingVertical: spacing(1),
+    paddingHorizontal: spacing(1.75),
+    ...depth(3),
   },
-  chipText: { ...type.pill, color: colors.navy },
+  chipText: { ...type.pill, color: colors.ink },
 
   gameWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(1.5) },
+  // Filled with the mode's accent rather than outlined in it: on the dark base a
+  // 1.5px tinted border is too faint to read as a button.
   gameBtn: {
     flexDirection: "row",
     alignItems: "center",
     gap: spacing(1),
-    backgroundColor: colors.surface,
-    borderWidth: 1.5,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.25),
-    paddingHorizontal: spacing(2),
+    paddingVertical: spacing(1.5),
+    paddingHorizontal: spacing(2.25),
+    ...depth(4, colors.navyDeep),
   },
-  gameIcon: { fontSize: 18, fontWeight: "800" },
-  gameBtnText: { ...type.body, fontWeight: "800", color: colors.ink },
+  gameIcon: { fontSize: 18, fontWeight: "900", color: colors.navyDeep },
+  gameBtnText: { ...type.body, fontWeight: "900", color: colors.navyDeep },
 
   empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(3) },
   emptyText: { ...type.muted },

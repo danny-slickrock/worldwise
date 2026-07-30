@@ -15,9 +15,12 @@ const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
 
 const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 
+// Every accent comes from the theme rather than a local hex: on the dark UI an
+// accent has to carry text at 4.5:1 on both `bg` and `surface`, which the tokens
+// are checked for in test/engine.test.js.
 export const MODES = {
-  flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "⚑", accent: "#2E6E7E" },
-  capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "★", accent: "#9C6B3C" },
+  flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "⚑", accent: colors.teal },
+  capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "★", accent: colors.earth },
   capitalReverse: {
     key: "capitalReverse",
     title: "Capital Quiz: Reverse",
@@ -25,9 +28,9 @@ export const MODES = {
     icon: "⇄",
     accent: colors.sand,
   },
-  shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "◇", accent: "#1F3A5F" },
-  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "⌖", accent: colors.navyDeep },
-  daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "◉", accent: "#2F8F5B" },
+  shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "◇", accent: colors.sky },
+  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "⌖", accent: colors.iris },
+  daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "◉", accent: colors.leaf },
 };
 
 function shuffle(arr) {

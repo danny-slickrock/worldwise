@@ -105,7 +105,14 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 - **Reuse `theme.js` tokens** for all colors/spacing/type — never hardcode hex in components.
 - **Keep gameplay numbers in `constants.js`** and XP in `scoring.js` — no magic numbers in UI.
 - **Maps are the hero.** Premium, timeless, map-first. Avoid childish or enterprise looks.
-  Palette: deep navy `#1F3A5F`, teal `#2E6E7E`, earth `#9C6B3C`, warm off-white `#F7F4EE`.
+- **The surface language is dark, tactile slabs.** Deep navy-charcoal base (`bg`), lifted
+  cards (`surface`), and depth expressed as `depth()` — a solid, un-blurred bottom edge —
+  never a blurred shadow. Section labels are all-caps and tight-tracked (`type.section`).
+  Bright accents (`teal`/`earth`/`sand`/`sky`/`iris`/`leaf`) carry text on the dark
+  surfaces *and* double as button fills, in which case the text on top is `navyDeep`, not
+  white. `test/engine.test.js` guards both directions at WCAG AA, so a new accent has to
+  earn its brightness. `navy`/`navyDeep` are now structure (map stages, insets, chrome),
+  not accents.
 - **Prefer runtime data sources** over large embedded assets as the dataset grows.
 - **One reusable surface over many bespoke screens** (see `QuizScreen.js`).
 

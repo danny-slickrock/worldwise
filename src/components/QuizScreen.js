@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View, Text, StyleSheet, Pressable, Image, ScrollView, Animated,
 } from "react-native";
-import { colors, spacing, radius, type, shadow } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
@@ -155,10 +155,12 @@ export default function QuizScreen({
     const pct = Math.round((score / questions.length) * 100);
     return (
       <ScrollView style={styles.resultWrap} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
-        <Text style={styles.resultKicker}>{meta.title}</Text>
-        <Text style={styles.resultScore}>{score}/{questions.length}</Text>
-        <Text style={styles.resultPct}>{pct}% correct</Text>
-        <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
+        <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
+          <Text style={styles.resultKicker}>{meta.title}</Text>
+          <Text style={styles.resultScore}>{score}/{questions.length}</Text>
+          <Text style={styles.resultPct}>{pct}% correct</Text>
+          <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
+        </View>
 
         <Text style={styles.reviewHeading}>Round review</Text>
         <View style={styles.reviewList}>
@@ -250,13 +252,13 @@ export default function QuizScreen({
             </View>
           )}
           {q.type === "capital" && (
-            <View style={[styles.capitalBadge, { borderColor: meta.accent }]}>
+            <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
               <Text style={[styles.capitalGlyph, { color: meta.accent }]}>{q.country.region}</Text>
               <Text style={styles.capitalName}>{q.country.name}</Text>
             </View>
           )}
           {q.type === "capitalReverse" && (
-            <View style={[styles.capitalBadge, { borderColor: meta.accent }]}>
+            <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
               <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
               <Text style={styles.capitalName}>{q.country.capital}</Text>
             </View>
@@ -281,7 +283,9 @@ export default function QuizScreen({
                 >
                   <Text style={[
                     styles.optionText,
-                    (isCorrect || isWrong) && { color: colors.white, fontWeight: "700" },
+                    // Resolved options fill with a bright success/error — dark
+                    // ink on top, not white, or the label washes out.
+                    (isCorrect || isWrong) && { color: colors.navyDeep, fontWeight: "800" },
                   ]}>{opt}</Text>
                   {isCorrect && <Text style={styles.optionMark}>✓</Text>}
                   {isWrong && <Text style={styles.optionMark}>✕</Text>}
@@ -335,65 +339,70 @@ export default function QuizScreen({
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
   topBar: {
-    flexDirection: "row", alignItems: "center", gap: spacing(1.5),
+    flexDirection: "row", alignItems: "center", gap: spacing(1.25),
     paddingHorizontal: spacing(2), paddingTop: spacing(1), paddingBottom: spacing(1.5),
   },
   exit: { fontSize: 22, color: colors.muted, width: 28 },
   progressTrack: {
-    flex: 1, height: 10, borderRadius: radius.pill, backgroundColor: colors.surfaceAlt, overflow: "hidden",
+    flex: 1, height: 12, borderRadius: radius.pill, backgroundColor: colors.navy, overflow: "hidden",
   },
   progressFill: { height: "100%", borderRadius: radius.pill },
   streakPill: {
     backgroundColor: colors.surface, borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...shadow,
+    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...depth(3),
   },
-  streakText: { fontWeight: "700", color: colors.ink, fontSize: 13 },
+  streakText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
   soundPill: {
     backgroundColor: colors.surface, borderRadius: radius.pill,
-    width: 32, height: 32, alignItems: "center", justifyContent: "center", ...shadow,
+    width: 34, height: 34, alignItems: "center", justifyContent: "center", ...depth(3),
   },
   soundText: { fontSize: 14 },
   timerPill: {
     backgroundColor: colors.surface, borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...shadow,
+    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...depth(3),
   },
   timerPillLow: { backgroundColor: colors.errorBg },
-  timerText: { fontWeight: "700", color: colors.ink, fontSize: 13 },
+  timerText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
   timerTextLow: { color: colors.error },
 
   body: { padding: spacing(2.5), paddingBottom: spacing(6) },
-  counter: { ...type.muted, marginBottom: spacing(0.5) },
-  prompt: { ...type.title, fontSize: 22, marginBottom: spacing(2) },
+  counter: { ...type.section, fontSize: 11, marginBottom: spacing(0.75) },
+  prompt: { ...type.title, fontSize: 24, lineHeight: 30, marginBottom: spacing(2.5) },
 
   media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(3) },
   flag: {
-    width: 240, height: 150, borderRadius: radius.md, backgroundColor: colors.surface, ...shadow,
+    width: 260, height: 164, borderRadius: radius.md, backgroundColor: colors.surface, ...depth(5),
   },
+  // The map stage is deep navy on every media type, so outlines and the world
+  // map read as the lit subject rather than as chrome.
   shapeBox: {
-    width: 240, height: 200, backgroundColor: colors.surface, borderRadius: radius.md,
-    padding: spacing(2), ...shadow,
+    width: 260, height: 210, backgroundColor: colors.navy, borderRadius: radius.md,
+    padding: spacing(2), ...depth(5),
   },
   mapBox: {
-    width: "100%", height: 300, backgroundColor: colors.surfaceAlt, borderRadius: radius.md,
-    overflow: "hidden", marginBottom: spacing(2), borderWidth: 1, borderColor: colors.line,
+    width: "100%", height: 300, backgroundColor: colors.navy, borderRadius: radius.md,
+    overflow: "hidden", marginBottom: spacing(2), ...depth(5),
   },
+  // The accent border is applied per-mode at the call site, which restates
+  // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
+  // flatten this depth edge back to the accent.
   capitalBadge: {
     borderWidth: 2, borderRadius: radius.lg, paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4), backgroundColor: colors.surface, alignItems: "center", ...shadow,
+    paddingHorizontal: spacing(4), backgroundColor: colors.surface, alignItems: "center", ...depth(5),
   },
-  capitalGlyph: { fontSize: 12, fontWeight: "800", letterSpacing: 1, textTransform: "uppercase", marginBottom: 6 },
-  capitalName: { fontSize: 28, fontWeight: "800", color: colors.navy },
+  capitalGlyph: { fontSize: 11, fontWeight: "900", letterSpacing: 1.4, textTransform: "uppercase", marginBottom: 6 },
+  capitalName: { fontSize: 30, fontWeight: "900", color: colors.headline },
 
-  options: { gap: spacing(1.25) },
+  options: { gap: spacing(1.5) },
   option: {
     flexDirection: "row", alignItems: "center", justifyContent: "space-between",
     backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: spacing(2),
-    paddingHorizontal: spacing(2), borderWidth: 1, borderColor: colors.line,
+    paddingHorizontal: spacing(2), ...depth(),
   },
-  optionCorrect: { backgroundColor: colors.success, borderColor: colors.success },
-  optionWrong: { backgroundColor: colors.error, borderColor: colors.error },
-  optionText: { ...type.body, fontSize: 17, flexShrink: 1 },
-  optionMark: { color: colors.white, fontSize: 18, fontWeight: "800", marginLeft: spacing(1) },
+  optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.navyDeep },
+  optionWrong: { backgroundColor: colors.error, borderBottomColor: colors.navyDeep },
+  optionText: { ...type.body, fontSize: 17, fontWeight: "700", flexShrink: 1 },
+  optionMark: { color: colors.navyDeep, fontSize: 18, fontWeight: "900", marginLeft: spacing(1) },
 
   feedback: { marginTop: spacing(2.5), gap: spacing(1.5) },
   feedbackText: { ...type.h2, color: colors.muted },
@@ -402,46 +411,55 @@ const styles = StyleSheet.create({
   contextCard: {
     backgroundColor: colors.surface,
     borderRadius: radius.md,
-    borderLeftWidth: 3,
+    borderLeftWidth: 4,
     borderLeftColor: colors.earth,
     padding: spacing(2),
-    ...shadow,
+    ...depth(),
   },
-  contextKicker: { ...type.pill, fontSize: 10, letterSpacing: 1.5, color: colors.earth },
-  contextCountry: { ...type.h2, marginTop: 2, marginBottom: spacing(0.75) },
-  contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 20 },
-  contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1) },
-  nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center" },
-  nextBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
+  contextKicker: { ...type.kicker },
+  contextCountry: { ...type.h2, marginTop: spacing(0.5), marginBottom: spacing(0.75) },
+  contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 21 },
+  contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1.25) },
+  nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center", ...depth(5, colors.navyDeep) },
+  nextBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
 
   resultWrap: { flex: 1, backgroundColor: colors.bg },
-  resultContent: { alignItems: "center", padding: spacing(3), paddingBottom: spacing(6) },
-  resultKicker: { ...type.muted, textTransform: "uppercase", letterSpacing: 1, fontWeight: "700" },
-  resultScore: { fontSize: 64, fontWeight: "900", color: colors.navy, marginTop: spacing(1) },
-  resultPct: { ...type.h2, color: colors.muted, marginBottom: spacing(2) },
+  resultContent: { alignItems: "center", padding: spacing(2.5), paddingBottom: spacing(6) },
+  // The score sits on the mode's accent as one solid slab — the payoff moment
+  // gets the loudest surface in the app.
+  resultCard: {
+    width: "100%", alignItems: "center", borderRadius: radius.lg,
+    paddingVertical: spacing(3.5), marginBottom: spacing(3.5), ...depth(6, colors.navyDeep),
+  },
+  resultKicker: {
+    ...type.pill, fontSize: 11, textTransform: "uppercase", letterSpacing: 1.6,
+    color: colors.navyDeep, opacity: 0.7,
+  },
+  resultScore: { fontSize: 68, fontWeight: "900", color: colors.navyDeep, marginTop: spacing(0.5) },
+  resultPct: { ...type.h2, color: colors.navyDeep, opacity: 0.75, marginBottom: spacing(2) },
   xpPill: {
-    backgroundColor: colors.successBg, borderRadius: radius.pill,
-    paddingHorizontal: spacing(2.5), paddingVertical: spacing(1), marginBottom: spacing(3),
+    backgroundColor: colors.navyDeep, borderRadius: radius.pill,
+    paddingHorizontal: spacing(2.5), paddingVertical: spacing(1),
   },
-  xpPillText: { color: colors.success, fontWeight: "800", fontSize: 16 },
+  xpPillText: { color: colors.headline, fontWeight: "900", fontSize: 16 },
 
-  reviewHeading: {
-    ...type.muted, alignSelf: "flex-start", textTransform: "uppercase",
-    letterSpacing: 1, fontWeight: "700", marginBottom: spacing(1.5),
-  },
+  reviewHeading: { ...type.section, alignSelf: "flex-start", marginBottom: spacing(1.5) },
   reviewList: { width: "100%", gap: spacing(1.5), marginBottom: spacing(3) },
   reviewCard: {
-    backgroundColor: colors.surface, borderRadius: radius.md, borderWidth: 1,
-    borderColor: colors.line, padding: spacing(2), gap: spacing(1), ...shadow,
+    backgroundColor: colors.surface, borderRadius: radius.md,
+    padding: spacing(2), gap: spacing(1), ...depth(),
   },
   reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(1) },
-  reviewMark: { fontSize: 16, fontWeight: "800", width: 20 },
+  reviewMark: { fontSize: 16, fontWeight: "900", width: 20 },
   reviewMarkRight: { color: colors.success },
   reviewMarkWrong: { color: colors.error },
-  reviewPrompt: { ...type.body, fontWeight: "700", flex: 1 },
+  reviewPrompt: { ...type.body, fontWeight: "800", flex: 1, color: colors.headline },
   reviewAnswer: { ...type.muted, fontSize: 13 },
-  reviewFact: { ...type.body, fontSize: 14, color: colors.muted, fontStyle: "italic" },
+  reviewFact: { ...type.body, fontSize: 14, color: colors.muted, fontStyle: "italic", lineHeight: 20 },
 
-  primaryBtn: { borderRadius: radius.md, paddingVertical: spacing(2), paddingHorizontal: spacing(5) },
-  primaryBtnText: { color: colors.white, fontWeight: "800", fontSize: 17 },
+  primaryBtn: {
+    borderRadius: radius.pill, paddingVertical: spacing(2), paddingHorizontal: spacing(5),
+    ...depth(5, colors.navyDeep),
+  },
+  primaryBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
 });

@@ -234,6 +234,35 @@ teaching *how the world works*, not just *where things are*.
        done and add a matching way back to the map from a country page.
     5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
        focused exploration without hunting for tiny countries.
+- **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
+  a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
+  so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on
+  Storage/CDN (never binaries in the DB). The app fetches per-country on demand with a local cache +
+  a `content_version` check; a lightweight baseline (index + hero) stays bundled for offline/instant
+  first paint. Keep the pure/IO split: cache-invalidation *decisions* pure and tested, Supabase IO
+  beside them. Seed via a JSON→Postgres migration script; existing `countryPages.js` becomes the seed
+  source, then the app reads from the API.
+- **M2.9 — AI knowledge hub (RAG) 🤖** — let learners "dive deeper" into a place or topic they're
+  curious about, with AI that frames discoveries **grounded in our own verified content** (no
+  free-floating hallucination — critical because the audience includes students).
+  - **Ordered sub-checklist** (decompose just-in-time when this milestone is next):
+    1. ☐ **Embeddings store.** Enable `pgvector`; add an `content.embeddings` table (chunk text +
+       vector + source country/topic). Migration-as-file, public-read RLS, admin-only writes.
+    2. ☐ **Ingestion job.** A script/Edge Function that chunks country content, calls an embedding
+       model, and upserts vectors. Re-runs on `content_version` bumps. Keep chunking logic pure/tested.
+    3. ☐ **Retrieval + generation (server-side).** A **Supabase Edge Function** that: vector-searches
+       the top-k relevant chunks, builds a grounded prompt, calls the **LLM API**, and returns a
+       cited answer. **API keys live only in the Edge Function**, never in the app. Rate-limit + log.
+    4. ☐ **Guardrails.** Answer only from retrieved context; refuse/deflect off-topic or unsafe asks;
+       always show sources; age-appropriate, non-ideological framing (matches the brand). Add an
+       abuse/rate limit and a per-user cap to control cost.
+    5. ☐ **App UI.** On a country page / discovery surface: "Ask about {place}" and suggested
+       "dive deeper" prompts. Streamed responses, loading + error states, offline fallback.
+    6. ☐ **Cost + eval.** Cache common answers; cap tokens; track spend per user. A small eval set
+       (known Q→expected-facts) so answer quality is measured, not vibes.
+  - **Dependencies:** M2.3.5 (content in Postgres) must land first — you can't retrieve over content
+    you haven't stored. This also becomes the engine behind the **Phase 3 teacher AI** (lesson/quiz
+    generation), so build it as a reusable retrieval+generation service, not a one-off.
 - **M2.4 — Learning paths 🎓** — guided, mastery-based sequences that "expand outward"
   (hemisphere → continent → region → country), unlocking as the learner demonstrates mastery.
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
@@ -247,8 +276,11 @@ teaching *how the world works*, not just *where things are*.
   recommendations for weak areas.
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
-and a content model for country pages and learning paths; wire the first **Premium Individual** tier
-(unlimited games, learning paths, offline mode, advanced analytics, collections).
+and a content model for country pages and learning paths; move content into a public-read `content.*`
+schema with CDN media; add `pgvector` + a Supabase **Edge Function** retrieval/generation service for
+the AI hub (LLM API keys server-side only). Wire the first **Premium Individual** tier (unlimited
+games, learning paths, offline mode, advanced analytics, collections); AI usage likely gates here for
+cost control.
 
 **Exit criteria:** a signed-in learner has synced progress, explores country pages and interactive
 maps, follows at least one learning path to mastery, earns achievements, competes on a leaderboard,
