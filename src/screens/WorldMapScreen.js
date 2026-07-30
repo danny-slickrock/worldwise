@@ -4,7 +4,7 @@
 // that's M2.3 step 2). Reachable from Home.
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { colors, spacing, radius, type } from "../theme";
+import { colors, spacing, radius, type, depth } from "../theme";
 import ExploreMap from "../components/ExploreMap";
 
 export default function WorldMapScreen({ onExit, onOpenCountry }) {
@@ -28,19 +28,22 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(3), paddingTop: spacing(2), paddingBottom: spacing(1) },
-  backText: { ...type.body, color: colors.teal, fontWeight: "700" },
+  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
-  header: { paddingHorizontal: spacing(3), marginBottom: spacing(2) },
-  title: { ...type.hero, fontSize: 32 },
-  subtitle: { ...type.muted, marginTop: spacing(0.5) },
+  header: { paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  title: { ...type.hero, fontSize: 34 },
+  subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
 
+  // The map stage is deep navy everywhere it appears (see QuizScreen's mapBox),
+  // so the world reads as the lit subject rather than as chrome.
   mapWrap: {
     flex: 1,
-    marginHorizontal: spacing(2),
+    marginHorizontal: spacing(2.5),
     marginBottom: spacing(3),
     borderRadius: radius.lg,
     overflow: "hidden",
-    backgroundColor: colors.surfaceAlt,
+    backgroundColor: colors.navy,
+    ...depth(5),
   },
 });

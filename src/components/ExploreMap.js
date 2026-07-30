@@ -28,13 +28,16 @@ const ALL_CODES = Object.keys(COUNTRY_PATHS);
 export default function ExploreMap({ onSelect }) {
   return (
     <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.surfaceAlt} />
+      {/* Lit land on deep water, matching the Locator's map exactly: on the dark
+          UI the reverse (navy land on a lighter ocean) inverts the figure and
+          the continents stop reading as the subject. */}
+      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.navyDeep} />
       {ALL_CODES.map((code) => (
         <Path
           key={code}
           d={COUNTRY_PATHS[code]}
-          fill={colors.navy}
-          stroke={colors.surface}
+          fill={colors.surfaceAlt}
+          stroke={colors.navy}
           strokeWidth={0.4}
           {...pickHandler(code, onSelect)}
         />

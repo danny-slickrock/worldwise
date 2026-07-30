@@ -23,6 +23,9 @@ const TABS = [
   { key: "profile", label: "Profile", icon: "◍" },
 ];
 
+// The tab shell is the app's deepest layer; screens sit on `bg` above it, so the
+// safe-area inset reads as part of the chrome rather than a gap.
+
 export default function App() {
   return (
     <AuthProvider>
@@ -128,7 +131,7 @@ function AppShell() {
   if (screen.name === "quiz") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <QuizScreen
           mode={screen.mode}
           difficulty={screen.difficulty}
@@ -146,7 +149,7 @@ function AppShell() {
   if (screen.name === "country") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <CountryPageScreen
           code={screen.code}
           onExit={exitCountry}
@@ -159,7 +162,7 @@ function AppShell() {
   if (screen.name === "countryIndex") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <CountryIndexScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "countryIndex")} />
       </SafeAreaView>
     );
@@ -168,7 +171,7 @@ function AppShell() {
   if (screen.name === "worldMap") {
     return (
       <SafeAreaView style={styles.safe}>
-        <StatusBar style="dark" />
+        <StatusBar style="light" />
         <WorldMapScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "worldMap")} />
       </SafeAreaView>
     );
@@ -176,7 +179,7 @@ function AppShell() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <View style={styles.body}>
         {tab === "home" ? (
           <HomeScreen
@@ -197,7 +200,7 @@ function AppShell() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.bg,
+    backgroundColor: colors.navy,
     paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
   body: { flex: 1 },
