@@ -2,54 +2,118 @@
 // map: every country with map data is tappable, opening its country page via
 // the same overlay seam the country index uses. Reachable from Home.
 //
-// M2.3 step 2a adds zoom (pinch on native, wheel/trackpad on web); drag-to-pan
-// is a later step, so for now zooming stays centered on the box, not the
-// gesture point.
+// M2.3 step 2a added zoom (pinch on native, wheel/trackpad on web), centered
+// on the box. Step 2b adds drag-to-pan (single-finger on native, mouse-drag
+// on web) so content beyond the initial fit is reachable — bounds/reset are
+// still a later step, so panning is unclamped for now.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
 import ExploreMap from "../components/ExploreMap";
-import { MAP_ZOOM_MIN, MAP_ZOOM_MAX, MAP_WHEEL_ZOOM_SPEED } from "../constants";
-import { pinchScale, touchDistance, wheelZoom } from "../game/mapZoom";
+import { MAP_ZOOM_MIN, MAP_ZOOM_MAX, MAP_WHEEL_ZOOM_SPEED, MAP_DRAG_THRESHOLD } from "../constants";
+import { pinchScale, touchDistance, wheelZoom, dragPan } from "../game/mapZoom";
 
 export default function WorldMapScreen({ onExit, onOpenCountry }) {
   const [scale, setScale] = useState(1);
-  const gesture = useRef({ startDistance: 0, startScale: 1 });
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const gesture = useRef({ mode: null, startDistance: 0, startScale: 1, startPan: { x: 0, y: 0 } });
   const mapNodeRef = useRef(null);
+  const scaleRef = useRef(scale);
+  const panRef = useRef(pan);
+  useEffect(() => {
+    scaleRef.current = scale;
+  }, [scale]);
+  useEffect(() => {
+    panRef.current = pan;
+  }, [pan]);
 
-  // Two-finger pinch, native only — a single touch is left alone so it still
-  // reaches ExploreMap's tap-to-select <Path>s untouched.
+  // Two-finger pinch zooms; a single touch only starts panning once it moves
+  // past the drag threshold, so a stationary tap still falls through to
+  // ExploreMap's tap-to-select <Path>s untouched.
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: (evt) => evt.nativeEvent.touches.length === 2,
-      onMoveShouldSetPanResponder: (evt) => evt.nativeEvent.touches.length === 2,
-      onPanResponderGrant: (evt) => {
-        const [a, b] = evt.nativeEvent.touches;
-        gesture.current = { startDistance: touchDistance(a, b), startScale: scale };
-      },
-      onPanResponderMove: (evt) => {
+      onMoveShouldSetPanResponder: (evt, gestureState) => {
         const touches = evt.nativeEvent.touches;
-        if (touches.length !== 2) return;
-        const { startDistance, startScale } = gesture.current;
-        setScale(
-          pinchScale(startDistance, touchDistance(touches[0], touches[1]), startScale, MAP_ZOOM_MIN, MAP_ZOOM_MAX)
-        );
+        if (touches.length === 2) return true;
+        if (touches.length === 1) {
+          return Math.abs(gestureState.dx) > MAP_DRAG_THRESHOLD || Math.abs(gestureState.dy) > MAP_DRAG_THRESHOLD;
+        }
+        return false;
+      },
+      onPanResponderGrant: (evt) => {
+        const touches = evt.nativeEvent.touches;
+        if (touches.length === 2) {
+          const [a, b] = touches;
+          gesture.current = { mode: "pinch", startDistance: touchDistance(a, b), startScale: scale, startPan: pan };
+        } else {
+          gesture.current = { mode: "pan", startDistance: 0, startScale: scale, startPan: pan };
+        }
+      },
+      onPanResponderMove: (evt, gestureState) => {
+        const touches = evt.nativeEvent.touches;
+        const g = gesture.current;
+        if (touches.length === 2 && g.mode === "pinch") {
+          setScale(pinchScale(g.startDistance, touchDistance(touches[0], touches[1]), g.startScale, MAP_ZOOM_MIN, MAP_ZOOM_MAX));
+        } else if (g.mode === "pan") {
+          setPan(dragPan(g.startPan, gestureState.dx, gestureState.dy, g.startScale));
+        }
       },
     })
   ).current;
 
-  // Web has no pinch gesture in RN's responder system, so zoom follows the
-  // wheel/trackpad instead — bound straight to the DOM node react-native-web
-  // renders under this View, since RN's synthetic events don't expose wheel.
+  // Web has no pinch/pan gesture in RN's responder system, so zoom follows
+  // the wheel/trackpad and panning follows a mouse drag — both bound
+  // straight to the DOM node react-native-web renders under this View, since
+  // RN's synthetic events don't expose wheel/mouse move globally.
   useEffect(() => {
     if (Platform.OS !== "web" || !mapNodeRef.current) return;
     const node = mapNodeRef.current;
+
     const handleWheel = (e) => {
       e.preventDefault();
       setScale((current) => wheelZoom(current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, MAP_ZOOM_MIN, MAP_ZOOM_MAX));
     };
     node.addEventListener("wheel", handleWheel, { passive: false });
-    return () => node.removeEventListener("wheel", handleWheel);
+
+    const drag = { active: false, startX: 0, startY: 0, startPan: { x: 0, y: 0 }, dragged: false };
+    const swallowNextClick = (e) => {
+      e.stopPropagation();
+      node.removeEventListener("click", swallowNextClick, true);
+    };
+    const handleMouseMove = (e) => {
+      if (!drag.active) return;
+      const dx = e.clientX - drag.startX;
+      const dy = e.clientY - drag.startY;
+      if (!drag.dragged && (Math.abs(dx) > MAP_DRAG_THRESHOLD || Math.abs(dy) > MAP_DRAG_THRESHOLD)) {
+        drag.dragged = true;
+      }
+      if (drag.dragged) setPan(dragPan(drag.startPan, dx, dy, scaleRef.current));
+    };
+    const handleMouseUp = () => {
+      drag.active = false;
+      if (drag.dragged) node.addEventListener("click", swallowNextClick, true);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+    const handleMouseDown = (e) => {
+      drag.active = true;
+      drag.dragged = false;
+      drag.startX = e.clientX;
+      drag.startY = e.clientY;
+      drag.startPan = panRef.current;
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+    };
+    node.addEventListener("mousedown", handleMouseDown);
+
+    return () => {
+      node.removeEventListener("wheel", handleWheel);
+      node.removeEventListener("mousedown", handleMouseDown);
+      node.removeEventListener("click", swallowNextClick, true);
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
   }, []);
 
   return (
@@ -60,7 +124,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
 
       <View style={styles.header}>
         <Text style={styles.title}>World Map</Text>
-        <Text style={styles.subtitle}>Tap a country to explore it · pinch or scroll to zoom</Text>
+        <Text style={styles.subtitle}>Tap a country to explore it · pinch/scroll to zoom · drag to pan</Text>
       </View>
 
       <View
@@ -68,7 +132,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         ref={mapNodeRef}
         {...(Platform.OS === "web" ? {} : panResponder.panHandlers)}
       >
-        <View style={[styles.mapScale, { transform: [{ scale }] }]}>
+        <View style={[styles.mapScale, { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] }]}>
           <ExploreMap onSelect={onOpenCountry} />
         </View>
       </View>

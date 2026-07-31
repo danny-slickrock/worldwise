@@ -35,3 +35,8 @@ export const XP = {
 export const MAP_ZOOM_MIN = 1;
 export const MAP_ZOOM_MAX = 4;
 export const MAP_WHEEL_ZOOM_SPEED = 0.0016;
+
+// World Map screen (M2.3 step 2b): a single-finger/mouse press only becomes a
+// pan once it moves this many screen pixels — below that, it's left alone as
+// a tap so it still reaches ExploreMap's country shapes.
+export const MAP_DRAG_THRESHOLD = 4;

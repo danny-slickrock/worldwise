@@ -65,7 +65,7 @@ src/
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
-  game/mapZoom.js          # PURE zoom-scale math for the World Map screen (pinch/wheel, clamped)
+  game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -81,7 +81,7 @@ src/
   screens/SignInScreen.js  # Magic link + Continue with Google
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
-  screens/WorldMapScreen.js # M2.3 step 1: tap-to-explore world map (static; pan/zoom is next)
+  screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
 supabase/migrations/       # Schema as code (user domain + RLS + signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 test/engine.test.js        # Pure-logic tests (no RN imports)
@@ -140,7 +140,8 @@ vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
 
 **M2.2 — country pages is done** except its "from the map" entry point, which stays blocked on
 M2.3. **Next up — M2.3 — interactive maps:** pan/zoom world and region maps, tap a place to
-explore it. Step 1 (a static tap-to-explore World Map screen) has landed; pan/zoom is next.
+explore it. Step 1 (a static tap-to-explore World Map screen) and step 2's pinch/scroll-to-zoom
+and drag-to-pan have landed; bounds/reset polish is next.
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

@@ -22,7 +22,7 @@ import {
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
-import { clampScale, pinchScale, wheelZoom, touchDistance } from "../src/game/mapZoom";
+import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan } from "../src/game/mapZoom";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -538,6 +538,20 @@ check(
 check(
   wheelZoom(1, -10000, 0.01, 1, 4) === 4,
   "wheelZoom clamps at the maximum however far the wheel scrolls"
+);
+
+console.log("World Map pan (M2.3 step 2b)");
+check(
+  JSON.stringify(dragPan({ x: 0, y: 0 }, 10, 20, 1)) === JSON.stringify({ x: 10, y: 20 }),
+  "dragPan tracks the drag 1:1 at 1x zoom"
+);
+check(
+  JSON.stringify(dragPan({ x: 0, y: 0 }, 10, 20, 2)) === JSON.stringify({ x: 5, y: 10 }),
+  "dragPan halves screen distance into local units at 2x zoom"
+);
+check(
+  JSON.stringify(dragPan({ x: 5, y: -3 }, 10, 0, 1)) === JSON.stringify({ x: 15, y: -3 }),
+  "dragPan adds the drag on top of the pan already in effect"
 );
 
 console.log("Scoring");

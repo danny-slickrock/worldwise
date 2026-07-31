@@ -234,8 +234,20 @@ teaching *how the world works*, not just *where things are*.
           expose `wheel`). The scale math itself — clamping, pinch-distance ratio, wheel delta — is
           pure (`src/game/mapZoom.js`), tested in `test/engine.test.js`. Zoom is centered on the
           map box, not the gesture point, since there's no pan yet to compensate with.
-       2. ☐ **Drag-to-pan.** Translate the zoomed map on single-finger/mouse drag, so content beyond
-          the initial fit is actually reachable.
+       2. ✅ **Drag-to-pan.** `WorldMapScreen` now translates the zoomed map on drag: a single
+          touch on native only claims the gesture once it moves past a small threshold
+          (`MAP_DRAG_THRESHOLD`), so a stationary tap still falls through to `ExploreMap`'s
+          `<Path>`s untouched — mirroring the existing 2-touch-only pinch claim. Web has no
+          native drag gesture in RN's responder system, so it's driven by real
+          `mousedown`/`mousemove`/`mouseup` listeners on the same DOM node the wheel handler
+          already uses; a drag past the same threshold sets a `dragged` flag that swallows the
+          synthetic `click` a mouse-up would otherwise fire, via a one-shot capture-phase
+          listener — so releasing a drag over a country never opens its page, verified in a
+          real browser (`chromium-cli`/Playwright) alongside a plain click on Brazil still
+          opening its country page. The pan math itself is pure (`dragPan()` in
+          `src/game/mapZoom.js`): screen-pixel drag distance divided by the scale in effect when
+          the drag began, so content tracks the finger/cursor 1:1 regardless of zoom level;
+          tested in `test/engine.test.js`. No bounds clamping yet — that's the next step.
        3. ☐ **Bounds, reset & polish.** Clamp pan so the map can't be dragged fully out of view, add
           a way to reset zoom (e.g. double-tap), and revisit perf if plain `useState`-driven
           transforms feel laggy under fast pinch/drag (an `Animated.Value` + native driver would be
