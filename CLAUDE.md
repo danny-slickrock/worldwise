@@ -140,8 +140,8 @@ vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
 
 **M2.2 — country pages is done** except its "from the map" entry point, which stays blocked on
 M2.3. **Next up — M2.3 — interactive maps:** pan/zoom world and region maps, tap a place to
-explore it. Step 1 (a static tap-to-explore World Map screen) and step 2's pinch/scroll-to-zoom
-and drag-to-pan have landed; bounds/reset polish is next.
+explore it. Step 1 (a static tap-to-explore World Map screen) and step 2 (pinch/scroll-to-zoom,
+drag-to-pan, and bounds/reset) are all done; tap affordance polish (step 3) is next.
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

@@ -22,7 +22,7 @@ import {
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
-import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan } from "../src/game/mapZoom";
+import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -552,6 +552,28 @@ check(
 check(
   JSON.stringify(dragPan({ x: 5, y: -3 }, 10, 0, 1)) === JSON.stringify({ x: 15, y: -3 }),
   "dragPan adds the drag on top of the pan already in effect"
+);
+
+console.log("World Map pan bounds & reset (M2.3 step 2c)");
+check(
+  JSON.stringify(clampPan({ x: 50, y: 50 }, 1, 300, 200)) === JSON.stringify({ x: 0, y: 0 }),
+  "clampPan forces the pan back to the origin at 1x zoom (nothing to pan into a fully-fit view)"
+);
+check(
+  JSON.stringify(clampPan({ x: 5, y: -5 }, 1, 0, 0)) === JSON.stringify({ x: 0, y: 0 }),
+  "clampPan zeroes the pan before the box has been measured (width/height of 0)"
+);
+{
+  // At 2x zoom in a 300x200 box, the overflow on each side is
+  // 300*(2-1)/2 = 150px and 200*(2-1)/2 = 100px, and the render applies pan
+  // *before* scale, so the largest allowed pan is overflow / scale.
+  const clamped = clampPan({ x: 1000, y: -1000 }, 2, 300, 200);
+  check(clamped.x === 75, "clampPan caps an oversized rightward pan at overflow/scale (150/2)");
+  check(clamped.y === -50, "clampPan caps an oversized upward pan at -overflow/scale (-100/2)");
+}
+check(
+  JSON.stringify(clampPan({ x: 10, y: -10 }, 2, 300, 200)) === JSON.stringify({ x: 10, y: -10 }),
+  "clampPan leaves an in-bounds pan untouched"
 );
 
 console.log("Scoring");

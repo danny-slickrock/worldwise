@@ -248,12 +248,25 @@ teaching *how the world works*, not just *where things are*.
           `src/game/mapZoom.js`): screen-pixel drag distance divided by the scale in effect when
           the drag began, so content tracks the finger/cursor 1:1 regardless of zoom level;
           tested in `test/engine.test.js`. No bounds clamping yet — that's the next step.
-       3. ☐ **Bounds, reset & polish.** Clamp pan so the map can't be dragged fully out of view, add
-          a way to reset zoom (e.g. double-tap), and revisit perf if plain `useState`-driven
-          transforms feel laggy under fast pinch/drag (an `Animated.Value` + native driver would be
-          the fix).
+       3. ✅ **Bounds, reset & polish.** `clampPan()` in `src/game/mapZoom.js` caps how far the map
+          can pan at a given zoom level and box size (0 at 1x — nothing to pan into a fully-fit
+          view), so a drag or pinch-zoom-out can never leave empty space around the map; tested in
+          `test/engine.test.js`. `WorldMapScreen` re-clamps on every pinch/wheel/drag update (via a
+          `boxSizeRef` populated by the map box's `onLayout`) and adds a "Reset view" pill (theme
+          tokens, top-right of the map) that appears once zoomed or panned and snaps back to
+          scale 1 / pan `{0,0}`. Verified in a real browser (`Playwright`/Chromium): zoom, drag
+          past the edge, confirm land stays visible, click Reset, confirm it snaps back and the
+          pill disappears. That pass also caught and fixed a real bug in the existing (M2.3 step
+          2b) drag-to-pan code: the "swallow the click a mouseup fires at the end of a drag" web
+          listener was bound to the map box's own DOM node, so a drag released with the cursor
+          outside that box (over the header, near the new Reset pill, off-window) left the
+          listener attached forever, silently eating the *next unrelated click* inside the map —
+          including on Reset itself. Now bound to `window`, where it always sees the click
+          regardless of where the drag ended. Perf (`Animated.Value` + native driver) wasn't
+          needed — plain `useState`-driven transforms felt fine under fast wheel/drag in Chromium.
+          **M2.3 step 2 (pan & zoom) is now fully done.**
     3. ☐ **Tap affordance polish.** Hover/pressed states (web), larger effective hit-targets for small
-       countries, and a country-name label near the tap point before the page opens.
+       countries, and a country-name label near the tap point before the page opens. *(Next up.)*
     4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item
        done and add a matching way back to the map from a country page.
     5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
