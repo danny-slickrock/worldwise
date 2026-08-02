@@ -265,8 +265,19 @@ teaching *how the world works*, not just *where things are*.
           regardless of where the drag ended. Perf (`Animated.Value` + native driver) wasn't
           needed — plain `useState`-driven transforms felt fine under fast wheel/drag in Chromium.
           **M2.3 step 2 (pan & zoom) is now fully done.**
-    3. ☐ **Tap affordance polish.** Hover/pressed states (web), larger effective hit-targets for small
-       countries, and a country-name label near the tap point before the page opens. *(Next up.)*
+    3. **Tap affordance polish.** Hover/pressed states (web), larger effective hit-targets for small
+       countries, and a country-name label near the tap point before the page opens.
+       Broken into its own ordered chunks:
+       1. ✅ **Hover highlight (web).** `ExploreMap` tracks the country under the cursor and fills
+          it `colors.teal` (the same accent the Locator uses for a live candidate) instead of
+          `colors.surfaceAlt`, with `cursor: "pointer"` on every tappable shape — mouse-only via
+          `onMouseEnter`/`onMouseLeave`, gated on `Platform.OS === "web"` since touch has no hover
+          concept and native never fires these handlers. No pressed/active state yet — the app has
+          no existing press-feedback pattern anywhere to match, and a tap here navigates away
+          immediately, so a press flash would mostly go unseen; revisit only if it turns out to be
+          needed.
+       2. ☐ **Larger effective hit-targets for small countries.** *(Next up.)*
+       3. ☐ **Country-name label near the tap point before the page opens.**
     4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item
        done and add a matching way back to the map from a country page.
     5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
