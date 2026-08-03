@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Platform } from "react-native";
-import Svg, { Rect, Path } from "react-native-svg";
+import Svg, { Rect, Path, Circle } from "react-native-svg";
 import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
 import { colors } from "../theme";
+import { smallCountryHitTargets } from "../game/mapHitTargets";
+import { MAP_SMALL_COUNTRY_MAX_SIZE, MAP_SMALL_HIT_RADIUS } from "../constants";
 
 // The World Map explore screen's answer surface (M2.3 step 1): every country
 // with map data renders as a tappable shape, opening its country page.
@@ -31,6 +33,14 @@ const VIEWBOX = `0 ${VIEW_TOP} ${MAP_W} ${VIEW_HEIGHT}`;
 
 const ALL_CODES = Object.keys(COUNTRY_PATHS);
 
+// Computed once from the static path data (M2.3 step 3.2) — see
+// game/mapHitTargets.js for why only the smallest countries qualify.
+const SMALL_HIT_TARGETS = smallCountryHitTargets(
+  COUNTRY_PATHS,
+  MAP_SMALL_COUNTRY_MAX_SIZE,
+  MAP_SMALL_HIT_RADIUS
+);
+
 export default function ExploreMap({ onSelect }) {
   const [hoveredCode, setHoveredCode] = useState(null);
 
@@ -50,6 +60,23 @@ export default function ExploreMap({ onSelect }) {
           stroke={colors.navy}
           strokeWidth={0.4}
           style={HOVER_HANDLERS_SUPPORTED ? HOVER_STYLE : undefined}
+          {...pickHandler(code, onSelect)}
+          {...(HOVER_HANDLERS_SUPPORTED
+            ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
+            : null)}
+        />
+      ))}
+      {/* Invisible, oversized tap targets for the smallest countries, layered
+          on top so they win the hit test over whatever larger neighbor they
+          overlap — the real (tiny) shape still carries the visible fill, keyed
+          off the same hoveredCode/onSelect. */}
+      {Object.entries(SMALL_HIT_TARGETS).map(([code, { cx, cy, r }]) => (
+        <Circle
+          key={`hit-${code}`}
+          cx={cx}
+          cy={cy}
+          r={r}
+          fill="transparent"
           {...pickHandler(code, onSelect)}
           {...(HOVER_HANDLERS_SUPPORTED
             ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }

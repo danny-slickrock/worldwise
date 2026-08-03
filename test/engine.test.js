@@ -23,6 +23,7 @@ import {
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
+import { pathBounds, smallCountryHitTargets } from "../src/game/mapHitTargets";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -30,6 +31,8 @@ import {
   DIFFICULTIES,
   ROUND_LENGTH,
   STREAK_FREEZE_EARN_EVERY,
+  MAP_SMALL_COUNTRY_MAX_SIZE,
+  MAP_SMALL_HIT_RADIUS,
 } from "../src/constants";
 
 let fails = 0;
@@ -575,6 +578,39 @@ check(
   JSON.stringify(clampPan({ x: 10, y: -10 }, 2, 300, 200)) === JSON.stringify({ x: 10, y: -10 }),
   "clampPan leaves an in-bounds pan untouched"
 );
+
+console.log("World Map small-country hit targets (M2.3 step 3.2)");
+{
+  const square = pathBounds("M10 10L20 10L20 20L10 20Z");
+  check(square.minX === 10 && square.maxX === 20, "pathBounds finds the x extent of a simple ring");
+  check(square.minY === 10 && square.maxY === 20, "pathBounds finds the y extent of a simple ring");
+  check(square.cx === 15 && square.cy === 15, "pathBounds centers on the bounding box, not the vertices");
+}
+{
+  // A second, far-off subpath (M2.3's paths can have several rings) must
+  // still be folded into one bounding box spanning both.
+  const twoRings = pathBounds("M0 0L2 0L2 2L0 2ZM100 100L104 100L104 104L100 104Z");
+  check(twoRings.minX === 0 && twoRings.maxX === 104, "pathBounds spans multiple subpaths on x");
+  check(twoRings.minY === 0 && twoRings.maxY === 104, "pathBounds spans multiple subpaths on y");
+}
+{
+  const targets = smallCountryHitTargets(
+    { tiny: "M0 0L4 0L4 4L0 4Z", huge: "M0 0L100 0L100 50L0 50Z" },
+    6,
+    5
+  );
+  check(Object.keys(targets).length === 1 && targets.tiny, "only the bounding-box-under-threshold country gets a hit target");
+  check(targets.tiny.r === 5, "the hit target uses the configured radius, not the shape's own size");
+  check(targets.tiny.cx === 2 && targets.tiny.cy === 2, "the hit target is centered on the small country's own bounding box");
+}
+{
+  // Sanity-check the real dataset with the shipped constants: Luxembourg is
+  // the smallest bounding box in COUNTRY_PATHS and must qualify, while a
+  // country the size of France (a several-hundred-unit bounding box) must not.
+  const targets = smallCountryHitTargets(COUNTRY_PATHS, MAP_SMALL_COUNTRY_MAX_SIZE, MAP_SMALL_HIT_RADIUS);
+  check(!!targets.lu, "Luxembourg (one of the smallest real shapes) gets an enlarged hit target");
+  check(!targets.fr, "France (a large real shape) is left to its own outline");
+}
 
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");

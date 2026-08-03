@@ -66,6 +66,7 @@ src/
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
+  game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out

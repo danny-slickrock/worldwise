@@ -276,8 +276,17 @@ teaching *how the world works*, not just *where things are*.
           no existing press-feedback pattern anywhere to match, and a tap here navigates away
           immediately, so a press flash would mostly go unseen; revisit only if it turns out to be
           needed.
-       2. ☐ **Larger effective hit-targets for small countries.** *(Next up.)*
-       3. ☐ **Country-name label near the tap point before the page opens.**
+       2. ✅ **Larger effective hit-targets for small countries.** `src/game/mapHitTargets.js`
+          (pure, tested) computes each country's bounding box from its own path data and, for the
+          long tail whose longest side is under `MAP_SMALL_COUNTRY_MAX_SIZE` (6 viewBox units —
+          e.g. Luxembourg, Qatar, Rwanda, Brunei, not merely-smallish countries the existing
+          pinch-zoom already handles), returns an invisible circular hit target centered on that
+          bounding box at a fixed `MAP_SMALL_HIT_RADIUS` (5 units) regardless of the real shape's
+          size. `ExploreMap` renders these as transparent `<Circle>`s layered on top of every
+          `<Path>`, so they win the hit test in whatever they overlap; hover/tap still key off the
+          same country code, so the tiny real shape highlights correctly even though the tappable
+          area is larger. Both constants live in `constants.js`.
+       3. ☐ **Country-name label near the tap point before the page opens.** *(Next up.)*
     4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item
        done and add a matching way back to the map from a country page.
     5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for

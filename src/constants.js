@@ -40,3 +40,11 @@ export const MAP_WHEEL_ZOOM_SPEED = 0.0016;
 // pan once it moves this many screen pixels — below that, it's left alone as
 // a tap so it still reaches ExploreMap's country shapes.
 export const MAP_DRAG_THRESHOLD = 4;
+
+// World Map screen (M2.3 step 3.2): countries whose bounding box's longest
+// side is under this many viewBox units (see data/worldMap.js's projection)
+// get an invisible circular hit target of MAP_SMALL_HIT_RADIUS instead of
+// relying on their own tiny shape — the long tail of micro-states that are
+// otherwise all-but-untappable before zooming in.
+export const MAP_SMALL_COUNTRY_MAX_SIZE = 6;
+export const MAP_SMALL_HIT_RADIUS = 5;
