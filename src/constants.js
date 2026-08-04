@@ -48,3 +48,12 @@ export const MAP_DRAG_THRESHOLD = 4;
 // otherwise all-but-untappable before zooming in.
 export const MAP_SMALL_COUNTRY_MAX_SIZE = 6;
 export const MAP_SMALL_HIT_RADIUS = 5;
+
+// World Map screen (M2.3 step 3.3): tapping a country shows its name at the
+// tap point for this long before its country page opens — a beat long enough
+// to read the name, short enough to still feel like one continuous tap.
+// Font size is in the map's own viewBox units (see data/worldMap.js), so the
+// label scales with the map itself at any zoom level instead of a fixed pixel
+// size.
+export const MAP_TAP_LABEL_DELAY_MS = 380;
+export const MAP_TAP_LABEL_FONT_SIZE = 7;

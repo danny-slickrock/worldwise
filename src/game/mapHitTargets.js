@@ -38,3 +38,15 @@ export function smallCountryHitTargets(countryPaths, maxSize, hitRadius) {
   }
   return targets;
 }
+
+// Every country's own bounding-box center (M2.3 step 3.3) — anchors the tap
+// label near whichever country was actually tapped, whether the tap landed on
+// its real shape or on one of the small-country hit circles above.
+export function countryCentroids(countryPaths) {
+  const centroids = {};
+  for (const code of Object.keys(countryPaths)) {
+    const { cx, cy } = pathBounds(countryPaths[code]);
+    centroids[code] = { cx, cy };
+  }
+  return centroids;
+}

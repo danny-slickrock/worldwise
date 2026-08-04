@@ -8,7 +8,7 @@ import React, { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
 import { getCountryPage } from "../data/countryPages";
-import { COUNTRIES } from "../data/countries";
+import { countryName } from "../data/countries";
 import { MODES } from "../game/questions";
 import CountryOutline from "../components/CountryOutline";
 
@@ -20,8 +20,6 @@ function compact(n) {
   if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
   return String(n);
 }
-
-const countryName = (code) => COUNTRIES.find((c) => c.code === code)?.name ?? code.toUpperCase();
 
 // Order of the labelled fact rows, so they read consistently across countries.
 const FACT_ORDER = [

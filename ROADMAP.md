@@ -286,9 +286,23 @@ teaching *how the world works*, not just *where things are*.
           `<Path>`, so they win the hit test in whatever they overlap; hover/tap still key off the
           same country code, so the tiny real shape highlights correctly even though the tappable
           area is larger. Both constants live in `constants.js`.
-       3. ☐ **Country-name label near the tap point before the page opens.** *(Next up.)*
-    4. ☐ **Wire the M2.2 map entry point.** Once pan/zoom lands, mark M2.2 step 5's "from the map" item
-       done and add a matching way back to the map from a country page.
+       3. ✅ **Country-name label near the tap point before the page opens.** `ExploreMap` now shows
+          the tapped country's name at its own bounding-box centroid (`countryCentroids()` in
+          `game/mapHitTargets.js`, pure + tested) for `MAP_TAP_LABEL_DELAY_MS` (380ms) before
+          `onSelect` actually opens its page — long enough to read, short enough to still feel like
+          one tap — and highlights the shape teal for the same beat, so a touch device with no hover
+          still gets visual confirmation of what it tapped. Works identically whether the tap landed
+          on the country's real shape or one of step 3.2's enlarged small-country hit circles, since
+          both route through the same `handleTap`. Rendered as SVG `<Text>` inside the same `<Svg>`
+          the pan/zoom transform wraps, so the label tracks the map at any zoom level with no extra
+          position math; a dark stroke under the fill keeps it legible over both land and water.
+          Added a shared `countryName(code)` helper to `data/countries.js` (also now used by
+          `CountryPageScreen`, replacing a duplicate inline lookup). Verified in a real browser
+          (Playwright/Chromium): tapping Brazil and Luxembourg (via its enlarged hit circle) each
+          show the correct name at the tap point, then open the right country page after the delay.
+          **M2.3 step 3 (tap affordance polish) is now fully done.**
+    4. ☐ **Wire the M2.2 map entry point.** *(Next up.)* Once pan/zoom lands, mark M2.2 step 5's
+       "from the map" item done and add a matching way back to the map from a country page.
     5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
        focused exploration without hunting for tiny countries.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into

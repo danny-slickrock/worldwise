@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+/* global setTimeout, clearTimeout */
+import React, { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
-import Svg, { Rect, Path, Circle } from "react-native-svg";
+import Svg, { Rect, Path, Circle, Text as SvgText } from "react-native-svg";
 import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
+import { countryName } from "../data/countries";
 import { colors } from "../theme";
-import { smallCountryHitTargets } from "../game/mapHitTargets";
-import { MAP_SMALL_COUNTRY_MAX_SIZE, MAP_SMALL_HIT_RADIUS } from "../constants";
+import { smallCountryHitTargets, countryCentroids } from "../game/mapHitTargets";
+import {
+  MAP_SMALL_COUNTRY_MAX_SIZE,
+  MAP_SMALL_HIT_RADIUS,
+  MAP_TAP_LABEL_DELAY_MS,
+  MAP_TAP_LABEL_FONT_SIZE,
+} from "../constants";
 
 // The World Map explore screen's answer surface (M2.3 step 1): every country
 // with map data renders as a tappable shape, opening its country page.
@@ -15,8 +22,8 @@ import { MAP_SMALL_COUNTRY_MAX_SIZE, MAP_SMALL_HIT_RADIUS } from "../constants";
 // Same platform tap-handling split as WorldMap.js: react-native-svg <Path>
 // onPress goes through RN's responder system, which a surrounding
 // ScrollView/View steals on web, so web binds a real DOM onClick instead.
-function pickHandler(code, onSelect) {
-  return Platform.OS === "web" ? { onClick: () => onSelect(code) } : { onPress: () => onSelect(code) };
+function pickHandler(code, onTap) {
+  return Platform.OS === "web" ? { onClick: () => onTap(code) } : { onPress: () => onTap(code) };
 }
 
 // Hover is web-only (M2.3 step 3a) — touch has no equivalent, and these
@@ -41,8 +48,25 @@ const SMALL_HIT_TARGETS = smallCountryHitTargets(
   MAP_SMALL_HIT_RADIUS
 );
 
+// Every country's own bounding-box center (M2.3 step 3.3), computed once —
+// anchors the tap label regardless of whether the tap landed on the real
+// shape or an enlarged small-country hit circle.
+const CENTROIDS = countryCentroids(COUNTRY_PATHS);
+
 export default function ExploreMap({ onSelect }) {
   const [hoveredCode, setHoveredCode] = useState(null);
+  // The tapped country's name floats at its centroid for MAP_TAP_LABEL_DELAY_MS
+  // before onSelect actually opens its page — a beat that confirms what was
+  // tapped instead of cutting away instantly.
+  const [tapped, setTapped] = useState(null);
+  const tapTimer = useRef(null);
+  useEffect(() => () => clearTimeout(tapTimer.current), []);
+
+  const handleTap = (code) => {
+    setTapped(code);
+    clearTimeout(tapTimer.current);
+    tapTimer.current = setTimeout(() => onSelect(code), MAP_TAP_LABEL_DELAY_MS);
+  };
 
   return (
     <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
@@ -55,12 +79,13 @@ export default function ExploreMap({ onSelect }) {
           key={code}
           d={COUNTRY_PATHS[code]}
           // Same accent the Locator uses for a live candidate — the shape
-          // under the cursor reads as "about to be tapped" before it is.
-          fill={code === hoveredCode ? colors.teal : colors.surfaceAlt}
+          // under the cursor (or the one just tapped, on touch devices with
+          // no hover) reads as "about to be tapped" before it is.
+          fill={code === hoveredCode || code === tapped ? colors.teal : colors.surfaceAlt}
           stroke={colors.navy}
           strokeWidth={0.4}
           style={HOVER_HANDLERS_SUPPORTED ? HOVER_STYLE : undefined}
-          {...pickHandler(code, onSelect)}
+          {...pickHandler(code, handleTap)}
           {...(HOVER_HANDLERS_SUPPORTED
             ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
             : null)}
@@ -69,7 +94,7 @@ export default function ExploreMap({ onSelect }) {
       {/* Invisible, oversized tap targets for the smallest countries, layered
           on top so they win the hit test over whatever larger neighbor they
           overlap — the real (tiny) shape still carries the visible fill, keyed
-          off the same hoveredCode/onSelect. */}
+          off the same hoveredCode/handleTap. */}
       {Object.entries(SMALL_HIT_TARGETS).map(([code, { cx, cy, r }]) => (
         <Circle
           key={`hit-${code}`}
@@ -77,12 +102,31 @@ export default function ExploreMap({ onSelect }) {
           cy={cy}
           r={r}
           fill="transparent"
-          {...pickHandler(code, onSelect)}
+          {...pickHandler(code, handleTap)}
           {...(HOVER_HANDLERS_SUPPORTED
             ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
             : null)}
         />
       ))}
+      {/* The tap label (M2.3 step 3.3): drawn last so it sits above every
+          shape, anchored on the tapped country's own centroid. A dark stroke
+          under the fill keeps it legible over both land and water. Lives
+          inside the same <Svg> the pan/zoom transform wraps, so it tracks
+          the map instead of needing its own position math. */}
+      {tapped && (
+        <SvgText
+          x={CENTROIDS[tapped].cx}
+          y={CENTROIDS[tapped].cy}
+          textAnchor="middle"
+          fontSize={MAP_TAP_LABEL_FONT_SIZE}
+          fontWeight="bold"
+          fill={colors.headline}
+          stroke={colors.navyDeep}
+          strokeWidth={0.5}
+        >
+          {countryName(tapped)}
+        </SvgText>
+      )}
     </Svg>
   );
 }

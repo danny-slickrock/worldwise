@@ -1,6 +1,6 @@
 // Pure-logic tests for the quiz engine. Run with: npm test  (uses tsx)
 // No React Native imports here, so it runs fast in plain Node via tsx.
-import { COUNTRIES, LOCATOR_COUNTRIES } from "../src/data/countries";
+import { COUNTRIES, LOCATOR_COUNTRIES, countryName } from "../src/data/countries";
 import { COUNTRY_PATHS } from "../src/data/worldMap";
 import { buildRound, buildDaily } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
@@ -23,7 +23,7 @@ import {
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
-import { pathBounds, smallCountryHitTargets } from "../src/game/mapHitTargets";
+import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -611,6 +611,26 @@ console.log("World Map small-country hit targets (M2.3 step 3.2)");
   check(!!targets.lu, "Luxembourg (one of the smallest real shapes) gets an enlarged hit target");
   check(!targets.fr, "France (a large real shape) is left to its own outline");
 }
+
+console.log("World Map tap label (M2.3 step 3.3)");
+{
+  const centroids = countryCentroids({ box: "M0 0L10 0L10 20L0 20Z" });
+  check(
+    centroids.box.cx === 5 && centroids.box.cy === 10,
+    "countryCentroids centers on each country's own bounding box"
+  );
+}
+{
+  // Every real country in COUNTRY_PATHS must resolve a centroid — the label
+  // has nothing to fall back to if one is missing.
+  const centroids = countryCentroids(COUNTRY_PATHS);
+  check(
+    Object.keys(COUNTRY_PATHS).every((code) => Number.isFinite(centroids[code].cx) && Number.isFinite(centroids[code].cy)),
+    "every country in the real dataset gets a finite centroid"
+  );
+}
+check(countryName("br") === "Brazil", "countryName resolves a known code to its display name");
+check(countryName("zz") === "ZZ", "countryName falls back to the uppercased code for an unknown one");
 
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");

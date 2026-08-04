@@ -236,3 +236,7 @@ export const LOCATOR_COUNTRIES = COUNTRIES.filter((c) => COUNTRY_PATHS[c.code]);
 export const flagUrl = (code) => `https://flagcdn.com/w320/${code}.png`;
 export const outlineUrl = (code) =>
   `https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code}/vector.svg`;
+
+// Shared code → display-name lookup, used anywhere a country needs to show
+// as text rather than a shape (neighbor chips, the World Map's tap label, …).
+export const countryName = (code) => COUNTRIES.find((c) => c.code === code)?.name ?? code.toUpperCase();
