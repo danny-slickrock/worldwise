@@ -154,6 +154,7 @@ function AppShell() {
           code={screen.code}
           onExit={exitCountry}
           onPlay={(mode) => setScreen({ name: "quiz", mode, difficulty: DEFAULT_DIFFICULTY, timed: false })}
+          onViewMap={openWorldMap}
         />
       </SafeAreaView>
     );

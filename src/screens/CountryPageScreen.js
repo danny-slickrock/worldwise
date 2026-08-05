@@ -28,18 +28,25 @@ const FACT_ORDER = [
   { key: "culture", label: "Culture" },
 ];
 
-export default function CountryPageScreen({ code, onExit, onPlay }) {
+export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   const page = getCountryPage(code);
 
   // Fade/rise-in on open, matching QuizScreen's per-question transition;
   // fade/settle-out on close, so leaving the page doesn't cut instantly —
-  // the exit callback fires once the animation finishes, not on tap.
+  // the exit/view-map callback fires once the animation finishes, not on tap.
   const screenAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
     Animated.timing(screenAnim, { toValue: 1, duration: 260, useNativeDriver: true }).start();
   }, [screenAnim]);
   function handleExit() {
     Animated.timing(screenAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(onExit);
+  }
+  // M2.3 step 4 — a country page can be reached from the index or a quiz
+  // round, where Back doesn't lead to the World Map (only returnTo:
+  // "worldMap" does). This gives every country page its own way there,
+  // mirroring the map's own tap-to-open-a-country-page direction.
+  function handleViewMap() {
+    Animated.timing(screenAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(onViewMap);
   }
   const screenStyle = {
     opacity: screenAnim,
@@ -49,7 +56,7 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
   if (!page) {
     return (
       <Animated.View style={[styles.wrap, screenStyle]}>
-        <BackBar onExit={handleExit} />
+        <BackBar onExit={handleExit} onViewMap={onViewMap && handleViewMap} />
         <View style={styles.empty}>
           <Text style={styles.emptyText}>We don't have a page for that place yet.</Text>
         </View>
@@ -63,7 +70,7 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
 
   return (
     <Animated.View style={[styles.wrap, screenStyle]}>
-      <BackBar onExit={handleExit} />
+      <BackBar onExit={handleExit} onViewMap={onViewMap && handleViewMap} />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         {/* Hero — the outline is the star, except for the handful of places
             mapsicon has no vector for (see countries.js noOutline), where a
@@ -153,11 +160,18 @@ export default function CountryPageScreen({ code, onExit, onPlay }) {
   );
 }
 
-function BackBar({ onExit }) {
+function BackBar({ onExit, onViewMap }) {
   return (
-    <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
-      <Text style={styles.backText}>‹ Back</Text>
-    </Pressable>
+    <View style={styles.topBar}>
+      <Pressable onPress={onExit} hitSlop={12}>
+        <Text style={styles.backText}>‹ Back</Text>
+      </Pressable>
+      {onViewMap && (
+        <Pressable onPress={onViewMap} hitSlop={12}>
+          <Text style={styles.viewMapText}>View on map ›</Text>
+        </Pressable>
+      )}
+    </View>
   );
 }
 
@@ -172,8 +186,16 @@ function Stat({ value, label }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  topBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: spacing(2.5),
+    paddingTop: spacing(2),
+    paddingBottom: spacing(1),
+  },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  viewMapText: { ...type.pill, fontSize: 14, color: colors.teal },
   content: { padding: spacing(2.5), paddingTop: spacing(1), paddingBottom: spacing(6) },
 
   hero: {

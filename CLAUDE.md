@@ -139,12 +139,14 @@ with RLS is applied to the live project, and a real sign-in syncs progress, runs
 local→cloud merge, and writes finished rounds to `game_results`. Vercel carries the Supabase env
 vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
 
-**M2.2 — country pages is done** except its "from the map" entry point, which stays blocked on
-M2.3. **Next up — M2.3 — interactive maps:** pan/zoom world and region maps, tap a place to
-explore it. Step 1 (a static tap-to-explore World Map screen), step 2 (pinch/scroll-to-zoom,
-drag-to-pan, and bounds/reset), and step 3 (tap affordance polish: hover highlight, larger hit
-targets for small countries, and a tap-point country-name label) are all done; wiring the M2.2 map
-entry point (step 4) is next.
+**M2.2 — country pages is fully done**, including its "from the map" entry point. We're now
+mid-**M2.3 — interactive maps:** pan/zoom world and region maps, tap a place to explore it. Step 1
+(a static tap-to-explore World Map screen), step 2 (pinch/scroll-to-zoom, drag-to-pan, and
+bounds/reset), step 3 (tap affordance polish: hover highlight, larger hit targets for small
+countries, and a tap-point country-name label), and step 4 (wiring the M2.2 map entry point both
+ways — tap-to-country-page from the map, and a "View on map" link back from any country page) are
+all done. **Next up — step 5: region maps** (zoomed presets like "Europe"/"Africa" for focused
+exploration).
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

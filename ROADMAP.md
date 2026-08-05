@@ -51,16 +51,15 @@ Two notes on how C and D actually landed, so the history reads honestly:
   a real second destination ever earns its place.
 
 **M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
-adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is underway:** the
+adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is complete:** the
 content model, navigation seam, polished Brazil hero page, generalization to all 196 countries
-(with a clean hero fallback for the 4 without a mapsicon outline), and two of three entry points —
-a "Learn more about {country}" link on the in-play context card, and a searchable/filterable
-country index reachable from Home — have landed. The third entry point, from the map, is blocked
-on M2.3. The polish + a11y pass (step 6) is **complete**: WCAG AA contrast, large tap targets,
-`CountryOutline` offline/image-load fallbacks, and the country-page open/close transition are all
-done. **M2.2 is now done except for the map entry point, which stays blocked on M2.3.** Next up:
-either start M2.3 (interactive maps) to unblock it, or pull from the Phase 1 backlog below.
-The backlog gets picked up opportunistically, not as a gate.
+(with a clean hero fallback for the 4 without a mapsicon outline), all three entry points — the
+in-play "Learn more about {country}" link, the searchable/filterable country index, and (once
+M2.3 unblocked it) tapping a country on the World Map, with a "View on map" link back from every
+country page — and the polish + a11y pass (WCAG AA contrast, large tap targets, `CountryOutline`
+offline/image-load fallbacks, open/close transition) have all landed. **We're now mid-M2.3**
+(interactive maps): world map pan/zoom and tap affordance polish are done; region maps are next.
+The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -183,7 +182,10 @@ teaching *how the world works*, not just *where things are*.
          Replaces the temporary "Explore Brazil" preview on `HomeScreen` with a real "Explore
          every country" entry point. `App.js`'s overlay nav gained a lightweight `returnTo`
          field so Back from a country page opened via the index returns to the index, not Home.
-       - ☐ **From the map** (blocked on M2.3 — interactive maps).
+       - ✅ **From the map.** Unblocked by M2.3: `WorldMapScreen`'s `ExploreMap` opens a tapped
+         country's page via `onOpenCountry`/`returnTo: "worldMap"`, and (M2.3 step 4) every
+         country page now also carries a "View on map →" link back, regardless of how it was
+         opened — see M2.3 step 4 below for the implementation.
     6. **Polish + a11y pass** across the generalized pages, broken into its own ordered chunks:
        1. ✅ **WCAG AA contrast audit.** Added a pure `contrastRatio()` to `theme.js` (relative
           luminance, no RN/DOM) and asserted it in `test/engine.test.js` for every text/background
@@ -301,10 +303,17 @@ teaching *how the world works*, not just *where things are*.
           (Playwright/Chromium): tapping Brazil and Luxembourg (via its enlarged hit circle) each
           show the correct name at the tap point, then open the right country page after the delay.
           **M2.3 step 3 (tap affordance polish) is now fully done.**
-    4. ☐ **Wire the M2.2 map entry point.** *(Next up.)* Once pan/zoom lands, mark M2.2 step 5's
-       "from the map" item done and add a matching way back to the map from a country page.
-    5. ☐ **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
-       focused exploration without hunting for tiny countries.
+    4. ✅ **Wire the M2.2 map entry point.** The World Map → country page direction already worked
+       (`ExploreMap`'s `onSelect` → `onOpenCountry`, shipped in M2.3 step 1) — what was missing was
+       the reverse: a country page opened from the index or a quiz round's context card had no way
+       back to the map (only `returnTo: "worldMap"` did, and that's map-only). `CountryPageScreen`
+       now takes an `onViewMap` prop and renders a "View on map →" link next to Back (`App.js` wires
+       it straight to `openWorldMap`), fading out the page the same way Back does before switching
+       screens. Verified in a real browser (Playwright/Chromium): Home → Explore (index) → Brazil →
+       "View on map" lands on the World Map screen. **M2.3 step 4 is now done; M2.2 step 5 is
+       fully done.**
+    5. ☐ **Region maps** *(Next up.)* — zoomed presets (e.g., "Europe", "Africa") reachable from the
+       world map, for focused exploration without hunting for tiny countries.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on
