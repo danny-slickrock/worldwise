@@ -24,6 +24,7 @@ import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
+import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -631,6 +632,63 @@ console.log("World Map tap label (M2.3 step 3.3)");
 }
 check(countryName("br") === "Brazil", "countryName resolves a known code to its display name");
 check(countryName("zz") === "ZZ", "countryName falls back to the uppercased code for an unknown one");
+
+console.log("World Map region presets (M2.3 step 5.1)");
+{
+  const paths = {
+    a: "M0 0L10 0L10 10L0 10Z", // bounding box 0,0 - 10,10
+    b: "M20 5L30 5L30 15L20 15Z", // bounding box 20,5 - 30,15
+  };
+  check(
+    JSON.stringify(regionBounds(paths, ["a", "b"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 30, maxY: 15 }),
+    "regionBounds unions every listed country's own bounding box"
+  );
+  check(regionBounds(paths, ["missing"]) === null, "regionBounds returns null when none of the codes have path data");
+  check(
+    JSON.stringify(regionBounds(paths, ["a", "missing"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
+    "regionBounds skips codes with no path data instead of failing the whole region"
+  );
+}
+{
+  const view = { x: 0, y: 0, width: 100, height: 100 };
+  check(
+    JSON.stringify(regionView(null, view, { width: 200, height: 200 }, 1, 4)) ===
+      JSON.stringify({ scale: 1, pan: { x: 0, y: 0 } }),
+    "regionView falls back to the full unzoomed view when there are no bounds"
+  );
+  check(
+    JSON.stringify(regionView({ minX: 0, minY: 0, maxX: 10, maxY: 10 }, view, { width: 0, height: 0 }, 1, 4)) ===
+      JSON.stringify({ scale: 1, pan: { x: 0, y: 0 } }),
+    "regionView falls back to the full unzoomed view before the box has been measured"
+  );
+}
+{
+  // Box matches the viewBox exactly (boxScale 1), so a 10x10 region at the
+  // viewBox's own center (45..55) should just need scale to fill 100/10 —
+  // clamped to the max — with pan landing back at the origin once clamped,
+  // since a fully-centered region has nothing left to pan.
+  const view = { x: 0, y: 0, width: 100, height: 100 };
+  const box = { width: 100, height: 100 };
+  const { scale, pan } = regionView({ minX: 45, minY: 45, maxX: 55, maxY: 55 }, view, box, 1, 4, 1);
+  check(scale === 4, "regionView clamps the fit scale to the configured max");
+  check(pan.x === 0 && pan.y === 0, "regionView pans a viewBox-centered region back to the origin");
+}
+{
+  // An off-center region (near the left edge) should pull the pan positive
+  // (shifting content right) so it's centered in the box once zoomed.
+  const view = { x: 0, y: 0, width: 100, height: 100 };
+  const box = { width: 100, height: 100 };
+  const { pan } = regionView({ minX: 0, minY: 40, maxX: 20, maxY: 60 }, view, box, 1, 2, 1);
+  check(pan.x > 0, "regionView pans a left-of-center region rightward to bring it into view");
+}
+check(
+  MAP_REGIONS.every((r) => COUNTRIES.some((c) => c.region === r)),
+  "every declared map region matches at least one country's own region field"
+);
+check(
+  MAP_REGIONS.every((r) => REGIONS.includes(r)),
+  "every declared map region is also one of countryIndex's REGIONS filters"
+);
 
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");

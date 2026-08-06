@@ -67,6 +67,7 @@ src/
   game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
+  game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -145,8 +146,9 @@ mid-**M2.3 — interactive maps:** pan/zoom world and region maps, tap a place t
 bounds/reset), step 3 (tap affordance polish: hover highlight, larger hit targets for small
 countries, and a tap-point country-name label), and step 4 (wiring the M2.2 map entry point both
 ways — tap-to-country-page from the map, and a "View on map" link back from any country page) are
-all done. **Next up — step 5: region maps** (zoomed presets like "Europe"/"Africa" for focused
-exploration).
+all done. **Now on step 5: region maps** (zoomed presets like "Europe"/"Africa" for focused
+exploration) — the pure region-bounds + viewport math (`src/game/mapRegions.js`) is done; next up
+is wiring a region-picker UI onto the World Map screen.
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

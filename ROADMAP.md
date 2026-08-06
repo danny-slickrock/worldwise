@@ -312,8 +312,25 @@ teaching *how the world works*, not just *where things are*.
        screens. Verified in a real browser (Playwright/Chromium): Home → Explore (index) → Brazil →
        "View on map" lands on the World Map screen. **M2.3 step 4 is now done; M2.2 step 5 is
        fully done.**
-    5. ☐ **Region maps** *(Next up.)* — zoomed presets (e.g., "Europe", "Africa") reachable from the
-       world map, for focused exploration without hunting for tiny countries.
+    5. **Region maps** — zoomed presets (e.g., "Europe", "Africa") reachable from the world map, for
+       focused exploration without hunting for tiny countries. Broken into its own ordered chunks:
+       1. ✅ **Region bounds + viewport math (pure + tested).** `src/game/mapRegions.js`:
+          `MAP_REGIONS` (the five regions `countries.js`/`countryIndex.js` already group countries
+          into), `regionBounds(countryPaths, codes)` unions a region's own countries' bounding boxes
+          (reusing `pathBounds` from `mapHitTargets.js`, skipping any code with no `COUNTRY_PATHS`
+          entry), and `regionView(bounds, view, box, min, max, margin)` converts that into the
+          `{ scale, pan }` the screen's existing zoom/pan transform needs to frame it — reusing
+          `clampScale`/`clampPan` from `mapZoom.js` so a region view can never zoom past
+          `MAP_ZOOM_MAX` or pan past the map's own edge. Takes the SVG viewBox and the actual
+          on-screen box as separate inputs (pan lives in box-pixel units, not viewBox units — see
+          the module's own comments) so it stays pure and screen-size-independent. Tested in
+          `test/engine.test.js`. *(Next up: step 2 — wire a region-picker UI onto
+          `WorldMapScreen`/`ExploreMap` that calls this math and animates to a preset.)*
+       2. ☐ **Region picker UI.** A row of preset pills (Africa/Americas/Asia/Europe/Oceania) on
+          `WorldMapScreen` that call `regionView()` with the live box size and animate scale/pan to
+          it; tapping the active region again (or a "World" pill) resets to the full fit.
+       3. ☐ **Polish.** Label the active region, decide how the picker coexists with manual
+          pinch/drag once a preset is applied, and verify in a real browser.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on
