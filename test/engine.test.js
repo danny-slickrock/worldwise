@@ -25,6 +25,14 @@ import { searchCountries, REGIONS } from "../src/game/countryIndex";
 import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
+import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
+import {
+  contentCacheKey,
+  cacheEntry,
+  parseCacheEntry,
+  isCacheFresh,
+  resolveCountryContent,
+} from "../src/game/contentPolicy";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { colors, contrastRatio } from "../src/theme";
 import {
@@ -712,10 +720,221 @@ check(
   "every declared map region is also one of countryIndex's REGIONS filters"
 );
 
+console.log("Content row mapping (M2.3.5)");
+const brRow = countryRowFromPage(getCountryPage("br"), "easy");
+check(brRow.code === "br" && brRow.name === "Brazil", "countryRowFromPage carries code and name");
+check(brRow.area_km2 === 8_515_767, "countryRowFromPage renames areaKm2 to area_km2");
+check(
+  Array.isArray(brRow.related_game_modes) && brRow.related_game_modes.includes("locator"),
+  "countryRowFromPage renames relatedGameModes to related_game_modes"
+);
+check(brRow.difficulty === "easy", "countryRowFromPage takes difficulty from the base record");
+check(brRow.has_outline === true, "has_outline is true for a country with an outline");
+const psRow = countryRowFromPage(getCountryPage("ps"), "hard");
+check(psRow.has_outline === false, "has_outline is the negation of the bundled noOutline flag");
+check(
+  pageFromCountryRow(psRow).noOutline === true,
+  "noOutline survives the round trip through has_outline"
+);
+
+// The seed writes these rows and the app reads them back; any field that drifts
+// in between is a section that silently disappears from a country page.
+const driftedFields = new Set();
+for (const c of COUNTRIES) {
+  const original = getCountryPage(c.code);
+  const back = pageFromCountryRow(countryRowFromPage(original, c.difficulty));
+  for (const key of Object.keys(original)) {
+    if (JSON.stringify(original[key]) !== JSON.stringify(back[key])) driftedFields.add(key);
+  }
+}
+check(
+  driftedFields.size === 0,
+  `every bundled country round-trips page->row->page unchanged${
+    driftedFields.size ? ` (drifted: ${[...driftedFields].join(", ")})` : ""
+  }`
+);
+
+check(pageFromCountryRow(null) === null, "pageFromCountryRow returns null for a missing row");
+check(pageFromCountryRow({ name: "No code" }) === null, "pageFromCountryRow rejects a row with no code");
+// PostgREST can serialize numeric/bigint as a string; the UI does arithmetic on
+// these, so a string would render as "8515767" instead of "8.5M".
+const stringy = pageFromCountryRow({ code: "zz", name: "Z", population: "1000000", area_km2: "2500.5" });
+check(stringy.population === 1_000_000, "a string population is coerced to a number");
+check(stringy.areaKm2 === 2500.5, "a string area_km2 is coerced to a number");
+check(
+  pageFromCountryRow({ code: "zz", name: "Z", population: "not-a-number" }).population === null,
+  "an unparseable number becomes null rather than NaN"
+);
+check(
+  pageFromCountryRow({ code: "zz", name: "Z", facts: {} }).facts === null,
+  "an empty facts object reads back as null, matching the bundled shape"
+);
+check(
+  pageFromCountryRow({ code: "zz", name: "Z", related_game_modes: [] }).relatedGameModes.length === 4,
+  "a row with no related modes falls back to the default set"
+);
+check(
+  pageFromCountryRow({ code: "zz", name: "Z" }).hasFullContent === false,
+  "a bare row reports hasFullContent: false"
+);
+check(
+  pageFromCountryRow(brRow).hasFullContent === true,
+  "an authored row (population/area/facts) reports hasFullContent: true"
+);
+check(
+  pageFromCountryRow({ code: "zz", name: "Z" }).noOutline === false,
+  "a row with no has_outline value is treated as having an outline"
+);
+
+console.log("Content cache policy (M2.3.5)");
+check(contentCacheKey("br") === "worldwise.content.country.br.v1", "cache key is versioned per country");
+check(parseCacheEntry(null) === null, "parseCacheEntry returns null for a missing entry");
+check(parseCacheEntry("{not json") === null, "parseCacheEntry survives corrupt JSON");
+check(parseCacheEntry('{"version":1}') === null, "parseCacheEntry rejects an entry with no page");
+check(
+  parseCacheEntry('{"version":3,"page":{"code":"br"}}')?.version === 3,
+  "parseCacheEntry reads a well-formed entry"
+);
+check(
+  parseCacheEntry({ version: 3, page: { code: "br" } })?.page.code === "br",
+  "parseCacheEntry accepts an already-parsed object"
+);
+
+const entryV3 = cacheEntry({ code: "br", name: "Brazil" }, 3);
+check(isCacheFresh(entryV3, 3) === true, "a cache entry matching the content version is fresh");
+check(isCacheFresh(entryV3, 4) === false, "a bumped content version makes the entry stale");
+check(isCacheFresh(null, 3) === false, "a missing entry is never fresh");
+// Offline is the case this whole layer exists for: unknown version means the
+// server was unreachable, and stale content beats a blank page.
+check(isCacheFresh(entryV3, null) === true, "an unreachable version treats the cache as fresh");
+
+// resolveCountryContent is async, and this file transpiles to CJS (no top-level
+// await), so its checks live in a function that the tail awaits before the
+// summary. Fakes stand in for AsyncStorage and Supabase, so the decision tree is
+// exercised without any network or React Native import.
+async function contentResolverChecks() {
+  console.log("Content resolver (M2.3.5)");
+
+  let fetchCount = 0;
+  const freshCacheResult = await resolveCountryContent("br", {
+    getCached: async () => cacheEntry({ code: "br", name: "Cached Brazil" }, 7),
+    setCached: async () => {},
+    getVersion: async () => 7,
+    fetchRow: async () => {
+      fetchCount++;
+      return { code: "br", name: "Remote Brazil" };
+    },
+    bundled: async () => null,
+  });
+  check(freshCacheResult.source === "cache", "a fresh cache entry is served from cache");
+  check(freshCacheResult.page.name === "Cached Brazil", "the cached page is the one returned");
+  check(fetchCount === 0, "a fresh cache entry skips the network entirely");
+
+  let written = null;
+  const staleResult = await resolveCountryContent("br", {
+    getCached: async () => cacheEntry({ code: "br", name: "Old Brazil" }, 6),
+    setCached: async (code, entry) => {
+      written = { code, entry };
+    },
+    getVersion: async () => 7,
+    fetchRow: async () => ({ code: "br", name: "New Brazil", population: 216_422_446 }),
+    bundled: async () => null,
+  });
+  check(staleResult.source === "remote", "a bumped version refetches from the content API");
+  check(staleResult.page.name === "New Brazil", "the refetched page replaces the stale one");
+  check(written?.entry.version === 7, "the refetched page is cached under the new version");
+
+  const staleFallback = await resolveCountryContent("br", {
+    getCached: async () => cacheEntry({ code: "br", name: "Old Brazil" }, 6),
+    setCached: async () => {},
+    getVersion: async () => 7,
+    fetchRow: async () => null,
+    bundled: async () => ({ code: "br", name: "Bundled Brazil" }),
+  });
+  check(staleFallback.source === "stale-cache", "a failed refetch falls back to the stale cache");
+  check(
+    staleFallback.page.name === "Old Brazil",
+    "stale cached content outranks the bundled baseline, being likelier to be richer"
+  );
+
+  const bundledFallback = await resolveCountryContent("br", {
+    getCached: async () => null,
+    setCached: async () => {},
+    getVersion: async () => 7,
+    fetchRow: async () => null,
+    bundled: async () => ({ code: "br", name: "Bundled Brazil" }),
+  });
+  check(bundledFallback.source === "bundled", "no cache and no network falls back to bundled JSON");
+
+  const nothing = await resolveCountryContent("zz", {
+    getCached: async () => null,
+    setCached: async () => {},
+    getVersion: async () => 7,
+    fetchRow: async () => null,
+    bundled: async () => null,
+  });
+  check(nothing.source === "none" && nothing.page === null, "an unknown country resolves to no page");
+
+  // Nothing in this layer may throw — content failing to load must degrade the
+  // page, never break it.
+  const allThrowing = await resolveCountryContent("br", {
+    getCached: async () => {
+      throw new Error("storage unavailable");
+    },
+    setCached: async () => {
+      throw new Error("storage unavailable");
+    },
+    getVersion: async () => {
+      throw new Error("offline");
+    },
+    fetchRow: async () => {
+      throw new Error("offline");
+    },
+    bundled: async () => ({ code: "br", name: "Bundled Brazil" }),
+  });
+  check(
+    allThrowing.source === "bundled" && allThrowing.page.name === "Bundled Brazil",
+    "every dependency throwing still resolves to the bundled baseline"
+  );
+
+  const offlineWithCache = await resolveCountryContent("br", {
+    getCached: async () => cacheEntry({ code: "br", name: "Cached Brazil" }, 6),
+    setCached: async () => {},
+    getVersion: async () => {
+      throw new Error("offline");
+    },
+    fetchRow: async () => null,
+    bundled: async () => ({ code: "br", name: "Bundled Brazil" }),
+  });
+  check(
+    offlineWithCache.source === "cache",
+    "offline with any cached entry serves the cache without a doomed fetch"
+  );
+
+  // A cache write that fails must not cost the caller the page it already has.
+  const setFails = await resolveCountryContent("br", {
+    getCached: async () => null,
+    setCached: async () => {
+      throw new Error("quota exceeded");
+    },
+    getVersion: async () => 7,
+    fetchRow: async () => ({ code: "br", name: "Remote Brazil" }),
+    bundled: async () => null,
+  });
+  check(
+    setFails.source === "remote" && setFails.page.name === "Remote Brazil",
+    "a failed cache write still returns the freshly fetched page"
+  );
+}
+
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");
 check(computeXp(4) === 40, "4 correct => 40 XP (no bonus)");
 check(computeXp(8) === 80 + 20, "8 correct => 100 XP (with strong-round bonus)");
 
-console.log(fails ? `\nFAILED (${fails})` : "\nAll engine tests passed ✓");
-process.exit(fails ? 1 : 0);
+// The only async section in the suite. Everything above is synchronous, so the
+// summary waits on just this one promise before deciding the exit code.
+contentResolverChecks().then(() => {
+  console.log(fails ? `\nFAILED (${fails})` : "\nAll engine tests passed ✓");
+  process.exit(fails ? 1 : 0);
+});
