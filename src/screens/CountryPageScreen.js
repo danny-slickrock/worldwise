@@ -4,10 +4,11 @@
 // its neighbors, and ways to jump into a game. Brazil is the reference entry
 // (see data/countryPages.js); every other country renders from the same shape,
 // degrading gracefully where content isn't authored yet.
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
 import { getCountryPage } from "../data/countryPages";
+import { fetchCountry } from "../data/contentSource";
 import { countryName } from "../data/countries";
 import { MODES } from "../game/questions";
 import CountryOutline from "../components/CountryOutline";
@@ -29,7 +30,23 @@ const FACT_ORDER = [
 ];
 
 export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
-  const page = getCountryPage(code);
+  // Bundled content paints immediately, then the fetched version replaces it if
+  // one arrives (M2.3.5). The page is never blank waiting on a network call, and
+  // an offline visitor sees exactly what shipped before this milestone — the
+  // remote read is an upgrade, never a dependency.
+  const [page, setPage] = useState(() => getCountryPage(code));
+  useEffect(() => {
+    let cancelled = false;
+    setPage(getCountryPage(code));
+    fetchCountry(code).then((result) => {
+      // Guard the unmount/re-navigate race: without this, opening Brazil then
+      // quickly tapping Peru could land Brazil's slower response on Peru's page.
+      if (!cancelled && result.page) setPage(result.page);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [code]);
 
   // Fade/rise-in on open, matching QuizScreen's per-question transition;
   // fade/settle-out on close, so leaving the page doesn't cut instantly —

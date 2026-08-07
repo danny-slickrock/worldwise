@@ -66,6 +66,8 @@ export function isCacheFresh(entry, version) {
 //   getVersion()      → current content version, or null if unreachable
 //   fetchRow(code)    → a content.countries row, or null
 //   bundled(code)     → the bundled page for this code, or null
+//   now()             → optional timestamp for the cache entry; injected rather
+//                       than read from the clock so this stays pure
 //
 // Returns { page, source } where source is one of:
 //   "cache" | "remote" | "stale-cache" | "bundled" | "none"
@@ -73,7 +75,7 @@ export function isCacheFresh(entry, version) {
 // live read from a fallback — an offline page and a fresh page look identical
 // on screen otherwise.
 export async function resolveCountryContent(code, deps) {
-  const { getCached, setCached, getVersion, fetchRow, bundled } = deps;
+  const { getCached, setCached, getVersion, fetchRow, bundled, now } = deps;
 
   const version = await safe(() => getVersion?.(code), null);
   const cached = parseCacheEntry(await safe(() => getCached?.(code), null));
@@ -87,7 +89,8 @@ export async function resolveCountryContent(code, deps) {
   if (remotePage) {
     // A failed write just costs the next launch a refetch, so it never blocks
     // returning the page we already have in hand.
-    await safe(() => setCached?.(code, cacheEntry(remotePage, version)), null);
+    const stampedAt = await safe(() => now?.(), null);
+    await safe(() => setCached?.(code, cacheEntry(remotePage, version, stampedAt)), null);
     return { page: remotePage, source: "remote" };
   }
 
