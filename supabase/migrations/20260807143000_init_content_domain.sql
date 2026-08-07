@@ -86,8 +86,12 @@ create table content.content_version (
 
 insert into content.content_version (id) values (true);
 
--- Bump on any content write. Statement-level (not row-level) so seeding 196
--- countries bumps the version once, not 196 times.
+-- Bump on any content write. Statement-level (not row-level), so a 196-row seed
+-- costs a handful of bumps rather than 196. (An upsert is INSERT ... ON CONFLICT
+-- DO UPDATE, which fires both the insert and the update statement trigger, so
+-- one batch bumps twice — measured, not assumed.) The exact number doesn't
+-- matter: the version is opaque and monotonic, and clients only ever ask
+-- "did it change?"
 create function content.bump_content_version()
 returns trigger
 language plpgsql

@@ -102,7 +102,7 @@ src/
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
-scripts/seed-content.mjs   # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
+scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
 
@@ -169,13 +169,17 @@ UI on the World Map screen are both done (a "World" + five-region pill row that 
 each preset); next up is step 5's polish sub-step (animating the jump, active-region label, and
 picker/manual-gesture coexistence).
 
-**M2.3.5 — content backend is code-complete but not yet live.** Country content now has a
-public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch layer that
-caches per country against `content_version` and falls back to bundled JSON. The bundled dataset
-did *not* go away — it's the seed source and the offline baseline at once, so both agree by
-construction. The fallback path is browser-verified; the remote path can't be until the migration
-is applied and the project is seeded. Those steps need the DB password and the service-role key, so
-they're Danny's — see **DANNY TO DO** in ROADMAP.md.
+**M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
+now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
+layer that caches per country against `content_version` and falls back to bundled JSON. The bundled
+dataset did *not* go away — it's the seed source and the offline baseline at once, so both agree by
+construction.
+
+Verified end-to-end on a local Postgres: migration applied from scratch, seeded, public read
+confirmed, writes denied for anon *and* authenticated, and an edit made directly in Postgres
+appeared on a country page in the browser — then a second edit's version bump invalidated the cache
+and the app refetched. Applying it to the live project needs the DB password and the service-role
+key, so those steps are Danny's — see **DANNY TO DO** in ROADMAP.md.
 
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 

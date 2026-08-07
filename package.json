@@ -10,7 +10,7 @@
     "ios": "expo start --ios",
     "build": "expo export --platform web",
     "test": "tsx test/engine.test.js",
-    "seed:content": "tsx scripts/seed-content.mjs",
+    "seed:content": "tsx scripts/seed-content.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write ."

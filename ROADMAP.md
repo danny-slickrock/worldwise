@@ -364,20 +364,24 @@ teaching *how the world works*, not just *where things are*.
   first paint. Keep the pure/IO split: cache-invalidation *decisions* pure and tested, Supabase IO
   beside them. Seed via a JSON→Postgres migration script; existing `countryPages.js` becomes the seed
   source, then the app reads from the API.
-  - **Sub-checklist** (the code is done; the two unchecked items need Danny's DB password — see
-    **DANNY TO DO**, since neither is something an AI collaborator can or should run).
+  - **Sub-checklist.** The code is done and **verified end-to-end against a real local Postgres**:
+    migration applied from scratch, seeded, public read confirmed, writes confirmed denied for both
+    anon and authenticated, and an edit made directly in Postgres appeared on the country page in a
+    browser — then a second edit's `content_version` bump invalidated the cache and the app refetched.
+    That is the milestone's whole thesis demonstrated: **content changed without an app release.**
+    Only the live-project steps remain, and they need Danny's DB password — see **DANNY TO DO**.
     1. ☑ **Schema, as a migration file.** `supabase/migrations/*_init_content_domain.sql`:
        `content.countries` (the M2.2 page shape as columns, incl. `neighbors` / `related_game_modes` /
        `has_outline`, which the sketch omitted but the shipped page renders), `content.country_media`
        (URLs + attribution only), and a singleton `content.content_version` bumped by *statement*-level
-       triggers, so seeding 196 rows bumps once rather than 196 times. Public-read RLS
+       triggers, so a 196-row seed costs a handful of bumps rather than 196. Public-read RLS
        (`for select using (true)` to anon + authenticated), no write grants or policies for either
        role, and explicit CRUD grants throughout — the grant-less-RLS trap from M2.1.
     2. ☑ **The second trap, found here:** PostgREST serves only `public` + `graphql_public` by default,
        so `content.*` 404s with otherwise-perfect grants and RLS. Fixed in `config.toml` for local;
        **the cloud project needs the same entry added by hand in the Dashboard** (it's a project
        setting, not something a migration can carry).
-    3. ☑ **Repeatable seed.** `npm run seed:content` (`scripts/seed-content.mjs`) upserts all 196
+    3. ☑ **Repeatable seed.** `npm run seed:content` (`scripts/seed-content.js`) upserts all 196
        countries on `code`, so re-running is idempotent and is also how a correction ships. It seeds
        *through* `getCountryPage()`, so Postgres holds exactly what the app renders offline — no
        second merge rule that could drift from the first. Needs the **secret** service-role key,
@@ -394,9 +398,15 @@ teaching *how the world works*, not just *where things are*.
        resolver. `CountryPageScreen` paints bundled content synchronously, then swaps in the fetched
        page — never blank waiting on the network. The bundled dataset stays the floor: seed source
        *and* offline baseline, so the two agree by construction.
-    6. ☐ **Apply the migration** (`npx supabase db push`) and **expose `content`** in the Dashboard.
-    7. ☐ **Seed the live project**, then confirm a country page reads `source: "remote"` rather than
-       falling back — the fallback is verified, the happy path can't be until the schema exists.
+    6. ☑ **Verified against a real Postgres** (`supabase db reset` + seed + a driven browser). This
+       caught two bugs nothing else would have: the seed script couldn't run at all as `.mjs` (true
+       ESM can't take named imports from the CJS-transpiled `src/` modules — it's `.js` now, matching
+       `test/engine.test.js`), and `supabase-js` throws on Node 20 because its realtime client needs
+       a global `WebSocket`. The seed now talks to PostgREST over plain `fetch`: two HTTP calls, no
+       client, no version-dependent breakage.
+    7. ☐ **Apply the migration** (`npx supabase db push`) and **expose `content`** in the Dashboard.
+    8. ☐ **Seed the live project** and confirm a country page reads from it. Both paths are already
+       proven locally; these steps just point them at production.
 - **M2.3.6 — Learner interests 🧭 (the personalization signal)** — ask a new account what it's curious
   about, then let that steer what we surface. One short, **entirely optional** prompt at sign-up with a
   real Skip — the app must be fully usable having answered nothing, and a skipper is never re-nagged
@@ -602,13 +612,12 @@ via `npx supabase secrets set`, and nowhere else.
 
 ## To finish M2.3.5 (content backend) — the code is done and waiting
 
-The app already works without any of this: every country page falls back to bundled JSON, verified
-in a browser against the live project *before* the migration was applied. These steps turn the
-fallback into the real thing.
+The whole thing is already proven on a local Postgres — migration applied from scratch, seeded,
+public read confirmed, writes denied for anon *and* authenticated, and a live edit in Postgres
+showing up on a country page in the browser. These steps just point it at production.
 
-- ☐ **Start Docker Desktop, then `npx supabase db reset`.** This is the check that catches a missing
-  GRANT, and it's the one thing standing between "the migration looks right" and "the migration is
-  known-good". It has caught a real bug before. Do this first — everything below assumes it's green.
+- ☑ ~~`npx supabase db reset`~~ — done, green, and it earned its keep: it caught two bugs that tests,
+  typecheck, and the browser all missed (see M2.3.5 item 6).
 - ☐ **Apply it to the live project:** `npx supabase db push`. Needs the DB password, so it stays
   manual per CLAUDE.md.
 - ☐ **Expose the `content` schema in the Dashboard** → Project Settings → API → Exposed schemas →
@@ -621,9 +630,8 @@ fallback into the real thing.
   and never behind an `EXPO_PUBLIC_` prefix, which would ship full database access to every visitor.
   Re-run it any time content changes; it's idempotent, and it bumps `content_version` so every
   client refetches.
-- ☐ **Confirm the happy path.** Open a country page and check the request returns a row instead of
-  falling back. I've verified the fallback works; the remote read can't be verified until the
-  schema exists.
+- ☐ **Confirm it in production.** Open a country page and check it reads from Postgres rather than
+  falling back. Both paths are verified locally, so this is a smoke test, not a discovery.
 - ☐ *(nothing needed on Vercel)* — content adds no new client env vars. The seed key is used only
   from your machine.
 

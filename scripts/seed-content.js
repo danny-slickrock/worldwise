@@ -19,10 +19,15 @@
 //
 // Both are also read from .env if present (SUPABASE_URL falls back to
 // EXPO_PUBLIC_SUPABASE_URL, which is public and already there).
+//
+// This talks to PostgREST over plain fetch rather than through supabase-js on
+// purpose. The client always constructs a realtime connection, which needs a
+// global WebSocket that Node 20 doesn't have — it throws before the first row
+// is written. A seed script needs exactly two HTTP calls, so the dependency
+// bought nothing and cost portability across Node versions.
 import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { createClient } from "@supabase/supabase-js";
 import { COUNTRIES } from "../src/data/countries.js";
 import { getCountryPage } from "../src/data/countryPages.js";
 import { countryRowFromPage } from "../src/game/contentSync.js";
@@ -75,10 +80,34 @@ if (!url || !serviceKey) {
   process.exit(1);
 }
 
-const supabase = createClient(url, serviceKey, {
-  auth: { persistSession: false, autoRefreshToken: false },
-  db: { schema: "content" },
-});
+// PostgREST addresses a non-default schema through profile headers rather than
+// the path: Accept-Profile selects it for reads, Content-Profile for writes.
+const restUrl = `${url.replace(/\/$/, "")}/rest/v1`;
+const baseHeaders = {
+  apikey: serviceKey,
+  Authorization: `Bearer ${serviceKey}`,
+  "Accept-Profile": "content",
+  "Content-Profile": "content",
+};
+
+// Decode the two failures we expect into the actual fix, rather than leaving a
+// raw PostgREST code on screen. Both are traps this milestone already hit once.
+function explain(status, body) {
+  if (/permission denied/i.test(body)) {
+    return (
+      "That reads like a grants problem — confirm the migration applied, and that\n" +
+      "this is the service-role (secret) key rather than the publishable one."
+    );
+  }
+  if (status === 404 || /PGRST106|schema must be one of/i.test(body)) {
+    return (
+      "That reads like the `content` schema isn't exposed to the Data API.\n" +
+      "Dashboard → Project Settings → API → Exposed schemas → add `content`.\n" +
+      "(Locally, that's the [api] schemas list in supabase/config.toml.)"
+    );
+  }
+  return null;
+}
 
 // ---------------------------------------------------------------------------
 // Build the rows. getCountryPage() already merges the hand-authored entry with
@@ -106,22 +135,23 @@ async function main() {
   let written = 0;
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
     const batch = rows.slice(i, i + BATCH_SIZE);
-    const { error } = await supabase.from("countries").upsert(batch, { onConflict: "code" });
+    // merge-duplicates is PostgREST's upsert: conflicting `code` rows are
+    // updated rather than rejected, which is what makes re-running safe.
+    const res = await fetch(`${restUrl}/countries`, {
+      method: "POST",
+      headers: {
+        ...baseHeaders,
+        "Content-Type": "application/json",
+        Prefer: "resolution=merge-duplicates,return=minimal",
+      },
+      body: JSON.stringify(batch),
+    });
 
-    if (error) {
-      console.error(`\nFailed on batch starting at row ${i}:`, error.message);
-      if (error.message?.includes("permission denied")) {
-        console.error(
-          "\nThat reads like a grants problem — confirm the migration applied and\n" +
-            "that this really is the service-role (secret) key, not the publishable one."
-        );
-      }
-      if (error.message?.includes("schema") || error.code === "PGRST106") {
-        console.error(
-          "\nThat reads like the `content` schema isn't exposed to the Data API.\n" +
-            "Dashboard → Project Settings → API → Exposed schemas → add `content`."
-        );
-      }
+    if (!res.ok) {
+      const body = await res.text();
+      console.error(`\nFailed on the batch starting at row ${i} (HTTP ${res.status}):\n${body}`);
+      const hint = explain(res.status, body);
+      if (hint) console.error(`\n${hint}`);
       process.exit(1);
     }
 
@@ -129,19 +159,22 @@ async function main() {
     console.log(`  ${written}/${rows.length}`);
   }
 
-  // The statement-level trigger bumps this once per batch; reading it back
-  // confirms the write landed and tells the app's cache to invalidate.
-  const { data: version, error: versionError } = await supabase
-    .from("content_version")
-    .select("version, updated_at")
-    .maybeSingle();
+  // The statement-level trigger bumps this a few times per seed (an upsert
+  // fires both the insert and update triggers); the exact count is irrelevant
+  // since the version is opaque and monotonic. Reading it back confirms the
+  // write landed and is the signal that invalidates every client's cache.
+  const versionRes = await fetch(`${restUrl}/content_version?select=version,updated_at`, {
+    headers: baseHeaders,
+  });
 
-  if (versionError) {
-    console.warn(`\nSeeded, but couldn't read content_version: ${versionError.message}`);
-  } else {
-    console.log(`\nDone. content_version is now ${version?.version} (${version?.updated_at}).`);
-    console.log("Clients will refetch on their next launch.");
+  if (!versionRes.ok) {
+    console.warn(`\nSeeded, but couldn't read content_version (HTTP ${versionRes.status}).`);
+    return;
   }
+
+  const [version] = await versionRes.json();
+  console.log(`\nDone. content_version is now ${version?.version} (${version?.updated_at}).`);
+  console.log("Clients will refetch on their next launch.");
 }
 
 main().catch((err) => {
