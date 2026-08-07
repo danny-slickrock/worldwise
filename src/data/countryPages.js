@@ -1,7 +1,13 @@
 // Country-page content model (M2.2) — the "why should I care?" hub for a single
-// place: a short story, key facts, neighbors, and games to jump into. Kept as
-// versioned JSON (not Postgres) per docs/phase-2-data-model.md — content only
-// earns a database once it must be queried alongside user data.
+// place: a short story, key facts, neighbors, and games to jump into.
+//
+// As of M2.3.5 this data lives in Postgres too (content.countries), but this
+// module didn't become redundant — it now serves both ends of that move. It's
+// the *seed source* (scripts/seed-content.mjs pushes it up through
+// getCountryPage) and the *offline baseline* the fetch layer falls back to
+// (src/data/contentSource.js). Seeding through the same accessor the app reads
+// is deliberate: it means Postgres holds exactly what renders offline, instead
+// of a second merge rule that could drift from this one.
 //
 // COUNTRY_PAGES holds hand-authored entries; most countries don't have one yet.
 // Always read through getCountryPage(code), which fills gaps from countries.js

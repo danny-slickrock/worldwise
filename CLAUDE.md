@@ -49,6 +49,17 @@ both missed: `supabase db reset` against a local Postgres (RLS policies without 
 "permission denied" on every query), and driving the actual app in a browser (a client option that
 silently dropped every web auth callback). If a change touches the schema or the session, run them.
 
+**Three ways a correct-looking schema still returns nothing.** Each of these fails identically from
+the client — an empty result or a permission error — and none is caught by tests or typecheck:
+1. **RLS without GRANTs.** A policy says *which rows*; it never grants the table. Missing grants =
+   "permission denied" on every query. Grant explicitly in the migration.
+2. **A schema PostgREST doesn't serve.** Only `public` + `graphql_public` are exposed by default, so
+   a custom schema (`content`) 404s with flawless grants and RLS. `config.toml` fixes local; the
+   cloud project needs it set by hand in the Dashboard, and **no migration can carry that setting**.
+3. **RLS enabled with no policy for the command.** RLS defaults to deny, so a `select`-only policy
+   is what makes content public-read *and* write-protected — the absence of a write policy is the
+   protection, not an oversight.
+
 ## Architecture
 
 ```
@@ -58,13 +69,18 @@ src/
   theme.js                 # Design tokens — the single source of visual truth
   data/countries.js        # Country dataset + flagUrl()/outlineUrl() helpers
   data/whyItMatters.js     # Per-country "why it matters" facts (the context card)
-  data/countryPages.js     # M2.2 country-page content model: getCountryPage(code) + hero (Brazil)
+  data/countryPages.js     # M2.2 country-page content model: getCountryPage(code) + hero (Brazil).
+                           #   Since M2.3.5 this is the SEED SOURCE for Postgres and the offline
+                           #   baseline — the same data, serving both ends
+  data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
+  game/contentSync.js      # PURE country-page ⇄ content.countries row mapping (both directions)
+  game/contentPolicy.js    # PURE content cache: keys, content_version freshness, fallback resolver
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
@@ -84,8 +100,9 @@ src/
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
-supabase/migrations/       # Schema as code (user domain + RLS + signup trigger)
+supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
+scripts/seed-content.mjs   # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
 
@@ -151,6 +168,15 @@ exploration) — the pure region-bounds + viewport math (`src/game/mapRegions.js
 UI on the World Map screen are both done (a "World" + five-region pill row that jumps scale/pan to
 each preset); next up is step 5's polish sub-step (animating the jump, active-region label, and
 picker/manual-gesture coexistence).
+
+**M2.3.5 — content backend is code-complete but not yet live.** Country content now has a
+public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch layer that
+caches per country against `content_version` and falls back to bundled JSON. The bundled dataset
+did *not* go away — it's the seed source and the offline baseline at once, so both agree by
+construction. The fallback path is browser-verified; the remote path can't be until the migration
+is applied and the project is seeded. Those steps need the DB password and the service-role key, so
+they're Danny's — see **DANNY TO DO** in ROADMAP.md.
+
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

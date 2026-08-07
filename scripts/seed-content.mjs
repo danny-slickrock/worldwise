@@ -106,9 +106,7 @@ async function main() {
   let written = 0;
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {
     const batch = rows.slice(i, i + BATCH_SIZE);
-    const { error } = await supabase
-      .from("countries")
-      .upsert(batch, { onConflict: "code" });
+    const { error } = await supabase.from("countries").upsert(batch, { onConflict: "code" });
 
     if (error) {
       console.error(`\nFailed on batch starting at row ${i}:`, error.message);

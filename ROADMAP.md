@@ -364,6 +364,39 @@ teaching *how the world works*, not just *where things are*.
   first paint. Keep the pure/IO split: cache-invalidation *decisions* pure and tested, Supabase IO
   beside them. Seed via a JSON→Postgres migration script; existing `countryPages.js` becomes the seed
   source, then the app reads from the API.
+  - **Sub-checklist** (the code is done; the two unchecked items need Danny's DB password — see
+    **DANNY TO DO**, since neither is something an AI collaborator can or should run).
+    1. ☑ **Schema, as a migration file.** `supabase/migrations/*_init_content_domain.sql`:
+       `content.countries` (the M2.2 page shape as columns, incl. `neighbors` / `related_game_modes` /
+       `has_outline`, which the sketch omitted but the shipped page renders), `content.country_media`
+       (URLs + attribution only), and a singleton `content.content_version` bumped by *statement*-level
+       triggers, so seeding 196 rows bumps once rather than 196 times. Public-read RLS
+       (`for select using (true)` to anon + authenticated), no write grants or policies for either
+       role, and explicit CRUD grants throughout — the grant-less-RLS trap from M2.1.
+    2. ☑ **The second trap, found here:** PostgREST serves only `public` + `graphql_public` by default,
+       so `content.*` 404s with otherwise-perfect grants and RLS. Fixed in `config.toml` for local;
+       **the cloud project needs the same entry added by hand in the Dashboard** (it's a project
+       setting, not something a migration can carry).
+    3. ☑ **Repeatable seed.** `npm run seed:content` (`scripts/seed-content.mjs`) upserts all 196
+       countries on `code`, so re-running is idempotent and is also how a correction ships. It seeds
+       *through* `getCountryPage()`, so Postgres holds exactly what the app renders offline — no
+       second merge rule that could drift from the first. Needs the **secret** service-role key,
+       passed per-run and deliberately absent from `.env.example`: everything in that file is inlined
+       into the client bundle.
+    4. ☑ **Pure decisions, tested with fakes.** `src/game/contentSync.js` (page ⇄ row, both
+       directions) and `src/game/contentPolicy.js` (cache keys, version freshness, and a fully
+       dependency-injected resolver ordering fresh cache → remote → stale cache → bundled). 44 checks,
+       no network and no React Native import. Notable calls: an unreachable version treats the cache
+       as fresh rather than attempting a doomed fetch, and a stale entry outranks the bundled baseline
+       because it's likelier to be richer. A round-trip check over all 196 countries guards the
+       seed/fetch seam, so a renamed column can't silently drop a section from a country page.
+    5. ☑ **Fetch layer + baseline.** `src/data/contentSource.js` wires storage and Supabase into that
+       resolver. `CountryPageScreen` paints bundled content synchronously, then swaps in the fetched
+       page — never blank waiting on the network. The bundled dataset stays the floor: seed source
+       *and* offline baseline, so the two agree by construction.
+    6. ☐ **Apply the migration** (`npx supabase db push`) and **expose `content`** in the Dashboard.
+    7. ☐ **Seed the live project**, then confirm a country page reads `source: "remote"` rather than
+       falling back — the fallback is verified, the happy path can't be until the schema exists.
 - **M2.3.6 — Learner interests 🧭 (the personalization signal)** — ask a new account what it's curious
   about, then let that steer what we surface. One short, **entirely optional** prompt at sign-up with a
   real Skip — the app must be fully usable having answered nothing, and a skipper is never re-nagged
@@ -566,6 +599,33 @@ items in the M2.9 group; those just need lead time.
 `EXPO_PUBLIC_*` variable.** Anything prefixed `EXPO_PUBLIC_` is compiled into the web bundle and is
 readable by every visitor — that prefix is for publishable keys only. Server secrets go to Supabase
 via `npx supabase secrets set`, and nowhere else.
+
+## To finish M2.3.5 (content backend) — the code is done and waiting
+
+The app already works without any of this: every country page falls back to bundled JSON, verified
+in a browser against the live project *before* the migration was applied. These steps turn the
+fallback into the real thing.
+
+- ☐ **Start Docker Desktop, then `npx supabase db reset`.** This is the check that catches a missing
+  GRANT, and it's the one thing standing between "the migration looks right" and "the migration is
+  known-good". It has caught a real bug before. Do this first — everything below assumes it's green.
+- ☐ **Apply it to the live project:** `npx supabase db push`. Needs the DB password, so it stays
+  manual per CLAUDE.md.
+- ☐ **Expose the `content` schema in the Dashboard** → Project Settings → API → Exposed schemas →
+  add `content`. **This one is easy to miss and looks exactly like a permissions bug**: PostgREST
+  serves only `public` + `graphql_public` by default, so every content query 404s no matter how
+  correct the grants and RLS are. `config.toml` covers local only; the cloud project has no
+  migration-based equivalent.
+- ☐ **Seed it:** `SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run seed:content`. Grab the secret key
+  from Dashboard → Project Settings → API Keys. Pass it inline as shown — never put it in `.env`,
+  and never behind an `EXPO_PUBLIC_` prefix, which would ship full database access to every visitor.
+  Re-run it any time content changes; it's idempotent, and it bumps `content_version` so every
+  client refetches.
+- ☐ **Confirm the happy path.** Open a country page and check the request returns a row instead of
+  falling back. I've verified the fallback works; the remote read can't be verified until the
+  schema exists.
+- ☐ *(nothing needed on Vercel)* — content adds no new client env vars. The seed key is used only
+  from your machine.
 
 ## Before M2.3.6 (interests) can ship
 

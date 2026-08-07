@@ -50,9 +50,10 @@ export function pageFromCountryRow(row) {
 
   const facts = isPlainObject(row.facts) ? row.facts : {};
   const neighbors = Array.isArray(row.neighbors) ? row.neighbors : [];
-  const relatedGameModes = Array.isArray(row.related_game_modes) && row.related_game_modes.length
-    ? row.related_game_modes
-    : DEFAULT_RELATED_MODES;
+  const relatedGameModes =
+    Array.isArray(row.related_game_modes) && row.related_game_modes.length
+      ? row.related_game_modes
+      : DEFAULT_RELATED_MODES;
 
   return {
     code: row.code,
@@ -72,8 +73,7 @@ export function pageFromCountryRow(row) {
     // Authored depth, not merely "a row exists" — every country gets a row once
     // seeded, so row-existence would report true for all 196. Population, area,
     // and facts are the fields only a hand-authored entry fills in.
-    hasFullContent:
-      row.population != null || row.area_km2 != null || Object.keys(facts).length > 0,
+    hasFullContent: row.population != null || row.area_km2 != null || Object.keys(facts).length > 0,
     // The column is positive, the page flag is negative. A null column (older
     // row, pre-default) is treated as "has an outline" — the common case.
     noOutline: row.has_outline === false,
