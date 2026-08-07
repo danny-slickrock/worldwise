@@ -10,7 +10,12 @@ enabled = true
 port = 54321
 # Schemas to expose in your API. Tables, views and stored procedures in this schema will get API
 # endpoints. `public` and `graphql_public` schemas are included by default.
-schemas = ["public", "graphql_public"]
+# `content` (M2.3.5) is listed so PostgREST serves content.* over the Data API.
+# Without it, supabase.schema("content") 404s no matter how correct the grants
+# and RLS policies are — the cloud project needs the same entry added under
+# Dashboard → Project Settings → API → Exposed schemas, which is a dashboard
+# setting, not something a migration can do.
+schemas = ["public", "graphql_public", "content"]
 # Extra schemas to add to the search_path of every request.
 extra_search_path = ["public", "extensions"]
 # The maximum number of rows returns from a view, table, or stored procedure. Limits payload size
