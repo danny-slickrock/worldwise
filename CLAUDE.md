@@ -147,8 +147,10 @@ bounds/reset), step 3 (tap affordance polish: hover highlight, larger hit target
 countries, and a tap-point country-name label), and step 4 (wiring the M2.2 map entry point both
 ways — tap-to-country-page from the map, and a "View on map" link back from any country page) are
 all done. **Now on step 5: region maps** (zoomed presets like "Europe"/"Africa" for focused
-exploration) — the pure region-bounds + viewport math (`src/game/mapRegions.js`) is done; next up
-is wiring a region-picker UI onto the World Map screen.
+exploration) — the pure region-bounds + viewport math (`src/game/mapRegions.js`) and the region-picker
+UI on the World Map screen are both done (a "World" + five-region pill row that jumps scale/pan to
+each preset); next up is step 5's polish sub-step (animating the jump, active-region label, and
+picker/manual-gesture coexistence).
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
 ## The mission (don't lose this)

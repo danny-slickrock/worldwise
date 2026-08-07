@@ -326,11 +326,36 @@ teaching *how the world works*, not just *where things are*.
           the module's own comments) so it stays pure and screen-size-independent. Tested in
           `test/engine.test.js`. *(Next up: step 2 — wire a region-picker UI onto
           `WorldMapScreen`/`ExploreMap` that calls this math and animates to a preset.)*
-       2. ☐ **Region picker UI.** A row of preset pills (Africa/Americas/Asia/Europe/Oceania) on
-          `WorldMapScreen` that call `regionView()` with the live box size and animate scale/pan to
-          it; tapping the active region again (or a "World" pill) resets to the full fit.
-       3. ☐ **Polish.** Label the active region, decide how the picker coexists with manual
-          pinch/drag once a preset is applied, and verify in a real browser.
+       2. ✅ **Region picker UI.** `WorldMapScreen` now renders a row of pills ("World" +
+          `MAP_REGIONS`) above the map; tapping one calls `regionView()` with that region's
+          precomputed bounds and the map box's live on-screen size (`boxSizeRef`, from
+          `onLayout`), then jumps scale/pan straight to the returned framing — no animation yet,
+          that's part of step 3's polish. Tapping the already-active region, or the "World" pill,
+          resets to the full fit (`resetView()`, which now also clears `activeRegion`). Region
+          bounds are computed once per region at module load
+          (`COUNTRIES.filter(c => c.region === region)` → `regionBounds`), same pattern as
+          `ExploreMap`'s precomputed `SMALL_HIT_TARGETS`. `ExploreMap` exports its own cropped
+          viewBox (`EXPLORE_MAP_VIEW`) so the screen can feed `regionView()` the exact same crop
+          it renders, instead of a second hardcoded copy of the inhabited-band constants.
+          Verified in a real browser (Playwright/Chromium): a static-export smoke test clicking
+          through all five region pills, the active-pill reset, and the World pill, checking the
+          map's actual CSS transform each time — not just that the UI renders.
+          That pass caught a real bug in `mapRegions.js`'s `regionBounds()` (from step 5.1):
+          Russia's Natural Earth shape straddles the antimeridian in this equirectangular
+          projection (its Chukotka peninsula sits near map x=0, its western border near
+          map x=`MAP_W`), so the naive min/max bounding box read as "spans the entire world" —
+          which swamped the "Europe" preset into a no-op (fit scale clamped to 1, i.e. no zoom at
+          all). No real, non-wrapping country comes close: the next-widest actual span in the
+          dataset is the US at ~210 of 720 map units. `regionBounds()` now treats a country whose
+          own bounding box exceeds a generous threshold (400 units) the same as one with no path
+          data — skipped, so the region still resolves from its other members — fixed at the
+          source rather than special-cased by country code, and covered by a synthetic
+          antimeridian-wrapping fixture plus a real-data assertion on Europe's own bounds in
+          `test/engine.test.js`. Russia itself still renders correctly on the map; this only
+          affected which countries anchor a region preset's framing.
+       3. ☐ **Polish.** Animate the scale/pan jump instead of cutting straight to it, label the
+          active region, decide how the picker coexists with manual pinch/drag once a preset is
+          applied, and verify in a real browser.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on

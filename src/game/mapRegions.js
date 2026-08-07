@@ -12,6 +12,18 @@ import { clampScale, clampPan } from "./mapZoom";
 // zoomable preset here).
 export const MAP_REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
+// A country's own bounding box can come out spanning virtually the entire
+// map width when its Natural Earth shape straddles the antimeridian in this
+// equirectangular projection — Russia's Chukotka peninsula sits near x=0
+// while its western border sits near x=MAP_W, so the naive min/max box reads
+// as "covers the whole world" even though the shape itself renders fine. No
+// real, non-wrapping country comes close: the widest actual span in the
+// dataset is the US at ~210 of 720 map units. Treating a country whose own
+// span exceeds this like one with no path data keeps a region's aggregate
+// framing sane — it still renders normally on the map itself, this only
+// affects which countries anchor a region preset's zoom.
+const REGION_BOUNDS_MAX_COUNTRY_SPAN = 400;
+
 // Union bounding box (map viewBox units — see data/worldMap.js) of every
 // `codes` entry that has path data. Countries without map data (the 29 of
 // 196 with no Natural Earth shape) are skipped, so a region with an unmapped
@@ -26,6 +38,7 @@ export function regionBounds(countryPaths, codes) {
     const d = countryPaths[code];
     if (!d) continue;
     const b = pathBounds(d);
+    if (b.maxX - b.minX > REGION_BOUNDS_MAX_COUNTRY_SPAN || b.maxY - b.minY > REGION_BOUNDS_MAX_COUNTRY_SPAN) continue;
     found = true;
     if (b.minX < minX) minX = b.minX;
     if (b.maxX > maxX) maxX = b.maxX;

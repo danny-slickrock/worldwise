@@ -38,6 +38,12 @@ const VIEW_TOP = 22;
 const VIEW_HEIGHT = 290;
 const VIEWBOX = `0 ${VIEW_TOP} ${MAP_W} ${VIEW_HEIGHT}`;
 
+// Exported so WorldMapScreen's region picker (M2.3 step 5.2) can feed this
+// exact viewBox into mapRegions.js's regionView() — it has to match what's
+// actually rendered here, or the computed scale/pan would frame the wrong
+// crop of the map.
+export const EXPLORE_MAP_VIEW = { x: 0, y: VIEW_TOP, width: MAP_W, height: VIEW_HEIGHT };
+
 const ALL_CODES = Object.keys(COUNTRY_PATHS);
 
 // Computed once from the static path data (M2.3 step 3.2) — see

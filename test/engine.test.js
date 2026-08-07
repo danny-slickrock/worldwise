@@ -648,6 +648,28 @@ console.log("World Map region presets (M2.3 step 5.1)");
     JSON.stringify(regionBounds(paths, ["a", "missing"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
     "regionBounds skips codes with no path data instead of failing the whole region"
   );
+
+  // A shape that straddles the antimeridian (e.g. Russia's real Natural
+  // Earth path) reads as spanning nearly the whole map — regionBounds should
+  // treat it like missing data rather than let it swamp the region's real
+  // framing.
+  const wrapping = { ...paths, wide: "M0 0L700 0L700 10L0 10Z" }; // 700-wide box
+  check(
+    JSON.stringify(regionBounds(wrapping, ["a", "wide"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
+    "regionBounds excludes an antimeridian-wrapping country's inflated bounding box"
+  );
+  check(
+    regionBounds(wrapping, ["wide"]) === null,
+    "regionBounds returns null when the only member's box is an antimeridian-wrapping outlier"
+  );
+  const realEuropeBounds = regionBounds(
+    COUNTRY_PATHS,
+    COUNTRIES.filter((c) => c.region === "Europe").map((c) => c.code)
+  );
+  check(
+    realEuropeBounds.maxX - realEuropeBounds.minX < 400,
+    "Europe's real region bounds stay well short of the full map width despite including Russia"
+  );
 }
 {
   const view = { x: 0, y: 0, width: 100, height: 100 };

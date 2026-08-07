@@ -10,13 +10,26 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
-import ExploreMap from "../components/ExploreMap";
+import ExploreMap, { EXPLORE_MAP_VIEW } from "../components/ExploreMap";
+import { COUNTRY_PATHS } from "../data/worldMap";
+import { COUNTRIES } from "../data/countries";
 import { MAP_ZOOM_MIN, MAP_ZOOM_MAX, MAP_WHEEL_ZOOM_SPEED, MAP_DRAG_THRESHOLD } from "../constants";
 import { pinchScale, touchDistance, wheelZoom, dragPan, clampPan } from "../game/mapZoom";
+import { MAP_REGIONS, regionBounds, regionView } from "../game/mapRegions";
+
+// Each region's own union bounding box (M2.3 step 5.2), computed once from
+// the static path data — same pattern as ExploreMap's SMALL_HIT_TARGETS.
+const REGION_BOUNDS = Object.fromEntries(
+  MAP_REGIONS.map((region) => [
+    region,
+    regionBounds(COUNTRY_PATHS, COUNTRIES.filter((c) => c.region === region).map((c) => c.code)),
+  ])
+);
 
 export default function WorldMapScreen({ onExit, onOpenCountry }) {
   const [scale, setScale] = useState(1);
   const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [activeRegion, setActiveRegion] = useState(null);
   const gesture = useRef({ mode: null, startDistance: 0, startScale: 1, startPan: { x: 0, y: 0 } });
   const mapNodeRef = useRef(null);
   const scaleRef = useRef(scale);
@@ -47,6 +60,28 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
   const resetView = () => {
     setScale(1);
     setPan({ x: 0, y: 0 });
+    setActiveRegion(null);
+  };
+
+  // Region pills (M2.3 step 5.2): jump to a preset framing of that region,
+  // computed by mapRegions.js's regionView() from its precomputed bounds and
+  // the map box's actual on-screen size. Tapping the already-active region
+  // resets to the full world view, same as the "World" pill.
+  const selectRegion = (region) => {
+    if (region === activeRegion) {
+      resetView();
+      return;
+    }
+    const { scale: nextScale, pan: nextPan } = regionView(
+      REGION_BOUNDS[region],
+      EXPLORE_MAP_VIEW,
+      boxSizeRef.current,
+      MAP_ZOOM_MIN,
+      MAP_ZOOM_MAX
+    );
+    setActiveRegion(region);
+    setScale(nextScale);
+    setPan(nextPan);
   };
 
   const handleMapLayout = (e) => {
@@ -175,6 +210,29 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         <Text style={styles.subtitle}>Tap a country to explore it · pinch/scroll to zoom · drag to pan</Text>
       </View>
 
+      <View style={styles.regionRow}>
+        <Pressable
+          onPress={resetView}
+          hitSlop={8}
+          style={[styles.regionChip, activeRegion === null && styles.regionChipActive]}
+        >
+          <Text style={[styles.regionChipText, activeRegion === null && styles.regionChipTextActive]}>World</Text>
+        </Pressable>
+        {MAP_REGIONS.map((region) => {
+          const active = region === activeRegion;
+          return (
+            <Pressable
+              key={region}
+              onPress={() => selectRegion(region)}
+              hitSlop={8}
+              style={[styles.regionChip, active && styles.regionChipActive]}
+            >
+              <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>{region}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
       <View
         style={styles.mapWrap}
         ref={mapNodeRef}
@@ -203,6 +261,24 @@ const styles = StyleSheet.create({
   header: { paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
   title: { ...type.hero, fontSize: 34 },
   subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
+
+  regionRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: spacing(1),
+    paddingHorizontal: spacing(2.5),
+    marginBottom: spacing(2),
+  },
+  regionChip: {
+    paddingVertical: spacing(1),
+    paddingHorizontal: spacing(1.75),
+    borderRadius: radius.pill,
+    backgroundColor: colors.surface,
+    ...depth(3),
+  },
+  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
+  regionChipText: { ...type.pill, color: colors.muted },
+  regionChipTextActive: { color: colors.navyDeep },
 
   // The map stage is deep navy everywhere it appears (see QuizScreen's mapBox),
   // so the world reads as the lit subject rather than as chrome.
