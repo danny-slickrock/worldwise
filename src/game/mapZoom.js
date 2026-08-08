@@ -48,3 +48,17 @@ export function clampPan(pan, scale, boxWidth, boxHeight) {
     y: clampScale(pan.y, -maxY, maxY),
   };
 }
+
+// Linear interpolation between two { scale, pan } view states, at progress
+// t in [0, 1]. Used to animate a region-preset jump or the return to the
+// full World view (see WorldMapScreen's animateTo) instead of cutting
+// straight to the target. t=0 returns start, t=1 returns target exactly.
+export function lerpView(start, target, t) {
+  return {
+    scale: start.scale + (target.scale - start.scale) * t,
+    pan: {
+      x: start.pan.x + (target.pan.x - start.pan.x) * t,
+      y: start.pan.y + (target.pan.y - start.pan.y) * t,
+    },
+  };
+}

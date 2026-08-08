@@ -4,17 +4,26 @@
 //
 // M2.3 step 2a added zoom (pinch on native, wheel/trackpad on web), centered
 // on the box. Step 2b added drag-to-pan (single-finger on native, mouse-drag
-// on web). Step 2c (this one) clamps pan to the map's own bounds — see
-// clampPan in game/mapZoom.js for the math — and adds a Reset button so a
-// lost pinch/drag always has a way back to the fitted view.
+// on web). Step 2c clamped pan to the map's own bounds — see clampPan in
+// game/mapZoom.js for the math — and added a Reset button so a lost
+// pinch/drag always has a way back to the fitted view. Step 5.3 (this one)
+// animates a region-pill jump instead of cutting straight to it, labels the
+// active region on the map itself, and clears the active pill the moment a
+// manual pinch/drag moves the view away from that preset's framing.
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, PanResponder, Platform } from "react-native";
+import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
 import ExploreMap, { EXPLORE_MAP_VIEW } from "../components/ExploreMap";
 import { COUNTRY_PATHS } from "../data/worldMap";
 import { COUNTRIES } from "../data/countries";
-import { MAP_ZOOM_MIN, MAP_ZOOM_MAX, MAP_WHEEL_ZOOM_SPEED, MAP_DRAG_THRESHOLD } from "../constants";
-import { pinchScale, touchDistance, wheelZoom, dragPan, clampPan } from "../game/mapZoom";
+import {
+  MAP_ZOOM_MIN,
+  MAP_ZOOM_MAX,
+  MAP_WHEEL_ZOOM_SPEED,
+  MAP_DRAG_THRESHOLD,
+  MAP_REGION_ANIMATION_MS,
+} from "../constants";
+import { pinchScale, touchDistance, wheelZoom, dragPan, clampPan, lerpView } from "../game/mapZoom";
 import { MAP_REGIONS, regionBounds, regionView } from "../game/mapRegions";
 
 // Each region's own union bounding box (M2.3 step 5.2), computed once from
@@ -35,31 +44,79 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
   const scaleRef = useRef(scale);
   const panRef = useRef(pan);
   const boxSizeRef = useRef({ width: 0, height: 0 });
+  const animationRef = useRef(null);
   useEffect(() => {
     scaleRef.current = scale;
   }, [scale]);
   useEffect(() => {
     panRef.current = pan;
   }, [pan]);
+  useEffect(() => () => animationRef.current?.stop(), []);
+
+  // Tweens scale/pan from their current values to a target over
+  // MAP_REGION_ANIMATION_MS, used by the region pills and Reset so a preset
+  // jump reads as a camera move rather than a cut. Drives plain scale/pan
+  // state (not a native-driven transform) because the refs it updates feed
+  // the same clamp math manual gestures use, so a pinch/drag started
+  // mid-animation still measures from the true current position.
+  const animateTo = (targetScale, targetPan) => {
+    animationRef.current?.stop();
+    const start = { scale: scaleRef.current, pan: panRef.current };
+    const target = { scale: targetScale, pan: targetPan };
+    const progress = new Animated.Value(0);
+    const id = progress.addListener(({ value }) => {
+      const next = lerpView(start, target, value);
+      scaleRef.current = next.scale;
+      panRef.current = next.pan;
+      setScale(next.scale);
+      setPan(next.pan);
+    });
+    const anim = Animated.timing(progress, {
+      toValue: 1,
+      duration: MAP_REGION_ANIMATION_MS,
+      useNativeDriver: false,
+    });
+    animationRef.current = { stop: () => progress.stopAnimation() };
+    anim.start(({ finished }) => {
+      progress.removeListener(id);
+      // Snap to the exact target rather than trusting the last interpolated
+      // frame — isReset (and the World pill it drives) does an exact ===
+      // comparison, and float drift across the tween could leave it just
+      // short of {1, {0,0}} forever.
+      if (finished) {
+        scaleRef.current = targetScale;
+        panRef.current = targetPan;
+        setScale(targetScale);
+        setPan(targetPan);
+      }
+    });
+  };
 
   // Applies a candidate scale, then re-clamps the current pan against the box
   // it's actually visible in — zooming back out can leave a pan that was
   // valid at a higher scale hanging past the new, smaller overflow. Refs are
   // updated synchronously (not just via the effects above) so back-to-back
   // wheel/pinch events in the same tick read the value this call just set,
-  // not last render's.
+  // not last render's. Only ever called from a manual pinch/wheel gesture, so
+  // it also drops the active region pill — that preset no longer matches
+  // once the view has been nudged by hand, and it's re-earned only by
+  // tapping a pill again. setActiveRegion(null) is called unconditionally
+  // (React bails out of the re-render when the value is already null) rather
+  // than guarded on the current `activeRegion`, since this function is
+  // called from the pinch responder and the wheel handler, both wired up
+  // once via useRef and so closing over a stale copy of that state.
   const applyScale = (nextScale) => {
     const nextPan = clampPan(panRef.current, nextScale, boxSizeRef.current.width, boxSizeRef.current.height);
     scaleRef.current = nextScale;
     panRef.current = nextPan;
     setScale(nextScale);
     setPan(nextPan);
+    setActiveRegion(null);
   };
 
   const isReset = scale === 1 && pan.x === 0 && pan.y === 0;
   const resetView = () => {
-    setScale(1);
-    setPan({ x: 0, y: 0 });
+    animateTo(1, { x: 0, y: 0 });
     setActiveRegion(null);
   };
 
@@ -80,8 +137,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       MAP_ZOOM_MAX
     );
     setActiveRegion(region);
-    setScale(nextScale);
-    setPan(nextPan);
+    animateTo(nextScale, nextPan);
   };
 
   const handleMapLayout = (e) => {
@@ -125,6 +181,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         } else if (g.mode === "pan") {
           const next = dragPan(g.startPan, gestureState.dx, gestureState.dy, g.startScale);
           setPan(clampPan(next, scaleRef.current, boxSizeRef.current.width, boxSizeRef.current.height));
+          setActiveRegion(null);
         }
       },
     })
@@ -171,6 +228,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         );
         panRef.current = next;
         setPan(next);
+        setActiveRegion(null);
       }
     };
     const handleMouseUp = () => {
@@ -214,9 +272,11 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         <Pressable
           onPress={resetView}
           hitSlop={8}
-          style={[styles.regionChip, activeRegion === null && styles.regionChipActive]}
+          style={[styles.regionChip, activeRegion === null && isReset && styles.regionChipActive]}
         >
-          <Text style={[styles.regionChipText, activeRegion === null && styles.regionChipTextActive]}>World</Text>
+          <Text style={[styles.regionChipText, activeRegion === null && isReset && styles.regionChipTextActive]}>
+            World
+          </Text>
         </Pressable>
         {MAP_REGIONS.map((region) => {
           const active = region === activeRegion;
@@ -242,6 +302,12 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         <View style={[styles.mapScale, { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] }]}>
           <ExploreMap onSelect={onOpenCountry} />
         </View>
+
+        {activeRegion !== null && (
+          <View style={styles.regionLabel} pointerEvents="none">
+            <Text style={styles.regionLabelText}>{activeRegion}</Text>
+          </View>
+        )}
 
         {!isReset && (
           <Pressable onPress={resetView} hitSlop={8} style={styles.resetPill}>
@@ -304,4 +370,16 @@ const styles = StyleSheet.create({
     ...depth(3),
   },
   resetPillText: { ...type.pill, fontSize: 12, color: colors.teal },
+
+  regionLabel: {
+    position: "absolute",
+    top: spacing(2),
+    left: spacing(2),
+    paddingHorizontal: spacing(1.75),
+    paddingVertical: spacing(1),
+    borderRadius: radius.pill,
+    backgroundColor: colors.teal,
+    ...depth(3, colors.navyDeep),
+  },
+  regionLabelText: { ...type.pill, fontSize: 12, color: colors.navyDeep },
 });

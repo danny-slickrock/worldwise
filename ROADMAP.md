@@ -57,9 +57,15 @@ content model, navigation seam, polished Brazil hero page, generalization to all
 in-play "Learn more about {country}" link, the searchable/filterable country index, and (once
 M2.3 unblocked it) tapping a country on the World Map, with a "View on map" link back from every
 country page — and the polish + a11y pass (WCAG AA contrast, large tap targets, `CountryOutline`
-offline/image-load fallbacks, open/close transition) have all landed. **We're now mid-M2.3**
-(interactive maps): world map pan/zoom and tap affordance polish are done; region maps are next.
-The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+offline/image-load fallbacks, open/close transition) have all landed. **M2.3 — interactive maps —
+is now complete:** world map pan/zoom, tap affordance polish, wiring the M2.2 map entry point both
+ways, and region maps (bounds/picker + the animate/label/manual-gesture polish pass) have all
+landed. **M2.3.5 — content backend** is next in sequence but is code-complete and blocked purely on
+Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
+until those land. **M2.3.6 — learner interests** has no such blocker on its own code (steps 1-2, the
+prompt UI and the pure catalog/policy module, need nothing from Danny) and is the next milestone
+with real autonomous headroom. The Phase 1 backlog below gets picked up opportunistically, not as a
+gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -353,9 +359,29 @@ teaching *how the world works*, not just *where things are*.
           antimeridian-wrapping fixture plus a real-data assertion on Europe's own bounds in
           `test/engine.test.js`. Russia itself still renders correctly on the map; this only
           affected which countries anchor a region preset's framing.
-       3. ☐ **Polish.** Animate the scale/pan jump instead of cutting straight to it, label the
-          active region, decide how the picker coexists with manual pinch/drag once a preset is
-          applied, and verify in a real browser.
+       3. ✅ **Polish.** A region-pill (or Reset) jump now tweens scale/pan over
+          `MAP_REGION_ANIMATION_MS` (320ms) instead of cutting straight to it — `WorldMapScreen`'s
+          `animateTo()` drives an `Animated.Value` from 0→1 and applies `lerpView()` (new, pure,
+          tested in `src/game/mapZoom.js`) on every frame, snapping to the exact target on finish so
+          `isReset`'s `===` check can't be left just short of `{1, {0,0}}` by float drift. The active
+          region now labels itself on the map (a teal pill, top-left, mirroring the existing
+          top-right Reset pill) whenever a preset is framed. For picker/manual-gesture coexistence:
+          a manual pinch/drag/wheel — the same three input paths that already call `applyScale` or
+          adjust `pan` directly — now also clears `activeRegion`, since the view has moved off
+          whatever preset framed it and the pill would otherwise keep claiming a match it no longer
+          has; re-earned only by tapping a pill again. That also exposed a pre-existing conflation:
+          the World pill was highlighting on bare `activeRegion === null`, which after this change
+          would read "at World" immediately after a manual gesture even though the view was neither
+          reset nor on a preset — so the World pill's active condition is now `activeRegion === null
+          && isReset`, and only a region's own selection lights up a region pill. Verified in a real
+          browser (Playwright/Chromium, driven against a static export since the dev server's
+          startup dependency check can't reach the network in this environment): a mid-animation
+          transform read partway between the start and target matrices (confirming a real tween, not
+          a cut), the Europe label rendered at the expected map position, the World pill was inactive
+          immediately after selecting Europe and active again after toggling it off, and a manual
+          drag after selecting Europe reverted the Europe pill from teal to its inactive `surface`
+          color. **M2.3 step 5 (region maps) is now fully done, which completes M2.3 — Interactive
+          maps — end to end.**
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on

@@ -57,3 +57,8 @@ export const MAP_SMALL_HIT_RADIUS = 5;
 // size.
 export const MAP_TAP_LABEL_DELAY_MS = 380;
 export const MAP_TAP_LABEL_FONT_SIZE = 7;
+
+// World Map screen (M2.3 step 5.3): how long a region-pill jump (or the
+// return to the full World view) takes to animate, instead of cutting
+// straight to the new scale/pan.
+export const MAP_REGION_ANIMATION_MS = 320;

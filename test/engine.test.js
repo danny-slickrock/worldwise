@@ -22,7 +22,7 @@ import {
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
-import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan } from "../src/game/mapZoom";
+import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan, lerpView } from "../src/game/mapZoom";
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
@@ -587,6 +587,22 @@ check(
   JSON.stringify(clampPan({ x: 10, y: -10 }, 2, 300, 200)) === JSON.stringify({ x: 10, y: -10 }),
   "clampPan leaves an in-bounds pan untouched"
 );
+
+console.log("World Map region-jump animation (M2.3 step 5.3)");
+{
+  const start = { scale: 1, pan: { x: 0, y: 0 } };
+  const target = { scale: 3, pan: { x: 20, y: -10 } };
+  check(
+    JSON.stringify(lerpView(start, target, 0)) === JSON.stringify(start),
+    "lerpView at t=0 returns the start view unchanged"
+  );
+  check(
+    JSON.stringify(lerpView(start, target, 1)) === JSON.stringify(target),
+    "lerpView at t=1 returns the target view exactly"
+  );
+  const mid = lerpView(start, target, 0.5);
+  check(mid.scale === 2 && mid.pan.x === 10 && mid.pan.y === -5, "lerpView at t=0.5 splits the difference");
+}
 
 console.log("World Map small-country hit targets (M2.3 step 3.2)");
 {
