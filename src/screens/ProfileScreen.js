@@ -8,7 +8,7 @@ import { fetchProgress } from "../storage/cloudProgress";
 import { streakStatus, dayKey } from "../game/progress";
 import SignInScreen from "./SignInScreen";
 
-export default function ProfileScreen({ progress }) {
+export default function ProfileScreen({ progress, onOpenInterests }) {
   const { user, loading, signOut } = useAuth();
 
   if (loading) {
@@ -21,10 +21,10 @@ export default function ProfileScreen({ progress }) {
 
   if (!user) return <SignInScreen />;
 
-  return <SignedIn user={user} localProgress={progress} onSignOut={signOut} />;
+  return <SignedIn user={user} localProgress={progress} onSignOut={signOut} onOpenInterests={onOpenInterests} />;
 }
 
-function SignedIn({ user, localProgress, onSignOut }) {
+function SignedIn({ user, localProgress, onSignOut, onOpenInterests }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
   const [stats, setStats] = useState(localProgress);
@@ -84,6 +84,16 @@ function SignedIn({ user, localProgress, onSignOut }) {
           <Text style={styles.syncText}>✓ Synced — your progress is safe on every device.</Text>
         )}
       </View>
+
+      {/* M2.3.6 step 1 preview — not a real entry point yet. Nothing selected
+          here is saved: that arrives with the pure catalog (step 2) and the
+          cloud-synced schema (steps 3-4). This row itself moves to a proper
+          "Interests" row once step 5 lands. */}
+      {onOpenInterests && (
+        <Pressable onPress={onOpenInterests} style={styles.interestsBtn}>
+          <Text style={styles.interestsText}>What are you curious about? (preview)</Text>
+        </Pressable>
+      )}
 
       <Pressable onPress={onSignOut} style={styles.signOutBtn}>
         <Text style={styles.signOutText}>Sign out</Text>
@@ -152,6 +162,16 @@ const styles = StyleSheet.create({
 
   syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(3.5) },
   syncText: { ...type.muted, fontSize: 13, color: colors.success },
+
+  interestsBtn: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    paddingVertical: spacing(1.75),
+    alignItems: "center",
+    marginBottom: spacing(1.25),
+    ...depth(),
+  },
+  interestsText: { ...type.body, fontWeight: "800", color: colors.teal },
 
   signOutBtn: {
     backgroundColor: colors.surface,

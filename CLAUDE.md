@@ -97,6 +97,7 @@ src/
   screens/HomeScreen.js    # Game hub
   screens/ProfileScreen.js # Signed-in identity + synced stats
   screens/SignInScreen.js  # Magic link + Continue with Google
+  screens/InterestsScreen.js # M2.3.6 step 1: "what are you curious about?" multi-select + Skip
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
@@ -169,9 +170,9 @@ on the map, and clearing the active pill on a manual pinch/drag/wheel so it neve
 no longer has) are all shipped and verified in a real browser.
 
 **Next up:** M2.3.5 — content backend is code-complete but blocked purely on Danny's live-project
-steps (see below); M2.3.6 — learner interests has no such blocker on its own code (the interest
-prompt UI and the pure catalog/policy module need nothing from Danny), so it's next up for
-autonomous runs.
+steps (see below); M2.3.6 — learner interests has no such blocker on its own code, so it's the
+milestone with real autonomous headroom. Its step 1 (`src/screens/InterestsScreen.js`, the
+interest-prompt screen) is done; next up is step 2, the pure catalog + policy module.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

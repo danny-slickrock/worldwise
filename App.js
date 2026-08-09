@@ -7,6 +7,7 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import CountryPageScreen from "./src/screens/CountryPageScreen";
 import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
+import InterestsScreen from "./src/screens/InterestsScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import TabBar from "./src/components/TabBar";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -106,6 +107,9 @@ function AppShell() {
   function openWorldMap() {
     setScreen({ name: "worldMap" });
   }
+  function openInterests() {
+    setScreen({ name: "interests" });
+  }
   function leaveOverlay() {
     setScreen({ name: "home", mode: null, difficulty: null, timed: false });
   }
@@ -178,6 +182,17 @@ function AppShell() {
     );
   }
 
+  // M2.3.6 step 1 preview overlay — nothing is persisted from either Skip or
+  // Continue yet (that's steps 3-4), so both just return to Profile.
+  if (screen.name === "interests") {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar style="light" />
+        <InterestsScreen onSkip={leaveOverlay} onContinue={leaveOverlay} />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar style="light" />
@@ -190,7 +205,7 @@ function AppShell() {
             onOpenWorldMap={openWorldMap}
           />
         ) : (
-          <ProfileScreen progress={progress} />
+          <ProfileScreen progress={progress} onOpenInterests={openInterests} />
         )}
       </View>
       <TabBar tabs={TABS} active={tab} onSelect={setTab} />

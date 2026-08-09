@@ -62,10 +62,11 @@ is now complete:** world map pan/zoom, tap affordance polish, wiring the M2.2 ma
 ways, and region maps (bounds/picker + the animate/label/manual-gesture polish pass) have all
 landed. **M2.3.5 — content backend** is next in sequence but is code-complete and blocked purely on
 Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
-until those land. **M2.3.6 — learner interests** has no such blocker on its own code (steps 1-2, the
-prompt UI and the pure catalog/policy module, need nothing from Danny) and is the next milestone
-with real autonomous headroom. The Phase 1 backlog below gets picked up opportunistically, not as a
-gate.
+until those land. **M2.3.6 — learner interests** has no such blocker on its own code and is the
+milestone with real autonomous headroom. Step 1 (the interest-prompt screen) is now done; **next up
+is step 2 — the pure catalog + policy module** (`src/data/interests.js` +
+`src/game/interestPolicy.js`), which needs nothing from Danny either. The Phase 1 backlog below gets
+picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -439,11 +440,25 @@ teaching *how the world works*, not just *where things are*.
   (offer it once more, much later, at most). This is the input M2.9 personalizes on, so the sooner it
   ships the more accounts already carry the signal when the AI hub arrives.
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
-    1. ☐ **The one prompt: "Select your interests."** A single multi-select on a card after sign-up —
+    1. ✅ **The one prompt: "Select your interests."** A single multi-select on a card after sign-up —
        *Economics · History · Agriculture · Military · Tourism · Geopolitics · Climate · Culture ·
        Wildlife · Food* — with **Skip** given equal visual weight to Continue (no dark patterns; a
        skipped answer is a valid answer). Multi-select, no minimum, no maximum. Ships as one screen
        and nothing else — resist bundling difficulty/region pickers in, those are M2.8.
+       Landed as `src/screens/InterestsScreen.js`: a card of pill chips (theme tokens only) that
+       toggle independently, no min/max, with Skip and Continue rendered at the same size and weight
+       (differing only in fill) so Skip never reads as the lesser option. The interest list is
+       inline in this screen for now — step 2 moves it into the pure, tested catalog module this
+       screen will read from instead. Nothing is persisted yet (steps 3-4); both Skip and Continue
+       currently just close the screen. Wired behind a temporary "What are you curious about?
+       (preview)" row on the signed-in Profile tab (`App.js`'s `openInterests`/`screen.name ===
+       "interests"` overlay, same pattern as every other M2.2/M2.3 overlay) purely so it's reachable
+       for review — that row is not the real entry point and goes away once step 5 adds the actual
+       Profile "Interests" row. Verified in a real browser (Playwright/Chromium, driven against a
+       static export with placeholder Supabase env, same workaround M2.3's region-map polish pass
+       used): chips toggle independently and Continue returns to Home; Home and the signed-out
+       Profile tab (no real account reachable in this sandbox) still render with no console errors,
+       confirming no regression.
     2. ☐ **The catalog, pure.** `src/data/interests.js` — slug + label + glyph per interest, ordered
        for display. Store **stable slugs** (`"geopolitics"`), never display strings, so labels and
        ordering can change without a migration or a data backfill. `src/game/interestPolicy.js` stays
