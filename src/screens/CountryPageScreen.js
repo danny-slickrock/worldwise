@@ -5,9 +5,10 @@
 // (see data/countryPages.js); every other country renders from the same shape,
 // degrading gracefully where content isn't authored yet.
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
-import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
+import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
 import Container from "../components/Container";
+import FadeInUp from "../components/FadeInUp";
 import { getCountryPage } from "../data/countryPages";
 import { fetchCountry } from "../data/contentSource";
 import { countryName } from "../data/countries";
@@ -54,21 +55,36 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   // the exit/view-map callback fires once the animation finishes, not on tap.
   const screenAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    Animated.timing(screenAnim, { toValue: 1, duration: 260, useNativeDriver: true }).start();
+    Animated.timing(screenAnim, {
+      toValue: 1,
+      duration: motion.duration.base,
+      easing: Easing.bezier(...motion.easeOut),
+      useNativeDriver: true,
+    }).start();
   }, [screenAnim]);
   function handleExit() {
-    Animated.timing(screenAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(onExit);
+    Animated.timing(screenAnim, {
+      toValue: 0,
+      duration: motion.duration.fast,
+      useNativeDriver: true,
+    }).start(onExit);
   }
   // M2.3 step 4 — a country page can be reached from the index or a quiz
   // round, where Back doesn't lead to the World Map (only returnTo:
   // "worldMap" does). This gives every country page its own way there,
   // mirroring the map's own tap-to-open-a-country-page direction.
   function handleViewMap() {
-    Animated.timing(screenAnim, { toValue: 0, duration: 200, useNativeDriver: true }).start(onViewMap);
+    Animated.timing(screenAnim, {
+      toValue: 0,
+      duration: motion.duration.fast,
+      useNativeDriver: true,
+    }).start(onViewMap);
   }
   const screenStyle = {
     opacity: screenAnim,
-    transform: [{ translateY: screenAnim.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }],
+    transform: [
+      { translateY: screenAnim.interpolate({ inputRange: [0, 1], outputRange: [motion.rise, 0] }) },
+    ],
   };
 
   if (!page) {
@@ -95,52 +111,67 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
               mapsicon has no vector for (see countries.js noOutline), where a
               broken image would undercut the "maps are the hero" premise more
               than a clean placeholder does. */}
-          <View style={styles.hero}>
-            <View style={styles.outlineBox}>
-              {page.noOutline ? (
-                <View style={styles.outlineFallback}>
-                  <Text style={styles.outlineFallbackGlyph}>◇</Text>
-                  <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
-                </View>
-              ) : (
-                <CountryOutline code={page.code} />
-              )}
+          {/* Every block below uses rise={0}: the page as a whole already rises
+              via screenAnim, so these contribute the stagger and nothing else —
+              stacking transforms would overshoot the 8-16px band. */}
+          <FadeInUp rise={0}>
+            <View style={styles.hero}>
+              <View style={styles.outlineBox}>
+                {page.noOutline ? (
+                  <View style={styles.outlineFallback}>
+                    <Text style={styles.outlineFallbackGlyph}>◇</Text>
+                    <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
+                  </View>
+                ) : (
+                  <CountryOutline code={page.code} />
+                )}
+              </View>
             </View>
-          </View>
+          </FadeInUp>
 
-          <Text style={styles.kicker}>{page.region.toUpperCase()}</Text>
-          <Text style={styles.name}>{page.name}</Text>
-          <Text style={styles.capital}>Capital · {page.capital}</Text>
+          <FadeInUp rise={0} index={1}>
+            <Text style={styles.kicker}>{page.region.toUpperCase()}</Text>
+            <Text style={styles.name}>{page.name}</Text>
+            <Text style={styles.capital}>Capital · {page.capital}</Text>
+          </FadeInUp>
 
           {/* Key facts */}
           {(page.population || page.areaKm2) && (
-            <View style={styles.statsRow}>
-              {page.population ? <Stat value={compact(page.population)} label="People" /> : null}
-              {page.areaKm2 ? <Stat value={`${compact(page.areaKm2)} km²`} label="Area" /> : null}
-              {page.neighbors?.length ? <Stat value={String(page.neighbors.length)} label="Neighbors" /> : null}
-            </View>
+            <FadeInUp rise={0} index={2}>
+              <View style={styles.statsRow}>
+                {page.population ? <Stat value={compact(page.population)} label="People" /> : null}
+                {page.areaKm2 ? <Stat value={`${compact(page.areaKm2)} km²`} label="Area" /> : null}
+                {page.neighbors?.length ? (
+                  <Stat value={String(page.neighbors.length)} label="Neighbors" />
+                ) : null}
+              </View>
+            </FadeInUp>
           )}
 
           {/* The story */}
-          <View style={styles.card}>
-            <Text style={styles.summary}>{page.summary}</Text>
-          </View>
+          <FadeInUp rise={0} index={3}>
+            <View style={styles.card}>
+              <Text style={styles.summary}>{page.summary}</Text>
+            </View>
+          </FadeInUp>
 
           {/* Climate / trade / culture */}
           {factRows.length > 0 && (
-            <View style={styles.card}>
-              {factRows.map((f, i) => (
-                <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
-                  <Text style={styles.factLabel}>{f.label}</Text>
-                  <Text style={styles.factText}>{facts[f.key]}</Text>
-                </View>
-              ))}
-            </View>
+            <FadeInUp rise={0} index={4}>
+              <View style={styles.card}>
+                {factRows.map((f, i) => (
+                  <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
+                    <Text style={styles.factLabel}>{f.label}</Text>
+                    <Text style={styles.factText}>{facts[f.key]}</Text>
+                  </View>
+                ))}
+              </View>
+            </FadeInUp>
           )}
 
           {/* Neighbors */}
           {page.neighbors?.length > 0 && (
-            <>
+            <FadeInUp rise={0} index={5}>
               <Text style={styles.section}>Borders</Text>
               <View style={styles.chipWrap}>
                 {page.neighbors.map((nb) => (
@@ -149,12 +180,12 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
                   </View>
                 ))}
               </View>
-            </>
+            </FadeInUp>
           )}
 
           {/* Related games */}
           {relatedModes.length > 0 && onPlay && (
-            <>
+            <FadeInUp rise={0} index={6}>
               <Text style={styles.section}>Play with {page.name}</Text>
               <View style={styles.gameWrap}>
                 {relatedModes.map((m) => {
@@ -172,7 +203,7 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
                   );
                 })}
               </View>
-            </>
+            </FadeInUp>
           )}
         </Container>
       </ScrollView>

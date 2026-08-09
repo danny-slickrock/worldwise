@@ -4,7 +4,8 @@
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
-import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
+import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { COUNTRIES } from "../data/countries";
 import { searchCountries, REGIONS } from "../game/countryIndex";
 
@@ -20,10 +21,14 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         <Text style={styles.backText}>‹ Back</Text>
       </Pressable>
 
-      <View style={styles.header}>
-        <Text style={styles.title}>Countries</Text>
-        <Text style={styles.subtitle}>{results.length} of {COUNTRIES.length} places</Text>
-      </View>
+      <FadeInUp>
+        <View style={styles.header}>
+          <Text style={styles.title}>Countries</Text>
+          <Text style={styles.subtitle}>
+            {results.length} of {COUNTRIES.length} places
+          </Text>
+        </View>
+      </FadeInUp>
 
       <View style={styles.inputOuter}>
         <TextInput
@@ -47,7 +52,9 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
               hitSlop={8}
               style={[styles.regionChip, active && styles.regionChipActive]}
             >
-              <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>{r}</Text>
+              <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>
+                {r}
+              </Text>
             </Pressable>
           );
         })}
@@ -60,15 +67,25 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         ListEmptyComponent={<Text style={styles.empty}>No countries match "{query}".</Text>}
-        renderItem={({ item }) => (
-          <Pressable onPress={() => onOpenCountry(item.code)} style={styles.row}>
-            <View style={styles.rowBody}>
-              <Text style={styles.rowName}>{item.name}</Text>
-              <Text style={styles.rowCapital}>{item.capital} · {item.region}</Text>
-            </View>
-            <Text style={styles.chev}>›</Text>
-          </Pressable>
-        )}
+        renderItem={({ item, index }) => {
+          const row = (
+            <Pressable onPress={() => onOpenCountry(item.code)} style={styles.row}>
+              <View style={styles.rowBody}>
+                <Text style={styles.rowName}>{item.name}</Text>
+                <Text style={styles.rowCapital}>
+                  {item.capital} · {item.region}
+                </Text>
+              </View>
+              <Text style={styles.chev}>›</Text>
+            </Pressable>
+          );
+          // Only the first screenful cascades. A FlatList mounts rows as they
+          // scroll into view, so animating every row would re-fire the entrance
+          // on every scroll — the gratuitous motion we're avoiding. Rows past
+          // the window mount plain.
+          if (index >= motion.maxStaggerSteps) return row;
+          return <FadeInUp delay={staggerDelay(index)}>{row}</FadeInUp>;
+        }}
       />
     </View>
   );
@@ -79,7 +96,12 @@ const styles = StyleSheet.create({
   // Every element carries the cap itself: a FlatList has no single content
   // wrapper to hang it on, so the chrome and the rows each center independently
   // and end up sharing one column edge.
-  back: { ...constrain.content, paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  back: {
+    ...constrain.content,
+    paddingHorizontal: spacing(2.5),
+    paddingTop: spacing(2),
+    paddingBottom: spacing(1),
+  },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
   header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },

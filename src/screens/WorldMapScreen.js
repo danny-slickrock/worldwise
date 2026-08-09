@@ -13,6 +13,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } from "react-native";
 import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import FadeInUp from "../components/FadeInUp";
 import ExploreMap, { EXPLORE_MAP_VIEW } from "../components/ExploreMap";
 import { COUNTRY_PATHS } from "../data/worldMap";
 import { COUNTRIES } from "../data/countries";
@@ -31,7 +32,10 @@ import { MAP_REGIONS, regionBounds, regionView } from "../game/mapRegions";
 const REGION_BOUNDS = Object.fromEntries(
   MAP_REGIONS.map((region) => [
     region,
-    regionBounds(COUNTRY_PATHS, COUNTRIES.filter((c) => c.region === region).map((c) => c.code)),
+    regionBounds(
+      COUNTRY_PATHS,
+      COUNTRIES.filter((c) => c.region === region).map((c) => c.code)
+    ),
   ])
 );
 
@@ -106,7 +110,12 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
   // called from the pinch responder and the wheel handler, both wired up
   // once via useRef and so closing over a stale copy of that state.
   const applyScale = (nextScale) => {
-    const nextPan = clampPan(panRef.current, nextScale, boxSizeRef.current.width, boxSizeRef.current.height);
+    const nextPan = clampPan(
+      panRef.current,
+      nextScale,
+      boxSizeRef.current.width,
+      boxSizeRef.current.height
+    );
     scaleRef.current = nextScale;
     panRef.current = nextPan;
     setScale(nextScale);
@@ -155,7 +164,10 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         const touches = evt.nativeEvent.touches;
         if (touches.length === 2) return true;
         if (touches.length === 1) {
-          return Math.abs(gestureState.dx) > MAP_DRAG_THRESHOLD || Math.abs(gestureState.dy) > MAP_DRAG_THRESHOLD;
+          return (
+            Math.abs(gestureState.dx) > MAP_DRAG_THRESHOLD ||
+            Math.abs(gestureState.dy) > MAP_DRAG_THRESHOLD
+          );
         }
         return false;
       },
@@ -170,14 +182,27 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
             startPan: panRef.current,
           };
         } else {
-          gesture.current = { mode: "pan", startDistance: 0, startScale: scaleRef.current, startPan: panRef.current };
+          gesture.current = {
+            mode: "pan",
+            startDistance: 0,
+            startScale: scaleRef.current,
+            startPan: panRef.current,
+          };
         }
       },
       onPanResponderMove: (evt, gestureState) => {
         const touches = evt.nativeEvent.touches;
         const g = gesture.current;
         if (touches.length === 2 && g.mode === "pinch") {
-          applyScale(pinchScale(g.startDistance, touchDistance(touches[0], touches[1]), g.startScale, MAP_ZOOM_MIN, MAP_ZOOM_MAX));
+          applyScale(
+            pinchScale(
+              g.startDistance,
+              touchDistance(touches[0], touches[1]),
+              g.startScale,
+              MAP_ZOOM_MIN,
+              MAP_ZOOM_MAX
+            )
+          );
         } else if (g.mode === "pan") {
           const next = dragPan(g.startPan, gestureState.dx, gestureState.dy, g.startScale);
           setPan(clampPan(next, scaleRef.current, boxSizeRef.current.width, boxSizeRef.current.height));
@@ -197,7 +222,9 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
 
     const handleWheel = (e) => {
       e.preventDefault();
-      applyScale(wheelZoom(scaleRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, MAP_ZOOM_MIN, MAP_ZOOM_MAX));
+      applyScale(
+        wheelZoom(scaleRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, MAP_ZOOM_MIN, MAP_ZOOM_MAX)
+      );
     };
     node.addEventListener("wheel", handleWheel, { passive: false });
 
@@ -216,7 +243,10 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       if (!drag.active) return;
       const dx = e.clientX - drag.startX;
       const dy = e.clientY - drag.startY;
-      if (!drag.dragged && (Math.abs(dx) > MAP_DRAG_THRESHOLD || Math.abs(dy) > MAP_DRAG_THRESHOLD)) {
+      if (
+        !drag.dragged &&
+        (Math.abs(dx) > MAP_DRAG_THRESHOLD || Math.abs(dy) > MAP_DRAG_THRESHOLD)
+      ) {
         drag.dragged = true;
       }
       if (drag.dragged) {
@@ -263,10 +293,14 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         <Text style={styles.backText}>‹ Back</Text>
       </Pressable>
 
-      <View style={styles.header}>
-        <Text style={styles.title}>World Map</Text>
-        <Text style={styles.subtitle}>Tap a country to explore it · pinch/scroll to zoom · drag to pan</Text>
-      </View>
+      <FadeInUp>
+        <View style={styles.header}>
+          <Text style={styles.title}>World Map</Text>
+          <Text style={styles.subtitle}>
+            Tap a country to explore it · pinch/scroll to zoom · drag to pan
+          </Text>
+        </View>
+      </FadeInUp>
 
       <View style={styles.regionRow}>
         <Pressable
@@ -287,20 +321,27 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
               hitSlop={8}
               style={[styles.regionChip, active && styles.regionChipActive]}
             >
-              <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>{region}</Text>
+              <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>
+                {region}
+              </Text>
             </Pressable>
           );
         })}
       </View>
 
-      <View style={styles.mapOuter}>
+      <FadeInUp index={1} rise={0} style={styles.mapOuter}>
         <View
           style={styles.mapWrap}
           ref={mapNodeRef}
           onLayout={handleMapLayout}
           {...(Platform.OS === "web" ? {} : panResponder.panHandlers)}
         >
-          <View style={[styles.mapScale, { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] }]}>
+          <View
+            style={[
+              styles.mapScale,
+              { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] },
+            ]}
+          >
             <ExploreMap onSelect={onOpenCountry} />
           </View>
 
@@ -316,7 +357,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
             </Pressable>
           )}
         </View>
-      </View>
+      </FadeInUp>
     </View>
   );
 }
@@ -324,7 +365,12 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
   // Chrome tracks the reading column; the map below gets the wider media cap.
-  back: { ...constrain.content, paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  back: {
+    ...constrain.content,
+    paddingHorizontal: spacing(2.5),
+    paddingTop: spacing(2),
+    paddingBottom: spacing(1),
+  },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
   header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },

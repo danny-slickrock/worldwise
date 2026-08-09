@@ -1,10 +1,18 @@
 /* global setTimeout, clearTimeout */
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
-  View, Text, StyleSheet, Pressable, Image, ScrollView, Animated,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Image,
+  ScrollView,
+  Animated,
+  Easing,
 } from "react-native";
-import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
 import Container from "./Container";
+import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
@@ -19,8 +27,14 @@ const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, exp
 
 // A single reusable quiz surface that powers all game modes.
 export default function QuizScreen({
-  mode, difficulty = DEFAULT_DIFFICULTY, timed = false, soundEnabled = true,
-  onToggleSound, onExit, onFinish, onOpenCountry,
+  mode,
+  difficulty = DEFAULT_DIFFICULTY,
+  timed = false,
+  soundEnabled = true,
+  onToggleSound,
+  onExit,
+  onFinish,
+  onOpenCountry,
 }) {
   const meta = MODES[mode];
   const questions = useMemo(
@@ -50,7 +64,8 @@ export default function QuizScreen({
   useEffect(() => {
     Animated.timing(progressAnim, {
       toValue: questions.length ? idx / questions.length : 0,
-      duration: 320,
+      duration: motion.duration.slow,
+      easing: Easing.bezier(...motion.easeOut),
       useNativeDriver: false, // animating layout `width`, not a transform
     }).start();
   }, [idx, questions.length, progressAnim]);
@@ -59,7 +74,8 @@ export default function QuizScreen({
     bodyAnim.setValue(0);
     Animated.timing(bodyAnim, {
       toValue: 1,
-      duration: 260,
+      duration: motion.duration.base,
+      easing: Easing.bezier(...motion.easeOut),
       useNativeDriver: true,
     }).start();
   }, [idx, bodyAnim]);
@@ -155,38 +171,63 @@ export default function QuizScreen({
     const xp = computeXp(score);
     const pct = Math.round((score / questions.length) * 100);
     return (
-      <ScrollView style={styles.resultWrap} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.resultWrap}
+        contentContainerStyle={styles.resultContent}
+        showsVerticalScrollIndicator={false}
+      >
         <Container>
-          <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
-            <Text style={styles.resultKicker}>{meta.title}</Text>
-            <Text style={styles.resultScore}>{score}/{questions.length}</Text>
-            <Text style={styles.resultPct}>{pct}% correct</Text>
-            <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
-          </View>
+          <FadeInUp>
+            <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
+              <Text style={styles.resultKicker}>{meta.title}</Text>
+              <Text style={styles.resultScore}>
+                {score}/{questions.length}
+              </Text>
+              <Text style={styles.resultPct}>{pct}% correct</Text>
+              <View style={styles.xpPill}>
+                <Text style={styles.xpPillText}>+{xp} XP</Text>
+              </View>
+            </View>
+          </FadeInUp>
 
-          <Text style={styles.reviewHeading}>Round review</Text>
+          <FadeInUp index={1}>
+            <Text style={styles.reviewHeading}>Round review</Text>
+          </FadeInUp>
           <View style={styles.reviewList}>
             {history.map((entry, i) => (
-              <View key={i} style={styles.reviewCard}>
-                <View style={styles.reviewRow}>
-                  <Text style={[styles.reviewMark, entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong]}>
-                    {entry.isRight ? "✓" : "✕"}
-                  </Text>
-                  <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+              <FadeInUp key={i} delay={motion.stagger * 2 + staggerDelay(i)}>
+                <View style={styles.reviewCard}>
+                  <View style={styles.reviewRow}>
+                    <Text
+                      style={[
+                        styles.reviewMark,
+                        entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong,
+                      ]}
+                    >
+                      {entry.isRight ? "✓" : "✕"}
+                    </Text>
+                    <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+                  </View>
+                  {!entry.isRight && (
+                    <Text style={styles.reviewAnswer}>
+                      You said {answerLabel(entry.question, entry.picked)} — the answer was{" "}
+                      {entry.question.correct}
+                    </Text>
+                  )}
+                  <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
                 </View>
-                {!entry.isRight && (
-                  <Text style={styles.reviewAnswer}>
-                    You said {answerLabel(entry.question, entry.picked)} — the answer was {entry.question.correct}
-                  </Text>
-                )}
-                <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
-              </View>
+              </FadeInUp>
             ))}
           </View>
 
-          <Pressable style={[styles.primaryBtn, { backgroundColor: meta.accent }]} onPress={onExit}>
-            <Text style={styles.primaryBtnText}>Back to games</Text>
-          </Pressable>
+          <FadeInUp delay={motion.stagger * 3}>
+            <Pressable
+              style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
+              onPress={onExit}
+            >
+              <Text style={styles.primaryBtnText}>Back to games</Text>
+            </Pressable>
+          </FadeInUp>
         </Container>
       </ScrollView>
     );
@@ -196,18 +237,28 @@ export default function QuizScreen({
     <View style={styles.wrap}>
       {/* Top bar */}
       <View style={styles.topBar}>
-        <Pressable onPress={onExit} hitSlop={12}><Text style={styles.exit}>✕</Text></Pressable>
+        <Pressable onPress={onExit} hitSlop={12}>
+          <Text style={styles.exit}>✕</Text>
+        </Pressable>
         <View style={styles.progressTrack}>
           <Animated.View
             style={[
               styles.progressFill,
-              { width: progressAnim.interpolate({ inputRange: [0, 1], outputRange: ["0%", "100%"] }), backgroundColor: meta.accent },
+              {
+                width: progressAnim.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: ["0%", "100%"],
+                }),
+                backgroundColor: meta.accent,
+              },
             ]}
           />
         </View>
         {timedActive && (
           <View style={[styles.timerPill, timeLeft <= 3 && styles.timerPillLow]}>
-            <Text style={[styles.timerText, timeLeft <= 3 && styles.timerTextLow]}>⏱ {timeLeft}s</Text>
+            <Text style={[styles.timerText, timeLeft <= 3 && styles.timerTextLow]}>
+              ⏱ {timeLeft}s
+            </Text>
           </View>
         )}
         <Pressable onPress={onToggleSound} hitSlop={12} style={styles.soundPill}>
@@ -223,83 +274,118 @@ export default function QuizScreen({
           <Animated.View
             style={{
               opacity: bodyAnim,
-              transform: [{ translateY: bodyAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
+              transform: [
+                { translateY: bodyAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) },
+              ],
             }}
           >
-          <Text style={styles.counter}>
-            Question {idx + 1} of {questions.length}
-            {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
-          </Text>
-          <Text style={styles.prompt}>{q.prompt}</Text>
+            <Text style={styles.counter}>
+              Question {idx + 1} of {questions.length}
+              {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
+            </Text>
+            <Text style={styles.prompt}>{q.prompt}</Text>
 
-          {/* Country Locator: the map is both prompt media and answer surface. */}
-          {mode === "locator" ? (
-            <View style={styles.mapBox}>
-              <WorldMap
-                choices={q.choices}
-                correctCode={q.correct}
-                pickedCode={picked}
-                answered={answered}
-                onPick={choose}
-              />
-            </View>
-          ) : (
-            <>
-          {/* Prompt media */}
-          <View style={styles.media}>
-            {q.type === "flag" && (
-              <Image source={{ uri: flagUrl(q.country.code) }} style={styles.flag} resizeMode="contain" />
-            )}
-            {q.type === "shape" && (
-              <View style={styles.shapeBox}>
-                <CountryOutline code={q.country.code} />
+            {/* Country Locator: the map is both prompt media and answer surface. */}
+            {mode === "locator" ? (
+              <View style={styles.mapBox}>
+                <WorldMap
+                  choices={q.choices}
+                  correctCode={q.correct}
+                  pickedCode={picked}
+                  answered={answered}
+                  onPick={choose}
+                />
               </View>
-            )}
-            {q.type === "capital" && (
-              <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
-                <Text style={[styles.capitalGlyph, { color: meta.accent }]}>{q.country.region}</Text>
-                <Text style={styles.capitalName}>{q.country.name}</Text>
-              </View>
-            )}
-            {q.type === "capitalReverse" && (
-              <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
-                <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
-                <Text style={styles.capitalName}>{q.country.capital}</Text>
-              </View>
-            )}
-          </View>
+            ) : (
+              <>
+                {/* Prompt media */}
+                <View style={styles.media}>
+                  {q.type === "flag" && (
+                    <Image
+                      source={{ uri: flagUrl(q.country.code) }}
+                      style={styles.flag}
+                      resizeMode="contain"
+                    />
+                  )}
+                  {q.type === "shape" && (
+                    <View style={styles.shapeBox}>
+                      <CountryOutline code={q.country.code} />
+                    </View>
+                  )}
+                  {q.type === "capital" && (
+                    <View
+                      style={[
+                        styles.capitalBadge,
+                        { borderColor: meta.accent, borderBottomColor: colors.lip },
+                      ]}
+                    >
+                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>
+                        {q.country.region}
+                      </Text>
+                      <Text style={styles.capitalName}>{q.country.name}</Text>
+                    </View>
+                  )}
+                  {q.type === "capitalReverse" && (
+                    <View
+                      style={[
+                        styles.capitalBadge,
+                        { borderColor: meta.accent, borderBottomColor: colors.lip },
+                      ]}
+                    >
+                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
+                      <Text style={styles.capitalName}>{q.country.capital}</Text>
+                    </View>
+                  )}
+                </View>
 
-          {/* Options */}
-          <View style={styles.options}>
-            {q.options.map((opt) => {
-              const isCorrect = answered && opt === q.correct;
-              const isWrong = answered && opt === picked && opt !== q.correct;
-              const isPicked = answered && opt === picked;
-              return (
-                <Animated.View key={opt} style={isPicked ? { transform: [{ scale: pickAnim }] } : null}>
-                  <Pressable
-                    onPress={() => choose(opt)}
-                    style={[
-                      styles.option,
-                      isCorrect && styles.optionCorrect,
-                      isWrong && styles.optionWrong,
-                    ]}
-                  >
-                    <Text style={[
-                      styles.optionText,
-                      // Resolved options fill with a bright success/error — dark
-                      // ink on top, not white, or the label washes out.
-                      (isCorrect || isWrong) && { color: colors.navyDeep, fontWeight: "800" },
-                    ]}>{opt}</Text>
-                    {isCorrect && <Text style={styles.optionMark}>✓</Text>}
-                    {isWrong && <Text style={styles.optionMark}>✕</Text>}
-                  </Pressable>
-                </Animated.View>
-              );
-            })}
-          </View>
-            </>
-          )}
+                {/* Options */}
+                <View style={styles.options}>
+                  {q.options.map((opt, i) => {
+                    const isCorrect = answered && opt === q.correct;
+                    const isWrong = answered && opt === picked && opt !== q.correct;
+                    const isPicked = answered && opt === picked;
+                    return (
+                      // rise={0}: the body wrapper above already provides the upward
+                      // travel for this whole group. Nesting a second one would stack
+                      // the transforms and overshoot the 8-16px band, so the options
+                      // contribute only the staggered fade.
+                      // Keyed by question index so the cascade replays per question
+                      // rather than only on the first.
+                      <FadeInUp key={`${idx}-${opt}`} rise={0} delay={staggerDelay(i)}>
+                        <Animated.View
+                          style={isPicked ? { transform: [{ scale: pickAnim }] } : null}
+                        >
+                          <Pressable
+                            onPress={() => choose(opt)}
+                            style={[
+                              styles.option,
+                              isCorrect && styles.optionCorrect,
+                              isWrong && styles.optionWrong,
+                            ]}
+                          >
+                            <Text
+                              style={[
+                                styles.optionText,
+                                // Resolved options fill with a bright success/error — dark
+                                // ink on top, not white, or the label washes out.
+                                (isCorrect || isWrong) && {
+                                  color: colors.navyDeep,
+                                  fontWeight: "800",
+                                },
+                              ]}
+                            >
+                              {opt}
+                            </Text>
+                            {isCorrect && <Text style={styles.optionMark}>✓</Text>}
+                            {isWrong && <Text style={styles.optionMark}>✕</Text>}
+                          </Pressable>
+                        </Animated.View>
+                      </FadeInUp>
+                    );
+                  })}
+                </View>
+              </>
+            )}
           </Animated.View>
 
           {answered && (
@@ -347,27 +433,46 @@ const styles = StyleSheet.create({
   // instead of stretching the full width of a desktop window above it.
   topBar: {
     ...constrain.content,
-    flexDirection: "row", alignItems: "center", gap: spacing(1.25),
-    paddingHorizontal: spacing(2), paddingTop: spacing(1), paddingBottom: spacing(1.5),
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing(1.25),
+    paddingHorizontal: spacing(2),
+    paddingTop: spacing(1),
+    paddingBottom: spacing(1.5),
   },
   exit: { fontSize: 22, color: colors.muted, width: 28 },
   progressTrack: {
-    flex: 1, height: 12, borderRadius: radius.pill, backgroundColor: colors.navy, overflow: "hidden",
+    flex: 1,
+    height: 12,
+    borderRadius: radius.pill,
+    backgroundColor: colors.navy,
+    overflow: "hidden",
   },
   progressFill: { height: "100%", borderRadius: radius.pill },
   streakPill: {
-    backgroundColor: colors.surface, borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...depth(3),
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing(1.5),
+    paddingVertical: spacing(0.75),
+    ...depth(3),
   },
   streakText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
   soundPill: {
-    backgroundColor: colors.surface, borderRadius: radius.pill,
-    width: 34, height: 34, alignItems: "center", justifyContent: "center", ...depth(3),
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    width: 34,
+    height: 34,
+    alignItems: "center",
+    justifyContent: "center",
+    ...depth(3),
   },
   soundText: { fontSize: 14 },
   timerPill: {
-    backgroundColor: colors.surface, borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5), paddingVertical: spacing(0.75), ...depth(3),
+    backgroundColor: colors.surface,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing(1.5),
+    paddingVertical: spacing(0.75),
+    ...depth(3),
   },
   timerPillLow: { backgroundColor: colors.errorBg },
   timerText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
@@ -379,26 +484,50 @@ const styles = StyleSheet.create({
 
   media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(3) },
   flag: {
-    width: 260, height: 164, borderRadius: radius.md, backgroundColor: colors.surface, ...depth(5),
+    width: 260,
+    height: 164,
+    borderRadius: radius.md,
+    backgroundColor: colors.surface,
+    ...depth(5),
   },
   // The map stage is deep navy on every media type, so outlines and the world
   // map read as the lit subject rather than as chrome.
   shapeBox: {
-    width: 260, height: 210, backgroundColor: colors.navy, borderRadius: radius.md,
-    padding: spacing(2), ...depth(5),
+    width: 260,
+    height: 210,
+    backgroundColor: colors.navy,
+    borderRadius: radius.md,
+    padding: spacing(2),
+    ...depth(5),
   },
   mapBox: {
-    width: "100%", height: 300, backgroundColor: colors.navy, borderRadius: radius.md,
-    overflow: "hidden", marginBottom: spacing(2), ...depth(5),
+    width: "100%",
+    height: 300,
+    backgroundColor: colors.navy,
+    borderRadius: radius.md,
+    overflow: "hidden",
+    marginBottom: spacing(2),
+    ...depth(5),
   },
   // The accent border is applied per-mode at the call site, which restates
   // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
   // flatten this depth edge back to the accent.
   capitalBadge: {
-    borderWidth: 2, borderRadius: radius.lg, paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4), backgroundColor: colors.surface, alignItems: "center", ...depth(5),
+    borderWidth: 2,
+    borderRadius: radius.lg,
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4),
+    backgroundColor: colors.surface,
+    alignItems: "center",
+    ...depth(5),
   },
-  capitalGlyph: { fontSize: 11, fontWeight: "900", letterSpacing: 1.4, textTransform: "uppercase", marginBottom: 6 },
+  capitalGlyph: {
+    fontSize: 11,
+    fontWeight: "900",
+    letterSpacing: 1.4,
+    textTransform: "uppercase",
+    marginBottom: 6,
+  },
   capitalName: { fontSize: 30, fontWeight: "900", color: colors.headline },
 
   options: { gap: spacing(1.5) },
@@ -406,9 +535,14 @@ const styles = StyleSheet.create({
   // from where the eye lands and makes four options read as a wall.
   option: {
     ...constrain.action,
-    flexDirection: "row", alignItems: "center", justifyContent: "space-between",
-    backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: spacing(2),
-    paddingHorizontal: spacing(2), ...depth(),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(2),
+    ...depth(),
   },
   optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.navyDeep },
   optionWrong: { backgroundColor: colors.error, borderBottomColor: colors.navyDeep },
@@ -431,7 +565,13 @@ const styles = StyleSheet.create({
   contextCountry: { ...type.h2, marginTop: spacing(0.5), marginBottom: spacing(0.75) },
   contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 21 },
   contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1.25) },
-  nextBtn: { ...constrain.action, borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center", ...depth(5, colors.navyDeep) },
+  nextBtn: {
+    ...constrain.action,
+    borderRadius: radius.md,
+    paddingVertical: spacing(2),
+    alignItems: "center",
+    ...depth(5, colors.navyDeep),
+  },
   nextBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
 
   resultWrap: { flex: 1, backgroundColor: colors.bg },
@@ -439,26 +579,39 @@ const styles = StyleSheet.create({
   // The score sits on the mode's accent as one solid slab — the payoff moment
   // gets the loudest surface in the app.
   resultCard: {
-    width: "100%", alignItems: "center", borderRadius: radius.lg,
-    paddingVertical: spacing(3.5), marginBottom: spacing(3.5), ...depth(6, colors.navyDeep),
+    width: "100%",
+    alignItems: "center",
+    borderRadius: radius.lg,
+    paddingVertical: spacing(3.5),
+    marginBottom: spacing(3.5),
+    ...depth(6, colors.navyDeep),
   },
   resultKicker: {
-    ...type.pill, fontSize: 11, textTransform: "uppercase", letterSpacing: 1.6,
-    color: colors.navyDeep, opacity: 0.7,
+    ...type.pill,
+    fontSize: 11,
+    textTransform: "uppercase",
+    letterSpacing: 1.6,
+    color: colors.navyDeep,
+    opacity: 0.7,
   },
   resultScore: { fontSize: 68, fontWeight: "900", color: colors.navyDeep, marginTop: spacing(0.5) },
   resultPct: { ...type.h2, color: colors.navyDeep, opacity: 0.75, marginBottom: spacing(2) },
   xpPill: {
-    backgroundColor: colors.navyDeep, borderRadius: radius.pill,
-    paddingHorizontal: spacing(2.5), paddingVertical: spacing(1),
+    backgroundColor: colors.navyDeep,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing(2.5),
+    paddingVertical: spacing(1),
   },
   xpPillText: { color: colors.headline, fontWeight: "900", fontSize: 16 },
 
   reviewHeading: { ...type.section, alignSelf: "flex-start", marginBottom: spacing(1.5) },
   reviewList: { width: "100%", gap: spacing(1.5), marginBottom: spacing(3) },
   reviewCard: {
-    backgroundColor: colors.surface, borderRadius: radius.md,
-    padding: spacing(2), gap: spacing(1), ...depth(),
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    padding: spacing(2),
+    gap: spacing(1),
+    ...depth(),
   },
   reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(1) },
   reviewMark: { fontSize: 16, fontWeight: "900", width: 20 },
@@ -466,12 +619,20 @@ const styles = StyleSheet.create({
   reviewMarkWrong: { color: colors.error },
   reviewPrompt: { ...type.body, fontWeight: "800", flex: 1, color: colors.headline },
   reviewAnswer: { ...type.muted, fontSize: 13 },
-  reviewFact: { ...type.body, fontSize: 14, color: colors.muted, fontStyle: "italic", lineHeight: 20 },
+  reviewFact: {
+    ...type.body,
+    fontSize: 14,
+    color: colors.muted,
+    fontStyle: "italic",
+    lineHeight: 20,
+  },
 
   primaryBtn: {
     ...constrain.action,
     alignItems: "center",
-    borderRadius: radius.pill, paddingVertical: spacing(2), paddingHorizontal: spacing(5),
+    borderRadius: radius.pill,
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(5),
     ...depth(5, colors.navyDeep),
   },
   primaryBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
