@@ -12,7 +12,7 @@
 // manual pinch/drag moves the view away from that preset's framing.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, depth, constrain } from "../theme";
 import ExploreMap, { EXPLORE_MAP_VIEW } from "../components/ExploreMap";
 import { COUNTRY_PATHS } from "../data/worldMap";
 import { COUNTRIES } from "../data/countries";
@@ -293,27 +293,29 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         })}
       </View>
 
-      <View
-        style={styles.mapWrap}
-        ref={mapNodeRef}
-        onLayout={handleMapLayout}
-        {...(Platform.OS === "web" ? {} : panResponder.panHandlers)}
-      >
-        <View style={[styles.mapScale, { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] }]}>
-          <ExploreMap onSelect={onOpenCountry} />
-        </View>
-
-        {activeRegion !== null && (
-          <View style={styles.regionLabel} pointerEvents="none">
-            <Text style={styles.regionLabelText}>{activeRegion}</Text>
+      <View style={styles.mapOuter}>
+        <View
+          style={styles.mapWrap}
+          ref={mapNodeRef}
+          onLayout={handleMapLayout}
+          {...(Platform.OS === "web" ? {} : panResponder.panHandlers)}
+        >
+          <View style={[styles.mapScale, { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] }]}>
+            <ExploreMap onSelect={onOpenCountry} />
           </View>
-        )}
 
-        {!isReset && (
-          <Pressable onPress={resetView} hitSlop={8} style={styles.resetPill}>
-            <Text style={styles.resetPillText}>Reset view</Text>
-          </Pressable>
-        )}
+          {activeRegion !== null && (
+            <View style={styles.regionLabel} pointerEvents="none">
+              <Text style={styles.regionLabelText}>{activeRegion}</Text>
+            </View>
+          )}
+
+          {!isReset && (
+            <Pressable onPress={resetView} hitSlop={8} style={styles.resetPill}>
+              <Text style={styles.resetPillText}>Reset view</Text>
+            </Pressable>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -321,14 +323,16 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  // Chrome tracks the reading column; the map below gets the wider media cap.
+  back: { ...constrain.content, paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
-  header: { paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
   title: { ...type.hero, fontSize: 34 },
   subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
 
   regionRow: {
+    ...constrain.content,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: spacing(1),
@@ -348,6 +352,11 @@ const styles = StyleSheet.create({
 
   // The map stage is deep navy everywhere it appears (see QuizScreen's mapBox),
   // so the world reads as the lit subject rather than as chrome.
+  // The cap lives on mapOuter, not here: `width: 100%` and `marginHorizontal`
+  // together make the browser drop the margin, which would push the map flush
+  // against the screen edges on a phone. The wrapper takes the cap, this keeps
+  // the gutter, and both hold at every width.
+  mapOuter: { ...constrain.media, flex: 1 },
   mapWrap: {
     flex: 1,
     marginHorizontal: spacing(2.5),

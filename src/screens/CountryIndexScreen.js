@@ -4,7 +4,7 @@
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, depth, constrain } from "../theme";
 import { COUNTRIES } from "../data/countries";
 import { searchCountries, REGIONS } from "../game/countryIndex";
 
@@ -25,15 +25,17 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         <Text style={styles.subtitle}>{results.length} of {COUNTRIES.length} places</Text>
       </View>
 
-      <TextInput
-        style={styles.input}
-        value={query}
-        onChangeText={setQuery}
-        placeholder="Search by country or capital"
-        placeholderTextColor={colors.muted}
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+      <View style={styles.inputOuter}>
+        <TextInput
+          style={styles.input}
+          value={query}
+          onChangeText={setQuery}
+          placeholder="Search by country or capital"
+          placeholderTextColor={colors.muted}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+      </View>
 
       <View style={styles.regionRow}>
         {REGIONS.map((r) => {
@@ -74,15 +76,21 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  // Every element carries the cap itself: a FlatList has no single content
+  // wrapper to hang it on, so the chrome and the rows each center independently
+  // and end up sharing one column edge.
+  back: { ...constrain.content, paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
-  header: { paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
   title: { ...type.hero, fontSize: 34 },
   subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
 
   // Inset field: darker than the card layer, so it reads as carved in rather
   // than sitting on top like the slabs around it.
+  // Cap lives on inputOuter: `width: 100%` plus `marginHorizontal` makes the
+  // browser drop the margin, so the field would run edge-to-edge on a phone.
+  inputOuter: { ...constrain.content },
   input: {
     marginHorizontal: spacing(2.5),
     backgroundColor: colors.navy,
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
   },
 
   regionRow: {
+    ...constrain.content,
     flexDirection: "row",
     flexWrap: "wrap",
     gap: spacing(1),
@@ -114,6 +123,7 @@ const styles = StyleSheet.create({
 
   list: { paddingHorizontal: spacing(2.5), paddingBottom: spacing(6) },
   row: {
+    ...constrain.content,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.surface,

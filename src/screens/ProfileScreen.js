@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image, ActivityIndicator, ScrollView } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
+import Container from "../components/Container";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchProgress } from "../storage/cloudProgress";
 import { streakStatus, dayKey } from "../game/progress";
@@ -52,54 +53,56 @@ function SignedIn({ user, localProgress, onSignOut, onOpenInterests }) {
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      <Text style={styles.kicker}>Your profile</Text>
+      <Container>
+        <Text style={styles.kicker}>Your profile</Text>
 
-      <View style={styles.identity}>
-        <View style={styles.avatarDisc}>
-          {avatar ? (
-            <Image source={{ uri: avatar }} style={styles.avatar} />
+        <View style={styles.identity}>
+          <View style={styles.avatarDisc}>
+            {avatar ? (
+              <Image source={{ uri: avatar }} style={styles.avatar} />
+            ) : (
+              <Text style={styles.avatarInitial}>{initial}</Text>
+            )}
+          </View>
+          <View style={styles.identityBody}>
+            {!!name && <Text style={styles.name}>{name}</Text>}
+            <Text style={[styles.email, !name && styles.emailOnly]} numberOfLines={1}>
+              {user.email}
+            </Text>
+          </View>
+        </View>
+
+        <Text style={styles.section}>Your record</Text>
+        <View style={styles.stats}>
+          <Stat label="XP" value={stats.xp} />
+          <Stat label="Day streak" value={streak.count} />
+          <Stat label="Best round" value={stats.bestScore ? `${stats.bestScore}/8` : "—"} />
+        </View>
+
+        <View style={styles.syncRow}>
+          {syncing ? (
+            <ActivityIndicator color={colors.muted} size="small" />
           ) : (
-            <Text style={styles.avatarInitial}>{initial}</Text>
+            <Text style={styles.syncText}>✓ Synced — your progress is safe on every device.</Text>
           )}
         </View>
-        <View style={styles.identityBody}>
-          {!!name && <Text style={styles.name}>{name}</Text>}
-          <Text style={[styles.email, !name && styles.emailOnly]} numberOfLines={1}>
-            {user.email}
-          </Text>
-        </View>
-      </View>
 
-      <Text style={styles.section}>Your record</Text>
-      <View style={styles.stats}>
-        <Stat label="XP" value={stats.xp} />
-        <Stat label="Day streak" value={streak.count} />
-        <Stat label="Best round" value={stats.bestScore ? `${stats.bestScore}/8` : "—"} />
-      </View>
-
-      <View style={styles.syncRow}>
-        {syncing ? (
-          <ActivityIndicator color={colors.muted} size="small" />
-        ) : (
-          <Text style={styles.syncText}>✓ Synced — your progress is safe on every device.</Text>
+        {/* M2.3.6 step 1 preview — not a real entry point yet. Nothing selected
+            here is saved: that arrives with the pure catalog (step 2) and the
+            cloud-synced schema (steps 3-4). This row itself moves to a proper
+            "Interests" row once step 5 lands. */}
+        {onOpenInterests && (
+          <Pressable onPress={onOpenInterests} style={styles.interestsBtn}>
+            <Text style={styles.interestsText}>What are you curious about? (preview)</Text>
+          </Pressable>
         )}
-      </View>
 
-      {/* M2.3.6 step 1 preview — not a real entry point yet. Nothing selected
-          here is saved: that arrives with the pure catalog (step 2) and the
-          cloud-synced schema (steps 3-4). This row itself moves to a proper
-          "Interests" row once step 5 lands. */}
-      {onOpenInterests && (
-        <Pressable onPress={onOpenInterests} style={styles.interestsBtn}>
-          <Text style={styles.interestsText}>What are you curious about? (preview)</Text>
+        <Pressable onPress={onSignOut} style={styles.signOutBtn}>
+          <Text style={styles.signOutText}>Sign out</Text>
         </Pressable>
-      )}
 
-      <Pressable onPress={onSignOut} style={styles.signOutBtn}>
-        <Text style={styles.signOutText}>Sign out</Text>
-      </Pressable>
-
-      <Text style={styles.footer}>Signing out keeps this device's progress — it stays saved locally.</Text>
+        <Text style={styles.footer}>Signing out keeps this device's progress — it stays saved locally.</Text>
+      </Container>
     </ScrollView>
   );
 }

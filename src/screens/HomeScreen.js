@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
+import Container from "../components/Container";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
@@ -26,128 +27,130 @@ export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpe
 
   return (
     <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-      {/* Status strip — the numbers worth glancing at, above everything else.
-          Freezes only earn a pill when you actually have one. */}
-      <View style={styles.statusRow}>
-        <View style={styles.statusPill}>
-          <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
-          <Text style={styles.statusValue}>{streak.count}</Text>
-        </View>
-        <View style={styles.statusPill}>
-          <Text style={styles.statusGlyph}>✦</Text>
-          <Text style={styles.statusValue}>{progress.xp}</Text>
-          <Text style={styles.statusUnit}>XP</Text>
-        </View>
-        {streak.freezes > 0 && (
+      <Container>
+        {/* Status strip — the numbers worth glancing at, above everything else.
+            Freezes only earn a pill when you actually have one. */}
+        <View style={styles.statusRow}>
           <View style={styles.statusPill}>
-            <Text style={styles.statusGlyph}>❄️</Text>
-            <Text style={styles.statusValue}>{streak.freezes}</Text>
+            <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
+            <Text style={styles.statusValue}>{streak.count}</Text>
           </View>
-        )}
-      </View>
-
-      {/* Wordmark */}
-      <View style={styles.brandRow}>
-        <Text style={styles.wordmark}>Worldwise</Text>
-        <Text style={styles.brandTag}>geography</Text>
-      </View>
-      <Text style={styles.tagline}>Learn the world through curiosity.</Text>
-
-      {/* Streak nudge */}
-      <View style={styles.streakBanner}>
-        <Text style={styles.streakMsg}>{streakMsg}</Text>
-        <Text style={styles.streakBest}>
-          Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
-        </Text>
-      </View>
-
-      {/* Today */}
-      <Text style={styles.section}>Today</Text>
-      <Pressable
-        onPress={() => onPlay(FEATURED, difficulty, timed)}
-        style={[styles.heroCard, { backgroundColor: featured.accent }]}
-      >
-        <Text style={styles.heroKicker}>Daily challenge</Text>
-        <Text style={styles.heroTitle}>{featured.icon}  A mixed round,{"\n"}every day</Text>
-        <View style={styles.heroCta}>
-          <Text style={styles.heroCtaText}>PLAY</Text>
+          <View style={styles.statusPill}>
+            <Text style={styles.statusGlyph}>✦</Text>
+            <Text style={styles.statusValue}>{progress.xp}</Text>
+            <Text style={styles.statusUnit}>XP</Text>
+          </View>
+          {streak.freezes > 0 && (
+            <View style={styles.statusPill}>
+              <Text style={styles.statusGlyph}>❄️</Text>
+              <Text style={styles.statusValue}>{streak.freezes}</Text>
+            </View>
+          )}
         </View>
-      </Pressable>
 
-      {/* Games */}
-      <Text style={styles.section}>All games</Text>
-      <View style={styles.grid}>
-        {GAME_GRID.map((key) => {
-          const m = MODES[key];
-          return (
-            <Pressable key={key} onPress={() => onPlay(key, difficulty, timed)} style={styles.tile}>
-              <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
-                <Text style={styles.tileGlyph}>{m.icon}</Text>
-              </View>
-              <Text style={styles.tileTitle}>{m.title}</Text>
-              <Text style={styles.tileBlurb}>{m.blurb}</Text>
-            </Pressable>
-          );
-        })}
+        {/* Wordmark */}
+        <View style={styles.brandRow}>
+          <Text style={styles.wordmark}>Worldwise</Text>
+          <Text style={styles.brandTag}>geography</Text>
+        </View>
+        <Text style={styles.tagline}>Learn the world through curiosity.</Text>
 
-        {/* M2.2 step 5b — the browsable country index, a real entry point
-            replacing the earlier "Explore Brazil" preview. It shares the grid
-            with the games because browsing is a peer of playing, not a footnote. */}
-        {onOpenCountryIndex && (
-          <Pressable onPress={onOpenCountryIndex} style={styles.tile}>
-            <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
-              <Text style={styles.tileGlyph}>🌍</Text>
-            </View>
-            <Text style={styles.tileTitle}>Explore</Text>
-            <Text style={styles.tileBlurb}>All 196 places, and why they matter</Text>
-          </Pressable>
-        )}
-
-        {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
-            country to open its page. No pan/zoom yet. Shares the neutral tile
-            treatment with the country index; both are exploring, not playing. */}
-        {onOpenWorldMap && (
-          <Pressable onPress={onOpenWorldMap} style={styles.tile}>
-            <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
-              <Text style={styles.tileGlyph}>🗺️</Text>
-            </View>
-            <Text style={styles.tileTitle}>World Map</Text>
-            <Text style={styles.tileBlurb}>Tap anywhere on the map to explore it</Text>
-          </Pressable>
-        )}
-      </View>
-
-      {/* Difficulty — a segmented control, so the whole choice reads at a glance. */}
-      <Text style={styles.section}>Difficulty</Text>
-      <View style={styles.segment}>
-        {DIFFICULTIES.map((d) => {
-          const active = d.key === difficulty;
-          return (
-            <Pressable
-              key={d.key}
-              onPress={() => setDifficulty(d.key)}
-              style={[styles.segmentItem, active && styles.segmentItemActive]}
-            >
-              <Text style={[styles.segmentText, active && styles.segmentTextActive]}>{d.label}</Text>
-            </Pressable>
-          );
-        })}
-      </View>
-      <Text style={styles.hint}>Applies to every game except Daily, which always mixes every tier.</Text>
-
-      {/* Timed mode */}
-      <Text style={styles.section}>Options</Text>
-      <Pressable onPress={() => setTimed((t) => !t)} style={[styles.toggle, timed && styles.toggleActive]}>
-        <Text style={[styles.toggleText, timed && styles.toggleTextActive]}>⏱  Timed mode</Text>
-        <View style={[styles.toggleState, timed && styles.toggleStateActive]}>
-          <Text style={[styles.toggleStateText, timed && styles.toggleStateTextActive]}>
-            {timed ? "ON" : "OFF"}
+        {/* Streak nudge */}
+        <View style={styles.streakBanner}>
+          <Text style={styles.streakMsg}>{streakMsg}</Text>
+          <Text style={styles.streakBest}>
+            Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
           </Text>
         </View>
-      </Pressable>
-      <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
 
-      <Text style={styles.footer}>Slickrock Studio · Phase 1 prototype</Text>
+        {/* Today */}
+        <Text style={styles.section}>Today</Text>
+        <Pressable
+          onPress={() => onPlay(FEATURED, difficulty, timed)}
+          style={[styles.heroCard, { backgroundColor: featured.accent }]}
+        >
+          <Text style={styles.heroKicker}>Daily challenge</Text>
+          <Text style={styles.heroTitle}>{featured.icon}  A mixed round,{"\n"}every day</Text>
+          <View style={styles.heroCta}>
+            <Text style={styles.heroCtaText}>PLAY</Text>
+          </View>
+        </Pressable>
+
+        {/* Games */}
+        <Text style={styles.section}>All games</Text>
+        <View style={styles.grid}>
+          {GAME_GRID.map((key) => {
+            const m = MODES[key];
+            return (
+              <Pressable key={key} onPress={() => onPlay(key, difficulty, timed)} style={styles.tile}>
+                <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
+                  <Text style={styles.tileGlyph}>{m.icon}</Text>
+                </View>
+                <Text style={styles.tileTitle}>{m.title}</Text>
+                <Text style={styles.tileBlurb}>{m.blurb}</Text>
+              </Pressable>
+            );
+          })}
+
+          {/* M2.2 step 5b — the browsable country index, a real entry point
+              replacing the earlier "Explore Brazil" preview. It shares the grid
+              with the games because browsing is a peer of playing, not a footnote. */}
+          {onOpenCountryIndex && (
+            <Pressable onPress={onOpenCountryIndex} style={styles.tile}>
+              <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
+                <Text style={styles.tileGlyph}>🌍</Text>
+              </View>
+              <Text style={styles.tileTitle}>Explore</Text>
+              <Text style={styles.tileBlurb}>All 196 places, and why they matter</Text>
+            </Pressable>
+          )}
+
+          {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
+              country to open its page. No pan/zoom yet. Shares the neutral tile
+              treatment with the country index; both are exploring, not playing. */}
+          {onOpenWorldMap && (
+            <Pressable onPress={onOpenWorldMap} style={styles.tile}>
+              <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
+                <Text style={styles.tileGlyph}>🗺️</Text>
+              </View>
+              <Text style={styles.tileTitle}>World Map</Text>
+              <Text style={styles.tileBlurb}>Tap anywhere on the map to explore it</Text>
+            </Pressable>
+          )}
+        </View>
+
+        {/* Difficulty — a segmented control, so the whole choice reads at a glance. */}
+        <Text style={styles.section}>Difficulty</Text>
+        <View style={styles.segment}>
+          {DIFFICULTIES.map((d) => {
+            const active = d.key === difficulty;
+            return (
+              <Pressable
+                key={d.key}
+                onPress={() => setDifficulty(d.key)}
+                style={[styles.segmentItem, active && styles.segmentItemActive]}
+              >
+                <Text style={[styles.segmentText, active && styles.segmentTextActive]}>{d.label}</Text>
+              </Pressable>
+            );
+          })}
+        </View>
+        <Text style={styles.hint}>Applies to every game except Daily, which always mixes every tier.</Text>
+
+        {/* Timed mode */}
+        <Text style={styles.section}>Options</Text>
+        <Pressable onPress={() => setTimed((t) => !t)} style={[styles.toggle, timed && styles.toggleActive]}>
+          <Text style={[styles.toggleText, timed && styles.toggleTextActive]}>⏱  Timed mode</Text>
+          <View style={[styles.toggleState, timed && styles.toggleStateActive]}>
+            <Text style={[styles.toggleStateText, timed && styles.toggleStateTextActive]}>
+              {timed ? "ON" : "OFF"}
+            </Text>
+          </View>
+        </Pressable>
+        <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
+
+        <Text style={styles.footer}>Slickrock Studio · Phase 1 prototype</Text>
+      </Container>
     </ScrollView>
   );
 }

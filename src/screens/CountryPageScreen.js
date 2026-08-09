@@ -6,7 +6,8 @@
 // degrading gracefully where content isn't authored yet.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import Container from "../components/Container";
 import { getCountryPage } from "../data/countryPages";
 import { fetchCountry } from "../data/contentSource";
 import { countryName } from "../data/countries";
@@ -89,89 +90,91 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
     <Animated.View style={[styles.wrap, screenStyle]}>
       <BackBar onExit={handleExit} onViewMap={onViewMap && handleViewMap} />
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Hero — the outline is the star, except for the handful of places
-            mapsicon has no vector for (see countries.js noOutline), where a
-            broken image would undercut the "maps are the hero" premise more
-            than a clean placeholder does. */}
-        <View style={styles.hero}>
-          <View style={styles.outlineBox}>
-            {page.noOutline ? (
-              <View style={styles.outlineFallback}>
-                <Text style={styles.outlineFallbackGlyph}>◇</Text>
-                <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
-              </View>
-            ) : (
-              <CountryOutline code={page.code} />
-            )}
+        <Container>
+          {/* Hero — the outline is the star, except for the handful of places
+              mapsicon has no vector for (see countries.js noOutline), where a
+              broken image would undercut the "maps are the hero" premise more
+              than a clean placeholder does. */}
+          <View style={styles.hero}>
+            <View style={styles.outlineBox}>
+              {page.noOutline ? (
+                <View style={styles.outlineFallback}>
+                  <Text style={styles.outlineFallbackGlyph}>◇</Text>
+                  <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
+                </View>
+              ) : (
+                <CountryOutline code={page.code} />
+              )}
+            </View>
           </View>
-        </View>
 
-        <Text style={styles.kicker}>{page.region.toUpperCase()}</Text>
-        <Text style={styles.name}>{page.name}</Text>
-        <Text style={styles.capital}>Capital · {page.capital}</Text>
+          <Text style={styles.kicker}>{page.region.toUpperCase()}</Text>
+          <Text style={styles.name}>{page.name}</Text>
+          <Text style={styles.capital}>Capital · {page.capital}</Text>
 
-        {/* Key facts */}
-        {(page.population || page.areaKm2) && (
-          <View style={styles.statsRow}>
-            {page.population ? <Stat value={compact(page.population)} label="People" /> : null}
-            {page.areaKm2 ? <Stat value={`${compact(page.areaKm2)} km²`} label="Area" /> : null}
-            {page.neighbors?.length ? <Stat value={String(page.neighbors.length)} label="Neighbors" /> : null}
-          </View>
-        )}
+          {/* Key facts */}
+          {(page.population || page.areaKm2) && (
+            <View style={styles.statsRow}>
+              {page.population ? <Stat value={compact(page.population)} label="People" /> : null}
+              {page.areaKm2 ? <Stat value={`${compact(page.areaKm2)} km²`} label="Area" /> : null}
+              {page.neighbors?.length ? <Stat value={String(page.neighbors.length)} label="Neighbors" /> : null}
+            </View>
+          )}
 
-        {/* The story */}
-        <View style={styles.card}>
-          <Text style={styles.summary}>{page.summary}</Text>
-        </View>
-
-        {/* Climate / trade / culture */}
-        {factRows.length > 0 && (
+          {/* The story */}
           <View style={styles.card}>
-            {factRows.map((f, i) => (
-              <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
-                <Text style={styles.factLabel}>{f.label}</Text>
-                <Text style={styles.factText}>{facts[f.key]}</Text>
-              </View>
-            ))}
+            <Text style={styles.summary}>{page.summary}</Text>
           </View>
-        )}
 
-        {/* Neighbors */}
-        {page.neighbors?.length > 0 && (
-          <>
-            <Text style={styles.section}>Borders</Text>
-            <View style={styles.chipWrap}>
-              {page.neighbors.map((nb) => (
-                <View key={nb} style={styles.chip}>
-                  <Text style={styles.chipText}>{countryName(nb)}</Text>
+          {/* Climate / trade / culture */}
+          {factRows.length > 0 && (
+            <View style={styles.card}>
+              {factRows.map((f, i) => (
+                <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
+                  <Text style={styles.factLabel}>{f.label}</Text>
+                  <Text style={styles.factText}>{facts[f.key]}</Text>
                 </View>
               ))}
             </View>
-          </>
-        )}
+          )}
 
-        {/* Related games */}
-        {relatedModes.length > 0 && onPlay && (
-          <>
-            <Text style={styles.section}>Play with {page.name}</Text>
-            <View style={styles.gameWrap}>
-              {relatedModes.map((m) => {
-                const meta = MODES[m];
-                return (
-                  <Pressable
-                    key={m}
-                    onPress={() => onPlay(m)}
-                    hitSlop={8}
-                    style={[styles.gameBtn, { backgroundColor: meta.accent }]}
-                  >
-                    <Text style={styles.gameIcon}>{meta.icon}</Text>
-                    <Text style={styles.gameBtnText}>{meta.title}</Text>
-                  </Pressable>
-                );
-              })}
-            </View>
-          </>
-        )}
+          {/* Neighbors */}
+          {page.neighbors?.length > 0 && (
+            <>
+              <Text style={styles.section}>Borders</Text>
+              <View style={styles.chipWrap}>
+                {page.neighbors.map((nb) => (
+                  <View key={nb} style={styles.chip}>
+                    <Text style={styles.chipText}>{countryName(nb)}</Text>
+                  </View>
+                ))}
+              </View>
+            </>
+          )}
+
+          {/* Related games */}
+          {relatedModes.length > 0 && onPlay && (
+            <>
+              <Text style={styles.section}>Play with {page.name}</Text>
+              <View style={styles.gameWrap}>
+                {relatedModes.map((m) => {
+                  const meta = MODES[m];
+                  return (
+                    <Pressable
+                      key={m}
+                      onPress={() => onPlay(m)}
+                      hitSlop={8}
+                      style={[styles.gameBtn, { backgroundColor: meta.accent }]}
+                    >
+                      <Text style={styles.gameIcon}>{meta.icon}</Text>
+                      <Text style={styles.gameBtnText}>{meta.title}</Text>
+                    </Pressable>
+                  );
+                })}
+              </View>
+            </>
+          )}
+        </Container>
       </ScrollView>
     </Animated.View>
   );
@@ -203,7 +206,10 @@ function Stat({ value, label }) {
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
+  // Constrained like the content below it, so Back and "View on map" sit at the
+  // column's edges on a wide screen rather than drifting out to the viewport's.
   topBar: {
+    ...constrain.content,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

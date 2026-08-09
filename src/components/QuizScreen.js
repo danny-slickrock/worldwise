@@ -3,7 +3,8 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View, Text, StyleSheet, Pressable, Image, ScrollView, Animated,
 } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import Container from "./Container";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { flagUrl } from "../data/countries";
@@ -155,36 +156,38 @@ export default function QuizScreen({
     const pct = Math.round((score / questions.length) * 100);
     return (
       <ScrollView style={styles.resultWrap} contentContainerStyle={styles.resultContent} showsVerticalScrollIndicator={false}>
-        <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
-          <Text style={styles.resultKicker}>{meta.title}</Text>
-          <Text style={styles.resultScore}>{score}/{questions.length}</Text>
-          <Text style={styles.resultPct}>{pct}% correct</Text>
-          <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
-        </View>
+        <Container>
+          <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
+            <Text style={styles.resultKicker}>{meta.title}</Text>
+            <Text style={styles.resultScore}>{score}/{questions.length}</Text>
+            <Text style={styles.resultPct}>{pct}% correct</Text>
+            <View style={styles.xpPill}><Text style={styles.xpPillText}>+{xp} XP</Text></View>
+          </View>
 
-        <Text style={styles.reviewHeading}>Round review</Text>
-        <View style={styles.reviewList}>
-          {history.map((entry, i) => (
-            <View key={i} style={styles.reviewCard}>
-              <View style={styles.reviewRow}>
-                <Text style={[styles.reviewMark, entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong]}>
-                  {entry.isRight ? "✓" : "✕"}
-                </Text>
-                <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+          <Text style={styles.reviewHeading}>Round review</Text>
+          <View style={styles.reviewList}>
+            {history.map((entry, i) => (
+              <View key={i} style={styles.reviewCard}>
+                <View style={styles.reviewRow}>
+                  <Text style={[styles.reviewMark, entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong]}>
+                    {entry.isRight ? "✓" : "✕"}
+                  </Text>
+                  <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+                </View>
+                {!entry.isRight && (
+                  <Text style={styles.reviewAnswer}>
+                    You said {answerLabel(entry.question, entry.picked)} — the answer was {entry.question.correct}
+                  </Text>
+                )}
+                <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
               </View>
-              {!entry.isRight && (
-                <Text style={styles.reviewAnswer}>
-                  You said {answerLabel(entry.question, entry.picked)} — the answer was {entry.question.correct}
-                </Text>
-              )}
-              <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
-            </View>
-          ))}
-        </View>
+            ))}
+          </View>
 
-        <Pressable style={[styles.primaryBtn, { backgroundColor: meta.accent }]} onPress={onExit}>
-          <Text style={styles.primaryBtnText}>Back to games</Text>
-        </Pressable>
+          <Pressable style={[styles.primaryBtn, { backgroundColor: meta.accent }]} onPress={onExit}>
+            <Text style={styles.primaryBtnText}>Back to games</Text>
+          </Pressable>
+        </Container>
       </ScrollView>
     );
   }
@@ -216,121 +219,123 @@ export default function QuizScreen({
       </View>
 
       <ScrollView contentContainerStyle={styles.body} showsVerticalScrollIndicator={false}>
-        <Animated.View
-          style={{
-            opacity: bodyAnim,
-            transform: [{ translateY: bodyAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
-          }}
-        >
-        <Text style={styles.counter}>
-          Question {idx + 1} of {questions.length}
-          {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
-        </Text>
-        <Text style={styles.prompt}>{q.prompt}</Text>
+        <Container>
+          <Animated.View
+            style={{
+              opacity: bodyAnim,
+              transform: [{ translateY: bodyAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
+            }}
+          >
+          <Text style={styles.counter}>
+            Question {idx + 1} of {questions.length}
+            {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
+          </Text>
+          <Text style={styles.prompt}>{q.prompt}</Text>
 
-        {/* Country Locator: the map is both prompt media and answer surface. */}
-        {mode === "locator" ? (
-          <View style={styles.mapBox}>
-            <WorldMap
-              choices={q.choices}
-              correctCode={q.correct}
-              pickedCode={picked}
-              answered={answered}
-              onPick={choose}
-            />
+          {/* Country Locator: the map is both prompt media and answer surface. */}
+          {mode === "locator" ? (
+            <View style={styles.mapBox}>
+              <WorldMap
+                choices={q.choices}
+                correctCode={q.correct}
+                pickedCode={picked}
+                answered={answered}
+                onPick={choose}
+              />
+            </View>
+          ) : (
+            <>
+          {/* Prompt media */}
+          <View style={styles.media}>
+            {q.type === "flag" && (
+              <Image source={{ uri: flagUrl(q.country.code) }} style={styles.flag} resizeMode="contain" />
+            )}
+            {q.type === "shape" && (
+              <View style={styles.shapeBox}>
+                <CountryOutline code={q.country.code} />
+              </View>
+            )}
+            {q.type === "capital" && (
+              <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
+                <Text style={[styles.capitalGlyph, { color: meta.accent }]}>{q.country.region}</Text>
+                <Text style={styles.capitalName}>{q.country.name}</Text>
+              </View>
+            )}
+            {q.type === "capitalReverse" && (
+              <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
+                <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
+                <Text style={styles.capitalName}>{q.country.capital}</Text>
+              </View>
+            )}
           </View>
-        ) : (
-          <>
-        {/* Prompt media */}
-        <View style={styles.media}>
-          {q.type === "flag" && (
-            <Image source={{ uri: flagUrl(q.country.code) }} style={styles.flag} resizeMode="contain" />
-          )}
-          {q.type === "shape" && (
-            <View style={styles.shapeBox}>
-              <CountryOutline code={q.country.code} />
-            </View>
-          )}
-          {q.type === "capital" && (
-            <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
-              <Text style={[styles.capitalGlyph, { color: meta.accent }]}>{q.country.region}</Text>
-              <Text style={styles.capitalName}>{q.country.name}</Text>
-            </View>
-          )}
-          {q.type === "capitalReverse" && (
-            <View style={[styles.capitalBadge, { borderColor: meta.accent, borderBottomColor: colors.lip }]}>
-              <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
-              <Text style={styles.capitalName}>{q.country.capital}</Text>
-            </View>
-          )}
-        </View>
 
-        {/* Options */}
-        <View style={styles.options}>
-          {q.options.map((opt) => {
-            const isCorrect = answered && opt === q.correct;
-            const isWrong = answered && opt === picked && opt !== q.correct;
-            const isPicked = answered && opt === picked;
-            return (
-              <Animated.View key={opt} style={isPicked ? { transform: [{ scale: pickAnim }] } : null}>
-                <Pressable
-                  onPress={() => choose(opt)}
-                  style={[
-                    styles.option,
-                    isCorrect && styles.optionCorrect,
-                    isWrong && styles.optionWrong,
-                  ]}
-                >
-                  <Text style={[
-                    styles.optionText,
-                    // Resolved options fill with a bright success/error — dark
-                    // ink on top, not white, or the label washes out.
-                    (isCorrect || isWrong) && { color: colors.navyDeep, fontWeight: "800" },
-                  ]}>{opt}</Text>
-                  {isCorrect && <Text style={styles.optionMark}>✓</Text>}
-                  {isWrong && <Text style={styles.optionMark}>✕</Text>}
-                </Pressable>
-              </Animated.View>
-            );
-          })}
-        </View>
-          </>
-        )}
-        </Animated.View>
+          {/* Options */}
+          <View style={styles.options}>
+            {q.options.map((opt) => {
+              const isCorrect = answered && opt === q.correct;
+              const isWrong = answered && opt === picked && opt !== q.correct;
+              const isPicked = answered && opt === picked;
+              return (
+                <Animated.View key={opt} style={isPicked ? { transform: [{ scale: pickAnim }] } : null}>
+                  <Pressable
+                    onPress={() => choose(opt)}
+                    style={[
+                      styles.option,
+                      isCorrect && styles.optionCorrect,
+                      isWrong && styles.optionWrong,
+                    ]}
+                  >
+                    <Text style={[
+                      styles.optionText,
+                      // Resolved options fill with a bright success/error — dark
+                      // ink on top, not white, or the label washes out.
+                      (isCorrect || isWrong) && { color: colors.navyDeep, fontWeight: "800" },
+                    ]}>{opt}</Text>
+                    {isCorrect && <Text style={styles.optionMark}>✓</Text>}
+                    {isWrong && <Text style={styles.optionMark}>✕</Text>}
+                  </Pressable>
+                </Animated.View>
+              );
+            })}
+          </View>
+            </>
+          )}
+          </Animated.View>
 
-        {answered && (
-          <View style={styles.feedback}>
-            <Text style={styles.feedbackText}>
-              {picked === TIMEOUT
-                ? "Time's up!"
-                : picked === q.correct
-                  ? "Nice."
-                  : mode === "locator"
-                    ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
-                    : `Answer: ${q.correct}`}
-            </Text>
-
-            {/* The point of the whole thing: the answer is the hook, this is the
-                payoff. Right or wrong, you leave every question knowing
-                something about the place — not just whether you guessed it. */}
-            <View style={styles.contextCard}>
-              <Text style={styles.contextKicker}>WHY IT MATTERS</Text>
-              <Text style={styles.contextCountry}>{q.country.name}</Text>
-              <Text style={styles.contextFact}>{whyItMatters(q.country)}</Text>
-              {onOpenCountry && (
-                <Pressable onPress={() => onOpenCountry(q.country.code)} hitSlop={8}>
-                  <Text style={styles.contextLink}>Learn more about {q.country.name} →</Text>
-                </Pressable>
-              )}
-            </View>
-
-            <Pressable style={[styles.nextBtn, { backgroundColor: meta.accent }]} onPress={next}>
-              <Text style={styles.nextBtnText}>
-                {idx + 1 >= questions.length ? "Finish" : "Next"}
+          {answered && (
+            <View style={styles.feedback}>
+              <Text style={styles.feedbackText}>
+                {picked === TIMEOUT
+                  ? "Time's up!"
+                  : picked === q.correct
+                    ? "Nice."
+                    : mode === "locator"
+                      ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
+                      : `Answer: ${q.correct}`}
               </Text>
-            </Pressable>
-          </View>
-        )}
+
+              {/* The point of the whole thing: the answer is the hook, this is the
+                  payoff. Right or wrong, you leave every question knowing
+                  something about the place — not just whether you guessed it. */}
+              <View style={styles.contextCard}>
+                <Text style={styles.contextKicker}>WHY IT MATTERS</Text>
+                <Text style={styles.contextCountry}>{q.country.name}</Text>
+                <Text style={styles.contextFact}>{whyItMatters(q.country)}</Text>
+                {onOpenCountry && (
+                  <Pressable onPress={() => onOpenCountry(q.country.code)} hitSlop={8}>
+                    <Text style={styles.contextLink}>Learn more about {q.country.name} →</Text>
+                  </Pressable>
+                )}
+              </View>
+
+              <Pressable style={[styles.nextBtn, { backgroundColor: meta.accent }]} onPress={next}>
+                <Text style={styles.nextBtnText}>
+                  {idx + 1 >= questions.length ? "Finish" : "Next"}
+                </Text>
+              </Pressable>
+            </View>
+          )}
+        </Container>
       </ScrollView>
     </View>
   );
@@ -338,7 +343,10 @@ export default function QuizScreen({
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
+  // Constrained like the question body, so the progress bar tracks the column
+  // instead of stretching the full width of a desktop window above it.
   topBar: {
+    ...constrain.content,
     flexDirection: "row", alignItems: "center", gap: spacing(1.25),
     paddingHorizontal: spacing(2), paddingTop: spacing(1), paddingBottom: spacing(1.5),
   },
@@ -394,7 +402,10 @@ const styles = StyleSheet.create({
   capitalName: { fontSize: 30, fontWeight: "900", color: colors.headline },
 
   options: { gap: spacing(1.5) },
+  // Capped and centered: a full-column answer row on desktop puts the label far
+  // from where the eye lands and makes four options read as a wall.
   option: {
+    ...constrain.action,
     flexDirection: "row", alignItems: "center", justifyContent: "space-between",
     backgroundColor: colors.surface, borderRadius: radius.md, paddingVertical: spacing(2),
     paddingHorizontal: spacing(2), ...depth(),
@@ -420,7 +431,7 @@ const styles = StyleSheet.create({
   contextCountry: { ...type.h2, marginTop: spacing(0.5), marginBottom: spacing(0.75) },
   contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 21 },
   contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1.25) },
-  nextBtn: { borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center", ...depth(5, colors.navyDeep) },
+  nextBtn: { ...constrain.action, borderRadius: radius.md, paddingVertical: spacing(2), alignItems: "center", ...depth(5, colors.navyDeep) },
   nextBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
 
   resultWrap: { flex: 1, backgroundColor: colors.bg },
@@ -458,6 +469,8 @@ const styles = StyleSheet.create({
   reviewFact: { ...type.body, fontSize: 14, color: colors.muted, fontStyle: "italic", lineHeight: 20 },
 
   primaryBtn: {
+    ...constrain.action,
+    alignItems: "center",
     borderRadius: radius.pill, paddingVertical: spacing(2), paddingHorizontal: spacing(5),
     ...depth(5, colors.navyDeep),
   },

@@ -75,6 +75,67 @@ export const type = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// Layout — how wide content is allowed to get.
+//
+// The app was built phone-first, so every surface stretched to the viewport. On
+// a desktop browser that turns a 44px button into a 1400px slab and a paragraph
+// into an unreadable single line. These caps turn the app into a centered column
+// on wide screens while changing nothing on a phone: a 390px device never
+// reaches even the narrowest cap, so mobile stays full-bleed by construction.
+//
+// Three widths rather than one, because they answer different questions:
+//   content — the reading column. Bounded by line length (~65-75 characters at
+//             our body size), not by taste.
+//   media   — maps and the outline hero. Maps are the hero, so they earn more
+//             room than text, but still stop short of sprawling on an ultrawide.
+//   action  — buttons and answer options. A button wider than this reads as a
+//             banner and pushes its label away from where the eye lands.
+export const layout = {
+  maxContentWidth: 520,
+  maxMediaWidth: 880,
+  maxActionWidth: 420,
+};
+
+// Prebuilt centering styles — static objects, so spreading them into a
+// StyleSheet entry or a style array allocates nothing per render.
+//
+// `alignSelf: center` is what does the centering: each of these sits on a child
+// of a column flex container (a ScrollView's content container, or a card
+// stack), where the cross axis is horizontal.
+export const constrain = {
+  content: { width: "100%", maxWidth: layout.maxContentWidth, alignSelf: "center" },
+  media: { width: "100%", maxWidth: layout.maxMediaWidth, alignSelf: "center" },
+  action: { width: "100%", maxWidth: layout.maxActionWidth, alignSelf: "center" },
+};
+
+// ---------------------------------------------------------------------------
+// Motion — one vocabulary for every entrance.
+//
+// Values match what QuizScreen and CountryPageScreen already do by hand (260ms
+// in, 200ms out, a ~16px rise), so adopting this primitive is a consolidation
+// rather than a second, competing motion language.
+//
+// Easing is stored as cubic-bezier control points instead of an RN `Easing`
+// object on purpose: theme.js is imported by test/engine.test.js, which runs in
+// plain Node, so a `react-native` import here would break the whole suite.
+// Components build the real easing with `Easing.bezier(...motion.easeOut)`.
+export const motion = {
+  duration: { fast: 180, base: 260, slow: 320 },
+  // How far content travels on the way in. Small enough to read as a settle
+  // rather than a slide — the fade does most of the work.
+  rise: 12,
+  // Gap between staggered siblings. Short: a cascade should feel like one
+  // gesture, not a queue. 45ms x 6 items = 270ms for the whole group.
+  stagger: 45,
+  // Cap on staggered position. Past this every remaining item shares the last
+  // delay, so a 196-country list can't schedule an 8-second cascade.
+  maxStaggerSteps: 6,
+  // Decelerating curve — fast out of the gate, soft landing. No overshoot:
+  // nothing here should bounce.
+  easeOut: [0.22, 1, 0.36, 1],
+};
+
 // The depth primitive, replacing the old blurred `shadow`. A solid bottom edge
 // makes every card and button read as a physical slab you can press. It's one
 // style object rather than a wrapper view, and unlike shadow/elevation it

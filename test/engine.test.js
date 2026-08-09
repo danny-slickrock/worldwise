@@ -34,7 +34,7 @@ import {
   resolveCountryContent,
 } from "../src/game/contentPolicy";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
-import { colors, contrastRatio } from "../src/theme";
+import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
@@ -942,6 +942,54 @@ async function contentResolverChecks() {
     "a failed cache write still returns the freshly fetched page"
   );
 }
+
+console.log("Layout + motion tokens");
+check(
+  layout.maxActionWidth <= layout.maxContentWidth && layout.maxContentWidth <= layout.maxMediaWidth,
+  "the width caps nest: action <= content <= media"
+);
+// A phone must never hit a cap, or the app stops being full-bleed on mobile.
+// What a cap actually competes with is the *content* width — the viewport minus
+// the screen's horizontal gutters — not the raw viewport. Widest common phone is
+// ~430pt (iPhone Pro Max), and screens pad by spacing(2.5) each side.
+const WIDEST_PHONE_CONTENT = 430 - spacing(2.5) * 2;
+check(
+  layout.maxActionWidth >= WIDEST_PHONE_CONTENT,
+  `the narrowest cap (${layout.maxActionWidth}) clears the widest phone's content width (${WIDEST_PHONE_CONTENT}), so mobile stays full-bleed`
+);
+check(
+  ["content", "media", "action"].every(
+    (k) => constrain[k].alignSelf === "center" && constrain[k].width === "100%"
+  ),
+  "every constrain style centers itself and fills the available width"
+);
+check(
+  ["content", "media", "action"].every((k) => constrain[k].maxWidth === layout[maxKey(k)]),
+  "each constrain style uses its matching layout token, not a copied number"
+);
+function maxKey(k) {
+  return `max${k[0].toUpperCase()}${k.slice(1)}Width`;
+}
+
+check(
+  Object.values(motion.duration).every((d) => d >= 180 && d <= 320),
+  "every entrance duration stays in the 180-320ms 'quick but not abrupt' band"
+);
+check(motion.rise >= 8 && motion.rise <= 16, "the entrance rise stays in the 8-16px band");
+check(
+  motion.stagger * motion.maxStaggerSteps <= 320,
+  "a full cascade finishes within one slow-duration window, so groups read as one gesture"
+);
+// theme.js is imported by this suite in plain Node. An RN Easing object here
+// would mean a `react-native` import in theme.js and take the whole suite down.
+check(
+  Array.isArray(motion.easeOut) && motion.easeOut.length === 4,
+  "easing is stored as bezier control points, keeping theme.js free of RN imports"
+);
+check(
+  motion.easeOut.every((n) => typeof n === "number") && motion.easeOut[3] <= 1,
+  "the easing curve decelerates without overshooting (no bounce)"
+);
 
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");
