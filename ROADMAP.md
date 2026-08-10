@@ -63,10 +63,12 @@ ways, and region maps (bounds/picker + the animate/label/manual-gesture polish p
 landed. **M2.3.5 — content backend** is next in sequence but is code-complete and blocked purely on
 Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
 until those land. **M2.3.6 — learner interests** has no such blocker on its own code and is the
-milestone with real autonomous headroom. Step 1 (the interest-prompt screen) is now done; **next up
-is step 2 — the pure catalog + policy module** (`src/data/interests.js` +
-`src/game/interestPolicy.js`), which needs nothing from Danny either. The Phase 1 backlog below gets
-picked up opportunistically, not as a gate.
+milestone with real autonomous headroom. Step 1 (the interest-prompt screen) and step 2 (the pure
+catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`) are now done;
+**next up is step 3 — the `profile_interests` schema migration**, which is a migration-as-file
+(same pattern as M2.3.5) and doesn't need Danny either, though `npx supabase db reset` can't verify
+it locally until Docker Desktop is running (see DANNY TO DO). The Phase 1 backlog below gets picked
+up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -459,11 +461,18 @@ teaching *how the world works*, not just *where things are*.
        used): chips toggle independently and Continue returns to Home; Home and the signed-out
        Profile tab (no real account reachable in this sandbox) still render with no console errors,
        confirming no regression.
-    2. ☐ **The catalog, pure.** `src/data/interests.js` — slug + label + glyph per interest, ordered
+    2. ✅ **The catalog, pure.** `src/data/interests.js` — slug + label + glyph per interest, ordered
        for display. Store **stable slugs** (`"geopolitics"`), never display strings, so labels and
        ordering can change without a migration or a data backfill. `src/game/interestPolicy.js` stays
        pure and tested: validate a selection against the catalog, drop unknown slugs (an old client
        may send a retired one), and normalize order so two equivalent selections compare equal.
+       `InterestsScreen` now reads its chips from `INTERESTS` instead of an inline array, and its
+       selection state holds slugs, not labels; Continue now passes `normalizeInterests(selected)`
+       to `onContinue`. Nothing is persisted yet (that's steps 3-4), so this is purely tightening the
+       data the screen produces ahead of a schema landing. 11 checks in `test/engine.test.js`: catalog
+       shape (unique slugs, every entry has slug/label/glyph), slug validation, and normalization
+       (ordering, deduping, dropping unknown slugs, `null`/`undefined`/`[]` inputs). *(Next up: step
+       3 — the `profile_interests` schema migration.)*
     3. ☐ **Schema.** A `public.profile_interests` join table (`user_id`, `interest_slug`, `created_at`)
        rather than a `text[]` on `profiles` — interest-weighted retrieval in M2.9 becomes a plain SQL
        join, and "how many learners care about X" stays one `GROUP BY` instead of array gymnastics.

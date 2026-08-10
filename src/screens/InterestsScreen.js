@@ -3,32 +3,21 @@
 // weight to Continue on purpose: a skipped answer is a valid answer, not a
 // lesser path dressed up as a disabled button.
 //
-// The interest list is inline here for this first step. Step 2 moves it into
-// a pure, tested catalog (`src/data/interests.js` + `src/game/interestPolicy.js`)
-// that this screen will read from instead of its own array — nothing here is
+// Step 2 moved the interest list into a pure, tested catalog
+// (`src/data/interests.js`) and selection now normalizes through
+// `src/game/interestPolicy.js` before it leaves this screen — nothing is
 // persisted yet, that's steps 3-4.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
-
-const INTERESTS = [
-  "Economics",
-  "History",
-  "Agriculture",
-  "Military",
-  "Tourism",
-  "Geopolitics",
-  "Climate",
-  "Culture",
-  "Wildlife",
-  "Food",
-];
+import { INTERESTS } from "../data/interests";
+import { normalizeInterests } from "../game/interestPolicy";
 
 export default function InterestsScreen({ onSkip, onContinue }) {
   const [selected, setSelected] = useState([]);
 
-  function toggle(interest) {
-    setSelected((prev) => (prev.includes(interest) ? prev.filter((i) => i !== interest) : [...prev, interest]));
+  function toggle(slug) {
+    setSelected((prev) => (prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]));
   }
 
   return (
@@ -41,15 +30,15 @@ export default function InterestsScreen({ onSkip, onContinue }) {
 
       <View style={styles.grid}>
         {INTERESTS.map((interest) => {
-          const active = selected.includes(interest);
+          const active = selected.includes(interest.slug);
           return (
             <Pressable
-              key={interest}
-              onPress={() => toggle(interest)}
+              key={interest.slug}
+              onPress={() => toggle(interest.slug)}
               hitSlop={8}
               style={[styles.chip, active && styles.chipActive]}
             >
-              <Text style={[styles.chipText, active && styles.chipTextActive]}>{interest}</Text>
+              <Text style={[styles.chipText, active && styles.chipTextActive]}>{interest.label}</Text>
             </Pressable>
           );
         })}
@@ -59,7 +48,7 @@ export default function InterestsScreen({ onSkip, onContinue }) {
         <Pressable onPress={onSkip} style={styles.skipBtn}>
           <Text style={styles.skipText}>Skip</Text>
         </Pressable>
-        <Pressable onPress={() => onContinue(selected)} style={styles.continueBtn}>
+        <Pressable onPress={() => onContinue(normalizeInterests(selected))} style={styles.continueBtn}>
           <Text style={styles.continueText}>Continue</Text>
         </Pressable>
       </View>

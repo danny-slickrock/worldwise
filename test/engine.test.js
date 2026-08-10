@@ -34,6 +34,8 @@ import {
   resolveCountryContent,
 } from "../src/game/contentPolicy";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
+import { INTERESTS, INTEREST_SLUGS } from "../src/data/interests";
+import { isValidInterestSlug, normalizeInterests } from "../src/game/interestPolicy";
 import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
@@ -995,6 +997,35 @@ console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");
 check(computeXp(4) === 40, "4 correct => 40 XP (no bonus)");
 check(computeXp(8) === 80 + 20, "8 correct => 100 XP (with strong-round bonus)");
+
+console.log("Interests (M2.3.6 step 2)");
+const interestSlugSet = new Set(INTEREST_SLUGS);
+check(interestSlugSet.size === INTERESTS.length, "interest slugs are unique");
+check(
+  INTERESTS.every((i) => i.slug && i.label && i.glyph),
+  "every interest has a slug, label, and glyph"
+);
+check(isValidInterestSlug("history"), "isValidInterestSlug recognizes a real slug");
+check(!isValidInterestSlug("astrology"), "isValidInterestSlug rejects an unknown slug");
+check(
+  JSON.stringify(normalizeInterests(["food", "history"])) === JSON.stringify(["history", "food"]),
+  "normalizeInterests orders selections by catalog display order"
+);
+check(
+  JSON.stringify(normalizeInterests(["history", "food", "history"])) === JSON.stringify(["history", "food"]),
+  "normalizeInterests dedupes repeated slugs"
+);
+check(
+  JSON.stringify(normalizeInterests(["history", "astrology"])) === JSON.stringify(["history"]),
+  "normalizeInterests drops unknown slugs (e.g. a retired one from an old client)"
+);
+check(
+  JSON.stringify(normalizeInterests(["food", "history"])) === JSON.stringify(normalizeInterests(["history", "food"])),
+  "two equivalent selections in a different order normalize equal"
+);
+check(JSON.stringify(normalizeInterests(null)) === "[]", "normalizeInterests(null) is []");
+check(JSON.stringify(normalizeInterests(undefined)) === "[]", "normalizeInterests(undefined) is []");
+check(JSON.stringify(normalizeInterests([])) === "[]", "normalizeInterests([]) is []");
 
 // The only async section in the suite. Everything above is synchronous, so the
 // summary waits on just this one promise before deciding the exit code.
