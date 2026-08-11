@@ -64,11 +64,12 @@ landed. **M2.3.5 — content backend** is next in sequence but is code-complete 
 Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
 until those land. **M2.3.6 — learner interests** has no such blocker on its own code and is the
 milestone with real autonomous headroom. Step 1 (the interest-prompt screen) and step 2 (the pure
-catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`) are now done;
-**next up is step 3 — the `profile_interests` schema migration**, which is a migration-as-file
-(same pattern as M2.3.5) and doesn't need Danny either, though `npx supabase db reset` can't verify
-it locally until Docker Desktop is running (see DANNY TO DO). The Phase 1 backlog below gets picked
-up opportunistically, not as a gate.
+catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`) are now done, and
+step 3 (the `profile_interests` schema migration) has landed as a file — like M2.3.5's migration, it
+doesn't need Danny either, though `npx supabase db reset` can't verify it locally until Docker
+Desktop is running (see DANNY TO DO). **Next up is step 4 — the offline-first sync seam** (cache
+selections locally, then sync via the established `syncPolicy.js`/`cloudSync.js` path). The Phase 1
+backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -473,11 +474,18 @@ teaching *how the world works*, not just *where things are*.
        shape (unique slugs, every entry has slug/label/glyph), slug validation, and normalization
        (ordering, deduping, dropping unknown slugs, `null`/`undefined`/`[]` inputs). *(Next up: step
        3 — the `profile_interests` schema migration.)*
-    3. ☐ **Schema.** A `public.profile_interests` join table (`user_id`, `interest_slug`, `created_at`)
-       rather than a `text[]` on `profiles` — interest-weighted retrieval in M2.9 becomes a plain SQL
-       join, and "how many learners care about X" stays one `GROUP BY` instead of array gymnastics.
-       Migration-as-file with owner-only RLS **and explicit CRUD grants** (the grant-less-RLS trap
-       from M2.1 cost a debugging session once already).
+    3. ✅ **Schema.** `supabase/migrations/20260811130000_init_profile_interests.sql`:
+       `public.profile_interests` (`user_id`, `interest_slug`, `created_at`, composite primary key on
+       `(user_id, interest_slug)` so a re-selected slug upserts rather than duplicating) — a join table
+       rather than a `text[]` on `profiles`, so interest-weighted retrieval in M2.9 becomes a plain SQL
+       join and "how many learners care about X" stays one `GROUP BY` instead of array gymnastics. No
+       FK to a slugs table — the catalog (`src/data/interests.js`) is code, not data, and
+       `normalizeInterests()` already validates/drops unknown slugs client-side before a row is ever
+       written. Owner-only RLS (`auth.uid() = user_id`) **and explicit CRUD grants to `authenticated`**
+       (the grant-less-RLS trap from M2.1 cost a debugging session once already); `anon` gets nothing,
+       matching the rest of the user domain. Not yet applied to any Postgres, local or live —
+       `npx supabase db reset` needs Docker Desktop running (see DANNY TO DO), so this is unverified
+       against a real database until then. *(Next up: step 4 — the offline-first sync seam.)*
     4. ☐ **Offline-first + the merge seam.** Selections are cached locally first, then synced — same
        shape as progress. Reuse the established local→cloud path (`syncPolicy.js` decides the sink,
        `cloudSync.js` maps local ⇄ row) rather than inventing a second sync mechanism; a person who
