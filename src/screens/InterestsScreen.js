@@ -5,16 +5,18 @@
 //
 // Step 2 moved the interest list into a pure, tested catalog
 // (`src/data/interests.js`) and selection now normalizes through
-// `src/game/interestPolicy.js` before it leaves this screen — nothing is
-// persisted yet, that's steps 3-4.
+// `src/game/interestPolicy.js` before it leaves this screen. Step 4 wired
+// persistence (App.js caches locally, then syncs when signed in) — this
+// screen just seeds its chips from whatever was already picked, via
+// `initialSelected`.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, depth } from "../theme";
 import { INTERESTS } from "../data/interests";
 import { normalizeInterests } from "../game/interestPolicy";
 
-export default function InterestsScreen({ onSkip, onContinue }) {
-  const [selected, setSelected] = useState([]);
+export default function InterestsScreen({ initialSelected = [], onSkip, onContinue }) {
+  const [selected, setSelected] = useState(initialSelected);
 
   function toggle(slug) {
     setSelected((prev) => (prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]));

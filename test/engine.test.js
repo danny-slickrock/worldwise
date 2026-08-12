@@ -36,6 +36,12 @@ import {
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { INTERESTS, INTEREST_SLUGS } from "../src/data/interests";
 import { isValidInterestSlug, normalizeInterests } from "../src/game/interestPolicy";
+import {
+  interestRowsFromSlugs,
+  slugsFromInterestRows,
+  mergeInterests,
+  diffInterestRows,
+} from "../src/game/interestSync";
 import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
@@ -1026,6 +1032,59 @@ check(
 check(JSON.stringify(normalizeInterests(null)) === "[]", "normalizeInterests(null) is []");
 check(JSON.stringify(normalizeInterests(undefined)) === "[]", "normalizeInterests(undefined) is []");
 check(JSON.stringify(normalizeInterests([])) === "[]", "normalizeInterests([]) is []");
+
+console.log("Interests cloud sync (M2.3.6 step 4)");
+check(
+  JSON.stringify(interestRowsFromSlugs("user-1", ["food", "history"])) ===
+    JSON.stringify([
+      { user_id: "user-1", interest_slug: "history" },
+      { user_id: "user-1", interest_slug: "food" },
+    ]),
+  "interestRowsFromSlugs builds one row per slug, in catalog order"
+);
+check(
+  JSON.stringify(interestRowsFromSlugs("user-1", ["history", "astrology"])) ===
+    JSON.stringify([{ user_id: "user-1", interest_slug: "history" }]),
+  "interestRowsFromSlugs drops unknown slugs like normalizeInterests does"
+);
+check(
+  JSON.stringify(slugsFromInterestRows([{ interest_slug: "food" }, { interest_slug: "history" }])) ===
+    JSON.stringify(["history", "food"]),
+  "slugsFromInterestRows normalizes rows back into catalog order"
+);
+check(JSON.stringify(slugsFromInterestRows(null)) === "[]", "slugsFromInterestRows(null) is []");
+check(JSON.stringify(slugsFromInterestRows([])) === "[]", "slugsFromInterestRows([]) is []");
+
+check(
+  JSON.stringify(mergeInterests(["history"], ["food"])) === JSON.stringify(["history", "food"]),
+  "mergeInterests unions both sides rather than picking one"
+);
+check(
+  JSON.stringify(mergeInterests(["history"], ["history", "food"])) === JSON.stringify(["history", "food"]),
+  "mergeInterests dedupes a slug present on both sides"
+);
+check(JSON.stringify(mergeInterests(null, null)) === "[]", "mergeInterests with no data on either side is []");
+check(
+  JSON.stringify(mergeInterests(["history"], null)) === JSON.stringify(["history"]),
+  "mergeInterests with no cloud row keeps local interests as-is"
+);
+
+const noOpDiff = diffInterestRows(["history", "food"], ["food", "history"]);
+check(
+  noOpDiff.toAdd.length === 0 && noOpDiff.toRemove.length === 0,
+  "diffInterestRows is a no-op when current and desired are the same set"
+);
+const changedDiff = diffInterestRows(["history"], ["food"]);
+check(
+  JSON.stringify(changedDiff.toAdd) === JSON.stringify(["food"]) &&
+    JSON.stringify(changedDiff.toRemove) === JSON.stringify(["history"]),
+  "diffInterestRows adds the new slug and removes the dropped one, not both wholesale"
+);
+const emptyDesiredDiff = diffInterestRows(["history", "food"], []);
+check(
+  emptyDesiredDiff.toAdd.length === 0 && JSON.stringify(emptyDesiredDiff.toRemove) === JSON.stringify(["history", "food"]),
+  "diffInterestRows clears every row when the desired selection is empty (a skip)"
+);
 
 // The only async section in the suite. Everything above is synchronous, so the
 // summary waits on just this one promise before deciding the exit code.

@@ -15,6 +15,8 @@ import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress"
 import { roundSinks } from "./src/game/syncPolicy";
 import { loadProgress, saveProgress } from "./src/storage/progress";
 import { saveRoundResult, migrateLocalToCloud } from "./src/storage/cloudProgress";
+import { loadInterests, saveInterests } from "./src/storage/interests";
+import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloudInterests";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
@@ -42,19 +44,23 @@ function AppShell() {
   const [screen, setScreen] = useState({ name: "home", mode: null, difficulty: null, timed: false });
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  const [interests, setInterests] = useState([]);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     let active = true;
-    Promise.all([loadProgress(), loadSettings()]).then(([savedProgress, savedSettings]) => {
-      if (active) {
-        setProgress(savedProgress);
-        setSettings(savedSettings);
-        setHydrated(true);
+    Promise.all([loadProgress(), loadSettings(), loadInterests()]).then(
+      ([savedProgress, savedSettings, savedInterests]) => {
+        if (active) {
+          setProgress(savedProgress);
+          setSettings(savedSettings);
+          setInterests(savedInterests);
+          setHydrated(true);
+        }
       }
-    });
+    );
     return () => {
       active = false;
     };
@@ -70,6 +76,12 @@ function AppShell() {
     if (hydrated) saveSettings(settings);
   }, [hydrated, settings]);
 
+  // Same offline-first rule as progress: local is the cache, signed in or
+  // out, so a pick made before sign-up survives it.
+  useEffect(() => {
+    if (hydrated) saveInterests(interests);
+  }, [hydrated, interests]);
+
   // On sign-in, fold this device's progress into the cloud once (max-merge, so
   // a returning player can't lose their higher totals), then adopt what comes
   // back — from here cloud is the source of truth. Waits for hydration, or the
@@ -79,6 +91,21 @@ function AppShell() {
     let active = true;
     migrateLocalToCloud(user).then((result) => {
       if (active && result?.progress) setProgress(result.progress);
+    });
+    return () => {
+      active = false;
+    };
+  }, [user, hydrated]);
+
+  // Same merge-once-on-sign-in seam for interests, via its own migrated flag
+  // (cloudInterests.js's INTERESTS_MIGRATED_KEY) so it runs independently of
+  // the progress migration — a player can sign in long before ever touching
+  // the interests screen.
+  useEffect(() => {
+    if (!user || !hydrated) return undefined;
+    let active = true;
+    migrateLocalInterestsToCloud(user).then((result) => {
+      if (active && result?.interests) setInterests(result.interests);
     });
     return () => {
       active = false;
@@ -121,6 +148,19 @@ function AppShell() {
     } else {
       leaveOverlay();
     }
+  }
+
+  // Same sink rule as a finished round (roundSinks): local always gets the
+  // write, cloud only when there's a signed-in owner for the row.
+  function handleInterestsContinue(slugs) {
+    setInterests(slugs);
+    if (roundSinks(user).cloud) pushInterests(user, slugs);
+    leaveOverlay();
+  }
+  function handleInterestsSkip() {
+    setInterests([]);
+    if (roundSinks(user).cloud) pushInterests(user, []);
+    leaveOverlay();
   }
 
   function handleFinish(round) {
@@ -182,13 +222,18 @@ function AppShell() {
     );
   }
 
-  // M2.3.6 step 1 preview overlay — nothing is persisted from either Skip or
-  // Continue yet (that's steps 3-4), so both just return to Profile.
+  // M2.3.6 step 1 preview overlay — reachable from a temporary Profile row
+  // until step 5 adds the real entry points. Both Skip and Continue now
+  // persist (step 4): locally always, and to the cloud when signed in.
   if (screen.name === "interests") {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar style="light" />
-        <InterestsScreen onSkip={leaveOverlay} onContinue={leaveOverlay} />
+        <InterestsScreen
+          initialSelected={interests}
+          onSkip={handleInterestsSkip}
+          onContinue={handleInterestsContinue}
+        />
       </SafeAreaView>
     );
   }

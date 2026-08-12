@@ -63,13 +63,16 @@ ways, and region maps (bounds/picker + the animate/label/manual-gesture polish p
 landed. **M2.3.5 — content backend** is next in sequence but is code-complete and blocked purely on
 Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
 until those land. **M2.3.6 — learner interests** has no such blocker on its own code and is the
-milestone with real autonomous headroom. Step 1 (the interest-prompt screen) and step 2 (the pure
-catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`) are now done, and
-step 3 (the `profile_interests` schema migration) has landed as a file — like M2.3.5's migration, it
-doesn't need Danny either, though `npx supabase db reset` can't verify it locally until Docker
-Desktop is running (see DANNY TO DO). **Next up is step 4 — the offline-first sync seam** (cache
-selections locally, then sync via the established `syncPolicy.js`/`cloudSync.js` path). The Phase 1
-backlog below gets picked up opportunistically, not as a gate.
+milestone with real autonomous headroom. Step 1 (the interest-prompt screen), step 2 (the pure
+catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`), step 3 (the
+`profile_interests` schema migration — landed as a file; like M2.3.5's migration it doesn't need
+Danny either, though `npx supabase db reset` can't verify it locally until Docker Desktop is running,
+see DANNY TO DO), and step 4 (the offline-first sync seam — `storage/interests.js` as the local
+cache, `game/interestSync.js` as the pure row⇄slug mapping and merge/diff logic,
+`storage/cloudInterests.js` as the Supabase IO, wired into `App.js` alongside the existing
+progress-sync path) are now done. **Next up is step 5 — the real "Interests" entry point on
+Profile**, replacing the temporary preview row. The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -486,10 +489,25 @@ teaching *how the world works*, not just *where things are*.
        matching the rest of the user domain. Not yet applied to any Postgres, local or live —
        `npx supabase db reset` needs Docker Desktop running (see DANNY TO DO), so this is unverified
        against a real database until then. *(Next up: step 4 — the offline-first sync seam.)*
-    4. ☐ **Offline-first + the merge seam.** Selections are cached locally first, then synced — same
-       shape as progress. Reuse the established local→cloud path (`syncPolicy.js` decides the sink,
-       `cloudSync.js` maps local ⇄ row) rather than inventing a second sync mechanism; a person who
-       picks interests before signing in keeps them through sign-up.
+    4. ✅ **Offline-first + the merge seam.** `src/storage/interests.js` (AsyncStorage, same shape as
+       `storage/progress.js`) is the local cache, written on every selection change whether signed in
+       or out. `src/game/interestSync.js` stays pure (mirrors `cloudSync.js`): row⇄slug mapping,
+       `mergeInterests()` (union, not max — an interest is a binary pick, not a running total, so
+       neither device's picks get dropped), and `diffInterestRows()` so a cloud write touches only the
+       rows that actually changed. `src/storage/cloudInterests.js` is the IO sibling
+       (`fetchInterests`/`pushInterests`/`migrateLocalInterestsToCloud`), gated by its own
+       `INTERESTS_MIGRATED_KEY` — separate from progress's flag, since a player can sign in long
+       before ever opening the interests screen. `App.js` reuses `roundSinks(user).cloud` for the sink
+       decision rather than inventing a second policy function, hydrates/saves interests alongside
+       progress and settings, and runs the migration on sign-in the same way. `InterestsScreen` now
+       takes `initialSelected` so reopening it (once step 5 wires a real entry point) reflects whatever
+       was already picked, instead of always starting blank. 24 new checks in `test/engine.test.js`
+       for `interestSync.js`. Verified: `npm test`, `npm run typecheck`, `npm run lint`, and
+       `npm run build` are all green; a Playwright pass against a static export (placeholder Supabase
+       env, same workaround prior polish passes used) confirmed Home and the signed-out Profile tab
+       still render with no console errors — the actual cloud round trip needs a real account, which
+       this sandbox doesn't have. *(Next up: step 5 — the real "Interests" entry point on Profile,
+       replacing the temporary preview row.)*
     5. ☐ **Editable later.** An "Interests" row on the Profile tab opening the same component, so the
        answer is revisable and a skipper has a non-nagging way in. One surface, two entry points.
   - **Dependencies:** none beyond M2.1 (accounts), which is done — this does **not** need M2.3.5 and is

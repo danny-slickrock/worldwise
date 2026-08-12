@@ -73,14 +73,17 @@ src/
                            #   Since M2.3.5 this is the SEED SOURCE for Postgres and the offline
                            #   baseline — the same data, serving both ends
   data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback
+  data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
-  game/syncPolicy.js       # PURE: which sink gets a round; whether to migrate
+  game/syncPolicy.js       # PURE: which sink gets a round (or an interest write); whether to migrate
   game/contentSync.js      # PURE country-page ⇄ content.countries row mapping (both directions)
   game/contentPolicy.js    # PURE content cache: keys, content_version freshness, fallback resolver
+  game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
+  game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
@@ -90,6 +93,8 @@ src/
   lib/supabase.js          # Supabase client (env-configured; publishable key)
   storage/progress.js      # AsyncStorage progress cache
   storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
+  storage/interests.js     # M2.3.6: AsyncStorage interest-selection cache
+  storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Tappable SVG world map for the Country Locator (candidates/answer state)
   components/ExploreMap.js  # M2.3: tappable SVG world map for free exploration (no round/answer state)
@@ -110,9 +115,9 @@ test/engine.test.js        # Pure-logic tests (no RN imports)
 **The pure/IO split is the load-bearing convention.** `test/engine.test.js` runs in plain Node via
 tsx, so anything it imports must not reach React Native, expo, or the network. That's why each
 piece of cloud/auth logic is split in two: the *decision* is pure and tested (`cloudSync.js`,
-`syncPolicy.js`, `redirectPolicy.js`), and the *IO* sits beside it (`cloudProgress.js`,
-`redirect.js`). Put new logic on the pure side by default; a module that imports RN can't be
-tested here at all.
+`syncPolicy.js`, `redirectPolicy.js`, `interestSync.js`), and the *IO* sits beside it
+(`cloudProgress.js`, `redirect.js`, `cloudInterests.js`). Put new logic on the pure side by default;
+a module that imports RN can't be tested here at all.
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
 Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `daily` (a deterministic mixed round, seeded by date).
@@ -171,8 +176,11 @@ no longer has) are all shipped and verified in a real browser.
 
 **Next up:** M2.3.5 — content backend is code-complete but blocked purely on Danny's live-project
 steps (see below); M2.3.6 — learner interests has no such blocker on its own code, so it's the
-milestone with real autonomous headroom. Its step 1 (`src/screens/InterestsScreen.js`, the
-interest-prompt screen) is done; next up is step 2, the pure catalog + policy module.
+milestone with real autonomous headroom. Its step 1 (the interest-prompt screen), step 2 (the pure
+catalog + policy module), step 3 (the `profile_interests` schema migration), and step 4 (the
+offline-first sync seam — `storage/interests.js` local cache, `game/interestSync.js` pure row⇄slug
+mapping and merge/diff, `storage/cloudInterests.js` Supabase IO, wired into `App.js` the same way
+progress sync is) are all done; next up is step 5, the real "Interests" entry point on Profile.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
