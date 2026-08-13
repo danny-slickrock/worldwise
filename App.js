@@ -222,8 +222,9 @@ function AppShell() {
     );
   }
 
-  // M2.3.6 step 1 preview overlay — reachable from a temporary Profile row
-  // until step 5 adds the real entry points. Both Skip and Continue now
+  // M2.3.6 — opened from the "Interests" row on Profile (step 5), seeded with
+  // whatever's already selected so it doubles as the edit surface for a
+  // returning player, not just a first-visit prompt. Both Skip and Continue
   // persist (step 4): locally always, and to the cloud when signed in.
   if (screen.name === "interests") {
     return (
@@ -250,7 +251,7 @@ function AppShell() {
             onOpenWorldMap={openWorldMap}
           />
         ) : (
-          <ProfileScreen progress={progress} onOpenInterests={openInterests} />
+          <ProfileScreen progress={progress} interests={interests} onOpenInterests={openInterests} />
         )}
       </View>
       <TabBar tabs={TABS} active={tab} onSelect={setTab} />

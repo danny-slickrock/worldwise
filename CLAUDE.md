@@ -174,13 +174,16 @@ pass — animating the scale/pan jump via `lerpView()` in `src/game/mapZoom.js`,
 on the map, and clearing the active pill on a manual pinch/drag/wheel so it never claims a match it
 no longer has) are all shipped and verified in a real browser.
 
-**Next up:** M2.3.5 — content backend is code-complete but blocked purely on Danny's live-project
-steps (see below); M2.3.6 — learner interests has no such blocker on its own code, so it's the
-milestone with real autonomous headroom. Its step 1 (the interest-prompt screen), step 2 (the pure
-catalog + policy module), step 3 (the `profile_interests` schema migration), and step 4 (the
-offline-first sync seam — `storage/interests.js` local cache, `game/interestSync.js` pure row⇄slug
-mapping and merge/diff, `storage/cloudInterests.js` Supabase IO, wired into `App.js` the same way
-progress sync is) are all done; next up is step 5, the real "Interests" entry point on Profile.
+**Next up:** M2.3.6 — learner interests is now fully done end to end (prompt screen, pure catalog +
+policy module, `profile_interests` schema migration, the offline-first sync seam, and — as of the
+latest run — a real "Interests" settings row on Profile, replacing the temporary preview CTA, that
+shows a live selection summary and reopens `InterestsScreen` seeded with whatever's already picked).
+M2.3.5 — content backend remains code-complete but blocked purely on Danny's live-project steps (see
+below); no more code to write there until those land. With M2.3.6 done, M2.9 (the AI knowledge hub)
+is next in roadmap order, but its own DANNY TO DO lead-time items (Anthropic API key as an Edge
+Function secret, a spend cap, confirming the Supabase plan covers Edge Functions + pgvector, and
+picking an embedding model) aren't yet in place — check ROADMAP.md's DANNY TO DO section before
+starting its sub-checklist.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

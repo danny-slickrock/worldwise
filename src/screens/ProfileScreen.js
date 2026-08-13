@@ -18,7 +18,7 @@ import { fetchProgress } from "../storage/cloudProgress";
 import { streakStatus, dayKey } from "../game/progress";
 import SignInScreen from "./SignInScreen";
 
-export default function ProfileScreen({ progress, onOpenInterests }) {
+export default function ProfileScreen({ progress, interests, onOpenInterests }) {
   const { user, loading, signOut } = useAuth();
 
   if (loading) {
@@ -31,10 +31,18 @@ export default function ProfileScreen({ progress, onOpenInterests }) {
 
   if (!user) return <SignInScreen />;
 
-  return <SignedIn user={user} localProgress={progress} onSignOut={signOut} onOpenInterests={onOpenInterests} />;
+  return (
+    <SignedIn
+      user={user}
+      localProgress={progress}
+      interests={interests}
+      onSignOut={signOut}
+      onOpenInterests={onOpenInterests}
+    />
+  );
 }
 
-function SignedIn({ user, localProgress, onSignOut, onOpenInterests }) {
+function SignedIn({ user, localProgress, interests = [], onSignOut, onOpenInterests }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
   const [stats, setStats] = useState(localProgress);
@@ -101,14 +109,19 @@ function SignedIn({ user, localProgress, onSignOut, onOpenInterests }) {
             )}
           </View>
 
-          {/* M2.3.6 step 1 preview — not a real entry point yet. Nothing selected
-              here is saved: that arrives with the pure catalog (step 2) and the
-              cloud-synced schema (steps 3-4). This row itself moves to a proper
-              "Interests" row once step 5 lands. */}
           {onOpenInterests && (
-            <Pressable onPress={onOpenInterests} style={styles.interestsBtn}>
-              <Text style={styles.interestsText}>What are you curious about? (preview)</Text>
-            </Pressable>
+            <>
+              <Text style={styles.section}>Preferences</Text>
+              <Pressable onPress={onOpenInterests} style={styles.interestsRow} hitSlop={4}>
+                <View style={styles.interestsBody}>
+                  <Text style={styles.interestsLabel}>Interests</Text>
+                  <Text style={styles.interestsValue}>
+                    {interests.length ? `${interests.length} selected` : "Not set — tap to choose"}
+                  </Text>
+                </View>
+                <Text style={styles.interestsChevron}>›</Text>
+              </Pressable>
+            </>
           )}
 
           <Pressable onPress={onSignOut} style={styles.signOutBtn}>
@@ -183,15 +196,20 @@ const styles = StyleSheet.create({
   syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(3.5) },
   syncText: { ...type.muted, fontSize: 13, color: colors.success },
 
-  interestsBtn: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+  interestsRow: {
+    flexDirection: "row",
     alignItems: "center",
-    marginBottom: spacing(1.25),
+    justifyContent: "space-between",
+    backgroundColor: colors.surface,
+    borderRadius: radius.lg,
+    padding: spacing(2),
+    marginBottom: spacing(3.5),
     ...depth(),
   },
-  interestsText: { ...type.body, fontWeight: "800", color: colors.teal },
+  interestsBody: { flex: 1 },
+  interestsLabel: { ...type.body, fontWeight: "800", color: colors.headline },
+  interestsValue: { ...type.muted, fontSize: 13, marginTop: 2 },
+  interestsChevron: { fontSize: 20, fontWeight: "900", color: colors.teal, marginLeft: spacing(1) },
 
   signOutBtn: {
     backgroundColor: colors.surface,

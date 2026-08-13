@@ -508,8 +508,26 @@ teaching *how the world works*, not just *where things are*.
        still render with no console errors — the actual cloud round trip needs a real account, which
        this sandbox doesn't have. *(Next up: step 5 — the real "Interests" entry point on Profile,
        replacing the temporary preview row.)*
-    5. ☐ **Editable later.** An "Interests" row on the Profile tab opening the same component, so the
-       answer is revisable and a skipper has a non-nagging way in. One surface, two entry points.
+    5. ✅ **Editable later.** The Profile tab's temporary "What are you curious about? (preview)" CTA
+       is now the real entry point: a "Preferences" section with an "Interests" settings row (label +
+       live summary — "Not set — tap to choose", or "N selected" — + a chevron), styled like the rest
+       of Profile's cards rather than a standalone pill button. `ProfileScreen` now takes an `interests`
+       prop (threaded from `App.js`'s existing state) purely to render that summary; opening the row
+       still calls the same `onOpenInterests` → `InterestsScreen` seam from step 1, now seeded via
+       `initialSelected` so a returning player sees their existing picks rather than a blank card —
+       the same component genuinely doubles as the edit surface, with no new persistence logic needed
+       since steps 3-4 already made both Skip and Continue write through. **M2.3.6 — learner interests
+       — is now fully done end to end** (prompt → catalog/policy → schema → offline-first sync →
+       Profile entry point). Verified: `npm test`, `npm run typecheck`, `npm run lint`, and
+       `npm run build` are all green; a Playwright pass against a static export (placeholder Supabase
+       env in a local, gitignored `.env` — the workaround prior polish passes used, this time via a
+       real `.env` file since inline shell-exported env vars weren't picked up by Expo's dotenv loader
+       here) confirmed Home and the signed-out Profile tab render with no console errors. The signed-in
+       Profile view — where the new Interests row actually renders — needs a real account, which this
+       sandbox doesn't have, so that path is unverified in a browser; it's covered by typecheck/lint
+       and mirrors the existing `Stat`/`identity` row patterns already used elsewhere on the same
+       screen. *(Next up: M2.9's own sub-checklist, once its DANNY TO DO lead-time items are in place —
+       see below. M2.3.5 remains blocked purely on Danny's live-project steps.)*
   - **Dependencies:** none beyond M2.1 (accounts), which is done — this does **not** need M2.3.5 and is
     deliberately placed before M2.9 only because that milestone consumes it. Pull it earlier if you want
     the signal accruing sooner; it's a small, self-contained milestone.
