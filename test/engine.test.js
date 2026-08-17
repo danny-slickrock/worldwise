@@ -33,6 +33,32 @@ import {
   isCacheFresh,
   resolveCountryContent,
 } from "../src/game/contentPolicy";
+import {
+  lngLatToVec,
+  vecToLngLat,
+  orientation,
+  rotate,
+  toScreen,
+  isVisible,
+  projectRing,
+  projectCountry,
+  ringsFromPath,
+  countryCenter,
+  pointsToPath,
+} from "../src/game/globeProjection";
+import {
+  DEFAULT_SPIN,
+  MAX_LATITUDE,
+  normalizeLng,
+  clampSpin,
+  spinFromDrag,
+  shortestLngDelta,
+  lerpSpin,
+  angleBetween,
+  groupSpin,
+  groupZoom,
+} from "../src/game/globeMotion";
+import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../src/data/worldGeo";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
 import { INTERESTS, INTEREST_SLUGS } from "../src/data/interests";
 import { isValidInterestSlug, normalizeInterests } from "../src/game/interestPolicy";
@@ -998,6 +1024,184 @@ check(
   motion.easeOut.every((n) => typeof n === "number") && motion.easeOut[3] <= 1,
   "the easing curve decelerates without overshooting (no bounce)"
 );
+
+console.log("Globe projection (M2.3.7)");
+const near = (a, b, eps = 1e-6) => Math.abs(a - b) < eps;
+const unit = ([x, y, z]) => near(Math.hypot(x, y, z), 1, 1e-9);
+
+check(unit(lngLatToVec(0, 0)) && unit(lngLatToVec(140, -71)), "lng/lat always maps to a unit vector");
+check(
+  near(lngLatToVec(0, 0)[0], 1) && near(lngLatToVec(0, 90)[2], 1),
+  "0°N 0°E points down +x and the north pole points up +z"
+);
+{
+  const [lng, lat] = vecToLngLat(lngLatToVec(-73.9, 40.7));
+  check(near(lng, -73.9, 1e-9) && near(lat, 40.7, 1e-9), "vecToLngLat inverts lngLatToVec exactly");
+}
+{
+  // The point you're looking at lands dead center of the disc, and its
+  // antipode is behind the globe. These two together are the whole projection.
+  const o = orientation(30, 45);
+  const front = rotate(lngLatToVec(30, 45), o);
+  const back = rotate(lngLatToVec(-150, -45), o);
+  check(near(front[0], 0) && near(front[1], 0) && near(front[2], 1), "the view center projects to the middle of the disc");
+  check(isVisible(front[2]) && !isVisible(back[2]), "the near face is visible and its antipode is not");
+  // A point exactly 90° out lands on the limb. Asserting which SIDE of the
+  // horizon it falls on would be asserting float noise — the dot product there
+  // is ±1e-17 — so the stable invariant is where it draws, plus the pure
+  // boundary rule that z of exactly 0 is hidden.
+  const grazing = toScreen(rotate(lngLatToVec(120, 0), o), { cx: 200, cy: 200, radius: 190 });
+  check(near(Math.hypot(grazing[0] - 200, grazing[1] - 200), 190, 1e-9), "a point 90° away projects exactly onto the limb");
+  check(!isVisible(0), "a point sitting exactly on the horizon counts as hidden");
+}
+check(
+  toScreen([0, 0], { cx: 200, cy: 200, radius: 190 })[1] === 200 &&
+    toScreen([0, 1], { cx: 200, cy: 200, radius: 190 })[1] === 10,
+  "screen y is flipped, so view-space up draws upward in SVG"
+);
+
+{
+  const view = { cx: 200, cy: 200, radius: 190 };
+  const ring = (pts) => {
+    const out = new Float64Array(pts.length * 3);
+    pts.forEach(([lng, lat], i) => {
+      const v = lngLatToVec(lng, lat);
+      out[i * 3] = v[0];
+      out[i * 3 + 1] = v[1];
+      out[i * 3 + 2] = v[2];
+    });
+    return out;
+  };
+  const facing = ring([[-5, -5], [5, -5], [5, 5], [-5, 5]]);
+  const behind = ring([[175, -5], [-175, -5], [-175, 5], [175, 5]]);
+  const straddling = ring([[80, -10], [110, -10], [110, 10], [80, 10]]);
+  const o = orientation(0, 0);
+
+  check(projectRing(facing, o, view)?.length === 4, "a ring fully facing the viewer projects every point");
+  check(projectRing(behind, o, view) === null, "a ring on the far side projects to nothing at all");
+  check(projectRing(ring([[0, 0], [1, 0]]), o, view) === null, "a degenerate ring of two points is dropped");
+  const clipped = projectRing(straddling, o, view);
+  check(clipped !== null && clipped.length > 4, "a ring crossing the horizon gains limb points rather than being dropped");
+  check(
+    clipped.every(([x, y]) => Math.hypot(x - view.cx, y - view.cy) <= view.radius + 1e-6),
+    "no projected point ever escapes the globe's disc"
+  );
+}
+
+{
+  // The exact inverse of the Day 4 projection (x = (lng+180)*2, y = (90-lat)*2),
+  // which is what lets the globe reuse worldMap.js instead of a second dataset.
+  const rings = ringsFromPath("M360 180L364 180L364 176Z");
+  check(rings.length === 1 && rings[0].length === 9, "ringsFromPath parses one ring of three points");
+  const [lng, lat] = vecToLngLat([rings[0][0], rings[0][1], rings[0][2]]);
+  check(near(lng, 0, 1e-9) && near(lat, 0, 1e-9), "map pixel 360,180 inverts to 0°N 0°E");
+  check(ringsFromPath("M0 0L1 1").length === 0, "a ring with too few points is skipped, not emitted broken");
+  check(ringsFromPath("M10 10L20 10L20 20ZM100 100L110 100L110 110Z").length === 2, "multi-ring paths split into separate rings");
+}
+{
+  const box = ringsFromPath("M356 176L364 176L364 184L356 184Z");
+  const center = countryCenter(box);
+  check(unit(center), "countryCenter returns a unit vector");
+  const [lng, lat] = vecToLngLat(center);
+  check(near(lng, 0, 1e-9) && near(lat, 0, 1e-9), "a ring centered on 0,0 has its center there too");
+  check(countryCenter([]) === null, "a country with no rings has no center");
+}
+check(pointsToPath([[1.04, 2.06], [3, 4], [5, 6]]) === "M1 2.1L3 4L5 6Z", "points round to 0.1px and close the path");
+check(pointsToPath([[1, 2]]) === null, "fewer than three points is not a path");
+
+console.log("Globe motion (M2.3.7)");
+check(normalizeLng(190) === -170 && normalizeLng(-190) === 170, "longitude wraps across the antimeridian");
+check(normalizeLng(180) === 180 && normalizeLng(-180) === 180, "the antimeridian normalizes to a single value");
+check(clampSpin({ lng: 0, lat: 120 }).lat === MAX_LATITUDE, "latitude clamps short of the pole so the globe can't flip");
+check(clampSpin({ lng: 540, lat: 0 }).lng === 180, "clampSpin folds a wound-up longitude back into range");
+check(shortestLngDelta(170, -170) === 20, "170°E to 170°W is 20° east, not 340° west");
+check(shortestLngDelta(-170, 170) === -20, "the short way is signed, so it works in both directions");
+check(near(lerpSpin({ lng: 170, lat: 0 }, { lng: -170, lat: 0 }, 0.5).lng, 180), "a tween across the antimeridian crosses the Pacific");
+{
+  const spun = spinFromDrag({ lng: 0, lat: 0 }, 190, 0, 190);
+  check(near(spun.lng, -90), "dragging one radius to the right spins the globe 90° west");
+  check(spinFromDrag({ lng: 0, lat: 80 }, 0, 400, 190).lat === MAX_LATITUDE, "a drag past the pole stops at the clamp");
+  check(
+    Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 380).lng) < Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 190).lng),
+    "the same drag rotates less when zoomed in, so the surface tracks the finger"
+  );
+}
+check(near(angleBetween(lngLatToVec(0, 0), lngLatToVec(90, 0)), 90), "angleBetween measures the arc in degrees");
+check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a vector against itself is 0°, not NaN");
+{
+  // The bug that already cost mapRegions.js a debugging pass: averaging
+  // lng/lat puts a group straddling the antimeridian at 0° — the wrong side
+  // of the planet. Averaging vectors cannot make that mistake.
+  const centers = { a: lngLatToVec(179, 0), b: lngLatToVec(-179, 0) };
+  check(Math.abs(groupSpin(["a", "b"], centers).lng) > 179, "a group straddling the antimeridian centers on 180°, not 0°");
+  check(groupSpin(["nope"], centers) === null, "a group with no known countries has no spin");
+  check(groupSpin(["a", "b", "c"], { ...centers, c: lngLatToVec(0, 0) }) !== null, "a partly-unknown group still resolves from its known members");
+}
+{
+  const centers = { a: lngLatToVec(0, 0), b: lngLatToVec(4, 0) };
+  const tight = groupZoom(["a", "b"], centers, groupSpin(["a", "b"], centers));
+  const wide = groupZoom(
+    ["a", "b"],
+    { a: lngLatToVec(0, 0), b: lngLatToVec(120, 0) },
+    groupSpin(["a", "b"], { a: lngLatToVec(0, 0), b: lngLatToVec(120, 0) })
+  );
+  check(tight > wide, "a tighter group frames at a closer zoom");
+  check(wide >= 1, "no group ever zooms out past the whole globe");
+  check(groupZoom(["nope"], centers, DEFAULT_SPIN) === 1, "an unknown group falls back to the world view");
+}
+
+console.log("Globe geometry over the real dataset (M2.3.7)");
+check(GLOBE_COUNTRY_CODES.length === Object.keys(COUNTRY_RINGS).length, "every country with rings is listed");
+check(GLOBE_COUNTRY_CODES.length > 160, "the globe carries the same ~167 countries the flat map does");
+check(
+  GLOBE_COUNTRY_CODES.every((code) => COUNTRY_CENTERS[code] && unit(COUNTRY_CENTERS[code])),
+  "every country resolves to a unit center vector"
+);
+{
+  // Brazil is south and west; Japan is north and east. If the inverse
+  // projection were flipped in either axis, one of these would land in the
+  // wrong hemisphere — the cheapest possible guard against a sign error.
+  const [brLng, brLat] = vecToLngLat(COUNTRY_CENTERS.br);
+  const [jpLng, jpLat] = vecToLngLat(COUNTRY_CENTERS.jp);
+  check(brLng < -40 && brLng > -70 && brLat < 0, "Brazil's center lands in the south-western hemisphere");
+  check(jpLng > 130 && jpLng < 145 && jpLat > 0, "Japan's center lands in the north-eastern hemisphere");
+}
+{
+  // The projection's one hard invariant, over all 8,190 real points at four
+  // orientations: nothing may draw outside the sphere's silhouette.
+  const view = { cx: 200, cy: 200, radius: 190 };
+  let drawn = 0;
+  let escaped = 0;
+  for (const [lng, lat] of [[0, 20], [100, 20], [-60, 10], [30, 60]]) {
+    const o = orientation(lng, lat);
+    for (const code of GLOBE_COUNTRY_CODES) {
+      for (const ring of COUNTRY_RINGS[code]) {
+        const pts = projectRing(ring, o, view);
+        if (!pts) continue;
+        drawn++;
+        for (const [x, y] of pts) {
+          if (Math.hypot(x - view.cx, y - view.cy) > view.radius + 0.05) escaped++;
+        }
+      }
+    }
+  }
+  check(drawn > 400, "the four sample orientations draw a substantial share of the world");
+  check(escaped === 0, "across every real country at four orientations, no point escapes the disc");
+}
+check(
+  projectCountry(COUNTRY_RINGS.ru, orientation(100, 55), { cx: 200, cy: 200, radius: 190 })?.startsWith("M"),
+  "Russia — the country that broke the flat map's bounding boxes — projects to a real path"
+);
+check(
+  projectCountry(COUNTRY_RINGS.br, orientation(140, 0), { cx: 200, cy: 200, radius: 190 }) === null,
+  "a country on the far side of the globe emits no path, so it can't be tapped through the sphere"
+);
+{
+  const codes = COUNTRIES.filter((c) => c.region === "Europe").map((c) => c.code);
+  const spin = groupSpin(codes, COUNTRY_CENTERS);
+  check(spin.lat > 30 && spin.lat < 65 && spin.lng > -15 && spin.lng < 40, "the Europe preset actually faces Europe");
+  check(groupZoom(codes, COUNTRY_CENTERS, spin, { min: 1, max: 4 }) > 1, "the Europe preset zooms in rather than staying at world view");
+}
 
 console.log("Scoring");
 check(computeXp(0) === 0, "0 correct => 0 XP");

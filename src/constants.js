@@ -62,3 +62,20 @@ export const MAP_TAP_LABEL_FONT_SIZE = 7;
 // return to the full World view) takes to animate, instead of cutting
 // straight to the new scale/pan.
 export const MAP_REGION_ANIMATION_MS = 320;
+
+// Globe (M2.3.7). The SVG viewBox is a fixed square and the sphere is drawn
+// inside it, so zoom grows the globe's radius rather than scaling the whole
+// canvas. That's what keeps borders and labels a constant thickness on screen
+// at every zoom level instead of fattening as you go in.
+export const GLOBE_VIEW_SIZE = 400;
+export const GLOBE_BASE_RADIUS = 190; // radius at zoom 1, inside GLOBE_VIEW_SIZE
+// Country borders, in viewBox units. Constant on screen at any zoom (see
+// above), so this is a true hairline rather than a value that needs scaling.
+export const GLOBE_BORDER_WIDTH = 0.5;
+// Countries whose widest angular span is under this many degrees get the same
+// enlarged tap target treatment the flat map gives micro-states.
+export const GLOBE_SMALL_COUNTRY_MAX_DEGREES = 3;
+export const GLOBE_SMALL_HIT_RADIUS = 6; // viewBox units
+// How long a region-pill spin takes. Longer than the flat map's jump because
+// a rotation covers more visual distance and reads better unhurried.
+export const GLOBE_SPIN_ANIMATION_MS = 520;

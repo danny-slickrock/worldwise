@@ -1,152 +1,168 @@
-// World Map explore screen (M2.3 step 1) — the first cut of the interactive
-// map: every country with map data is tappable, opening its country page via
-// the same overlay seam the country index uses. Reachable from Home.
+// World Map explore screen. Since M2.3.7 the surface is a GLOBE: an
+// orthographic projection of the sphere (see game/globeProjection.js), spun by
+// dragging and zoomed by pinch/wheel. Tapping a country still opens its page
+// through the same overlay seam the country index uses.
 //
-// M2.3 step 2a added zoom (pinch on native, wheel/trackpad on web), centered
-// on the box. Step 2b added drag-to-pan (single-finger on native, mouse-drag
-// on web). Step 2c clamped pan to the map's own bounds — see clampPan in
-// game/mapZoom.js for the math — and added a Reset button so a lost
-// pinch/drag always has a way back to the fitted view. Step 5.3 (this one)
-// animates a region-pill jump instead of cutting straight to it, labels the
-// active region on the map itself, and clears the active pill the moment a
-// manual pinch/drag moves the view away from that preset's framing.
+// What carried over from the flat map (M2.3 steps 1-5) and what didn't:
+//   · Gesture plumbing is unchanged — the 2-touch-only pinch claim, the
+//     drag-threshold before a single touch becomes a gesture, and the web
+//     mousedown/wheel listeners bound to the real DOM node all behave exactly
+//     as they did, including the window-bound click swallow that stops a drag
+//     released over a country from opening it.
+//   · Pan became SPIN. A flat map has edges to clamp against; a globe doesn't,
+//     so longitude wraps and only latitude clamps (game/globeMotion.js).
+//   · Region presets became ROTATIONS. Instead of a bounding box converted to
+//     scale/pan, each region resolves to the direction its countries sit in
+//     plus the zoom that frames their angular spread.
+//   · Zoom scalars (pinchScale/wheelZoom) are reused untouched from
+//     game/mapZoom.js — that math never cared about the projection.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } from "react-native";
 import { colors, spacing, radius, type, depth, constrain } from "../theme";
 import FadeInUp from "../components/FadeInUp";
-import ExploreMap, { EXPLORE_MAP_VIEW } from "../components/ExploreMap";
-import { COUNTRY_PATHS } from "../data/worldMap";
+import GlobeMap from "../components/GlobeMap";
+import { COUNTRY_CENTERS } from "../data/worldGeo";
 import { COUNTRIES } from "../data/countries";
 import {
   MAP_ZOOM_MIN,
   MAP_ZOOM_MAX,
   MAP_WHEEL_ZOOM_SPEED,
   MAP_DRAG_THRESHOLD,
-  MAP_REGION_ANIMATION_MS,
+  GLOBE_VIEW_SIZE,
+  GLOBE_BASE_RADIUS,
+  GLOBE_SPIN_ANIMATION_MS,
 } from "../constants";
-import { pinchScale, touchDistance, wheelZoom, dragPan, clampPan, lerpView } from "../game/mapZoom";
-import { MAP_REGIONS, regionBounds, regionView } from "../game/mapRegions";
+import { pinchScale, touchDistance, wheelZoom } from "../game/mapZoom";
+import { MAP_REGIONS } from "../game/mapRegions";
+import {
+  DEFAULT_SPIN,
+  spinFromDrag,
+  lerpSpin,
+  groupSpin,
+  groupZoom,
+  clampSpin,
+} from "../game/globeMotion";
 
-// Each region's own union bounding box (M2.3 step 5.2), computed once from
-// the static path data — same pattern as ExploreMap's SMALL_HIT_TARGETS.
-const REGION_BOUNDS = Object.fromEntries(
-  MAP_REGIONS.map((region) => [
-    region,
-    regionBounds(
-      COUNTRY_PATHS,
-      COUNTRIES.filter((c) => c.region === region).map((c) => c.code)
-    ),
-  ])
+// Each region's rotation target, resolved once at module load from its own
+// countries' center vectors — same precompute-from-static-data pattern the
+// flat map used for REGION_BOUNDS.
+const REGION_TARGETS = Object.fromEntries(
+  MAP_REGIONS.map((region) => {
+    const codes = COUNTRIES.filter((c) => c.region === region).map((c) => c.code);
+    const spin = groupSpin(codes, COUNTRY_CENTERS);
+    return [
+      region,
+      spin
+        ? { spin, zoom: groupZoom(codes, COUNTRY_CENTERS, spin, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX }) }
+        : null,
+    ];
+  })
 );
 
+const sameSpin = (a, b) => Math.abs(a.lng - b.lng) < 0.01 && Math.abs(a.lat - b.lat) < 0.01;
+
 export default function WorldMapScreen({ onExit, onOpenCountry }) {
-  const [scale, setScale] = useState(1);
-  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const [zoom, setZoom] = useState(1);
+  const [spin, setSpin] = useState(DEFAULT_SPIN);
   const [activeRegion, setActiveRegion] = useState(null);
-  const gesture = useRef({ mode: null, startDistance: 0, startScale: 1, startPan: { x: 0, y: 0 } });
+  const gesture = useRef({ mode: null, startDistance: 0, startZoom: 1, startSpin: DEFAULT_SPIN });
   const mapNodeRef = useRef(null);
-  const scaleRef = useRef(scale);
-  const panRef = useRef(pan);
+  const zoomRef = useRef(zoom);
+  const spinRef = useRef(spin);
   const boxSizeRef = useRef({ width: 0, height: 0 });
   const animationRef = useRef(null);
   useEffect(() => {
-    scaleRef.current = scale;
-  }, [scale]);
+    zoomRef.current = zoom;
+  }, [zoom]);
   useEffect(() => {
-    panRef.current = pan;
-  }, [pan]);
+    spinRef.current = spin;
+  }, [spin]);
   useEffect(() => () => animationRef.current?.stop(), []);
 
-  // Tweens scale/pan from their current values to a target over
-  // MAP_REGION_ANIMATION_MS, used by the region pills and Reset so a preset
-  // jump reads as a camera move rather than a cut. Drives plain scale/pan
-  // state (not a native-driven transform) because the refs it updates feed
-  // the same clamp math manual gestures use, so a pinch/drag started
-  // mid-animation still measures from the true current position.
-  const animateTo = (targetScale, targetPan) => {
+  // The globe's radius in SCREEN pixels — what a drag has to be measured
+  // against for the surface to track the finger. The SVG is a fixed square
+  // viewBox fitted into the box with preserveAspectRatio, so the conversion is
+  // the fit ratio times the radius the globe is drawn at inside that viewBox.
+  const screenRadius = () => {
+    const { width, height } = boxSizeRef.current;
+    const fit = Math.min(width || GLOBE_VIEW_SIZE, height || GLOBE_VIEW_SIZE) / GLOBE_VIEW_SIZE;
+    return GLOBE_BASE_RADIUS * zoomRef.current * fit;
+  };
+
+  // Tweens zoom and orientation to a target, used by the region pills and
+  // Reset so a preset reads as the globe turning rather than teleporting.
+  // lerpSpin takes the short way around the antimeridian; a naive lerp would
+  // spin the long way home from the Pacific.
+  const animateTo = (targetZoom, targetSpin) => {
     animationRef.current?.stop();
-    const start = { scale: scaleRef.current, pan: panRef.current };
-    const target = { scale: targetScale, pan: targetPan };
+    const startZoom = zoomRef.current;
+    const startSpin = spinRef.current;
     const progress = new Animated.Value(0);
     const id = progress.addListener(({ value }) => {
-      const next = lerpView(start, target, value);
-      scaleRef.current = next.scale;
-      panRef.current = next.pan;
-      setScale(next.scale);
-      setPan(next.pan);
+      const nextZoom = startZoom + (targetZoom - startZoom) * value;
+      const nextSpin = lerpSpin(startSpin, targetSpin, value);
+      zoomRef.current = nextZoom;
+      spinRef.current = nextSpin;
+      setZoom(nextZoom);
+      setSpin(nextSpin);
     });
     const anim = Animated.timing(progress, {
       toValue: 1,
-      duration: MAP_REGION_ANIMATION_MS,
+      duration: GLOBE_SPIN_ANIMATION_MS,
       useNativeDriver: false,
     });
     animationRef.current = { stop: () => progress.stopAnimation() };
     anim.start(({ finished }) => {
       progress.removeListener(id);
       // Snap to the exact target rather than trusting the last interpolated
-      // frame — isReset (and the World pill it drives) does an exact ===
-      // comparison, and float drift across the tween could leave it just
-      // short of {1, {0,0}} forever.
+      // frame — isReset compares against DEFAULT_SPIN, and float drift could
+      // otherwise leave the World pill permanently just short of active.
       if (finished) {
-        scaleRef.current = targetScale;
-        panRef.current = targetPan;
-        setScale(targetScale);
-        setPan(targetPan);
+        zoomRef.current = targetZoom;
+        spinRef.current = targetSpin;
+        setZoom(targetZoom);
+        setSpin(targetSpin);
       }
     });
   };
 
-  // Applies a candidate scale, then re-clamps the current pan against the box
-  // it's actually visible in — zooming back out can leave a pan that was
-  // valid at a higher scale hanging past the new, smaller overflow. Refs are
-  // updated synchronously (not just via the effects above) so back-to-back
-  // wheel/pinch events in the same tick read the value this call just set,
-  // not last render's. Only ever called from a manual pinch/wheel gesture, so
-  // it also drops the active region pill — that preset no longer matches
-  // once the view has been nudged by hand, and it's re-earned only by
-  // tapping a pill again. setActiveRegion(null) is called unconditionally
-  // (React bails out of the re-render when the value is already null) rather
-  // than guarded on the current `activeRegion`, since this function is
-  // called from the pinch responder and the wheel handler, both wired up
-  // once via useRef and so closing over a stale copy of that state.
-  const applyScale = (nextScale) => {
-    const nextPan = clampPan(
-      panRef.current,
-      nextScale,
-      boxSizeRef.current.width,
-      boxSizeRef.current.height
-    );
-    scaleRef.current = nextScale;
-    panRef.current = nextPan;
-    setScale(nextScale);
-    setPan(nextPan);
+  // Manual zoom. Refs are written synchronously so back-to-back wheel events
+  // in one tick compound correctly instead of all reading last render's value.
+  // Also drops the active region pill: the view has moved off whatever framing
+  // that preset established, so the pill would be claiming a match it no
+  // longer has. Called unconditionally (React bails when already null) because
+  // the wheel/pinch handlers are wired once via useRef and close over a stale
+  // copy of activeRegion.
+  const applyZoom = (nextZoom) => {
+    zoomRef.current = nextZoom;
+    setZoom(nextZoom);
     setActiveRegion(null);
   };
 
-  const isReset = scale === 1 && pan.x === 0 && pan.y === 0;
+  const applySpin = (nextSpin) => {
+    spinRef.current = nextSpin;
+    setSpin(nextSpin);
+    setActiveRegion(null);
+  };
+
+  const isReset = zoom === 1 && sameSpin(spin, DEFAULT_SPIN);
   const resetView = () => {
-    animateTo(1, { x: 0, y: 0 });
+    animateTo(1, DEFAULT_SPIN);
     setActiveRegion(null);
   };
 
-  // Region pills (M2.3 step 5.2): jump to a preset framing of that region,
-  // computed by mapRegions.js's regionView() from its precomputed bounds and
-  // the map box's actual on-screen size. Tapping the already-active region
-  // resets to the full world view, same as the "World" pill.
+  // Region pills: turn the globe to face that region and frame its spread.
+  // Tapping the already-active region returns to the world view, same as the
+  // "World" pill.
   const selectRegion = (region) => {
     if (region === activeRegion) {
       resetView();
       return;
     }
-    const { scale: nextScale, pan: nextPan } = regionView(
-      REGION_BOUNDS[region],
-      EXPLORE_MAP_VIEW,
-      boxSizeRef.current,
-      MAP_ZOOM_MIN,
-      MAP_ZOOM_MAX
-    );
+    const target = REGION_TARGETS[region];
+    if (!target) return;
     setActiveRegion(region);
-    animateTo(nextScale, nextPan);
+    animateTo(target.zoom, target.spin);
   };
 
   const handleMapLayout = (e) => {
@@ -154,9 +170,9 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
     boxSizeRef.current = { width, height };
   };
 
-  // Two-finger pinch zooms; a single touch only starts panning once it moves
+  // Two-finger pinch zooms; a single touch only starts spinning once it moves
   // past the drag threshold, so a stationary tap still falls through to
-  // ExploreMap's tap-to-select <Path>s untouched.
+  // GlobeMap's tap-to-select <Path>s untouched.
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: (evt) => evt.nativeEvent.touches.length === 2,
@@ -173,68 +189,51 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       },
       onPanResponderGrant: (evt) => {
         const touches = evt.nativeEvent.touches;
-        if (touches.length === 2) {
-          const [a, b] = touches;
-          gesture.current = {
-            mode: "pinch",
-            startDistance: touchDistance(a, b),
-            startScale: scaleRef.current,
-            startPan: panRef.current,
-          };
-        } else {
-          gesture.current = {
-            mode: "pan",
-            startDistance: 0,
-            startScale: scaleRef.current,
-            startPan: panRef.current,
-          };
-        }
+        gesture.current = {
+          mode: touches.length === 2 ? "pinch" : "spin",
+          startDistance: touches.length === 2 ? touchDistance(touches[0], touches[1]) : 0,
+          startZoom: zoomRef.current,
+          startSpin: spinRef.current,
+        };
       },
       onPanResponderMove: (evt, gestureState) => {
         const touches = evt.nativeEvent.touches;
         const g = gesture.current;
         if (touches.length === 2 && g.mode === "pinch") {
-          applyScale(
+          applyZoom(
             pinchScale(
               g.startDistance,
               touchDistance(touches[0], touches[1]),
-              g.startScale,
+              g.startZoom,
               MAP_ZOOM_MIN,
               MAP_ZOOM_MAX
             )
           );
-        } else if (g.mode === "pan") {
-          const next = dragPan(g.startPan, gestureState.dx, gestureState.dy, g.startScale);
-          setPan(clampPan(next, scaleRef.current, boxSizeRef.current.width, boxSizeRef.current.height));
-          setActiveRegion(null);
+        } else if (g.mode === "spin") {
+          applySpin(spinFromDrag(g.startSpin, gestureState.dx, gestureState.dy, screenRadius()));
         }
       },
     })
   ).current;
 
-  // Web has no pinch/pan gesture in RN's responder system, so zoom follows
-  // the wheel/trackpad and panning follows a mouse drag — both bound
-  // straight to the DOM node react-native-web renders under this View, since
-  // RN's synthetic events don't expose wheel/mouse move globally.
+  // Web has no pinch/drag gesture in RN's responder system, so zoom follows the
+  // wheel/trackpad and spin follows a mouse drag — both bound straight to the
+  // DOM node react-native-web renders under this View.
   useEffect(() => {
     if (Platform.OS !== "web" || !mapNodeRef.current) return;
     const node = mapNodeRef.current;
 
     const handleWheel = (e) => {
       e.preventDefault();
-      applyScale(
-        wheelZoom(scaleRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, MAP_ZOOM_MIN, MAP_ZOOM_MAX)
-      );
+      applyZoom(wheelZoom(zoomRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, MAP_ZOOM_MIN, MAP_ZOOM_MAX));
     };
     node.addEventListener("wheel", handleWheel, { passive: false });
 
-    const drag = { active: false, startX: 0, startY: 0, startPan: { x: 0, y: 0 }, dragged: false };
+    const drag = { active: false, startX: 0, startY: 0, startSpin: DEFAULT_SPIN, dragged: false };
     // Bound to window, not the map node: a drag can end with the cursor
-    // outside the map box (released over the header, the Reset pill's own
-    // area, or off-window entirely), and the click a mouseup fires lands
-    // wherever the cursor is — a listener on the map node alone would never
-    // see that click, leaving it attached to wrongly swallow the *next*
-    // real click inside the box instead.
+    // outside the map box, and the click a mouseup fires lands wherever the
+    // cursor is — a listener on the map node alone would never see that click,
+    // leaving it attached to wrongly swallow the next real click inside the box.
     const swallowNextClick = (e) => {
       e.stopPropagation();
       window.removeEventListener("click", swallowNextClick, true);
@@ -243,23 +242,10 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       if (!drag.active) return;
       const dx = e.clientX - drag.startX;
       const dy = e.clientY - drag.startY;
-      if (
-        !drag.dragged &&
-        (Math.abs(dx) > MAP_DRAG_THRESHOLD || Math.abs(dy) > MAP_DRAG_THRESHOLD)
-      ) {
+      if (!drag.dragged && (Math.abs(dx) > MAP_DRAG_THRESHOLD || Math.abs(dy) > MAP_DRAG_THRESHOLD)) {
         drag.dragged = true;
       }
-      if (drag.dragged) {
-        const next = clampPan(
-          dragPan(drag.startPan, dx, dy, scaleRef.current),
-          scaleRef.current,
-          boxSizeRef.current.width,
-          boxSizeRef.current.height
-        );
-        panRef.current = next;
-        setPan(next);
-        setActiveRegion(null);
-      }
+      if (drag.dragged) applySpin(spinFromDrag(drag.startSpin, dx, dy, screenRadius()));
     };
     const handleMouseUp = () => {
       drag.active = false;
@@ -272,7 +258,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       drag.dragged = false;
       drag.startX = e.clientX;
       drag.startY = e.clientY;
-      drag.startPan = panRef.current;
+      drag.startSpin = spinRef.current;
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
     };
@@ -297,7 +283,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
         <View style={styles.header}>
           <Text style={styles.title}>World Map</Text>
           <Text style={styles.subtitle}>
-            Tap a country to explore it · pinch/scroll to zoom · drag to pan
+            Tap a country to explore it · drag to spin · pinch/scroll to zoom
           </Text>
         </View>
       </FadeInUp>
@@ -308,7 +294,12 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
           hitSlop={8}
           style={[styles.regionChip, activeRegion === null && isReset && styles.regionChipActive]}
         >
-          <Text style={[styles.regionChipText, activeRegion === null && isReset && styles.regionChipTextActive]}>
+          <Text
+            style={[
+              styles.regionChipText,
+              activeRegion === null && isReset && styles.regionChipTextActive,
+            ]}
+          >
             World
           </Text>
         </Pressable>
@@ -336,14 +327,9 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
           onLayout={handleMapLayout}
           {...(Platform.OS === "web" ? {} : panResponder.panHandlers)}
         >
-          <View
-            style={[
-              styles.mapScale,
-              { transform: [{ scale }, { translateX: pan.x }, { translateY: pan.y }] },
-            ]}
-          >
-            <ExploreMap onSelect={onOpenCountry} />
-          </View>
+          {/* No wrapping transform: the globe applies zoom to its own radius,
+              which is what keeps borders a constant thickness on screen. */}
+          <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} />
 
           {activeRegion !== null && (
             <View style={styles.regionLabel} pointerEvents="none">
@@ -361,6 +347,10 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
     </View>
   );
 }
+
+// Kept exported for tests and any future caller that needs the same framing
+// math the pills use.
+export { REGION_TARGETS, clampSpin };
 
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
@@ -396,12 +386,8 @@ const styles = StyleSheet.create({
   regionChipText: { ...type.pill, color: colors.muted },
   regionChipTextActive: { color: colors.navyDeep },
 
-  // The map stage is deep navy everywhere it appears (see QuizScreen's mapBox),
-  // so the world reads as the lit subject rather than as chrome.
-  // The cap lives on mapOuter, not here: `width: 100%` and `marginHorizontal`
-  // together make the browser drop the margin, which would push the map flush
-  // against the screen edges on a phone. The wrapper takes the cap, this keeps
-  // the gutter, and both hold at every width.
+  // The globe sits on the same deep-navy stage every map in the app uses, so
+  // the world reads as the lit subject rather than as chrome.
   mapOuter: { ...constrain.media, flex: 1 },
   mapWrap: {
     flex: 1,
@@ -412,7 +398,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.navy,
     ...depth(5),
   },
-  mapScale: { flex: 1 },
 
   resetPill: {
     position: "absolute",

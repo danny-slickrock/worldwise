@@ -75,6 +75,8 @@ src/
   data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback
   data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
+  data/worldGeo.js         # M2.3.7: the globe's geometry — worldMap.js's pixels inverted back to
+                           #   unit vectors at module load. Derived, never hand-edited
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
   game/progress.js         # PURE progress/streak logic — no storage, no network
@@ -87,6 +89,8 @@ src/
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
+  game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs
+  game/globeMotion.js      # PURE M2.3.7: spin/wrap/clamp, antimeridian-safe region centers + framing
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -97,7 +101,9 @@ src/
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Tappable SVG world map for the Country Locator (candidates/answer state)
-  components/ExploreMap.js  # M2.3: tappable SVG world map for free exploration (no round/answer state)
+  components/ExploreMap.js  # M2.3: flat tappable world map. SUPERSEDED by GlobeMap on the Explore
+                           #   screen (M2.3.7); kept as the fallback until the globe is checked on a device
+  components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent
   components/TabBar.js      # Bottom tabs — takes tabs as data, so it's extensible
   screens/HomeScreen.js    # Game hub
   screens/ProfileScreen.js # Signed-in identity + synced stats

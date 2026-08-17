@@ -389,6 +389,40 @@ teaching *how the world works*, not just *where things are*.
           drag after selecting Europe reverted the Europe pill from teal to its inactive `surface`
           color. **M2.3 step 5 (region maps) is now fully done, which completes M2.3 — Interactive
           maps — end to end.**
+- **M2.3.7 — The globe 🌐** — replace the Explore surface's flat map with a spinnable 3D globe, with
+  every country outlined. Maps are the hero; a globe is the honest version of that.
+  - ✅ **Step 1 — projection, motion, and the Explore surface.** An **orthographic SVG globe**, not
+    WebGL: an orthographic projection *is* what a sphere looks like, so this keeps every country a
+    real `<Path>` — tap hit-testing, theme fills and crisp vector borders all survive — and it runs
+    the same on web, iOS and Android with no new dependency. The decision math is pure and tested:
+    `src/game/globeProjection.js` (projection, visibility, horizon clipping with limb arcs,
+    path building) and `src/game/globeMotion.js` (spin/wrap/clamp, region centers and framing).
+    `src/components/GlobeMap.js` renders it; `WorldMapScreen` keeps its gesture plumbing verbatim
+    and swaps pan→spin, bounding-box presets→rotations.
+    Three things worth recording:
+    - **No new map asset was needed.** `worldMap.js` stores pre-projected pixels, but that
+      projection is linear, so it inverts exactly — `src/data/worldGeo.js` recovers the sphere at
+      module load. The flat map and the globe therefore share one source of truth and can never
+      disagree about where a border runs.
+    - **A fixed viewBox with a growing radius**, rather than a scaled canvas. That's what keeps
+      borders a true hairline at every zoom; the flat map's scaled canvas fattened its own strokes
+      as it zoomed in.
+    - **The antimeridian trap, avoided by construction.** Region presets average *vectors*, not
+      lng/lat, so the Russia bug that forced an explicit guard into `mapRegions.regionBounds()`
+      cannot arise here. Covered by a test that would fail under lng/lat averaging.
+    Verified in a real browser: spin, region presets, zoom (borders stay hairline), tap→country
+    page, and a drag released over a country correctly *not* opening it. 60 checks, including the
+    projection's one hard invariant — across all 8,190 points at four orientations, nothing draws
+    outside the sphere's silhouette.
+  - ☐ **Step 2 — the Country Locator.** The game still uses the flat map. A globe hides half the
+    world, so this needs a product call first: auto-spin to bring the answer into view, restrict
+    rounds to the visible hemisphere, or make hunting part of the challenge.
+  - ☐ **Step 3 — verify on a device.** Only web is checked. The per-frame reprojection is ~3ms in
+    Chromium, but react-native-svg on a phone is a different renderer and an unknown here. Until
+    that's done `ExploreMap.js` and the flat-map math (`clampPan`/`dragPan`/`lerpView`,
+    `regionBounds`/`regionView`) stay in the tree as a fallback rather than being deleted.
+  - ☐ **Step 4 — polish.** Graticule, a subtle terminator/atmosphere edge, spin momentum, and
+    "spin to this country" from a country page's "View on map" link.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on
