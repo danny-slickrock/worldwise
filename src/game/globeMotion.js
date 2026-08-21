@@ -98,14 +98,23 @@ export function groupSpin(codes, centers) {
   return clampSpin({ lng, lat });
 }
 
-// How far to zoom so a group of countries fills the view.
+// How far to zoom so something `radiusDegrees` wide fills the view.
 //
 // In an orthographic projection the disc's edge is 90° of arc from the center,
 // and a point α degrees away lands at sin(α) of the radius. So framing an
 // angular radius α means zoom = 1 / sin(α) — the whole globe (α = 90°) at
 // zoom 1, tighter groups proportionally closer. `margin` adds breathing room
-// so the outermost country isn't flush against the limb.
-export function groupZoom(codes, centers, spin, { margin = 12, min = 1, max = 8 } = {}) {
+// so the outermost point isn't flush against the limb.
+export function zoomForRadius(radiusDegrees, { margin = 12, min = 1, max = 8 } = {}) {
+  if (!radiusDegrees) return min;
+  const alpha = Math.min(90, radiusDegrees + margin);
+  return Math.max(min, Math.min(max, 1 / Math.sin((alpha * Math.PI) / 180)));
+}
+
+// How far to zoom so a group of countries' CENTERS all fit the view —
+// e.g. the region pills, which frame how far apart a region's countries sit
+// from one another, not any one country's own outline.
+export function groupZoom(codes, centers, spin, opts) {
   const center = lngLatToVec(spin.lng, spin.lat);
   let widest = 0;
   for (const code of codes) {
@@ -113,7 +122,21 @@ export function groupZoom(codes, centers, spin, { margin = 12, min = 1, max = 8 
     if (!c) continue;
     widest = Math.max(widest, angleBetween(center, c));
   }
-  if (!widest) return min;
-  const alpha = Math.min(90, widest + margin);
-  return Math.max(min, Math.min(max, 1 / Math.sin((alpha * Math.PI) / 180)));
+  return zoomForRadius(widest, opts);
+}
+
+// How far a single country's own outline reaches from its center, in
+// degrees — unlike groupZoom, which only compares CENTERS against each
+// other and would read a lone country as a single point (angle 0) framed at
+// max zoom regardless of whether it's Russia or the Vatican. Same angular
+// measurement GlobeMap.js's small-country hit-target sizing already uses.
+export function countryAngularRadius(rings, center) {
+  if (!rings || !center) return 0;
+  let widest = 0;
+  for (const ring of rings) {
+    for (let i = 0; i < ring.length; i += 3) {
+      widest = Math.max(widest, angleBetween(center, [ring[i], ring[i + 1], ring[i + 2]]));
+    }
+  }
+  return widest;
 }

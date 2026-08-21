@@ -131,8 +131,11 @@ function AppShell() {
   function openCountryIndex() {
     setScreen({ name: "countryIndex" });
   }
-  function openWorldMap() {
-    setScreen({ name: "worldMap" });
+  // `focusCountry` (M2.3.7 step 4) lets a caller — the country page's "View on
+  // map" link — open the map with the globe already spun to that country,
+  // instead of always resetting to the default orientation.
+  function openWorldMap(focusCountry = null) {
+    setScreen({ name: "worldMap", focusCountry });
   }
   function openInterests() {
     setScreen({ name: "interests" });
@@ -198,7 +201,7 @@ function AppShell() {
           code={screen.code}
           onExit={exitCountry}
           onPlay={(mode) => setScreen({ name: "quiz", mode, difficulty: DEFAULT_DIFFICULTY, timed: false })}
-          onViewMap={openWorldMap}
+          onViewMap={() => openWorldMap(screen.code)}
         />
       </SafeAreaView>
     );
@@ -217,7 +220,11 @@ function AppShell() {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar style="light" />
-        <WorldMapScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "worldMap")} />
+        <WorldMapScreen
+          onExit={leaveOverlay}
+          onOpenCountry={(code) => openCountry(code, "worldMap")}
+          focusCountry={screen.focusCountry}
+        />
       </SafeAreaView>
     );
   }

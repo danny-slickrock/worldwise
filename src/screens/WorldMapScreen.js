@@ -21,7 +21,7 @@ import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } f
 import { colors, spacing, radius, type, depth, constrain } from "../theme";
 import FadeInUp from "../components/FadeInUp";
 import GlobeMap from "../components/GlobeMap";
-import { COUNTRY_CENTERS } from "../data/worldGeo";
+import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
 import { COUNTRIES } from "../data/countries";
 import {
   MAP_ZOOM_MIN,
@@ -40,6 +40,8 @@ import {
   lerpSpin,
   groupSpin,
   groupZoom,
+  zoomForRadius,
+  countryAngularRadius,
   clampSpin,
 } from "../game/globeMotion";
 
@@ -61,7 +63,7 @@ const REGION_TARGETS = Object.fromEntries(
 
 const sameSpin = (a, b) => Math.abs(a.lng - b.lng) < 0.01 && Math.abs(a.lat - b.lat) < 0.01;
 
-export default function WorldMapScreen({ onExit, onOpenCountry }) {
+export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = null }) {
   const [zoom, setZoom] = useState(1);
   const [spin, setSpin] = useState(DEFAULT_SPIN);
   const [activeRegion, setActiveRegion] = useState(null);
@@ -125,6 +127,27 @@ export default function WorldMapScreen({ onExit, onOpenCountry }) {
       }
     });
   };
+
+  // Opened from a country page's "View on map" link (M2.3.7 step 4): spin
+  // straight to that country instead of leaving the globe at DEFAULT_SPIN.
+  // Reuses groupSpin for direction (a "group" of just this one country's
+  // center), but NOT groupZoom for framing — groupZoom compares countries'
+  // centers against each other, so a lone country reads as a zero-width
+  // point and always zooms to max regardless of whether it's Russia or the
+  // Vatican. countryAngularRadius measures the country's own outline extent
+  // instead, same as GlobeMap.js's small-country hit-target sizing. Runs
+  // once on mount only: focusCountry is set by the caller when this screen
+  // opens and WorldMapScreen is freshly mounted each time (screen state, not
+  // a persistent stack), so there's no later change to react to.
+  useEffect(() => {
+    if (!focusCountry) return;
+    const targetSpin = groupSpin([focusCountry], COUNTRY_CENTERS);
+    if (!targetSpin) return;
+    const radius = countryAngularRadius(COUNTRY_RINGS[focusCountry], COUNTRY_CENTERS[focusCountry]);
+    const targetZoom = zoomForRadius(radius, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX });
+    animateTo(targetZoom, targetSpin);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Manual zoom. Refs are written synchronously so back-to-back wheel events
   // in one tick compound correctly instead of all reading last render's value.

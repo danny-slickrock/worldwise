@@ -57,6 +57,8 @@ import {
   angleBetween,
   groupSpin,
   groupZoom,
+  zoomForRadius,
+  countryAngularRadius,
 } from "../src/game/globeMotion";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../src/data/worldGeo";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
@@ -1148,6 +1150,29 @@ check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a 
   check(tight > wide, "a tighter group frames at a closer zoom");
   check(wide >= 1, "no group ever zooms out past the whole globe");
   check(groupZoom(["nope"], centers, DEFAULT_SPIN) === 1, "an unknown group falls back to the world view");
+}
+{
+  // groupZoom compares countries' CENTERS against each other, so a lone
+  // country — center vs. itself — always reads as ~0° apart. That's correct
+  // for a region's own countries, but wrong for framing one country's own
+  // outline: it would zoom Russia and the Vatican to roughly the same tight
+  // view, which is the bug countryAngularRadius exists to avoid
+  // (WorldMapScreen's "spin to this country" link, M2.3.7 step 4).
+  check(zoomForRadius(0) === 1, "framing a zero-width point falls back to the world view, not a divide-by-zero");
+  check(zoomForRadius(90) === 1, "a full hemisphere frames at the world view");
+  check(zoomForRadius(0, { min: 2 }) === 2, "zoomForRadius honors a caller's own min");
+  check(zoomForRadius(1, { max: 3 }) === 3, "zoomForRadius clamps to a caller's own max rather than blowing up near the limb");
+
+  const brRadius = countryAngularRadius(COUNTRY_RINGS.br, COUNTRY_CENTERS.br);
+  const luRadius = countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu);
+  check(brRadius > luRadius, "Brazil's own outline reaches further from its center than Luxembourg's");
+  check(
+    zoomForRadius(brRadius, { min: 1, max: 4 }) < zoomForRadius(luRadius, { min: 1, max: 4 }),
+    "framing Brazil zooms in less than framing Luxembourg, since Brazil fills more of the view on its own"
+  );
+  check(countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu) > 0, "even a small real country has a nonzero angular radius");
+  check(countryAngularRadius(null, COUNTRY_CENTERS.br) === 0, "no rings has no angular radius, rather than throwing");
+  check(countryAngularRadius(COUNTRY_RINGS.br, null) === 0, "no center has no angular radius, rather than throwing");
 }
 
 console.log("Globe geometry over the real dataset (M2.3.7)");

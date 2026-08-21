@@ -50,29 +50,20 @@ Two notes on how C and D actually landed, so the history reads honestly:
   nothing today. `TabBar` takes its tabs as data, so adding Play later is a one-line change if
   a real second destination ever earns its place.
 
-**M2.1 — accounts & cloud sync is complete and verified in production** (migration, client, sync
-adapter, and sign-in all shipped; see Phase 2 below). **M2.2 — country pages is complete:** the
-content model, navigation seam, polished Brazil hero page, generalization to all 196 countries
-(with a clean hero fallback for the 4 without a mapsicon outline), all three entry points — the
-in-play "Learn more about {country}" link, the searchable/filterable country index, and (once
-M2.3 unblocked it) tapping a country on the World Map, with a "View on map" link back from every
-country page — and the polish + a11y pass (WCAG AA contrast, large tap targets, `CountryOutline`
-offline/image-load fallbacks, open/close transition) have all landed. **M2.3 — interactive maps —
-is now complete:** world map pan/zoom, tap affordance polish, wiring the M2.2 map entry point both
-ways, and region maps (bounds/picker + the animate/label/manual-gesture polish pass) have all
-landed. **M2.3.5 — content backend** is next in sequence but is code-complete and blocked purely on
-Danny's live-project steps (DB push + seeding, see DANNY TO DO below) — no more code to write there
-until those land. **M2.3.6 — learner interests** has no such blocker on its own code and is the
-milestone with real autonomous headroom. Step 1 (the interest-prompt screen), step 2 (the pure
-catalog + policy module, `src/data/interests.js` + `src/game/interestPolicy.js`), step 3 (the
-`profile_interests` schema migration — landed as a file; like M2.3.5's migration it doesn't need
-Danny either, though `npx supabase db reset` can't verify it locally until Docker Desktop is running,
-see DANNY TO DO), and step 4 (the offline-first sync seam — `storage/interests.js` as the local
-cache, `game/interestSync.js` as the pure row⇄slug mapping and merge/diff logic,
-`storage/cloudInterests.js` as the Supabase IO, wired into `App.js` alongside the existing
-progress-sync path) are now done. **Next up is step 5 — the real "Interests" entry point on
-Profile**, replacing the temporary preview row. The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+**M2.1 — accounts & cloud sync**, **M2.2 — country pages**, **M2.3 — interactive maps**, and
+**M2.3.6 — learner interests** are all complete end to end (see each milestone below for detail).
+**M2.3.5 — content backend** is code-complete but blocked purely on Danny's live-project steps (DB
+push + seeding, see DANNY TO DO below) — no more code to write there until those land. **M2.3.7 —
+the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and just
+landed the first chunk of its polish step (step 4.1 — "spin to this country" from a country page's
+"View on map" link); steps 2 (wiring the Country Locator game onto the globe) and 3 (device
+verification) stay blocked — step 2 explicitly needs a product call on how a globe should handle a
+game whose answer might be on the hidden hemisphere, and step 3 needs a real device this
+environment doesn't have — so **next up is step 4.2, the graticule**, the next self-contained polish
+chunk that needs neither. **M2.9 — the AI knowledge hub** is next in milestone order but still
+blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
+confirmation, embedding model pick) — check that section before starting its sub-checklist. The
+Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -421,8 +412,34 @@ teaching *how the world works*, not just *where things are*.
     Chromium, but react-native-svg on a phone is a different renderer and an unknown here. Until
     that's done `ExploreMap.js` and the flat-map math (`clampPan`/`dragPan`/`lerpView`,
     `regionBounds`/`regionView`) stay in the tree as a fallback rather than being deleted.
-  - ☐ **Step 4 — polish.** Graticule, a subtle terminator/atmosphere edge, spin momentum, and
-    "spin to this country" from a country page's "View on map" link.
+  - **Step 4 — polish.** Broken into its own ordered chunks, reordered from the original prose
+    (graticule, terminator, momentum, spin-to-country) to put the lowest-risk, most
+    self-contained item first — the other three either touch every-frame rendering (graticule,
+    terminator) or gesture math (momentum), while this one is pure navigation wiring that reuses
+    framing math already shipped for the region pills:
+    1. ✅ **"Spin to this country" from a country page's "View on map" link.** Opening the map
+       from a country page now spins the globe straight to that country instead of always
+       resetting to `DEFAULT_SPIN`. `WorldMapScreen` takes a `focusCountry` prop (`App.js`'s
+       `openWorldMap(code)`, wired from `CountryPageScreen`'s `onViewMap`) and, on mount only,
+       tweens to it via the existing `animateTo()` the region pills already use. Direction reuses
+       `groupSpin` unchanged — a "group" of one country's own center — but framing needed a new
+       pure function: `groupZoom` compares countries' *centers* against each other, so a lone
+       country (center vs. itself) always reads as ~0° apart and would zoom every country, from
+       Russia to the Vatican, to roughly the same tight view. `countryAngularRadius()` (new,
+       `src/game/globeMotion.js`) measures a country's own outline extent from its center instead
+       — the same angular measurement `GlobeMap.js`'s small-country hit-target sizing already
+       uses — and the zoom-from-angle math itself was extracted from `groupZoom` into its own
+       `zoomForRadius()` so both call sites share one formula. 9 new checks in
+       `test/engine.test.js`, including a real-data assertion that framing Brazil zooms in less
+       than framing Luxembourg (Brazil already fills more of the view on its own) — the exact
+       case that would have silently regressed to "everything zooms to max" without the fix.
+       Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env):
+       Home → Explore → Brazil → "View on map" settles at zoom ≈1.75, not 4; the same path via
+       Luxembourg settles at the 4x clamp, confirming the framing actually scales with the
+       country's real size instead of collapsing every target to the same zoom.
+    2. ☐ **Graticule.** Latitude/longitude grid lines on the sphere.
+    3. ☐ **Terminator/atmosphere edge.** A subtle lit-edge effect at the globe's limb.
+    4. ☐ **Spin momentum.** Inertia after a drag/flick release, rather than stopping dead.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on
