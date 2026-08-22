@@ -241,3 +241,66 @@ export function countryCenter(rings) {
 export function vecToLngLat([x, y, z]) {
   return [(Math.atan2(y, x) * 180) / Math.PI, (Math.asin(Math.max(-1, Math.min(1, z))) * 180) / Math.PI];
 }
+
+// The graticule (M2.3.7 step 4.2): the lat/lng grid every globe reference
+// image has, drawn under the ocean so it reads through open water and
+// disappears under land exactly like the flat map's own equirectangular
+// lines never got a chance to. Generated once, in world space — this list
+// doesn't depend on orientation, so callers compute it a single time and
+// reproject it every frame the same way they reproject a country's rings.
+//
+// Meridians are open half-great-circles, pole to pole. Parallels are full
+// circles, but represented as an OPEN polyline whose first and last sample
+// coincide (lng -180 and lng 180 are the same point) — that lets
+// projectGraticuleLine() treat every line the same way, with no special
+// "closed ring" wraparound case to get wrong.
+export function graticuleLines(stepDeg = 30, sampleDeg = 5) {
+  const lines = [];
+  for (let lng = -180; lng < 180; lng += stepDeg) {
+    const line = [];
+    for (let lat = -90; lat <= 90; lat += sampleDeg) line.push(lngLatToVec(lng, lat));
+    lines.push(line);
+  }
+  for (let lat = -90 + stepDeg; lat < 90; lat += stepDeg) {
+    const line = [];
+    for (let lng = -180; lng <= 180; lng += sampleDeg) line.push(lngLatToVec(lng, lat));
+    lines.push(line);
+  }
+  return lines;
+}
+
+// Project one graticule line (an array of unit vectors, NOT a closed ring)
+// into however many visible screen-space polylines it breaks into this
+// frame. Unlike projectRing, there is no limb-walk to close a gap with — a
+// grid line isn't a filled shape, so it should simply stop at the horizon
+// and pick back up wherever it re-enters, exactly like a coastline would if
+// it weren't filled.
+export function projectGraticuleLine(vecs, o, view) {
+  const n = vecs.length;
+  const viewSpace = vecs.map((v) => rotate(v, o));
+  const visible = viewSpace.map((v) => isVisible(v[2]));
+
+  const lines = [];
+  let current = [];
+  for (let i = 0; i < n; i++) {
+    if (visible[i]) {
+      if (current.length === 0 && i > 0 && !visible[i - 1]) {
+        current.push(toScreen(horizonCrossing(vecs[i], vecs[i - 1], o), view));
+      }
+      current.push(toScreen(viewSpace[i], view));
+    } else if (current.length) {
+      current.push(toScreen(horizonCrossing(vecs[i - 1], vecs[i], o), view));
+      lines.push(current);
+      current = [];
+    }
+  }
+  if (current.length >= 2) lines.push(current);
+  return lines;
+}
+
+// Screen points -> an OPEN SVG path (no closing Z) — the graticule's own
+// analogue of pointsToPath, since a grid line is stroked, never filled.
+export function pointsToPolylinePath(points) {
+  if (!points || points.length < 2) return null;
+  return "M" + points.map(([x, y]) => `${r1(x)} ${r1(y)}`).join("L");
+}

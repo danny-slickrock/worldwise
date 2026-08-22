@@ -55,12 +55,13 @@ Two notes on how C and D actually landed, so the history reads honestly:
 **M2.3.5 — content backend** is code-complete but blocked purely on Danny's live-project steps (DB
 push + seeding, see DANNY TO DO below) — no more code to write there until those land. **M2.3.7 —
 the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and just
-landed the first chunk of its polish step (step 4.1 — "spin to this country" from a country page's
-"View on map" link); steps 2 (wiring the Country Locator game onto the globe) and 3 (device
-verification) stay blocked — step 2 explicitly needs a product call on how a globe should handle a
-game whose answer might be on the hidden hemisphere, and step 3 needs a real device this
-environment doesn't have — so **next up is step 4.2, the graticule**, the next self-contained polish
-chunk that needs neither. **M2.9 — the AI knowledge hub** is next in milestone order but still
+landed step 4.1 ("spin to this country" from a country page's "View on map" link) and now step 4.2
+(the graticule — lat/lng grid lines on the sphere, visible through ocean, hidden under land); steps
+2 (wiring the Country Locator game onto the globe) and 3 (device verification) stay blocked — step 2
+explicitly needs a product call on how a globe should handle a game whose answer might be on the
+hidden hemisphere, and step 3 needs a real device this environment doesn't have — so **next up is
+step 4.3, the terminator/atmosphere edge**, the next self-contained polish chunk that needs neither.
+**M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. The
 Phase 1 backlog below gets picked up opportunistically, not as a gate.
@@ -437,7 +438,23 @@ teaching *how the world works*, not just *where things are*.
        Home → Explore → Brazil → "View on map" settles at zoom ≈1.75, not 4; the same path via
        Luxembourg settles at the 4x clamp, confirming the framing actually scales with the
        country's real size instead of collapsing every target to the same zoom.
-    2. ☐ **Graticule.** Latitude/longitude grid lines on the sphere.
+    2. ✅ **Graticule.** Latitude/longitude grid lines on the sphere, 30° apart (12 meridians, 5
+       parallels — poles excluded, since a circle of latitude there is a single point). The
+       geometry is pure and tested: `graticuleLines()` (`src/game/globeProjection.js`) builds each
+       line once, in world space, at module load — it doesn't depend on orientation, so it's
+       reused every frame the same way `COUNTRY_RINGS` is. Meridians are open pole-to-pole
+       polylines; parallels are represented as an open polyline whose first and last sample
+       coincide (lng −180 and 180 are the same point), so a full circle needs no separate
+       "closed ring" wraparound case. `projectGraticuleLine()` reprojects a line per frame and
+       clips it to the visible hemisphere exactly like `projectRing()` does for a country — reusing
+       the same `horizonCrossing()` — but simpler: a grid line is stroked, not filled, so it just
+       stops at the horizon and resumes wherever it re-enters, with no limb-walk needed to close a
+       shape. `GlobeMap.js` draws the projected lines (`colors.line`, a `GLOBE_GRATICULE_WIDTH`
+       hairline) *before* the country paths, so the grid is only ever visible through open ocean
+       and disappears under land the same way a coastline would occlude it — no extra clipping
+       logic required. 12 new checks in `test/engine.test.js`. Verified in a real browser
+       (Playwright/Chromium, static export, placeholder Supabase env): the grid renders across the
+       ocean and is cleanly hidden under every landmass, at the default orientation.
     3. ☐ **Terminator/atmosphere edge.** A subtle lit-edge effect at the globe's limb.
     4. ☐ **Spin momentum.** Inertia after a drag/flick release, rather than stopping dead.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into

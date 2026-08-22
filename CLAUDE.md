@@ -89,7 +89,8 @@ src/
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
-  game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs
+  game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs,
+                           #   the graticule (lat/lng grid, step 4.2)
   game/globeMotion.js      # PURE M2.3.7: spin/wrap/clamp, antimeridian-safe region centers + framing
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy

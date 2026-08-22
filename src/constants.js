@@ -79,3 +79,12 @@ export const GLOBE_SMALL_HIT_RADIUS = 6; // viewBox units
 // How long a region-pill spin takes. Longer than the flat map's jump because
 // a rotation covers more visual distance and reads better unhurried.
 export const GLOBE_SPIN_ANIMATION_MS = 520;
+
+// Graticule (M2.3.7 step 4.2): the lat/lng grid, drawn under the land so it
+// only reads through open ocean. 30° spacing matches every reference globe's
+// own convention (12 meridians, 5 parallels); 5° sampling along each line is
+// dense enough that the orthographic curve of a great circle looks smooth
+// without pushing per-frame point count anywhere near the country data's own.
+export const GLOBE_GRATICULE_STEP_DEG = 30;
+export const GLOBE_GRATICULE_SAMPLE_DEG = 5;
+export const GLOBE_GRATICULE_WIDTH = 0.4;

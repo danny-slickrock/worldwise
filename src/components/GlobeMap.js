@@ -5,7 +5,16 @@ import Svg, { Circle, Path, Text as SvgText } from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
 import { colors } from "../theme";
-import { orientation, rotate, toScreen, projectCountry, isVisible } from "../game/globeProjection";
+import {
+  orientation,
+  rotate,
+  toScreen,
+  projectCountry,
+  isVisible,
+  graticuleLines,
+  projectGraticuleLine,
+  pointsToPolylinePath,
+} from "../game/globeProjection";
 import { angleBetween } from "../game/globeMotion";
 import {
   GLOBE_VIEW_SIZE,
@@ -13,6 +22,9 @@ import {
   GLOBE_BORDER_WIDTH,
   GLOBE_SMALL_COUNTRY_MAX_DEGREES,
   GLOBE_SMALL_HIT_RADIUS,
+  GLOBE_GRATICULE_STEP_DEG,
+  GLOBE_GRATICULE_SAMPLE_DEG,
+  GLOBE_GRATICULE_WIDTH,
   MAP_TAP_LABEL_DELAY_MS,
   MAP_TAP_LABEL_FONT_SIZE,
 } from "../constants";
@@ -42,6 +54,10 @@ function pickHandler(code, onTap) {
 
 const HOVER_HANDLERS_SUPPORTED = Platform.OS === "web";
 const HOVER_STYLE = { cursor: "pointer" };
+
+// World-space; independent of orientation, so this is computed once rather
+// than every frame like the country rings' projection is.
+const GRATICULE = graticuleLines(GLOBE_GRATICULE_STEP_DEG, GLOBE_GRATICULE_SAMPLE_DEG);
 
 // Which countries are too small to tap reliably, measured once in ANGULAR
 // terms — the widest arc from a country's center to its own outline. Degrees,
@@ -76,10 +92,18 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
   // The whole projection for this frame. Memoized on orientation and zoom
   // alone: hovering or tapping changes only fills, so it must not pay for a
   // reprojection of all 8,190 points.
-  const { paths, radius, centers } = useMemo(() => {
+  const { paths, radius, centers, graticuleD } = useMemo(() => {
     const o = orientation(spin.lng, spin.lat);
     const r = GLOBE_BASE_RADIUS * zoom;
     const view = { cx: CENTER, cy: CENTER, radius: r };
+
+    const grid = [];
+    for (const line of GRATICULE) {
+      for (const segment of projectGraticuleLine(line, o, view)) {
+        const d = pointsToPolylinePath(segment);
+        if (d) grid.push(d);
+      }
+    }
 
     const drawn = [];
     for (const code of GLOBE_COUNTRY_CODES) {
@@ -98,7 +122,7 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
       if (isVisible(v[2])) centerPoints[code] = toScreen(v, view);
     }
 
-    return { paths: drawn, radius: r, centers: centerPoints };
+    return { paths: drawn, radius: r, centers: centerPoints, graticuleD: grid };
   }, [spin.lng, spin.lat, zoom]);
 
   return (
@@ -107,6 +131,13 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
           an edge rather than as land floating on a panel. Same lit-land-on-deep-
           water relationship the flat map uses, just bounded by a circle. */}
       <Circle cx={CENTER} cy={CENTER} r={radius} fill={colors.navyDeep} />
+
+      {/* The graticule, drawn before land so it's only ever visible through
+          open ocean — exactly like a country's own coastline would occlude
+          it, with no extra clipping logic needed. */}
+      {graticuleD.map((d, i) => (
+        <Path key={`grid-${i}`} d={d} fill="none" stroke={colors.line} strokeWidth={GLOBE_GRATICULE_WIDTH} />
+      ))}
 
       {paths.map(([code, d]) => (
         <Path

@@ -45,6 +45,9 @@ import {
   ringsFromPath,
   countryCenter,
   pointsToPath,
+  graticuleLines,
+  projectGraticuleLine,
+  pointsToPolylinePath,
 } from "../src/game/globeProjection";
 import {
   DEFAULT_SPIN,
@@ -1110,6 +1113,43 @@ check(
 }
 check(pointsToPath([[1.04, 2.06], [3, 4], [5, 6]]) === "M1 2.1L3 4L5 6Z", "points round to 0.1px and close the path");
 check(pointsToPath([[1, 2]]) === null, "fewer than three points is not a path");
+
+console.log("Globe graticule (M2.3.7 step 4.2)");
+{
+  const lines = graticuleLines(30, 5);
+  check(lines.length === 17, "30° spacing yields 12 meridians and 5 parallels (poles excluded)");
+  check(lines[0].length === 37, "a meridian samples pole to pole every 5°");
+  const parallel = lines[lines.length - 1];
+  const [px, py, pz] = parallel[0];
+  const [qx, qy, qz] = parallel[parallel.length - 1];
+  check(
+    near(px, qx, 1e-9) && near(py, qy, 1e-9) && near(pz, qz, 1e-9),
+    "a parallel's first and last samples coincide, so it reads as a closed loop with no special-cased wraparound"
+  );
+}
+{
+  const o = orientation(0, 0);
+  const view = { cx: 200, cy: 200, radius: 190 };
+
+  const facing = [lngLatToVec(-10, -10), lngLatToVec(10, -10), lngLatToVec(10, 10), lngLatToVec(-10, 10)];
+  const onDisc = projectGraticuleLine(facing, o, view);
+  check(onDisc.length === 1 && onDisc[0].length === facing.length, "a line entirely facing the viewer projects every point as one segment");
+
+  const behind = [lngLatToVec(170, -10), lngLatToVec(-170, -10)];
+  check(projectGraticuleLine(behind, o, view).length === 0, "a line entirely on the far side projects to nothing");
+
+  const line = [];
+  for (let lng = -150; lng <= 150; lng += 10) line.push(lngLatToVec(lng, 0));
+  const clipped = projectGraticuleLine(line, o, view);
+  check(clipped.length === 1, "a line that enters and exits the horizon once each yields a single clipped segment, not a chord through the far side");
+  check(clipped[0].length < line.length, "the hidden portion of the line is dropped rather than drawn through the far side");
+  check(
+    clipped[0].every(([x, y]) => Math.hypot(x - view.cx, y - view.cy) <= view.radius + 1e-6),
+    "a clipped graticule segment never escapes the globe's disc"
+  );
+}
+check(pointsToPolylinePath([[1.04, 2.06], [3, 4]]) === "M1 2.1L3 4", "a polyline path rounds like pointsToPath but never closes");
+check(pointsToPolylinePath([[1, 2]]) === null, "fewer than two points is not a polyline");
 
 console.log("Globe motion (M2.3.7)");
 check(normalizeLng(190) === -170 && normalizeLng(-190) === 170, "longitude wraps across the antimeridian");
