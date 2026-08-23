@@ -1,7 +1,7 @@
 /* global setTimeout, clearTimeout */
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Platform } from "react-native";
-import Svg, { Circle, Path, Text as SvgText } from "react-native-svg";
+import Svg, { Circle, Path, Text as SvgText, Defs, RadialGradient, Stop } from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
 import { colors } from "../theme";
@@ -25,6 +25,10 @@ import {
   GLOBE_GRATICULE_STEP_DEG,
   GLOBE_GRATICULE_SAMPLE_DEG,
   GLOBE_GRATICULE_WIDTH,
+  GLOBE_ATMOSPHERE_WIDTH,
+  GLOBE_ATMOSPHERE_PEAK_OPACITY,
+  GLOBE_ATMOSPHERE_RIM_WIDTH,
+  GLOBE_ATMOSPHERE_RIM_OPACITY,
   MAP_TAP_LABEL_DELAY_MS,
   MAP_TAP_LABEL_FONT_SIZE,
 } from "../constants";
@@ -92,10 +96,18 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
   // The whole projection for this frame. Memoized on orientation and zoom
   // alone: hovering or tapping changes only fills, so it must not pay for a
   // reprojection of all 8,190 points.
-  const { paths, radius, centers, graticuleD } = useMemo(() => {
+  const { paths, radius, centers, graticuleD, atmosphere } = useMemo(() => {
     const o = orientation(spin.lng, spin.lat);
     const r = GLOBE_BASE_RADIUS * zoom;
     const view = { cx: CENTER, cy: CENTER, radius: r };
+
+    // The halo's outer radius grows with the fixed glow width, not with zoom,
+    // so the fractions below always place the glow's zero point exactly on
+    // the sphere's true edge and its peak partway into the margin beyond it —
+    // consistent at any zoom, not just the one this was tuned at.
+    const outerRadius = r + GLOBE_ATMOSPHERE_WIDTH;
+    const edgeFrac = r / outerRadius;
+    const peakFrac = edgeFrac + (1 - edgeFrac) / 2;
 
     const grid = [];
     for (const line of GRATICULE) {
@@ -122,11 +134,45 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
       if (isVisible(v[2])) centerPoints[code] = toScreen(v, view);
     }
 
-    return { paths: drawn, radius: r, centers: centerPoints, graticuleD: grid };
+    return {
+      paths: drawn,
+      radius: r,
+      centers: centerPoints,
+      graticuleD: grid,
+      atmosphere: { outerRadius, edgeFrac, peakFrac },
+    };
   }, [spin.lng, spin.lat, zoom]);
 
   return (
     <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+      <Defs>
+        {/* The atmosphere glow: transparent until the sphere's true edge,
+            peaking partway into the margin beyond it, then fading back to
+            nothing at the halo's own outer boundary — a soft ring rather than
+            a wash, and no hard cutoff for the outer circle to reveal. */}
+        <RadialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
+          <Stop offset="0%" stopColor={colors.sky} stopOpacity={0} />
+          <Stop offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`} stopColor={colors.sky} stopOpacity={0} />
+          <Stop
+            offset={`${(atmosphere.peakFrac * 100).toFixed(2)}%`}
+            stopColor={colors.sky}
+            stopOpacity={GLOBE_ATMOSPHERE_PEAK_OPACITY}
+          />
+          <Stop offset="100%" stopColor={colors.sky} stopOpacity={0} />
+        </RadialGradient>
+      </Defs>
+
+      {/* Drawn before the sphere itself so the ocean/land occlude the halo's
+          inner portion, leaving only the glow that bleeds past the true edge
+          visible — a rim light, not a filled aura. */}
+      <Circle
+        cx={CENTER}
+        cy={CENTER}
+        r={atmosphere.outerRadius}
+        fill="url(#globeAtmosphere)"
+        pointerEvents="none"
+      />
+
       {/* The ocean is the sphere itself, so the globe reads as an object with
           an edge rather than as land floating on a panel. Same lit-land-on-deep-
           water relationship the flat map uses, just bounded by a circle. */}
@@ -174,6 +220,21 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
           />
         ) : null
       )}
+
+      {/* A crisp rim highlight traced right at the sphere's true edge, on top
+          of land and water alike — the thin bright line a lit atmosphere
+          leaves right at the limb, distinct from the softer glow bleeding
+          past it. */}
+      <Circle
+        cx={CENTER}
+        cy={CENTER}
+        r={radius}
+        fill="none"
+        stroke={colors.sky}
+        strokeOpacity={GLOBE_ATMOSPHERE_RIM_OPACITY}
+        strokeWidth={GLOBE_ATMOSPHERE_RIM_WIDTH}
+        pointerEvents="none"
+      />
 
       {/* Tap confirmation, drawn last so it sits above every shape. Skipped if
           the country has spun out of view mid-delay, which would otherwise

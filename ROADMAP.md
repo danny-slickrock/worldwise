@@ -54,13 +54,14 @@ Two notes on how C and D actually landed, so the history reads honestly:
 **M2.3.6 — learner interests** are all complete end to end (see each milestone below for detail).
 **M2.3.5 — content backend** is code-complete but blocked purely on Danny's live-project steps (DB
 push + seeding, see DANNY TO DO below) — no more code to write there until those land. **M2.3.7 —
-the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and just
-landed step 4.1 ("spin to this country" from a country page's "View on map" link) and now step 4.2
-(the graticule — lat/lng grid lines on the sphere, visible through ocean, hidden under land); steps
-2 (wiring the Country Locator game onto the globe) and 3 (device verification) stay blocked — step 2
-explicitly needs a product call on how a globe should handle a game whose answer might be on the
-hidden hemisphere, and step 3 needs a real device this environment doesn't have — so **next up is
-step 4.3, the terminator/atmosphere edge**, the next self-contained polish chunk that needs neither.
+the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and has now
+landed step 4.1 ("spin to this country" from a country page's "View on map" link), step 4.2 (the
+graticule — lat/lng grid lines on the sphere, visible through ocean, hidden under land), and step
+4.3 (a soft atmosphere/limb glow ringing the globe's silhouette); steps 2 (wiring the Country
+Locator game onto the globe) and 3 (device verification) stay blocked — step 2 explicitly needs a
+product call on how a globe should handle a game whose answer might be on the hidden hemisphere,
+and step 3 needs a real device this environment doesn't have — so **next up is step 4.4, spin
+momentum**, the last self-contained polish chunk that needs neither.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. The
@@ -455,7 +456,30 @@ teaching *how the world works*, not just *where things are*.
        logic required. 12 new checks in `test/engine.test.js`. Verified in a real browser
        (Playwright/Chromium, static export, placeholder Supabase env): the grid renders across the
        ocean and is cleanly hidden under every landmass, at the default orientation.
-    3. ☐ **Terminator/atmosphere edge.** A subtle lit-edge effect at the globe's limb.
+    3. ✅ **Atmosphere/limb glow.** A soft halo rings the globe's silhouette, the way any real photo
+       of Earth from space shows the atmosphere scattering light at the limb — no sun-position model
+       exists anywhere in the app, so this is deliberately a symmetric glow around the whole disc
+       rather than a true day/night terminator line (the roadmap item's original name overstated
+       what shipped; retitled to match). Two new circles in `GlobeMap.js`, both purely additive —
+       no change to the projection math, hit-testing, or any existing constant:
+       - A `RadialGradient`-filled circle at `radius + GLOBE_ATMOSPHERE_WIDTH`, drawn *before* the
+         ocean circle so land/water occlude its inner portion — only the glow bleeding past the
+         sphere's true edge is visible, a rim light rather than a filled wash. The gradient's zero
+         point sits exactly on the sphere's real edge and its peak partway into the margin beyond
+         it, computed as fractions of the outer circle's own radius each frame — so it holds the
+         same shape at any zoom instead of being tuned for one.
+       - A crisp `stroke`-only circle at the sphere's exact radius, drawn *after* every country path
+         so a thin bright line traces the true limb on top of both land and water.
+       Both new circles are `pointerEvents="none"`, so hit-testing and hover state are unchanged.
+       `GLOBE_ATMOSPHERE_WIDTH` is a fixed viewBox-unit constant, like `GLOBE_BORDER_WIDTH` — a
+       constant on-screen thickness at every zoom rather than one that grows with the sphere, so the
+       glow reads as a thin physical layer and shrinks to a hairline (then off-canvas, same as the
+       existing border/graticule) at high zoom rather than ballooning. No new pure logic worth a
+       module of its own — this is rendering-only, unlike the graticule's own geometry. Verified in
+       a real browser (Playwright/Chromium, static export, placeholder Supabase env): the halo and
+       rim render at the default World view, scale correctly through a region-pill zoom (Europe) and
+       a further wheel zoom, and a tap on Brazil still opens its country page with no console errors
+       — confirming the new circles don't intercept hits near the globe's edge.
     4. ☐ **Spin momentum.** Inertia after a drag/flick release, rather than stopping dead.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and

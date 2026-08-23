@@ -88,3 +88,16 @@ export const GLOBE_SPIN_ANIMATION_MS = 520;
 export const GLOBE_GRATICULE_STEP_DEG = 30;
 export const GLOBE_GRATICULE_SAMPLE_DEG = 5;
 export const GLOBE_GRATICULE_WIDTH = 0.4;
+
+// Atmosphere/limb glow (M2.3.7 step 4.3): a soft halo ringing the globe's
+// silhouette, the way every real photo of Earth from space shows the
+// atmosphere scattering light at the limb. Purely a rendering effect — no sun
+// position exists anywhere in the app, so this is a symmetric glow around the
+// whole disc rather than a true day/night terminator line.
+// A fixed viewBox-unit width, same reasoning as GLOBE_BORDER_WIDTH: it holds a
+// constant on-screen thickness at every zoom instead of growing with the
+// sphere's radius, so the halo reads as a thin physical layer, not a scaled sticker.
+export const GLOBE_ATMOSPHERE_WIDTH = 8;
+export const GLOBE_ATMOSPHERE_PEAK_OPACITY = 0.32;
+export const GLOBE_ATMOSPHERE_RIM_WIDTH = 1.2;
+export const GLOBE_ATMOSPHERE_RIM_OPACITY = 0.4;

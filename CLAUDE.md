@@ -181,16 +181,21 @@ pass — animating the scale/pan jump via `lerpView()` in `src/game/mapZoom.js`,
 on the map, and clearing the active pill on a manual pinch/drag/wheel so it never claims a match it
 no longer has) are all shipped and verified in a real browser.
 
-**Next up:** M2.3.6 — learner interests is now fully done end to end (prompt screen, pure catalog +
-policy module, `profile_interests` schema migration, the offline-first sync seam, and — as of the
-latest run — a real "Interests" settings row on Profile, replacing the temporary preview CTA, that
-shows a live selection summary and reopens `InterestsScreen` seeded with whatever's already picked).
-M2.3.5 — content backend remains code-complete but blocked purely on Danny's live-project steps (see
-below); no more code to write there until those land. With M2.3.6 done, M2.9 (the AI knowledge hub)
-is next in roadmap order, but its own DANNY TO DO lead-time items (Anthropic API key as an Edge
-Function secret, a spend cap, confirming the Supabase plan covers Edge Functions + pgvector, and
-picking an embedding model) aren't yet in place — check ROADMAP.md's DANNY TO DO section before
-starting its sub-checklist.
+**Next up:** M2.3.6 — learner interests is fully done end to end (prompt screen, pure catalog +
+policy module, `profile_interests` schema migration, the offline-first sync seam, and a real
+"Interests" settings row on Profile, replacing the temporary preview CTA, that shows a live
+selection summary and reopens `InterestsScreen` seeded with whatever's already picked).
+**M2.3.7 — the globe** (replacing the flat Explore map with a spinnable orthographic globe) has
+landed step 1 (the globe itself) and step 4's polish sub-steps 4.1 ("spin to this country" from a
+country page), 4.2 (the lat/lng graticule), and 4.3 (a soft atmosphere/limb glow ringing the
+sphere's silhouette) — see `src/components/GlobeMap.js`. Steps 2 (wiring the Country Locator game
+onto the globe) and 3 (device verification) stay blocked on a product call and a real device,
+respectively; step 4.4 (spin momentum) is next and self-contained. M2.3.5 — content backend
+remains code-complete but blocked purely on Danny's live-project steps (see below); no more code to
+write there until those land. M2.9 (the AI knowledge hub) is next in milestone order after M2.3.7,
+but its own DANNY TO DO lead-time items (Anthropic API key as an Edge Function secret, a spend cap,
+confirming the Supabase plan covers Edge Functions + pgvector, and picking an embedding model)
+aren't yet in place — check ROADMAP.md's DANNY TO DO section before starting its sub-checklist.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
