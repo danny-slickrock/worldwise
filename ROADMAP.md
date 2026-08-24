@@ -55,13 +55,15 @@ Two notes on how C and D actually landed, so the history reads honestly:
 **M2.3.5 — content backend** is code-complete but blocked purely on Danny's live-project steps (DB
 push + seeding, see DANNY TO DO below) — no more code to write there until those land. **M2.3.7 —
 the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and has now
-landed step 4.1 ("spin to this country" from a country page's "View on map" link), step 4.2 (the
-graticule — lat/lng grid lines on the sphere, visible through ocean, hidden under land), and step
-4.3 (a soft atmosphere/limb glow ringing the globe's silhouette); steps 2 (wiring the Country
-Locator game onto the globe) and 3 (device verification) stay blocked — step 2 explicitly needs a
-product call on how a globe should handle a game whose answer might be on the hidden hemisphere,
-and step 3 needs a real device this environment doesn't have — so **next up is step 4.4, spin
-momentum**, the last self-contained polish chunk that needs neither.
+landed all of step 4's polish: step 4.1 ("spin to this country" from a country page's "View on
+map" link), step 4.2 (the graticule — lat/lng grid lines on the sphere, visible through ocean,
+hidden under land), step 4.3 (a soft atmosphere/limb glow ringing the globe's silhouette), and
+step 4.4 (spin momentum — a released drag/flick keeps the globe turning and eases to a stop
+instead of stopping dead). **Next up in M2.3.7 is step 2** (wiring the Country Locator game onto
+the globe), still blocked on a product call for how a globe should handle a game whose answer
+might be on the hidden hemisphere; step 3 (device verification) stays blocked on a real device
+this environment doesn't have. With step 4 fully done, M2.3.7 has no unblocked work left until
+one of those two lands.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. The
@@ -414,7 +416,7 @@ teaching *how the world works*, not just *where things are*.
     Chromium, but react-native-svg on a phone is a different renderer and an unknown here. Until
     that's done `ExploreMap.js` and the flat-map math (`clampPan`/`dragPan`/`lerpView`,
     `regionBounds`/`regionView`) stay in the tree as a fallback rather than being deleted.
-  - **Step 4 — polish.** Broken into its own ordered chunks, reordered from the original prose
+  - ✅ **Step 4 — polish.** Broken into its own ordered chunks, reordered from the original prose
     (graticule, terminator, momentum, spin-to-country) to put the lowest-risk, most
     self-contained item first — the other three either touch every-frame rendering (graticule,
     terminator) or gesture math (momentum), while this one is pure navigation wiring that reuses
@@ -480,7 +482,34 @@ teaching *how the world works*, not just *where things are*.
        rim render at the default World view, scale correctly through a region-pill zoom (Europe) and
        a further wheel zoom, and a tap on Brazil still opens its country page with no console errors
        — confirming the new circles don't intercept hits near the globe's edge.
-    4. ☐ **Spin momentum.** Inertia after a drag/flick release, rather than stopping dead.
+    4. ✅ **Spin momentum.** A drag/flick released while still moving now keeps the globe
+       turning and eases to a stop, instead of stopping dead where the finger let go. The
+       decision math is pure and tested: `src/game/globeMotion.js` gains
+       `spinVelocityFromDrag()` (screen-pixel drag velocity → spin velocity, reusing
+       `spinFromDrag`'s own radius-scaled ratio so a flick at a given zoom keeps spinning
+       at the speed it looked like it was going), `decayVelocity()` (exponential decay
+       framed per `MOMENTUM_FRAME_MS` so the same felt deceleration holds regardless of
+       actual frame rate — a dropped frame decays proportionally more, not less),
+       `isMomentumDone()`, and `stepMomentum()` (reuses `clampSpin`, so a coasting spin
+       wraps the antimeridian and clamps at the poles exactly like any other spin update).
+       9 new checks in `test/engine.test.js`. `WorldMapScreen` drives the actual coast with
+       its own `requestAnimationFrame` loop (`startMomentum`/`stopMomentum`) rather than
+       reusing `animateTo`'s `Animated.timing` — momentum has no fixed destination or
+       duration, just a velocity that decays every frame until it's imperceptible. Native
+       gets its release velocity for free from `PanResponder`'s own `gestureState.vx/vy`;
+       web has no such gesture primitive, so `WorldMapScreen`'s mouse-drag listener now
+       also tracks an exponential-moving-average velocity across `mousemove` (the same
+       smoothing RN does natively — a raw last-frame delta is too noisy to flick well
+       from) and hands it to `startMomentum` on `mouseup`. A fresh gesture — a new drag,
+       a region-pill jump, Reset, or the screen unmounting — always calls `stopMomentum()`
+       first, so a second flick or a pill tap cuts a coast short rather than fighting it.
+       Verified in a real browser (Playwright/Chromium, static export, placeholder
+       Supabase env): a fast mouse flick released mid-motion keeps rotating the globe for
+       several frames after `mouseup` with no further input, then settles to a fixed
+       orientation and stops changing — confirming both the coast and the decay-to-stop,
+       not just that the code compiles. **M2.3.7 step 4 (polish) is now fully done**,
+       leaving only step 2 (Country Locator on the globe, blocked on a product call) and
+       step 3 (device verification) open in M2.3.7.
 - **M2.3.5 — Content backend 🧱 (prerequisite for AI)** — move country content from bundled JSON into
   a public-read `content.*` schema in Supabase so content updates ship *without an app release*, and
   so it can be queried/embedded. Keep text + structured facts in Postgres; media stays URLs on

@@ -43,6 +43,10 @@ import {
   zoomForRadius,
   countryAngularRadius,
   clampSpin,
+  spinVelocityFromDrag,
+  decayVelocity,
+  isMomentumDone,
+  stepMomentum,
 } from "../game/globeMotion";
 
 // Each region's rotation target, resolved once at module load from its own
@@ -73,13 +77,48 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
   const spinRef = useRef(spin);
   const boxSizeRef = useRef({ width: 0, height: 0 });
   const animationRef = useRef(null);
+  const momentumRef = useRef(null);
   useEffect(() => {
     zoomRef.current = zoom;
   }, [zoom]);
   useEffect(() => {
     spinRef.current = spin;
   }, [spin]);
-  useEffect(() => () => animationRef.current?.stop(), []);
+  useEffect(() => () => {
+    animationRef.current?.stop();
+    momentumRef.current?.stop();
+  }, []);
+
+  const stopMomentum = () => {
+    momentumRef.current?.stop();
+    momentumRef.current = null;
+  };
+
+  // Kicks off the coasting spin a drag/flick release leaves behind. Runs its
+  // own requestAnimationFrame loop rather than reusing animateTo's
+  // Animated.timing: momentum has no fixed destination or duration, just a
+  // velocity that decays every frame until it's imperceptible.
+  const startMomentum = (velocity) => {
+    stopMomentum();
+    let v = velocity;
+    let stopped = false;
+    let lastTs = null;
+    const step = (ts) => {
+      if (stopped) return;
+      if (lastTs == null) lastTs = ts;
+      const dt = ts - lastTs;
+      lastTs = ts;
+      if (isMomentumDone(v)) {
+        momentumRef.current = null;
+        return;
+      }
+      applySpin(stepMomentum(spinRef.current, v, dt));
+      v = decayVelocity(v, dt);
+      requestAnimationFrame(step);
+    };
+    momentumRef.current = { stop: () => (stopped = true) };
+    requestAnimationFrame(step);
+  };
 
   // The globe's radius in SCREEN pixels — what a drag has to be measured
   // against for the surface to track the finger. The SVG is a fixed square
@@ -97,6 +136,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
   // spin the long way home from the Pacific.
   const animateTo = (targetZoom, targetSpin) => {
     animationRef.current?.stop();
+    stopMomentum();
     const startZoom = zoomRef.current;
     const startSpin = spinRef.current;
     const progress = new Animated.Value(0);
@@ -211,6 +251,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
         return false;
       },
       onPanResponderGrant: (evt) => {
+        stopMomentum();
         const touches = evt.nativeEvent.touches;
         gesture.current = {
           mode: touches.length === 2 ? "pinch" : "spin",
@@ -236,6 +277,20 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
           applySpin(spinFromDrag(g.startSpin, gestureState.dx, gestureState.dy, screenRadius()));
         }
       },
+      // gestureState.vx/vy is RN's own smoothed release velocity (px/ms) —
+      // exactly what a flick's momentum needs, with no extra tracking here.
+      // onPanResponderTerminate covers a gesture another responder steals
+      // (e.g. a system back-swipe) the same way a normal release does.
+      onPanResponderRelease: (evt, gestureState) => {
+        if (gesture.current.mode === "spin") {
+          startMomentum(spinVelocityFromDrag(gestureState.vx, gestureState.vy, screenRadius()));
+        }
+      },
+      onPanResponderTerminate: (evt, gestureState) => {
+        if (gesture.current.mode === "spin") {
+          startMomentum(spinVelocityFromDrag(gestureState.vx, gestureState.vy, screenRadius()));
+        }
+      },
     })
   ).current;
 
@@ -252,7 +307,22 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
     };
     node.addEventListener("wheel", handleWheel, { passive: false });
 
-    const drag = { active: false, startX: 0, startY: 0, startSpin: DEFAULT_SPIN, dragged: false };
+    const drag = {
+      active: false,
+      startX: 0,
+      startY: 0,
+      startSpin: DEFAULT_SPIN,
+      dragged: false,
+      // Release velocity, in px/ms: an exponential moving average over each
+      // move's instantaneous speed, same smoothing RN's own gestureState.vx
+      // does natively for the PanResponder path above — a raw last-frame
+      // delta is too noisy (mice report irregularly) to flick well from.
+      vx: 0,
+      vy: 0,
+      lastX: 0,
+      lastY: 0,
+      lastT: 0,
+    };
     // Bound to window, not the map node: a drag can end with the cursor
     // outside the map box, and the click a mouseup fires lands wherever the
     // cursor is — a listener on the map node alone would never see that click,
@@ -269,19 +339,39 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
         drag.dragged = true;
       }
       if (drag.dragged) applySpin(spinFromDrag(drag.startSpin, dx, dy, screenRadius()));
+      const now = e.timeStamp;
+      const dt = now - drag.lastT;
+      if (dt > 0) {
+        const instVx = (e.clientX - drag.lastX) / dt;
+        const instVy = (e.clientY - drag.lastY) / dt;
+        drag.vx = drag.vx * 0.7 + instVx * 0.3;
+        drag.vy = drag.vy * 0.7 + instVy * 0.3;
+      }
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+      drag.lastT = now;
     };
     const handleMouseUp = () => {
       drag.active = false;
-      if (drag.dragged) window.addEventListener("click", swallowNextClick, true);
+      if (drag.dragged) {
+        window.addEventListener("click", swallowNextClick, true);
+        startMomentum(spinVelocityFromDrag(drag.vx, drag.vy, screenRadius()));
+      }
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
     const handleMouseDown = (e) => {
+      stopMomentum();
       drag.active = true;
       drag.dragged = false;
       drag.startX = e.clientX;
       drag.startY = e.clientY;
       drag.startSpin = spinRef.current;
+      drag.vx = 0;
+      drag.vy = 0;
+      drag.lastX = e.clientX;
+      drag.lastY = e.clientY;
+      drag.lastT = e.timeStamp;
       window.addEventListener("mousemove", handleMouseMove);
       window.addEventListener("mouseup", handleMouseUp);
     };
@@ -294,6 +384,7 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

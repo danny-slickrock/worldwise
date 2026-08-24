@@ -140,3 +140,34 @@ export function countryAngularRadius(rings, center) {
   }
   return widest;
 }
+
+// Spin momentum (M2.3.7 step 4.4): a drag that's still moving when it's
+// released keeps the globe turning and eases to a stop, rather than
+// stopping dead where the finger let go. Framed per MOMENTUM_FRAME_MS so
+// the same felt deceleration holds regardless of the runtime's actual frame
+// rate — a dropped frame decays proportionally more, not less.
+export const MOMENTUM_FRICTION = 0.94; // multiplier applied every MOMENTUM_FRAME_MS
+export const MOMENTUM_FRAME_MS = 1000 / 60;
+export const MOMENTUM_STOP_SPEED = 0.006; // deg/ms; below this the spin is imperceptible
+
+// Screen-pixel drag velocity (px/ms) -> spin velocity (deg/ms), reusing
+// spinFromDrag's radius-scaled ratio so a flick at a given zoom keeps
+// spinning at the speed it looked like it was going, same as the position
+// math already does for an in-progress drag.
+export function spinVelocityFromDrag(vx, vy, radius) {
+  const perPixel = 90 / Math.max(1, radius);
+  return { lng: -vx * perPixel, lat: vy * perPixel };
+}
+
+export function decayVelocity(velocity, dt, friction = MOMENTUM_FRICTION) {
+  const factor = Math.pow(friction, dt / MOMENTUM_FRAME_MS);
+  return { lng: velocity.lng * factor, lat: velocity.lat * factor };
+}
+
+export function isMomentumDone(velocity, stopSpeed = MOMENTUM_STOP_SPEED) {
+  return Math.abs(velocity.lng) < stopSpeed && Math.abs(velocity.lat) < stopSpeed;
+}
+
+export function stepMomentum(spin, velocity, dt) {
+  return clampSpin({ lng: spin.lng + velocity.lng * dt, lat: spin.lat + velocity.lat * dt });
+}

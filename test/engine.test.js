@@ -62,6 +62,11 @@ import {
   groupZoom,
   zoomForRadius,
   countryAngularRadius,
+  spinVelocityFromDrag,
+  decayVelocity,
+  isMomentumDone,
+  stepMomentum,
+  MOMENTUM_FRAME_MS,
 } from "../src/game/globeMotion";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../src/data/worldGeo";
 import { pickRedirectUrl } from "../src/auth/redirectPolicy";
@@ -1213,6 +1218,36 @@ check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a 
   check(countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu) > 0, "even a small real country has a nonzero angular radius");
   check(countryAngularRadius(null, COUNTRY_CENTERS.br) === 0, "no rings has no angular radius, rather than throwing");
   check(countryAngularRadius(COUNTRY_RINGS.br, null) === 0, "no center has no angular radius, rather than throwing");
+}
+{
+  // Spin momentum (M2.3.7 step 4.4): a release velocity that decays every
+  // frame until it's imperceptible, rather than the globe stopping dead
+  // where the finger let go.
+  const v = spinVelocityFromDrag(1, 0, 190);
+  check(v.lng < 0, "dragging right releases with a westward (negative lng) velocity, matching spinFromDrag's own sign");
+  check(spinVelocityFromDrag(0, 1, 190).lat > 0, "dragging down releases with a positive lat velocity");
+  check(
+    Math.abs(spinVelocityFromDrag(1, 0, 380).lng) < Math.abs(spinVelocityFromDrag(1, 0, 190).lng),
+    "the same release speed reads as a slower spin when zoomed in, same radius scaling as spinFromDrag"
+  );
+
+  const decayed = decayVelocity({ lng: -1, lat: 0.5 }, MOMENTUM_FRAME_MS);
+  check(Math.abs(decayed.lng) < 1 && decayed.lng < 0, "one frame's decay shrinks the magnitude without flipping its sign");
+  check(near(decayVelocity({ lng: -1, lat: 0 }, 0).lng, -1), "zero elapsed time decays nothing");
+  check(
+    Math.abs(decayVelocity({ lng: -1, lat: 0 }, MOMENTUM_FRAME_MS * 10).lng) <
+      Math.abs(decayVelocity({ lng: -1, lat: 0 }, MOMENTUM_FRAME_MS).lng),
+    "more elapsed time decays velocity further, so a dropped frame doesn't coast for free"
+  );
+
+  check(isMomentumDone({ lng: 0, lat: 0 }), "zero velocity is done");
+  check(!isMomentumDone({ lng: 1, lat: 0 }), "a fast spin is not yet done");
+  check(isMomentumDone({ lng: 0.0001, lat: -0.0001 }), "velocity below the stop threshold in both axes counts as done");
+
+  const stepped = stepMomentum({ lng: 0, lat: 0 }, { lng: -1, lat: 0.5 }, 10);
+  check(near(stepped.lng, -10) && near(stepped.lat, 5), "stepMomentum advances spin by velocity times elapsed time");
+  check(near(stepMomentum({ lng: 170, lat: 0 }, { lng: 1, lat: 0 }, 20).lng, -170), "stepMomentum wraps longitude across the antimeridian like any other spin update");
+  check(stepMomentum({ lng: 0, lat: 80 }, { lng: 0, lat: 1 }, 20).lat === MAX_LATITUDE, "stepMomentum clamps latitude at the pole like any other spin update");
 }
 
 console.log("Globe geometry over the real dataset (M2.3.7)");
