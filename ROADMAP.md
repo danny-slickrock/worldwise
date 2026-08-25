@@ -692,6 +692,36 @@ teaching *how the world works*, not just *where things are*.
     service, not a one-off.
 - **M2.4 — Learning paths 🎓** — guided, mastery-based sequences that "expand outward"
   (hemisphere → continent → region → country), unlocking as the learner demonstrates mastery.
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
+    Strategy, mirroring M2.2: get the *shape* right and generalized immediately — there's no
+    hand-authored content to write here, a path is entirely derived from data `countries.js`
+    already has — then layer mastery, screen, and entry points on top.
+    1. ✅ **Content model (pure + tested).** `src/data/learningPaths.js`: a path walks one region
+       broad-to-specific — the region as a whole, then its own countries ordered easiest → hardest,
+       so working through it teaches general-to-specific, the same direction "expand outward"
+       describes. Built entirely from `countries.js`'s existing `region` + `difficulty` fields (no
+       new taxonomy, no hand-authored hero — that's why all five regions land in this one chunk
+       instead of one country the way M2.2 started with Brazil). `LEARNING_PATHS` (one path per
+       region, built once at module load) + `getLearningPath(id)`, mirroring `getCountryPage(code)`'s
+       null-for-unknown contract. 8 checks in `test/engine.test.js`: one path per region, every
+       country appears in exactly one path, nodes carry code/name/difficulty, each path's difficulty
+       never runs harder-to-easier, and the accessor's known/unknown cases.
+    2. ☐ **Mastery policy (pure + tested).** Decide what "demonstrates mastery" means against data
+       actually tracked today — `game_results` currently logs per-*round* score/mode, not per-country
+       accuracy, so this step has to either mine mastery from existing round history (e.g. a
+       Locator/Flag/Capital round's `score`/`total` for a country's region counting toward it) or
+       introduce the smallest new per-country stat needed, as its own migration if so. Whichever way,
+       keep the *decision* pure and tested, same as `cloudSync.js`/`interestSync.js`.
+    3. ☐ **Navigation seam.** Open a learning-path screen as a full-screen overlay, same
+       `openX`/`returnTo` pattern `App.js` already uses for country pages and the world map.
+    4. ☐ **Hero LearningPathScreen.** One region rendered end-to-end: node list with
+       locked/unlocked/mastered states, tapping an unlocked node starts the right game mode or
+       opens the country page. Theme tokens only; reuse `QuizScreen`/`CountryPageScreen` rather than
+       duplicating.
+    5. ☐ **Generalize + wire entry points.** All five region paths reachable, from Home and from the
+       World Map's existing region pills.
+    6. ☐ **Polish + a11y pass**, same shape as M2.2 step 6 (contrast, tap targets, offline/error
+       states, transitions).
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
   sets (e.g., "all of South America"), badges, and seasonal/limited-time events that reward curiosity
   rather than compulsive use.

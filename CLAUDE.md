@@ -69,6 +69,8 @@ src/
   theme.js                 # Design tokens — the single source of visual truth
   data/countries.js        # Country dataset + flagUrl()/outlineUrl() helpers
   data/whyItMatters.js     # Per-country "why it matters" facts (the context card)
+  data/learningPaths.js    # M2.4 step 1: learning-path content model — one path per region, nodes
+                           #   ordered easy→hard, derived from countries.js. getLearningPath(id)
   data/countryPages.js     # M2.2 country-page content model: getCountryPage(code) + hero (Brazil).
                            #   Since M2.3.5 this is the SEED SOURCE for Postgres and the offline
                            #   baseline — the same data, serving both ends
@@ -198,6 +200,12 @@ next in milestone order after M2.3.7, but its own DANNY TO DO lead-time items (A
 as an Edge Function secret, a spend cap, confirming the Supabase plan covers Edge Functions +
 pgvector, and picking an embedding model)
 aren't yet in place — check ROADMAP.md's DANNY TO DO section before starting its sub-checklist.
+With M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps, **M2.4 — learning paths** is now
+the lowest-numbered milestone with unblocked work. It has a fresh ordered sub-checklist; step 1
+(the pure content model, `src/data/learningPaths.js` — one path per region, walking
+broad-to-specific via `countries.js`'s existing `region`/`difficulty` fields) is done. Next up is
+step 2: deciding what "demonstrates mastery" means against data actually tracked today
+(`game_results` logs per-round score, not per-country accuracy).
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

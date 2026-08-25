@@ -78,6 +78,7 @@ import {
   mergeInterests,
   diffInterestRows,
 } from "../src/game/interestSync";
+import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/data/learningPaths";
 import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
@@ -1389,6 +1390,33 @@ check(
   emptyDesiredDiff.toAdd.length === 0 && JSON.stringify(emptyDesiredDiff.toRemove) === JSON.stringify(["history", "food"]),
   "diffInterestRows clears every row when the desired selection is empty (a skip)"
 );
+
+console.log("Learning paths content model (M2.4 step 1)");
+check(
+  LEARNING_PATHS.length === LEARNING_PATH_REGIONS.length,
+  "one learning path per region"
+);
+check(
+  LEARNING_PATHS.every((p, i) => p.region === LEARNING_PATH_REGIONS[i] && p.id === LEARNING_PATH_REGIONS[i].toLowerCase()),
+  "each path's id/region match LEARNING_PATH_REGIONS, in order"
+);
+const pathNodeCodes = LEARNING_PATHS.flatMap((p) => p.nodes.map((n) => n.code));
+check(pathNodeCodes.length === COUNTRIES.length, "every country appears in exactly one path's nodes");
+check(new Set(pathNodeCodes).size === pathNodeCodes.length, "no country appears in more than one path");
+check(
+  LEARNING_PATHS.every((p) => p.nodes.every((n) => n.code && n.name && n.difficulty)),
+  "every node carries code, name, and difficulty"
+);
+const DIFFICULTY_RANK = { easy: 0, medium: 1, hard: 2 };
+check(
+  LEARNING_PATHS.every((p) => p.nodes.every((n, i) => i === 0 || DIFFICULTY_RANK[p.nodes[i - 1].difficulty] <= DIFFICULTY_RANK[n.difficulty])),
+  "each path's nodes run easy → medium → hard, never harder-to-easier"
+);
+check(
+  JSON.stringify(getLearningPath("americas")) === JSON.stringify(LEARNING_PATHS.find((p) => p.id === "americas")),
+  "getLearningPath(id) returns the matching path"
+);
+check(getLearningPath("atlantis") === null, "getLearningPath returns null for an unknown id");
 
 // The only async section in the suite. Everything above is synchronous, so the
 // summary waits on just this one promise before deciding the exit code.
