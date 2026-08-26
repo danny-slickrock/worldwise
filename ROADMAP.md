@@ -706,12 +706,20 @@ teaching *how the world works*, not just *where things are*.
        null-for-unknown contract. 8 checks in `test/engine.test.js`: one path per region, every
        country appears in exactly one path, nodes carry code/name/difficulty, each path's difficulty
        never runs harder-to-easier, and the accessor's known/unknown cases.
-    2. ☐ **Mastery policy (pure + tested).** Decide what "demonstrates mastery" means against data
-       actually tracked today — `game_results` currently logs per-*round* score/mode, not per-country
-       accuracy, so this step has to either mine mastery from existing round history (e.g. a
-       Locator/Flag/Capital round's `score`/`total` for a country's region counting toward it) or
-       introduce the smallest new per-country stat needed, as its own migration if so. Whichever way,
-       keep the *decision* pure and tested, same as `cloudSync.js`/`interestSync.js`.
+    2. ✅ **Mastery policy (pure + tested).** `src/game/masteryPolicy.js`: mined from existing round
+       history rather than a new per-country stat, since `game_results` only logs per-*round*
+       score/total tagged by mode + difficulty — no per-country accuracy to mine at node granularity.
+       A node's difficulty tier (easy/medium/hard, same field `learningPaths.js` already sorts on)
+       stands in for the node itself: `computeNodeStates(path, results)` aggregates a tier's rounds
+       (ignoring `difficulty: "all"` rounds — Daily and any untiered round mix every tier together)
+       and calls it mastered once `MASTERY_MIN_ROUNDS` rounds clear `MASTERY_ACCURACY` (both new
+       `constants.js` tunables, 3 rounds / 80%). A node unlocks once every easier tier is mastered —
+       the easy tier itself has no prerequisite, so its nodes start unlocked — and becomes mastered
+       once its own tier is. 9 checks in `test/engine.test.js` over the real Oceania path: no-history
+       state, mastering a tier unlocks (not masters) the next one, hard stays locked until medium
+       clears, too-few-rounds and below-accuracy both fall short, `"all"`-difficulty rounds don't
+       count toward any tier, and the accessor's shape/order/unknown-path contracts. *(Next up:
+       step 3, the navigation seam.)*
     3. ☐ **Navigation seam.** Open a learning-path screen as a full-screen overlay, same
        `openX`/`returnTo` pattern `App.js` already uses for country pages and the world map.
     4. ☐ **Hero LearningPathScreen.** One region rendered end-to-end: node list with

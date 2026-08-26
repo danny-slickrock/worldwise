@@ -80,6 +80,14 @@ export const GLOBE_SMALL_HIT_RADIUS = 6; // viewBox units
 // a rotation covers more visual distance and reads better unhurried.
 export const GLOBE_SPIN_ANIMATION_MS = 520;
 
+// Learning paths (M2.4 step 2): a node "demonstrates mastery" once the player
+// has shown sustained accuracy at its difficulty tier — the finest signal
+// game_results tracks today (per-round score/total tagged by mode +
+// difficulty, not per-country). MASTERY_MIN_ROUNDS keeps one lucky round from
+// counting; MASTERY_ACCURACY is the bar a tier's rounds have to clear.
+export const MASTERY_MIN_ROUNDS = 3;
+export const MASTERY_ACCURACY = 0.8;
+
 // Graticule (M2.3.7 step 4.2): the lat/lng grid, drawn under the land so it
 // only reads through open ocean. 30° spacing matches every reference globe's
 // own convention (12 meridians, 5 parallels); 5° sampling along each line is

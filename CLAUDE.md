@@ -94,6 +94,8 @@ src/
   game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs,
                            #   the graticule (lat/lng grid, step 4.2)
   game/globeMotion.js      # PURE M2.3.7: spin/wrap/clamp, antimeridian-safe region centers + framing
+  game/masteryPolicy.js    # PURE M2.4 step 2: computeNodeStates(path, results) — locked/unlocked/
+                           #   mastered per node, mined from game_results' per-round score/difficulty
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -203,9 +205,11 @@ aren't yet in place — check ROADMAP.md's DANNY TO DO section before starting i
 With M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps, **M2.4 — learning paths** is now
 the lowest-numbered milestone with unblocked work. It has a fresh ordered sub-checklist; step 1
 (the pure content model, `src/data/learningPaths.js` — one path per region, walking
-broad-to-specific via `countries.js`'s existing `region`/`difficulty` fields) is done. Next up is
-step 2: deciding what "demonstrates mastery" means against data actually tracked today
-(`game_results` logs per-round score, not per-country accuracy).
+broad-to-specific via `countries.js`'s existing `region`/`difficulty` fields) and step 2 (the
+mastery policy, `src/game/masteryPolicy.js` — `computeNodeStates(path, results)` mines a node's
+locked/unlocked/mastered state from `game_results`' per-round score/difficulty, since that's the
+finest signal tracked today; no new per-country stat or migration needed) are both done. Next up
+is step 3: the navigation seam that opens a learning-path screen as a full-screen overlay.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

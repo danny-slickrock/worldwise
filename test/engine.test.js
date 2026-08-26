@@ -79,6 +79,7 @@ import {
   diffInterestRows,
 } from "../src/game/interestSync";
 import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/data/learningPaths";
+import { computeNodeStates } from "../src/game/masteryPolicy";
 import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
@@ -1417,6 +1418,59 @@ check(
   "getLearningPath(id) returns the matching path"
 );
 check(getLearningPath("atlantis") === null, "getLearningPath returns null for an unknown id");
+
+console.log("Mastery policy (M2.4 step 2)");
+const oceania = getLearningPath("oceania");
+const round = (difficulty, score, total) => ({ mode: "flag", difficulty, score, total });
+const strongEasyRounds = [round("easy", 8, 8), round("easy", 7, 8), round("easy", 8, 8)];
+
+const noHistory = computeNodeStates(oceania, []);
+check(
+  noHistory.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked") &&
+    noHistory.filter((n) => n.difficulty !== "easy").every((n) => n.state === "locked"),
+  "with no round history, only the easy tier is unlocked"
+);
+
+const easyMastered = computeNodeStates(oceania, strongEasyRounds);
+check(
+  easyMastered.filter((n) => n.difficulty === "easy").every((n) => n.state === "mastered"),
+  "3 strong easy rounds (>= the accuracy bar) master every easy node"
+);
+check(
+  easyMastered.filter((n) => n.difficulty === "medium").every((n) => n.state === "unlocked"),
+  "mastering easy unlocks (but doesn't master) medium nodes"
+);
+check(
+  easyMastered.filter((n) => n.difficulty === "hard").every((n) => n.state === "locked"),
+  "hard nodes stay locked until medium is mastered too"
+);
+
+const tooFewRounds = computeNodeStates(oceania, strongEasyRounds.slice(0, 2));
+check(
+  tooFewRounds.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked") &&
+    tooFewRounds.filter((n) => n.difficulty !== "easy").every((n) => n.state === "locked"),
+  "fewer than MASTERY_MIN_ROUNDS strong rounds isn't enough to master a tier"
+);
+
+const weakEasyRounds = [round("easy", 2, 8), round("easy", 3, 8), round("easy", 2, 8)];
+const weakEasy = computeNodeStates(oceania, weakEasyRounds);
+check(
+  weakEasy.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked"),
+  "enough rounds but below the accuracy bar isn't enough to master a tier"
+);
+
+const allDifficultyRounds = [round("all", 8, 8), round("all", 8, 8), round("all", 8, 8)];
+const allDifficulty = computeNodeStates(oceania, allDifficultyRounds);
+check(
+  allDifficulty.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked"),
+  "difficulty:\"all\" rounds (Daily, or an untiered round) don't count toward any single tier"
+);
+
+check(JSON.stringify(computeNodeStates(null, [])) === "[]", "computeNodeStates returns [] for an unknown path");
+check(
+  oceania.nodes.every((n, i) => computeNodeStates(oceania, [])[i].code === n.code),
+  "computeNodeStates preserves node order and identity"
+);
 
 // The only async section in the suite. Everything above is synchronous, so the
 // summary waits on just this one promise before deciding the exit code.
