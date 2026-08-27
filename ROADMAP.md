@@ -720,8 +720,21 @@ teaching *how the world works*, not just *where things are*.
        clears, too-few-rounds and below-accuracy both fall short, `"all"`-difficulty rounds don't
        count toward any tier, and the accessor's shape/order/unknown-path contracts. *(Next up:
        step 3, the navigation seam.)*
-    3. ☐ **Navigation seam.** Open a learning-path screen as a full-screen overlay, same
-       `openX`/`returnTo` pattern `App.js` already uses for country pages and the world map.
+    3. ✅ **Navigation seam.** `openLearningPath(pathId)` in `App.js` opens
+       `src/screens/LearningPathScreen.js` as a full-screen overlay over the tab shell — the
+       same pattern as `openCountry`/`openWorldMap`. Deliberately minimal, mirroring M2.2 step
+       2: it proves the seam (open by path id, render `getLearningPath(pathId)`, get back) —
+       Back always returns Home via the existing `leaveOverlay()`, no `returnTo` variants yet
+       since there's only one entry point so far. Renders the region name and a plain list of
+       its nodes (name + difficulty tier); no locked/unlocked/mastered styling or node-tap
+       behavior yet — `masteryPolicy.js`'s `computeNodeStates()` (step 2) lands in step 4's
+       hero screen instead. A temporary "Learning Paths" preview tile on `HomeScreen`
+       (`onOpenLearningPath`, opening the Africa path) makes it reachable while steps 4-5 build
+       the real screen and entry points, same trade-off as M2.2's "Explore Brazil" preview.
+       Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase
+       env): Home → "Learning Paths" tile opens the Africa path (54 countries, Egypt/Ethiopia/
+       Kenya/... at Easy through the harder tiers), and Back returns to Home with no console
+       errors. *(Next up: step 4 — the hero `LearningPathScreen`.)*
     4. ☐ **Hero LearningPathScreen.** One region rendered end-to-end: node list with
        locked/unlocked/mastered states, tapping an unlocked node starts the right game mode or
        opens the country page. Theme tokens only; reuse `QuizScreen`/`CountryPageScreen` rather than

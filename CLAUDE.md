@@ -117,6 +117,8 @@ src/
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
+  screens/LearningPathScreen.js # M2.4 step 3: nav seam — region name + plain node list, minimal
+                           #   until step 4 adds mastery states + tapping a node
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
@@ -208,8 +210,13 @@ the lowest-numbered milestone with unblocked work. It has a fresh ordered sub-ch
 broad-to-specific via `countries.js`'s existing `region`/`difficulty` fields) and step 2 (the
 mastery policy, `src/game/masteryPolicy.js` — `computeNodeStates(path, results)` mines a node's
 locked/unlocked/mastered state from `game_results`' per-round score/difficulty, since that's the
-finest signal tracked today; no new per-country stat or migration needed) are both done. Next up
-is step 3: the navigation seam that opens a learning-path screen as a full-screen overlay.
+finest signal tracked today; no new per-country stat or migration needed) and step 3 (the
+navigation seam — `openLearningPath(pathId)` opens `src/screens/LearningPathScreen.js` as a
+full-screen overlay, same `openX`/`returnTo` pattern as country pages and the world map; the
+screen itself is deliberately minimal, a region name and plain node list, reachable today via a
+temporary preview tile on Home) are all done. Next up is step 4: the hero `LearningPathScreen` —
+locked/unlocked/mastered node states from `masteryPolicy.js`, and tapping an unlocked node to
+start the right game mode or open its country page.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

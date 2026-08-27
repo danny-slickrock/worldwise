@@ -16,7 +16,13 @@ const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator"];
 // glitch rather than as a sequence.
 const TILE_BASE_DELAY = motion.stagger * 2;
 
-export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpenWorldMap }) {
+export default function HomeScreen({
+  progress,
+  onPlay,
+  onOpenCountryIndex,
+  onOpenWorldMap,
+  onOpenLearningPath,
+}) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
 
@@ -144,6 +150,25 @@ export default function HomeScreen({ progress, onPlay, onOpenCountryIndex, onOpe
                 </View>
                 <Text style={styles.tileTitle}>World Map</Text>
                 <Text style={styles.tileBlurb}>Tap anywhere on the map to explore it</Text>
+              </Pressable>
+            </FadeInUp>
+          )}
+
+          {/* TEMPORARY — M2.4 preview entry point so the Africa learning path
+              is reachable while the real hero screen and entry points are
+              being built (steps 4-5). Replaced once step 5 wires the actual
+              entry points (Home + the World Map's region pills). */}
+          {onOpenLearningPath && (
+            <FadeInUp
+              style={styles.tileCell}
+              delay={TILE_BASE_DELAY + staggerDelay(GAME_GRID.length + 2)}
+            >
+              <Pressable onPress={() => onOpenLearningPath("africa")} style={styles.tile}>
+                <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
+                  <Text style={styles.tileGlyph}>🎓</Text>
+                </View>
+                <Text style={styles.tileTitle}>Learning Paths</Text>
+                <Text style={styles.tileBlurb}>Preview: the Africa path, easiest to hardest</Text>
               </Pressable>
             </FadeInUp>
           )}

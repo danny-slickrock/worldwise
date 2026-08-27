@@ -8,6 +8,7 @@ import CountryPageScreen from "./src/screens/CountryPageScreen";
 import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
+import LearningPathScreen from "./src/screens/LearningPathScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import TabBar from "./src/components/TabBar";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -140,6 +141,12 @@ function AppShell() {
   function openInterests() {
     setScreen({ name: "interests" });
   }
+  // Navigation seam for M2.4 learning paths — same openX/returnTo pattern as
+  // country pages and the world map, opened by a path's own id
+  // (learningPaths.js's `region.toLowerCase()`).
+  function openLearningPath(pathId) {
+    setScreen({ name: "learningPath", pathId });
+  }
   function leaveOverlay() {
     setScreen({ name: "home", mode: null, difficulty: null, timed: false });
   }
@@ -233,6 +240,15 @@ function AppShell() {
   // whatever's already selected so it doubles as the edit surface for a
   // returning player, not just a first-visit prompt. Both Skip and Continue
   // persist (step 4): locally always, and to the cloud when signed in.
+  if (screen.name === "learningPath") {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar style="light" />
+        <LearningPathScreen pathId={screen.pathId} onExit={leaveOverlay} />
+      </SafeAreaView>
+    );
+  }
+
   if (screen.name === "interests") {
     return (
       <SafeAreaView style={styles.safe}>
@@ -256,6 +272,7 @@ function AppShell() {
             onPlay={(mode, difficulty, timed) => setScreen({ name: "quiz", mode, difficulty, timed })}
             onOpenCountryIndex={openCountryIndex}
             onOpenWorldMap={openWorldMap}
+            onOpenLearningPath={openLearningPath}
           />
         ) : (
           <ProfileScreen progress={progress} interests={interests} onOpenInterests={openInterests} />
