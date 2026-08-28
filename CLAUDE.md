@@ -210,13 +210,16 @@ the lowest-numbered milestone with unblocked work. It has a fresh ordered sub-ch
 broad-to-specific via `countries.js`'s existing `region`/`difficulty` fields) and step 2 (the
 mastery policy, `src/game/masteryPolicy.js` — `computeNodeStates(path, results)` mines a node's
 locked/unlocked/mastered state from `game_results`' per-round score/difficulty, since that's the
-finest signal tracked today; no new per-country stat or migration needed) and step 3 (the
+finest signal tracked today; no new per-country stat or migration needed) step 3 (the
 navigation seam — `openLearningPath(pathId)` opens `src/screens/LearningPathScreen.js` as a
-full-screen overlay, same `openX`/`returnTo` pattern as country pages and the world map; the
-screen itself is deliberately minimal, a region name and plain node list, reachable today via a
-temporary preview tile on Home) are all done. Next up is step 4: the hero `LearningPathScreen` —
-locked/unlocked/mastered node states from `masteryPolicy.js`, and tapping an unlocked node to
-start the right game mode or open its country page.
+full-screen overlay, same `openX`/`returnTo` pattern as country pages and the world map), and step 4
+(the hero screen: node rows now show real locked/unlocked/mastered state from `masteryPolicy.js`'s
+`computeNodeStates()`, fed by a new `fetchRoundResults(user)` in `src/storage/cloudProgress.js`
+— cloud-only, since local storage never kept per-round history; tapping an unlocked or mastered node
+opens that country's page via the same `returnTo` seam, reusing `CountryPageScreen`'s own Play
+buttons rather than building a per-country round type) are all done, still reachable only via the
+temporary Africa preview tile on Home. Next up is step 5: generalize to the other four regions and
+wire real entry points (Home, the World Map's region pills) beyond that preview tile.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

@@ -734,11 +734,22 @@ teaching *how the world works*, not just *where things are*.
        Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase
        env): Home → "Learning Paths" tile opens the Africa path (54 countries, Egypt/Ethiopia/
        Kenya/... at Easy through the harder tiers), and Back returns to Home with no console
-       errors. *(Next up: step 4 — the hero `LearningPathScreen`.)*
-    4. ☐ **Hero LearningPathScreen.** One region rendered end-to-end: node list with
-       locked/unlocked/mastered states, tapping an unlocked node starts the right game mode or
-       opens the country page. Theme tokens only; reuse `QuizScreen`/`CountryPageScreen` rather than
-       duplicating.
+       errors. *(Next up: step 4 — the hero `LearningPathScreen`, now done — see below.)*
+    4. ✅ **Hero LearningPathScreen.** Node rows now render real
+       locked/unlocked/mastered state from `masteryPolicy.js`'s `computeNodeStates()`, fed by a new
+       `fetchRoundResults(user)` in `storage/cloudProgress.js` — cloud-only, since local storage never
+       kept per-round history (only the aggregated totals `progress.js` already tracks), so a
+       signed-out player sees every tier but the first locked until they sign in, same offline-first
+       trade-off as Profile's stats. Tapping an unlocked or mastered node opens that country's page
+       (`openCountry(code, "learningPath", pathId)`, extending the existing `returnTo` seam so Back
+       comes home to the same path) rather than duplicating a per-country round builder — `questions.js`
+       only knows how to build multi-country rounds, and `CountryPageScreen` already has Play buttons
+       per mode. Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase
+       env): the Africa path's 6 easy nodes show unlocked/"Start", every medium/hard node shows locked
+       (no round history yet, matching `computeNodeStates`' no-history contract), tapping Egypt opens
+       its country page, and Back returns to the same path with the same state — no console errors.
+       *(Next up: step 5 — generalize to the other four regions and wire entry points beyond the
+       temporary Home preview tile.)*
     5. ☐ **Generalize + wire entry points.** All five region paths reachable, from Home and from the
        World Map's existing region pills.
     6. ☐ **Polish + a11y pass**, same shape as M2.2 step 6 (contrast, tap targets, offline/error

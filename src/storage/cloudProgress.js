@@ -69,6 +69,26 @@ export async function fetchProgress(user, client = supabase) {
   }
 }
 
+// Read a user's round history in the { mode, difficulty, score, total } shape
+// masteryPolicy.js's computeNodeStates expects. Local storage never kept
+// per-round history (only the aggregated totals above), so this is cloud-only
+// — a signed-out player has no mastery signal yet, same as every other
+// cloud-only read in this file. Returns [] rather than null on any failure so
+// callers can pass it straight to computeNodeStates without a null check.
+export async function fetchRoundResults(user, client = supabase) {
+  if (!user?.id) return [];
+  try {
+    const { data, error } = await client
+      .from("game_results")
+      .select("mode, difficulty, score, total")
+      .eq("user_id", user.id);
+    if (error) return [];
+    return data ?? [];
+  } catch {
+    return [];
+  }
+}
+
 // First sign-in on a device: fold local progress into the cloud, taking the max
 // of local vs. any existing cloud row so a returning player on a new device
 // can't lose their higher totals. Runs once (guarded by MIGRATED_KEY) and only

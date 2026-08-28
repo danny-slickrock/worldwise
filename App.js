@@ -126,8 +126,11 @@ function AppShell() {
   // or the World Map (M2.3 step 1) hand its Back button back to where it was
   // opened from instead of Home, without a real nav stack — just one extra
   // field on the overlay's own screen state.
-  function openCountry(code, returnTo = "home") {
-    setScreen({ name: "country", code, returnTo });
+  // `returnPathId` only matters when returnTo === "learningPath" — it's the
+  // path id exitCountry hands back to openLearningPath, the same way
+  // `returnTo` itself picks which screen to reopen.
+  function openCountry(code, returnTo = "home", returnPathId = null) {
+    setScreen({ name: "country", code, returnTo, returnPathId });
   }
   function openCountryIndex() {
     setScreen({ name: "countryIndex" });
@@ -155,6 +158,8 @@ function AppShell() {
       openCountryIndex();
     } else if (screen.name === "country" && screen.returnTo === "worldMap") {
       openWorldMap();
+    } else if (screen.name === "country" && screen.returnTo === "learningPath") {
+      openLearningPath(screen.returnPathId);
     } else {
       leaveOverlay();
     }
@@ -236,19 +241,23 @@ function AppShell() {
     );
   }
 
-  // M2.3.6 — opened from the "Interests" row on Profile (step 5), seeded with
-  // whatever's already selected so it doubles as the edit surface for a
-  // returning player, not just a first-visit prompt. Both Skip and Continue
-  // persist (step 4): locally always, and to the cloud when signed in.
   if (screen.name === "learningPath") {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar style="light" />
-        <LearningPathScreen pathId={screen.pathId} onExit={leaveOverlay} />
+        <LearningPathScreen
+          pathId={screen.pathId}
+          onExit={leaveOverlay}
+          onOpenCountry={(code) => openCountry(code, "learningPath", screen.pathId)}
+        />
       </SafeAreaView>
     );
   }
 
+  // M2.3.6 — opened from the "Interests" row on Profile (step 5), seeded with
+  // whatever's already selected so it doubles as the edit surface for a
+  // returning player, not just a first-visit prompt. Both Skip and Continue
+  // persist (step 4): locally always, and to the cloud when signed in.
   if (screen.name === "interests") {
     return (
       <SafeAreaView style={styles.safe}>
