@@ -6,6 +6,7 @@ import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
+import { LEARNING_PATH_REGIONS } from "../data/learningPaths";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
 const FEATURED = "daily";
@@ -154,21 +155,26 @@ export default function HomeScreen({
             </FadeInUp>
           )}
 
-          {/* TEMPORARY — M2.4 preview entry point so the Africa learning path
-              is reachable while the real hero screen and entry points are
-              being built (steps 4-5). Replaced once step 5 wires the actual
-              entry points (Home + the World Map's region pills). */}
+          {/* M2.4 step 5 — the real entry point: one tile opens the first
+              region's path, and LearningPathScreen's own region pill row
+              (mirroring the World Map's) reaches the other four from there.
+              A tile per region would crowd this grid with five near-identical
+              cards, so this generalizes the same way M2.2's browsable index
+              did — one doorway in, switching happens on the far side. */}
           {onOpenLearningPath && (
             <FadeInUp
               style={styles.tileCell}
               delay={TILE_BASE_DELAY + staggerDelay(GAME_GRID.length + 2)}
             >
-              <Pressable onPress={() => onOpenLearningPath("africa")} style={styles.tile}>
+              <Pressable
+                onPress={() => onOpenLearningPath(LEARNING_PATH_REGIONS[0].toLowerCase())}
+                style={styles.tile}
+              >
                 <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
                   <Text style={styles.tileGlyph}>🎓</Text>
                 </View>
                 <Text style={styles.tileTitle}>Learning Paths</Text>
-                <Text style={styles.tileBlurb}>Preview: the Africa path, easiest to hardest</Text>
+                <Text style={styles.tileBlurb}>Guided, mastery-based routes through every region</Text>
               </Pressable>
             </FadeInUp>
           )}

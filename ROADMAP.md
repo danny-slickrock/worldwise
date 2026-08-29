@@ -750,8 +750,23 @@ teaching *how the world works*, not just *where things are*.
        its country page, and Back returns to the same path with the same state — no console errors.
        *(Next up: step 5 — generalize to the other four regions and wire entry points beyond the
        temporary Home preview tile.)*
-    5. ☐ **Generalize + wire entry points.** All five region paths reachable, from Home and from the
-       World Map's existing region pills.
+    5. ✅ **Generalize + wire entry points.** All five region paths are now reachable from two real
+       entry points, replacing the temporary Africa-only Home tile. Rather than five near-identical
+       tiles crowding Home's grid, `LearningPathScreen` grew its own region-pill row (mirroring the
+       World Map's), so the *one* Home "Learning Paths" tile (still opens the first region,
+       `LEARNING_PATH_REGIONS[0]`) reaches every path by switching pills on the far side —
+       `onSwitchPath` just re-runs `App.js`'s existing `openLearningPath(pathId)`, no new nav state.
+       The World Map's existing region pills (already there for framing the globe) do double duty:
+       the active-region label over the globe is now a `Pressable` reading "{Region} · Learning path
+       ›" that opens that region's path directly — one fewer step than pill → Home → tile. Falls back
+       to the old non-interactive label when no handler is passed in, so the map still works
+       standalone. No new screens, no new pure modules — `LEARNING_PATH_REGIONS` (already exported
+       from step 1's `learningPaths.js`) is the only new import, on both `HomeScreen` and
+       `LearningPathScreen`. Verified in a real browser (Playwright/Chromium, static export,
+       placeholder Supabase env): Home → Learning Paths tile opens Africa; all five pills present and
+       switch paths in place (checked Oceania renders its own 14 countries); World Map → Africa
+       region pill shows "Learning path ›" and opens the Africa path directly — no console errors.
+       *(Next up: step 6 — the polish + a11y pass.)*
     6. ☐ **Polish + a11y pass**, same shape as M2.2 step 6 (contrast, tap targets, offline/error
        states, transitions).
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible

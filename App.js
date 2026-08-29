@@ -146,7 +146,9 @@ function AppShell() {
   }
   // Navigation seam for M2.4 learning paths — same openX/returnTo pattern as
   // country pages and the world map, opened by a path's own id
-  // (learningPaths.js's `region.toLowerCase()`).
+  // (learningPaths.js's `region.toLowerCase()`). Reused as-is for the Home
+  // tile, the World Map's region pills, and LearningPathScreen's own region
+  // switcher (step 5) — all three just call it with a different pathId.
   function openLearningPath(pathId) {
     setScreen({ name: "learningPath", pathId });
   }
@@ -235,6 +237,7 @@ function AppShell() {
         <WorldMapScreen
           onExit={leaveOverlay}
           onOpenCountry={(code) => openCountry(code, "worldMap")}
+          onOpenLearningPath={openLearningPath}
           focusCountry={screen.focusCountry}
         />
       </SafeAreaView>
@@ -249,6 +252,7 @@ function AppShell() {
           pathId={screen.pathId}
           onExit={leaveOverlay}
           onOpenCountry={(code) => openCountry(code, "learningPath", screen.pathId)}
+          onSwitchPath={openLearningPath}
         />
       </SafeAreaView>
     );

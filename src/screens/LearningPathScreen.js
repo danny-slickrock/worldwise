@@ -1,23 +1,30 @@
 // Learning path screen (M2.4) — a guided, mastery-based sequence through one
 // region's countries, broad to specific.
 //
-// Step 4 (this version) is the hero: node states come from masteryPolicy.js's
+// Step 4 was the hero: node states come from masteryPolicy.js's
 // computeNodeStates(), mined from the player's real round history, and
 // tapping an unlocked or mastered node opens that country's page — which
 // already has its own Play buttons per game mode, so this screen doesn't
 // need to know how to start a round.
+//
+// Step 5 generalizes the entry point: rather than one Home tile per region
+// (which would crowd Home's grid with five near-identical tiles), a single
+// pill row here — same pattern as the World Map's region row — switches
+// between all five paths without leaving the screen. `onSwitchPath` just
+// re-runs App.js's own openLearningPath(pathId), so switching is a normal
+// nav-seam call, not new screen state.
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, depth, constrain } from "../theme";
 import Container from "../components/Container";
-import { getLearningPath } from "../data/learningPaths";
+import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
 import { computeNodeStates } from "../game/masteryPolicy";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
 
 const STATE_LABEL = { locked: "Locked", unlocked: "Start", mastered: "Mastered" };
 
-export default function LearningPathScreen({ pathId, onExit, onOpenCountry }) {
+export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSwitchPath }) {
   const path = getLearningPath(pathId);
   const { user } = useAuth();
   // Local storage keeps no per-round history (only aggregated totals), so
@@ -42,6 +49,27 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry }) {
       <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
         <Text style={styles.backText}>‹ Back</Text>
       </Pressable>
+
+      {onSwitchPath && (
+        <View style={styles.regionRow}>
+          {LEARNING_PATH_REGIONS.map((region) => {
+            const id = region.toLowerCase();
+            const active = id === pathId;
+            return (
+              <Pressable
+                key={id}
+                onPress={() => onSwitchPath(id)}
+                hitSlop={8}
+                style={[styles.regionChip, active && styles.regionChipActive]}
+              >
+                <Text style={[styles.regionChipText, active && styles.regionChipTextActive]}>
+                  {region}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      )}
 
       {!path ? (
         <View style={styles.empty}>
@@ -84,6 +112,23 @@ const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
   back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  regionRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: spacing(1),
+    paddingHorizontal: spacing(2.5),
+    paddingBottom: spacing(1),
+  },
+  regionChip: {
+    paddingVertical: spacing(1),
+    paddingHorizontal: spacing(1.75),
+    borderRadius: radius.pill,
+    backgroundColor: colors.surface,
+    ...depth(3),
+  },
+  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
+  regionChipText: { ...type.pill, color: colors.muted },
+  regionChipTextActive: { color: colors.navyDeep },
   content: { padding: spacing(2.5), paddingTop: spacing(1), paddingBottom: spacing(6) },
   kicker: { ...type.kicker },
   title: { ...type.hero, fontSize: 34, marginTop: spacing(0.5) },

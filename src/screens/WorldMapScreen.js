@@ -67,7 +67,12 @@ const REGION_TARGETS = Object.fromEntries(
 
 const sameSpin = (a, b) => Math.abs(a.lng - b.lng) < 0.01 && Math.abs(a.lat - b.lat) < 0.01;
 
-export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = null }) {
+export default function WorldMapScreen({
+  onExit,
+  onOpenCountry,
+  onOpenLearningPath,
+  focusCountry = null,
+}) {
   const [zoom, setZoom] = useState(1);
   const [spin, setSpin] = useState(DEFAULT_SPIN);
   const [activeRegion, setActiveRegion] = useState(null);
@@ -446,9 +451,23 @@ export default function WorldMapScreen({ onExit, onOpenCountry, focusCountry = n
           <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} />
 
           {activeRegion !== null && (
-            <View style={styles.regionLabel} pointerEvents="none">
+            // M2.4 step 5: the same region pill that framed the globe doubles
+            // as the learning-path entry point — tapping it opens that
+            // region's path rather than just labeling the view. Falls back to
+            // a non-interactive label (pointerEvents none, as before) when no
+            // handler is passed in, so the map still works standalone.
+            <Pressable
+              onPress={onOpenLearningPath && (() => onOpenLearningPath(activeRegion.toLowerCase()))}
+              disabled={!onOpenLearningPath}
+              hitSlop={8}
+              style={styles.regionLabel}
+              pointerEvents={onOpenLearningPath ? "auto" : "none"}
+            >
               <Text style={styles.regionLabelText}>{activeRegion}</Text>
-            </View>
+              {onOpenLearningPath && (
+                <Text style={styles.regionLabelSub}>Learning path ›</Text>
+              )}
+            </Pressable>
           )}
 
           {!isReset && (
@@ -536,4 +555,11 @@ const styles = StyleSheet.create({
     ...depth(3, colors.navyDeep),
   },
   regionLabelText: { ...type.pill, fontSize: 12, color: colors.navyDeep },
+  regionLabelSub: {
+    ...type.pill,
+    fontSize: 10,
+    color: colors.navyDeep,
+    opacity: 0.7,
+    marginTop: 1,
+  },
 });

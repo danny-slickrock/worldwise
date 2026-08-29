@@ -117,8 +117,8 @@ src/
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
-  screens/LearningPathScreen.js # M2.4 step 3: nav seam — region name + plain node list, minimal
-                           #   until step 4 adds mastery states + tapping a node
+  screens/LearningPathScreen.js # M2.4: nav seam (step 3) + mastery states/tapping a node (step 4)
+                           #   + a region-pill row generalizing to all five paths (step 5)
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
@@ -217,9 +217,12 @@ full-screen overlay, same `openX`/`returnTo` pattern as country pages and the wo
 `computeNodeStates()`, fed by a new `fetchRoundResults(user)` in `src/storage/cloudProgress.js`
 — cloud-only, since local storage never kept per-round history; tapping an unlocked or mastered node
 opens that country's page via the same `returnTo` seam, reusing `CountryPageScreen`'s own Play
-buttons rather than building a per-country round type) are all done, still reachable only via the
-temporary Africa preview tile on Home. Next up is step 5: generalize to the other four regions and
-wire real entry points (Home, the World Map's region pills) beyond that preview tile.
+buttons rather than building a per-country round type), and step 5 (generalizing beyond the
+temporary Africa-only Home tile: `LearningPathScreen` grew its own region-pill row, mirroring the
+World Map's, so its one Home tile reaches all five paths by switching pills on the far side; the
+World Map's existing region pills do double duty too — the active-region label over the globe is
+now a `Pressable` that opens that region's path directly) are all done. Next up is step 6: the
+polish + a11y pass.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
