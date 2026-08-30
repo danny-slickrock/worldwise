@@ -768,7 +768,23 @@ teaching *how the world works*, not just *where things are*.
        region pill shows "Learning path ›" and opens the Africa path directly — no console errors.
        *(Next up: step 6 — the polish + a11y pass.)*
     6. ☐ **Polish + a11y pass**, same shape as M2.2 step 6 (contrast, tap targets, offline/error
-       states, transitions).
+       states, transitions). Broken into its own ordered chunks:
+       1. ✅ **WCAG AA contrast audit.** `LearningPathScreen`'s "Mastered" row-state label
+          (`rowState_mastered`) is the first place `colors.success` renders as plain text outside
+          its own tinted `successBg` pill — and `test/engine.test.js`'s existing accent sweep (from
+          M2.2 step 6.1) never checked that combination, or the same gap already live elsewhere
+          (`ProfileScreen`'s sync-status line and Sign Out label both use `success`/`error` as text
+          on `bg`/`surface` too). Both colors pass comfortably as-is — success: 7.16:1 on `bg`,
+          6.03:1 on `surface`; error: 5.89:1 on `bg`, 4.96:1 on `surface`, all clear of the 4.5:1 AA
+          floor for normal text — so nothing needed to change; the gap was in test coverage, not the
+          tokens. `success`/`error` now join the existing `bg`/`surface` accent loop in
+          `test/engine.test.js`. The locked row's `opacity: 0.5` dimming (`rowLocked`/
+          `rowNameLocked`) is deliberately left out of the sweep: it's not interactive, and the
+          dimming itself is the affordance that reads as "locked" — the same exemption WCAG gives a
+          disabled control. *(Next up: step 6.2 — large tap targets.)*
+       2. ☐ **Large tap targets.**
+       3. ☐ **Offline/error states.**
+       4. ☐ **Transitions.**
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
   sets (e.g., "all of South America"), badges, and seasonal/limited-time events that reward curiosity
   rather than compulsive use.

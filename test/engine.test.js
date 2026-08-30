@@ -433,6 +433,15 @@ for (const fg of ["teal", "earth", "sand", "sky", "iris", "leaf"]) {
     check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} accent text on ${bg} meets WCAG AA`);
   }
 }
+// success/error double as plain status text (ProfileScreen's sync line and Sign
+// Out label, LearningPathScreen's "Mastered" row state) as well as their own
+// tinted successBg/errorBg pills — that second usage was never actually
+// checked until M2.4 step 6.1 added it.
+for (const fg of ["success", "error"]) {
+  for (const bg of ["bg", "surface"]) {
+    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} status text on ${bg} meets WCAG AA`);
+  }
+}
 // Accents used as filled button/tile backgrounds take dark ink, not white:
 // bright enough to carry text on the dark base means too bright for white on top.
 for (const fill of ["teal", "earth", "sand", "sky", "iris", "leaf", "success", "error"]) {
