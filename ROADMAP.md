@@ -782,7 +782,20 @@ teaching *how the world works*, not just *where things are*.
           `rowNameLocked`) is deliberately left out of the sweep: it's not interactive, and the
           dimming itself is the affordance that reads as "locked" — the same exemption WCAG gives a
           disabled control. *(Next up: step 6.2 — large tap targets.)*
-       2. ☐ **Large tap targets.**
+       2. ✅ **Large tap targets.** Audited every interactive element on `LearningPathScreen` in a
+          real browser (Playwright/Chromium, static export, placeholder Supabase env, 390×844
+          viewport — the same rig step 6.1's contrast pass used) and measured actual rendered
+          boxes rather than guessing from styles. All three already clear 44×44, no changes
+          needed: the Back button renders 390×40 and already carries `hitSlop={12}` (from step
+          3), extending its effective target to ~390×64; the smallest region-pill chip renders
+          55×34 and already carries `hitSlop={8}` (from step 5), extending to ~71×50; and node
+          rows render 350×60 from their two-line content (name + difficulty tier) plus padding
+          alone, clearing the floor with no `hitSlop` needed at all. Locked rows are excluded
+          from the sweep the same way M2.2's audit excluded disabled controls — they're not
+          interactive, so they have no tap target to measure. The `hitSlop` convention M2.2 step
+          6.2 established was already carried over onto this screen's small targets when steps 3
+          and 5 built them, so there was nothing left to fix here. *(Next up: step 6.3 —
+          offline/error states.)*
        3. ☐ **Offline/error states.**
        4. ☐ **Transitions.**
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible

@@ -221,8 +221,12 @@ buttons rather than building a per-country round type), and step 5 (generalizing
 temporary Africa-only Home tile: `LearningPathScreen` grew its own region-pill row, mirroring the
 World Map's, so its one Home tile reaches all five paths by switching pills on the far side; the
 World Map's existing region pills do double duty too — the active-region label over the globe is
-now a `Pressable` that opens that region's path directly) are all done. Next up is step 6: the
-polish + a11y pass.
+now a `Pressable` that opens that region's path directly) are all done. Step 6 (the polish + a11y
+pass) is underway: step 6.1 (WCAG AA contrast audit — `success`/`error` as text now join the
+existing accent sweep in `test/engine.test.js`; both already passed, so no token changed) and step
+6.2 (large tap targets — audited in a real browser; the Back button and region-pill chips already
+carry `hitSlop` from steps 3/5, and node rows already clear 44×44 from their own content, so
+nothing needed to change) are both done. Next up is step 6.3: offline/error states.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
