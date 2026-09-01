@@ -73,19 +73,23 @@ export async function fetchProgress(user, client = supabase) {
 // masteryPolicy.js's computeNodeStates expects. Local storage never kept
 // per-round history (only the aggregated totals above), so this is cloud-only
 // — a signed-out player has no mastery signal yet, same as every other
-// cloud-only read in this file. Returns [] rather than null on any failure so
-// callers can pass it straight to computeNodeStates without a null check.
+// cloud-only read in this file. `rows` is always an array — safe to pass
+// straight to computeNodeStates without a null check — but a failed fetch
+// (offline, backend down) also returns [] on its own, which looks identical
+// to "no history yet" and would mislabel every locked tier. `error` is how a
+// caller tells the two apart and shows an offline notice instead of a false
+// "nothing played" read.
 export async function fetchRoundResults(user, client = supabase) {
-  if (!user?.id) return [];
+  if (!user?.id) return { rows: [], error: null };
   try {
     const { data, error } = await client
       .from("game_results")
       .select("mode, difficulty, score, total")
       .eq("user_id", user.id);
-    if (error) return [];
-    return data ?? [];
-  } catch {
-    return [];
+    if (error) return { rows: [], error };
+    return { rows: data ?? [], error: null };
+  } catch (error) {
+    return { rows: [], error };
   }
 }
 

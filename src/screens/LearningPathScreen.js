@@ -31,11 +31,19 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   // results start empty — signed-out players see every tier but the first
   // locked until they sign in, same offline-first trade-off as Profile's stats.
   const [results, setResults] = useState([]);
+  // A failed fetch (offline, backend down) also resolves to an empty results
+  // array, which looks identical to "no history yet" and would otherwise
+  // mislabel every locked tier as genuinely un-played. Track it separately so
+  // a signed-in player sees an honest "couldn't load" notice instead.
+  const [resultsError, setResultsError] = useState(false);
 
   useEffect(() => {
     let active = true;
-    fetchRoundResults(user).then((rows) => {
-      if (active) setResults(rows);
+    setResultsError(false);
+    fetchRoundResults(user).then(({ rows, error }) => {
+      if (!active) return;
+      setResults(rows);
+      setResultsError(Boolean(error));
     });
     return () => {
       active = false;
@@ -81,6 +89,12 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
             <Text style={styles.kicker}>Learning path</Text>
             <Text style={styles.title}>{path.region}</Text>
             <Text style={styles.subtitle}>{path.nodes.length} countries, easiest to hardest</Text>
+
+            {resultsError && user && (
+              <Text style={styles.noticeText}>
+                ⚠ Couldn't load your progress — showing offline defaults.
+              </Text>
+            )}
 
             {nodes.map((node) => {
               const locked = node.state === "locked";
@@ -133,6 +147,12 @@ const styles = StyleSheet.create({
   kicker: { ...type.kicker },
   title: { ...type.hero, fontSize: 34, marginTop: spacing(0.5) },
   subtitle: { ...type.muted, fontSize: 14, marginTop: spacing(0.5), marginBottom: spacing(2.5) },
+  noticeText: {
+    ...type.muted,
+    fontSize: 13,
+    color: colors.error,
+    marginBottom: spacing(2),
+  },
   row: {
     ...constrain.content,
     flexDirection: "row",

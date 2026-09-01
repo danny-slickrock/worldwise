@@ -796,7 +796,20 @@ teaching *how the world works*, not just *where things are*.
           6.2 established was already carried over onto this screen's small targets when steps 3
           and 5 built them, so there was nothing left to fix here. *(Next up: step 6.3 —
           offline/error states.)*
-       3. ☐ **Offline/error states.**
+       3. ✅ **Offline/error states.** `fetchRoundResults(user)` used to swallow every failure
+          (network error, offline, Supabase down) and return `[]` — indistinguishable from "hasn't
+          played yet," which would silently mislabel every non-easy tier "Locked" with no hint that
+          the read had actually failed rather than reflecting real history. It now returns
+          `{ rows, error }`; `LearningPathScreen` tracks the error separately from the (still
+          empty) results and shows a `colors.error` notice — "⚠ Couldn't load your progress —
+          showing offline defaults." — above the node list when a signed-in player's fetch fails,
+          so a false "nothing played" read can't pass as the real thing. Signed-out players are
+          unaffected: they never attempt the fetch, so the existing "sign in to unlock" locked
+          state (from step 4) still reads as intended. No new pure module — this is IO error
+          plumbing plus a UI notice, same shape as M2.2 step 6.3's `CountryOutline` fallback, so it
+          isn't covered by `test/engine.test.js`; verified via `npm test`/`typecheck`/`lint` plus a
+          static web build all staying green with the new `{ rows, error }` shape and its lone
+          caller in sync. *(Next up: step 6.4 — transitions.)*
        4. ☐ **Transitions.**
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
   sets (e.g., "all of South America"), badges, and seasonal/limited-time events that reward curiosity
