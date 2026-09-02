@@ -13,10 +13,11 @@
 // between all five paths without leaving the screen. `onSwitchPath` just
 // re-runs App.js's own openLearningPath(pathId), so switching is a normal
 // nav-seam call, not new screen state.
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import React, { useEffect, useRef, useState } from "react";
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
+import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
 import Container from "../components/Container";
+import FadeInUp from "../components/FadeInUp";
 import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
 import { computeNodeStates } from "../game/masteryPolicy";
 import { useAuth } from "../auth/AuthProvider";
@@ -52,9 +53,37 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
 
   const nodes = path ? computeNodeStates(path, results) : [];
 
+  // Fade/rise-in on open, fade/settle-out on close — same shape as
+  // CountryPageScreen (M2.2 step 6.4). A node tap skips the defer: it opens a
+  // country page, which already has its own entrance transition, so there's
+  // nothing to avoid double-animating. Switching region pills stays instant
+  // too — the screen never unmounts for that, it's just a content swap.
+  const screenAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(screenAnim, {
+      toValue: 1,
+      duration: motion.duration.base,
+      easing: Easing.bezier(...motion.easeOut),
+      useNativeDriver: true,
+    }).start();
+  }, [screenAnim]);
+  function handleExit() {
+    Animated.timing(screenAnim, {
+      toValue: 0,
+      duration: motion.duration.fast,
+      useNativeDriver: true,
+    }).start(onExit);
+  }
+  const screenStyle = {
+    opacity: screenAnim,
+    transform: [
+      { translateY: screenAnim.interpolate({ inputRange: [0, 1], outputRange: [motion.rise, 0] }) },
+    ],
+  };
+
   return (
-    <View style={styles.wrap}>
-      <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
+    <Animated.View style={[styles.wrap, screenStyle]}>
+      <Pressable onPress={handleExit} hitSlop={12} style={styles.back}>
         <Text style={styles.backText}>‹ Back</Text>
       </Pressable>
 
@@ -86,39 +115,49 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
       ) : (
         <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
           <Container>
-            <Text style={styles.kicker}>Learning path</Text>
-            <Text style={styles.title}>{path.region}</Text>
-            <Text style={styles.subtitle}>{path.nodes.length} countries, easiest to hardest</Text>
+            {/* rise={0}: the screen as a whole already rises via screenAnim,
+                so these two groups contribute the fade + stagger only —
+                stacking transforms would overshoot the 8-16px band, same
+                reasoning as CountryPageScreen's own blocks. */}
+            <FadeInUp rise={0}>
+              <Text style={styles.kicker}>Learning path</Text>
+              <Text style={styles.title}>{path.region}</Text>
+              <Text style={styles.subtitle}>{path.nodes.length} countries, easiest to hardest</Text>
 
-            {resultsError && user && (
-              <Text style={styles.noticeText}>
-                ⚠ Couldn't load your progress — showing offline defaults.
-              </Text>
-            )}
+              {resultsError && user && (
+                <Text style={styles.noticeText}>
+                  ⚠ Couldn't load your progress — showing offline defaults.
+                </Text>
+              )}
+            </FadeInUp>
 
-            {nodes.map((node) => {
-              const locked = node.state === "locked";
-              return (
-                <Pressable
-                  key={node.code}
-                  disabled={locked}
-                  onPress={() => onOpenCountry?.(node.code)}
-                  style={[styles.row, locked && styles.rowLocked]}
-                >
-                  <View style={styles.rowBody}>
-                    <Text style={[styles.rowName, locked && styles.rowNameLocked]}>{node.name}</Text>
-                    <Text style={styles.rowDifficulty}>{node.difficulty}</Text>
-                  </View>
-                  <Text style={[styles.rowState, styles[`rowState_${node.state}`]]}>
-                    {STATE_LABEL[node.state]}
-                  </Text>
-                </Pressable>
-              );
-            })}
+            <FadeInUp rise={0} index={1}>
+              {nodes.map((node) => {
+                const locked = node.state === "locked";
+                return (
+                  <Pressable
+                    key={node.code}
+                    disabled={locked}
+                    onPress={() => onOpenCountry?.(node.code)}
+                    style={[styles.row, locked && styles.rowLocked]}
+                  >
+                    <View style={styles.rowBody}>
+                      <Text style={[styles.rowName, locked && styles.rowNameLocked]}>
+                        {node.name}
+                      </Text>
+                      <Text style={styles.rowDifficulty}>{node.difficulty}</Text>
+                    </View>
+                    <Text style={[styles.rowState, styles[`rowState_${node.state}`]]}>
+                      {STATE_LABEL[node.state]}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </FadeInUp>
           </Container>
         </ScrollView>
       )}
-    </View>
+    </Animated.View>
   );
 }
 

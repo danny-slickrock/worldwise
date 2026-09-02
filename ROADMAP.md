@@ -50,8 +50,9 @@ Two notes on how C and D actually landed, so the history reads honestly:
   nothing today. `TabBar` takes its tabs as data, so adding Play later is a one-line change if
   a real second destination ever earns its place.
 
-**M2.1 — accounts & cloud sync**, **M2.2 — country pages**, **M2.3 — interactive maps**, and
-**M2.3.6 — learner interests** are all complete end to end (see each milestone below for detail).
+**M2.1 — accounts & cloud sync**, **M2.2 — country pages**, **M2.3 — interactive maps**,
+**M2.3.6 — learner interests**, and **M2.4 — learning paths** are all complete end to end (see
+each milestone below for detail).
 **M2.3.5 — content backend** is code-complete but blocked purely on Danny's live-project steps (DB
 push + seeding, see DANNY TO DO below) — no more code to write there until those land. **M2.3.7 —
 the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and has now
@@ -66,8 +67,11 @@ this environment doesn't have. With step 4 fully done, M2.3.7 has no unblocked w
 one of those two lands.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
-confirmation, embedding model pick) — check that section before starting its sub-checklist. The
-Phase 1 backlog below gets picked up opportunistically, not as a gate.
+confirmation, embedding model pick) — check that section before starting its sub-checklist. With
+M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done, **M2.5 — Achievements,
+collections & deeper gamification** is the lowest-numbered milestone with unblocked work, but it
+has no ordered sub-checklist yet — decompose it into scoped steps before starting the first one.
+The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -809,8 +813,27 @@ teaching *how the world works*, not just *where things are*.
           plumbing plus a UI notice, same shape as M2.2 step 6.3's `CountryOutline` fallback, so it
           isn't covered by `test/engine.test.js`; verified via `npm test`/`typecheck`/`lint` plus a
           static web build all staying green with the new `{ rows, error }` shape and its lone
-          caller in sync. *(Next up: step 6.4 — transitions.)*
-       4. ☐ **Transitions.**
+          caller in sync.
+       4. ✅ **Transitions.** `LearningPathScreen` had no motion at all — it was built (M2.4 step
+          3) after the cross-cutting `FadeInUp`/`useReducedMotion` pass (which touched Home, Quiz,
+          CountryPage, the country index, the map, Profile and Sign-in) had already landed, so it
+          never got swept in. It now matches its siblings: a screen-level fade/rise-in on open and
+          fade/settle-out on close (`Animated.timing` on a `screenAnim` value, `useNativeDriver:
+          true`), exactly the shape `CountryPageScreen` uses (M2.2 step 6.4) — Back is deferred
+          until the close animation finishes rather than cutting away instantly. Inside that, the
+          header (kicker/title/subtitle/offline notice) and the node list each get their own
+          `FadeInUp rise={0}` group — contributing the fade/stagger only, since the screen-level
+          animation already supplies the rise, the same reasoning `CountryPageScreen`'s own blocks
+          use. Two things deliberately don't defer: tapping a node opens a country page, which
+          already has its own entrance transition (mirroring `CountryPageScreen`'s own `onPlay`,
+          which doesn't defer either); and switching a region pill (`onSwitchPath`) never unmounts
+          this screen, so there's no exit to animate — it's a plain content swap, same as
+          `CountryPageScreen` doesn't retrigger its entrance when `code` changes. Verified in a
+          real browser (Playwright/Chromium, static export, placeholder Supabase env): Home →
+          Learning Paths → Africa renders correctly; tapping Egypt opens its country page and
+          Back returns to the same path; the path's own Back returns Home — the full loop with no
+          console or page errors. **M2.4 step 6 (polish + a11y) is now fully done, which completes
+          M2.4 — Learning paths — end to end.**
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
   sets (e.g., "all of South America"), badges, and seasonal/limited-time events that reward curiosity
   rather than compulsive use.

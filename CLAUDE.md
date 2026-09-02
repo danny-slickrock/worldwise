@@ -119,6 +119,7 @@ src/
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan
   screens/LearningPathScreen.js # M2.4: nav seam (step 3) + mastery states/tapping a node (step 4)
                            #   + a region-pill row generalizing to all five paths (step 5)
+                           #   + fade/rise-in + fade/settle-out transitions (step 6.4)
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
@@ -187,7 +188,7 @@ pass — animating the scale/pan jump via `lerpView()` in `src/game/mapZoom.js`,
 on the map, and clearing the active pill on a manual pinch/drag/wheel so it never claims a match it
 no longer has) are all shipped and verified in a real browser.
 
-**Next up:** M2.3.6 — learner interests is fully done end to end (prompt screen, pure catalog +
+**M2.3.6 — learner interests is fully done end to end** (prompt screen, pure catalog +
 policy module, `profile_interests` schema migration, the offline-first sync seam, and a real
 "Interests" settings row on Profile, replacing the temporary preview CTA, that shows a live
 selection summary and reopens `InterestsScreen` seeded with whatever's already picked).
@@ -222,15 +223,23 @@ temporary Africa-only Home tile: `LearningPathScreen` grew its own region-pill r
 World Map's, so its one Home tile reaches all five paths by switching pills on the far side; the
 World Map's existing region pills do double duty too — the active-region label over the globe is
 now a `Pressable` that opens that region's path directly) are all done. Step 6 (the polish + a11y
-pass) is underway: step 6.1 (WCAG AA contrast audit — `success`/`error` as text now join the
-existing accent sweep in `test/engine.test.js`; both already passed, so no token changed) and step
+pass) is fully done: step 6.1 (WCAG AA contrast audit — `success`/`error` as text now join the
+existing accent sweep in `test/engine.test.js`; both already passed, so no token changed), step
 6.2 (large tap targets — audited in a real browser; the Back button and region-pill chips already
 carry `hitSlop` from steps 3/5, and node rows already clear 44×44 from their own content, so
-nothing needed to change), and step 6.3 (offline/error states — `fetchRoundResults(user)` now
+nothing needed to change), step 6.3 (offline/error states — `fetchRoundResults(user)` now
 returns `{ rows, error }` instead of swallowing a failed fetch into the same `[]` a genuine
 no-history read produces, and `LearningPathScreen` shows a "couldn't load your progress" notice
-for a signed-in player instead of silently mislabeling every locked tier) are all done. Next up is
-step 6.4: transitions.
+for a signed-in player instead of silently mislabeling every locked tier), and step 6.4
+(transitions — `LearningPathScreen` had shipped with no motion at all, since it was built after the
+cross-cutting `FadeInUp` pass; it now gets a screen-level fade/rise-in/fade/settle-out, the same
+shape `CountryPageScreen` uses, plus staggered `FadeInUp` groups for its header and node list).
+**M2.4 — learning paths is now fully done end to end.**
+
+**Next up:** with M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done,
+**M2.5 — Achievements, collections & deeper gamification** is the lowest-numbered milestone with
+unblocked work, but it has no ordered sub-checklist yet — decompose it into scoped steps before
+starting the first one.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
