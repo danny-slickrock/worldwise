@@ -33,6 +33,7 @@ export default function QuizScreen({
   soundEnabled = true,
   onToggleSound,
   onExit,
+  onPlayAgain,
   onFinish,
   onOpenCountry,
 }) {
@@ -220,12 +221,22 @@ export default function QuizScreen({
             ))}
           </View>
 
+          {/* A finished round used to end on one button back to Home — a dead
+              end at the exact moment momentum is highest. Play again is the
+              primary action now, and Done returns to wherever the round was
+              started from (a learning path, a country page, Home), which the
+              nav stack knows and this screen no longer has to guess. */}
           <FadeInUp delay={motion.stagger * 3}>
-            <Pressable
-              style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
-              onPress={onExit}
-            >
-              <Text style={styles.primaryBtnText}>Back to games</Text>
+            {onPlayAgain && (
+              <Pressable
+                style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
+                onPress={onPlayAgain}
+              >
+                <Text style={styles.primaryBtnText}>Play again</Text>
+              </Pressable>
+            )}
+            <Pressable style={styles.secondaryBtn} onPress={onExit}>
+              <Text style={styles.secondaryBtnText}>Done</Text>
             </Pressable>
           </FadeInUp>
         </Container>
@@ -636,4 +647,18 @@ const styles = StyleSheet.create({
     ...depth(5, colors.navyDeep),
   },
   primaryBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
+  // Outline rather than a second fill: two slabs of equal weight would make
+  // the player choose between them instead of reading one as the obvious next
+  // move and the other as the way out.
+  secondaryBtn: {
+    ...constrain.action,
+    alignItems: "center",
+    borderRadius: radius.pill,
+    paddingVertical: spacing(1.75),
+    paddingHorizontal: spacing(5),
+    marginTop: spacing(1.5),
+    borderWidth: 1,
+    borderColor: colors.line,
+  },
+  secondaryBtnText: { color: colors.muted, fontWeight: "800", fontSize: 16, letterSpacing: 0.4 },
 });

@@ -82,10 +82,14 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   };
 
   return (
-    <Animated.View style={[styles.wrap, screenStyle]}>
-      <Pressable onPress={handleExit} hitSlop={12} style={styles.back}>
-        <Text style={styles.backText}>‹ Back</Text>
-      </Pressable>
+    <Animated.View style={[styles.wrap, !onExit && styles.wrapNoBack, screenStyle]}>
+      {/* Only when there's something underneath. As the Learn tab's root this
+          screen is usually the bottom of its stack. */}
+      {onExit && (
+        <Pressable onPress={handleExit} hitSlop={12} style={styles.back}>
+          <Text style={styles.backText}>‹ Back</Text>
+        </Pressable>
+      )}
 
       {onSwitchPath && (
         <View style={styles.regionRow}>
@@ -164,6 +168,9 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
 const styles = StyleSheet.create({
   wrap: { flex: 1, backgroundColor: colors.bg },
   back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
+  // inset moves to the wrapper instead of vanishing with it.
+  wrapNoBack: { paddingTop: spacing(2) },
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
   regionRow: {
     flexDirection: "row",

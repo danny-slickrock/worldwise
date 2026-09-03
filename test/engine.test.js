@@ -92,6 +92,29 @@ import {
   MAP_SMALL_HIT_RADIUS,
 } from "../src/constants";
 
+import {
+  TABS,
+  TAB_KEYS,
+  ROUTES,
+  MAX_STACK_DEPTH,
+  initialNav,
+  navFromPath,
+  navToPath,
+  currentRoute,
+  currentStack,
+  stackDepth,
+  canGoBack,
+  showsChrome,
+  navigate,
+  replace,
+  back,
+  switchTab,
+  routeToPath,
+  pathToRoute,
+  syncToPath,
+} from "../src/game/navigation";
+import { BREAKPOINTS, RAIL_WIDTH, navMode, chromeLayout } from "../src/game/layout";
+
 let fails = 0;
 const check = (cond, msg) => {
   if (cond) {
@@ -1548,6 +1571,133 @@ check(
   computeAchievements(null, repeatedModeRows).find((a) => a.slug === "modes-all").value === 1,
   "modesPlayed counts distinct modes, not total rounds"
 );
+
+console.log("Navigation stack (nav rework)");
+
+const nav0 = initialNav();
+check(nav0.tab === "home", "a fresh nav starts on Home");
+check(TAB_KEYS.every((t) => nav0.stacks[t].length === 1), "every tab starts at its own root");
+check(!canGoBack(nav0), "a tab root has nothing to go back to");
+check(TABS.every((t) => ROUTES[t.key] && ROUTES[t.key].root), "every tab has a root route");
+
+// The bug the old returnTo/returnPathId could not express: more than one hop.
+const deep = navigate(
+  navigate(switchTab(nav0, "learn"), { name: "country", code: "BRA" }),
+  { name: "quiz", mode: "flag", difficulty: "all", timed: false }
+);
+check(stackDepth(deep) === 3, "learn → country → quiz is three deep in one stack");
+check(currentRoute(deep).name === "quiz", "the quiz is on top");
+check(currentRoute(back(deep)).name === "country", "back from the quiz lands on the country page");
+check(currentRoute(back(back(deep))).name === "learn", "back again lands on the learning path, not Home");
+check(!canGoBack(back(back(deep))), "and that's the root, so Back stops being offered");
+
+// Tabs keep their own stacks. This is what makes a detour non-destructive.
+const detoured = switchTab(switchTab(deep, "explore"), "learn");
+check(stackDepth(detoured) === 3, "leaving a tab and coming back preserves its stack");
+check(currentRoute(detoured).name === "quiz", "...including exactly where you were");
+check(stackDepth(switchTab(deep, "explore")) === 1, "the tab you switch TO is untouched at its root");
+
+// Re-selecting the active tab is the standard "get me out of here".
+check(stackDepth(switchTab(deep, "learn")) === 1, "re-selecting the active tab resets it to its root");
+
+// A root route can never stack on itself.
+const learnTwice = navigate(switchTab(nav0, "learn"), { name: "learn", pathId: "africa" });
+check(learnTwice.tab === "learn" && stackDepth(learnTwice) === 1, "navigating to a tab root switches instead of pushing");
+check(currentRoute(learnTwice).pathId === "africa", "...while still carrying its params");
+
+// Cross-tab jump: the World Map's region pill opens a learning path.
+const fromMap = navigate(switchTab(nav0, "explore"), { name: "learn", pathId: "europe" });
+check(fromMap.tab === "learn", "opening a learning path from Explore switches tabs");
+check(fromMap.stacks.explore.length === 1, "and leaves Explore's stack alone");
+
+check(currentRoute(navigate(deep, currentRoute(deep))) === currentRoute(deep), "pushing the identical route is a no-op");
+check(stackDepth(back(nav0)) === 1, "back at a root is a no-op, so Back always terminates");
+
+const replaced = replace(deep, { name: "quiz", mode: "flag", difficulty: "all", timed: false, attempt: 1 });
+check(stackDepth(replaced) === 3, "replace swaps the top without deepening the stack");
+check(currentRoute(replaced).attempt === 1, "...and the new params take effect");
+
+let grown = switchTab(nav0, "explore");
+for (let i = 0; i < MAX_STACK_DEPTH + 8; i++) {
+  grown = navigate(grown, { name: "country", code: `X${i}` });
+}
+check(stackDepth(grown) <= MAX_STACK_DEPTH, "a stack can't grow past MAX_STACK_DEPTH");
+check(currentStack(grown)[0].name === "explore", "...and the root is never the entry that gets trimmed");
+
+check(showsChrome(nav0), "ordinary screens keep the persistent nav chrome");
+check(!showsChrome(deep), "a quiz in progress is focus mode — no tab bar, no rail");
+
+console.log("Navigation URLs");
+
+check(routeToPath({ name: "home" }) === "/", "home is /");
+check(routeToPath({ name: "learn", pathId: "africa" }) === "/learn/africa", "a learning path carries its region");
+check(routeToPath({ name: "learn", pathId: null }) === "/learn", "a path-less learn route is just /learn");
+check(routeToPath({ name: "explore", focusCountry: "BRA" }) === "/explore/BRA", "a focused globe is linkable");
+check(routeToPath({ name: "country", code: "JPN" }) === "/country/JPN", "country pages are linkable");
+check(routeToPath({ name: "quiz", mode: "flag", difficulty: "all", timed: false }) === "/play/flag", "a default round is a clean /play/mode");
+check(
+  routeToPath({ name: "quiz", mode: "flag", difficulty: "hard", timed: true }) === "/play/flag?difficulty=hard&timed=1",
+  "a non-default round is still reproducible from its URL"
+);
+
+// Round-trip: every route the app can reach must survive path serialization.
+const roundTrips = [
+  { name: "home" },
+  { name: "learn", pathId: "asia" },
+  { name: "explore", focusCountry: "FRA" },
+  { name: "profile" },
+  { name: "country", code: "BRA" },
+  { name: "countryIndex" },
+  { name: "interests" },
+  { name: "quiz", mode: "shape", difficulty: "easy", timed: true },
+];
+check(
+  roundTrips.every((r) => routeToPath(pathToRoute(routeToPath(r))) === routeToPath(r)),
+  "every route round-trips through its URL unchanged"
+);
+check(
+  Object.keys(ROUTES).every((name) => roundTrips.some((r) => r.name === name)),
+  "every route in the table has URL coverage — a new route without a path is a visible gap"
+);
+
+check(pathToRoute("/nope") === null, "an unknown path is null, not a silent redirect to Home");
+check(pathToRoute("/country") === null, "a country page with no code is not a route");
+check(pathToRoute("") .name === "home", "the empty path is Home");
+check(pathToRoute("/learn/") .pathId === null, "a trailing slash doesn't invent an empty region id");
+
+// A deep link needs something underneath it, or Back strands the visitor.
+const linked = navFromPath("/country/BRA");
+check(linked.tab === "explore", "a deep-linked country page opens in its owning tab");
+check(stackDepth(linked) === 2 && canGoBack(linked), "...with its tab root underneath, so Back works");
+check(navToPath(linked) === "/country/BRA", "and the URL it renders back is the one we arrived on");
+check(navToPath(navFromPath("/learn/africa")) === "/learn/africa", "a deep-linked root route doesn't double up");
+check(navToPath(navFromPath("/garbage")) === "/", "an unparseable URL falls back to Home");
+
+// Browser Back must cost no more state than in-app Back.
+const beforeBack = navigate(switchTab(deep, "explore"), { name: "country", code: "PER" });
+const afterBack = syncToPath(beforeBack, "/explore");
+check(currentRoute(afterBack).name === "explore", "browser Back pops to the route underneath");
+check(afterBack.stacks.learn.length === 3, "...and does NOT flatten the other tabs' stacks");
+check(navToPath(syncToPath(nav0, "/profile")) === "/profile", "an edited URL navigates rather than being ignored");
+check(syncToPath(nav0, "/") === nav0, "syncing to the path we're already on is a no-op");
+check(syncToPath(nav0, "/nonsense") === nav0, "an unparseable popstate leaves the stack alone");
+
+console.log("Responsive chrome");
+
+check(navMode(390) === "bar", "a phone gets the bottom tab bar");
+check(navMode(834) === "bar", "a portrait tablet still gets the bar");
+check(navMode(1440) === "rail", "a desktop gets the side rail");
+check(navMode(BREAKPOINTS.rail) === "rail", "the rail breakpoint is inclusive");
+check(chromeLayout(390).railWidth === 0, "bar mode reserves no rail width");
+check(chromeLayout(900).railWidth === RAIL_WIDTH.compact, "a narrow desktop gets the icons-only rail");
+check(chromeLayout(900).showLabels === false, "...without labels");
+check(chromeLayout(1440).railWidth === RAIL_WIDTH.full, "a wide desktop gets the labelled rail");
+check(chromeLayout(1440).showLabels === true, "...with labels");
+check(
+  BREAKPOINTS.railLabels - RAIL_WIDTH.full >= 880,
+  "labels only appear once the media column still fits beside the rail"
+);
+
 
 // The only async section in the suite. Everything above is synchronous, so the
 // summary waits on just this one promise before deciding the exit code.

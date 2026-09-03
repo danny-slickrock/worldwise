@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView, View, StyleSheet, Platform, StatusBar as RNStatusBar } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { colors } from "./src/theme";
@@ -10,7 +10,7 @@ import WorldMapScreen from "./src/screens/WorldMapScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
 import QuizScreen from "./src/components/QuizScreen";
-import TabBar from "./src/components/TabBar";
+import AppChrome from "./src/components/AppChrome";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
 import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress";
 import { roundSinks } from "./src/game/syncPolicy";
@@ -21,11 +21,21 @@ import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloud
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
-
-const TABS = [
-  { key: "home", label: "Home", icon: "⌂" },
-  { key: "profile", label: "Profile", icon: "◍" },
-];
+import { LEARNING_PATH_REGIONS } from "./src/data/learningPaths";
+import {
+  TABS,
+  navFromPath,
+  navToPath,
+  currentRoute,
+  canGoBack,
+  showsChrome,
+  navigate,
+  replace,
+  back,
+  switchTab,
+  syncToPath,
+} from "./src/game/navigation";
+import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history";
 
 // The tab shell is the app's deepest layer; screens sit on `bg` above it, so the
 // safe-area inset reads as part of the chrome rather than a gap.
@@ -38,17 +48,51 @@ export default function App() {
   );
 }
 
-// Lightweight state-based navigation keeps the prototype dependency-light.
 function AppShell() {
   const { user } = useAuth();
-  const [tab, setTab] = useState("home");
-  const [screen, setScreen] = useState({ name: "home", mode: null, difficulty: null, timed: false });
+  // One nav object replaces the old `tab` + `screen` pair. They used to be two
+  // independent states that had to be kept consistent by hand — which is how
+  // `returnTo`/`returnPathId` grew — and now the tab is just a field on the
+  // stack that owns it. See src/game/navigation.js for the model.
+  const [nav, setNav] = useState(() => navFromPath(currentPath()));
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [interests, setInterests] = useState([]);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
   const [hydrated, setHydrated] = useState(false);
+
+  const route = currentRoute(nav);
+  const path = navToPath(nav);
+
+  const go = useCallback((next) => setNav((n) => navigate(n, next)), []);
+  const swap = useCallback((next) => setNav((n) => replace(n, next)), []);
+  const goBack = useCallback(() => setNav((n) => back(n)), []);
+  const selectTab = useCallback((tab) => setNav((n) => switchTab(n, tab)), []);
+
+  // Screens that are now tab roots must not draw a Back button — there is
+  // nothing under them to go back to. Passing null rather than a no-op lets
+  // each screen omit the affordance entirely instead of rendering a dead one.
+  const backHandler = canGoBack(nav) ? goBack : null;
+
+  // --- Web history -------------------------------------------------------
+  // The URL is derived from the stack, never the other way round: the stack
+  // changes, then this mirrors it. The first pass replaces rather than pushes,
+  // because on load we are *adopting* the URL we were given — pushing would
+  // put a duplicate entry behind us and make the first browser Back a no-op.
+  const adoptedInitialPath = useRef(false);
+  useEffect(() => {
+    if (!adoptedInitialPath.current) {
+      adoptedInitialPath.current = true;
+      replacePath(path);
+      return;
+    }
+    pushPath(path);
+  }, [path]);
+
+  // ...and the return leg: Back/Forward hand us a path, syncToPath folds it
+  // into the stack we already have (see its comment for why it isn't a rebuild).
+  useEffect(() => subscribe((nextPath) => setNav((n) => syncToPath(n, nextPath))), []);
 
   useEffect(() => {
     let active = true;
@@ -117,67 +161,17 @@ function AppShell() {
     setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));
   }
 
-  // Navigation seam for M2.2 country pages. Country pages open as a full-screen
-  // overlay over the tab shell — same pattern as a quiz round — so no navigation
-  // library is needed yet. leaveOverlay() returns to the tab you came from
-  // (tab state is held separately from screen state, so it's preserved).
-  //
-  // `returnTo` lets a country page opened from the browsable index (step 5b)
-  // or the World Map (M2.3 step 1) hand its Back button back to where it was
-  // opened from instead of Home, without a real nav stack — just one extra
-  // field on the overlay's own screen state.
-  // `returnPathId` only matters when returnTo === "learningPath" — it's the
-  // path id exitCountry hands back to openLearningPath, the same way
-  // `returnTo` itself picks which screen to reopen.
-  function openCountry(code, returnTo = "home", returnPathId = null) {
-    setScreen({ name: "country", code, returnTo, returnPathId });
-  }
-  function openCountryIndex() {
-    setScreen({ name: "countryIndex" });
-  }
-  // `focusCountry` (M2.3.7 step 4) lets a caller — the country page's "View on
-  // map" link — open the map with the globe already spun to that country,
-  // instead of always resetting to the default orientation.
-  function openWorldMap(focusCountry = null) {
-    setScreen({ name: "worldMap", focusCountry });
-  }
-  function openInterests() {
-    setScreen({ name: "interests" });
-  }
-  // Navigation seam for M2.4 learning paths — same openX/returnTo pattern as
-  // country pages and the world map, opened by a path's own id
-  // (learningPaths.js's `region.toLowerCase()`). Reused as-is for the Home
-  // tile, the World Map's region pills, and LearningPathScreen's own region
-  // switcher (step 5) — all three just call it with a different pathId.
-  function openLearningPath(pathId) {
-    setScreen({ name: "learningPath", pathId });
-  }
-  function leaveOverlay() {
-    setScreen({ name: "home", mode: null, difficulty: null, timed: false });
-  }
-  function exitCountry() {
-    if (screen.name === "country" && screen.returnTo === "countryIndex") {
-      openCountryIndex();
-    } else if (screen.name === "country" && screen.returnTo === "worldMap") {
-      openWorldMap();
-    } else if (screen.name === "country" && screen.returnTo === "learningPath") {
-      openLearningPath(screen.returnPathId);
-    } else {
-      leaveOverlay();
-    }
-  }
-
   // Same sink rule as a finished round (roundSinks): local always gets the
   // write, cloud only when there's a signed-in owner for the row.
   function handleInterestsContinue(slugs) {
     setInterests(slugs);
     if (roundSinks(user).cloud) pushInterests(user, slugs);
-    leaveOverlay();
+    goBack();
   }
   function handleInterestsSkip() {
     setInterests([]);
     if (roundSinks(user).cloud) pushInterests(user, []);
-    leaveOverlay();
+    goBack();
   }
 
   function handleFinish(round) {
@@ -189,109 +183,130 @@ function AppShell() {
     if (roundSinks(user).cloud) saveRoundResult(user, round, next);
   }
 
-  if (screen.name === "quiz") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <QuizScreen
-          mode={screen.mode}
-          difficulty={screen.difficulty}
-          timed={screen.timed}
-          soundEnabled={settings.soundEnabled}
-          onToggleSound={toggleSound}
-          onExit={leaveOverlay}
-          onFinish={handleFinish}
-          onOpenCountry={openCountry}
-        />
-      </SafeAreaView>
-    );
-  }
+  const openCountry = (code) => go({ name: "country", code });
+  const openQuiz = (mode, difficulty, timed) =>
+    go({ name: "quiz", mode, difficulty, timed, attempt: 0 });
 
-  if (screen.name === "country") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <CountryPageScreen
-          code={screen.code}
-          onExit={exitCountry}
-          onPlay={(mode) => setScreen({ name: "quiz", mode, difficulty: DEFAULT_DIFFICULTY, timed: false })}
-          onViewMap={() => openWorldMap(screen.code)}
-        />
-      </SafeAreaView>
-    );
-  }
+  // "Play again" replaces the quiz route instead of stacking a second one, so
+  // three rounds in a row still leave a single Back between you and where you
+  // started. `attempt` is what makes it a *different* route object — it feeds
+  // QuizScreen's key below, remounting it with a fresh round.
+  const playAgain = () =>
+    swap({ ...route, attempt: (route.attempt ?? 0) + 1 });
 
-  if (screen.name === "countryIndex") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <CountryIndexScreen onExit={leaveOverlay} onOpenCountry={(code) => openCountry(code, "countryIndex")} />
-      </SafeAreaView>
-    );
-  }
+  function renderScreen() {
+    switch (route.name) {
+      case "quiz":
+        return (
+          <QuizScreen
+            key={`${route.mode}-${route.difficulty}-${route.timed}-${route.attempt ?? 0}`}
+            mode={route.mode}
+            difficulty={route.difficulty}
+            timed={route.timed}
+            soundEnabled={settings.soundEnabled}
+            onToggleSound={toggleSound}
+            onExit={goBack}
+            onPlayAgain={playAgain}
+            onFinish={handleFinish}
+            onOpenCountry={openCountry}
+          />
+        );
 
-  if (screen.name === "worldMap") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <WorldMapScreen
-          onExit={leaveOverlay}
-          onOpenCountry={(code) => openCountry(code, "worldMap")}
-          onOpenLearningPath={openLearningPath}
-          focusCountry={screen.focusCountry}
-        />
-      </SafeAreaView>
-    );
-  }
+      case "country":
+        return (
+          <CountryPageScreen
+            // Keyed so country → neighbour → country remounts rather than
+            // swapping a prop under a screen that fetches on mount.
+            key={route.code}
+            code={route.code}
+            onExit={goBack}
+            onPlay={(mode) => openQuiz(mode, DEFAULT_DIFFICULTY, false)}
+            // Aims the Explore tab at this country. Because "explore" is a tab
+            // root, `go` routes it through switchTab, so this lands on the
+            // globe already spun to the country rather than stacking a second
+            // map on top of the page you're reading.
+            onViewMap={() => go({ name: "explore", focusCountry: route.code })}
+          />
+        );
 
-  if (screen.name === "learningPath") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <LearningPathScreen
-          pathId={screen.pathId}
-          onExit={leaveOverlay}
-          onOpenCountry={(code) => openCountry(code, "learningPath", screen.pathId)}
-          onSwitchPath={openLearningPath}
-        />
-      </SafeAreaView>
-    );
-  }
+      case "countryIndex":
+        return <CountryIndexScreen onExit={backHandler} onOpenCountry={openCountry} />;
 
-  // M2.3.6 — opened from the "Interests" row on Profile (step 5), seeded with
-  // whatever's already selected so it doubles as the edit surface for a
-  // returning player, not just a first-visit prompt. Both Skip and Continue
-  // persist (step 4): locally always, and to the cloud when signed in.
-  if (screen.name === "interests") {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar style="light" />
-        <InterestsScreen
-          initialSelected={interests}
-          onSkip={handleInterestsSkip}
-          onContinue={handleInterestsContinue}
-        />
-      </SafeAreaView>
-    );
+      case "explore":
+        return (
+          <WorldMapScreen
+            // WorldMapScreen resolves `focusCountry` once on mount (its spin
+            // target is a one-shot, not a reactive effect), so a new focus has
+            // to be a new mount. Keying on it preserves that contract instead
+            // of quietly breaking it now that the screen is reconciled in place
+            // rather than swapped out wholesale.
+            key={`explore-${route.focusCountry ?? "world"}`}
+            onExit={backHandler}
+            // Leaves a breadcrumb before opening the page: the explore route
+            // beneath is re-aimed at the country you tapped, so Back returns to
+            // the globe looking at where you were rather than snapping home to
+            // the default orientation.
+            onOpenCountry={(code) =>
+              setNav((n) =>
+                navigate(replace(n, { name: "explore", focusCountry: code }), {
+                  name: "country",
+                  code,
+                })
+              )
+            }
+            onOpenLearningPath={(pathId) => go({ name: "learn", pathId })}
+            onBrowseIndex={() => go({ name: "countryIndex" })}
+            focusCountry={route.focusCountry}
+          />
+        );
+
+      case "learn":
+        return (
+          <LearningPathScreen
+            // `/learn` with no region is a legitimate route; navigation.js
+            // deliberately leaves the default to the surface that owns the data.
+            pathId={route.pathId || LEARNING_PATH_REGIONS[0].toLowerCase()}
+            onExit={backHandler}
+            onOpenCountry={openCountry}
+            // Switching region re-aims this screen rather than opening a new
+            // one, so Back still means "leave the path", not "undo a pill tap".
+            onSwitchPath={(pathId) => swap({ name: "learn", pathId })}
+          />
+        );
+
+      // M2.3.6 — opened from the "Interests" row on Profile (step 5), seeded
+      // with whatever's already selected so it doubles as the edit surface for
+      // a returning player, not just a first-visit prompt. Both Skip and
+      // Continue persist (step 4): locally always, cloud when signed in.
+      case "interests":
+        return (
+          <InterestsScreen
+            initialSelected={interests}
+            onSkip={handleInterestsSkip}
+            onContinue={handleInterestsContinue}
+          />
+        );
+
+      case "profile":
+        return (
+          <ProfileScreen
+            progress={progress}
+            interests={interests}
+            onOpenInterests={() => go({ name: "interests" })}
+          />
+        );
+
+      default:
+        return <HomeScreen progress={progress} onPlay={openQuiz} />;
+    }
   }
 
   return (
     <SafeAreaView style={styles.safe}>
       <StatusBar style="light" />
-      <View style={styles.body}>
-        {tab === "home" ? (
-          <HomeScreen
-            progress={progress}
-            onPlay={(mode, difficulty, timed) => setScreen({ name: "quiz", mode, difficulty, timed })}
-            onOpenCountryIndex={openCountryIndex}
-            onOpenWorldMap={openWorldMap}
-            onOpenLearningPath={openLearningPath}
-          />
-        ) : (
-          <ProfileScreen progress={progress} interests={interests} onOpenInterests={openInterests} />
-        )}
-      </View>
-      <TabBar tabs={TABS} active={tab} onSelect={setTab} />
+      <AppChrome tabs={TABS} active={nav.tab} onSelect={selectTab} chrome={showsChrome(nav)}>
+        <View style={styles.body}>{renderScreen()}</View>
+      </AppChrome>
     </SafeAreaView>
   );
 }

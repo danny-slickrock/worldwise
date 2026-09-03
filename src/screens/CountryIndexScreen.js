@@ -17,9 +17,11 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
 
   return (
     <View style={styles.wrap}>
-      <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
-        <Text style={styles.backText}>‹ Back</Text>
-      </Pressable>
+      {onExit && (
+        <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
+          <Text style={styles.backText}>‹ Back</Text>
+        </Pressable>
+      )}
 
       <FadeInUp>
         <View style={styles.header}>

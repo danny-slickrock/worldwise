@@ -70,6 +70,7 @@ const sameSpin = (a, b) => Math.abs(a.lng - b.lng) < 0.01 && Math.abs(a.lat - b.
 export default function WorldMapScreen({
   onExit,
   onOpenCountry,
+  onBrowseIndex,
   onOpenLearningPath,
   focusCountry = null,
 }) {
@@ -393,10 +394,15 @@ export default function WorldMapScreen({
   }, []);
 
   return (
-    <View style={styles.wrap}>
-      <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
-        <Text style={styles.backText}>‹ Back</Text>
-      </Pressable>
+    <View style={[styles.wrap, !onExit && styles.wrapNoBack]}>
+      {/* Back only when something is actually underneath. As the Explore tab's
+          root this screen is usually the bottom of its stack, and a Back button
+          there would be a control that does nothing. */}
+      {onExit && (
+        <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
+          <Text style={styles.backText}>‹ Back</Text>
+        </Pressable>
+      )}
 
       <FadeInUp>
         <View style={styles.header}>
@@ -404,6 +410,14 @@ export default function WorldMapScreen({
           <Text style={styles.subtitle}>
             Tap a country to explore it · drag to spin · pinch/scroll to zoom
           </Text>
+          {/* The browsable index lost its Home tile when Explore became a tab,
+              so this is now its entry point — a peer of the globe, one level
+              inside the same tab rather than a sibling doorway off Home. */}
+          {onBrowseIndex && (
+            <Pressable onPress={onBrowseIndex} hitSlop={8} style={styles.browseBtn}>
+              <Text style={styles.browseText}>Browse all 196 ›</Text>
+            </Pressable>
+          )}
         </View>
       </FadeInUp>
 
@@ -497,6 +511,14 @@ const styles = StyleSheet.create({
   backText: { ...type.pill, fontSize: 14, color: colors.teal },
 
   header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  // A quiet link, not a slab: the globe is the hero on this screen and a
+  // filled button here would compete with it for the first look.
+  // The Back row carries this screen's top inset. Without it — i.e. at the
+  // Explore tab's root — the title would sit hard against the chrome, so the
+  // inset moves onto the wrapper rather than disappearing with the button.
+  wrapNoBack: { paddingTop: spacing(2) },
+  browseBtn: { alignSelf: "flex-start", marginTop: spacing(1.25) },
+  browseText: { ...type.pill, color: colors.teal },
   title: { ...type.hero, fontSize: 34 },
   subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
 

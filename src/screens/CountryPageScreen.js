@@ -69,9 +69,9 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
       useNativeDriver: true,
     }).start(onExit);
   }
-  // M2.3 step 4 — a country page can be reached from the index or a quiz
-  // round, where Back doesn't lead to the World Map (only returnTo:
-  // "worldMap" does). This gives every country page its own way there,
+  // M2.3 step 4 — a country page is reachable from the index, a learning path
+  // or a finished round, none of which have the World Map underneath them, so
+  // Back is not a way to get there. This gives every country page its own,
   // mirroring the map's own tap-to-open-a-country-page direction.
   function handleViewMap() {
     Animated.timing(screenAnim, {

@@ -63,7 +63,9 @@ the client — an empty result or a permission error — and none is caught by t
 ## Architecture
 
 ```
-App.js                     # App shell: tab nav (Home · Profile) + global progress + sync wiring
+App.js                     # App shell: holds ONE nav object (game/navigation.js) + global
+                           #   progress/settings/interests + sync wiring. Renders the current
+                           #   route inside AppChrome; no per-screen `returnTo` bookkeeping
 src/
   constants.js             # Tunable gameplay numbers (round length, options, XP formula)
   theme.js                 # Design tokens — the single source of visual truth
@@ -87,6 +89,11 @@ src/
   game/syncPolicy.js       # PURE: which sink gets a round (or an interest write); whether to migrate
   game/contentSync.js      # PURE country-page ⇄ content.countries row mapping (both directions)
   game/contentPolicy.js    # PURE content cache: keys, content_version freshness, fallback resolver
+  game/navigation.js       # PURE nav core: per-tab stacks (push/pop/switch/replace), route⇄URL
+                           #   serialization, and popstate reconciliation. The single source of
+                           #   truth for where you are and what Back means
+  game/layout.js           # PURE responsive-chrome policy: bottom bar vs side rail, rail width,
+                           #   whether the rail spells out its labels. One breakpoint decision
   game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
@@ -103,6 +110,7 @@ src/
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
   lib/supabase.js          # Supabase client (env-configured; publishable key)
+  lib/history.js           # Web-history IO for navigation.js — pushState/popstate. No-op on native
   storage/progress.js      # AsyncStorage progress cache
   storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
   storage/interests.js     # M2.3.6: AsyncStorage interest-selection cache
@@ -112,7 +120,10 @@ src/
   components/ExploreMap.js  # M2.3: flat tappable world map. SUPERSEDED by GlobeMap on the Explore
                            #   screen (M2.3.7); kept as the fallback until the globe is checked on a device
   components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent
-  components/TabBar.js      # Bottom tabs — takes tabs as data, so it's extensible
+  components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
+                           #   TabBar↔NavRail on layout.js's breakpoint. chrome={false} = focus mode
+  components/TabBar.js      # Bottom tabs (mobile) — takes tabs as data, so it's extensible
+  components/NavRail.js     # Left rail (desktop) — same data contract as TabBar, icons-only when narrow
   screens/HomeScreen.js    # Game hub
   screens/ProfileScreen.js # Signed-in identity + synced stats
   screens/SignInScreen.js  # Magic link + Continue with Google
@@ -128,6 +139,24 @@ scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Ear
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
+
+**Navigation is a real stack, per tab.** `src/game/navigation.js` holds four tabs (Home · Learn ·
+Explore · Profile), each with its own route stack; everything else is pushed onto the active one.
+Switching tabs preserves the others, so a detour costs nothing. This replaced a hand-rolled
+`returnTo`/`returnPathId` field that could only ever describe one hop back — which is why
+Learning Path → Country → Play → exit used to land on Home. Three rules worth keeping:
+- **Add a route to `ROUTES` *and* to `routeToPath`/`pathToRoute`.** A test asserts every route in
+  the table round-trips through a URL, so a route with no path is a failing test, not a silent gap.
+- **Pushing a tab root switches tabs instead of stacking** — that's what stops the Learn tab from
+  ever sitting on top of itself with a Back button in between.
+- **`chrome: false` is focus mode**, and the quiz is the only route that uses it. Every other
+  surface keeps the tab bar/rail; a full-screen takeover with no way out but Back was the old
+  behaviour and the main thing that read as clunky.
+
+**Responsive is one decision, not two layouts.** `src/game/layout.js`'s `chromeLayout(width)` picks
+bottom-bar vs side-rail; `TabBar` and `NavRail` share a data contract so `AppChrome` swaps one child.
+Don't branch on width anywhere else — `theme.js`'s `constrain` still owns how wide *content* gets,
+and `layout.js` owns the shape of the *chrome* around it.
 
 **The pure/IO split is the load-bearing convention.** `test/engine.test.js` runs in plain Node via
 tsx, so anything it imports must not reach React Native, expo, or the network. That's why each

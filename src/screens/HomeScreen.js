@@ -6,7 +6,6 @@ import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
-import { LEARNING_PATH_REGIONS } from "../data/learningPaths";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
 const FEATURED = "daily";
@@ -17,13 +16,12 @@ const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator"];
 // glitch rather than as a sequence.
 const TILE_BASE_DELAY = motion.stagger * 2;
 
-export default function HomeScreen({
-  progress,
-  onPlay,
-  onOpenCountryIndex,
-  onOpenWorldMap,
-  onOpenLearningPath,
-}) {
+// Home is now purely about playing. Explore, the World Map and Learning Paths
+// used to sit in the grid below as tiles — one doorway each, two taps deep and
+// reachable only from here. They are top-level tabs as of the navigation
+// rework (see src/game/navigation.js), so keeping tiles for them would be a
+// second, competing route to the same place.
+export default function HomeScreen({ progress, onPlay }) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
 
@@ -118,66 +116,6 @@ export default function HomeScreen({
               </FadeInUp>
             );
           })}
-
-          {/* M2.2 step 5b — the browsable country index, a real entry point
-              replacing the earlier "Explore Brazil" preview. It shares the grid
-              with the games because browsing is a peer of playing, not a footnote. */}
-          {onOpenCountryIndex && (
-            <FadeInUp
-              style={styles.tileCell}
-              delay={TILE_BASE_DELAY + staggerDelay(GAME_GRID.length)}
-            >
-              <Pressable onPress={onOpenCountryIndex} style={styles.tile}>
-                <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
-                  <Text style={styles.tileGlyph}>🌍</Text>
-                </View>
-                <Text style={styles.tileTitle}>Explore</Text>
-                <Text style={styles.tileBlurb}>All 196 places, and why they matter</Text>
-              </Pressable>
-            </FadeInUp>
-          )}
-
-          {/* M2.3 step 1 — the first cut of the interactive World Map: tap any
-              country to open its page. No pan/zoom yet. Shares the neutral tile
-              treatment with the country index; both are exploring, not playing. */}
-          {onOpenWorldMap && (
-            <FadeInUp
-              style={styles.tileCell}
-              delay={TILE_BASE_DELAY + staggerDelay(GAME_GRID.length + 1)}
-            >
-              <Pressable onPress={onOpenWorldMap} style={styles.tile}>
-                <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
-                  <Text style={styles.tileGlyph}>🗺️</Text>
-                </View>
-                <Text style={styles.tileTitle}>World Map</Text>
-                <Text style={styles.tileBlurb}>Tap anywhere on the map to explore it</Text>
-              </Pressable>
-            </FadeInUp>
-          )}
-
-          {/* M2.4 step 5 — the real entry point: one tile opens the first
-              region's path, and LearningPathScreen's own region pill row
-              (mirroring the World Map's) reaches the other four from there.
-              A tile per region would crowd this grid with five near-identical
-              cards, so this generalizes the same way M2.2's browsable index
-              did — one doorway in, switching happens on the far side. */}
-          {onOpenLearningPath && (
-            <FadeInUp
-              style={styles.tileCell}
-              delay={TILE_BASE_DELAY + staggerDelay(GAME_GRID.length + 2)}
-            >
-              <Pressable
-                onPress={() => onOpenLearningPath(LEARNING_PATH_REGIONS[0].toLowerCase())}
-                style={styles.tile}
-              >
-                <View style={[styles.tileIcon, { backgroundColor: colors.surfaceAlt }]}>
-                  <Text style={styles.tileGlyph}>🎓</Text>
-                </View>
-                <Text style={styles.tileTitle}>Learning Paths</Text>
-                <Text style={styles.tileBlurb}>Guided, mastery-based routes through every region</Text>
-              </Pressable>
-            </FadeInUp>
-          )}
         </View>
 
         {/* Difficulty — a segmented control, so the whole choice reads at a glance. */}

@@ -65,6 +65,13 @@ the globe), still blocked on a product call for how a globe should handle a game
 might be on the hidden hemisphere; step 3 (device verification) stays blocked on a real device
 this environment doesn't have. With step 4 fully done, M2.3.7 has no unblocked work left until
 one of those two lands.
+**M2.10 — navigation & user flow** landed out of numeric order, as a floor rather than a feature:
+the app had grown to nine surfaces on a navigation model built for three. It is done — four tabs
+(Home · Learn · Explore · Profile) with a real per-tab route stack in `src/game/navigation.js`, a
+desktop side rail beside the mobile bottom bar via `src/game/layout.js`, real URLs and working
+browser Back on web, and a Play-again/Done ending to a round instead of a dead end — **except for a
+browser pass**, which the session it was built in couldn't run (Metro wouldn't bind a port). Do that
+before building on it.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
@@ -855,10 +862,15 @@ teaching *how the world works*, not just *where things are*.
        sets (`game_results` tags a round by mode + difficulty, never by country, so "which countries
        has this player gotten right" isn't a signal that exists yet — needs its own scoped step, and
        likely a migration, before it can be built). 21 checks in `test/engine.test.js`. *(Next up:
-       step 2 — the navigation seam, same `openX`/`returnTo` overlay pattern as every other M2.2-2.4
-       full-screen surface.)*
-    2. ☐ **Navigation seam.** `openAchievements()` in `App.js` opens `AchievementsScreen` as a
-       full-screen overlay, same pattern as the learning-path/country-page/world-map seams.
+       step 2 — the navigation seam. NOTE: the `openX`/`returnTo` overlay pattern this originally
+       named is gone; navigation is now a per-tab route stack in `src/game/navigation.js`. Add an
+       `achievements` entry to `ROUTES` (owning tab: `profile`) plus its `routeToPath`/`pathToRoute`
+       pair — a test asserts every route round-trips through a URL — and render it from `App.js`'s
+       switch.)*
+    2. ☐ **Navigation seam.** An `achievements` route in `src/game/navigation.js` (`ROUTES`, owning
+       tab `profile`, plus its URL pair) rendered by `App.js`, reached with `go({ name:
+       "achievements" })` — the same seam the country page, index and interests screens use since
+       the navigation rework.
     3. ☐ **Hero screen.** `src/screens/AchievementsScreen.js`: a badge grid (locked/unlocked, a
        progress bar toward each locked badge's threshold) fed by `computeAchievements()` and
        `fetchRoundResults(user)` (already built for M2.4's mastery screen — reuse it rather than
@@ -873,6 +885,44 @@ teaching *how the world works*, not just *where things are*.
        explicitly in this step rather than retrofitting it into step 1's schema-free design.
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
        offline/error states, transitions).
+- **M2.10 — Navigation & user flow 🧭** — ✅ **done (web-verified pending, see below).** Not a
+  feature so much as the floor every feature stands on: by M2.5 the app had nine surfaces and a
+  navigation model built for three. Replaced wholesale.
+  - **What was wrong.** `App.js` carried a `screen` object with a `returnTo` (and, by M2.4, a
+    `returnPathId`) field — one step of history, stored on the destination. It could not express a
+    second hop, so Learning Path → Country → Play → exit landed on Home with the path gone, and a
+    country opened from a finished round's review had nowhere to return to at all. Returning to the
+    World Map called `openWorldMap()` with no `focusCountry`, so the globe you had just spun snapped
+    back to its default orientation. Every surface except Home and Profile rendered *instead of* the
+    tab shell, so opening a country page made the tabs vanish and unwinding was the only way
+    anywhere else. Explore, the World Map and Learning Paths were tiles inside Home's grid — one
+    doorway each, reachable only from Home. A finished round ended on a single "Back to games"
+    button. And a phone-shaped bottom bar was the navigation on a 1600px desktop.
+  - **What replaced it.** `src/game/navigation.js` (PURE): four tabs — **Home · Learn · Explore ·
+    Profile** — each owning its own route stack, so switching tabs preserves the others and a detour
+    costs nothing. Everything else pushes onto the active stack. Pushing a tab *root* switches
+    instead of stacking. `chrome: false` marks focus mode, used only by the quiz. Route⇄URL
+    serialization lives in the same module, with a test asserting every route in `ROUTES`
+    round-trips through a path — so a new route without a URL is a failing test, not a silent gap.
+  - **Responsive as one decision.** `src/game/layout.js`'s `chromeLayout(width)` returns bar-vs-rail,
+    rail width, and whether the rail spells out its labels. `TabBar` (mobile) and the new `NavRail`
+    (desktop) share a data contract, so `AppChrome` swaps one child rather than maintaining a
+    parallel desktop layout. Rail appears at 840px, gains labels at 1120px — the second threshold
+    chosen so the 880px media column still fits beside it.
+  - **Real URLs on web.** `src/lib/history.js` (IO, no-op on native) mirrors the stack to the URL:
+    `/learn/africa`, `/explore/BRA`, `/country/JPN`, `/play/flag?difficulty=hard&timed=1`. Browser
+    Back pops the stack rather than rebuilding it, so it costs no more state than in-app Back — a
+    deep link arrives with its tab root underneath it so Back still works.
+  - **Flow fixes that fell out.** A finished round now offers **Play again** (replacing the quiz
+    route, so three rounds still leave one Back between you and where you started) alongside **Done**,
+    which returns to wherever the round was actually started from. Tapping a country on the globe
+    re-aims the explore route beneath it first, so Back returns to the globe looking where you were.
+    Tab roots no longer draw a Back button that does nothing.
+  - 49 checks in `test/engine.test.js` covering the stack, tab isolation, the depth cap, URL
+    round-tripping, deep links and popstate reconciliation. **Still to do: drive it in a real
+    browser.** Metro would not bind a port in the session this was built in, so desktop rail,
+    mobile bar, and browser Back/Forward are verified by test but not yet by eye — do that before
+    trusting it, per the repo's own standing rule about auth/nav changes tests can't see.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
