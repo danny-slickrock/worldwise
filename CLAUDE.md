@@ -76,6 +76,7 @@ src/
                            #   baseline — the same data, serving both ends
   data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback
   data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
+  data/achievements.js     # M2.5 step 1: badge catalog — slug/label/description/glyph/metric/threshold
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   data/worldGeo.js         # M2.3.7: the globe's geometry — worldMap.js's pixels inverted back to
                            #   unit vectors at module load. Derived, never hand-edited
@@ -96,6 +97,8 @@ src/
   game/globeMotion.js      # PURE M2.3.7: spin/wrap/clamp, antimeridian-safe region centers + framing
   game/masteryPolicy.js    # PURE M2.4 step 2: computeNodeStates(path, results) — locked/unlocked/
                            #   mastered per node, mined from game_results' per-round score/difficulty
+  game/achievementPolicy.js # PURE M2.5 step 1: computeAchievements(progress, results) — badge
+                           #   unlock state + progress ratio, mined from progress.js/game_results
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -238,8 +241,12 @@ shape `CountryPageScreen` uses, plus staggered `FadeInUp` groups for its header 
 
 **Next up:** with M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done,
 **M2.5 — Achievements, collections & deeper gamification** is the lowest-numbered milestone with
-unblocked work, but it has no ordered sub-checklist yet — decompose it into scoped steps before
-starting the first one.
+unblocked work. It now has an ordered sub-checklist, and step 1 — the badge catalog + pure policy
+layer (`src/data/achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing
+`progress.js`/`game_results` signals: streak, rounds-played, perfect-round, and mode-variety
+badges, no new schema) — is done. XP levels and region collectible sets are deliberately their own
+later steps rather than folded into this one. Next up in M2.5 is step 2, the navigation seam for a
+new `AchievementsScreen` overlay.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch

@@ -80,6 +80,8 @@ import {
 } from "../src/game/interestSync";
 import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/data/learningPaths";
 import { computeNodeStates } from "../src/game/masteryPolicy";
+import { ACHIEVEMENTS } from "../src/data/achievements";
+import { computeAchievements } from "../src/game/achievementPolicy";
 import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
@@ -1479,6 +1481,72 @@ check(JSON.stringify(computeNodeStates(null, [])) === "[]", "computeNodeStates r
 check(
   oceania.nodes.every((n, i) => computeNodeStates(oceania, [])[i].code === n.code),
   "computeNodeStates preserves node order and identity"
+);
+
+console.log("Achievement catalog + policy (M2.5 step 1)");
+check(
+  new Set(ACHIEVEMENTS.map((a) => a.slug)).size === ACHIEVEMENTS.length,
+  "every achievement has a unique slug"
+);
+check(
+  ACHIEVEMENTS.every((a) => a.slug && a.label && a.description && a.glyph && a.metric && a.threshold > 0),
+  "every achievement has slug/label/description/glyph/metric and a positive threshold"
+);
+
+const noProgressNoResults = computeAchievements(null, []);
+check(
+  noProgressNoResults.length === ACHIEVEMENTS.length && noProgressNoResults.every((a) => !a.unlocked && a.progress === 0),
+  "with no progress and no round history, every achievement is locked at 0 progress"
+);
+
+const roundRow = (mode, score, total) => ({ mode, difficulty: "all", score, total });
+
+const streakAchievements = computeAchievements({ longestStreak: 7 }, []);
+check(
+  streakAchievements.find((a) => a.slug === "streak-3").unlocked && streakAchievements.find((a) => a.slug === "streak-7").unlocked,
+  "a 7-day longest streak unlocks the 3-day and 7-day streak badges"
+);
+check(
+  !streakAchievements.find((a) => a.slug === "streak-30").unlocked,
+  "a 7-day longest streak does not unlock the 30-day streak badge"
+);
+check(
+  Math.abs(streakAchievements.find((a) => a.slug === "streak-30").progress - 7 / 30) < 1e-9,
+  "a locked streak badge reports its progress as a 0..1 ratio toward the threshold"
+);
+
+const tenRounds = Array.from({ length: 10 }, () => roundRow("flag", 6, 8));
+const roundsAchievements = computeAchievements(null, tenRounds);
+check(
+  roundsAchievements.find((a) => a.slug === "rounds-10").unlocked && !roundsAchievements.find((a) => a.slug === "rounds-50").unlocked,
+  "10 completed rounds unlocks the 10-round badge but not the 50-round badge"
+);
+
+const perfectRows = [roundRow("shape", 8, 8), roundRow("capital", 5, 8)];
+const perfectAchievements = computeAchievements(null, perfectRows);
+check(
+  perfectAchievements.find((a) => a.slug === "perfect-1").unlocked,
+  "one round with score === total unlocks the first perfect-round badge"
+);
+check(
+  !perfectAchievements.find((a) => a.slug === "perfect-10").unlocked,
+  "a single perfect round does not unlock the 10-perfect-rounds badge"
+);
+
+const allModeRows = ["flag", "capital", "capitalReverse", "shape", "locator", "daily"].map((m) => roundRow(m, 5, 8));
+check(
+  computeAchievements(null, allModeRows).find((a) => a.slug === "modes-all").unlocked,
+  "playing every game mode at least once unlocks the mode-variety badge"
+);
+check(
+  !computeAchievements(null, allModeRows.slice(0, -1)).find((a) => a.slug === "modes-all").unlocked,
+  "missing one game mode leaves the mode-variety badge locked"
+);
+
+const repeatedModeRows = Array.from({ length: 5 }, () => roundRow("flag", 5, 8));
+check(
+  computeAchievements(null, repeatedModeRows).find((a) => a.slug === "modes-all").value === 1,
+  "modesPlayed counts distinct modes, not total rounds"
 );
 
 // The only async section in the suite. Everything above is synchronous, so the

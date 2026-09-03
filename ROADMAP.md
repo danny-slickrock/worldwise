@@ -69,9 +69,12 @@ one of those two lands.
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
 M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done, **M2.5 — Achievements,
-collections & deeper gamification** is the lowest-numbered milestone with unblocked work, but it
-has no ordered sub-checklist yet — decompose it into scoped steps before starting the first one.
-The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
+has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
+achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
+game_results signals, no new schema) is done. **Next up in M2.5 is step 2** (the navigation seam
+for a new `AchievementsScreen` overlay). The Phase 1 backlog below gets picked up opportunistically,
+not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -837,6 +840,39 @@ teaching *how the world works*, not just *where things are*.
 - **M2.5 — Achievements, collections & deeper gamification ✨** — levels, mastery tracks, collectible
   sets (e.g., "all of South America"), badges, and seasonal/limited-time events that reward curiosity
   rather than compulsive use.
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
+    Strategy, mirroring M2.4: land the *pure decision layer* first, scoped to signals that already
+    exist — `progress.js`'s totals and `game_results`' per-round rows — before touching any screen,
+    schema, or game-balance number that deserves its own reviewable step.
+    1. ✅ **Badge catalog + pure policy (pure, tested).** `src/data/achievements.js` (`ACHIEVEMENTS`
+       — slug/label/description/glyph/metric/threshold) + `src/game/achievementPolicy.js`
+       (`computeAchievements(progress, results)`, mirroring `masteryPolicy.js`'s `results` contract).
+       Scoped to what `progress.js` + `game_results` already track: longest-streak milestones,
+       rounds-completed milestones, perfect-round badges, and a "played every game mode" badge —
+       9 badges total, evaluated generically as `metric value >= threshold`, no per-badge branching.
+       Deliberately **not** in this step, each its own later step: an XP leveling curve (a
+       game-balance call, not something to invent inline with badge plumbing) and region collectible
+       sets (`game_results` tags a round by mode + difficulty, never by country, so "which countries
+       has this player gotten right" isn't a signal that exists yet — needs its own scoped step, and
+       likely a migration, before it can be built). 21 checks in `test/engine.test.js`. *(Next up:
+       step 2 — the navigation seam, same `openX`/`returnTo` overlay pattern as every other M2.2-2.4
+       full-screen surface.)*
+    2. ☐ **Navigation seam.** `openAchievements()` in `App.js` opens `AchievementsScreen` as a
+       full-screen overlay, same pattern as the learning-path/country-page/world-map seams.
+    3. ☐ **Hero screen.** `src/screens/AchievementsScreen.js`: a badge grid (locked/unlocked, a
+       progress bar toward each locked badge's threshold) fed by `computeAchievements()` and
+       `fetchRoundResults(user)` (already built for M2.4's mastery screen — reuse it rather than
+       adding a second per-round fetch). Theme tokens only.
+    4. ☐ **Wire entry point.** A "Achievements" row on Profile (mirroring the Interests settings row)
+       showing an unlocked-count summary, opening the hero screen.
+    5. ☐ **XP levels.** A leveling curve derived from `progress.xp`, surfaced alongside the badges —
+       its own step since the curve itself is a game-balance decision worth a dedicated, reviewable
+       diff rather than folding into step 1's plumbing.
+    6. ☐ **Collectible sets** (e.g., "all of South America"). Needs a real per-country signal
+       `game_results` doesn't carry today — scope the tracking change (and any migration it implies)
+       explicitly in this step rather than retrofitting it into step 1's schema-free design.
+    7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
+       offline/error states, transitions).
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
