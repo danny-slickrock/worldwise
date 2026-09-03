@@ -18,7 +18,7 @@
 //     game/mapZoom.js — that math never cared about the projection.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, PanResponder, Platform, Animated } from "react-native";
-import { colors, spacing, radius, type, depth, constrain } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp from "../components/FadeInUp";
 import GlobeMap from "../components/GlobeMap";
 import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
@@ -500,87 +500,88 @@ export default function WorldMapScreen({
 export { REGION_TARGETS, clampSpin };
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
+  wrap: { flex: 1, backgroundColor: colors.surface },
   // Chrome tracks the reading column; the map below gets the wider media cap.
   back: {
     ...constrain.content,
-    paddingHorizontal: spacing(2.5),
-    paddingTop: spacing(2),
-    paddingBottom: spacing(1),
+    paddingHorizontal: spacing(5),
+    paddingTop: spacing(4),
+    paddingBottom: spacing(2),
   },
-  backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  backText: { ...type.label, fontSize: 14, color: colors.accent },
 
-  header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
+  header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
   // A quiet link, not a slab: the globe is the hero on this screen and a
   // filled button here would compete with it for the first look.
   // The Back row carries this screen's top inset. Without it — i.e. at the
   // Explore tab's root — the title would sit hard against the chrome, so the
   // inset moves onto the wrapper rather than disappearing with the button.
-  wrapNoBack: { paddingTop: spacing(2) },
-  browseBtn: { alignSelf: "flex-start", marginTop: spacing(1.25) },
-  browseText: { ...type.pill, color: colors.teal },
-  title: { ...type.hero, fontSize: 34 },
-  subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
+  wrapNoBack: { paddingTop: spacing(8) },
+  browseBtn: { alignSelf: "flex-start", marginTop: spacing(2.5) },
+  browseText: { ...type.label, color: colors.accent },
+  title: { ...type.h1, fontSize: 34 },
+  subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
 
   regionRow: {
     ...constrain.content,
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: spacing(1),
-    paddingHorizontal: spacing(2.5),
-    marginBottom: spacing(2),
+    gap: spacing(2),
+    paddingHorizontal: spacing(5),
+    marginBottom: spacing(4),
   },
   regionChip: {
-    paddingVertical: spacing(1),
-    paddingHorizontal: spacing(1.75),
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(3.5),
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
-    ...depth(3),
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
-  regionChipText: { ...type.pill, color: colors.muted },
-  regionChipTextActive: { color: colors.navyDeep },
+  regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+  regionChipText: { ...type.label, color: colors.textMuted },
+  regionChipTextActive: { color: colors.onFill },
 
   // The globe sits on the same deep-navy stage every map in the app uses, so
   // the world reads as the lit subject rather than as chrome.
   mapOuter: { ...constrain.media, flex: 1 },
   mapWrap: {
     flex: 1,
-    marginHorizontal: spacing(2.5),
-    marginBottom: spacing(3),
-    borderRadius: radius.lg,
+    marginHorizontal: spacing(5),
+    marginBottom: spacing(6),
+    borderRadius: radius.sheet,
     overflow: "hidden",
-    backgroundColor: colors.navy,
-    ...depth(5),
+    backgroundColor: colors.brand,
+    ...elevation(2),
   },
 
   resetPill: {
     position: "absolute",
-    top: spacing(2),
-    right: spacing(2),
-    paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1),
+    top: spacing(4),
+    right: spacing(4),
+    paddingHorizontal: spacing(3.5),
+    paddingVertical: spacing(2),
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
-    ...depth(3),
+    backgroundColor: colors.surfaceRaised,
+    ...elevation(1),
   },
-  resetPillText: { ...type.pill, fontSize: 12, color: colors.teal },
+  resetPillText: { ...type.label, fontSize: 12, color: colors.accent },
 
   regionLabel: {
     position: "absolute",
-    top: spacing(2),
-    left: spacing(2),
-    paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1),
+    top: spacing(4),
+    left: spacing(4),
+    paddingHorizontal: spacing(3.5),
+    paddingVertical: spacing(2),
     borderRadius: radius.pill,
-    backgroundColor: colors.teal,
-    ...depth(3, colors.navyDeep),
+    backgroundColor: colors.accent,
+    ...elevation(1),
   },
-  regionLabelText: { ...type.pill, fontSize: 12, color: colors.navyDeep },
+  regionLabelText: { ...type.label, fontSize: 12, color: colors.onFill },
   regionLabelSub: {
-    ...type.pill,
+    ...type.label,
     fontSize: 10,
-    color: colors.navyDeep,
+    color: colors.onFill,
     opacity: 0.7,
     marginTop: 1,
   },

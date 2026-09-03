@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import Svg, { Rect, Path } from "react-native-svg";
 import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
-import { colors } from "../theme";
+import { colors, map } from "../theme";
 
 // Bind the tap on the right event per platform. react-native-svg routes <Path>
 // onPress through React Native Web's responder system, which the surrounding
@@ -38,19 +38,19 @@ export default function WorldMap({ choices, correctCode, pickedCode, answered, o
   // Fill for a candidate country once the question is answered.
   const resolvedFill = (code) => {
     if (code === correctCode) return colors.success;
-    if (code === pickedCode) return colors.error; // the player's wrong pick
-    return colors.muted; // other candidates, now dimmed
+    if (code === pickedCode) return colors.danger; // the player's wrong pick
+    return map.onMapMuted; // other candidates, now dimmed
   };
 
   return (
     <Svg viewBox={LOCATOR_VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
       {/* Ocean — the deepest token, so land and targets both read as lit on top */}
-      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.navyDeep} />
+      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={map.ocean} />
 
       {/* Inert land — every country, for geographic context */}
       {ALL_CODES.map((code) =>
         candidateCodes.has(code) ? null : (
-          <Path key={code} d={COUNTRY_PATHS[code]} fill={colors.surfaceAlt} stroke={colors.navy} strokeWidth={0.4} />
+          <Path key={code} d={COUNTRY_PATHS[code]} fill={map.land} stroke={map.border} strokeWidth={0.4} />
         )
       )}
 
@@ -59,8 +59,8 @@ export default function WorldMap({ choices, correctCode, pickedCode, answered, o
         <Path
           key={code}
           d={COUNTRY_PATHS[code]}
-          fill={answered ? resolvedFill(code) : colors.teal}
-          stroke={colors.navyDeep}
+          fill={answered ? resolvedFill(code) : map.landActive}
+          stroke={map.border}
           strokeWidth={0.6}
           {...pickHandler(code, answered, onPick)}
         />

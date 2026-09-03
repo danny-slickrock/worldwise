@@ -4,7 +4,7 @@
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
-import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { COUNTRIES } from "../data/countries";
 import { searchCountries, REGIONS } from "../game/countryIndex";
@@ -38,7 +38,7 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
           value={query}
           onChangeText={setQuery}
           placeholder="Search by country or capital"
-          placeholderTextColor={colors.muted}
+          placeholderTextColor={colors.textMuted}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -94,21 +94,21 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
+  wrap: { flex: 1, backgroundColor: colors.surface },
   // Every element carries the cap itself: a FlatList has no single content
   // wrapper to hang it on, so the chrome and the rows each center independently
   // and end up sharing one column edge.
   back: {
     ...constrain.content,
-    paddingHorizontal: spacing(2.5),
-    paddingTop: spacing(2),
-    paddingBottom: spacing(1),
+    paddingHorizontal: spacing(5),
+    paddingTop: spacing(4),
+    paddingBottom: spacing(2),
   },
-  backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  backText: { ...type.label, fontSize: 14, color: colors.accent },
 
-  header: { ...constrain.content, paddingHorizontal: spacing(2.5), marginBottom: spacing(2) },
-  title: { ...type.hero, fontSize: 34 },
-  subtitle: { ...type.section, fontSize: 11, marginTop: spacing(0.75) },
+  header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
+  title: { ...type.h1, fontSize: 34 },
+  subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
 
   // Inset field: darker than the card layer, so it reads as carved in rather
   // than sitting on top like the slabs around it.
@@ -116,51 +116,53 @@ const styles = StyleSheet.create({
   // browser drop the margin, so the field would run edge-to-edge on a phone.
   inputOuter: { ...constrain.content },
   input: {
-    marginHorizontal: spacing(2.5),
-    backgroundColor: colors.navy,
-    borderRadius: radius.sm,
-    paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1.75),
+    marginHorizontal: spacing(5),
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.card,
+    paddingHorizontal: spacing(3.5),
+    paddingVertical: spacing(3.5),
     ...type.body,
-    color: colors.headline,
-    marginBottom: spacing(1.5),
+    marginBottom: spacing(3),
   },
 
   regionRow: {
     ...constrain.content,
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: spacing(1),
-    paddingHorizontal: spacing(2.5),
-    marginBottom: spacing(2),
+    gap: spacing(2),
+    paddingHorizontal: spacing(5),
+    marginBottom: spacing(4),
   },
   regionChip: {
-    paddingVertical: spacing(1),
-    paddingHorizontal: spacing(1.75),
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(3.5),
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
-    ...depth(3),
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
-  regionChipText: { ...type.pill, color: colors.muted },
-  regionChipTextActive: { color: colors.navyDeep },
+  regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+  regionChipText: { ...type.label, color: colors.textMuted },
+  regionChipTextActive: { color: colors.onFill },
 
-  list: { paddingHorizontal: spacing(2.5), paddingBottom: spacing(6) },
+  list: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
   row: {
     ...constrain.content,
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    paddingVertical: spacing(1.75),
-    paddingHorizontal: spacing(2),
-    marginBottom: spacing(1.25),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(3.5),
+    paddingHorizontal: spacing(4),
+    marginBottom: spacing(2.5),
+    ...elevation(1),
   },
   rowBody: { flex: 1 },
-  rowName: { ...type.body, fontWeight: "800", color: colors.headline },
-  rowCapital: { ...type.muted, fontSize: 13, marginTop: 2 },
-  chev: { fontSize: 24, color: colors.muted, fontWeight: "800" },
+  rowName: { ...type.body, color: colors.brand },
+  rowCapital: { ...type.caption, fontSize: 13, marginTop: 2 },
+  chev: { fontSize: 24, color: colors.textMuted },
 
-  empty: { ...type.muted, textAlign: "center", marginTop: spacing(4) },
+  empty: { ...type.caption, textAlign: "center", marginTop: spacing(8) },
 });

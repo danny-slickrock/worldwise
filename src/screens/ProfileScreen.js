@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, elevation } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { useAuth } from "../auth/AuthProvider";
@@ -24,7 +24,7 @@ export default function ProfileScreen({ progress, interests, onOpenInterests }) 
   if (loading) {
     return (
       <View style={styles.center}>
-        <ActivityIndicator color={colors.teal} />
+        <ActivityIndicator color={colors.accent} />
       </View>
     );
   }
@@ -103,7 +103,7 @@ function SignedIn({ user, localProgress, interests = [], onSignOut, onOpenIntere
 
           <View style={styles.syncRow}>
             {syncing ? (
-              <ActivityIndicator color={colors.muted} size="small" />
+              <ActivityIndicator color={colors.textMuted} size="small" />
             ) : (
               <Text style={styles.syncText}>✓ Synced — your progress is safe on every device.</Text>
             )}
@@ -147,20 +147,20 @@ function Stat({ label, value }) {
 }
 
 const styles = StyleSheet.create({
-  center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.bg },
-  wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(2.5), paddingTop: spacing(5), paddingBottom: spacing(6) },
-  kicker: { ...type.kicker, fontSize: 12, marginBottom: spacing(2) },
+  center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.surface },
+  wrap: { flex: 1, backgroundColor: colors.surface },
+  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+  kicker: { ...type.eyebrow, fontSize: 12, marginBottom: spacing(4) },
 
   identity: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing(2),
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    padding: spacing(2),
-    marginBottom: spacing(3.5),
-    ...depth(),
+    gap: spacing(4),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(4),
+    marginBottom: spacing(7),
+    ...elevation(1),
   },
   // Avatar sits on a warm disc, the way the reference profile does — a
   // photo-less account still gets a piece of colour rather than a grey circle.
@@ -174,57 +174,57 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   avatar: { width: "100%", height: "100%" },
-  avatarInitial: { fontSize: 26, fontWeight: "900", color: colors.navyDeep },
+  avatarInitial: { fontSize: 26, color: colors.onFill },
   identityBody: { flex: 1 },
-  name: { ...type.h2, fontSize: 20, marginBottom: 2 },
-  email: { ...type.muted, fontSize: 13 },
-  emailOnly: { ...type.h2, fontSize: 16 },
+  name: { ...type.h3, fontSize: 20, marginBottom: 2 },
+  email: { ...type.caption, fontSize: 13 },
+  emailOnly: { ...type.h3, fontSize: 16 },
 
-  section: { ...type.section, marginBottom: spacing(1.5) },
-  stats: { flexDirection: "row", gap: spacing(1.25), marginBottom: spacing(1.5) },
+  section: { ...type.eyebrow, marginBottom: spacing(3) },
+  stats: { flexDirection: "row", gap: spacing(2.5), marginBottom: spacing(3) },
   stat: {
     flex: 1,
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    paddingVertical: spacing(2.25),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(4.5),
     alignItems: "center",
-    ...depth(),
+    ...elevation(1),
   },
-  statValue: { fontSize: 26, fontWeight: "900", color: colors.headline },
-  statLabel: { ...type.section, fontSize: 10, marginTop: spacing(0.5) },
+  statValue: { fontSize: 26, color: colors.brand },
+  statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
 
-  syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(3.5) },
-  syncText: { ...type.muted, fontSize: 13, color: colors.success },
+  syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(7) },
+  syncText: { ...type.caption, fontSize: 13, color: colors.success },
 
   interestsRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    padding: spacing(2),
-    marginBottom: spacing(3.5),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(4),
+    marginBottom: spacing(7),
+    ...elevation(1),
   },
   interestsBody: { flex: 1 },
-  interestsLabel: { ...type.body, fontWeight: "800", color: colors.headline },
-  interestsValue: { ...type.muted, fontSize: 13, marginTop: 2 },
-  interestsChevron: { fontSize: 20, fontWeight: "900", color: colors.teal, marginLeft: spacing(1) },
+  interestsLabel: { ...type.body, color: colors.brand },
+  interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
+  interestsChevron: { fontSize: 20, color: colors.accent, marginLeft: spacing(2) },
 
   signOutBtn: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+    paddingVertical: spacing(3.5),
     alignItems: "center",
-    ...depth(),
+    ...elevation(1),
   },
   signOutText: {
-    ...type.pill,
+    ...type.label,
     fontSize: 14,
-    color: colors.error,
+    color: colors.danger,
     letterSpacing: 1,
     textTransform: "uppercase",
   },
 
-  footer: { ...type.muted, textAlign: "center", marginTop: spacing(2), fontSize: 12 },
+  footer: { ...type.caption, textAlign: "center", marginTop: spacing(4), fontSize: 12 },
 });

@@ -175,16 +175,37 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 ## Conventions
 
 - **Reuse `theme.js` tokens** for all colors/spacing/type — never hardcode hex in components.
+  `theme.js` is the Slickrock **Brand Identity Kit v1.1 / UI Kit v1.0** expressed in code, and the
+  kit's own first rule applies: semantic names, not literals — `colors.surfaceRaised`, never
+  `"#FFFFFF"`.
 - **Keep gameplay numbers in `constants.js`** and XP in `scoring.js` — no magic numbers in UI.
 - **Maps are the hero.** Premium, timeless, map-first. Avoid childish or enterprise looks.
-- **The surface language is dark, tactile slabs.** Deep navy-charcoal base (`bg`), lifted
-  cards (`surface`), and depth expressed as `depth()` — a solid, un-blurred bottom edge —
-  never a blurred shadow. Section labels are all-caps and tight-tracked (`type.section`).
-  Bright accents (`teal`/`earth`/`sand`/`sky`/`iris`/`leaf`) carry text on the dark
-  surfaces *and* double as button fills, in which case the text on top is `navyDeep`, not
-  white. `test/engine.test.js` guards both directions at WCAG AA, so a new accent has to
-  earn its brightness. `navy`/`navyDeep` are now structure (map stages, insets, chrome),
-  not accents.
+- **The app is light; the map is dark.** Warm off-white (`surface`) is "the page the world is
+  printed on", cards are white (`surfaceRaised`), body copy is ink (`text`), and navy (`brand`) is
+  authority — wordmark, headings, primary buttons, active nav. The *one* surface that stays dark is
+  the map: ocean `map.ocean`, land `map.land`, sand graticule and borders. Reaching for `map.*` means
+  you are deliberately entering that dark stage; a dark token anywhere else is a mistake.
+  Roughly **70% neutral, 25% navy, 5% accent, one accent per screen.**
+- **Depth is `elevation(1|2|3)`** — real soft shadows (e1 rest · e2 hover · e3 overlay), navy-tinted
+  so they stay in palette on warm paper. The old `depth()` solid bottom lip is gone: a solid
+  extrusion is a dark-UI trick that reads as a printing error on off-white. Most separation is
+  actually done by `hairline`, not by shadow. Never nest two elevations.
+- **Weight lives in the font family, not `fontWeight`.** `fonts.display` is `Archivo_600SemiBold`,
+  `fonts.bodySemi` is `InstrumentSans_600SemiBold`, and so on. Each Google font weight registers as
+  its own family declared at weight `normal`, so adding `fontWeight: "700"` on top makes the browser
+  synthesise a second, fake bold. Pick the family; never set `fontWeight` in a component.
+- **Three typefaces, three jobs.** Archivo = display (wordmark, headings, numerals). Instrument Sans
+  = body, UI labels, buttons. IBM Plex Mono = coordinates, eyebrows, map labels, data — **never
+  sentences**. `type.eyebrow` (mono, uppercase, 12% tracked) is this UI's structural voice.
+- **Spacing is a 4px base** (`spacing(n) === n * 4`), scale 4·8·12·16·24·32·48·64, "never an odd
+  value". Card padding 24 mobile / 32 desktop; section rhythm 64/88.
+- **A label on a fill goes through `onFill(fill)`.** Every brand fill carries white except `sand`,
+  which carries ink — white on sand is 2.3:1. That rule lives in one function so no component has to
+  remember it, and `test/engine.test.js` drives its checks through the same function.
+- **Sand is never text on light** (2.1:1). It is graticules, grids, and highlights on navy.
+  `success` is UI/large-text only and must be paired with an icon, never colour alone. `textMuted` is
+  labels and captions, not body copy — it lands at 4.40:1 on the off-white page, just under AA, and
+  the tests pin that deliberately.
 - **Prefer runtime data sources** over large embedded assets as the dataset grows.
 - **One reusable surface over many bespoke screens** (see `QuizScreen.js`).
 

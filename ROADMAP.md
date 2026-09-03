@@ -923,6 +923,44 @@ teaching *how the world works*, not just *where things are*.
     browser.** Metro would not bind a port in the session this was built in, so desktop rail,
     mobile bar, and browser Back/Forward are verified by test but not yet by eye — do that before
     trusting it, per the repo's own standing rule about auth/nav changes tests can't see.
+- **M2.11 — Brand system adoption 🎨** — ✅ **done, verified in a browser.** Adopted the Slickrock
+  **Brand Identity Kit v1.1 / UI Kit v1.0** (`WW Design.pdf`). This inverts the prototype's look:
+  the app was a dark navy-charcoal base with extruded slabs; the kit is "warm off-white is the page
+  the world is printed on", with navy demoted from background to *authority* — wordmark, headings,
+  primary buttons, active nav.
+  - **The map is the one thing that did NOT flip.** Kit §MAP RULES keeps ocean `#16293F`, land
+    `#1F3A5F` at 88%, borders and graticule sand. So the app is now a light page with a dark map
+    stage set into it — which is the printed-atlas idea the palette is named for. `theme.js` groups
+    those under `map.*` precisely so that reaching for a dark token anywhere else is obviously wrong.
+  - **Tokens.** `src/theme.js` is the kit in code: semantic colour roles, a 4px spacing base
+    (4·8·12·16·24·32·48·64), radius 2/8/14/pill, kit breakpoints and z-layers, and motion at
+    120/200/320/600ms on `cubic-bezier(.2,.7,.2,1)`.
+  - **`depth()` → `elevation(1|2|3)`.** The old solid un-blurred bottom lip was a dark-UI trick; on
+    warm paper it reads as a printing error. Real navy-tinted shadows now, though most of the
+    separating is done by `hairline`.
+  - **Three typefaces** — Archivo (display), Instrument Sans (body/UI), IBM Plex Mono (eyebrows,
+    coordinates, map labels, never sentences). Weight lives in the *family name*, not `fontWeight`:
+    each Google-font weight registers as its own family declared at weight normal, so a `fontWeight`
+    on top makes the browser synthesise a second fake bold. All 38 local `fontWeight` declarations
+    were removed for this reason — if you add one back you will get double-bolding on web.
+  - **`onFill(fill)`** is the single home of "what colour does a label on this fill take": white on
+    everything except sand, which takes ink (white on sand is 2.3:1). The tests drive their checks
+    through the same function rather than restating the rule.
+  - **Mode accents** no longer include sky/iris/leaf — the kit forbids inventing hues ("extend by
+    tinting navy and earth"), so the six modes draw from the brand set plus two sanctioned tints.
+  - 37 contrast checks rewritten around the kit's ACCESSIBILITY CONTRACT (body ≥4.5:1, large/UI
+    ≥3:1), including three that assert *prohibitions*: sand fails UI contrast on both light surfaces
+    (decorative only, never type), and `textMuted` deliberately does not clear body contrast on the
+    off-white page.
+  - **One finding worth Danny's attention:** the kit's own `--ww-text-muted` (`#6B7280`) is
+    **4.40:1** on `--ww-surface` (`#F7F4EE`) — just under the kit's stated "body ≥ 4.5:1". It clears
+    at 4.83:1 on white cards. Resolved here by scoping muted to labels/captions/metadata and keeping
+    body copy on `--ww-text`, which is what the kit's own examples do anyway — but if muted is ever
+    meant for body copy on the page background, the token needs to darken by a hair.
+  - **Verified in a real browser** at desktop width: Home, the globe (`/explore`), a learning path,
+    the country index, a country page and a quiz round, plus the deep links that reach them. **Not
+    yet seen: the mobile bottom bar** — the breakpoint swap is unit-tested but the browser window
+    would not resize below the rail breakpoint in that session.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,

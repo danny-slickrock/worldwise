@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 import Svg, { Rect, Path, Circle, Text as SvgText } from "react-native-svg";
 import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
 import { countryName } from "../data/countries";
-import { colors } from "../theme";
+import { map } from "../theme";
 import { smallCountryHitTargets, countryCentroids } from "../game/mapHitTargets";
 import {
   MAP_SMALL_COUNTRY_MAX_SIZE,
@@ -79,7 +79,7 @@ export default function ExploreMap({ onSelect }) {
       {/* Lit land on deep water, matching the Locator's map exactly: on the dark
           UI the reverse (navy land on a lighter ocean) inverts the figure and
           the continents stop reading as the subject. */}
-      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={colors.navyDeep} />
+      <Rect x="0" y={VIEW_TOP} width={MAP_W} height={VIEW_HEIGHT} fill={map.ocean} />
       {ALL_CODES.map((code) => (
         <Path
           key={code}
@@ -87,8 +87,8 @@ export default function ExploreMap({ onSelect }) {
           // Same accent the Locator uses for a live candidate — the shape
           // under the cursor (or the one just tapped, on touch devices with
           // no hover) reads as "about to be tapped" before it is.
-          fill={code === hoveredCode || code === tapped ? colors.teal : colors.surfaceAlt}
-          stroke={colors.navy}
+          fill={code === hoveredCode || code === tapped ? map.landActive : map.land}
+          stroke={map.border}
           strokeWidth={0.4}
           style={HOVER_HANDLERS_SUPPORTED ? HOVER_STYLE : undefined}
           {...pickHandler(code, handleTap)}
@@ -126,8 +126,8 @@ export default function ExploreMap({ onSelect }) {
           textAnchor="middle"
           fontSize={MAP_TAP_LABEL_FONT_SIZE}
           fontWeight="bold"
-          fill={colors.headline}
-          stroke={colors.navyDeep}
+          fill={map.onMap}
+          stroke={map.border}
           strokeWidth={0.5}
         >
           {countryName(tapped)}

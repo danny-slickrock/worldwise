@@ -1,11 +1,17 @@
-// Bottom tab bar. Takes its tabs as data so new destinations can be added
-// without touching this file — it renders whatever it's handed.
+// Bottom tab bar (mobile). Takes its tabs as data so new destinations can be
+// added without touching this file — it renders whatever it's handed.
 //
-// The active tab is a filled, extruded tile rather than a tinted glyph: on a
-// dark UI a colour swap alone is too quiet to read as "you are here".
+// Kit §BOTTOM NAV: "4 tabs max, active in navy with filled icon; labels always
+// shown." So the active state is a navy pill carrying a white glyph, and the
+// label never disappears — the old dark-UI treatment (an extruded teal slab)
+// was solving a legibility problem that only existed on a dark base.
+//
+// The bar itself is `surfaceRaised`, not the page: chrome sits *above* the page
+// the world is printed on, and the hairline plus a faint upward shadow is what
+// separates them now that a heavy border would read as a rule on paper.
 import React from "react";
 import { View, Text, StyleSheet, Pressable, Platform } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, hitTarget } from "../theme";
 
 export default function TabBar({ tabs, active, onSelect }) {
   return (
@@ -36,25 +42,31 @@ export default function TabBar({ tabs, active, onSelect }) {
 const styles = StyleSheet.create({
   bar: {
     flexDirection: "row",
-    backgroundColor: colors.navy,
+    backgroundColor: colors.surfaceRaised,
     borderTopWidth: 1,
-    borderTopColor: colors.line,
+    borderTopColor: colors.border,
     // Breathing room for the iOS home indicator without pulling in safe-area context.
-    paddingBottom: Platform.OS === "ios" ? spacing(2) : spacing(1),
-    paddingTop: spacing(1.25),
+    paddingBottom: Platform.OS === "ios" ? spacing(4) : spacing(2),
+    paddingTop: spacing(2),
   },
-  tab: { flex: 1, alignItems: "center", justifyContent: "center", gap: spacing(0.5) },
+  tab: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    gap: spacing(1),
+    minHeight: hitTarget.touch,
+  },
   tile: {
-    width: 52,
-    height: 44,
-    borderRadius: radius.sm,
+    width: 48,
+    height: 32,
+    borderRadius: radius.pill,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
   },
-  tileActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
-  icon: { fontSize: 22, color: colors.muted },
-  iconActive: { color: colors.navyDeep },
-  label: { ...type.pill, fontSize: 11, color: colors.muted, letterSpacing: 0.6 },
-  labelActive: { color: colors.headline },
+  tileActive: { backgroundColor: colors.brand },
+  icon: { fontSize: 19, color: colors.textMuted },
+  iconActive: { color: colors.onFill },
+  label: { ...type.label, fontSize: 11, color: colors.textMuted },
+  labelActive: { color: colors.brand },
 });

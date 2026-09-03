@@ -1,6 +1,14 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView, View, StyleSheet, Platform, StatusBar as RNStatusBar } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useFonts } from "expo-font";
+import { Archivo_600SemiBold, Archivo_700Bold } from "@expo-google-fonts/archivo";
+import {
+  InstrumentSans_400Regular,
+  InstrumentSans_500Medium,
+  InstrumentSans_600SemiBold,
+} from "@expo-google-fonts/instrument-sans";
+import { IBMPlexMono_400Regular, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
 import { colors } from "./src/theme";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
@@ -37,10 +45,36 @@ import {
 } from "./src/game/navigation";
 import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history";
 
-// The tab shell is the app's deepest layer; screens sit on `bg` above it, so the
-// safe-area inset reads as part of the chrome rather than a gap.
+// The safe-area inset takes `surface` — the page the world is printed on — so
+// the notch area reads as more page rather than as a band of chrome.
+
+// The three typefaces the brand kit specifies. Registered by the exact family
+// names theme.js references; weight is part of the name, not a `fontWeight`
+// (see the note on `fonts` there).
+const FONTS = {
+  Archivo_600SemiBold,
+  Archivo_700Bold,
+  InstrumentSans_400Regular,
+  InstrumentSans_500Medium,
+  InstrumentSans_600SemiBold,
+  IBMPlexMono_400Regular,
+  IBMPlexMono_500Medium,
+};
 
 export default function App() {
+  const [fontsLoaded] = useFonts(FONTS);
+
+  // Hold one plain painted frame rather than rendering the whole app in a
+  // fallback face and reflowing it. It's `surface`, so the wait reads as the
+  // page arriving early, not as a flash of a different app.
+  if (!fontsLoaded) {
+    return (
+      <View style={styles.splash}>
+        <StatusBar style="dark" />
+      </View>
+    );
+  }
+
   return (
     <AuthProvider>
       <AppShell />
@@ -303,7 +337,8 @@ function AppShell() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <StatusBar style="light" />
+      {/* Dark glyphs: the chrome is white and the page off-white now. */}
+      <StatusBar style="dark" />
       <AppChrome tabs={TABS} active={nav.tab} onSelect={selectTab} chrome={showsChrome(nav)}>
         <View style={styles.body}>{renderScreen()}</View>
       </AppChrome>
@@ -314,8 +349,9 @@ function AppShell() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: colors.navy,
+    backgroundColor: colors.surface,
     paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
+  splash: { flex: 1, backgroundColor: colors.surface },
   body: { flex: 1 },
 });

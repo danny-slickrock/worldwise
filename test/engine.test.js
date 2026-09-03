@@ -82,7 +82,18 @@ import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/d
 import { computeNodeStates } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
-import { colors, contrastRatio, spacing, layout, constrain, motion } from "../src/theme";
+import {
+  colors,
+  contrastRatio,
+  CONTRAST,
+  onFill,
+  modeAccents,
+  map,
+  spacing,
+  layout,
+  constrain,
+  motion,
+} from "../src/theme";
 import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
@@ -433,49 +444,124 @@ check(
   "REGIONS covers 'All' plus every distinct region in the dataset, once each"
 );
 
-console.log("Design tokens / a11y (M2.2 step 6a)");
-// AA for normal text requires 4.5:1 (WCAG 2.1 SC 1.4.3). The country-page
-// kicker and fact-label text render at 11-12px bold, well under the "large
-// text" threshold (18.66px bold / 24px regular) that would relax this to 3:1.
+console.log("Design tokens / a11y (brand kit v1.1)");
+// The kit's ACCESSIBILITY CONTRACT, encoded: "Body text >= 4.5:1; large text
+// and UI >= 3:1. Sand is never a text colour on light."
 //
-// The dark UI multiplies the pairings worth guarding: text lands on several
-// surface levels, and every accent doubles as a button fill carrying `navyDeep`
-// text — so each is checked both ways round.
-//
-// Neutral type has to hold on all three surface levels. Accents are only
-// guarded on bg and surface, which is everywhere they carry text: surfaceAlt is
-// the lightest layer and exists purely as a fill (icon tiles, the Google
-// button, inert map land), so an accent never sits on it as type. Dimming it
-// far enough for that hypothetical would collapse it into `surface` and cost
-// the layering it's there to provide.
-for (const fg of ["headline", "ink", "muted"]) {
-  for (const bg of ["bg", "surface", "surfaceAlt"]) {
-    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} text on ${bg} meets WCAG AA`);
-  }
+// The palette inverted at the redesign — off-white page, white cards, ink type,
+// navy as authority — so these checks changed direction with it. What used to
+// be guarded was "an accent is bright enough to carry text on a dark base, and
+// dark enough to take navyDeep on top". Now it's "type is dark enough for
+// paper, and a fill is dark enough for white type on top".
+
+// Body copy on both surface levels. `text` is the only body colour.
+for (const bg of ["surface", "surfaceRaised", "surfaceSunken"]) {
+  check(
+    contrastRatio(colors.text, colors[bg]) >= CONTRAST.body,
+    `body text on ${bg} meets the kit's 4.5:1`
+  );
 }
-for (const fg of ["teal", "earth", "sand", "sky", "iris", "leaf"]) {
-  for (const bg of ["bg", "surface"]) {
-    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} accent text on ${bg} meets WCAG AA`);
-  }
+
+// textMuted is deliberately NOT body copy. It clears 4.5:1 on white cards but
+// lands at 4.40:1 on the off-white page — a genuine near-miss in the kit's own
+// palette. Pinning both numbers here keeps that a recorded decision: muted is
+// for labels, captions and metadata, which the contract scores as UI at 3:1.
+check(
+  contrastRatio(colors.textMuted, colors.surfaceRaised) >= CONTRAST.body,
+  "muted text clears body contrast on white cards"
+);
+check(
+  contrastRatio(colors.textMuted, colors.surface) >= CONTRAST.large,
+  "muted text clears UI contrast on the off-white page (it is not body copy)"
+);
+check(
+  contrastRatio(colors.textMuted, colors.surface) < CONTRAST.body,
+  "...and does NOT clear body contrast there — the reason it's labels-only"
+);
+
+// Accents used AS TEXT on light. Teal is the one safe for body size; earth is
+// large-text/UI only, exactly as the kit states.
+check(
+  contrastRatio(colors.accent, colors.surfaceRaised) >= CONTRAST.body,
+  "teal is safe for body-size text on white"
+);
+check(
+  contrastRatio(colors.accent, colors.surface) >= CONTRAST.body,
+  "teal is safe for body-size text on the page"
+);
+for (const bg of ["surface", "surfaceRaised"]) {
+  check(
+    contrastRatio(colors.earth, colors[bg]) >= CONTRAST.large,
+    `earth clears UI/large-text contrast on ${bg}`
+  );
+  check(
+    contrastRatio(colors.brand, colors[bg]) >= CONTRAST.body,
+    `navy headings clear body contrast on ${bg}`
+  );
 }
-// success/error double as plain status text (ProfileScreen's sync line and Sign
-// Out label, LearningPathScreen's "Mastered" row state) as well as their own
-// tinted successBg/errorBg pills — that second usage was never actually
-// checked until M2.4 step 6.1 added it.
-for (const fg of ["success", "error"]) {
-  for (const bg of ["bg", "surface"]) {
-    check(contrastRatio(colors[fg], colors[bg]) >= 4.5, `${fg} status text on ${bg} meets WCAG AA`);
-  }
+
+// "Sand is never a text colour on light." Asserted as a prohibition, not an
+// omission — if someone re-tints sand upward one day, this says why they can't.
+for (const bg of ["surface", "surfaceRaised"]) {
+  check(
+    contrastRatio(colors.sand, colors[bg]) < CONTRAST.large,
+    `sand fails even UI contrast on ${bg} — decorative only, never type`
+  );
 }
-// Accents used as filled button/tile backgrounds take dark ink, not white:
-// bright enough to carry text on the dark base means too bright for white on top.
-for (const fill of ["teal", "earth", "sand", "sky", "iris", "leaf", "success", "error"]) {
-  check(contrastRatio(colors.navyDeep, colors[fill]) >= 4.5, `navyDeep text on a ${fill} fill meets WCAG AA`);
+
+// Fills carrying a label. Every brand fill takes white EXCEPT sand, which takes
+// ink; theme.onFill() is the single place that rule lives, so drive the check
+// through it rather than restating it.
+for (const name of ["brand", "brandDeep", "accent", "earth", "danger", "sand"]) {
+  const fill = colors[name];
+  check(
+    contrastRatio(onFill(fill), fill) >= CONTRAST.body,
+    `a ${name} fill carries its label at 4.5:1 (onFill picks the right one)`
+  );
 }
-check(contrastRatio(colors.headline, colors.navy) >= 4.5, "headline text on navy panels meets WCAG AA (hero, insets)");
-check(contrastRatio(colors.muted, colors.navy) >= 4.5, "muted text on navy panels meets WCAG AA (tab labels)");
-check(contrastRatio(colors.success, colors.successBg) >= 4.5, "success text on its own tint meets WCAG AA");
-check(contrastRatio(colors.error, colors.errorBg) >= 4.5, "error text on its own tint meets WCAG AA");
+check(onFill(colors.sand) === colors.text, "sand is the one fill that takes ink, not white");
+check(onFill(colors.brand) === colors.onFill, "navy fills take white");
+
+// Every game-mode accent doubles as a tile/button fill carrying a label.
+for (const [mode, fill] of Object.entries(modeAccents)) {
+  check(
+    contrastRatio(onFill(fill), fill) >= CONTRAST.body,
+    `the ${mode} accent carries its label at 4.5:1`
+  );
+}
+
+// Success/danger as status text on light. The kit scores these as UI ("pair
+// with an icon, never colour alone"), so 3:1 is the bar, and success genuinely
+// does not reach body contrast — worth pinning so nobody sets a paragraph in it.
+for (const bg of ["surface", "surfaceRaised"]) {
+  check(
+    contrastRatio(colors.success, colors[bg]) >= CONTRAST.large,
+    `success status text clears UI contrast on ${bg}`
+  );
+  check(
+    contrastRatio(colors.danger, colors[bg]) >= CONTRAST.body,
+    `danger status text clears body contrast on ${bg}`
+  );
+}
+check(
+  contrastRatio(colors.success, colors.successSurface) >= CONTRAST.large,
+  "success text on its own tint clears UI contrast"
+);
+check(
+  contrastRatio(colors.danger, colors.dangerSurface) >= CONTRAST.body,
+  "danger text on its own tint clears body contrast"
+);
+
+// The map is the one surface that stayed dark, so its type is checked against
+// the ocean rather than against paper.
+check(
+  contrastRatio(map.onMap, map.ocean) >= CONTRAST.body,
+  "map labels clear body contrast on the ocean fill"
+);
+check(
+  contrastRatio(map.label, map.ocean) >= CONTRAST.large,
+  "sand map labels clear UI contrast on the ocean — sand is legible on navy, just not on paper"
+);
 
 console.log("Cloud sync (M2.1)");
 const fullProgress = {
@@ -1052,10 +1138,17 @@ function maxKey(k) {
 }
 
 check(
-  Object.values(motion.duration).every((d) => d >= 180 && d <= 320),
-  "every entrance duration stays in the 180-320ms 'quick but not abrupt' band"
+  Object.values(motion.duration).every((d) => d >= 120 && d <= 600),
+  "every duration sits in the kit's 120ms micro - 600ms map fly-to band"
 );
-check(motion.rise >= 8 && motion.rise <= 16, "the entrance rise stays in the 8-16px band");
+check(motion.rise >= 4 && motion.rise <= 16, "the entrance rise stays in the 4-16px band");
+check(
+  motion.duration.micro === 120 &&
+    motion.duration.ui === 200 &&
+    motion.duration.sheet === 320 &&
+    motion.duration.mapFly === 600,
+  "the four durations are the kit's exact figures"
+);
 check(
   motion.stagger * motion.maxStaggerSteps <= 320,
   "a full cascade finishes within one slow-duration window, so groups read as one gesture"
@@ -1063,11 +1156,11 @@ check(
 // theme.js is imported by this suite in plain Node. An RN Easing object here
 // would mean a `react-native` import in theme.js and take the whole suite down.
 check(
-  Array.isArray(motion.easeOut) && motion.easeOut.length === 4,
+  Array.isArray(motion.easing) && motion.easing.length === 4,
   "easing is stored as bezier control points, keeping theme.js free of RN imports"
 );
 check(
-  motion.easeOut.every((n) => typeof n === "number") && motion.easeOut[3] <= 1,
+  motion.easing.every((n) => typeof n === "number") && motion.easing[3] <= 1,
   "the easing curve decelerates without overshooting (no bounce)"
 );
 

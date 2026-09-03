@@ -6,7 +6,7 @@
 // degrading gracefully where content isn't authored yet.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { getCountryPage } from "../data/countryPages";
@@ -57,15 +57,15 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   useEffect(() => {
     Animated.timing(screenAnim, {
       toValue: 1,
-      duration: motion.duration.base,
-      easing: Easing.bezier(...motion.easeOut),
+      duration: motion.duration.ui,
+      easing: Easing.bezier(...motion.easing),
       useNativeDriver: true,
     }).start();
   }, [screenAnim]);
   function handleExit() {
     Animated.timing(screenAnim, {
       toValue: 0,
-      duration: motion.duration.fast,
+      duration: motion.duration.micro,
       useNativeDriver: true,
     }).start(onExit);
   }
@@ -76,7 +76,7 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   function handleViewMap() {
     Animated.timing(screenAnim, {
       toValue: 0,
-      duration: motion.duration.fast,
+      duration: motion.duration.micro,
       useNativeDriver: true,
     }).start(onViewMap);
   }
@@ -236,7 +236,7 @@ function Stat({ value, label }) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
+  wrap: { flex: 1, backgroundColor: colors.surface },
   // Constrained like the content below it, so Back and "View on map" sit at the
   // column's edges on a wide screen rather than drifting out to the viewport's.
   topBar: {
@@ -244,83 +244,83 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingHorizontal: spacing(2.5),
-    paddingTop: spacing(2),
-    paddingBottom: spacing(1),
+    paddingHorizontal: spacing(5),
+    paddingTop: spacing(4),
+    paddingBottom: spacing(2),
   },
-  backText: { ...type.pill, fontSize: 14, color: colors.teal },
-  viewMapText: { ...type.pill, fontSize: 14, color: colors.teal },
-  content: { padding: spacing(2.5), paddingTop: spacing(1), paddingBottom: spacing(6) },
+  backText: { ...type.label, fontSize: 14, color: colors.accent },
+  viewMapText: { ...type.label, fontSize: 14, color: colors.accent },
+  content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
 
   hero: {
-    backgroundColor: colors.navy,
-    borderRadius: radius.lg,
-    padding: spacing(3),
+    backgroundColor: colors.brand,
+    borderRadius: radius.sheet,
+    padding: spacing(6),
     alignItems: "center",
-    marginBottom: spacing(2.5),
-    ...depth(6, colors.navyDeep),
+    marginBottom: spacing(5),
+    ...elevation(2),
   },
   outlineBox: { width: "100%", height: 200 },
   outlineFallback: { flex: 1, alignItems: "center", justifyContent: "center" },
-  outlineFallbackGlyph: { fontSize: 56, color: colors.surfaceAlt },
-  outlineFallbackText: { ...type.muted, fontSize: 13, marginTop: spacing(1) },
+  outlineFallbackGlyph: { fontSize: 56, color: colors.surfaceSunken },
+  outlineFallbackText: { ...type.caption, fontSize: 13, marginTop: spacing(2) },
 
-  kicker: { ...type.kicker, fontSize: 12 },
-  name: { ...type.hero, fontSize: 38, marginTop: spacing(0.5) },
-  capital: { ...type.muted, fontSize: 15, marginTop: spacing(0.5), marginBottom: spacing(2.5) },
+  kicker: { ...type.eyebrow, fontSize: 12 },
+  name: { ...type.h1, fontSize: 38, marginTop: spacing(1) },
+  capital: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
 
-  statsRow: { flexDirection: "row", gap: spacing(1.5), marginBottom: spacing(2.5) },
+  statsRow: { flexDirection: "row", gap: spacing(3), marginBottom: spacing(5) },
   stat: {
     flex: 1,
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    paddingVertical: spacing(2),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(4),
     alignItems: "center",
-    ...depth(),
+    ...elevation(1),
   },
-  statValue: { fontSize: 22, fontWeight: "900", color: colors.headline },
-  statLabel: { ...type.section, fontSize: 10, marginTop: spacing(0.5) },
+  statValue: { fontSize: 22, color: colors.brand },
+  statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
 
   card: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    padding: spacing(2.5),
-    marginBottom: spacing(2.5),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(5),
+    marginBottom: spacing(5),
+    ...elevation(1),
   },
   summary: { ...type.body, lineHeight: 24 },
 
-  factRow: { paddingVertical: spacing(1.25) },
-  factRowDivider: { borderTopWidth: 1, borderTopColor: colors.line, marginTop: spacing(0.25) },
-  factLabel: { ...type.kicker, marginBottom: spacing(0.5) },
-  factText: { ...type.body, fontSize: 14, color: colors.ink, lineHeight: 20 },
+  factRow: { paddingVertical: spacing(2.5) },
+  factRowDivider: { borderTopWidth: 1, borderTopColor: colors.border, marginTop: spacing(0.5) },
+  factLabel: { ...type.eyebrow, marginBottom: spacing(1) },
+  factText: { ...type.body, fontSize: 14, color: colors.text, lineHeight: 20 },
 
-  section: { ...type.section, marginBottom: spacing(1.5) },
-  chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(1), marginBottom: spacing(2.5) },
+  section: { ...type.eyebrow, marginBottom: spacing(3) },
+  chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2), marginBottom: spacing(5) },
   chip: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1),
-    paddingHorizontal: spacing(1.75),
-    ...depth(3),
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(3.5),
+    ...elevation(1),
   },
-  chipText: { ...type.pill, color: colors.ink },
+  chipText: { ...type.label, color: colors.text },
 
-  gameWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(1.5) },
+  gameWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(3) },
   // Filled with the mode's accent rather than outlined in it: on the dark base a
   // 1.5px tinted border is too faint to read as a button.
   gameBtn: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing(1),
+    gap: spacing(2),
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(2.25),
-    ...depth(4, colors.navyDeep),
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4.5),
+    ...elevation(2),
   },
-  gameIcon: { fontSize: 18, fontWeight: "900", color: colors.navyDeep },
-  gameBtnText: { ...type.body, fontWeight: "900", color: colors.navyDeep },
+  gameIcon: { fontSize: 18, color: colors.onFill },
+  gameBtnText: { ...type.body, color: colors.onFill },
 
-  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(3) },
-  emptyText: { ...type.muted },
+  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
+  emptyText: { ...type.caption },
 });

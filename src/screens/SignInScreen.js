@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, elevation } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { useAuth } from "../auth/AuthProvider";
@@ -82,7 +82,7 @@ export default function SignInScreen() {
                 setMessage("");
               }}
               placeholder="you@example.com"
-              placeholderTextColor={colors.muted}
+              placeholderTextColor={colors.textMuted}
               autoCapitalize="none"
               autoCorrect={false}
               keyboardType="email-address"
@@ -99,7 +99,7 @@ export default function SignInScreen() {
               style={[styles.primaryBtn, (sending || !email.trim()) && styles.btnDisabled]}
             >
               {sending ? (
-                <ActivityIndicator color={colors.navyDeep} />
+                <ActivityIndicator color={colors.onFill} />
               ) : (
                 <Text style={styles.primaryBtnText}>Email me a magic link</Text>
               )}
@@ -142,71 +142,72 @@ export default function SignInScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(2.5), paddingTop: spacing(5), paddingBottom: spacing(6) },
-  kicker: { ...type.kicker, fontSize: 12 },
-  title: { ...type.hero, fontSize: 32, marginTop: spacing(0.5), lineHeight: 38 },
-  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(3) },
+  wrap: { flex: 1, backgroundColor: colors.surface },
+  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+  kicker: { ...type.eyebrow, fontSize: 12 },
+  title: { ...type.h1, fontSize: 32, marginTop: spacing(1), lineHeight: 38 },
+  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
 
   card: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.lg,
-    padding: spacing(2.5),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(5),
+    ...elevation(1),
   },
-  label: { ...type.section, fontSize: 11, marginBottom: spacing(0.75) },
-  // Inset against the card it sits in — the one place in this UI that recedes
-  // instead of standing proud.
+  label: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
+  // Kit §Text field: a white field with a hairline, not a recess. The border
+  // is what reads as an editable box on paper.
   input: {
-    backgroundColor: colors.navy,
-    borderRadius: radius.sm,
-    paddingHorizontal: spacing(1.75),
-    paddingVertical: spacing(1.75),
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: radius.card,
+    paddingHorizontal: spacing(3.5),
+    paddingVertical: spacing(3.5),
     ...type.body,
-    color: colors.headline,
-    marginBottom: spacing(2),
+    marginBottom: spacing(4),
   },
 
   primaryBtn: {
-    backgroundColor: colors.teal,
+    backgroundColor: colors.accent,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+    paddingVertical: spacing(3.5),
     alignItems: "center",
     justifyContent: "center",
     minHeight: 54,
-    ...depth(5, colors.navyDeep),
+    ...elevation(2),
   },
-  primaryBtnText: { ...type.body, color: colors.navyDeep, fontWeight: "900" },
+  primaryBtnText: { ...type.body, color: colors.onFill },
   btnDisabled: { opacity: 0.5 },
 
   dividerRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing(1.5),
-    marginVertical: spacing(2),
+    gap: spacing(3),
+    marginVertical: spacing(4),
   },
-  dividerLine: { flex: 1, height: 1, backgroundColor: colors.line },
-  dividerText: { ...type.section, fontSize: 11 },
+  dividerLine: { flex: 1, height: 1, backgroundColor: colors.border },
+  dividerText: { ...type.eyebrow, fontSize: 11 },
 
   googleBtn: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing(1),
-    backgroundColor: colors.surfaceAlt,
+    gap: spacing(2),
+    backgroundColor: colors.surfaceSunken,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+    paddingVertical: spacing(3.5),
     minHeight: 54,
-    ...depth(),
+    ...elevation(1),
   },
-  googleMark: { fontSize: 17, fontWeight: "900", color: colors.teal },
-  googleBtnText: { ...type.body, fontWeight: "900", color: colors.headline },
+  googleMark: { fontSize: 17, color: colors.accent },
+  googleBtnText: { ...type.body, color: colors.brand },
 
-  note: { marginTop: spacing(2), borderRadius: radius.sm, padding: spacing(1.75) },
-  noteOk: { backgroundColor: colors.successBg },
-  noteOkText: { ...type.body, color: colors.success, fontWeight: "700" },
-  noteBad: { backgroundColor: colors.errorBg },
-  noteBadText: { ...type.body, color: colors.error, fontWeight: "700" },
+  note: { marginTop: spacing(4), borderRadius: radius.card, padding: spacing(3.5) },
+  noteOk: { backgroundColor: colors.successSurface },
+  noteOkText: { ...type.body, color: colors.success },
+  noteBad: { backgroundColor: colors.dangerSurface },
+  noteBadText: { ...type.body, color: colors.danger },
 
-  footer: { ...type.muted, textAlign: "center", marginTop: spacing(3), fontSize: 12 },
+  footer: { ...type.caption, textAlign: "center", marginTop: spacing(6), fontSize: 12 },
 });

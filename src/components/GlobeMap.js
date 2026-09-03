@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 import Svg, { Circle, Path, Text as SvgText, Defs, RadialGradient, Stop } from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
-import { colors } from "../theme";
+import { map, fonts } from "../theme";
 import {
   orientation,
   rotate,
@@ -151,14 +151,14 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
             nothing at the halo's own outer boundary — a soft ring rather than
             a wash, and no hard cutoff for the outer circle to reveal. */}
         <RadialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor={colors.sky} stopOpacity={0} />
-          <Stop offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`} stopColor={colors.sky} stopOpacity={0} />
+          <Stop offset="0%" stopColor={map.related} stopOpacity={0} />
+          <Stop offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`} stopColor={map.related} stopOpacity={0} />
           <Stop
             offset={`${(atmosphere.peakFrac * 100).toFixed(2)}%`}
-            stopColor={colors.sky}
+            stopColor={map.related}
             stopOpacity={GLOBE_ATMOSPHERE_PEAK_OPACITY}
           />
-          <Stop offset="100%" stopColor={colors.sky} stopOpacity={0} />
+          <Stop offset="100%" stopColor={map.related} stopOpacity={0} />
         </RadialGradient>
       </Defs>
 
@@ -176,23 +176,23 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
       {/* The ocean is the sphere itself, so the globe reads as an object with
           an edge rather than as land floating on a panel. Same lit-land-on-deep-
           water relationship the flat map uses, just bounded by a circle. */}
-      <Circle cx={CENTER} cy={CENTER} r={radius} fill={colors.navyDeep} />
+      <Circle cx={CENTER} cy={CENTER} r={radius} fill={map.ocean} />
 
       {/* The graticule, drawn before land so it's only ever visible through
           open ocean — exactly like a country's own coastline would occlude
           it, with no extra clipping logic needed. */}
       {graticuleD.map((d, i) => (
-        <Path key={`grid-${i}`} d={d} fill="none" stroke={colors.line} strokeWidth={GLOBE_GRATICULE_WIDTH} />
+        <Path key={`grid-${i}`} d={d} fill="none" stroke={map.graticule} strokeWidth={GLOBE_GRATICULE_WIDTH} />
       ))}
 
       {paths.map(([code, d]) => (
         <Path
           key={code}
           d={d}
-          fill={code === hoveredCode || code === tapped ? colors.teal : colors.surfaceAlt}
+          fill={code === hoveredCode || code === tapped ? map.landActive : map.land}
           // Borders in the ocean's own color, so every country reads as its
           // own island and shared land borders are as legible as coastlines.
-          stroke={colors.navyDeep}
+          stroke={map.border}
           strokeWidth={GLOBE_BORDER_WIDTH}
           strokeLinejoin="round"
           style={HOVER_HANDLERS_SUPPORTED ? HOVER_STYLE : undefined}
@@ -230,7 +230,7 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
         cy={CENTER}
         r={radius}
         fill="none"
-        stroke={colors.sky}
+        stroke={map.related}
         strokeOpacity={GLOBE_ATMOSPHERE_RIM_OPACITY}
         strokeWidth={GLOBE_ATMOSPHERE_RIM_WIDTH}
         pointerEvents="none"
@@ -245,10 +245,11 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
           y={centers[tapped][1]}
           textAnchor="middle"
           fontSize={MAP_TAP_LABEL_FONT_SIZE}
-          fontWeight="bold"
-          fill={colors.headline}
-          stroke={colors.navyDeep}
-          strokeWidth={0.5}
+          fontFamily={fonts.monoMedium}
+          fill={map.onMap}
+          stroke={map.ocean}
+          strokeWidth={0.9}
+          paintOrder="stroke"
         >
           {countryName(tapped)}
         </SvgText>

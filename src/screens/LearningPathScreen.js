@@ -15,7 +15,7 @@
 // nav-seam call, not new screen state.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
@@ -62,15 +62,15 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   useEffect(() => {
     Animated.timing(screenAnim, {
       toValue: 1,
-      duration: motion.duration.base,
-      easing: Easing.bezier(...motion.easeOut),
+      duration: motion.duration.ui,
+      easing: Easing.bezier(...motion.easing),
       useNativeDriver: true,
     }).start();
   }, [screenAnim]);
   function handleExit() {
     Animated.timing(screenAnim, {
       toValue: 0,
-      duration: motion.duration.fast,
+      duration: motion.duration.micro,
       useNativeDriver: true,
     }).start(onExit);
   }
@@ -166,73 +166,74 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
-  back: { paddingHorizontal: spacing(2.5), paddingTop: spacing(2), paddingBottom: spacing(1) },
+  wrap: { flex: 1, backgroundColor: colors.surface },
+  back: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(2) },
   // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
   // inset moves to the wrapper instead of vanishing with it.
-  wrapNoBack: { paddingTop: spacing(2) },
-  backText: { ...type.pill, fontSize: 14, color: colors.teal },
+  wrapNoBack: { paddingTop: spacing(8) },
+  backText: { ...type.label, fontSize: 14, color: colors.accent },
   regionRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: spacing(1),
-    paddingHorizontal: spacing(2.5),
-    paddingBottom: spacing(1),
+    gap: spacing(2),
+    paddingHorizontal: spacing(5),
+    paddingBottom: spacing(2),
   },
   regionChip: {
-    paddingVertical: spacing(1),
-    paddingHorizontal: spacing(1.75),
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(3.5),
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
-    ...depth(3),
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
-  regionChipActive: { backgroundColor: colors.teal, ...depth(3, colors.navyDeep) },
-  regionChipText: { ...type.pill, color: colors.muted },
-  regionChipTextActive: { color: colors.navyDeep },
-  content: { padding: spacing(2.5), paddingTop: spacing(1), paddingBottom: spacing(6) },
-  kicker: { ...type.kicker },
-  title: { ...type.hero, fontSize: 34, marginTop: spacing(0.5) },
-  subtitle: { ...type.muted, fontSize: 14, marginTop: spacing(0.5), marginBottom: spacing(2.5) },
+  regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+  regionChipText: { ...type.label, color: colors.textMuted },
+  regionChipTextActive: { color: colors.onFill },
+  content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
+  kicker: { ...type.eyebrow },
+  title: { ...type.h1, fontSize: 34, marginTop: spacing(1) },
+  subtitle: { ...type.caption, fontSize: 14, marginTop: spacing(1), marginBottom: spacing(5) },
   noticeText: {
-    ...type.muted,
+    ...type.caption,
     fontSize: 13,
-    color: colors.error,
-    marginBottom: spacing(2),
+    color: colors.danger,
+    marginBottom: spacing(4),
   },
   row: {
     ...constrain.content,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(2),
-    marginBottom: spacing(1.25),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4),
+    marginBottom: spacing(2.5),
+    ...elevation(1),
   },
   rowLocked: { opacity: 0.5 },
   rowBody: { flex: 1 },
-  rowName: { ...type.body, fontWeight: "800", color: colors.headline },
-  rowNameLocked: { color: colors.muted },
+  rowName: { ...type.body, color: colors.brand },
+  rowNameLocked: { color: colors.textMuted },
   rowDifficulty: {
-    ...type.pill,
+    ...type.label,
     fontSize: 11,
-    color: colors.muted,
+    color: colors.textMuted,
     textTransform: "uppercase",
     letterSpacing: 1,
     marginTop: 2,
   },
   rowState: {
-    ...type.pill,
+    ...type.label,
     fontSize: 12,
     textTransform: "uppercase",
     letterSpacing: 1,
-    marginLeft: spacing(1.5),
+    marginLeft: spacing(3),
   },
-  rowState_locked: { color: colors.muted },
-  rowState_unlocked: { color: colors.teal },
+  rowState_locked: { color: colors.textMuted },
+  rowState_unlocked: { color: colors.accent },
   rowState_mastered: { color: colors.success },
-  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(3) },
-  emptyText: { ...type.muted },
+  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
+  emptyText: { ...type.caption },
 });

@@ -33,10 +33,13 @@ import { DEFAULT_DIFFICULTY } from "../constants";
 // the globe and the country index. Before this, Learn and Explore were tiles
 // buried inside Home's grid: two taps and a full-screen takeover away, with no
 // way back except unwinding. Promoting them is the point of the change.
+// Glyphs are monoline, matching the kit's iconography (graticule, compass
+// point, plotted point) — never emoji, which arrive full-colour and drag a
+// second, un-branded palette onto the screen.
 export const TABS = [
-  { key: "home", label: "Home", icon: "⌂" },
-  { key: "learn", label: "Learn", icon: "🎓" },
-  { key: "explore", label: "Explore", icon: "🗺" },
+  { key: "home", label: "Home", icon: "◈" },
+  { key: "learn", label: "Learn", icon: "◎" },
+  { key: "explore", label: "Explore", icon: "⊕" },
   { key: "profile", label: "Profile", icon: "◍" },
 ];
 

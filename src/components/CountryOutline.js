@@ -83,10 +83,10 @@ const styles = StyleSheet.create({
   probe: { position: "absolute", width: "100%", height: "100%", opacity: 0 },
   fallback: {
     flex: 1,
-    borderRadius: radius.md,
+    borderRadius: radius.sheet,
     alignItems: "center",
     justifyContent: "center",
   },
-  fallbackGlyph: { fontSize: 40, color: colors.surfaceAlt },
-  fallbackText: { fontSize: 12, color: colors.muted, marginTop: spacing(1) },
+  fallbackGlyph: { fontSize: 40, color: colors.surfaceSunken },
+  fallbackText: { fontSize: 12, color: colors.textMuted, marginTop: spacing(2) },
 });

@@ -1,7 +1,7 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
 import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
-import { colors } from "../theme";
+import { modeAccents } from "../theme";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -15,22 +15,24 @@ const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
 
 const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 
-// Every accent comes from the theme rather than a local hex: on the dark UI an
-// accent has to carry text at 4.5:1 on both `bg` and `surface`, which the tokens
-// are checked for in test/engine.test.js.
+// Every accent comes from `modeAccents` in the theme rather than a local hex.
+// The brand kit forbids inventing hues — new colours are made by tinting navy
+// and earth — so the six modes draw from the brand set plus two sanctioned
+// tints. Each is checked in test/engine.test.js for the contrast its own label
+// needs: white on every fill except sand, which takes ink (see theme.onFill).
 export const MODES = {
-  flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "⚑", accent: colors.teal },
-  capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "★", accent: colors.earth },
+  flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "\u2691", accent: modeAccents.flag },
+  capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "\u2605", accent: modeAccents.capital },
   capitalReverse: {
     key: "capitalReverse",
     title: "Capital Quiz: Reverse",
     blurb: "Which country has this capital?",
-    icon: "⇄",
-    accent: colors.sand,
+    icon: "\u21c4",
+    accent: modeAccents.capitalReverse,
   },
-  shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "◇", accent: colors.sky },
-  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "⌖", accent: colors.iris },
-  daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "◉", accent: colors.leaf },
+  shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "\u25c7", accent: modeAccents.shape },
+  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "\u2316", accent: modeAccents.locator },
+  daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "\u25c9", accent: modeAccents.daily },
 };
 
 function shuffle(arr) {

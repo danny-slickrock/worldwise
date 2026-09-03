@@ -11,7 +11,7 @@
 // `initialSelected`.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, depth } from "../theme";
+import { colors, spacing, radius, type, elevation } from "../theme";
 import { INTERESTS } from "../data/interests";
 import { normalizeInterests } from "../game/interestPolicy";
 
@@ -59,43 +59,43 @@ export default function InterestsScreen({ initialSelected = [], onSkip, onContin
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
-  content: { padding: spacing(2.5), paddingTop: spacing(5), paddingBottom: spacing(6) },
-  kicker: { ...type.kicker, fontSize: 12 },
-  title: { ...type.hero, fontSize: 30, marginTop: spacing(0.5), lineHeight: 36 },
-  tagline: { ...type.muted, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(3) },
+  wrap: { flex: 1, backgroundColor: colors.surface },
+  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+  kicker: { ...type.eyebrow, fontSize: 12 },
+  title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
+  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
 
-  grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(1.25), marginBottom: spacing(4) },
+  grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2.5), marginBottom: spacing(8) },
   chip: {
-    paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(2),
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4),
     borderRadius: radius.pill,
-    backgroundColor: colors.surface,
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    ...elevation(1),
   },
-  chipActive: { backgroundColor: colors.teal, ...depth(4, colors.navyDeep) },
-  chipText: { ...type.body, fontWeight: "800", color: colors.ink },
-  chipTextActive: { color: colors.navyDeep },
+  chipActive: { backgroundColor: colors.accent, ...elevation(2) },
+  chipText: { ...type.body, color: colors.text },
+  chipTextActive: { color: colors.onFill },
 
   // Skip and Continue are the same size and weight on purpose — see the file
   // header note on why Skip must never read as the lesser option.
-  actions: { flexDirection: "row", gap: spacing(1.5) },
+  actions: { flexDirection: "row", gap: spacing(3) },
   skipBtn: {
     flex: 1,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+    paddingVertical: spacing(3.5),
     alignItems: "center",
-    ...depth(),
+    ...elevation(1),
   },
-  skipText: { ...type.body, fontWeight: "900", color: colors.headline },
+  skipText: { ...type.body, color: colors.brand },
   continueBtn: {
     flex: 1,
-    backgroundColor: colors.teal,
+    backgroundColor: colors.accent,
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
+    paddingVertical: spacing(3.5),
     alignItems: "center",
-    ...depth(5, colors.navyDeep),
+    ...elevation(2),
   },
-  continueText: { ...type.body, fontWeight: "900", color: colors.navyDeep },
+  continueText: { ...type.body, color: colors.onFill },
 });

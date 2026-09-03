@@ -10,7 +10,7 @@ import {
   Animated,
   Easing,
 } from "react-native";
-import { colors, spacing, radius, type, depth, constrain, motion } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily } from "../game/questions";
@@ -65,8 +65,8 @@ export default function QuizScreen({
   useEffect(() => {
     Animated.timing(progressAnim, {
       toValue: questions.length ? idx / questions.length : 0,
-      duration: motion.duration.slow,
-      easing: Easing.bezier(...motion.easeOut),
+      duration: motion.duration.sheet,
+      easing: Easing.bezier(...motion.easing),
       useNativeDriver: false, // animating layout `width`, not a transform
     }).start();
   }, [idx, questions.length, progressAnim]);
@@ -75,8 +75,8 @@ export default function QuizScreen({
     bodyAnim.setValue(0);
     Animated.timing(bodyAnim, {
       toValue: 1,
-      duration: motion.duration.base,
-      easing: Easing.bezier(...motion.easeOut),
+      duration: motion.duration.ui,
+      easing: Easing.bezier(...motion.easing),
       useNativeDriver: true,
     }).start();
   }, [idx, bodyAnim]);
@@ -327,7 +327,7 @@ export default function QuizScreen({
                     <View
                       style={[
                         styles.capitalBadge,
-                        { borderColor: meta.accent, borderBottomColor: colors.lip },
+                        { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
                       <Text style={[styles.capitalGlyph, { color: meta.accent }]}>
@@ -340,7 +340,7 @@ export default function QuizScreen({
                     <View
                       style={[
                         styles.capitalBadge,
-                        { borderColor: meta.accent, borderBottomColor: colors.lip },
+                        { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
                       <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
@@ -380,8 +380,7 @@ export default function QuizScreen({
                                 // Resolved options fill with a bright success/error — dark
                                 // ink on top, not white, or the label washes out.
                                 (isCorrect || isWrong) && {
-                                  color: colors.navyDeep,
-                                  fontWeight: "800",
+                                  color: colors.onFill,
                                 },
                               ]}
                             >
@@ -439,109 +438,108 @@ export default function QuizScreen({
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.bg },
+  wrap: { flex: 1, backgroundColor: colors.surface },
   // Constrained like the question body, so the progress bar tracks the column
   // instead of stretching the full width of a desktop window above it.
   topBar: {
     ...constrain.content,
     flexDirection: "row",
     alignItems: "center",
-    gap: spacing(1.25),
-    paddingHorizontal: spacing(2),
-    paddingTop: spacing(1),
-    paddingBottom: spacing(1.5),
+    gap: spacing(2.5),
+    paddingHorizontal: spacing(4),
+    paddingTop: spacing(2),
+    paddingBottom: spacing(3),
   },
-  exit: { fontSize: 22, color: colors.muted, width: 28 },
+  exit: { fontSize: 22, color: colors.textMuted, width: 28 },
   progressTrack: {
     flex: 1,
-    height: 12,
+    height: 8,
     borderRadius: radius.pill,
-    backgroundColor: colors.navy,
+    backgroundColor: colors.surfaceSunken,
     overflow: "hidden",
   },
   progressFill: { height: "100%", borderRadius: radius.pill },
   streakPill: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5),
-    paddingVertical: spacing(0.75),
-    ...depth(3),
+    paddingHorizontal: spacing(3),
+    paddingVertical: spacing(1.5),
+    ...elevation(1),
   },
-  streakText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
+  streakText: { color: colors.brand, fontSize: 13 },
   soundPill: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
     width: 34,
     height: 34,
     alignItems: "center",
     justifyContent: "center",
-    ...depth(3),
+    ...elevation(1),
   },
   soundText: { fontSize: 14 },
   timerPill: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
-    paddingHorizontal: spacing(1.5),
-    paddingVertical: spacing(0.75),
-    ...depth(3),
+    paddingHorizontal: spacing(3),
+    paddingVertical: spacing(1.5),
+    ...elevation(1),
   },
-  timerPillLow: { backgroundColor: colors.errorBg },
-  timerText: { fontWeight: "800", color: colors.headline, fontSize: 13 },
-  timerTextLow: { color: colors.error },
+  timerPillLow: { backgroundColor: colors.dangerSurface },
+  timerText: { color: colors.brand, fontSize: 13 },
+  timerTextLow: { color: colors.danger },
 
-  body: { padding: spacing(2.5), paddingBottom: spacing(6) },
-  counter: { ...type.section, fontSize: 11, marginBottom: spacing(0.75) },
-  prompt: { ...type.title, fontSize: 24, lineHeight: 30, marginBottom: spacing(2.5) },
+  body: { padding: spacing(5), paddingBottom: spacing(12) },
+  counter: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
+  prompt: { ...type.h2, fontSize: 24, lineHeight: 30, marginBottom: spacing(5) },
 
-  media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(3) },
+  media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(6) },
   flag: {
     width: 260,
     height: 164,
-    borderRadius: radius.md,
-    backgroundColor: colors.surface,
-    ...depth(5),
+    borderRadius: radius.sheet,
+    backgroundColor: colors.surfaceRaised,
+    ...elevation(2),
   },
   // The map stage is deep navy on every media type, so outlines and the world
   // map read as the lit subject rather than as chrome.
   shapeBox: {
     width: 260,
     height: 210,
-    backgroundColor: colors.navy,
-    borderRadius: radius.md,
-    padding: spacing(2),
-    ...depth(5),
+    backgroundColor: colors.brand,
+    borderRadius: radius.sheet,
+    padding: spacing(4),
+    ...elevation(2),
   },
   mapBox: {
     width: "100%",
     height: 300,
-    backgroundColor: colors.navy,
-    borderRadius: radius.md,
+    backgroundColor: colors.brand,
+    borderRadius: radius.sheet,
     overflow: "hidden",
-    marginBottom: spacing(2),
-    ...depth(5),
+    marginBottom: spacing(4),
+    ...elevation(2),
   },
   // The accent border is applied per-mode at the call site, which restates
   // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
   // flatten this depth edge back to the accent.
   capitalBadge: {
     borderWidth: 2,
-    borderRadius: radius.lg,
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4),
-    backgroundColor: colors.surface,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(6),
+    paddingHorizontal: spacing(8),
+    backgroundColor: colors.surfaceRaised,
     alignItems: "center",
-    ...depth(5),
+    ...elevation(2),
   },
   capitalGlyph: {
     fontSize: 11,
-    fontWeight: "900",
     letterSpacing: 1.4,
     textTransform: "uppercase",
     marginBottom: 6,
   },
-  capitalName: { fontSize: 30, fontWeight: "900", color: colors.headline },
+  capitalName: { fontSize: 30, color: colors.brand },
 
-  options: { gap: spacing(1.5) },
+  options: { gap: spacing(3) },
   // Capped and centered: a full-column answer row on desktop puts the label far
   // from where the eye lands and makes four options read as a wall.
   option: {
@@ -549,91 +547,91 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(2),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(4),
+    paddingHorizontal: spacing(4),
+    ...elevation(1),
   },
-  optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.navyDeep },
-  optionWrong: { backgroundColor: colors.error, borderBottomColor: colors.navyDeep },
-  optionText: { ...type.body, fontSize: 17, fontWeight: "700", flexShrink: 1 },
-  optionMark: { color: colors.navyDeep, fontSize: 18, fontWeight: "900", marginLeft: spacing(1) },
+  optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.brandDeep },
+  optionWrong: { backgroundColor: colors.danger, borderBottomColor: colors.brandDeep },
+  optionText: { ...type.body, fontSize: 17, flexShrink: 1 },
+  optionMark: { color: colors.onFill, fontSize: 18, marginLeft: spacing(2) },
 
-  feedback: { marginTop: spacing(2.5), gap: spacing(1.5) },
-  feedbackText: { ...type.h2, color: colors.muted },
+  feedback: { marginTop: spacing(5), gap: spacing(3) },
+  feedbackText: { ...type.h3, color: colors.textMuted },
   // The context card leads with the earth accent rather than the mode's colour:
   // the fact is about the place, and reads the same in every game.
   contextCard: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
     borderLeftWidth: 4,
     borderLeftColor: colors.earth,
-    padding: spacing(2),
-    ...depth(),
+    padding: spacing(4),
+    ...elevation(1),
   },
-  contextKicker: { ...type.kicker },
-  contextCountry: { ...type.h2, marginTop: spacing(0.5), marginBottom: spacing(0.75) },
-  contextFact: { ...type.body, fontSize: 14, color: colors.muted, lineHeight: 21 },
-  contextLink: { ...type.pill, fontSize: 13, color: colors.teal, marginTop: spacing(1.25) },
+  contextKicker: { ...type.eyebrow },
+  contextCountry: { ...type.h3, marginTop: spacing(1), marginBottom: spacing(1.5) },
+  contextFact: { ...type.body, fontSize: 14, color: colors.textMuted, lineHeight: 21 },
+  contextLink: { ...type.label, fontSize: 13, color: colors.accent, marginTop: spacing(2.5) },
   nextBtn: {
     ...constrain.action,
-    borderRadius: radius.md,
-    paddingVertical: spacing(2),
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(4),
     alignItems: "center",
-    ...depth(5, colors.navyDeep),
+    ...elevation(2),
   },
-  nextBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
+  nextBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
 
-  resultWrap: { flex: 1, backgroundColor: colors.bg },
-  resultContent: { alignItems: "center", padding: spacing(2.5), paddingBottom: spacing(6) },
+  resultWrap: { flex: 1, backgroundColor: colors.surface },
+  resultContent: { alignItems: "center", padding: spacing(5), paddingBottom: spacing(12) },
   // The score sits on the mode's accent as one solid slab — the payoff moment
   // gets the loudest surface in the app.
   resultCard: {
     width: "100%",
     alignItems: "center",
-    borderRadius: radius.lg,
-    paddingVertical: spacing(3.5),
-    marginBottom: spacing(3.5),
-    ...depth(6, colors.navyDeep),
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(7),
+    marginBottom: spacing(7),
+    ...elevation(2),
   },
   resultKicker: {
-    ...type.pill,
+    ...type.label,
     fontSize: 11,
     textTransform: "uppercase",
     letterSpacing: 1.6,
-    color: colors.navyDeep,
+    color: colors.onFill,
     opacity: 0.7,
   },
-  resultScore: { fontSize: 68, fontWeight: "900", color: colors.navyDeep, marginTop: spacing(0.5) },
-  resultPct: { ...type.h2, color: colors.navyDeep, opacity: 0.75, marginBottom: spacing(2) },
+  resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
+  resultPct: { ...type.h3, color: colors.onFill, opacity: 0.75, marginBottom: spacing(4) },
   xpPill: {
-    backgroundColor: colors.navyDeep,
+    backgroundColor: colors.brandDeep,
     borderRadius: radius.pill,
-    paddingHorizontal: spacing(2.5),
-    paddingVertical: spacing(1),
+    paddingHorizontal: spacing(5),
+    paddingVertical: spacing(2),
   },
-  xpPillText: { color: colors.headline, fontWeight: "900", fontSize: 16 },
+  xpPillText: { color: colors.brand, fontSize: 16 },
 
-  reviewHeading: { ...type.section, alignSelf: "flex-start", marginBottom: spacing(1.5) },
-  reviewList: { width: "100%", gap: spacing(1.5), marginBottom: spacing(3) },
+  reviewHeading: { ...type.eyebrow, alignSelf: "flex-start", marginBottom: spacing(3) },
+  reviewList: { width: "100%", gap: spacing(3), marginBottom: spacing(6) },
   reviewCard: {
-    backgroundColor: colors.surface,
-    borderRadius: radius.md,
-    padding: spacing(2),
-    gap: spacing(1),
-    ...depth(),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(4),
+    gap: spacing(2),
+    ...elevation(1),
   },
-  reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(1) },
-  reviewMark: { fontSize: 16, fontWeight: "900", width: 20 },
+  reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(2) },
+  reviewMark: { fontSize: 16, width: 20 },
   reviewMarkRight: { color: colors.success },
-  reviewMarkWrong: { color: colors.error },
-  reviewPrompt: { ...type.body, fontWeight: "800", flex: 1, color: colors.headline },
-  reviewAnswer: { ...type.muted, fontSize: 13 },
+  reviewMarkWrong: { color: colors.danger },
+  reviewPrompt: { ...type.body, flex: 1, color: colors.brand },
+  reviewAnswer: { ...type.caption, fontSize: 13 },
   reviewFact: {
     ...type.body,
     fontSize: 14,
-    color: colors.muted,
+    color: colors.textMuted,
     fontStyle: "italic",
     lineHeight: 20,
   },
@@ -642,11 +640,11 @@ const styles = StyleSheet.create({
     ...constrain.action,
     alignItems: "center",
     borderRadius: radius.pill,
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(5),
-    ...depth(5, colors.navyDeep),
+    paddingVertical: spacing(4),
+    paddingHorizontal: spacing(10),
+    ...elevation(2),
   },
-  primaryBtnText: { color: colors.navyDeep, fontWeight: "900", fontSize: 17, letterSpacing: 0.4 },
+  primaryBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
   // Outline rather than a second fill: two slabs of equal weight would make
   // the player choose between them instead of reading one as the obvious next
   // move and the other as the way out.
@@ -654,11 +652,11 @@ const styles = StyleSheet.create({
     ...constrain.action,
     alignItems: "center",
     borderRadius: radius.pill,
-    paddingVertical: spacing(1.75),
-    paddingHorizontal: spacing(5),
-    marginTop: spacing(1.5),
+    paddingVertical: spacing(3.5),
+    paddingHorizontal: spacing(10),
+    marginTop: spacing(3),
     borderWidth: 1,
-    borderColor: colors.line,
+    borderColor: colors.border,
   },
-  secondaryBtnText: { color: colors.muted, fontWeight: "800", fontSize: 16, letterSpacing: 0.4 },
+  secondaryBtnText: { color: colors.textMuted, fontSize: 16, letterSpacing: 0.4 },
 });

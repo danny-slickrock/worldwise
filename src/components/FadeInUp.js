@@ -34,7 +34,7 @@ export default function FadeInUp({
   index = 0,
   // Explicit delay in ms; wins over `index` when both are given.
   delay = null,
-  duration = motion.duration.base,
+  duration = motion.duration.ui,
   // Travel distance. `0` fades with no movement — useful for something already
   // in place, like a hero swapping content.
   rise = motion.rise,
@@ -59,7 +59,7 @@ export default function FadeInUp({
       toValue: 1,
       duration,
       delay: delay ?? staggerDelay(index),
-      easing: Easing.bezier(...motion.easeOut),
+      easing: Easing.bezier(...motion.easing),
       // Opacity and translateY are both transform-family properties, so this
       // runs off the JS thread on native and as a compositor animation on web.
       useNativeDriver: true,
