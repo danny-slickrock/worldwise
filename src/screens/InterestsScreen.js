@@ -9,13 +9,24 @@
 // persistence (App.js caches locally, then syncs when signed in) — this
 // screen just seeds its chips from whatever was already picked, via
 // `initialSelected`.
+//
+// The secondary button's label and meaning come from
+// `resolveSecondaryAction()` in game/interestPrompt.js, because they differ by
+// context: "Skip" (commit an empty answer) when this is the sign-up prompt,
+// "Cancel" (leave existing picks alone) when it's the Profile edit surface.
+// The screen renders that decision; it doesn't make it.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation } from "../theme";
 import { INTERESTS } from "../data/interests";
 import { normalizeInterests } from "../game/interestPolicy";
 
-export default function InterestsScreen({ initialSelected = [], onSkip, onContinue }) {
+export default function InterestsScreen({
+  initialSelected = [],
+  secondaryLabel = "Skip",
+  onSecondary,
+  onContinue,
+}) {
   const [selected, setSelected] = useState(initialSelected);
 
   function toggle(slug) {
@@ -47,8 +58,8 @@ export default function InterestsScreen({ initialSelected = [], onSkip, onContin
       </View>
 
       <View style={styles.actions}>
-        <Pressable onPress={onSkip} style={styles.skipBtn}>
-          <Text style={styles.skipText}>Skip</Text>
+        <Pressable onPress={onSecondary} style={styles.secondaryBtn}>
+          <Text style={styles.secondaryText}>{secondaryLabel}</Text>
         </Pressable>
         <Pressable onPress={() => onContinue(normalizeInterests(selected))} style={styles.continueBtn}>
           <Text style={styles.continueText}>Continue</Text>
@@ -77,10 +88,11 @@ const styles = StyleSheet.create({
   chipText: { ...type.body, color: colors.text },
   chipTextActive: { color: colors.onFill },
 
-  // Skip and Continue are the same size and weight on purpose — see the file
-  // header note on why Skip must never read as the lesser option.
+  // The secondary button and Continue are the same size and weight on purpose
+  // — see the file header note on why Skip must never read as the lesser
+  // option. Cancel inherits the same treatment.
   actions: { flexDirection: "row", gap: spacing(3) },
-  skipBtn: {
+  secondaryBtn: {
     flex: 1,
     backgroundColor: colors.surfaceRaised,
     borderRadius: radius.pill,
@@ -88,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     ...elevation(1),
   },
-  skipText: { ...type.body, color: colors.brand },
+  secondaryText: { ...type.body, color: colors.brand },
   continueBtn: {
     flex: 1,
     backgroundColor: colors.accent,

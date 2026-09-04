@@ -145,7 +145,12 @@ import {
   resetSyncState,
   __setSyncStoreDeps,
 } from "../src/game/syncStore";
-import { resolveInterestPrompt } from "../src/game/interestPrompt";
+import {
+  resolveInterestPrompt,
+  resolveSecondaryAction,
+  ORIGIN_PROMPT,
+  ORIGIN_EDIT,
+} from "../src/game/interestPrompt";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -2054,6 +2059,59 @@ for (const over of [
   }
 }
 check(true, "no input asks without also marking — the prompt can never repeat");
+
+
+console.log("Interests secondary button (Skip vs Cancel)");
+
+const secondary = (over) => resolveSecondaryAction(over);
+
+check(
+  secondary({ origin: ORIGIN_PROMPT, initialSelected: [] }).label === "Skip",
+  "the sign-up prompt offers Skip"
+);
+check(
+  secondary({ origin: ORIGIN_PROMPT, initialSelected: [] }).clears === true,
+  "...and skipping commits an empty answer"
+);
+check(
+  secondary({ origin: ORIGIN_EDIT, initialSelected: ["history"] }).label === "Cancel",
+  "the edit surface offers Cancel"
+);
+check(
+  secondary({ origin: ORIGIN_EDIT, initialSelected: ["history"] }).clears === false,
+  "...and cancelling leaves existing picks alone — the wipe bug this fixes"
+);
+check(
+  secondary({ origin: ORIGIN_EDIT, initialSelected: [] }).label === "Cancel",
+  "the edit surface says Cancel even with nothing picked yet"
+);
+check(
+  secondary({ origin: ORIGIN_EDIT, initialSelected: [] }).clears === false,
+  "...and still doesn't commit an answer on the player's behalf"
+);
+
+// Defensive: an origin that never got threaded through must degrade safely.
+check(secondary().clears === false, "called with nothing, it cancels rather than clears");
+check(
+  secondary({ origin: "nonsense", initialSelected: ["food"] }).clears === false,
+  "an unrecognized origin cancels"
+);
+check(
+  secondary({ origin: ORIGIN_PROMPT, initialSelected: ["food"] }).clears === false,
+  "even the prompt path refuses to clear when picks already exist"
+);
+
+// The invariant that makes the destructive case unreachable however origin is
+// threaded through the UI.
+for (const origin of [ORIGIN_PROMPT, ORIGIN_EDIT, "nonsense", undefined]) {
+  for (const initialSelected of [["history"], ["a", "b"], []]) {
+    const r = secondary({ origin, initialSelected });
+    if (r.clears && initialSelected.length > 0) {
+      check(false, `clearing with picks present: origin=${origin}`);
+    }
+  }
+}
+check(true, "no combination clears while picks exist — data loss is unreachable");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

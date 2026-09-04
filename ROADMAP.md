@@ -744,6 +744,18 @@ teaching *how the world works*, not just *where things are*.
        there's no dead end either way. The signed-in prompt itself needs a real account on the dev
        origin, so it is covered by tests but unseen in a browser — to trigger it on a deployed build,
        delete `worldwise.interests.asked.v1` from localStorage and reload while signed in.
+    7. ✅ **Skip cancels instead of wiping on the edit path.** The screen does double duty, and both
+       paths ran the same handler: opening it from Profile with picks on file and tapping Skip called
+       `setInterests([])` and pushed the empty selection to the cloud, silently wiping them.
+       `resolveSecondaryAction({ origin, initialSelected })` in `game/interestPrompt.js` now decides
+       the label and the meaning — "Skip"/commit-empty for the sign-up prompt, "Cancel"/leave-alone
+       for the edit surface — and `InterestsScreen` renders that decision rather than making it.
+       The origin is App state, deliberately not carried in the URL, defaulting to the
+       non-destructive `edit`, so a reload straight onto `/interests` can only offer Cancel. The
+       guarantee that actually closes the bug is stronger than the origin plumbing though:
+       **`clears` is never true when picks exist**, for any origin, so a mis-threaded or unrecognized
+       origin degrades to a harmless Cancel instead of data loss. 10 checks, including an exhaustive
+       sweep asserting no combination clears while picks exist.
        *(Next up: M2.9's own sub-checklist, once its DANNY TO DO lead-time items are in place —
        see below.)*
   - **Dependencies:** none beyond M2.1 (accounts), which is done — this does **not** need M2.3.5 and is

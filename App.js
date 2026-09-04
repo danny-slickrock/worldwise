@@ -31,7 +31,12 @@ import {
   loadInterestsAskedAt,
   markInterestsAsked,
 } from "./src/storage/interests";
-import { resolveInterestPrompt } from "./src/game/interestPrompt";
+import {
+  resolveInterestPrompt,
+  resolveSecondaryAction,
+  ORIGIN_PROMPT,
+  ORIGIN_EDIT,
+} from "./src/game/interestPrompt";
 import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloudInterests";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
@@ -105,6 +110,10 @@ function AppShell() {
   const [askedAt, setAskedAt] = useState(null);
   const [interestsSettled, setInterestsSettled] = useState(false);
   const interestPromptRef = useRef(false);
+  // Which context opened InterestsScreen. Defaults to the non-destructive one,
+  // so a reload straight onto /interests can only ever offer Cancel — the
+  // origin is UI state, not something the URL carries.
+  const [interestsOrigin, setInterestsOrigin] = useState(ORIGIN_EDIT);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
   const [hydrated, setHydrated] = useState(false);
@@ -238,7 +247,10 @@ function AppShell() {
     markInterestsAsked(now);
     setAskedAt(now);
     // Marked either way; only actually shown when there's nothing on file.
-    if (prompt) go({ name: "interests" });
+    if (prompt) {
+      setInterestsOrigin(ORIGIN_PROMPT);
+      go({ name: "interests" });
+    }
   }, [hydrated, user, interestsSettled, askedAt, interests, go]);
 
   function toggleSound() {
@@ -252,9 +264,19 @@ function AppShell() {
     if (roundSinks(user).cloud) pushInterests(user, slugs);
     goBack();
   }
-  function handleInterestsSkip() {
-    setInterests([]);
-    if (roundSinks(user).cloud) pushInterests(user, []);
+  // "Skip" on the sign-up prompt commits an empty answer; "Cancel" on the edit
+  // surface leaves existing picks alone. resolveSecondaryAction() owns that
+  // call — and refuses to clear whenever there are picks, so a mis-threaded
+  // origin degrades to a harmless Cancel rather than wiping someone's choices.
+  function handleInterestsSecondary() {
+    const { clears } = resolveSecondaryAction({
+      origin: interestsOrigin,
+      initialSelected: interests,
+    });
+    if (clears) {
+      setInterests([]);
+      if (roundSinks(user).cloud) pushInterests(user, []);
+    }
     goBack();
   }
 
@@ -366,7 +388,10 @@ function AppShell() {
         return (
           <InterestsScreen
             initialSelected={interests}
-            onSkip={handleInterestsSkip}
+            secondaryLabel={
+              resolveSecondaryAction({ origin: interestsOrigin, initialSelected: interests }).label
+            }
+            onSecondary={handleInterestsSecondary}
             onContinue={handleInterestsContinue}
           />
         );
@@ -382,7 +407,10 @@ function AppShell() {
           <ProfileScreen
             progress={progress}
             interests={interests}
-            onOpenInterests={() => go({ name: "interests" })}
+            onOpenInterests={() => {
+              setInterestsOrigin(ORIGIN_EDIT);
+              go({ name: "interests" });
+            }}
             onOpenAchievements={() => go({ name: "achievements" })}
           />
         );

@@ -51,3 +51,33 @@ export function resolveInterestPrompt({
 
   return { prompt: true, markAsked: true };
 }
+
+// --- The secondary button -------------------------------------------------
+// InterestsScreen does double duty: it is the sign-up prompt *and* the edit
+// surface reached from Profile → Preferences → Interests. Those two contexts
+// want opposite things from the button beside Continue.
+//
+// As the prompt, "Skip" means "I'm answering with nothing" — an empty
+// selection is a real answer, and committing it is the point. As the edit
+// surface, the same click has to mean "Cancel" — leave what I already picked
+// alone. Before this, both paths cleared, so opening the screen from Profile
+// with three interests and tapping Skip silently wiped them.
+//
+// Returns { label, clears }. The invariant worth keeping: **`clears` is never
+// true when there are existing picks.** That is what makes the destructive
+// case unreachable regardless of how `origin` is threaded through the UI — a
+// wrong origin degrades to a harmless Cancel, never to data loss.
+export const ORIGIN_PROMPT = "prompt";
+export const ORIGIN_EDIT = "edit";
+
+export function resolveSecondaryAction({ origin = ORIGIN_EDIT, initialSelected = [] } = {}) {
+  const hasPicks = Array.isArray(initialSelected) && initialSelected.length > 0;
+
+  // Only the sign-up prompt, and only with nothing on file, commits an empty
+  // answer. Everything else — the edit surface, an unknown origin, or a prompt
+  // that somehow has picks — cancels without touching them.
+  if (origin === ORIGIN_PROMPT && !hasPicks) {
+    return { label: "Skip", clears: true };
+  }
+  return { label: "Cancel", clears: false };
+}
