@@ -18,7 +18,7 @@ import { fetchProgress } from "../storage/cloudProgress";
 import { streakStatus, dayKey } from "../game/progress";
 import SignInScreen from "./SignInScreen";
 
-export default function ProfileScreen({ progress, interests, onOpenInterests }) {
+export default function ProfileScreen({ progress, interests, onOpenInterests, onOpenAchievements }) {
   const { user, loading, signOut } = useAuth();
 
   if (loading) {
@@ -38,11 +38,19 @@ export default function ProfileScreen({ progress, interests, onOpenInterests }) 
       interests={interests}
       onSignOut={signOut}
       onOpenInterests={onOpenInterests}
+      onOpenAchievements={onOpenAchievements}
     />
   );
 }
 
-function SignedIn({ user, localProgress, interests = [], onSignOut, onOpenInterests }) {
+function SignedIn({
+  user,
+  localProgress,
+  interests = [],
+  onSignOut,
+  onOpenInterests,
+  onOpenAchievements,
+}) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
   const [stats, setStats] = useState(localProgress);
@@ -122,6 +130,15 @@ function SignedIn({ user, localProgress, interests = [], onSignOut, onOpenIntere
                 <Text style={styles.interestsChevron}>›</Text>
               </Pressable>
             </>
+          )}
+
+          {/* TEMPORARY — M2.5 step 2 only proves the /achievements route
+              works; step 4 replaces this with a real row mirroring the one
+              above (an unlocked-count summary, not just a bare link). */}
+          {onOpenAchievements && (
+            <Pressable onPress={onOpenAchievements} hitSlop={4} style={styles.achievementsLink}>
+              <Text style={styles.achievementsLinkText}>Achievements (preview) ›</Text>
+            </Pressable>
           )}
 
           <Pressable onPress={onSignOut} style={styles.signOutBtn}>
@@ -210,6 +227,9 @@ const styles = StyleSheet.create({
   interestsLabel: { ...type.body, color: colors.brand },
   interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
   interestsChevron: { fontSize: 20, color: colors.accent, marginLeft: spacing(2) },
+
+  achievementsLink: { marginBottom: spacing(7) },
+  achievementsLinkText: { ...type.caption, fontSize: 13, color: colors.accent },
 
   signOutBtn: {
     backgroundColor: colors.surfaceRaised,

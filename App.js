@@ -17,6 +17,7 @@ import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
+import AchievementsScreen from "./src/screens/AchievementsScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import AppChrome from "./src/components/AppChrome";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
@@ -321,12 +322,19 @@ function AppShell() {
           />
         );
 
+      // M2.5 step 2 — navigation seam only, proving the route works end to
+      // end; step 3 turns this into the real hero screen (locked/unlocked
+      // state via achievementPolicy.js, progress bars).
+      case "achievements":
+        return <AchievementsScreen onExit={backHandler} />;
+
       case "profile":
         return (
           <ProfileScreen
             progress={progress}
             interests={interests}
             onOpenInterests={() => go({ name: "interests" })}
+            onOpenAchievements={() => go({ name: "achievements" })}
           />
         );
 

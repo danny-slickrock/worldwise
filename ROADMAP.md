@@ -79,9 +79,12 @@ M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done, **M2
 collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
 has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
 achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
-game_results signals, no new schema) is done. **Next up in M2.5 is step 2** (the navigation seam
-for a new `AchievementsScreen` overlay). The Phase 1 backlog below gets picked up opportunistically,
-not as a gate.
+game_results signals, no new schema) and step 2 (the navigation seam — an `achievements` route in
+`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js` as a deliberately minimal
+`AchievementsScreen`; reachable today via a temporary preview link on Profile) are done. **Next up
+in M2.5 is step 3** (the hero screen — a real badge grid with progress bars, fed by
+`computeAchievements()` and `fetchRoundResults(user)`). The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -861,16 +864,17 @@ teaching *how the world works*, not just *where things are*.
        game-balance call, not something to invent inline with badge plumbing) and region collectible
        sets (`game_results` tags a round by mode + difficulty, never by country, so "which countries
        has this player gotten right" isn't a signal that exists yet — needs its own scoped step, and
-       likely a migration, before it can be built). 21 checks in `test/engine.test.js`. *(Next up:
-       step 2 — the navigation seam. NOTE: the `openX`/`returnTo` overlay pattern this originally
-       named is gone; navigation is now a per-tab route stack in `src/game/navigation.js`. Add an
-       `achievements` entry to `ROUTES` (owning tab: `profile`) plus its `routeToPath`/`pathToRoute`
-       pair — a test asserts every route round-trips through a URL — and render it from `App.js`'s
-       switch.)*
-    2. ☐ **Navigation seam.** An `achievements` route in `src/game/navigation.js` (`ROUTES`, owning
-       tab `profile`, plus its URL pair) rendered by `App.js`, reached with `go({ name:
-       "achievements" })` — the same seam the country page, index and interests screens use since
-       the navigation rework.
+       likely a migration, before it can be built). 21 checks in `test/engine.test.js`.
+    2. ✅ **Navigation seam.** An `achievements` route in `src/game/navigation.js` (`ROUTES`, owning
+       tab `profile`, plus its `routeToPath`/`pathToRoute` pair — covered by the same round-trip
+       test as every other route) rendered by `App.js`, reached with `go({ name: "achievements" })`
+       — the same seam the country page, index and interests screens use since the navigation
+       rework. `src/screens/AchievementsScreen.js` is deliberately minimal, mirroring how M2.4 step
+       3 kept `LearningPathScreen` a plain node list before its hero pass: it renders the badge
+       catalog (`src/data/achievements.js`) as a plain list, with no locked/unlocked state —
+       wiring `computeAchievements()` in is step 3's job, not this one's. Reachable today via a
+       "Achievements (preview)" link on Profile, explicitly marked TEMPORARY — step 4 replaces it
+       with the real entry point. *(Next up: step 3 — the hero screen.)*
     3. ☐ **Hero screen.** `src/screens/AchievementsScreen.js`: a badge grid (locked/unlocked, a
        progress bar toward each locked badge's threshold) fed by `computeAchievements()` and
        `fetchRoundResults(user)` (already built for M2.4's mastery screen — reuse it rather than

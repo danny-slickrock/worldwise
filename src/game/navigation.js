@@ -64,6 +64,7 @@ export const ROUTES = {
   country: { tab: "explore", root: false, chrome: true },
   countryIndex: { tab: "explore", root: false, chrome: true },
   interests: { tab: "profile", root: false, chrome: true },
+  achievements: { tab: "profile", root: false, chrome: true },
   quiz: { tab: "home", root: false, chrome: false },
 };
 
@@ -217,6 +218,8 @@ export function routeToPath(route) {
       return "/countries";
     case "interests":
       return "/interests";
+    case "achievements":
+      return "/achievements";
     case "quiz": {
       // Difficulty and timed ride as query params, and only when they differ
       // from the default — so the common link is a clean `/play/flag`, but a
@@ -257,6 +260,8 @@ export function pathToRoute(path) {
       return { name: "countryIndex" };
     case "interests":
       return { name: "interests" };
+    case "achievements":
+      return { name: "achievements" };
     case "country":
       return second ? { name: "country", code: second } : null;
     case "play":

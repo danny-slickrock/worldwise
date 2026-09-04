@@ -134,6 +134,8 @@ src/
   screens/LearningPathScreen.js # M2.4: nav seam (step 3) + mastery states/tapping a node (step 4)
                            #   + a region-pill row generalizing to all five paths (step 5)
                            #   + fade/rise-in + fade/settle-out transitions (step 6.4)
+  screens/AchievementsScreen.js # M2.5 step 2: nav seam — plain badge-catalog list, minimal until
+                           #   step 3 adds locked/unlocked state via achievementPolicy.js
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
@@ -294,9 +296,14 @@ shape `CountryPageScreen` uses, plus staggered `FadeInUp` groups for its header 
 unblocked work. It now has an ordered sub-checklist, and step 1 — the badge catalog + pure policy
 layer (`src/data/achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing
 `progress.js`/`game_results` signals: streak, rounds-played, perfect-round, and mode-variety
-badges, no new schema) — is done. XP levels and region collectible sets are deliberately their own
-later steps rather than folded into this one. Next up in M2.5 is step 2, the navigation seam for a
-new `AchievementsScreen` overlay.
+badges, no new schema) and step 2 (the navigation seam — an `achievements` route in
+`src/game/navigation.js`, owned by the Profile tab, reached with `go({ name: "achievements" })`
+and rendered by `App.js`; `src/screens/AchievementsScreen.js` is deliberately minimal, a plain
+list off the badge catalog with no locked/unlocked state yet, reachable today via a temporary
+"Achievements (preview)" link on Profile) are done. XP levels and region collectible sets are
+deliberately their own later steps rather than folded into step 1. Next up in M2.5 is step 3, the
+hero screen — wiring `computeAchievements()` and `fetchRoundResults(user)` into a real badge grid
+with progress bars, replacing this minimal list.
 
 **M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
 now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
