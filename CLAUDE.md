@@ -227,10 +227,22 @@ See [ROADMAP.md](./ROADMAP.md). **Phase 1 is complete** — all four load-bearin
 Polish, extra game modes, and onboarding stay in the backlog — they are *not* a gate.
 
 We are in **Phase 2** (Supabase; see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
-**M2.1 — accounts & cloud sync is complete and verified in production:** the user-domain migration
-with RLS is applied to the live project, and a real sign-in syncs progress, runs the one-time
-local→cloud merge, and writes finished rounds to `game_results`. Vercel carries the Supabase env
-vars (`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
+**M2.1 — accounts & cloud sync is code complete, but its production claim was wrong.** On
+2026-09-04 the M2.3.5 push found the live `public` schema empty — no `profiles`, `user_stats`, or
+`game_results` — and the remote migration history table empty too, so the user-domain migration had
+never actually reached the live project (or the project was reset). All three migrations are now
+applied via `supabase db push --linked`. Re-verify a real sign-in before trusting the sync path
+again, and note that any `auth.users` row predating the push has no `profiles` row, since the signup
+trigger fires only on new signups. Vercel carries the Supabase env vars
+(`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
+
+**A migration no longer needs the DB password.** Recent Supabase CLI versions provision a temporary
+login role over the Management API, so on a linked project `db push`, `migration list`, `db dump`,
+and `inspect db` all reach the remote database on the stored access token alone. What still needs a
+human: the Dashboard's exposed-schemas setting, and the secret service-role key for seeding.
+**Never use `supabase config push`** to set exposed schemas — it pushes all of `config.toml`
+including `[auth]`, which would overwrite the live `site_url` with `http://127.0.0.1:3000` and wipe
+the production redirect URLs.
 
 **M2.2 — country pages is fully done**, including its "from the map" entry point. **M2.3 —
 interactive maps — is now fully done too:** step 1 (a static tap-to-explore World Map screen), step
@@ -305,8 +317,13 @@ deliberately their own later steps rather than folded into step 1. Next up in M2
 hero screen — wiring `computeAchievements()` and `fetchRoundResults(user)` into a real badge grid
 with progress bars, replacing this minimal list.
 
-**M2.3.5 — content backend is code-complete and verified locally, not yet live.** Country content
-now has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
+**M2.3.5 — content backend is code-complete, verified locally, and its migration is now applied to
+the live project** (2026-09-04) — `content.countries`, `content.country_media`, and the
+`content_version` singleton all exist in production. Two human-only steps remain: exposing `content`
+in the Dashboard (an anon read still returns `PGRST106 — Invalid schema: content`, exactly the trap
+documented above) and seeding with the secret service-role key; the seed is blocked on the first.
+
+Country content has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
 layer that caches per country against `content_version` and falls back to bundled JSON. The bundled
 dataset did *not* go away — it's the seed source and the offline baseline at once, so both agree by
 construction.
@@ -314,8 +331,8 @@ construction.
 Verified end-to-end on a local Postgres: migration applied from scratch, seeded, public read
 confirmed, writes denied for anon *and* authenticated, and an edit made directly in Postgres
 appeared on a country page in the browser — then a second edit's version bump invalidated the cache
-and the app refetched. Applying it to the live project needs the DB password and the service-role
-key, so those steps are Danny's — see **DANNY TO DO** in ROADMAP.md.
+and the app refetched. The migration itself is now applied to the live project too; exposing the
+schema and seeding remain Danny's — see **DANNY TO DO** in ROADMAP.md.
 
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
 
