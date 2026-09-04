@@ -44,6 +44,8 @@ export const MIN_SIMILARITY = 0.80;
 export const NO_CONTEXT_ANSWER =
   "I don't have anything in Worldwise about that yet. Try asking about a country's geography, capital, borders, climate, trade, or culture.";
 
+export const NO_ANSWER_MARKER = "NO_ANSWER";
+
 // The grounding contract. Written as rules the model can follow literally,
 // because vague instructions ("be accurate") do nothing under pressure.
 export function systemPrompt() {
@@ -53,7 +55,7 @@ export function systemPrompt() {
     "GROUNDING RULES (these override everything else):",
     "1. Answer ONLY from the numbered sources provided in the user message. They are the entirety of what you know for this question.",
     "2. Every factual claim must be traceable to a source. Cite inline with bracketed numbers like [1] or [2][3].",
-    "3. If the sources do not answer the question, say so plainly and name what they do cover. Never fill a gap from memory, and never guess.",
+    `3. If the sources do not answer the question, begin your reply with exactly "${NO_ANSWER_MARKER}" and then say what the sources do cover. Never fill a gap from memory, and never guess.`,
     "4. Do not add facts, figures, dates, or names that are absent from the sources — not even ones you are confident about.",
     "5. If sources conflict, say so rather than silently picking one.",
     "",
@@ -117,10 +119,37 @@ export function citedRefs(answer = "") {
   return [...refs].sort((a, b) => a - b);
 }
 
-// An answer that cites nothing, when sources were supplied, has almost
-// certainly been written from the model's own memory — the one thing the
-// grounding rules forbid. Callers surface this rather than hiding it.
+// A declining answer opens with this exact marker. It exists because the naive
+// signal is wrong in a way that matters: a *correct* refusal ("the sources
+// don't cover who the president is") cites nothing, and a citation-count check
+// reads that as "answered from memory". Observed live on the first production
+// test — a well-behaved decline was flagged ungrounded. Since step 7's eval set
+// scores grounding, that false positive would have systematically punished
+// exactly the behaviour the grounding rules ask for.
+//
+// A marker the model emits is deterministic; sniffing refusal phrasing out of
+// prose is not.
+// Three outcomes, not two:
+//   "declined"   — the model correctly said the sources don't cover this. Good.
+//   "cited"      — an answer with citations. Good.
+//   "ungrounded" — an answer asserting facts while citing nothing. The failure.
+export function answerStatus(answer = "", chunkCount = 0) {
+  const text = String(answer).trim();
+  if (text.startsWith(NO_ANSWER_MARKER)) return "declined";
+  if (!chunkCount) return "declined";
+  return citedRefs(text).length === 0 ? "ungrounded" : "cited";
+}
+
+// Strip the marker before the answer reaches a learner — it is a machine
+// signal, not something to read.
+export function stripMarker(answer = "") {
+  const text = String(answer).trim();
+  if (!text.startsWith(NO_ANSWER_MARKER)) return text;
+  return text.slice(NO_ANSWER_MARKER.length).replace(/^[\s—:-]+/, "").trim();
+}
+
+// Kept as the one-line health check: only a true ungrounded answer is a
+// failure. A decline is not.
 export function isUngrounded(answer, chunkCount) {
-  if (!chunkCount) return false;
-  return citedRefs(answer).length === 0;
+  return answerStatus(answer, chunkCount) === "ungrounded";
 }

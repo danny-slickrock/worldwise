@@ -396,6 +396,10 @@ Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk
   intuitive-looking floor of 0.25 admits every question ever asked. Measured, on-topic sits at
   0.83–0.93 and off-topic/adversarial at 0.68–0.79, so the floor is 0.80. If the corpus changes
   materially, re-measure rather than reasoning about what "low similarity" ought to mean.
+- **A correct refusal is not a grounding failure.** Scoring "did the answer cite anything?" marks a
+  well-behaved "the sources don't cover this" as ungrounded, which would punish the exact behaviour
+  the rules ask for. The model emits an explicit `NO_ANSWER` marker and `answerStatus()` returns
+  `declined` / `cited` / `ungrounded`. Keep the three states if you touch this.
 - **The model is named in exactly one constant** (`MODEL` in `supabase/functions/ask/index.ts`,
   currently `claude-haiku-4-5` — note: no date suffix). Swapping in Sonnet is a one-line change.
 - **The Edge runtime's binding constraint is isolate CPU, not wall clock.** Embedding in-process

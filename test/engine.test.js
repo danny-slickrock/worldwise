@@ -164,6 +164,9 @@ import {
   formatSources,
   citedRefs,
   isUngrounded,
+  answerStatus,
+  stripMarker,
+  NO_ANSWER_MARKER,
   NO_CONTEXT_ANSWER,
 } from "../src/game/ragPrompt";
 import { checkRateLimit, validateQuestion, RATE_LIMIT } from "../src/game/askLimits";
@@ -2351,6 +2354,33 @@ check(
 );
 check(isUngrounded("Brazil is big [1].", 4) === false, "a cited answer is not flagged");
 check(isUngrounded("anything", 0) === false, "with no sources there is nothing to be ungrounded against");
+
+// A correct refusal is not a grounding failure. Observed live: the model
+// declined properly and the citation-count check called it ungrounded, which
+// would have punished good behaviour in the eval set.
+check(sys.includes(NO_ANSWER_MARKER), "the system prompt asks for an explicit decline marker");
+check(
+  answerStatus(`${NO_ANSWER_MARKER} The sources cover borders, not presidents.`, 5) === "declined",
+  "a marked refusal is 'declined', not 'ungrounded'"
+);
+check(
+  isUngrounded(`${NO_ANSWER_MARKER} nothing here.`, 5) === false,
+  "...and does not count as a grounding failure"
+);
+check(answerStatus("Brazil borders Peru [1].", 5) === "cited", "a cited answer is 'cited'");
+check(
+  answerStatus("Brazil's president is someone.", 5) === "ungrounded",
+  "an uncited assertion with sources available is still 'ungrounded' — the real failure"
+);
+check(answerStatus("anything", 0) === "declined", "no sources means nothing was asserted from them");
+check(
+  stripMarker(`${NO_ANSWER_MARKER} — The sources cover borders.`) === "The sources cover borders.",
+  "the marker is stripped before a learner sees the answer"
+);
+check(
+  stripMarker("Brazil borders Peru [1].") === "Brazil borders Peru [1].",
+  "...and a normal answer is untouched"
+);
 check(NO_CONTEXT_ANSWER.length > 0, "there is a canned answer for when retrieval finds nothing");
 
 // Rate limiting.

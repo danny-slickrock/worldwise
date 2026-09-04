@@ -853,8 +853,22 @@ teaching *how the world works*, not just *where things are*.
        evade the rate limit. Rate limiting is per-isolate and in-memory, and honest about it: it
        stops one client hammering one worker, not a distributed abuser (verified: 6 through, then
        429 with `Retry-After`). The durable per-user daily cap is step 4 and needs a table.
-       Logging records `retrieved` vs `cited` vs `grounded` — the cheapest signal that retrieval is
+       Logging records `retrieved` vs `cited` vs `status` — the cheapest signal that retrieval is
        drifting or that the model answered from memory, available before step 7's eval set exists.
+       **Deployed and verified against the production corpus.** "Which countries border Brazil?"
+       returned a correct, cited, grounded answer (639 in / 106 out tokens — about $0.0012 a
+       question on Haiku 4.5). Off-topic and prompt-injection attempts both scored below the 0.80
+       floor and were short-circuited **without reaching the model at all** — the similarity floor
+       turns out to double as an injection defence, since an instruction-shaped string doesn't look
+       like Worldwise content. Asked something in-domain but absent from the corpus (Brazil's 1850
+       population), the model correctly refused to invent a figure.
+       **The first live test found a defect in the quality metric itself.** A *correct* refusal
+       cites nothing, so the citation-count check labelled it `grounded: false` — meaning step 7's
+       eval set would have systematically punished exactly the behaviour the grounding rules ask
+       for. Fixed by having the model emit an explicit `NO_ANSWER` marker (deterministic, unlike
+       sniffing refusal phrasing out of prose) and scoring three outcomes rather than two:
+       `declined` (correct refusal), `cited` (grounded answer), `ungrounded` (asserted facts while
+       citing nothing — the only real failure). The marker is stripped before the learner sees it.
     4. ☐ **Guardrails.** Answer only from retrieved context; refuse/deflect off-topic or unsafe asks;
        always show sources; age-appropriate, non-ideological framing (matches the brand). Add an
        abuse/rate limit and a per-user cap to control cost.

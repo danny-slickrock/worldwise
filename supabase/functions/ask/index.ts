@@ -25,7 +25,8 @@ import {
   buildUserMessage,
   formatSources,
   citedRefs,
-  isUngrounded,
+  answerStatus,
+  stripMarker,
 } from "../../../src/game/ragPrompt.js";
 
 // --- Config ----------------------------------------------------------------
@@ -152,6 +153,7 @@ Deno.serve(async (req) => {
       answer: NO_CONTEXT_ANSWER,
       sources: [],
       citedRefs: [],
+      status: "declined",
       grounded: true,
       model: null,
       elapsedMs: Date.now() - started,
@@ -199,8 +201,12 @@ Deno.serve(async (req) => {
     return json({ error: "could not generate an answer" }, 502);
   }
 
+  // Three outcomes, not two — a correct refusal must not be scored as a
+  // grounding failure. See ragPrompt.js for why this bit them on day one.
+  const status = answerStatus(answer, ranked.length);
+  answer = stripMarker(answer);
   const refs = citedRefs(answer);
-  const grounded = !isUngrounded(answer, ranked.length);
+  const grounded = status !== "ungrounded";
 
   // The log line that makes quality measurable before step 6's eval set exists:
   // retrieved vs. actually-cited is the cheapest signal that retrieval is
@@ -209,13 +215,14 @@ Deno.serve(async (req) => {
     `[worldwise:ask] country=${country ?? "-"} user=${userId ? "yes" : "no"} ` +
       `interests=${interests.length} retrieved=${ranked.length} ` +
       `topSim=${(ranked[0]?.similarity ?? 0).toFixed(3)} cited=${refs.length} ` +
-      `grounded=${grounded} ms=${Date.now() - started}`,
+      `status=${status} ms=${Date.now() - started}`,
   );
 
   return json({
     answer,
     sources: formatSources(ranked),
     citedRefs: refs,
+    status,
     grounded,
     model: MODEL,
     usage,
