@@ -765,8 +765,36 @@ teaching *how the world works*, not just *where things are*.
   curious about, with AI that frames discoveries **grounded in our own verified content** (no
   free-floating hallucination — critical because the audience includes students).
   - **Ordered sub-checklist** (decompose just-in-time when this milestone is next):
-    1. ☐ **Embeddings store.** Enable `pgvector`; add an `content.embeddings` table (chunk text +
-       vector + source country/topic). Migration-as-file, public-read RLS, admin-only writes.
+    1. ✅ **Embeddings store** — `supabase/migrations/20260904220820_init_embeddings.sql`, **verified
+       locally, awaiting the production push.** Enables `pgvector` (into `extensions`, per Supabase
+       convention) and adds `content.embeddings`: `country_code` FK to `content.countries` with
+       `on delete cascade`, `chunk_index`, the chunk `content` verbatim, `embedding vector(384)`,
+       `source` (which field the chunk came from), `created_at`, and `unique (country_code,
+       chunk_index)` so the re-runnable ingestion upserts instead of piling up near-duplicates.
+       384 dimensions because embeddings come from Supabase's built-in **gte-small** (Supabase.ai)
+       — no external embedding vendor, no second API key. HNSW over `vector_cosine_ops`: gte-small
+       emits normalized vectors, and HNSW needs no training pass, where an IVFFlat index would need
+       its list count retuned as content grows and would silently *degrade recall* rather than error
+       when it went stale.
+       Two decisions worth carrying forward. **No `content_version` bump trigger** — that version
+       drives the client's per-country page cache, and embeddings are server-side retrieval data no
+       client reads; bumping on re-ingestion would invalidate every cached page on every device for
+       a change none of them can see. The dependency runs the other way: a version bump triggers
+       re-ingestion. And **`content.match_country_chunks()` ships with the schema**, because vector
+       search is not expressible through PostgREST — there is no way to write `order by embedding
+       <=> $1` as a REST filter, so without this function step 3 has no way to retrieve at all. It
+       returns cosine *similarity* (1 - distance) so callers get an intuitive "at least this
+       relevant" floor, takes an optional `filter_country` (null = the discovery surface, a code =
+       "Ask about {place}"), and is SECURITY INVOKER since it only reads a public table.
+       Public read (matching the rest of `content` — these chunks are verbatim slices of text
+       already on public country pages), writes service-role only, explicit CRUD grants.
+       Verified on a local Postgres, not just applied: `db reset` from scratch; cosine ranking
+       correct (exact match 1.0, orthogonal 0.0, properly ordered); re-ingestion upserts (3 chunks
+       stay 3, content revised); `content_version` provably **not** bumped by an embeddings write
+       (2 → 2); `min_similarity` and `filter_country` both filter; null-embedding rows excluded from
+       retrieval; FK cascade removes a deleted country's chunks; and per-role checks confirming
+       `anon`/`authenticated` can select and call the match function but are denied INSERT/UPDATE/
+       DELETE, while `service_role` can write.
     2. ☐ **Ingestion job.** A script/Edge Function that chunks country content, calls an embedding
        model, and upserts vectors. Re-runs on `content_version` bumps. Keep chunking logic pure/tested.
     3. ☐ **Retrieval + generation (server-side).** A **Supabase Edge Function** that: vector-searches
