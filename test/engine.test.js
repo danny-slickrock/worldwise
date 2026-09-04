@@ -125,6 +125,26 @@ import {
   syncToPath,
 } from "../src/game/navigation";
 import { BREAKPOINTS, RAIL_WIDTH, navMode, chromeLayout } from "../src/game/layout";
+import {
+  INITIAL_SYNC_STATE,
+  FAILURE_ESCALATION,
+  SYNC_IDLE,
+  SYNC_OK,
+  SYNC_RETRYING,
+  SYNC_FAILED,
+  describeError,
+  recordSyncSuccess,
+  recordSyncFailure,
+  describeSyncState,
+} from "../src/game/syncStatus";
+import {
+  getSyncState,
+  subscribeSyncState,
+  noteSyncOk,
+  noteSyncFailure,
+  resetSyncState,
+  __setSyncStoreDeps,
+} from "../src/game/syncStore";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -1793,9 +1813,186 @@ check(
 );
 
 
-// The only async section in the suite. Everything above is synchronous, so the
-// summary waits on just this one promise before deciding the exit code.
-contentResolverChecks().then(() => {
-  console.log(fails ? `\nFAILED (${fails})` : "\nAll engine tests passed ✓");
-  process.exit(fails ? 1 : 0);
+console.log("Sync health (M2.1 — surfacing failed cloud writes)");
+
+// The state machine. These are the checks that would have failed loudly on
+// 2026-09-04, when every write was erroring and the UI still said "Synced".
+check(INITIAL_SYNC_STATE.status === SYNC_IDLE, "a fresh session starts idle, not ok");
+check(INITIAL_SYNC_STATE.failureCount === 0, "...with no failures recorded");
+
+const fkError = { code: "23503", message: 'insert violates foreign key constraint' };
+const oneFail = recordSyncFailure(INITIAL_SYNC_STATE, fkError, "t1");
+check(oneFail.status === SYNC_RETRYING, "one failure is 'retrying', not a hard failure");
+check(oneFail.failureCount === 1, "...and counts one failure");
+check(oneFail.lastError.code === "23503", "...preserving the Postgres error code");
+
+let escalated = INITIAL_SYNC_STATE;
+for (let i = 0; i < FAILURE_ESCALATION; i++) escalated = recordSyncFailure(escalated, fkError, `t${i}`);
+check(escalated.status === SYNC_FAILED, "consecutive failures escalate to 'failed'");
+check(escalated.failureCount === FAILURE_ESCALATION, "...with the run counted");
+
+const recovered = recordSyncSuccess(escalated, "t9");
+check(recovered.status === SYNC_OK, "a success clears a failure run");
+check(recovered.failureCount === 0, "...resetting the count");
+check(recovered.lastError === null, "...and dropping the stale error");
+check(recovered.lastOkAt === "t9", "...stamping when data was last known safe");
+
+// lastOkAt is the useful half of a failure report, so it must survive one.
+const failedAfterOk = recordSyncFailure(recovered, fkError, "t10");
+check(failedAfterOk.lastOkAt === "t9", "a later failure keeps the last-known-good timestamp");
+
+// Error narrowing — three shapes reach this from Supabase, thrown code, and
+// libraries that invent their own.
+check(describeError(null) === null, "no error narrows to null");
+check(describeError(fkError).code === "23503", "a PostgrestError keeps its code");
+check(describeError(new Error("boom")).message === "boom", "a thrown Error keeps its message");
+check(describeError(new Error("boom")).code === null, "...with a null code");
+check(describeError("plain string").message === "plain string", "a bare string still yields a message");
+
+// What the player is told.
+check(
+  describeSyncState(recovered, { signedIn: false }).visible === false,
+  "signed out shows nothing — local-only progress is the design, not a fault"
+);
+check(
+  describeSyncState(INITIAL_SYNC_STATE, { signedIn: true }).visible === false,
+  "signed in but nothing written yet stays quiet rather than claiming 'synced'"
+);
+check(
+  describeSyncState(recovered, { signedIn: true }).tone === "ok",
+  "a confirmed write reports ok"
+);
+check(
+  describeSyncState(oneFail, { signedIn: true }).tone === "warning",
+  "a single failure is a warning, not an alarm"
+);
+check(
+  describeSyncState(escalated, { signedIn: true }).tone === "error",
+  "a sustained failure escalates the tone"
+);
+check(
+  describeSyncState(oneFail, { signedIn: true }).message.includes("retry"),
+  "the warning tells the player a retry is coming"
+);
+check(
+  describeSyncState(failedAfterOk, { signedIn: true }).detail === "Last saved t9",
+  "a failure after a good write reports when data was last safe"
+);
+check(
+  describeSyncState(oneFail, { signedIn: true }).detail === "No round has saved yet.",
+  "...and says so honestly when nothing has ever saved"
+);
+check(
+  describeSyncState(escalated, { signedIn: true }).tone !== "ok",
+  "an escalated failure can never read as ok — the bug this whole module exists for"
+);
+
+
+console.log("Sync store (observable session health)");
+
+// Deterministic clock + captured log, so these assert on real behaviour rather
+// than on wall-clock strings, and don't spray console.error through the output.
+const syncLogs = [];
+const restoreSyncDeps = __setSyncStoreDeps({
+  now: () => "2026-09-04T20:00:00.000Z",
+  logger: (line) => syncLogs.push(line),
 });
+
+resetSyncState();
+check(getSyncState().status === SYNC_IDLE, "the store starts idle");
+
+const seen = [];
+const unsubscribe = subscribeSyncState((s) => seen.push(s.status));
+
+noteSyncFailure("user_stats upsert", fkError);
+check(seen.length === 1, "a failure notifies subscribers");
+check(getSyncState().status === SYNC_RETRYING, "...and moves the store to retrying");
+check(getSyncState().lastError.code === "23503", "...keeping the Postgres code for the log");
+check(
+  syncLogs.length === 1 && syncLogs[0].includes("user_stats upsert") && syncLogs[0].includes("23503"),
+  "a failed write is logged with which write failed and why"
+);
+
+noteSyncOk();
+check(getSyncState().status === SYNC_OK, "a success moves the store to ok");
+check(getSyncState().lastOkAt === "2026-09-04T20:00:00.000Z", "...stamped from the injected clock");
+check(seen.length === 2, "...and notifies again");
+
+unsubscribe();
+noteSyncFailure("game_results insert", fkError);
+check(seen.length === 2, "an unsubscribed listener stops hearing about changes");
+
+resetSyncState();
+check(getSyncState().status === SYNC_IDLE, "reset (sign-out) clears the state");
+check(getSyncState().failureCount === 0, "...including the failure run");
+
+// The decision path saveRoundResult() takes, driven through a fake client — no
+// network, no Supabase. This is the wiring that actually broke in production:
+// a failing user_stats upsert used to return early and never even attempt the
+// game_results insert, silently.
+const fakeClient = (failOn) => ({
+  from(table) {
+    const fail = failOn === table ? { code: "23503", message: "fk violation" } : null;
+    return {
+      upsert: async () => ({ error: fail }),
+      insert: async () => ({ error: fail }),
+    };
+  },
+});
+
+async function syncWiringChecks() {
+  // Mirrors saveRoundResult()'s order of operations without importing it —
+  // cloudProgress.js pulls in AsyncStorage, which this suite cannot load.
+  async function attemptRound(client) {
+    const { error: statsError } = await client.from("user_stats").upsert({});
+    if (statsError) {
+      noteSyncFailure("user_stats upsert", statsError);
+      return { ok: false };
+    }
+    const { error: resultError } = await client.from("game_results").insert({});
+    if (resultError) {
+      noteSyncFailure("game_results insert", resultError);
+      return { ok: false };
+    }
+    noteSyncOk();
+    return { ok: true };
+  }
+
+  resetSyncState();
+  syncLogs.length = 0;
+  const good = await attemptRound(fakeClient(null));
+  check(good.ok === true, "a round against a healthy client reports ok");
+  check(getSyncState().status === SYNC_OK, "...and leaves the store ok");
+  check(syncLogs.length === 0, "...logging nothing");
+
+  resetSyncState();
+  syncLogs.length = 0;
+  const bad = await attemptRound(fakeClient("user_stats"));
+  check(bad.ok === false, "a failing stats upsert fails the round");
+  check(getSyncState().status === SYNC_RETRYING, "...and the store records it");
+  check(
+    describeSyncState(getSyncState(), { signedIn: true }).tone === "warning",
+    "...so Profile shows a warning instead of an unearned '✓ Synced'"
+  );
+  check(syncLogs.length === 1, "...and exactly one line reaches the console");
+
+  resetSyncState();
+  const badResult = await attemptRound(fakeClient("game_results"));
+  check(badResult.ok === false, "a failing results insert also fails the round");
+  check(
+    getSyncState().lastError.message === "fk violation",
+    "...recording the error that caused it"
+  );
+
+  restoreSyncDeps();
+}
+
+
+// The async sections. Everything above is synchronous, so the summary waits on
+// just these two promises before deciding the exit code.
+contentResolverChecks()
+  .then(syncWiringChecks)
+  .then(() => {
+    console.log(fails ? `\nFAILED (${fails})` : "\nAll engine tests passed ✓");
+    process.exit(fails ? 1 : 0);
+  });

@@ -8,6 +8,7 @@ import { Platform } from "react-native";
 import * as WebBrowser from "expo-web-browser";
 import * as Linking from "expo-linking";
 import { supabase } from "../lib/supabase";
+import { resetSyncState } from "../game/syncStore";
 import { getRedirectUrl } from "./redirect";
 
 // Lets the web popup hand its result back and close itself. No-op on native.
@@ -128,6 +129,10 @@ export function AuthProvider({ children }) {
 
   const signOut = useCallback(async () => {
     const { error } = await supabase.auth.signOut();
+    // Sync health is per-session by design; clearing it here stops one
+    // account's failed writes from being reported against the next person to
+    // sign in on this device.
+    resetSyncState();
     return { error };
   }, []);
 

@@ -17,6 +17,7 @@ import {
   resultRowFromRound,
   mergeProgress,
 } from "../game/cloudSync";
+import { noteSyncOk, noteSyncFailure } from "../game/syncStore";
 
 // One-time flag: local progress has been folded into the cloud for this device.
 export const MIGRATED_KEY = "worldwise.migrated.v1";
@@ -24,6 +25,12 @@ export const MIGRATED_KEY = "worldwise.migrated.v1";
 // Postgres unique_violation. Expected when a Daily is submitted twice in one
 // day — the partial unique index doing its job, not a failure.
 const UNIQUE_VIOLATION = "23505";
+
+// --- Sync health -----------------------------------------------------------
+// Every write below still swallows its error — play must never stop for the
+// network. What changed on 2026-09-04 is that a swallowed error now leaves a
+// trace: it is logged, and it updates the store in game/syncStore.js, which
+// ProfileScreen reads. See game/syncStatus.js for what the states mean.
 
 // Push a finished round: bump the user_stats totals and append the game_results
 // row. `progress` is the already-folded result of applyRoundResult, so the
@@ -36,17 +43,24 @@ export async function saveRoundResult(user, round, progress, client = supabase) 
     const { error: statsError } = await client
       .from("user_stats")
       .upsert(statsRowFromProgress(user.id, progress), { onConflict: "user_id" });
-    if (statsError) return { ok: false, error: statsError };
+    if (statsError) {
+      noteSyncFailure("user_stats upsert", statsError);
+      return { ok: false, error: statsError };
+    }
 
     const { error: resultError } = await client
       .from("game_results")
       .insert(resultRowFromRound(user.id, round, today));
     // A duplicate Daily is a no-op, not an error — the stats upsert still landed.
     if (resultError && resultError.code !== UNIQUE_VIOLATION) {
+      noteSyncFailure("game_results insert", resultError);
       return { ok: false, error: resultError };
     }
+
+    noteSyncOk();
     return { ok: true };
   } catch (error) {
+    noteSyncFailure("saveRoundResult", error);
     return { ok: false, error };
   }
 }
@@ -113,11 +127,16 @@ export async function migrateLocalToCloud(user, client = supabase) {
       .from("user_stats")
       .upsert(statsRowFromProgress(user.id, merged), { onConflict: "user_id" });
     // Leave the flag unset on failure so the next sign-in retries the merge.
-    if (error) return { ok: false, error };
+    if (error) {
+      noteSyncFailure("first-sign-in migration", error);
+      return { ok: false, error };
+    }
 
     await AsyncStorage.setItem(MIGRATED_KEY, new Date().toISOString());
+    noteSyncOk();
     return { ok: true, migrated: true, progress: merged };
   } catch (error) {
+    noteSyncFailure("migrateLocalToCloud", error);
     return { ok: false, error };
   }
 }

@@ -15,6 +15,8 @@ import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchProgress } from "../storage/cloudProgress";
+import { getSyncState, subscribeSyncState } from "../game/syncStore";
+import { describeSyncState } from "../game/syncStatus";
 import { streakStatus, dayKey } from "../game/progress";
 import SignInScreen from "./SignInScreen";
 
@@ -55,6 +57,11 @@ function SignedIn({
   // show until it answers, so the numbers never flash through zero.
   const [stats, setStats] = useState(localProgress);
   const [syncing, setSyncing] = useState(true);
+  // Sync health is pushed, not polled: a round finished on another screen
+  // updates the store, and this row re-renders when the player lands here.
+  const [syncState, setSyncState] = useState(getSyncState);
+
+  useEffect(() => subscribeSyncState(setSyncState), []);
 
   useEffect(() => {
     let active = true;
@@ -113,7 +120,7 @@ function SignedIn({
             {syncing ? (
               <ActivityIndicator color={colors.textMuted} size="small" />
             ) : (
-              <Text style={styles.syncText}>✓ Synced — your progress is safe on every device.</Text>
+              <SyncNotice state={syncState} />
             )}
           </View>
 
@@ -151,6 +158,36 @@ function SignedIn({
         </FadeInUp>
       </Container>
     </ScrollView>
+  );
+}
+
+// The quiet sync indicator. Never blocks anything and never interrupts play —
+// it is a line of text under the stats, and the worst it does is tell the truth.
+//
+// Tone → token mapping lives here rather than in syncStatus.js so that module
+// stays pure and importable by the test suite. Each tone carries a glyph as
+// well as a colour: the kit's rule is that status colour is never the only
+// signal.
+const SYNC_TONES = {
+  ok: { color: colors.success, glyph: "\u2713" },
+  warning: { color: colors.earth, glyph: "\u21BB" },
+  error: { color: colors.danger, glyph: "\u26A0" },
+};
+
+function SyncNotice({ state }) {
+  const notice = describeSyncState(state, { signedIn: true });
+  if (!notice.visible) return null;
+
+  const tone = SYNC_TONES[notice.tone] ?? SYNC_TONES.ok;
+  return (
+    <View>
+      <Text style={[styles.syncText, { color: tone.color }]}>
+        {tone.glyph} {notice.message}
+      </Text>
+      {!!notice.detail && notice.tone !== "ok" && (
+        <Text style={styles.syncDetail}>{notice.detail}</Text>
+      )}
+    </View>
   );
 }
 
@@ -211,7 +248,9 @@ const styles = StyleSheet.create({
   statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
 
   syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(7) },
-  syncText: { ...type.caption, fontSize: 13, color: colors.success },
+  // Colour is applied per tone by SyncNotice — the base style stays neutral.
+  syncText: { ...type.caption, fontSize: 13 },
+  syncDetail: { ...type.caption, fontSize: 12, color: colors.textMuted, marginTop: spacing(1) },
 
   interestsRow: {
     flexDirection: "row",
