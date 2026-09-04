@@ -151,6 +151,12 @@ import {
   ORIGIN_PROMPT,
   ORIGIN_EDIT,
 } from "../src/game/interestPrompt";
+import {
+  MAX_CHUNK_CHARS,
+  splitProse,
+  chunkCountry,
+  staleChunkIndexes,
+} from "../src/game/contentChunks";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -2112,6 +2118,127 @@ for (const origin of [ORIGIN_PROMPT, ORIGIN_EDIT, "nonsense", undefined]) {
   }
 }
 check(true, "no combination clears while picks exist — data loss is unreachable");
+
+
+console.log("Content chunking (M2.9 step 2 — RAG ingestion)");
+
+const chunkSrcRow = {
+  code: "br",
+  name: "Brazil",
+  capital: "Brasilia",
+  region: "Americas",
+  summary: "Brazil is the giant of South America. It borders every country on the continent except Chile and Ecuador.",
+  population: 216422446,
+  area_km2: 8515767,
+  lat: -14.235,
+  lng: -51.9253,
+  neighbors: ["ar", "bo"],
+  facts: {
+    trade: "One of the world's largest exporters of soybeans, coffee and iron ore.",
+    climate: "Mostly tropical, dipping subtropical in the south.",
+  },
+};
+const neighborNames = { ar: "Argentina", bo: "Bolivia" };
+const brChunks = chunkCountry(chunkSrcRow, neighborNames);
+
+check(brChunks.length > 0, "a populated country produces chunks");
+check(
+  brChunks.every((c, i) => c.chunkIndex === i),
+  "chunk indexes are positional and gap-free — they are the upsert key"
+);
+check(
+  brChunks.every((c) => c.countryCode === "br"),
+  "every chunk carries its country code"
+);
+check(
+  brChunks.every((c) => c.content.length <= MAX_CHUNK_CHARS),
+  "no chunk exceeds the budget — gte-small truncates at 512 tokens silently"
+);
+check(
+  brChunks.every((c) => c.content.includes("Brazil")),
+  "every chunk names its country, so a retrieved fact can't be misattributed"
+);
+check(
+  brChunks.some((c) => c.source === "geography" && c.content.includes("216.4 million")),
+  "population is rendered as prose, not a raw number"
+);
+check(
+  brChunks.some((c) => c.content.includes("Argentina and Bolivia")),
+  "neighbours are named, not left as ISO codes"
+);
+check(
+  brChunks.some((c) => c.source === "facts.trade"),
+  "each fact becomes its own labelled chunk"
+);
+
+// Stable ordering across runs — unstable keys would rewrite every row each run.
+const reordered = chunkCountry(
+  { ...chunkSrcRow, facts: { climate: chunkSrcRow.facts.climate, trade: chunkSrcRow.facts.trade } },
+  neighborNames
+);
+check(
+  JSON.stringify(reordered.map((c) => c.source)) ===
+    JSON.stringify(brChunks.map((c) => c.source)),
+  "fact key order in the row doesn't change chunk order"
+);
+
+// Islands: "no land borders" is a real answer, not an absence.
+const islandChunks = chunkCountry(
+  { code: "is", name: "Iceland", region: "Europe", neighbors: [], summary: "An island nation." },
+  {}
+);
+check(
+  islandChunks.some((c) => c.content.includes("no land borders")),
+  "a country with no neighbours says so, rather than retrieving nothing"
+);
+
+// Degenerate rows must not produce garbage chunks.
+check(chunkCountry(null).length === 0, "a null row produces no chunks");
+check(chunkCountry({ code: "xx" }).length === 0, "a row with no name produces no chunks");
+check(
+  chunkCountry({ code: "xx", name: "Nowhere" }).every((c) => c.content.trim().length > 0),
+  "a nearly-empty row never produces blank chunks"
+);
+
+// splitProse
+check(splitProse("").length === 0, "empty text yields no pieces");
+check(splitProse("One sentence.")[0] === "One sentence.", "short text passes through whole");
+const longProse = "This is a sentence about geography. ".repeat(120);
+const prosePieces = splitProse(longProse);
+check(prosePieces.length > 1, "over-budget prose is split");
+check(prosePieces.every((p) => p.length <= MAX_CHUNK_CHARS), "...and every piece fits the budget");
+check(
+  prosePieces.every((p) => p.trim() === p && p.length > 0),
+  "...with no blank or untrimmed pieces"
+);
+const unpunctuated = "x".repeat(MAX_CHUNK_CHARS * 2 + 50);
+check(
+  splitProse(unpunctuated).every((p) => p.length <= MAX_CHUNK_CHARS),
+  "text with no sentence breaks still respects the budget"
+);
+check(
+  splitProse("word ".repeat(400)).join(" ").replace(/\s+/g, " ").trim().startsWith("word word"),
+  "splitting preserves the text rather than dropping it"
+);
+
+// staleChunkIndexes — the deletion half of a stable upsert.
+check(
+  JSON.stringify(staleChunkIndexes([0, 1, 2, 3, 4], 3)) === JSON.stringify([3, 4]),
+  "shrinking content marks the leftover tail stale"
+);
+check(
+  staleChunkIndexes([0, 1, 2], 3).length === 0,
+  "unchanged chunk counts leave nothing stale"
+);
+check(
+  staleChunkIndexes([0, 1], 5).length === 0,
+  "growing content marks nothing stale"
+);
+check(staleChunkIndexes([], 0).length === 0, "an empty store has nothing stale");
+check(
+  JSON.stringify(staleChunkIndexes([2, 0, 1, 2], 1)) === JSON.stringify([1, 2]),
+  "duplicates and disorder are handled"
+);
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

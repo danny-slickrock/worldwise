@@ -795,8 +795,37 @@ teaching *how the world works*, not just *where things are*.
        retrieval; FK cascade removes a deleted country's chunks; and per-role checks confirming
        `anon`/`authenticated` can select and call the match function but are denied INSERT/UPDATE/
        DELETE, while `service_role` can write.
-    2. ☐ **Ingestion job.** A script/Edge Function that chunks country content, calls an embedding
-       model, and upserts vectors. Re-runs on `content_version` bumps. Keep chunking logic pure/tested.
+    2. ✅ **Ingestion job** — `supabase/functions/ingest-embeddings/` + `scripts/ingest-embeddings.mjs`
+       (`npm run ingest:embeddings`). **Not the `npm run` script this line originally imagined:**
+       `Supabase.ai.Session` is part of the Edge runtime and has no Node equivalent, so using the
+       built-in gte-small model — and thus avoiding an external embedding vendor and a second API
+       key — requires running in an Edge Function. The npm script drives it.
+       Chunking is pure and tested (`src/game/contentChunks.js`, 25 checks) and imported by the Edge
+       Function across the project boundary, so there is one implementation rather than one per
+       runtime. Two properties do the real work: **every chunk names its country**, because a bare
+       retrieved fact ("one of the world's largest exporters of soybeans") can be misattributed to
+       whatever country the question mentioned — unacceptable when grounding is the whole point; and
+       **chunk indexes are positional**, since `(country_code, chunk_index)` is the upsert key.
+       The corollary is `staleChunkIndexes()`: when a country's content shrinks, the leftover higher
+       indexes must be deleted or retired text stays retrievable *and citable* forever. Verified
+       end-to-end — shrinking Brazil from 3 facts to 1 dropped it 5 → 3 chunks, reported
+       `deleted: 2`, and left zero rows matching the retired text.
+       Chunks are capped at 1200 chars because **gte-small truncates at 512 tokens silently** — an
+       over-long chunk would embed only its head while a citation claimed the whole thing.
+       **The binding constraint is isolate CPU, not wall clock.** gte-small inference runs in-process
+       and the runtime kills the worker with `WORKER_LIMIT` ("CPU time hard limit reached") long
+       before any timeout: measured locally, 5 countries / 10 chunks succeeds in ~770ms while 10
+       countries reproducibly fails. Speed is not the issue; cumulative CPU is. So the function does
+       one small batch and reports `nextOffset`, and the npm script follows that to completion,
+       retrying transient 5xx (safe, since every write is an upsert). A full local run: **196/196
+       countries, 393 chunks, 40 batches, zero retries.**
+       Semantics sanity-checked rather than assumed: Brazil's trade chunk's nearest neighbours are
+       Brazil's own summary (0.890) and *Vietnam's* (0.859 — also a major coffee exporter), and it
+       sits closer to Brazil's geography (0.147) than to Iceland's summary (0.233).
+       Auth accepts either the injected `SUPABASE_SERVICE_ROLE_KEY` or an optional `INGEST_TOKEN`
+       secret, because projects mid-migration between key formats would otherwise fail the
+       comparison with the correct key in hand. The check matters: the function talks to Postgres
+       with the service key, so any caller past the door triggers a full run.
     3. ☐ **Retrieval + generation (server-side).** A **Supabase Edge Function** that: vector-searches
        the top-k relevant chunks, builds a grounded prompt, calls the **LLM API**, and returns a
        cited answer. **API keys live only in the Edge Function**, never in the app. Rate-limit + log.

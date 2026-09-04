@@ -100,7 +100,10 @@ src/
                            #   whether the rail spells out its labels. One breakpoint decision
   game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
   game/interestPrompt.js   # PURE M2.3.6 step 6: the sign-up prompt gate — asked once, a skip counts
-                           #   as answered, never re-nagged
+                           #   as answered, never re-nagged. Also owns Skip-vs-Cancel for the screen's
+                           #   two contexts (step 7)
+  game/contentChunks.js    # PURE M2.9 step 2: country row → retrievable chunks. Every chunk names
+                           #   its country; indexes are positional (the upsert key)
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
@@ -143,6 +146,9 @@ src/
   screens/AchievementsScreen.js # M2.5 step 2: nav seam — plain badge-catalog list, minimal until
                            #   step 3 adds locked/unlocked state via achievementPolicy.js
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
+supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + embeds country
+                           #   content with the built-in gte-small model
+scripts/ingest-embeddings.mjs # Drives ingest-embeddings to completion (npm run ingest:embeddings)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
@@ -363,6 +369,26 @@ and the app refetched. The migration itself is now applied to the live project t
 schema and seeding remain Danny's — see **DANNY TO DO** in ROADMAP.md.
 
 Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk at a time.
+
+## The AI knowledge hub (M2.9) — decisions worth not relitigating
+
+- **Generation is Anthropic Claude, Haiku by default** for in-app "dive deeper", with the model name
+  in a single config constant so Sonnet can swap in without a code hunt.
+- **Embeddings are Supabase's built-in gte-small** (384-dim, normalized) — no external embedding
+  vendor and no second API key. It is only reachable from the **Edge runtime**: `Supabase.ai.Session`
+  has no Node equivalent, which is why ingestion is an Edge Function rather than a plain script.
+- **Retrieval and generation run server-side in Edge Functions.** `ANTHROPIC_API_KEY` lives only in
+  Edge secrets — never in the repo, `.env`, or the client bundle.
+- **Grounding is the product requirement, not a nicety.** The audience includes students, so answers
+  come only from retrieved `content.*` chunks and are always cited. Two mechanical consequences that
+  are easy to undo by accident: every chunk must name its country (an unattributed fact gets
+  misattributed), and shrinking content must *delete* its orphaned chunks (retired text otherwise
+  stays retrievable and citable).
+- **gte-small truncates at 512 tokens silently**, so chunks are capped well under it. An over-long
+  chunk embeds only its head while its citation claims the whole passage.
+- **The Edge runtime's binding constraint is isolate CPU, not wall clock.** Embedding in-process
+  trips `WORKER_LIMIT` ("CPU time hard limit reached") long before any timeout — ~10 chunks per
+  invocation locally. Anything that embeds in bulk must batch and resume, not just run faster.
 
 ## The mission (don't lose this)
 

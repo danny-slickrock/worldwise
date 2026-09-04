@@ -1,7 +1,7 @@
 {
   "name": "worldwise",
   "version": "0.1.0",
-  "description": "Worldwise — geography learning games (Phase 1 prototype) by Slickrock Studio",
+  "description": "Worldwise \u2014 geography learning games (Phase 1 prototype) by Slickrock Studio",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -13,7 +13,8 @@
     "seed:content": "tsx scripts/seed-content.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ingest:embeddings": "node scripts/ingest-embeddings.mjs"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.4.2",
