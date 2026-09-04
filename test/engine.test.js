@@ -145,6 +145,7 @@ import {
   resetSyncState,
   __setSyncStoreDeps,
 } from "../src/game/syncStore";
+import { resolveInterestPrompt } from "../src/game/interestPrompt";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -1986,6 +1987,73 @@ async function syncWiringChecks() {
 
   restoreSyncDeps();
 }
+
+
+console.log("Interest prompt gate (M2.3.6 — asked once, never nagged)");
+
+const promptGate = (over) =>
+  resolveInterestPrompt({ signedIn: true, hydrated: true, askedAt: null, selected: [], ...over });
+
+check(promptGate({}).prompt === true, "a signed-in account with nothing on file is asked");
+check(promptGate({}).markAsked === true, "...and marked asked the moment it is shown");
+
+check(
+  promptGate({ hydrated: false }).prompt === false,
+  "nothing is asked before local storage has answered"
+);
+check(
+  promptGate({ hydrated: false }).markAsked === false,
+  "...and nothing is marked either — we don't yet know what we know"
+);
+check(promptGate({ signedIn: false }).prompt === false, "signed out is never prompted");
+check(
+  promptGate({ signedIn: false }).markAsked === false,
+  "...and signing out doesn't burn the one prompt they get"
+);
+
+// The anti-nag rules — the reason this module exists rather than an inline if.
+check(
+  promptGate({ askedAt: "2026-09-04T00:00:00.000Z" }).prompt === false,
+  "an account already asked is never asked again"
+);
+check(
+  promptGate({ askedAt: "2026-09-04T00:00:00.000Z", selected: [] }).prompt === false,
+  "a SKIP is an answer — an empty selection after asking is not a reason to re-ask"
+);
+check(
+  promptGate({ selected: ["history", "food"] }).prompt === false,
+  "an account with picks from another device is not asked"
+);
+check(
+  promptGate({ selected: ["history", "food"] }).markAsked === true,
+  "...but is marked, so the decision isn't re-derived every launch"
+);
+
+// Defensive shapes — `selected` arrives from storage and a cloud merge.
+check(promptGate({ selected: null }).prompt === true, "a null selection reads as nothing picked");
+check(
+  promptGate({ selected: undefined }).prompt === true,
+  "...as does an undefined one"
+);
+check(resolveInterestPrompt().prompt === false, "called with nothing at all, it stays quiet");
+
+// The invariant the whole milestone rests on: there is no input where we both
+// decline to mark and still intend to ask. That combination would re-prompt on
+// the next render forever.
+for (const over of [
+  {},
+  { signedIn: false },
+  { hydrated: false },
+  { askedAt: "x" },
+  { selected: ["food"] },
+  { selected: null },
+]) {
+  const r = promptGate(over);
+  if (r.prompt && !r.markAsked) {
+    check(false, `prompting without marking would re-nag: ${JSON.stringify(over)}`);
+  }
+}
+check(true, "no input asks without also marking — the prompt can never repeat");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

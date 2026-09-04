@@ -25,7 +25,13 @@ import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress"
 import { roundSinks } from "./src/game/syncPolicy";
 import { loadProgress, saveProgress } from "./src/storage/progress";
 import { saveRoundResult, migrateLocalToCloud } from "./src/storage/cloudProgress";
-import { loadInterests, saveInterests } from "./src/storage/interests";
+import {
+  loadInterests,
+  saveInterests,
+  loadInterestsAskedAt,
+  markInterestsAsked,
+} from "./src/storage/interests";
+import { resolveInterestPrompt } from "./src/game/interestPrompt";
 import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloudInterests";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
@@ -93,6 +99,12 @@ function AppShell() {
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [interests, setInterests] = useState([]);
+  // M2.3.6 prompt gate. `askedAt` is the persisted "we've asked once" flag;
+  // `interestsSettled` says the cloud merge below has finished, so the gate
+  // judges a real selection rather than the empty array it starts as.
+  const [askedAt, setAskedAt] = useState(null);
+  const [interestsSettled, setInterestsSettled] = useState(false);
+  const interestPromptRef = useRef(false);
   // Gate saving until the stored value has loaded, so we never overwrite real
   // progress with defaults during the initial async read.
   const [hydrated, setHydrated] = useState(false);
@@ -131,12 +143,18 @@ function AppShell() {
 
   useEffect(() => {
     let active = true;
-    Promise.all([loadProgress(), loadSettings(), loadInterests()]).then(
-      ([savedProgress, savedSettings, savedInterests]) => {
+    Promise.all([
+      loadProgress(),
+      loadSettings(),
+      loadInterests(),
+      loadInterestsAskedAt(),
+    ]).then(
+      ([savedProgress, savedSettings, savedInterests, savedAskedAt]) => {
         if (active) {
           setProgress(savedProgress);
           setSettings(savedSettings);
           setInterests(savedInterests);
+          setAskedAt(savedAskedAt);
           setHydrated(true);
         }
       }
@@ -185,12 +203,43 @@ function AppShell() {
     if (!user || !hydrated) return undefined;
     let active = true;
     migrateLocalInterestsToCloud(user).then((result) => {
-      if (active && result?.interests) setInterests(result.interests);
+      if (!active) return;
+      if (result?.interests) setInterests(result.interests);
+      // Whether or not it returned anything, the selection is now as complete
+      // as it's going to get — the prompt gate below can safely judge it.
+      setInterestsSettled(true);
     });
     return () => {
       active = false;
     };
   }, [user, hydrated]);
+
+  // M2.3.6 — the one prompt, at sign-up. Everything else in this milestone
+  // built the screen and its plumbing; this is what actually asks.
+  //
+  // Waits on `interestsSettled` so a player who picked on another device is
+  // never asked again here, and guards with a ref because `markInterestsAsked`
+  // is async: without it, a re-render between the call and the state landing
+  // could push the route twice.
+  useEffect(() => {
+    if (!hydrated || !user || !interestsSettled) return;
+    if (interestPromptRef.current) return;
+
+    const { prompt, markAsked } = resolveInterestPrompt({
+      signedIn: true,
+      hydrated: true,
+      askedAt,
+      selected: interests,
+    });
+    if (!markAsked) return;
+
+    interestPromptRef.current = true;
+    const now = new Date().toISOString();
+    markInterestsAsked(now);
+    setAskedAt(now);
+    // Marked either way; only actually shown when there's nothing on file.
+    if (prompt) go({ name: "interests" });
+  }, [hydrated, user, interestsSettled, askedAt, interests, go]);
 
   function toggleSound() {
     setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));

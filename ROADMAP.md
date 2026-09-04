@@ -713,8 +713,39 @@ teaching *how the world works*, not just *where things are*.
        Profile view — where the new Interests row actually renders — needs a real account, which this
        sandbox doesn't have, so that path is unverified in a browser; it's covered by typecheck/lint
        and mirrors the existing `Stat`/`identity` row patterns already used elsewhere on the same
-       screen. *(Next up: M2.9's own sub-checklist, once its DANNY TO DO lead-time items are in place —
-       see below. M2.3.5 remains blocked purely on Danny's live-project steps.)*
+       screen.
+    6. ✅ **The prompt actually fires at sign-up.** Steps 1-5 built the screen and all its plumbing,
+       but nothing ever *asked*: `grep` found no first-run gate anywhere, and the `interests` route
+       was only ever reached from the Profile row. So the milestone's opening promise — "one short,
+       entirely optional prompt at sign-up" — was unmet; it shipped as a settings screen. Now
+       `src/game/interestPrompt.js` (PURE) owns the decision and `App.js` acts on it.
+       `resolveInterestPrompt()` returns `{ prompt, markAsked }` and enforces the anti-nag rules the
+       milestone is written around: a signed-in account with nothing on file is asked exactly once;
+       **a skip is an answer**, so an empty selection after asking never re-triggers; an account
+       whose picks arrived from another device is silently marked rather than asked; and signing out
+       never burns the one prompt. The subtle part is that `markAsked` is true whenever we prompt —
+       recorded the moment the screen opens, not when a button is pressed — so dismissing with Back
+       still counts as asked. A test asserts the invariant directly: **no input asks without also
+       marking**, since that combination would re-prompt forever.
+       The flag is `worldwise.interests.asked.v1` in `src/storage/interests.js`, kept separate from
+       the selection itself because the two answer different questions (an empty array is a real
+       answer; "never asked" is not). Device-local, a deliberate tradeoff documented in that file:
+       a second device with nothing picked asks once more, which the milestone explicitly allows
+       ("once more, much later, at most"), where making it per-account would mean a `profiles`
+       column and a migration.
+       The gate waits on a new `interestsSettled` flag set when `migrateLocalInterestsToCloud`
+       resolves, so it judges a real selection rather than the empty array state starts as — without
+       it, every returning player on a new device would be asked despite having picks in the cloud.
+       A ref guards against the async `markInterestsAsked` racing a re-render into a double push.
+       14 checks in `test/engine.test.js`. Verified in a real browser that signed out stays on `/`
+       with no prompt and — importantly — leaves the asked flag `null`, so the prompt isn't spent;
+       and via the pure nav functions that pushing `interests` stacks on whichever tab is active and
+       Back returns to that tab's root, from Profile (where sign-up happens) and from Home alike, so
+       there's no dead end either way. The signed-in prompt itself needs a real account on the dev
+       origin, so it is covered by tests but unseen in a browser — to trigger it on a deployed build,
+       delete `worldwise.interests.asked.v1` from localStorage and reload while signed in.
+       *(Next up: M2.9's own sub-checklist, once its DANNY TO DO lead-time items are in place —
+       see below.)*
   - **Dependencies:** none beyond M2.1 (accounts), which is done — this does **not** need M2.3.5 and is
     deliberately placed before M2.9 only because that milestone consumes it. Pull it earlier if you want
     the signal accruing sooner; it's a small, self-contained milestone.

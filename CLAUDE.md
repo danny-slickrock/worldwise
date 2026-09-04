@@ -99,6 +99,8 @@ src/
   game/layout.js           # PURE responsive-chrome policy: bottom bar vs side rail, rail width,
                            #   whether the rail spells out its labels. One breakpoint decision
   game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
+  game/interestPrompt.js   # PURE M2.3.6 step 6: the sign-up prompt gate — asked once, a skip counts
+                           #   as answered, never re-nagged
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
@@ -274,9 +276,15 @@ on the map, and clearing the active pill on a manual pinch/drag/wheel so it neve
 no longer has) are all shipped and verified in a real browser.
 
 **M2.3.6 — learner interests is fully done end to end** (prompt screen, pure catalog +
-policy module, `profile_interests` schema migration, the offline-first sync seam, and a real
+policy module, `profile_interests` schema migration, the offline-first sync seam, a real
 "Interests" settings row on Profile, replacing the temporary preview CTA, that shows a live
-selection summary and reopens `InterestsScreen` seeded with whatever's already picked).
+selection summary and reopens `InterestsScreen` seeded with whatever's already picked, and — step 6
+— the sign-up prompt that actually asks). Steps 1-5 shipped the screen and every piece of its
+plumbing but never wired a trigger, so for a while it was a settings screen wearing a sign-up
+prompt's description; `game/interestPrompt.js` closed that gap. **Its rules are load-bearing, not
+cosmetic: a skip is an answer, and the prompt is marked asked the moment it opens, not when a button
+is pressed** — so dismissing with Back still counts. If you touch this, keep the invariant the test
+suite pins: no input may ask without also marking, or the prompt repeats forever.
 **M2.3.7 — the globe** (replacing the flat Explore map with a spinnable orthographic globe) has
 landed step 1 (the globe itself) and all of step 4's polish: 4.1 ("spin to this country" from a
 country page), 4.2 (the lat/lng graticule), 4.3 (a soft atmosphere/limb glow ringing the sphere's
