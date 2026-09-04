@@ -53,11 +53,14 @@ Two notes on how C and D actually landed, so the history reads honestly:
 **M2.1 — accounts & cloud sync**, **M2.2 — country pages**, **M2.3 — interactive maps**,
 **M2.3.6 — learner interests**, and **M2.4 — learning paths** are all complete end to end (see
 each milestone below for detail).
-**M2.3.5 — content backend** is code-complete and its **migration is now applied to the live
-project** — `content.countries`, `content.country_media`, and the `content_version` singleton all
-exist in production. Two steps remain, both human-only: exposing the `content` schema in the
-Dashboard (PostgREST currently answers `PGRST106 — Invalid schema: content`, exactly the trap item 2
-predicted) and running the seed with the secret service-role key. See DANNY TO DO below. **M2.3.7 —
+**M2.3.5 — content backend is now done end to end in production** (2026-09-04). The migration is
+applied, the `content` schema is exposed in the Dashboard, and the seed has run: `content_version`
+is at 5 with 196 rows in `content.countries`. Verified against the live site — a country page fires
+`GET /content_version` and `GET /countries?code=eq.br`, both 200, and caches the result stamped with
+the live version, so the page is reading Postgres rather than the bundled fallback; anon writes are
+refused with 401. **One follow-up remains:** `content.country_media` is still empty (0 rows) —
+nothing seeds it yet, which is harmless today because no surface reads it, but it means the media
+half of this milestone is unexercised in production. **M2.3.7 —
 the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and has now
 landed all of step 4's polish: step 4.1 ("spin to this country" from a country page's "View on
 map" link), step 4.2 (the graticule — lat/lng grid lines on the sphere, visible through ocean,
@@ -78,7 +81,8 @@ before building on it.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
-M2.3.5, M2.3.7, and M2.9 all blocked on human-only steps and M2.4 now done, **M2.5 — Achievements,
+M2.3.5 now done (only an optional `country_media` seed left as a follow-up), M2.3.7 and M2.9 still
+blocked on human-only steps, and M2.4 done, **M2.5 — Achievements,
 collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
 has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
 achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
@@ -147,27 +151,40 @@ teaching *how the world works*, not just *where things are*.
 
 **Milestones (in order):**
 
-- **M2.1 — Accounts & cloud sync 🧱** — ✅ **code complete; production needs re-verification**
-  (see the correction below). Auth provider, user
+- **M2.1 — Accounts & cloud sync 🧱** — ✅ **done and verified working in production
+  (2026-09-04).** Auth provider, user
   model, and migration of Phase 1's local progress into a synced account. The foundation everything
   social/educational builds on.
   - ✅ Postgres schema as code (`supabase/migrations/`): profiles, user_stats, game_results, RLS
     owner policies, signup trigger. Isolation checked (one player cannot read or write another's
     rows).
-    ⚠️ **Correction (2026-09-04).** This entry claimed the migration was applied to the live
-    project, and it was not — the M2.3.5 push found the production `public` schema empty (no
-    `profiles`, `user_stats`, or `game_results`) and the remote migration history table empty too.
-    Either it was never pushed or the project was reset at some point. `supabase db push --linked`
-    has now applied all three migrations, so the tables exist. **Two consequences worth knowing:**
-    any `auth.users` rows created before this push have no `profiles` row — the signup trigger only
-    fires on new signups — and any cloud progress a player thought was synced was never stored.
-    The bullet below is left as written but is *not* currently true of the live project; re-verify a
-    real sign-in before trusting it again.
+    ⚠️ **Correction, and its fix (2026-09-04).** This entry once claimed the migration was applied
+    to the live project, and it was not — the M2.3.5 push found the production `public` schema empty
+    (no `profiles`, `user_stats`, or `game_results`) and the remote migration history table empty
+    too. Either it was never pushed or the project was reset. `supabase db push --linked` applied
+    all three migrations, so the tables exist.
+    That left a second, quieter bug: the signup trigger fires only on INSERT into `auth.users`, so
+    every account created *before* that push had no `profiles` row — and `user_stats`,
+    `game_results` and `profile_interests` all reference `profiles(id)`. The production smoke test
+    caught it: every cloud write failed with `23503 — Key is not present in table "profiles"`, while
+    the results screen still showed "+55 XP" and Profile still read "✓ Synced". All four user tables
+    held zero rows. `20260904184056_backfill_orphan_profiles.sql` backfills a profiles + user_stats
+    row for every pre-existing auth user (idempotent, `ON CONFLICT DO NOTHING`, mirroring
+    `handle_new_user()` exactly) and is **applied to production**. See the sync-visibility bullet
+    below for the change that stops this class of outage from hiding again.
   - ✅ Supabase client (`src/lib/supabase.js`) + sync adapter (`src/storage/cloudProgress.js`,
     `src/game/cloudSync.js`), keeping `progress.js` pure and offline-first.
   - ✅ Sign-in on the Profile tab: email magic-link + Google, wired to the sync layer.
-  - ✅ Proven end-to-end in prod: a real sign-in syncs progress, the local→cloud merge runs once,
-    and a finished round lands in `game_results`. Vercel carries the Supabase env vars.
+  - ✅ Proven end-to-end in prod (re-verified 2026-09-04, after the backfill above): a real Google
+    sign-in resolves to a `profiles` row, the local→cloud merge runs once and lands the device's
+    existing XP, and a finished Flag round writes both `user_stats` (xp 265 → 295) and a
+    `game_results` row. No `23503`. Vercel carries the Supabase env vars.
+  - ✅ **Failed cloud writes are visible** (`src/game/syncStatus.js` pure + the sync-health store in
+    `src/storage/cloudProgress.js`). Writes still swallow their errors — play must never stop for
+    the network — but a swallowed error now logs to the console and updates a session sync state
+    that ProfileScreen reads, so the row under Your Record reports "couldn't save / we'll retry" or
+    a hard failure instead of an unearned "✓ Synced". The old unconditional success message was
+    exactly what let the outage above sit unnoticed.
 - **M2.2 — Country pages 💾** — the core learning surface: a beautiful page per country answering
   "why should I care?" (map, key facts, a short story, climate/trade/culture hooks, related games).
   Expands the Phase 1 "context card" into a real hub.
@@ -553,7 +570,12 @@ teaching *how the world works*, not just *where things are*.
     anon and authenticated, and an edit made directly in Postgres appeared on the country page in a
     browser — then a second edit's `content_version` bump invalidated the cache and the app refetched.
     That is the milestone's whole thesis demonstrated: **content changed without an app release.**
-    Only the live-project steps remain, and they need Danny's DB password — see **DANNY TO DO**.
+    The live-project steps are now done too (2026-09-04): migration applied, `content` exposed in the
+    Dashboard, seed run — `content_version` 5, 196 rows — and the live site confirmed reading
+    Postgres rather than the bundled fallback.
+    ☐ **Follow-up: seed `content.country_media`.** It is live but empty (0 rows). No surface reads it
+    yet, so nothing is broken; it just means the media half of this milestone has never been
+    exercised against production. Worth doing when the first media-bearing surface lands.
     1. ☑ **Schema, as a migration file.** `supabase/migrations/*_init_content_domain.sql`:
        `content.countries` (the M2.2 page shape as columns, incl. `neighbors` / `related_game_modes` /
        `has_outline`, which the sketch omitted but the shipped page renders), `content.country_media`
@@ -1136,24 +1158,25 @@ showing up on a country page in the browser. These steps just point it at produc
   domain and interests were missing from production too — see the correction under M2.1). Verified
   after: `inspect db table-stats` lists `profiles`, `user_stats`, `game_results`,
   `profile_interests`, `content.countries`, `content.country_media`, and `content.content_version`.
-- ☐ **Expose the `content` schema in the Dashboard** → Project Settings → API → Exposed schemas →
-  add `content`. **This one is easy to miss and looks exactly like a permissions bug**: PostgREST
-  serves only `public` + `graphql_public` by default, so every content query 404s no matter how
-  correct the grants and RLS are. `config.toml` covers local only; the cloud project has no
-  migration-based equivalent. **Confirmed still outstanding** as of the push above: an anon read
-  with `Accept-Profile: content` returns `PGRST106 — Invalid schema: content`. And **don't use
+- ☑ ~~**Expose the `content` schema in the Dashboard**~~ — **done.** An anon read with
+  `Accept-Profile: content` now returns 200 instead of `PGRST106 — Invalid schema: content`. Keeping
+  the warning for the next schema: PostgREST serves only `public` + `graphql_public` by default, so
+  a custom schema 404s no matter how correct the grants and RLS are, `config.toml` covers local
+  only, and there is no migration-based equivalent for the cloud project. And **never use
   `supabase config push` as a shortcut** — it would also push `[auth]`, replacing the live
   `site_url` with `http://127.0.0.1:3000` and wiping the production redirect URLs.
-- ☐ **Seed it:** `SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run seed:content`. Run this in your
-  own terminal: Claude Code's permission sandbox blocks reading the secret key even via
-  `supabase projects api-keys --reveal`, and blocked it on this attempt. Blocked on the Dashboard
-  step above regardless — the seed writes through PostgREST and hits the same `PGRST106`. Grab the secret key
-  from Dashboard → Project Settings → API Keys. Pass it inline as shown — never put it in `.env`,
-  and never behind an `EXPO_PUBLIC_` prefix, which would ship full database access to every visitor.
-  Re-run it any time content changes; it's idempotent, and it bumps `content_version` so every
-  client refetches.
-- ☐ **Confirm it in production.** Open a country page and check it reads from Postgres rather than
-  falling back. Both paths are verified locally, so this is a smoke test, not a discovery.
+- ☑ ~~**Seed it**~~ — **done.** `content_version` is at 5 and `content.countries` holds 196 rows.
+  Re-run `SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run seed:content` in your own terminal any
+  time content changes; it's idempotent and bumps `content_version` so every client refetches. Never
+  put that key in `.env`, and never behind an `EXPO_PUBLIC_` prefix — that ships full database
+  access to every visitor.
+- ☑ ~~**Confirm it in production**~~ — **done 2026-09-04.** The live Brazil page fires
+  `GET /content_version` and `GET /countries?code=eq.br`, both 200, and caches the page stamped with
+  the live version — which only happens on the remote-fetch path, so it is genuinely reading
+  Postgres and not the bundled fallback. Anon writes refused with 401.
+- ☐ **Seed `content.country_media`** *(follow-up, not blocking)*. The table is live but empty. No
+  surface reads it yet, so nothing is broken — it just means the media half of M2.3.5 is unexercised
+  in production. Worth doing when the first media-bearing surface lands.
 - ☐ *(nothing needed on Vercel)* — content adds no new client env vars. The seed key is used only
   from your machine.
 

@@ -86,6 +86,10 @@ src/
   game/scoring.js          # computeXp(score) — single source of truth for XP
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
+  game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
+                           #   describeSyncState() deciding what the player is told
+  game/syncStore.js        # M2.1: the session's observable sync-health store. Mutable but RN-free
+                           #   on purpose, so the pure suite can drive it
   game/syncPolicy.js       # PURE: which sink gets a round (or an interest write); whether to migrate
   game/contentSync.js      # PURE country-page ⇄ content.countries row mapping (both directions)
   game/contentPolicy.js    # PURE content cache: keys, content_version freshness, fallback resolver
@@ -227,14 +231,28 @@ See [ROADMAP.md](./ROADMAP.md). **Phase 1 is complete** — all four load-bearin
 Polish, extra game modes, and onboarding stay in the backlog — they are *not* a gate.
 
 We are in **Phase 2** (Supabase; see [docs/phase-2-data-model.md](./docs/phase-2-data-model.md)).
-**M2.1 — accounts & cloud sync is code complete, but its production claim was wrong.** On
-2026-09-04 the M2.3.5 push found the live `public` schema empty — no `profiles`, `user_stats`, or
-`game_results` — and the remote migration history table empty too, so the user-domain migration had
-never actually reached the live project (or the project was reset). All three migrations are now
-applied via `supabase db push --linked`. Re-verify a real sign-in before trusting the sync path
-again, and note that any `auth.users` row predating the push has no `profiles` row, since the signup
-trigger fires only on new signups. Vercel carries the Supabase env vars
-(`EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
+**M2.1 — accounts & cloud sync is done and verified working in production (2026-09-04).** Getting
+there took two fixes worth remembering. First, the M2.3.5 push found the live `public` schema empty
+— no `profiles`, `user_stats`, or `game_results` — and the remote migration history table empty too,
+so the user-domain migration had never reached the live project (or the project was reset); all
+three migrations went up via `supabase db push --linked`. Second, and quieter: the signup trigger
+fires only on INSERT into `auth.users`, so every account predating that push had no `profiles` row,
+and `user_stats`/`game_results`/`profile_interests` all reference `profiles(id)`. Every cloud write
+was failing with `23503 — Key is not present in table "profiles"` while the results screen showed
+"+55 XP" and Profile read "✓ Synced". `20260904184056_backfill_orphan_profiles.sql` fixes it
+(idempotent, applied to production), and the sync-visibility work below stops that class of failure
+from hiding again. Re-verified end to end: sign-in → `profiles` row, round → `user_stats` bumped and
+a `game_results` row. Vercel carries the Supabase env vars (`EXPO_PUBLIC_SUPABASE_URL`,
+`EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`).
+
+**A swallowed error still has to leave a trace.** `cloudProgress.js` deliberately never throws — a
+failed sync must not interrupt play — and it returned `{ ok, error }` for a caller to handle.
+Nothing ever handled it, and that is precisely how a total sync outage stayed invisible with all
+four user tables at zero rows. The rule now: swallowing is fine, *silence* is not. A failed write
+logs (`[worldwise:sync] <which write> failed — <code>: <message>`) and updates
+`game/syncStore.js`, which ProfileScreen renders through the pure `describeSyncState()`. Never
+write a UI string that claims success without checking that something actually succeeded — the old
+unconditional "✓ Synced" line is the cautionary tale.
 
 **A migration no longer needs the DB password.** Recent Supabase CLI versions provision a temporary
 login role over the Management API, so on a linked project `db push`, `migration list`, `db dump`,
@@ -317,11 +335,13 @@ deliberately their own later steps rather than folded into step 1. Next up in M2
 hero screen — wiring `computeAchievements()` and `fetchRoundResults(user)` into a real badge grid
 with progress bars, replacing this minimal list.
 
-**M2.3.5 — content backend is code-complete, verified locally, and its migration is now applied to
-the live project** (2026-09-04) — `content.countries`, `content.country_media`, and the
-`content_version` singleton all exist in production. Two human-only steps remain: exposing `content`
-in the Dashboard (an anon read still returns `PGRST106 — Invalid schema: content`, exactly the trap
-documented above) and seeding with the secret service-role key; the seed is blocked on the first.
+**M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
+applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows
+in `content.countries`. Verified against the live site — a country page fetches the version and the
+row (both 200) and caches the result stamped with the live version, which only happens on the
+remote-fetch path, so it is genuinely reading Postgres and not the bundled fallback; anon writes are
+refused with 401. **One follow-up:** `content.country_media` is live but empty — nothing seeds it
+yet, harmless while no surface reads it, but the media half of the milestone is unexercised.
 
 Country content has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
 layer that caches per country against `content_version` and falls back to bundled JSON. The bundled
