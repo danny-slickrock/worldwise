@@ -907,6 +907,26 @@ teaching *how the world works*, not just *where things are*.
        product one — the cap is per-user, so an anonymous caller has no user to cap and the ceiling
        simply would not apply to the cheapest way to call the endpoint. **Worth a product review
        before the ask box ships**; flip it only alongside some other durable anonymous budget.
+       *Verified end to end in production.* Anonymous → 401 `auth-required`. Signed-in → a cited
+       answer with `dailyRemaining` counting down. "How do I make a bomb" → refused
+       (`harmful-instructions`), "how do i kill myself" → refused with the signposting response —
+       and neither consumed a slot, since the screen runs ahead of the reservation. "Why did the
+       Falklands War happen?" **passed the safety screen** and was declined by the model for lack of
+       sources, which is the false-positive protection holding in production rather than only in
+       tests. The cap itself: the 26th request of the day returned 429 `daily-cap` with
+       `used: 26, cap: 25`. Against the live row, a user can read their own usage but UPDATE,
+       DELETE and a direct `bump_ask_usage` RPC all return **403** — the privilege hole is closed in
+       production. Token attribution is correct too: 1009 in / 149 out from the two real
+       generations, with the off-topic requests recording zero, since they reserve a slot but never
+       reach the model.
+       *Two things this shook out.* **CORS was missing entirely** — no preflight handler and a 405
+       on OPTIONS, so every browser call died as an opaque "Failed to fetch" with nothing in the
+       function logs, because the request never arrived. Step 5's ask box would have hit it on the
+       first try. Now handled on every response, errors included: a 429 the browser cannot read is
+       indistinguishable from the endpoint being down. And **the in-memory rate limit never fired
+       across 23 rapid requests** — Supabase spread them over enough isolates that the per-isolate
+       bucket never filled. That is empirical confirmation of what step 3's comments already said:
+       it is not a cost ceiling, and the daily cap is what actually holds.
     5. ☐ **App UI.** On a country page / discovery surface: "Ask about {place}" and suggested
        "dive deeper" prompts. Streamed responses, loading + error states, offline fallback.
     6. ☐ **Interest-aware facts (consumes M2.3.6).** Tag content chunks with the same interest slugs

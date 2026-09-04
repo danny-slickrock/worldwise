@@ -64,7 +64,23 @@ const rateBuckets = new Map<string, number[]>();
 // alongside some other durable anonymous budget.
 const REQUIRE_AUTH = true;
 
+// CORS. This endpoint is called from the browser (the app is React Native Web
+// on a Vercel origin), so a preflight that fails means the feature simply does
+// not work — and it fails as an opaque "Failed to fetch" with nothing in the
+// function logs, because the request never arrives. Found exactly that way.
+//
+// `*` rather than an allowlist: every caller must still present a valid user
+// JWT, the daily cap is per-user, and the content is public. An origin list
+// would add a deploy step for each new preview URL without adding protection.
+const CORS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Max-Age": "86400",
+};
+
 Deno.serve(async (req) => {
+  if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
   if (req.method !== "POST") return json({ error: "POST only" }, 405);
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -228,6 +244,10 @@ Deno.serve(async (req) => {
       status: "declined",
       grounded: true,
       model: null,
+      // Reported here too. A no-context answer still consumed a slot (the
+      // reservation happens before retrieval), so omitting it would blank out a
+      // UI's "questions left" on exactly the answers that look free.
+      dailyRemaining: cap.remaining,
       elapsedMs: Date.now() - started,
     });
   }
@@ -320,6 +340,8 @@ Deno.serve(async (req) => {
 function json(body: unknown, status = 200, extraHeaders: Record<string, string> = {}) {
   return new Response(JSON.stringify(body, null, 2), {
     status,
-    headers: { "Content-Type": "application/json", ...extraHeaders },
+    // CORS on every response, errors included — a 429 the browser can't read is
+    // indistinguishable from the endpoint being down.
+    headers: { "Content-Type": "application/json", ...CORS, ...extraHeaders },
   });
 }
