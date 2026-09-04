@@ -2340,6 +2340,34 @@ check(sys.includes("ONLY from the numbered sources"), "the system prompt states 
 check(sys.toLowerCase().includes("cite"), "...and requires citations");
 check(sys.toLowerCase().includes("never fill a gap from memory"), "...and forbids filling gaps from memory");
 
+// Tone, per docs/content-response-policy.md: capable adults by default, and the
+// curiosity principle — never imply a question shouldn't have been asked.
+check(sys.includes("capable adult"), "the system prompt targets the capable-adult default audience");
+check(
+  !sys.includes("12-year-old") && !sys.includes("school students"),
+  "...and no longer writes for children by default (a kid variant comes later)"
+);
+check(
+  sys.toLowerCase().includes("never suggest a question should not have been asked"),
+  "the curiosity principle is stated explicitly"
+);
+check(
+  sys.toLowerCase().includes("sovereignty"),
+  "the editorial rule on sovereignty disputes is carried into the prompt"
+);
+check(
+  sys.toLowerCase().includes("good question"),
+  "a decline validates the question rather than dead-ending it"
+);
+check(
+  !NO_CONTEXT_ANSWER.toLowerCase().includes("i don't have anything in worldwise about that yet"),
+  "the no-context copy is no longer the old dead-end line"
+);
+check(
+  NO_CONTEXT_ANSWER.toLowerCase().includes("countries"),
+  "...and says what the corpus does cover"
+);
+
 const userMsg = buildUserMessage({ question: "What does Brazil export?", chunks: ragChunks, place: "Brazil" });
 check(userMsg.includes("[1]") && userMsg.includes("[4]"), "sources are numbered from 1");
 check(userMsg.includes("What does Brazil export?"), "the question is included");

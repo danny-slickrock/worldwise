@@ -1,0 +1,58 @@
+{
+  "iso": "jp",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.457Z",
+  "structured": {
+    "code": "jp",
+    "name": "Japan",
+    "capital": "Tokyo",
+    "continent": "Asia",
+    "areaKm2": 377972.28,
+    "population": 123802000,
+    "officialLanguages": [
+      "Japanese"
+    ],
+    "currencies": [
+      "yen"
+    ],
+    "landBorders": [],
+    "naturalResources": "negligible mineral resources, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Japan is an island chain in eastern Asia, strung between the North Pacific and the Sea of Japan east of the Korean Peninsula, and it has no land border with any country. The land itself is mostly rugged and mountainous and holds almost nothing in the way of minerals — fish is the notable natural resource. Nearly everything it exports is therefore made rather than extracted: cars, integrated circuits, machinery, vehicle parts and construction vehicles.",
+    "physicalGeography": "Mostly rugged and mountainous, arranged as an island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula. Because it is an island country, Japan has no land borders at all.",
+    "climate": "Ranges from tropical in the south to cool temperate in the north. Japan sits on an exceptionally active stretch of crust: roughly 1,500 seismic events a year, mostly minor tremors but occasionally severe earthquakes, along with tsunamis, typhoons, and both dormant and active volcanoes. Unzen and Sakura-jima — the latter close to the densely populated city of Kagoshima — are designated Decade Volcanoes for study, and Asama, Aso, Bandai, Fuji and Kirishima have been historically active.",
+    "economy": "The second-largest economy in East Asia, trade-oriented and highly diversified across motor vehicles, electronic equipment, machine tools, steel and nonferrous metals, ships, chemicals, textiles and processed foods. Public debt is high. After years of near-zero interest rates, rates have risen gradually to address inflation and the depreciation of the yen, and tourism has rebounded strongly. An aging population poses a growing challenge to labour force participation.",
+    "peopleAndCulture": "The population is about 97.5% Japanese, with small Chinese, Vietnamese and South Korean communities and others including Filipino, Brazilian, Nepalese, Indonesian, American and Taiwanese residents. Religious affiliation is closely split between Shintoism at roughly 49% and Buddhism at about 46%, a pairing that is often held simultaneously rather than exclusively; Christianity accounts for about 1%."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Asia, island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula || mostly rugged and mountainous || note 1: strategic location in northeast Asia; composed of four main islands (the \"Home Islands\") -- Hokkaido, Honshu (the largest, most populous, and site of Tokyo, the capital), Shikoku, and Kyushu note 2: a 2023 Geospatial Information Authority of Japan survey detected 100,000 islands and islets, but only the 14,125 islands with a circumference of at least 100 m (330 ft) were officially counted; about 260 of the islands are inhabited note 3: Japan annually records the most earthquakes in the world; it is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes || Resources: negligible mineral resources, fish || Exports: cars, integrated circuits, machinery, vehicle parts/accessories, construction vehicles (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged and mountainous || Eastern Asia, island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical in south to cool temperate in north || many dormant and some active volcanoes; about 1,500 seismic occurrences (mostly tremors but occasional severe earthquakes) every year; tsunamis; typhoons volcanism: both Unzen (1,500 m) and Sakura-jima (1,117 m), which lies near the densely populated city of Kagoshima, have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; other notable historically active volcanoes include Asama (Honshu Island's most active volcano), Aso, Bandai, Fuji, Iwo-Jima, Kikai, Kirishima, Komaga-take, Oshima, Suwanosejima, Tokachi, Yake-dake, and Usu; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "second-largest East Asian economy; trade-oriented and highly diversified; high public debt levels; following years of near-zero interest rates, gradual increases to address inflation and depreciation of yen; strong rebound in tourism; aging population poses challenges to labor force participation || Exports: cars, integrated circuits, machinery, vehicle parts/accessories, construction vehicles (2023) || Industries: motor vehicles, electronic equipment, machine tools, steel and nonferrous metals, ships, chemicals, textiles, processed foods"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Shintoism 48.6%, Buddhism 46.4%, Christianity 1.1%, other 4% (2021 est.) || Japanese 97.5%, Chinese 0.6%, Vietnam 0.4%, South Korean 0.3%, other 1.2% (includes Filipino, Brazilian, Nepalese, Indonesian, American, and Taiwanese) (2022 est.)"
+    }
+  }
+}

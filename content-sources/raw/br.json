@@ -1,0 +1,191 @@
+{
+  "iso": "br",
+  "fetchedAt": "2026-09-04T23:47:38.217Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/br.json"
+    }
+  },
+  "wikidata": {
+    "name": "Brazil",
+    "gec": "BR",
+    "capital": "Brasília",
+    "areaKm2": 8515767,
+    "population": 214211951,
+    "continent": "South America",
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "Brazilian real"
+    ],
+    "sharesBorderWithAnyType": [
+      "uy",
+      "fr",
+      "ar",
+      "pe",
+      "ve",
+      "sr",
+      "py",
+      "gy",
+      "co",
+      "bo",
+      "gf"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/br.json",
+    "Introduction": {
+      "Background": {
+        "text": "After more than three centuries under Portuguese rule, Brazil gained its independence in 1822, maintaining a monarchical system of government until the abolition of slavery in 1888 and the subsequent proclamation of a republic by the military in 1889. Brazilian coffee exporters politically dominated the country until populist leader Getúlio VARGAS rose to power in 1930. VARGAS governed through various versions of democratic and authoritarian regimes from 1930 to 1945. Democratic rule returned in 1945 -- including a democratically elected VARGAS administration from 1951 to 1954 -- and lasted until 1964, when the military overthrew President João GOULART. The military regime censored journalists and repressed and tortured dissidents in the late 1960s and early 1970s. The dictatorship lasted until 1985, when the military regime peacefully ceded power to civilian rulers, and the Brazilian Congress passed its current constitution in 1988. <br><br>By far the largest and most populous country in South America, Brazil continues to pursue industrial and agricultural growth and development of its interior. Having successfully weathered a period of global financial difficulty in the late 20th century, Brazil was soon seen as one of the world's strongest emerging markets and a contributor to global growth under President Luiz Inácio LULA da Silva (2003-2010). The awarding of the 2014 FIFA World Cup and 2016 Summer Olympic Games -- the first ever to be held in South America -- to Brazil was symbolic of the country's rise. However, from about 2013 to 2016, Brazil was plagued by a sagging economy, high unemployment, and high inflation, only emerging from recession in 2017. Congress removed then-President Dilma ROUSSEFF (2011-2016) from office in 2016 for having committed impeachable acts against Brazil's budgetary laws, and her vice president, Michel TEMER, served the remainder of her second term. A money-laundering investigation, Operation Lava Jato, uncovered a vast corruption scheme and prosecutors charged several high-profile Brazilian politicians with crimes. Former President LULA was convicted of accepting bribes and served jail time (2018-19), although his conviction was overturned in 2021. LULA's revival became complete in 2022 when he narrowly defeated incumbent Jair BOLSONARO (2019-2022) in the presidential election. Positioning Brazil as an independent global leader on climate change and promoting sustainable development, LULA took on the 2024 G20 presidency, balancing the fight against deforestation with sustainable energy and other projects designed to alleviate poverty and promote economic growth, such as expanding fossil fuel exploration."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern South America, bordering the Atlantic Ocean"
+      },
+      "Area": {
+        "total ": {
+          "text": "8,515,770 sq km"
+        },
+        "land": {
+          "text": "8,358,140 sq km"
+        },
+        "water": {
+          "text": "157,630 sq km"
+        },
+        "note": "<strong>note:</strong> includes Arquipelago de Fernando de Noronha, Atol das Rocas, Ilha da Trindade, Ilhas Martin Vaz, and Penedos de Sao Pedro e Sao Paulo"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "16,145 km"
+        },
+        "border countries": {
+          "text": "Argentina 1,263 km; Bolivia 3,403 km; Colombia 1,790 km; French Guiana 649 km; Guyana 1,308 km; Paraguay 1,371 km; Peru 2,659 km; Suriname 515 km; Uruguay 1,050 km; Venezuela 2,137 km"
+        }
+      },
+      "Coastline": {
+        "text": "7,491 km"
+      },
+      "Climate": {
+        "text": "mostly tropical, but temperate in south"
+      },
+      "Terrain": {
+        "text": "mostly flat to rolling lowlands in north; some plains, hills, mountains, and narrow coastal belt"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico da Neblina 2,994 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "320 m"
+        }
+      },
+      "Natural resources": {
+        "text": "alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "28.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 6.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 20.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "58.9% (2023 est.)"
+        },
+        "other": {
+          "text": "12.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "recurring droughts in northeast; floods and occasional frost in south"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> largest country in South America and in the Southern Hemisphere; shares common boundaries with every South American country except Chile and Ecuador; most of the Pantanal, the world's largest tropical wetland, extends through the west central part of the country; shares Iguaçu Falls (Iguazú Falls), the world's largest waterfalls system, with Argentina<br><br><strong>note 2:</strong> Rocas Atoll, located off the northeast coast of Brazil, is the only atoll in the South Atlantic"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "221,359,387 (2025 est.)"
+        },
+        "male": {
+          "text": "108,753,532"
+        },
+        "female": {
+          "text": "112,605,855"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Portuguese (official and most widely spoken language); less common languages include Spanish (border areas and schools), German, Italian, Japanese, English, and many minor Amerindian languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>O Livro de Fatos Mundiais, a fonte indispensável para informação básica. (Brazilian Portuguese)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 56.8%, Evangelical 26.9%, none 9.3%, other 4%, Spirtism (Esp&iacute;rita) 1.8%, unspecified 1.4%, Umbanda and Candombl&eacute; 1.1%, Indigenous religions .06%, undeclared 0.2% (2022)"
+      },
+      "Ethnic groups": {
+        "text": "mixed 45.3%, White 43.5%, Black 10.2%, Indigenous 0.6%, Asian 0.4% (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "87.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.87% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of people live along or near the Atlantic coast in the east; the population core is in the southeast, anchored by the cities of S&atilde;o Paolo, Bras&iacute;lia, and Rio de Janeiro"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income, largest Latin American economy; Mercosur, BRICS, G20 member and OECD accession candidate; growth driven by strong domestic consumption; monetary tightening helping curb inflation rate; high inequality in income and access to health and education</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, soybeans, maize, milk, cassava, oranges, chicken, beef, rice, wheat (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, shoes, chemicals, cement, lumber, iron ore, tin, steel, aircraft, motor vehicles and parts, other machinery and equipment"
+      },
+      "Exports - commodities": {
+        "text": "soybeans, crude petroleum, iron ore, raw sugar, corn (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 30%, USA 10%, Argentina 5%, Netherlands 3%, Chile 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, fertilizers, crude petroleum, vehicle parts/accessories, gas turbines (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly tropical, but temperate in south"
+      }
+    }
+  }
+}

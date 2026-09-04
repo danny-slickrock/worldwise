@@ -1,0 +1,174 @@
+{
+  "iso": "is",
+  "fetchedAt": "2026-09-04T23:47:38.752Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/ic.json"
+    }
+  },
+  "wikidata": {
+    "name": "Iceland",
+    "gec": "IC",
+    "capital": "Reykjavík",
+    "areaKm2": 103004,
+    "population": 364260,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Icelandic"
+    ],
+    "currencies": [
+      "Icelandic króna"
+    ],
+    "sharesBorderWithAnyType": [
+      "gl",
+      "fo"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/ic.json",
+    "Introduction": {
+      "Background": {
+        "text": "Settled by Norwegian and Celtic (Scottish and Irish) immigrants during the late 9th and 10th centuries A.D., Iceland boasts the world's oldest functioning legislative assembly, the Althingi, which was established in 930. Independent for over 300 years, Iceland was subsequently ruled by Norway and Denmark. Fallout from the Askja volcano of 1875 devastated the Icelandic economy and caused widespread famine. Over the next quarter-century, 20% of the island's population emigrated, mostly to Canada and the US. Denmark granted limited home rule in 1874 and complete independence in 1944. The second half of the 20th century saw substantial economic growth driven primarily by the fishing industry. The economy diversified greatly after the country joined the European Economic Area in 1994, but the global financial crisis hit Iceland especially hard in the years after 2008. The economy is now on an upward trajectory, primarily thanks to a tourism and construction boom. Literacy, longevity, and social cohesion are first-rate by world standards."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Europe, island between the Greenland Sea and the North Atlantic Ocean, northwest of the United Kingdom"
+      },
+      "Area": {
+        "total ": {
+          "text": "103,000 sq km"
+        },
+        "land": {
+          "text": "100,250 sq km"
+        },
+        "water": {
+          "text": "2,750 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "4,970 km"
+      },
+      "Climate": {
+        "text": "temperate; moderated by North Atlantic Current; mild, windy winters; damp, cool summers"
+      },
+      "Terrain": {
+        "text": "mostly plateau interspersed with mountain peaks, icefields; coast deeply indented by bays and fiords"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Hvannadalshnukur (at Vatnajokull Glacier) 2,110 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "557 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, hydropower, geothermal power, diatomite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "16.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2022 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 15% (2023 est.)"
+        },
+        "forest": {
+          "text": "0.6% (2023 est.)"
+        },
+        "other": {
+          "text": "82.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes and volcanic activity <br><br><strong>volcanism:</strong> Iceland is situated on top of a hotspot and experiences severe volcanic activity; Eyjafjallajokull (1,666 m) erupted in 2010, sending ash high into the atmosphere and seriously disrupting European air traffic; scientists continue to monitor nearby Katla (1,512 m), which has a high probability of eruption; Grimsvoetn and Hekla are Iceland's most active volcanoes; other historically active volcanoes include Askja, Bardarbunga, Brennisteinsfjoll, Esjufjoll, Hengill, Krafla, Krisuvik, Kverkfjoll, Oraefajokull, Reykjanes, Torfajokull, and Vestmannaeyjar"
+      },
+      "Geography - note": {
+        "text": "strategic location between Greenland and Europe; westernmost European country; Reykjavik is the northernmost national capital in the world; more land covered by glaciers than in all of continental Europe"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "364,036 (2024 est.)"
+        },
+        "male": {
+          "text": "182,268"
+        },
+        "female": {
+          "text": "181,768"
+        }
+      },
+      "Languages": {
+        "text": "Icelandic, English, Polish, Nordic languages, German"
+      },
+      "Religions": {
+        "text": "Evangelical Lutheran Church of Iceland (official) 58.6% Roman Catholic 3.8%, Independent Congregation of Reykjavik 2.6%, Independent Congregation of Hafnarfjordur 1.9%, pagan worship 1.5%, Icelandic Ethical Humanist Association 1.4%, other (includes Zuist and Pentecostal) or unspecified 18.7%, none 7.7% (2024 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Icelandic 78.7%, Polish 5.8%, Danish 1%, Ukrainian 1%, other 13.5% (2024 est.)",
+        "note": "<strong>note</strong>: data represent population by country of birth"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "94% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.74% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "Iceland is almost entirely urban, with half of the population located in and around the capital of Reykjavik; smaller clusters are primarily found along the coast in the north and west"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income North Atlantic island economy; not an EU member but market integration via European Economic Area (EEA); dominant tourism, fishing, and aluminum industries vulnerable to demand swings and disruption from volcanic activity; inflation remains above target rate; barriers to foreign business access and economic diversification</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, chicken, lamb/mutton, barley, potatoes, pork, beef, eggs, other meats, cucumbers/gherkins (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, fish processing; aluminum smelting; geothermal power, hydropower; medical/pharmaceutical products"
+      },
+      "Exports - commodities": {
+        "text": "aluminum, fish, orthopedic appliances, animal meal, iron alloys (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Netherlands 27%, Germany 11%, USA 10%, UK 8%, Norway 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, carbon-based electronics, aluminum oxide, computers (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; moderated by North Atlantic Current; mild, windy winters; damp, cool summers"
+      }
+    }
+  }
+}

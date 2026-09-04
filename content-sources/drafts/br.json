@@ -1,0 +1,69 @@
+{
+  "iso": "br",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.448Z",
+  "structured": {
+    "code": "br",
+    "name": "Brazil",
+    "capital": "Brasília",
+    "continent": "South America",
+    "areaKm2": 8515767,
+    "population": 214211951,
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "Brazilian real"
+    ],
+    "landBorders": [
+      "Argentina",
+      "Bolivia",
+      "Colombia",
+      "French Guiana",
+      "Guyana",
+      "Paraguay",
+      "Peru",
+      "Suriname",
+      "Uruguay",
+      "Venezuela"
+    ],
+    "naturalResources": "alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Brazil occupies the eastern bulge of South America and shares a land border with ten of its neighbours, which is most of the continent. The terrain is largely flat to rolling lowland behind a narrow coastal belt, and what the country sends the world follows from that: soybeans, iron ore, crude petroleum, raw sugar and corn. Its mineral list runs further than the export figures suggest, taking in bauxite, gold, manganese, tin, niobium, rare earth elements and uranium.",
+    "physicalGeography": "Mostly flat to rolling lowlands in the north, with plains, hills and mountains elsewhere and a narrow coastal belt along the Atlantic. That combination of low relief and enormous extent is what makes agriculture at continental scale possible.",
+    "climate": "Mostly tropical, turning temperate in the south — a range wide enough that the same country sees recurring drought in the northeast and occasional frost in the south. Flooding is a regular hazard in the southern states.",
+    "economy": "The largest economy in Latin America and upper-middle-income, driven substantially by domestic consumption rather than exports alone. Brazil is a member of Mercosur, BRICS and the G20 and a candidate for OECD accession. Its industrial base is unusually broad for a major commodity exporter — aircraft, motor vehicles and parts, steel, chemicals, cement, textiles and footwear. Inequality in income and in access to health and education remains high.",
+    "peopleAndCulture": "Portuguese is the official language, which makes Brazil the only Portuguese-speaking country in a continent that otherwise speaks Spanish. By self-identification the population is roughly 45% mixed, 44% White, 10% Black, with smaller Indigenous and Asian populations. Religiously it is majority Roman Catholic at around 57%, with Evangelical Christianity at about 27% and Afro-Brazilian traditions including Umbanda and Candomblé also present."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern South America, bordering the Atlantic Ocean || mostly flat to rolling lowlands in north; some plains, hills, mountains, and narrow coastal belt || note 1: largest country in South America and in the Southern Hemisphere; shares common boundaries with every South American country except Chile and Ecuador; most of the Pantanal, the world's largest tropical wetland, extends through the west central part of the country; shares Iguaçu Falls (Iguazú Falls), the world's largest waterfalls system, with Argentina note 2: Rocas Atoll, located off the northeast coast of Brazil, is the only atoll in the South Atlantic || Resources: alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber || Exports: soybeans, crude petroleum, iron ore, raw sugar, corn (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling lowlands in north; some plains, hills, mountains, and narrow coastal belt || Eastern South America, bordering the Atlantic Ocean"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly tropical, but temperate in south || recurring droughts in northeast; floods and occasional frost in south"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income, largest Latin American economy; Mercosur, BRICS, G20 member and OECD accession candidate; growth driven by strong domestic consumption; monetary tightening helping curb inflation rate; high inequality in income and access to health and education || Exports: soybeans, crude petroleum, iron ore, raw sugar, corn (2023) || Industries: textiles, shoes, chemicals, cement, lumber, iron ore, tin, steel, aircraft, motor vehicles and parts, other machinery and equipment"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 56.8%, Evangelical 26.9%, none 9.3%, other 4%, Spirtism (Espírita) 1.8%, unspecified 1.4%, Umbanda and Candomblé 1.1%, Indigenous religions .06%, undeclared 0.2% (2022) || mixed 45.3%, White 43.5%, Black 10.2%, Indigenous 0.6%, Asian 0.4% (2022 est.)"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "iso": "is",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.461Z",
+  "structured": {
+    "code": "is",
+    "name": "Iceland",
+    "capital": "Reykjavík",
+    "continent": "Europe",
+    "areaKm2": 103004,
+    "population": 364260,
+    "officialLanguages": [
+      "Icelandic"
+    ],
+    "currencies": [
+      "Icelandic króna"
+    ],
+    "landBorders": [],
+    "naturalResources": "fish, hydropower, geothermal power, diatomite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Iceland is an island in the North Atlantic, between the Greenland Sea and the open ocean northwest of the United Kingdom, with no land border with any country. It sits directly on a volcanic hotspot, and that single geological fact shapes almost everything else: its hazards, its energy, and an economy built on fish, aluminium smelting and tourism rather than on minerals it does not have.",
+    "physicalGeography": "Mostly plateau, broken by mountain peaks and icefields, with a coast deeply indented by bays and fjords. It lies between the Greenland Sea and the North Atlantic Ocean, northwest of the United Kingdom, and has no land borders.",
+    "climate": "Temperate rather than arctic, despite the latitude, because the North Atlantic Current moderates it — winters are mild and windy, summers damp and cool. The more serious hazards are geological: Iceland sits on a hotspot with severe volcanic activity. Eyjafjallajökull erupted in 2010, throwing ash high enough to disrupt European air traffic for days, and scientists continue to monitor Katla, which has a high probability of eruption.",
+    "economy": "A high-income island economy that is not an EU member but is integrated into the European market through the European Economic Area. Tourism, fishing and aluminium smelting dominate, which leaves the country exposed both to swings in demand and to disruption from volcanic activity. Exports are led by aluminium, fish, orthopaedic appliances, animal meal and iron alloys. Inflation has run above target, and barriers to foreign business access have made diversification harder.",
+    "peopleAndCulture": "Icelandic is the official language, with English, Polish, other Nordic languages and German also spoken. The population is around 79% Icelandic with a Polish community of about 6%, plus Danish and Ukrainian residents. The Evangelical Lutheran Church of Iceland is the official church at roughly 59%; notably, about 8% report no religion and a further 19% are unspecified or belong to other groups, including a small but recognised pagan worship community."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Europe, island between the Greenland Sea and the North Atlantic Ocean, northwest of the United Kingdom || mostly plateau interspersed with mountain peaks, icefields; coast deeply indented by bays and fiords || strategic location between Greenland and Europe; westernmost European country; Reykjavik is the northernmost national capital in the world; more land covered by glaciers than in all of continental Europe || Resources: fish, hydropower, geothermal power, diatomite || Exports: aluminum, fish, orthopedic appliances, animal meal, iron alloys (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly plateau interspersed with mountain peaks, icefields; coast deeply indented by bays and fiords || Northern Europe, island between the Greenland Sea and the North Atlantic Ocean, northwest of the United Kingdom"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; moderated by North Atlantic Current; mild, windy winters; damp, cool summers || earthquakes and volcanic activity volcanism: Iceland is situated on top of a hotspot and experiences severe volcanic activity; Eyjafjallajokull (1,666 m) erupted in 2010, sending ash high into the atmosphere and seriously disrupting European air traffic; scientists continue to monitor nearby Katla (1,512 m), which has a high probability of eruption; Grimsvoetn and Hekla are Iceland's most active volcanoes; other historically active volcanoes include Askja, Bardarbunga, Brennisteinsfjoll, Esjufjoll, Hengill, Krafla, Krisuvik, Kverkfjoll, Oraefajokull, Reykjanes, Torfajokull, and Vestmannaeyjar"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income North Atlantic island economy; not an EU member but market integration via European Economic Area (EEA); dominant tourism, fishing, and aluminum industries vulnerable to demand swings and disruption from volcanic activity; inflation remains above target rate; barriers to foreign business access and economic diversification || Exports: aluminum, fish, orthopedic appliances, animal meal, iron alloys (2023) || Industries: tourism, fish processing; aluminum smelting; geothermal power, hydropower; medical/pharmaceutical products"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Icelandic, English, Polish, Nordic languages, German || Evangelical Lutheran Church of Iceland (official) 58.6% Roman Catholic 3.8%, Independent Congregation of Reykjavik 2.6%, Independent Congregation of Hafnarfjordur 1.9%, pagan worship 1.5%, Icelandic Ethical Humanist Association 1.4%, other (includes Zuist and Pentecostal) or unspecified 18.7%, none 7.7% (2024 est.) || Icelandic 78.7%, Polish 5.8%, Danish 1%, Ukrainian 1%, other 13.5% (2024 est.)"
+    }
+  }
+}

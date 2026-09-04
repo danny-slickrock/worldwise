@@ -1,0 +1,62 @@
+{
+  "iso": "cl",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.462Z",
+  "structured": {
+    "code": "cl",
+    "name": "Chile",
+    "capital": "Santiago",
+    "continent": "South America",
+    "areaKm2": 756102,
+    "population": 19458000,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Chilean peso"
+    ],
+    "landBorders": [
+      "Argentina",
+      "Bolivia",
+      "Peru"
+    ],
+    "naturalResources": "copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Chile runs down the Pacific edge of southern South America as a long, narrow strip between the Andes and the ocean, which is why a single country contains desert in the north, a Mediterranean centre and cool, damp forest in the south. It is the world's leading copper producer, and copper ore and refined copper lead its exports alongside fish, carbonates and stone fruit.",
+    "physicalGeography": "Low coastal mountains, a fertile central valley, and the rugged Andes along the eastern edge — a three-band structure repeated along almost the country's entire length. It borders the South Pacific Ocean in southern South America, between Argentina and Peru, and shares land borders with Argentina, Bolivia and Peru.",
+    "climate": "Temperate overall, but the length of the country makes that almost meaningless on its own: desert in the north, Mediterranean in the central region, cool and damp in the south. Chile also carries serious geological hazards — severe earthquakes, tsunamis, and more than three dozen active volcanoes along the Andes. Lascar is the most active in the northern Chilean Andes, and Llaima in the centre is another of the country's most active.",
+    "economy": "An export-driven economy and the world's leading copper producer, with lithium, other minerals, foodstuffs, fish processing, iron and steel and wood products alongside it. Growth rebounded fairly quickly after COVID-19 on increased liquidity and a rapid vaccine rollout. Poverty has been decreasing though inequality lingers, and public debt is rising but remains manageable.",
+    "peopleAndCulture": "Spanish is the official language. About 89% of the population identifies as White and non-Indigenous, with the Mapuche the largest Indigenous group at roughly 9%, followed by Aymara and others including Rapa Nui, Likan Antai, Quechua and Diaguita. Roughly 57% are Catholic and 16% Evangelical or Protestant, while about 26% report no religion — one of the higher shares in South America."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern South America, bordering the South Pacific Ocean, between Argentina and Peru || low coastal mountains, fertile central valley, rugged Andes in east || note 1: Chile is the longest country north-to-south in the world, extending across 39 degrees of latitude note 2: Chile is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes note 3: the Atacama Desert in the north of Chile is the driest desert in the world; Ojos del Salado (6,893 m) in the Atacama Desert is the highest active volcano in the world, Chile's tallest mountain, and the second-highest in the Western Hemisphere and the Southern Hemisphere; the volcano's small crater lake is the world's highest lake at 6,390 m || Resources: copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower || Exports: copper ore, refined copper, fish, carbonates, pitted fruits (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "low coastal mountains, fertile central valley, rugged Andes in east || Southern South America, bordering the South Pacific Ocean, between Argentina and Peru"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; desert in north; Mediterranean in central region; cool and damp in south || severe earthquakes; active volcanism; tsunamis volcanism: significant volcanic activity due to more than three-dozen active volcanoes along the Andes Mountains; Lascar (5,592 m), which last erupted in 2007, is the most active volcano in the northern Chilean Andes; Llaima (3,125 m) in central Chile, which last erupted in 2009, is another of the country's most active; Chaiten's 2008 eruption forced major evacuations; other notable historically active volcanoes include Cerro Hudson, Calbuco, Copahue, Guallatiri, Llullaillaco, Nevados de Chillan, Puyehue, San Pedro, and Villarrica; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "export-driven economy; leading copper producer; though hit by COVID-19, fairly quick rebound from increased liquidity and rapid vaccine rollouts; decreasing poverty but still lingering inequality; public debt rising but still manageable; recent political violence has had negative economic consequences || Exports: copper ore, refined copper, fish, carbonates, pitted fruits (2023) || Industries: copper, lithium, other minerals, foodstuffs, fish processing, iron and steel, wood and wood products, transport equipment, cement, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 57%, none 25.7%, Evangelical or Protestant 16.2%, other Christians and traditions related to Christ 1.3%; less than 1%: Buddhist, Catholic Orthodox, Church of Jesus Christ of Latter-Day Saints, Islam, Judaism, other religions, no religion (2024) || White and non-Indigenous 88.9%, Mapuche 9.1%, Aymara 0.7%, other Indigenous groups 1% (includes Rapa Nui, Likan Antai, Quechua, Colla, Diaguita, Kawesqar, Yagan or Yamana), unspecified 0.3% (2012 est.)"
+    }
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "iso": "in",
+  "fetchedAt": "2026-09-04T23:47:38.900Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-asia/in.json"
+    }
+  },
+  "wikidata": {
+    "name": "India",
+    "gec": "IN",
+    "capital": "New Delhi",
+    "areaKm2": 3287263,
+    "population": 1326093247,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Hindi",
+      "English"
+    ],
+    "currencies": [
+      "Indian rupee"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "id",
+      "mm",
+      "np",
+      "pk",
+      "lk",
+      "af",
+      "bd",
+      "bt"
+    ]
+  },
+  "factbook": {
+    "_path": "south-asia/in.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Indus Valley civilization, one of the world's oldest, flourished during the 3rd and 2nd millennia B.C. and extended into northwestern India. Aryan tribes from the northwest infiltrated the Indian subcontinent about 1500 B.C.; their merger with the earlier Dravidian inhabitants created the classical Indian culture. The Maurya Empire of the 4th and 3rd centuries B.C. -- which reached its zenith under ASHOKA -- united much of South Asia. The Gupta dynasty (4th to 6th centuries A.D.) ushered in The Golden Age, which saw a flowering of Indian science, art, and culture. Islam spread across the subcontinent over a period of 700 years. In the 10th and 11th centuries, Turks and Afghans invaded India and established the Delhi Sultanate. In the early 16th century, the Emperor BABUR established the Mughal Dynasty, which ruled large sections of India for more than three centuries. European explorers began establishing footholds in India during the 16th century.</p> <p>By the 19th century, Great Britain had become the dominant political power on the subcontinent, and India was seen as the \"Jewel in the Crown\" of the British Empire. The British Indian Army played a vital role in both World Wars. Years of nonviolent resistance to British rule, led by Mohandas GANDHI and Jawaharlal NEHRU, eventually resulted in Indian independence in 1947. Large-scale communal violence took place before and after the subcontinent partition into two separate states -- India and Pakistan. The neighboring countries have fought three wars since independence, the last of which was in 1971 and resulted in East Pakistan becoming the separate nation of Bangladesh. India's nuclear weapons tests in 1998 emboldened Pakistan to conduct its own tests that same year. In 2008, terrorists originating from Pakistan conducted a series of coordinated attacks in Mumbai, India's financial capital. India's economic growth after economic reforms in 1991, a massive youth population, and a strategic geographic location have contributed to the country's emergence as a regional and global power. However, India still faces pressing problems such as extensive poverty, widespread corruption, and environmental degradation, and its restrictive business climate challenges economic growth expectations.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Asia, bordering the Arabian Sea and the Bay of Bengal, between Burma and Pakistan"
+      },
+      "Area": {
+        "total ": {
+          "text": "3,287,263 sq km"
+        },
+        "land": {
+          "text": "2,973,193 sq km"
+        },
+        "water": {
+          "text": "314,070 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "13,888 km"
+        },
+        "border countries": {
+          "text": "Bangladesh 4,142 km; Bhutan 659 km; Burma 1,468 km; China 2,659 km; Nepal 1,770 km; Pakistan 3,190 km"
+        }
+      },
+      "Coastline": {
+        "text": "7,000 km"
+      },
+      "Climate": {
+        "text": "varies from tropical monsoon in south to temperate in north"
+      },
+      "Terrain": {
+        "text": "upland plain (Deccan Plateau) in south, flat to rolling plain along the Ganges, deserts in west, Himalayas in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kanchenjunga 8,586 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "160 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal (fourth-largest reserves in the world), antimony, iron ore, lead, manganese, mica, bauxite, rare earth elements, titanium ore, chromite, natural gas, diamonds, petroleum, limestone, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "60.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 51.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 4.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 3.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "24.4% (2023 est.)"
+        },
+        "other": {
+          "text": "15.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts; flash floods, as well as widespread and destructive flooding from monsoonal rains; severe thunderstorms; earthquakes <br><br><strong>volcanism:</strong> Barren Island (354 m) in the Andaman Sea has been active in recent years"
+      },
+      "Geography - note": {
+        "text": "dominates South Asian subcontinent; near important Indian Ocean trade routes; Kanchenjunga, third tallest mountain in the world, lies on the border with Nepal"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,419,316,933 (2025 est.)"
+        },
+        "male": {
+          "text": "730,902,574"
+        },
+        "female": {
+          "text": "688,414,359"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Hindi 43.6%, Bengali 8%, Marathi 6.9%, Telugu 6.7%, Tamil 5.7%, Gujarati 4.6%, Urdu 4.2%, Kannada 3.6%, Odia 3.1%, Malayalam 2.9%, Punjabi 2.7%, Assamese 1.3%, Maithili 1.1%, other 5.6%;&nbsp; English is the subsidiary official language but is the most important one for national, political, and commercial communication (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<p>विश्व फ़ैक्टबुक, आधारभूत जानकारी का एक अनिवार्य स्रोत (Hindi)</p> The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note 1: </strong>there are 22 other recognized languages -- Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Kashmiri, Konkani, Maithili, Malayalam, Manipuri, Marathi, Nepali, Odia, Punjabi, Sanskrit, Santali, Sindhi, Tamil, Telugu, Urdu <br><strong>note 2: </strong>Hindustani is a popular variant of Hindi/Urdu spoken widely throughout northern India but is not an official language"
+      },
+      "Religions": {
+        "text": "Hindu 79.8%, Muslim 14.2%, Christian 2.3%, Sikh 1.7%, other and unspecified 2% (2011 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Indo-Aryan 72%, Dravidian 25%, and other 3% (2000)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "36.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.33% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a very high population density exists throughout most of the country, with the notable exception of the deserts in the northwest and the mountain fringe in the north; the core of the population is in the north along the banks of the Ganges, with other river valleys and southern coastal areas also having large population concentrations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>largest South Asian economy; strong, sustained GDP growth led by technology and service sectors, foreign investment, and improved regulatory framework; high poverty rate and income inequality; initiatives on infrastructure development, digitization, manufacturing, and financial access</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, rice, milk, wheat, bison milk, potatoes, vegetables, maize, bananas, onions (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, chemicals, food processing, steel, transportation equipment, cement, mining, petroleum, machinery, software, pharmaceuticals"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, packaged medicine, diamonds, broadcasting equipment, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 19%, UAE 7%, China 4%, Germany 3%, UK 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, gold, coal, natural gas, integrated circuits (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical monsoon in south to temperate in north"
+      }
+    }
+  }
+}

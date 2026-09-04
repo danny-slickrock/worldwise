@@ -1,0 +1,66 @@
+{
+  "iso": "in",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.461Z",
+  "structured": {
+    "code": "in",
+    "name": "India",
+    "capital": "New Delhi",
+    "continent": "Asia",
+    "areaKm2": 3287263,
+    "population": 1326093247,
+    "officialLanguages": [
+      "Hindi",
+      "English"
+    ],
+    "currencies": [
+      "Indian rupee"
+    ],
+    "landBorders": [
+      "Bangladesh",
+      "Bhutan",
+      "Burma",
+      "China",
+      "Nepal",
+      "Pakistan"
+    ],
+    "naturalResources": "coal (fourth-largest reserves in the world), antimony, iron ore, lead, manganese, mica, bauxite, rare earth elements, titanium ore, chromite, natural gas, diamonds, petroleum, limestone, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "India occupies most of southern Asia between the Arabian Sea and the Bay of Bengal, and its geography is best read north to south: the Himalayas along the top, the flat Ganges plain beneath them, deserts to the west, and the raised Deccan Plateau across the south. It shares land borders with six countries and holds the world's fourth-largest coal reserves alongside iron ore, bauxite, rare earth elements and titanium ore.",
+    "physicalGeography": "An upland plain — the Deccan Plateau — across the south, a flat to rolling plain along the Ganges, deserts in the west and the Himalayas in the north. India fronts both the Arabian Sea and the Bay of Bengal, between Burma and Pakistan.",
+    "climate": "Ranges from tropical monsoon in the south to temperate in the north. The monsoon is the defining event of the year and cuts both ways: drought when it underperforms, and widespread destructive flooding when it does not. Flash floods, severe thunderstorms and earthquakes are also recurring hazards.",
+    "economy": "The largest economy in South Asia, with strong and sustained growth led by technology and services, foreign investment and an improved regulatory framework. Industry spans textiles, chemicals, food processing, steel, transportation equipment and cement, and exports are led by refined petroleum, packaged medicine, diamonds, broadcasting equipment and garments. Poverty rates and income inequality remain high, and national initiatives focus on infrastructure, digitization, manufacturing and financial access.",
+    "peopleAndCulture": "Hindi and English are both official languages. The population is roughly 72% Indo-Aryan and 25% Dravidian — a division that is linguistic as much as anything else, and one reason English persists as a link language. About 80% of the population is Hindu and 14% Muslim, with Christian, Sikh and other communities making up the remainder."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, bordering the Arabian Sea and the Bay of Bengal, between Burma and Pakistan || upland plain (Deccan Plateau) in south, flat to rolling plain along the Ganges, deserts in west, Himalayas in north || dominates South Asian subcontinent; near important Indian Ocean trade routes; Kanchenjunga, third tallest mountain in the world, lies on the border with Nepal || Resources: coal (fourth-largest reserves in the world), antimony, iron ore, lead, manganese, mica, bauxite, rare earth elements, titanium ore, chromite, natural gas, diamonds, petroleum, limestone, arable land || Exports: refined petroleum, packaged medicine, diamonds, broadcasting equipment, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "upland plain (Deccan Plateau) in south, flat to rolling plain along the Ganges, deserts in west, Himalayas in north || Southern Asia, bordering the Arabian Sea and the Bay of Bengal, between Burma and Pakistan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical monsoon in south to temperate in north || droughts; flash floods, as well as widespread and destructive flooding from monsoonal rains; severe thunderstorms; earthquakes volcanism: Barren Island (354 m) in the Andaman Sea has been active in recent years"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "largest South Asian economy; strong, sustained GDP growth led by technology and service sectors, foreign investment, and improved regulatory framework; high poverty rate and income inequality; initiatives on infrastructure development, digitization, manufacturing, and financial access || Exports: refined petroleum, packaged medicine, diamonds, broadcasting equipment, garments (2023) || Industries: textiles, chemicals, food processing, steel, transportation equipment, cement, mining, petroleum, machinery, software, pharmaceuticals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Hindu 79.8%, Muslim 14.2%, Christian 2.3%, Sikh 1.7%, other and unspecified 2% (2011 est.) || Indo-Aryan 72%, Dravidian 25%, and other 3% (2000)"
+    }
+  }
+}

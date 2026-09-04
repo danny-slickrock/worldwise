@@ -1,0 +1,184 @@
+{
+  "iso": "cl",
+  "fetchedAt": "2026-09-04T23:47:39.022Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/ci.json"
+    }
+  },
+  "wikidata": {
+    "name": "Chile",
+    "gec": "CI",
+    "capital": "Santiago",
+    "areaKm2": 756102,
+    "population": 19458000,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Chilean peso"
+    ],
+    "sharesBorderWithAnyType": [
+      "ar",
+      "pe",
+      "bo"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/ci.json",
+    "Introduction": {
+      "Background": {
+        "text": "Indigenous groups inhabited central and southern Chile for several thousand years, living in mixed pastoralist and settled communities. The Inca then ruled the north of the country for nearly a century prior to the arrival of the Spanish in the 16th century. In 1541, the Spanish established the Captaincy General of Chile, which lasted until Chile declared its independence in 1810. The subsequent struggle with the Spanish became tied to other South American independence conflicts, with a decisive victory not being achieved until 1818. In the War of the Pacific (1879-83), Chile defeated Peru and Bolivia to win its current northernmost regions. By the 1880s, the Chilean central government cemented its control over the central and southern regions inhabited by Mapuche Indigenous peoples. Between 1891 and 1973, a series of elected governments succeeded each other until the Marxist government of Salvador ALLENDE was overthrown in 1973 in a military coup led by General Augusto PINOCHET, who ruled until a democratically elected president was inaugurated in 1990. Economic reforms that were maintained consistently since the 1980s contributed to steady growth, reduced poverty rates by over half, and helped secure the country's commitment to democratic and representative government. Chile has increasingly assumed regional and international leadership roles befitting its status as a stable, democratic nation."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern South America, bordering the South Pacific Ocean, between Argentina and Peru"
+      },
+      "Area": {
+        "total ": {
+          "text": "756,102 sq km"
+        },
+        "land": {
+          "text": "743,812 sq km"
+        },
+        "water": {
+          "text": "12,290 sq km"
+        },
+        "note": "<strong>note:</strong> includes Easter Island (Isla de Pascua) and Isla Sala y Gomez"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "7,801 km"
+        },
+        "border countries": {
+          "text": "Argentina 6,691 km; Bolivia 942 km; Peru 168 km"
+        }
+      },
+      "Coastline": {
+        "text": "6,435 km"
+      },
+      "Climate": {
+        "text": "temperate; desert in north; Mediterranean in central region; cool and damp in south"
+      },
+      "Terrain": {
+        "text": "low coastal mountains, fertile central valley, rugged Andes in east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Nevado Ojos del Salado 6,893 m (highest volcano in the world)"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "1,871 m"
+        }
+      },
+      "Natural resources": {
+        "text": "copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "14.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 11.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "24.5% (2023 est.)"
+        },
+        "other": {
+          "text": "61.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "severe earthquakes; active volcanism; tsunamis <br><br><strong>volcanism:</strong> significant volcanic activity due to more than three-dozen active volcanoes along the Andes Mountains; Lascar (5,592 m), which last erupted in 2007, is the most active volcano in the northern Chilean Andes; Llaima (3,125 m) in central Chile, which last erupted in 2009, is another of the country's most active; Chaiten's 2008 eruption forced major evacuations; other notable historically active volcanoes include Cerro Hudson, Calbuco, Copahue, Guallatiri, Llullaillaco, Nevados de Chillan, Puyehue, San Pedro, and Villarrica; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> Chile is the longest country north-to-south in the world, extending across 39 degrees of latitude<br><br><strong>note 2:</strong> Chile is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 3:</strong> the Atacama Desert in the north of Chile is the driest desert in the world; Ojos del Salado (6,893 m) in the Atacama Desert is the highest active volcano in the world, Chile's tallest mountain, and the second-highest in the Western Hemisphere and the Southern Hemisphere; the volcano's small crater lake is the world's highest lake at 6,390 m"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "19,091,343 (2025 est.)"
+        },
+        "male": {
+          "text": "9,379,883"
+        },
+        "female": {
+          "text": "9,711,460"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish 99.5% (official), English 10.2%, Indigenous 1% (includes Mapudungun, Aymara, Quechua, Rapa Nui), other 2.3%, unspecified 0.2%&nbsp; (2012 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> shares sum to more than 100% because some respondents gave more than one answer on the census"
+      },
+      "Religions": {
+        "text": "Catholic 57%, none 25.7%, Evangelical or Protestant 16.2%, other Christians and traditions related to Christ 1.3%; less than 1%: Buddhist, Catholic Orthodox, Church of Jesus Christ of Latter-Day Saints, Islam, Judaism, other religions, no religion (2024)"
+      },
+      "Ethnic groups": {
+        "text": "White and non-Indigenous 88.9%, Mapuche 9.1%, Aymara 0.7%, other Indigenous groups 1% (includes Rapa Nui, Likan Antai, Quechua, Colla, Diaguita, Kawesqar, Yagan or Yamana), unspecified 0.3% (2012 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "88% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.78% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "90% of the population is located in the middle third of the country around the capital of Santiago; the far north, including the Atacama Desert, and the extreme south are relatively underpopulated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "export-driven economy; leading copper producer; though hit by COVID-19, fairly quick rebound from increased liquidity and rapid vaccine rollouts; decreasing poverty but still lingering inequality; public debt rising but still manageable; recent political violence has had negative economic consequences"
+      },
+      "Agricultural products": {
+        "text": "grapes, milk, apples, wheat, tomatoes, potatoes, chicken, maize, sugar beets, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "copper, lithium, other minerals, foodstuffs, fish processing, iron and steel, wood and wood products, transport equipment, cement, textiles"
+      },
+      "Exports - commodities": {
+        "text": "copper ore, refined copper, fish, carbonates, pitted fruits (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 39%, USA 16%, Japan 7%, S. Korea 6%, Brazil 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, cars, garments, trucks (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; desert in north; Mediterranean in central region; cool and damp in south"
+      }
+    }
+  }
+}

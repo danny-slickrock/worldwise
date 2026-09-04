@@ -1,0 +1,186 @@
+{
+  "iso": "jp",
+  "fetchedAt": "2026-09-04T23:47:38.355Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/ja.json"
+    }
+  },
+  "wikidata": {
+    "name": "Japan",
+    "gec": "JA",
+    "capital": "Tokyo",
+    "areaKm2": 377972.28,
+    "population": 123802000,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Japanese"
+    ],
+    "currencies": [
+      "yen"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "cn",
+      "ru",
+      "tw",
+      "kr",
+      "ph"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/ja.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>In 1603, after decades of civil warfare, the Tokugawa shogunate (a military-led, dynastic government) ushered in a long period of relative political stability and isolation from foreign influence. For more than two centuries, this policy enabled Japan to enjoy a flowering of its indigenous culture. Japan opened its ports after signing the Treaty of Kanagawa with the US in 1854 and began to intensively modernize and industrialize. During the late 19th and early 20th centuries, Japan became a regional power that was able to defeat the forces of both China and Russia. It occupied Korea, Formosa (Taiwan), and southern Sakhalin Island. In 1931-32, Japan occupied Manchuria, and in 1937, it launched a full-scale invasion of China. Japan attacked US forces at Pearl Harbor, Hawaii, in 1941, triggering America's entry into World War II, and Japan soon occupied much of East and Southeast Asia. After its defeat in World War II, the country recovered to become an economic power and a US ally. <br><br>While the emperor retains his throne as a symbol of national unity, elected politicians hold the decision-making power. After three decades of unprecedented growth, Japan's economy experienced a major slowdown starting in the 1990s, but the country remains an economic power. In 2011, Japan's strongest-ever earthquake and an accompanying tsunami devastated the northeast part of Honshu, killed thousands, and damaged several nuclear power plants. ABE Shinzo was reelected as prime minister in 2012, and he embarked on ambitious economic and security reforms to improve Japan's economy and bolster the country's international standing. In 2019, ABE became Japan's longest-serving post-war prime minister; he resigned in 2020 and was succeeded by SUGA Yoshihide. KISHIDA Fumio became prime minister in 2021.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Asia, island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula"
+      },
+      "Area": {
+        "total ": {
+          "text": "377,915 sq km"
+        },
+        "land": {
+          "text": "364,485 sq km"
+        },
+        "water": {
+          "text": "13,430 sq km"
+        },
+        "note": "<strong>note:</strong> includes Bonin Islands (Ogasawara-gunto), Daito-shoto, Minami-jima, Okino-tori-shima, Ryukyu Islands (Nansei-shoto), and Volcano Islands (Kazan-retto)"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "29,751 km"
+      },
+      "Climate": {
+        "text": "varies from tropical in south to cool temperate in north"
+      },
+      "Terrain": {
+        "text": "mostly rugged and mountainous"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Fuji 3,776 m"
+        },
+        "lowest point": {
+          "text": "Hachiro-gata -4 m"
+        },
+        "mean elevation": {
+          "text": "438 m"
+        }
+      },
+      "Natural resources": {
+        "text": "negligible mineral resources, fish ",
+        "note": "<strong>note:</strong> with virtually no natural energy resources, Japan is almost totally dependent on imported sources of energy"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "12.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "68.3% (2023 est.)"
+        },
+        "other": {
+          "text": "19% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "many dormant and some active volcanoes; about 1,500 seismic occurrences (mostly tremors but occasional severe earthquakes) every year; tsunamis; typhoons <br><br><strong>volcanism:</strong> both Unzen (1,500 m) and Sakura-jima (1,117 m), which lies near the densely populated city of Kagoshima, have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; other notable historically active volcanoes include Asama (Honshu Island's most active volcano), Aso, Bandai, Fuji, Iwo-Jima, Kikai, Kirishima, Komaga-take, Oshima, Suwanosejima, Tokachi, Yake-dake, and Usu; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> strategic location in northeast Asia; composed of four main islands (the \"Home Islands\") -- Hokkaido, Honshu (the largest, most populous, and site of Tokyo, the capital), Shikoku, and Kyushu  <br><br><strong>note 2:</strong> a 2023 Geospatial Information Authority of Japan survey detected 100,000 islands and islets, but only the 14,125 islands with a circumference of at least 100 m (330 ft) were officially counted; about 260 of the islands are inhabited <br><br><strong>note 3:</strong> Japan annually records the most earthquakes in the world; it is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "123,201,945 (2024 est.)"
+        },
+        "male": {
+          "text": "59,875,269"
+        },
+        "female": {
+          "text": "63,326,676"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Japanese"
+        },
+        "major-language sample(s)": {
+          "text": "<br>必要不可欠な基本情報の源、ワールド・ファクトブック(Japanese)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Shintoism 48.6%, Buddhism 46.4%, Christianity 1.1%, other 4% (2021 est.)",
+        "note": "<strong>note:</strong> total adherents among persons claiming a religious affiliation"
+      },
+      "Ethnic groups": {
+        "text": "Japanese 97.5%, Chinese 0.6%, Vietnam 0.4%, South Korean 0.3%, other 1.2% (includes Filipino, Brazilian, Nepalese, Indonesian, American, and Taiwanese) (2022 est.)",
+        "note": "<strong>note:</strong> data represent population by nationality; up to 230,000 Brazilians of Japanese origin migrated to Japan in the 1990s to work in industries; some have returned to Brazil"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "92% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.25% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "all primary and secondary regions of high population density lie on the coast; one third of the population resides in and around Tokyo on the central plain (Kanto Plain)"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "second-largest East Asian economy; trade-oriented and highly diversified; high public debt levels; following years of near-zero interest rates, gradual increases to address inflation and depreciation of yen; strong rebound in tourism; aging population poses challenges to labor force participation"
+      },
+      "Agricultural products": {
+        "text": "rice, milk, sugar beets, vegetables, eggs, chicken, potatoes, onions, cabbages, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "motor vehicles, electronic equipment, machine tools, steel and nonferrous metals, ships, chemicals, textiles, processed foods"
+      },
+      "Exports - commodities": {
+        "text": "cars, integrated circuits, machinery, vehicle parts/accessories, construction vehicles (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 19%, China 18%, Taiwan 6%, S. Korea 6%, Hong Kong 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, natural gas, coal, integrated circuits, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical in south to cool temperate in north"
+      }
+    }
+  }
+}

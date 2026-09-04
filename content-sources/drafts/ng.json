@@ -1,0 +1,63 @@
+{
+  "iso": "ng",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-04T23:49:09.458Z",
+  "structured": {
+    "code": "ng",
+    "name": "Nigeria",
+    "capital": "Abuja",
+    "continent": "Africa",
+    "areaKm2": 923768,
+    "population": 211400708,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "naira"
+    ],
+    "landBorders": [
+      "Benin",
+      "Cameroon",
+      "Chad",
+      "Niger"
+    ],
+    "naturalResources": "natural gas, petroleum, tin, iron ore, coal, limestone, niobium, lead, zinc, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Nigeria sits on the Gulf of Guinea in western Africa between Benin and Cameroon, and it is the largest market economy on the continent. The land rises from southern lowlands through central hills and plateaus to mountains in the southeast and plains in the north. Crude petroleum and natural gas dominate what it sells abroad, but the resource list also runs to tin, iron ore, coal, limestone, niobium, lead, zinc and arable land.",
+    "physicalGeography": "Southern lowlands merge into central hills and plateaus, with mountains in the southeast and plains in the north — a south-to-north gradient that the climate follows closely. The country fronts the Gulf of Guinea in western Africa, between Benin and Cameroon.",
+    "climate": "Three climates in one country, tracking the terrain: equatorial in the south, tropical through the centre, and arid in the north. Periodic drought and flooding are both recurring hazards.",
+    "economy": "The largest market economy in Africa, with a very large labour force that is mostly lower-middle-income and still primarily employed in agriculture. Nigeria is a major oil exporter — crude petroleum, natural gas, gold, fertilizers and cocoa beans lead its exports — which leaves it exposed to global energy price shocks. Telecommunications and finance are key industries, and the country is a regional leader in critical infrastructure.",
+    "peopleAndCulture": "English is the official language, and it functions as a bridge across a country that also speaks Hausa, Yoruba, Igbo and Fulani, plus more than 500 additional indigenous languages. The largest ethnic groups are Hausa at about 30%, Yoruba at roughly 16%, Igbo at about 15% and Fulani at 6%, with Tiv, Kanuri, Ibibio and Ijaw among many others. Religiously the country is about 54% Muslim and 46% Christian, split between Roman Catholic and other Christian denominations."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the Gulf of Guinea, between Benin and Cameroon || southern lowlands merge into central hills and plateaus; mountains in southeast, plains in north || the Niger River enters the country in the northwest and flows southward through tropical rainforests and swamps to its delta in the Gulf of Guinea || Resources: natural gas, petroleum, tin, iron ore, coal, limestone, niobium, lead, zinc, arable land || Exports: crude petroleum, natural gas, gold, fertilizers, cocoa beans (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "southern lowlands merge into central hills and plateaus; mountains in southeast, plains in north || Western Africa, bordering the Gulf of Guinea, between Benin and Cameroon"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies; equatorial in south, tropical in center, arid in north || periodic droughts; flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "largest African market economy; enormous but mostly lower middle income labor force; major oil exporter; key telecommunications and finance industries; susceptible to global energy price shocks; regional leader in critical infrastructure; primarily agrarian employment || Exports: crude petroleum, natural gas, gold, fertilizers, cocoa beans (2023) || Industries: crude oil, coal, tin, columbite; rubber products, wood; hides and skins, textiles, cement and other construction materials, food products, footwear, chemicals, fertilizer, printing, ceramics, steel"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Hausa, Yoruba, Igbo (Ibo), Fulani, over 500 additional indigenous languages || Muslim 53.5%, Roman Catholic 10.6%, other Christian 35.3%, other 0.6% (2018 est.) || Hausa 30%, Yoruba 15.5%, Igbo (Ibo) 15.2%, Fulani 6%, Tiv 2.4%, Kanuri/Beriberi 2.4%, Ibibio 1.8%, Ijaw/Izon 1.8%, other 24.9% (2018 est.)"
+    }
+  }
+}
