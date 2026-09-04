@@ -108,7 +108,10 @@ src/
                            #   interests degrades to the general ordering
   game/ragPrompt.js        # PURE M2.9 step 3: the grounding contract, source formatting, citation
                            #   parsing, and the measured similarity floor
-  game/askLimits.js        # PURE M2.9 step 3: question validation + sliding-window rate limit
+  game/askLimits.js        # PURE M2.9 step 3-4: question validation, sliding-window rate limit,
+                           #   and the durable per-user daily cap
+  game/askGuardrails.js    # PURE M2.9 step 4: narrow safety screen. Matches requests for harmful
+                           #   instructions, never topics — geography is legitimately full of war
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
@@ -405,6 +408,16 @@ Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk
 - **The Edge runtime's binding constraint is isolate CPU, not wall clock.** Embedding in-process
   trips `WORKER_LIMIT` ("CPU time hard limit reached") long before any timeout — ~10 chunks per
   invocation locally. Anything that embeds in bulk must batch and resume, not just run faster.
+
+**Two Postgres privilege traps, both caught the hard way.** The first is documented above (RLS
+without GRANTs). The second is its mirror image and bit during M2.9 step 4: **Supabase's default
+privileges grant EXECUTE on new `public` functions — and INSERT/UPDATE/DELETE on new `public` tables
+— directly to `anon` and `authenticated`.** `revoke ... from public` does *not* take back a grant
+held by a named role, so a function you believed was service-role-only is callable by every signed-in
+user. On a `security definer` function, where RLS does not apply at all, that is a straight
+privilege escalation. Always `revoke all ... from anon, authenticated` explicitly, then grant back
+exactly what is needed — and test it with `set role authenticated`, because reading the migration
+will not reveal it.
 
 ## The mission (don't lose this)
 

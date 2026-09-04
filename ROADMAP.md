@@ -869,9 +869,44 @@ teaching *how the world works*, not just *where things are*.
        sniffing refusal phrasing out of prose) and scoring three outcomes rather than two:
        `declined` (correct refusal), `cited` (grounded answer), `ungrounded` (asserted facts while
        citing nothing — the only real failure). The marker is stripped before the learner sees it.
-    4. ☐ **Guardrails.** Answer only from retrieved context; refuse/deflect off-topic or unsafe asks;
-       always show sources; age-appropriate, non-ideological framing (matches the brand). Add an
-       abuse/rate limit and a per-user cap to control cost.
+    4. ✅ **Guardrails + the durable cost ceiling** — `src/game/askGuardrails.js`, the daily-cap half
+       of `src/game/askLimits.js`, and `supabase/migrations/20260904232037_init_ask_usage.sql`.
+       **Verified locally; the migration awaits the production push.**
+       *Safety screen.* Narrow by design, and the design constraint is that **geography is full of
+       war** — borders, invasions, military spending, colonial violence, genocide, famine are the
+       subject matter, not abuse of it. A blocklist containing "weapon", "kill" or "war" would block
+       the curriculum while barely inconveniencing bad faith. So the patterns match *requests for
+       harmful instructions* ("how do I make a bomb"), never topics, and 11 tests pin that
+       legitimate questions pass — the Falklands War, Japan's military budget, the Rwandan genocide,
+       Roman weapons, the Irish famine. Self-harm gets its own signposting response rather than the
+       same "ask me about geography" brush-off, which would be careless toward someone who needs
+       help. The screen is explicitly *not* the safety system: the retrieval floor (a prompt
+       injection measured 0.723 in production), the grounding rules, and Claude's own training do
+       the heavy lifting.
+       *Daily cap.* `public.ask_usage`, one row per user per UTC day, capped at `DAILY_CAP = 25`
+       requests. UTC rather than local midnight, so nobody gets a second allowance by travelling.
+       The slot is **reserved before generation** via `bump_ask_usage()`, which increments and
+       returns the new count atomically in Postgres — a read-then-write in the Edge Function would
+       let two concurrent questions both see "24 used" and both proceed. Tokens are attributed
+       afterwards through a separate `record_ask_tokens()`, since counts only exist post-generation;
+       folding them into one call would mean either racing the cap or charging tokens that were
+       never used. A failed generation therefore still costs a slot, which is the deliberate
+       trade: an unfair extra question is a smaller harm than exceeding the ceiling. Usage
+       accounting **fails closed** — an unmeterable endpoint is worse than a briefly unavailable one.
+       *A security hole caught by testing, not reading.* An early version revoked EXECUTE on
+       `bump_ask_usage` from `PUBLIC` only, and `set role authenticated; select bump_ask_usage(...)`
+       still incremented the counter. **Supabase's default privileges grant EXECUTE on new `public`
+       functions directly to `anon` and `authenticated`, and revoking from `PUBLIC` does not take
+       back a grant held by a named role.** It mattered more than usual because the function is
+       SECURITY DEFINER, so RLS does not constrain it at all: any signed-in user could have passed a
+       stranger's uuid and burned their daily allowance. Both functions now revoke from the named
+       roles explicitly, and the table does too — so a mistaken policy later cannot quietly make the
+       cap optional. Re-verified: `authenticated` and `anon` are denied on both functions and on
+       INSERT/UPDATE/DELETE, while `service_role` works.
+       *Sign-in is now required to ask* (`REQUIRE_AUTH`), and it is a cost decision rather than a
+       product one — the cap is per-user, so an anonymous caller has no user to cap and the ceiling
+       simply would not apply to the cheapest way to call the endpoint. **Worth a product review
+       before the ask box ships**; flip it only alongside some other durable anonymous budget.
     5. ☐ **App UI.** On a country page / discovery surface: "Ask about {place}" and suggested
        "dive deeper" prompts. Streamed responses, loading + error states, offline fallback.
     6. ☐ **Interest-aware facts (consumes M2.3.6).** Tag content chunks with the same interest slugs

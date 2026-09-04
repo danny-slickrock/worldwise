@@ -46,3 +46,42 @@ export function validateQuestion(question) {
   if (text.length > 600) return "too-long";
   return null;
 }
+
+// --- The durable daily cap (M2.9 step 4) -----------------------------------
+// The rate limit above is an abuse brake on one isolate. THIS is the cost
+// ceiling: a per-user, per-UTC-day request budget backed by public.ask_usage,
+// so it survives isolate recycling, restarts, and a determined user.
+//
+// Requests rather than dollars, on purpose. "25 questions a day" is something
+// a learner can understand from a UI string; "$0.03 of inference" is not. With
+// MAX_TOKENS capping each answer, requests are a good enough proxy for spend —
+// the worst case is bounded at cap × (max input + max output).
+export const DAILY_CAP = 25;
+
+// Decide whether a request is within today's budget.
+//
+// `usedToday` is the count AFTER this request has been recorded, because the
+// increment is atomic in Postgres (bump_ask_usage returns the new count) — a
+// read-then-write from the Edge Function would race two concurrent questions
+// into a free extra request every time.
+//
+// That ordering means the cap check is "did recording this push me over?",
+// which is why the comparison is `>` and not `>=`.
+export function checkDailyCap(usedToday, cap = DAILY_CAP) {
+  const used = Number.isFinite(usedToday) ? usedToday : 0;
+  return {
+    allowed: used <= cap,
+    used,
+    cap,
+    remaining: Math.max(0, cap - used),
+  };
+}
+
+// When the budget refills, as an ISO string — UTC midnight, matching the
+// usage_date column. The UI can say "resets at ..." instead of leaving someone
+// to guess, which is the difference between a limit and a wall.
+export function dailyCapResetsAt(now = new Date()) {
+  const next = new Date(now);
+  next.setUTCHours(24, 0, 0, 0);
+  return next.toISOString();
+}

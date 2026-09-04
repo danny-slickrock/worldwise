@@ -15,7 +15,15 @@
 // parsing). This file wires IO to them and owns nothing else.
 import Anthropic from "npm:@anthropic-ai/sdk@0.71.0";
 import { createClient } from "jsr:@supabase/supabase-js@2";
-import { checkRateLimit, validateQuestion, RATE_LIMIT } from "../../../src/game/askLimits.js";
+import {
+  checkRateLimit,
+  validateQuestion,
+  RATE_LIMIT,
+  checkDailyCap,
+  dailyCapResetsAt,
+  DAILY_CAP,
+} from "../../../src/game/askLimits.js";
+import { screenQuestion } from "../../../src/game/askGuardrails.js";
 import { rerankByInterests } from "../../../src/game/ragRanking.js";
 import {
   TOP_K,
@@ -45,9 +53,16 @@ const MAX_TOKENS = 700;
 const EMBEDDING_MODEL = "gte-small";
 
 // Rate limiting is per-isolate and in-memory. Honest about what that buys: it
-// stops one client hammering one worker, not a distributed abuser. The durable
-// per-user daily cap is step 4, and needs a table.
+// stops one client hammering one worker, not a distributed abuser. The real
+// cost ceiling is the durable per-user daily cap (public.ask_usage) below.
 const rateBuckets = new Map<string, number[]>();
+
+// Sign-in is required, and this is a cost decision rather than a product one.
+// The daily cap is per-user; an anonymous caller has no user to cap, so leaving
+// the endpoint open would mean the ceiling this milestone exists to build
+// simply does not apply to the cheapest way to call it. Flip to false only
+// alongside some other durable anonymous budget.
+const REQUIRE_AUTH = true;
 
 Deno.serve(async (req) => {
   if (req.method !== "POST") return json({ error: "POST only" }, 405);
@@ -70,6 +85,24 @@ Deno.serve(async (req) => {
   const invalid = validateQuestion(body.question);
   if (invalid) return json({ error: `question ${invalid}` }, 400);
   const question = String(body.question).trim();
+
+  // Safety screen before anything costs money. Narrow by design — the retrieval
+  // floor does the heavy lifting for off-topic, and geography is legitimately
+  // full of war and borders, so this only catches requests for harmful
+  // instructions. See game/askGuardrails.js.
+  const screen = screenQuestion(question);
+  if (!screen.allowed) {
+    console.log(`[worldwise:ask] refused category=${screen.category}`);
+    return json({
+      answer: screen.response,
+      sources: [],
+      citedRefs: [],
+      status: "refused",
+      grounded: true,
+      model: null,
+      refusalCategory: screen.category,
+    });
+  }
   const country = typeof body.country === "string" ? body.country.toLowerCase() : null;
 
   // Identify the caller. The user's own JWT, not a client-supplied id — a
@@ -89,6 +122,13 @@ Deno.serve(async (req) => {
   // Anonymous callers share a bucket keyed by IP. Coarse, and deliberately so:
   // a signed-out abuser should be throttled even if that occasionally throttles
   // a shared network too.
+  if (REQUIRE_AUTH && !userId) {
+    return json(
+      { error: "sign in to ask questions", reason: "auth-required" },
+      401,
+    );
+  }
+
   const rateKey =
     userId ?? `anon:${req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown"}`;
   const gate = checkRateLimit(rateBuckets.get(rateKey) ?? [], Date.now(), RATE_LIMIT);
@@ -110,6 +150,38 @@ Deno.serve(async (req) => {
       .select("interest_slug")
       .returns<{ interest_slug: string }[]>();
     interests = (data ?? []).map((r) => r.interest_slug);
+  }
+
+  // Reserve today's slot BEFORE spending anything. bump_ask_usage is atomic and
+  // returns the post-increment count, which is what makes this safe under
+  // concurrency — a read-then-write here would let two simultaneous questions
+  // both see "24 used" and both proceed. The cost of that ordering is that a
+  // failed generation still burns a slot; an unfair extra question is a smaller
+  // harm than blowing through the ceiling.
+  const admin = createClient(supabaseUrl, Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!);
+  const { data: usedToday, error: usageError } = await admin.rpc("bump_ask_usage", {
+    p_user_id: userId,
+  });
+  if (usageError) {
+    // Fail closed. If usage can't be recorded, the ceiling isn't enforceable,
+    // and an unmetered endpoint is worse than a briefly unavailable one.
+    console.error("[worldwise:ask] usage accounting failed", usageError);
+    return json({ error: "temporarily unavailable" }, 503);
+  }
+
+  const cap = checkDailyCap(usedToday as number, DAILY_CAP);
+  if (!cap.allowed) {
+    console.log(`[worldwise:ask] daily cap hit used=${cap.used}/${cap.cap}`);
+    return json(
+      {
+        error: "daily question limit reached",
+        reason: "daily-cap",
+        used: cap.used,
+        cap: cap.cap,
+        resetsAt: dailyCapResetsAt(),
+      },
+      429,
+    );
   }
 
   const started = Date.now();
@@ -218,6 +290,18 @@ Deno.serve(async (req) => {
       `status=${status} ms=${Date.now() - started}`,
   );
 
+  // Attribute the spend. Best-effort: the slot is already reserved, so a failed
+  // attribution costs accuracy in step 7's cost reporting, not the ceiling.
+  const u = usage as { input_tokens?: number; output_tokens?: number } | null;
+  if (u) {
+    const { error } = await admin.rpc("record_ask_tokens", {
+      p_user_id: userId,
+      p_input_tokens: u.input_tokens ?? 0,
+      p_output_tokens: u.output_tokens ?? 0,
+    });
+    if (error) console.error("[worldwise:ask] token attribution failed", error);
+  }
+
   return json({
     answer,
     sources: formatSources(ranked),
@@ -226,6 +310,9 @@ Deno.serve(async (req) => {
     grounded,
     model: MODEL,
     usage,
+    // Surfaced so a UI can say "3 questions left today" rather than presenting
+    // the cap as an unexplained wall the first time someone meets it.
+    dailyRemaining: cap.remaining,
     elapsedMs: Date.now() - started,
   });
 });
