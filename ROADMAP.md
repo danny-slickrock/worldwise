@@ -826,9 +826,35 @@ teaching *how the world works*, not just *where things are*.
        secret, because projects mid-migration between key formats would otherwise fail the
        comparison with the correct key in hand. The check matters: the function talks to Postgres
        with the service key, so any caller past the door triggers a full run.
-    3. ☐ **Retrieval + generation (server-side).** A **Supabase Edge Function** that: vector-searches
-       the top-k relevant chunks, builds a grounded prompt, calls the **LLM API**, and returns a
-       cited answer. **API keys live only in the Edge Function**, never in the app. Rate-limit + log.
+    3. ✅ **Retrieval + generation (server-side)** — `supabase/functions/ask/`, **built and verified
+       locally up to the Claude call; awaiting `ANTHROPIC_API_KEY` in Edge secrets to test live.**
+       Flow: validate → rate-limit → embed the question (gte-small, the same model that embedded the
+       corpus — mixing models would silently destroy retrieval) → `match_country_chunks` →
+       interest re-rank → grounded prompt → Claude → cited answer + the exact chunks it was given.
+       Model is `claude-haiku-4-5` in one config constant (`MODEL`), `max_tokens` 700 as a deliberate
+       cost ceiling. Pure/IO split held: `game/askLimits.js` (validation, sliding-window rate limit),
+       `game/ragRanking.js` (interest re-rank — pulls step 6's ranking forward), and
+       `game/ragPrompt.js` (the grounding contract, source formatting, citation parsing) are pure and
+       tested; the function only wires IO to them.
+       **The similarity floor is measured, and the intuitive guess was badly wrong.** gte-small
+       compresses cosine similarity into a high narrow band, so the initial 0.25 floor admitted
+       everything — a sourdough-recipe question sailed through to the model. Measured against the
+       local corpus: on-topic questions score 0.908–0.927 ("capital of France" 0.927, "borders
+       Brazil" 0.924, "Japanese food culture" 0.830) while off-topic and adversarial ones score
+       0.679–0.793 ("2018 World Cup" 0.793, "ignore previous instructions" 0.723, "quantum
+       chromodynamics" 0.716, "poem about my cat" 0.679). The floor is now **0.80**, in the gap.
+       Re-validate against the full production corpus before leaning on it as step 4's off-topic
+       guardrail — it was measured with five countries ingested.
+       Below the floor the function returns a canned "nothing about that yet" answer **without
+       calling the model at all** — cheaper and more honest than asking Claude to decline over an
+       empty context (verified: 134ms, `model: null`).
+       Interests are read server-side from the caller's own JWT under RLS, never taken from the
+       request body — a client that could name its own user could read someone else's interests and
+       evade the rate limit. Rate limiting is per-isolate and in-memory, and honest about it: it
+       stops one client hammering one worker, not a distributed abuser (verified: 6 through, then
+       429 with `Retry-After`). The durable per-user daily cap is step 4 and needs a table.
+       Logging records `retrieved` vs `cited` vs `grounded` — the cheapest signal that retrieval is
+       drifting or that the model answered from memory, available before step 7's eval set exists.
     4. ☐ **Guardrails.** Answer only from retrieved context; refuse/deflect off-topic or unsafe asks;
        always show sources; age-appropriate, non-ideological framing (matches the brand). Add an
        abuse/rate limit and a per-user cap to control cost.

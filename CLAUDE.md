@@ -104,6 +104,11 @@ src/
                            #   two contexts (step 7)
   game/contentChunks.js    # PURE M2.9 step 2: country row → retrievable chunks. Every chunk names
                            #   its country; indexes are positional (the upsert key)
+  game/ragRanking.js       # PURE M2.9 step 3: interest-aware re-rank. Re-rank never filter; zero
+                           #   interests degrades to the general ordering
+  game/ragPrompt.js        # PURE M2.9 step 3: the grounding contract, source formatting, citation
+                           #   parsing, and the measured similarity floor
+  game/askLimits.js        # PURE M2.9 step 3: question validation + sliding-window rate limit
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
@@ -147,7 +152,8 @@ src/
                            #   step 3 adds locked/unlocked state via achievementPolicy.js
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + embeds country
-                           #   content with the built-in gte-small model
+                           #   content with the built-in gte-small model. ask: retrieval + grounded
+                           #   generation (Claude), the only place ANTHROPIC_API_KEY exists
 scripts/ingest-embeddings.mjs # Drives ingest-embeddings to completion (npm run ingest:embeddings)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
@@ -386,6 +392,12 @@ Phase 2 is milestone-based, not day-by-day — take one scoped, reviewable chunk
   stays retrievable and citable).
 - **gte-small truncates at 512 tokens silently**, so chunks are capped well under it. An over-long
   chunk embeds only its head while its citation claims the whole passage.
+- **gte-small's cosine similarities live in a high, narrow band — never guess a threshold.** An
+  intuitive-looking floor of 0.25 admits every question ever asked. Measured, on-topic sits at
+  0.83–0.93 and off-topic/adversarial at 0.68–0.79, so the floor is 0.80. If the corpus changes
+  materially, re-measure rather than reasoning about what "low similarity" ought to mean.
+- **The model is named in exactly one constant** (`MODEL` in `supabase/functions/ask/index.ts`,
+  currently `claude-haiku-4-5` — note: no date suffix). Swapping in Sonnet is a one-line change.
 - **The Edge runtime's binding constraint is isolate CPU, not wall clock.** Embedding in-process
   trips `WORKER_LIMIT` ("CPU time hard limit reached") long before any timeout — ~10 chunks per
   invocation locally. Anything that embeds in bulk must batch and resume, not just run faster.

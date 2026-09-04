@@ -157,6 +157,16 @@ import {
   chunkCountry,
   staleChunkIndexes,
 } from "../src/game/contentChunks";
+import { rerankByInterests, matchesInterests, INTEREST_BOOST } from "../src/game/ragRanking";
+import {
+  systemPrompt,
+  buildUserMessage,
+  formatSources,
+  citedRefs,
+  isUngrounded,
+  NO_CONTEXT_ANSWER,
+} from "../src/game/ragPrompt";
+import { checkRateLimit, validateQuestion, RATE_LIMIT } from "../src/game/askLimits";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -2239,6 +2249,130 @@ check(
   JSON.stringify(staleChunkIndexes([2, 0, 1, 2], 1)) === JSON.stringify([1, 2]),
   "duplicates and disorder are handled"
 );
+
+
+console.log("RAG ranking, prompt + limits (M2.9 step 3)");
+
+const ragChunks = [
+  { country_code: "br", source: "summary", content: "Brazil is a country in Americas.", similarity: 0.80 },
+  { country_code: "br", source: "geography", content: "Brazil borders Argentina.", similarity: 0.78 },
+  { country_code: "br", source: "facts.trade", content: "Brazil — Trade: soybeans.", similarity: 0.76 },
+  { country_code: "br", source: "facts.climate", content: "Brazil — Climate: tropical.", similarity: 0.74 },
+];
+
+// Degrade to general — the skip path is the default, not an edge case.
+const unweighted = rerankByInterests(ragChunks, []);
+check(
+  unweighted.map((c) => c.source).join() === ragChunks.map((c) => c.source).join(),
+  "no interests leaves retrieval order untouched"
+);
+check(unweighted.every((c) => c.interestMatched === false), "...and marks nothing as matched");
+
+// Re-rank, never filter.
+const weighted = rerankByInterests(ragChunks, ["economics"]);
+check(weighted.length === ragChunks.length, "re-ranking never drops a chunk");
+check(weighted[0].source === "facts.trade", "an economics pick lifts the trade chunk to the top");
+check(
+  weighted.some((c) => c.source === "facts.climate"),
+  "...and the unmatched chunks are still reachable, not filtered out"
+);
+// A climate pick lifts the climate chunk past the chunks it was behind, but
+// not past a stronger match it merely ties — which is the nudge-not-drag
+// property, stated as a rank change rather than a first-place claim.
+const climateRanked = rerankByInterests(ragChunks, ["climate"]).map((c) => c.source);
+check(
+  climateRanked.indexOf("facts.climate") < climateRanked.indexOf("geography"),
+  "a climate pick lifts the climate chunk above the unmatched ones it trailed"
+);
+check(
+  climateRanked.indexOf("facts.climate") < climateRanked.indexOf("facts.trade"),
+  "...ahead of the other fact chunks too"
+);
+check(
+  climateRanked[0] === "summary",
+  "...while a tie still defers to the stronger retrieval match"
+);
+
+// The boost breaks ties; it must not override a clearly better match.
+const farBehind = [
+  { source: "summary", content: "x", similarity: 0.90 },
+  { source: "facts.trade", content: "y", similarity: 0.40 },
+];
+check(
+  rerankByInterests(farBehind, ["economics"])[0].source === "summary",
+  "the boost nudges, it does not drag an irrelevant chunk over a strong match"
+);
+check(INTEREST_BOOST < 0.2, "the boost stays small enough for that to hold");
+
+check(matchesInterests("facts.trade", ["economics"]), "trade matches economics");
+check(!matchesInterests("facts.trade", ["wildlife"]), "trade does not match wildlife");
+check(!matchesInterests("summary", ["economics"]), "a generic source matches nothing");
+check(
+  !matchesInterests("facts.trade", ["not-a-real-slug"]),
+  "an unknown slug from an old client degrades to no boost rather than erroring"
+);
+
+// Determinism — the eval set in step 6 depends on it.
+check(
+  JSON.stringify(rerankByInterests(ragChunks, ["economics"]).map((c) => c.source)) ===
+    JSON.stringify(rerankByInterests(ragChunks, ["economics"]).map((c) => c.source)),
+  "re-ranking is deterministic for identical inputs"
+);
+
+// The grounding contract.
+const sys = systemPrompt();
+check(sys.includes("ONLY from the numbered sources"), "the system prompt states the grounding rule");
+check(sys.toLowerCase().includes("cite"), "...and requires citations");
+check(sys.toLowerCase().includes("never fill a gap from memory"), "...and forbids filling gaps from memory");
+
+const userMsg = buildUserMessage({ question: "What does Brazil export?", chunks: ragChunks, place: "Brazil" });
+check(userMsg.includes("[1]") && userMsg.includes("[4]"), "sources are numbered from 1");
+check(userMsg.includes("What does Brazil export?"), "the question is included");
+check(
+  userMsg.indexOf("SOURCES:") < userMsg.indexOf("QUESTION:"),
+  "stable framing precedes the volatile question — the shape prompt caching needs"
+);
+
+const sources = formatSources(ragChunks);
+check(sources[0].ref === 1, "returned sources are one-indexed to match the citations");
+check(
+  sources.every((s) => typeof s.content === "string" && s.content.length > 0),
+  "every returned source carries its text — a citation you can't read isn't evidence"
+);
+
+check(JSON.stringify(citedRefs("Brazil exports soybeans [3] and coffee [1].")) === JSON.stringify([1, 3]),
+  "cited refs are extracted and sorted");
+check(citedRefs("no citations here").length === 0, "an uncited answer yields no refs");
+check(JSON.stringify(citedRefs("see [2][2][2]")) === JSON.stringify([2]), "repeated citations dedupe");
+
+check(
+  isUngrounded("Brazil is big.", 4) === true,
+  "an answer citing nothing despite having sources is flagged ungrounded"
+);
+check(isUngrounded("Brazil is big [1].", 4) === false, "a cited answer is not flagged");
+check(isUngrounded("anything", 0) === false, "with no sources there is nothing to be ungrounded against");
+check(NO_CONTEXT_ANSWER.length > 0, "there is a canned answer for when retrieval finds nothing");
+
+// Rate limiting.
+check(checkRateLimit([], 1000).allowed === true, "a first request is allowed");
+const full = Array.from({ length: RATE_LIMIT.max }, (_, i) => 1000 + i);
+check(checkRateLimit(full, 1100).allowed === false, "a full window is rejected");
+check(checkRateLimit(full, 1100).retryAfterMs > 0, "...with a retry hint");
+check(
+  checkRateLimit(full, 1000 + RATE_LIMIT.windowMs + 1).allowed === true,
+  "the window slides — old requests stop counting"
+);
+check(
+  checkRateLimit([1, 2, 3], 1_000_000).kept.length === 1,
+  "expired timestamps are pruned, so storage can't grow forever"
+);
+check(checkRateLimit(null, 1000).allowed === true, "a missing history is treated as no requests");
+
+check(validateQuestion("") === "empty", "an empty question is rejected before any API call");
+check(validateQuestion("  ") === "empty", "...whitespace too");
+check(validateQuestion("hi") === "too-short", "a too-short question is rejected");
+check(validateQuestion("x".repeat(601)) === "too-long", "an over-long question is rejected");
+check(validateQuestion("What does Brazil export?") === null, "a real question passes");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on
