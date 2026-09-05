@@ -1,0 +1,87 @@
+{
+  "iso": "ml",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.415Z",
+  "structured": {
+    "code": "ml",
+    "name": "Mali",
+    "capital": "Bamako",
+    "continent": "Africa",
+    "areaKm2": 1240192,
+    "population": 22395489,
+    "officialLanguages": [
+      "Bambara",
+      "Fula",
+      "Senufo",
+      "Bozo",
+      "Maninka",
+      "Minyanka",
+      "Soninke",
+      "Kassonke",
+      "Hassaniya Arabic",
+      "Bobo",
+      "Songhay",
+      "Dogon",
+      "Tamasheq"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Burkina Faso",
+      "Cote d'Ivoire",
+      "Guinea",
+      "Mauritania",
+      "Niger"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "bf",
+      "ci",
+      "gn",
+      "mr",
+      "ne"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, phosphates, kaolin, salt, limestone, uranium, gypsum, granite, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "interior Western Africa, southwest of Algeria, north of Guinea, Cote d'Ivoire, and Burkina Faso, west of Niger || mostly flat to rolling northern plains covered by sand; savanna in south, rugged hills in northeast || landlocked; divided into three natural zones: the southern, cultivated Sudanese; the central, semiarid Sahelian; and the northern, arid Saharan || Resources: gold, phosphates, kaolin, salt, limestone, uranium, gypsum, granite, hydropower || Exports: gold, cotton, oil seeds, fertilizers, gum resins (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling northern plains covered by sand; savanna in south, rugged hills in northeast || interior Western Africa, southwest of Algeria, north of Guinea, Cote d'Ivoire, and Burkina Faso, west of Niger"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "subtropical to arid; hot and dry (February to June); rainy, humid, and mild (June to November); cool and dry (November to February) || hot, dust-laden harmattan haze common during dry seasons; recurring droughts; occasional Niger River flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Saharan economy; recession due to COVID-19 and political instability; extreme poverty; environmentally fragile; high public debt; agricultural and gold exporter; terrorism and warfare are common || Exports: gold, cotton, oil seeds, fertilizers, gum resins (2023) || Industries: food processing; construction; phosphate and gold mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Bambara (official), French 17.2%, Peuhl/Foulfoulbe/Fulani 9.4%, Dogon 7.2%, Maraka/Soninke 6.4%, Malinke 5.6%, Sonrhai/Djerma 5.6%, Minianka 4.3%, Tamacheq 3.5%, Senoufo 2.6%, Bobo 2.1%, other 6.3%, unspecified 0.7% (2009 est.) || Muslim 93.9%, Christian 2.8%, animist 0.7%, none 2.5% (2018 est.) || Bambara 33.3%, Fulani (Peuhl) 13.3%, Sarakole/Soninke/Marka 9.8%, Senufo/Manianka 9.6%, Malinke 8.8%, Dogon 8.7%, Sonrai 5.9%, Bobo 2.1%, Tuareg/Bella 1.7%, other Malian 6%, from members of Economic Community of West Africa 0.4%, other 0.3% (2018 est.)"
+    }
+  }
+}

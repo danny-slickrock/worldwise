@@ -1,0 +1,86 @@
+{
+  "iso": "za",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.420Z",
+  "structured": {
+    "code": "za",
+    "name": "South Africa",
+    "capital": "Bloemfontein",
+    "continent": "Africa",
+    "areaKm2": 1221037,
+    "population": 62027503,
+    "officialLanguages": [
+      "English",
+      "Zulu",
+      "Xhosa",
+      "Afrikaans",
+      "Venda",
+      "Northern Sotho",
+      "Swazi",
+      "Tswana",
+      "Tsonga",
+      "Sesotho",
+      "Southern Ndebele",
+      "South African Sign Language"
+    ],
+    "currencies": [
+      "rand"
+    ],
+    "landBorderNames": [
+      "Botswana",
+      "Lesotho",
+      "Mozambique",
+      "Namibia",
+      "Eswatini",
+      "Zimbabwe"
+    ],
+    "landBorderCodes": [
+      "bw",
+      "ls",
+      "mz",
+      "na",
+      "sz",
+      "zw"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, chromium, antimony, coal, iron ore, manganese, nickel, phosphates, tin, rare earth elements, uranium, gem diamonds, platinum, copper, vanadium, salt, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, at the southern tip of the continent of Africa || vast interior plateau rimmed by rugged hills and narrow coastal plain || South Africa completely surrounds Lesotho and almost completely surrounds Eswatini sometimes mistaken for the southernmost point of Africa, the Cape of Good Hope is more accurately described as the southwestern-most point of the African continent; Cape Agulhas, the meeting point of the Atlantic and Indian Oceans, is the southernmost point of the African continent || Resources: gold, chromium, antimony, coal, iron ore, manganese, nickel, phosphates, tin, rare earth elements, uranium, gem diamonds, platinum, copper, vanadium, salt, natural gas || Exports: gold, platinum, coal, cars, iron ore (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "vast interior plateau rimmed by rugged hills and narrow coastal plain || Southern Africa, at the southern tip of the continent of Africa"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly semiarid; subtropical along east coast; sunny days, cool nights || prolonged droughts volcanism: the volcano that formed Marion Island in the Prince Edward Islands is South Africa's only active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income, largest southern African economy; Government of National Unity facing slow growth, fiscal gaps, and structural challenges; high income inequality, unemployment, and poverty; reforms to address electricity generation, transport, and logistics; leading producer and exporter of critical minerals || Exports: gold, platinum, coal, cars, iron ore (2023) || Industries: mining (world's largest producer of platinum, gold, chromium), automobile assembly, metalworking, machinery, textiles, iron and steel, chemicals, fertilizer, foodstuffs, commercial ship repair"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 86%, ancestral, tribal, animist, or other traditional African religions 5.4%, Muslim 1.9%, other 1.5%, nothing in particular 5.2% (2015 est.) || Black African 80.9%, Colored 8.8%, White 7.8%, Indian/Asian 2.6% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "iso": "cn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.393Z",
+  "structured": {
+    "code": "cn",
+    "name": "People's Republic of China",
+    "capital": "Beijing",
+    "continent": "Asia",
+    "areaKm2": 9596961,
+    "population": 1404890000,
+    "officialLanguages": [
+      "Putonghua"
+    ],
+    "currencies": [
+      "renminbi"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "Bhutan",
+      "Burma",
+      "India",
+      "Kazakhstan",
+      "North Korea",
+      "Kyrgyzstan",
+      "Laos",
+      "Mongolia",
+      "Nepal",
+      "Pakistan",
+      "Russia",
+      "Tajikistan",
+      "Vietnam"
+    ],
+    "landBorderCodes": [
+      "af",
+      "bt",
+      "mm",
+      "in",
+      "kz",
+      "kp",
+      "kg",
+      "la",
+      "mn",
+      "np",
+      "pk",
+      "ru",
+      "tj",
+      "vn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, iron ore, helium, petroleum, natural gas, arsenic, bismuth, cobalt, cadmium, ferrosilicon, gallium, germanium, hafnium, indium, lithium, mercury, tantalum, tellurium, tin, titanium, tungsten, antimony, manganese, magnesium, molybdenum, selenium, strontium, vanadium, magnetite, aluminum, lead, zinc, rare earth elements, uranium, hydropower potential (world's largest), arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Asia, bordering the East China Sea, Korea Bay, Yellow Sea, and South China Sea, between North Korea and Vietnam || mostly mountains, high plateaus, deserts in west; plains, deltas, and hills in east || world's fourth largest country (after Russia, Canada, and the US) and largest country situated entirely in Asia; Mount Everest, on the border with Nepal, is the world's tallest peak above sea level the largest cave chamber in the world is the Miao Room, in the Gebihe cave system at China's Ziyun Getu He Chuandong National Park, which encloses about 10.78 million cu m (380.7 million cu ft); the world's largest sinkhole is the Xiaoxhai Tiankeng sinkhole in Chongqing Municipality, which is 660 m deep, with a volume of 130 million cu m || Resources: coal, iron ore, helium, petroleum, natural gas, arsenic, bismuth, cobalt, cadmium, ferrosilicon, gallium, germanium, hafnium, indium, lithium, mercury, tantalum, tellurium, tin, titanium, tungsten, antimony, manganese, magnesium, molybdenum, selenium, strontium, vanadium, magnetite, aluminum, lead, zinc, rare earth elements, uranium, hydropower potential (world's largest), arable land || Exports: broadcasting equipment, computers, integrated circuits, garments, machine parts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains, high plateaus, deserts in west; plains, deltas, and hills in east || Eastern Asia, bordering the East China Sea, Korea Bay, Yellow Sea, and South China Sea, between North Korea and Vietnam"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "extremely diverse; tropical in south to subarctic in north || frequent typhoons (about five per year along southern and eastern coasts); damaging floods; tsunamis; earthquakes; droughts; land subsidence volcanism: China contains some historically active volcanoes including Changbaishan (also known as Baitoushan, Baegdu, or P'aektu-san), Hainan Dao, and Kunlun although most have been relatively inactive in recent centuries"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "world’s second-largest economy by nominal GDP; global leader in exports and manufacturing; historically strong growth slowing; challenges of aging workforce, weak productivity, rising youth unemployment, struggling property sector, and public debt; state-sponsored economic controls and infrastructure investments || Exports: broadcasting equipment, computers, integrated circuits, garments, machine parts (2023) || Industries: world leader in gross value of industrial output; mining and ore processing, iron, steel, aluminum, and other metals, coal; machine building; armaments; textiles and apparel; petroleum; cement; chemicals; fertilizer; consumer products (including footwear, toys, and electronics); food processing; transportation equipment, including automobiles, railcars and locomotives, ships, aircraft; telecommunications equipment, commercial space launch vehicles, satellites"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "folk religion 21.9%, Buddhist 18.2%, Christian 5.1%, Muslim 1.8%, Hindu &lt; 0.1%, Jewish &lt; 0.1%, other 0.7% (includes Daoist (Taoist)), unaffiliated 52.1% (2021 est.) || Han Chinese 91.1%, ethnic minorities 8.9% (includes Zhang, Hui, Manchu, Uighur, Miao, Yi, Tujia, Tibetan, Mongol, Dong, Buyei, Yao, Bai, Korean, Hani, Li, Kazakh, Dai, and other nationalities) (2021 est.)"
+    }
+  }
+}

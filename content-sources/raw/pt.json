@@ -1,0 +1,175 @@
+{
+  "iso": "pt",
+  "fetchedAt": "2026-09-04T23:56:40.867Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/po.json"
+    }
+  },
+  "wikidata": {
+    "name": "Portugal",
+    "gec": "PO",
+    "capital": "Lisbon",
+    "areaKm2": 92225,
+    "population": 10347892,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "es"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/po.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>A global maritime power during the 15th and 16th centuries, Portugal lost much of its wealth and status with the destruction of Lisbon in a 1755 earthquake, occupation during the Napoleonic Wars, and the independence of Brazil, its wealthiest colony, in 1822. A revolution deposed the monarchy in 1910, and for most of the next six decades, repressive governments ran the country. In 1974, a left-wing military coup ushered in broad democratic reforms. The following year, Portugal granted independence to all its African colonies. Portugal is a founding member of NATO and entered the EC (now the EU) in 1986.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Europe, bordering the North Atlantic Ocean, west of Spain"
+      },
+      "Area": {
+        "total ": {
+          "text": "92,090 sq km"
+        },
+        "land": {
+          "text": "91,470 sq km"
+        },
+        "water": {
+          "text": "620 sq km"
+        },
+        "note": "<strong>note:</strong> includes Azores and Madeira Islands"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,224 km"
+        },
+        "border countries": {
+          "text": "Spain 1,224 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,793 km"
+      },
+      "Climate": {
+        "text": "maritime temperate; cool and rainy in north, warmer and drier in south"
+      },
+      "Terrain": {
+        "text": "the west-flowing Tagus River divides the country: the north is mountainous toward the interior, while the south is characterized by rolling plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Ponta do Pico (Pico or Pico Alto) on Ilha do Pico in the Azores 2,351 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "372 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, forests (cork), iron ore, copper, zinc, tin, tungsten, silver, gold, uranium, marble, clay, gypsum, salt, arable land, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "43.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 10.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 9.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 23.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "36.6% (2023 est.)"
+        },
+        "other": {
+          "text": "5.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "Azores subject to severe earthquakes <br><br><strong>volcanism:</strong> limited volcanic activity in the Azores Islands; Fayal or Faial (1,043 m) last erupted in 1958; most volcanoes have not erupted in centuries; historically active volcanoes include Agua de Pau, Furnas, Pico, Picos Volcanic System, San Jorge, Sete Cidades, and Terceira"
+      },
+      "Geography - note": {
+        "text": "Azores and Madeira Islands occupy strategic locations along western sea approaches to Strait of Gibraltar; they are two of the four North Atlantic archipelagos that make up Macaronesia; the others are the Canary Islands (Spain) and Cabo Verde"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,194,277 (2025 est.)"
+        },
+        "male": {
+          "text": "4,831,166"
+        },
+        "female": {
+          "text": "5,363,111"
+        }
+      },
+      "Languages": {
+        "text": "Portuguese (official), Mirandese (official, but locally used)"
+      },
+      "Religions": {
+        "text": "Catholic 68.1%, not applicable 12.9%, no religion 12.0%, no response 2.2%, Protestant 1.8%, other 1.0%; less than 1%: other Christians, Orthodox, Muslim (2021 est.)",
+        "note": "<strong>note:</strong> data represent population 15 years of age and older"
+      },
+      "Ethnic groups": {
+        "text": "Portuguese 95%; citizens from Portugal&rsquo;s former colonies in Africa, Asia (Han Chinese), and South America (Brazilian) and other foreign born 5%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "67.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.44% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "concentrations are primarily along or near the Atlantic coast; both Lisbon and the second largest city, Porto, are coastal cities"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone economy; strong services sector led by tourism and banking; tight labor market; growth driven by private consumption, trade surplus, and public investment from EU funds; declining public debt</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, tomatoes, olives, grapes, maize, pork, potatoes, chicken, apples, oranges (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, clothing, footwear, wood and cork, paper and pulp, chemicals, fuels and lubricants, automobiles and auto parts, base metals, minerals, porcelain and ceramics, glassware, technology, telecommunications; dairy products, wine, other foodstuffs; ship construction and refurbishment; tourism, plastics, financial services, optics"
+      },
+      "Exports - commodities": {
+        "text": "cars, garments, vehicle parts/accessories, unpackaged medicine, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Spain 21%, France 11%, Germany 10%, USA 8%, UK 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, crude petroleum, vehicle parts/accessories, refined petroleum, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "maritime temperate; cool and rainy in north, warmer and drier in south"
+      }
+    }
+  }
+}

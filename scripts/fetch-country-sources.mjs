@@ -89,7 +89,26 @@ async function factbookIndex() {
 
 // Structured facts. P901 (FIPS 10-4 / GEC) is fetched alongside because it is
 // how an ISO code is resolved to a Factbook file.
+// Batched: one SPARQL query per 40 countries. A single 196-country query times
+// out against the public endpoint often enough to be unreliable, and a partial
+// failure there would cost the whole run.
 async function wikidata(isoCodes) {
+  const BATCH = 40;
+  if (isoCodes.length > BATCH) {
+    const merged = {};
+    for (let i = 0; i < isoCodes.length; i += BATCH) {
+      const slice = isoCodes.slice(i, i + BATCH);
+      process.stdout.write(`\r  wikidata ${Math.min(i + BATCH, isoCodes.length)}/${isoCodes.length}`);
+      Object.assign(merged, await wikidataBatch(slice));
+      await new Promise((r) => setTimeout(r, 500));
+    }
+    process.stdout.write("\n");
+    return merged;
+  }
+  return wikidataBatch(isoCodes);
+}
+
+async function wikidataBatch(isoCodes) {
   const values = isoCodes.map((c) => `"${c.toUpperCase()}"`).join(" ");
   const query = `
 SELECT ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel
@@ -180,7 +199,10 @@ if (!todo.length) {
 console.log(`Fetching ${todo.length} of ${codes.length} requested (rest cached)...`);
 const wd = await wikidata(todo);
 
+let done = 0;
 for (const iso of todo) {
+  done += 1;
+  if (todo.length > 12 && done % 20 === 0) console.log(`  ...${done}/${todo.length}`);
   const w = wd[iso];
   if (!w) {
     console.error(`  ${iso}: no Wikidata match — skipped`);

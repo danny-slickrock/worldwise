@@ -1,0 +1,183 @@
+{
+  "iso": "np",
+  "fetchedAt": "2026-09-04T23:56:49.794Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-asia/np.json"
+    }
+  },
+  "wikidata": {
+    "name": "Nepal",
+    "gec": "NP",
+    "capital": "Kathmandu",
+    "areaKm2": 147181.254346,
+    "population": 29164578,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Nepali"
+    ],
+    "currencies": [
+      "Nepalese rupee"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "in"
+    ]
+  },
+  "factbook": {
+    "_path": "south-asia/np.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>During the late 18th and early 19th centuries, the principality of Gorkha united many of the other principalities and states of the sub-Himalayan region into a Nepali Kingdom. Nepal retained its independence after the Anglo-Nepalese War of 1814-16, and the subsequent peace treaty laid the foundations for two centuries of amicable relations between Britain and Nepal. In 1951, the Nepali monarch ended the century-old system of hereditary rule and instituted a cabinet system that brought political parties into the government. That arrangement lasted until 1960, when political parties were again banned, but it was reinstated in 1990 with the establishment of a multiparty democracy within the framework of a constitutional monarchy.</p> <p>A Maoist-led insurgency broke out in 1996. During the ensuing 10-year civil war between Maoist and government forces, the monarchy dissolved the cabinet and parliament. In 2001, Crown Prince DIPENDRA first massacred the royal family and then shot himself. His uncle GYANENDRA became king, and the monarchy reassumed absolute power the next year. A peace accord in 2006 led to the promulgation of an interim constitution in 2007. After a nationwide Constituent Assembly (CA) election in 2008, the newly formed CA declared Nepal a federal democratic republic, abolished the monarchy, and elected the country's first president. <br><br>When the CA failed to draft a Supreme Court-mandated constitution, then-Prime Minister Baburam BHATTARAI dissolved the CA. An interim government held elections in 2013, in which the Nepali Congress (NC) won the largest share of seats. In 2014, NC formed a coalition government with the second-place Communist Party of Nepal-Unified Marxist-Leninist (UML). Nepal's new constitution came into effect in 2015, at which point the CA became the Parliament and Khagda Prasad Sharma OLI the first post-constitution prime minister (2015-16). He resigned ahead of a no-confidence motion, and Parliament elected Communist Party of Nepal-Maoist (CPN-M) leader Pushpa Kamal DAHAL as prime minister. <br><br>The parties headed by OLI and DAHAL ran in coalition and swept the parliamentary elections in 2017, and OLI was sworn in as prime minister in 2018. OLI's efforts to dissolve parliament and hold elections were declared unconstitutional in 2021, and the opposition-supported NC leader Sher Bahadur DEUBA was named prime minister. The NC won a majority of seats in the parliamentary elections in 2022, but DAHAL then broke with the ruling coalition and partnered with OLI and the CPN-UML to become prime minister. DAHAL's first cabinet lasted about two months, until OLI withdrew his support over disagreements about ministerial assignments. In early 2023, DAHAL survived a vote of confidence and formed a coalition with the NC to remain prime minister.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Asia, between China and India"
+      },
+      "Area": {
+        "total ": {
+          "text": "147,181 sq km"
+        },
+        "land": {
+          "text": "143,351 sq km"
+        },
+        "water": {
+          "text": "3,830 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,159 km"
+        },
+        "border countries": {
+          "text": "China 1,389 km; India 1,770 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "varies from cool summers and severe winters in north to subtropical summers and mild winters in south"
+      },
+      "Terrain": {
+        "text": "Tarai or flat river plain of the Ganges in south; central hill region with rugged Himalayas in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Everest (highest peak in Asia and highest point on earth above sea level) 8,849 m"
+        },
+        "lowest point": {
+          "text": "Kanchan Kalan 70 m"
+        },
+        "mean elevation": {
+          "text": "2,565 m"
+        }
+      },
+      "Natural resources": {
+        "text": "quartz, water, timber, hydropower, scenic beauty, small deposits of lignite, copper, cobalt, iron ore"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "26.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 12.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 12.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "43.5% (2023 est.)"
+        },
+        "other": {
+          "text": "27.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "severe thunderstorms; flooding; landslides; drought and famine depending on the timing, intensity, and duration of the summer monsoons"
+      },
+      "Geography - note": {
+        "text": "landlocked; strategic location between China and India; contains eight of world's 10 highest peaks, including Mount Everest and Kanchenjunga -- the world's tallest and third-tallest mountains -- on the borders with China and India, respectively"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "31,334,402 (2025 est.)"
+        },
+        "male": {
+          "text": "15,352,706"
+        },
+        "female": {
+          "text": "15,981,696"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Nepali (official) 44.9%, Maithali 11.1%, Bhojpuri 6.2%, Tharu 5.9%, Tamang 4.9%, Bajjika 3.9%, Avadhi 3%, Nepalbhasha (Newari) 3%, Magar Dhut 2.8%, Doteli 1.7%, Urdu 1.4%, Yakthung/Limbu 1.2%, Gurung 1.1%, other 8.9% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>विश्व तथ्य पुस्तक,आधारभूत जानकारीको लागि अपरिहार्य स्रोत (Nepali)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> 123 languages reported as mother tongue in 2021 national census; many in government and business also speak English"
+      },
+      "Religions": {
+        "text": "Hindu 81.2%, Buddhist 8.2%, Muslim 5.1%, Kirat 3.2%, Christian 1.8%; less than 1%:&nbsp; Prakriti, Bon, Jains, Sikh (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Chhettri 16.5%, Brahman-Hill 11.3%, Magar 6.9%, Tharu 6.2%, Tamang 5.6%, Bishwokarma 5%, Musalman 4.9%, Newar 4.6%, Yadav 4.2%, Rai 2.2%, Pariyar 1.9%, Gurung 1.9%, Thakuri 1.7%, Mijar 1.6%, Teli 1.5%, Yakthung/Limbu 1.4%, Chamar/Harijan/Ram 1.4%, Koiri/Kushwaha 1.2%, other 20% (2021 est.)",
+        "note": "<strong>note:</strong> 141 caste/ethnic groups were reported in the 2021 national census"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "21.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.09% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is divided nearly equally between a concentration in the southern-most plains of the Tarai region and the central hilly region; overall density is low"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income South Asian economy; post-conflict fiscal federalism increasing stability; COVID-19 hurt trade and tourism; widening current account deficits; environmentally fragile economy from earthquakes; growing Chinese relations and investments"
+      },
+      "Agricultural products": {
+        "text": "rice, vegetables, potatoes, sugarcane, maize, wheat, bison milk, milk, mangoes/guavas, bananas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, carpets, textiles, small rice, jute, sugar, oilseed mills, cigarettes, cement and brick production"
+      },
+      "Exports - commodities": {
+        "text": "knotted carpets, garments, flat-rolled iron, synthetic fibers, palm oil (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "India 67%, USA 12%, Germany 3%, China 2%, UK 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, natural gas, garments, iron reductions, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from cool summers and severe winters in north to subtropical summers and mild winters in south"
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "iso": "md",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.383Z",
+  "structured": {
+    "code": "md",
+    "name": "Moldova",
+    "capital": "Chișinău",
+    "continent": "Europe",
+    "areaKm2": 33843.5,
+    "population": 2409207,
+    "officialLanguages": [
+      "Romanian"
+    ],
+    "currencies": [
+      "Moldovan leu"
+    ],
+    "landBorderNames": [
+      "Romania",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "ro",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "lignite, phosphorites, gypsum, limestone, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Europe, northeast of Romania || rolling steppe, gradual slope south to Black Sea || landlocked; has many types of sedimentary rocks and minerals, including sand, gravel, gypsum, and limestone || Resources: lignite, phosphorites, gypsum, limestone, arable land || Exports: insulated wire, garments, refined petroleum, seed oils, wheat (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rolling steppe, gradual slope south to Black Sea || Eastern Europe, northeast of Romania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "moderate winters, warm summers || landslides"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Eastern European economy; sustained growth reversed by COVID-19; significant remittances; Russian energy and regional dependence; agricultural exporter; declining workforce due to emigration and low fertility || Exports: insulated wire, garments, refined petroleum, seed oils, wheat (2023) || Industries: sugar processing, vegetable oil, food processing, agricultural machinery; foundry equipment, refrigerators and freezers, washing machines; hosiery, shoes, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Orthodox 90.1%, other Christian 2.6%, other 0.1%, agnostic &lt;0.1%, atheist 0.2%, unspecified 6.9% (2014 est.) || Moldovan 75.1%, Romanian 7%, Ukrainian 6.6%, Gagauz 4.6%, Russian 4.1%, Bulgarian 1.9%, other 0.8% (2014 est.)"
+    }
+  }
+}

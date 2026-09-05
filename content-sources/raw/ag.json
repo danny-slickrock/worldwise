@@ -1,0 +1,172 @@
+{
+  "iso": "ag",
+  "fetchedAt": "2026-09-04T23:57:04.380Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/ac.json"
+    }
+  },
+  "wikidata": {
+    "name": "Antigua and Barbuda",
+    "gec": "AC",
+    "capital": null,
+    "areaKm2": 440.29,
+    "population": 101489,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish",
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "gb"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/ac.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Siboney were the first people to inhabit the islands of Antigua and Barbuda in 2400 B.C., but the Arawaks populated the islands when Christopher COLUMBUS landed on his second voyage in 1493. Early Spanish and French settlements were succeeded by an English colony in 1667. Slavery, which provided labor on the sugar plantations on Antigua, was abolished in 1834. The islands became an independent state within the British Commonwealth of Nations in 1981. In 2017, Hurricane Irma passed over the island of Barbuda, devastating the island and forcing the evacuation of the population to Antigua. Almost all of the structures on Barbuda were destroyed and the vegetation stripped, but Antigua was spared the worst."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, east-southeast of Puerto Rico"
+      },
+      "Area": {
+        "total ": {
+          "text": "443 sq km (Antigua 280 sq km; Barbuda 161 sq km)"
+        },
+        "land": {
+          "text": "443 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        },
+        "note": "<strong>note:</strong> includes Redonda, 1.6 sq km"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "153 km"
+      },
+      "Climate": {
+        "text": "tropical maritime; little seasonal temperature variation"
+      },
+      "Terrain": {
+        "text": "mostly low-lying limestone and coral islands, with some higher volcanic areas"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Obama 402 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "NEGL; pleasant climate fosters tourism"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "20.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 9.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "18% (2023 est.)"
+        },
+        "other": {
+          "text": "61.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hurricanes and tropical storms (July to October); periodic droughts"
+      },
+      "Geography - note": {
+        "text": "Antigua has a deeply indented shoreline with many natural harbors and beaches; Barbuda has a large western harbor"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "102,634 (2024 est.)"
+        },
+        "male": {
+          "text": "48,311"
+        },
+        "female": {
+          "text": "54,323"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Antiguan Creole (an English-based creole)"
+      },
+      "Religions": {
+        "text": "Protestant 68.3% (Anglican 17.6%, Seventh Day Adventist 12.4%, Pentecostal 12.2%, Moravian 8.3%, Methodist 5.6%, Wesleyan Holiness 4.5%, Church of God 4.1%, Baptist 3.6%), Roman Catholic 8.2%, other 12.2%, unspecified 5.5%, none 5.9% (2011 est.)"
+      },
+      "Ethnic groups": {
+        "text": "African descent 87.3%, mixed 4.7%, Hispanic 2.7%, White 1.6%, other 2.7%, unspecified 0.9% (2011 est.)",
+        "note": "<strong>note:</strong> data represent population by ethnic group"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "24.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.87% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the island of Antigua is home to approximately 97% of the population; nearly the entire population of Barbuda lives in Codrington"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "dual island-tourism and construction-driven economy; emerging &ldquo;blue economy&rdquo;; limited water supply and susceptibility to hurricanes limit activity; improving road infrastructure; friendly to foreign direct investment; looking at financial innovation in cryptocurrency and blockchain technologies"
+      },
+      "Agricultural products": {
+        "text": "tropical fruits, milk, mangoes/guavas, eggs, lemons/limes, pumpkins/squash, sweet potatoes, vegetables, cucumbers/gherkins, yams (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, construction, light manufacturing (clothing, alcohol, household appliances)"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, ships, soybean meal, shellfish, paintings (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Suriname 29%, Poland 21%, USA 8%, Dominican Republic 7%, Australia 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, cars, plastic products, furniture (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical maritime; little seasonal temperature variation"
+      }
+    }
+  }
+}

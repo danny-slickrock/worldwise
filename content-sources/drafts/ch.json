@@ -1,0 +1,76 @@
+{
+  "iso": "ch",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.389Z",
+  "structured": {
+    "code": "ch",
+    "name": "Switzerland",
+    "capital": "Bern",
+    "continent": "Europe",
+    "areaKm2": 41291,
+    "population": 9104063,
+    "officialLanguages": [
+      "French",
+      "German",
+      "Italian",
+      "Romansh"
+    ],
+    "currencies": [
+      "Swiss franc"
+    ],
+    "landBorderNames": [
+      "Austria",
+      "France",
+      "Italy",
+      "Liechtenstein",
+      "Germany"
+    ],
+    "landBorderCodes": [
+      "at",
+      "fr",
+      "it",
+      "li",
+      "de"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower potential, timber, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, east of France, north of Italy || mostly mountains (Alps in south, Jura in northwest) with a central plateau of rolling hills, plains, and large lakes || landlocked; crossroads of northern and southern Europe; along with southeastern France, northern Italy, and southwestern Austria, has the highest elevations in the Alps || Resources: hydropower potential, timber, salt || Exports: gold, packaged medicine, vaccines, nitrogen compounds, base metal watches (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains (Alps in south, Jura in northwest) with a central plateau of rolling hills, plains, and large lakes || Central Europe, east of France, north of Italy"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate, but varies with altitude; cold, cloudy, rainy/snowy winters; cool to warm, cloudy, humid summers with occasional showers || avalanches, landslides; flash floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, non-EU European economy; top ten in GDP per capita; renowned banking and financial hub; low unemployment and inflation; slowed GDP growth post-pandemic; highly skilled but aging workforce; key pharmaceutical and precision manufacturing exporter; leader in innovation and competitiveness indices || Exports: gold, packaged medicine, vaccines, nitrogen compounds, base metal watches (2023) || Industries: machinery, chemicals, watches, textiles, precision instruments, tourism, banking, insurance, pharmaceuticals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 34.4%, Protestant 22.5%, other Christian 5.7%, Muslim 5.4%, other 1.5%, none 29.4%, unspecified 1.1% (2020 est.) || Swiss 69.2%, German 4.2%, Italian 3.2%, Portuguese 2.5%, French 2.1%, Kosovan 1.1%, Turkish 1%, other 16.7% (2020 est.)"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "iso": "pa",
+  "fetchedAt": "2026-09-04T23:57:08.497Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/pm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Panama",
+    "gec": "PM",
+    "capital": "Panama City",
+    "areaKm2": 74177.3,
+    "population": 4570133,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Panamanian balboa",
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "co",
+      "cr"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/pm.json",
+    "Introduction": {
+      "Background": {
+        "text": "Explored and settled by the Spanish in the 16th century, Panama broke with Spain in 1821 and joined a union of Colombia, Ecuador, and Venezuela that was named the Republic of Gran Colombia. When the union dissolved in 1830, Panama remained part of Colombia. With US backing, Panama seceded from Colombia in 1903 and promptly signed a treaty with the US allowing for the construction of a canal and US sovereignty over a strip of land known as the Panama Canal Zone on either side of the structure. The US Army Corps of Engineers built the Panama Canal between 1904 and 1914. In 1977, an agreement was signed for the complete transfer of the Canal from the US to Panama by the end of the century. Certain portions of the Zone and increasing responsibility over the Canal were turned over in the subsequent decades. With US help, Panamanian dictator Manuel NORIEGA was deposed in 1989. The entire Panama Canal, the area supporting the Canal, and remaining US military bases were transferred to Panama by the end of 1999. An ambitious expansion project to more than double the Canal's capacity by allowing for more Canal transits and larger ships was carried out between 2007 and 2016."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Colombia and Costa Rica"
+      },
+      "Area": {
+        "total ": {
+          "text": "75,420 sq km"
+        },
+        "land": {
+          "text": "74,340 sq km"
+        },
+        "water": {
+          "text": "1,080 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "687 km"
+        },
+        "border countries": {
+          "text": "Colombia 339 km; Costa Rica 348 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,490 km"
+      },
+      "Climate": {
+        "text": "tropical maritime; hot, humid, cloudy; prolonged rainy season (May to January), short dry season (January to May)"
+      },
+      "Terrain": {
+        "text": "interior mostly steep, rugged mountains with dissected, upland plains; coastal plains with rolling hills"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Volcan Baru 3,475 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "360 m"
+        }
+      },
+      "Natural resources": {
+        "text": "copper, mahogany forests, shrimp, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "29.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 20.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "62.3% (2023 est.)"
+        },
+        "other": {
+          "text": "8.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional severe storms and forest fires in the Darien area"
+      },
+      "Geography - note": {
+        "text": "strategic location on eastern end of isthmus forming land bridge that connects North and South America; controls the Panama Canal, which links the North Atlantic Ocean with the North Pacific Ocean via the Caribbean Sea&nbsp;"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "4,536,008 (2025 est.)"
+        },
+        "male": {
+          "text": "2,284,105"
+        },
+        "female": {
+          "text": "2,251,903"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official), Indigenous languages (including Ngabere (Guaymi), Buglere, Kuna, Embera, Wounaan, Naso (Teribe), and Bri Bri), Panamanian English Creole (a mixture of English and Spanish with elements of Ngabere, also known as Guari Guari and Colon Creole), English, Chinese (Yue and Hakka), Arabic, French Creole, other (Yiddish, Hebrew, Korean, Japanese)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Indigenous and White) 65%, Indigenous 12.3% (Ngabe 7.6%, Kuna 2.4%, Embera 0.9%, Bugle 0.8%, other 0.4%, unspecified 0.2%), Black or African descent 9.2%, Mulatto 6.8%, White 6.7% (2010 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "69.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.92% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is concentrated towards the center of the country, particularly around the Canal, but a sizeable segment of the populace also lives in the far west around David; the eastern third of the country is sparsely inhabited"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income Central American economy; increasing Chinese trade; US dollar user; canal expansion fueling broader infrastructure investment; services sector dominates economy; historic money-laundering and illegal drug hub"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, rice, bananas, oranges, oil palm fruit, chicken, plantains, maize, milk, pineapples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "construction, brewing, cement and other construction materials, sugar milling"
+      },
+      "Exports - commodities": {
+        "text": "copper ore, ships, refined petroleum, bananas, fish (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 25%, Japan 10%, USA 6%, Thailand 5%, Costa Rica 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, ships, refined petroleum, nitrogen compounds, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical maritime; hot, humid, cloudy; prolonged rainy season (May to January), short dry season (January to May)"
+      }
+    }
+  }
+}

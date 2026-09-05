@@ -1,0 +1,73 @@
+{
+  "iso": "co",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.426Z",
+  "structured": {
+    "code": "co",
+    "name": "Colombia",
+    "capital": "Bogotá",
+    "continent": "South America",
+    "areaKm2": 1141748,
+    "population": 52321152,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Colombian peso"
+    ],
+    "landBorderNames": [
+      "Brazil",
+      "Ecuador",
+      "Panama",
+      "Peru",
+      "Venezuela"
+    ],
+    "landBorderCodes": [
+      "br",
+      "ec",
+      "pa",
+      "pe",
+      "ve"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, coal, iron ore, nickel, gold, copper, emeralds, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern South America, bordering the Caribbean Sea, between Panama and Venezuela, and bordering the North Pacific Ocean, between Ecuador and Panama || flat coastal lowlands, central highlands, high Andes Mountains, eastern lowland plains (Llanos) || only South American country with coastlines on both the North Pacific Ocean and Caribbean Sea || Resources: petroleum, natural gas, coal, iron ore, nickel, gold, copper, emeralds, hydropower || Exports: crude petroleum, coal, gold, coffee, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat coastal lowlands, central highlands, high Andes Mountains, eastern lowland plains (Llanos) || Northern South America, bordering the Caribbean Sea, between Panama and Venezuela, and bordering the North Pacific Ocean, between Ecuador and Panama"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical along coast and eastern plains; cooler in highlands || highlands subject to volcanic eruptions; occasional earthquakes; periodic droughts volcanism: Galeras (4,276 m) is one of Colombia's most active volcanoes; it has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Nevado del Ruiz (5,321 m), 129 km (80 mi) west of Bogota, erupted in 1985, producing lahars (mudflows) that killed 23,000 people; the volcano last erupted in 1991; after 500 years of dormancy, Nevado del Huila reawakened in 2007 and has experienced frequent eruptions since then; other historically active volcanoes include Cumbal, Dona Juana, Nevado del Tolima, and Purace"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "prior to COVID-19, one of the most consistent growth economies; declining poverty; large stimulus package has mitigated economic fallout, but delayed key infrastructure investments; successful inflation management; sound flexible exchange rate regime; domestic economy suffers from lack of trade integration and infrastructure || Exports: crude petroleum, coal, gold, coffee, refined petroleum (2023) || Industries: textiles, food processing, oil, clothing and footwear, beverages, chemicals, cement; gold, coal, emeralds"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 63.6%, Protestant 17.2% (Evangelical 16.7%, Adventist 0.3%, other Protestant 0.2%), Jehovah's Witness 0.6%, Church of Jesus Christ 0.1%, other 0.3%, believer, 0.2%. agnostic 1%, atheist 1%, none 14.2%, unspecified 1.8% (2023 est.) || Mestizo and White 87.6%, Afro-Colombian (includes Mulatto, Raizal, and Palenquero) 6.8%, Indigenous 4.3%, unspecified 1.4% (2018 est.)"
+    }
+  }
+}

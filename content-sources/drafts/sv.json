@@ -1,0 +1,68 @@
+{
+  "iso": "sv",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.428Z",
+  "structured": {
+    "code": "sv",
+    "name": "El Salvador",
+    "capital": "San Salvador",
+    "continent": "North America",
+    "areaKm2": 21041,
+    "population": 6029976,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Bitcoin",
+      "United States dollar"
+    ],
+    "landBorderNames": [
+      "Guatemala",
+      "Honduras"
+    ],
+    "landBorderCodes": [
+      "gt",
+      "hn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, geothermal power, petroleum, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering the North Pacific Ocean, between Guatemala and Honduras || mostly mountains with narrow coastal belt and central plateau || smallest Central American country and only one without a coastline on the Caribbean Sea || Resources: hydropower, geothermal power, petroleum, arable land || Exports: garments, plastic products, electrical capacitors, raw sugar, toilet paper (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains with narrow coastal belt and central plateau || Central America, bordering the North Pacific Ocean, between Guatemala and Honduras"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; rainy season (May to October); dry season (November to April); tropical on coast; temperate in uplands || known as the Land of Volcanoes; frequent and sometimes destructive earthquakes and volcanic activity; extremely susceptible to hurricanes volcanism: significant volcanic activity; San Salvador (1,893 m), which last erupted in 1917, has the potential to cause major harm to the country's capital, which lies just below the volcano's slopes; San Miguel (2,130 m) is one of the most active volcanoes in the country; other historically active volcanoes include Conchaguita, Ilopango, Izalco, and Santa Ana"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income, dollarized Central American economy; reliant on remittances from US; recent growth linked to infrastructure investment, consumption, and crime reduction; $1.3 billion IMF loan to address fiscal imbalances; Bitcoin adopted as legal tender; persistent poverty and large informal sector || Exports: garments, plastic products, electrical capacitors, raw sugar, toilet paper (2023) || Industries: food processing, beverages, petroleum, chemicals, fertilizer, textiles, furniture, light metals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 43.9%, Protestant 39.6% (Evangelical - unspecified 38.2%, Evangelical - Methodist 1.3%, Evangelical - Baptist 0.1%), none 16.3%, unspecified 0.2% (2023 est.) || Mestizo 86.3%, White 12.7%, Indigenous 0.2% (includes Lenca, Kakawira, Nahua-Pipil), Black 0.1%, other 0.6% (2007 est.)"
+    }
+  }
+}

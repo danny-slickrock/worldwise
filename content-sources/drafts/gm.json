@@ -1,0 +1,65 @@
+{
+  "iso": "gm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.412Z",
+  "structured": {
+    "code": "gm",
+    "name": "The Gambia",
+    "capital": "Banjul",
+    "continent": "Africa",
+    "areaKm2": 11300,
+    "population": 2639916,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "dalasi"
+    ],
+    "landBorderNames": [
+      "Senegal"
+    ],
+    "landBorderCodes": [
+      "sn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, clay, silica sand, titanium (rutile and ilmenite), tin, zircon",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean and Senegal || flood plain of the Gambia River flanked by some low hills || almost an enclave of Senegal; smallest country on the African mainland || Resources: fish, clay, silica sand, titanium (rutile and ilmenite), tin, zircon || Exports: packaged medicine, cars, harvesting machinery, refined petroleum, trailers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flood plain of the Gambia River flanked by some low hills || Western Africa, bordering the North Atlantic Ocean and Senegal"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, rainy season (June to November); cooler, dry season (November to May) || droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income West African economy; agriculture-dominant; high poverty rate; heightened inflation; dependent on foreign assistance and remittances; structural reforms conditioned by IMF Extended Credit Facility program || Exports: packaged medicine, cars, harvesting machinery, refined petroleum, trailers (2023) || Industries: peanuts, fish, hides, tourism, beverages, agricultural machinery assembly, woodworking, metalworking, clothing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Mandinka, Wolof, Fula, other indigenous vernaculars || Muslim 96.4%, Christian 3.5%, other or none 0.1% (2019-20 est.) || Mandinka/Jahanka 33.3%, Fulani/Tukulur/Lorobo 18.2%, Wolof 12.9%, Jola/Karoninka 11%, Serahuleh 7.2%, Serer 3.5%, other 4%, non-Gambian 9.9% (2019-20 est.)"
+    }
+  }
+}

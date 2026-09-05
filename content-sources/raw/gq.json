@@ -1,0 +1,184 @@
+{
+  "iso": "gq",
+  "fetchedAt": "2026-09-04T23:56:57.044Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ek.json"
+    }
+  },
+  "wikidata": {
+    "name": "Equatorial Guinea",
+    "gec": "EK",
+    "capital": "Ciudad de la Paz",
+    "areaKm2": 28051,
+    "population": 1847549,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "Spanish",
+      "Portuguese"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ga",
+      "cm",
+      "st"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ek.json",
+    "Introduction": {
+      "Background": {
+        "text": "Equatorial Guinea consists of a continental territory and five inhabited islands; it is one of the smallest countries by area and population in Africa. The mainland region was most likely predominantly inhabited by Pygmy ethnic groups prior to the migration of various Bantu-speaking ethnic groups around the second millennium BC. The island of Bioko, the largest of Equatorial Guinea’s five inhabited islands and the location of the country’s capital of Malabo, has been occupied since at least 1000 B.C. In the early 1470s, Portuguese explorers landed on Bioko Island, and Portugal soon after established control of the island and other areas of modern Equatorial Guinea. In 1778, Portugal ceded its colonial hold over present-day Equatorial Guinea to Spain in the Treaty of El Pardo. The borders of modern-day Equatorial Guinea would evolve between 1778 and 1968 as the area remained under European colonial rule.<br><br>In 1968, Equatorial Guinea was granted independence from Spain and elected Francisco MACIAS NGUEMA as its first president. MACIAS consolidated power soon after his election and ruled brutally for over a decade. Under his regime, Equatorial Guinea experienced mass suppression, purges, and killings. Some estimates indicate that a third of the population either went into exile or was killed under MACIAS’ rule. In 1979, present-day President OBIANG Nguema Mbasogo, then a senior military officer, deposed MACIAS in a violent coup. OBIANG has ruled since and has been elected in non-competitive contests several times, most recently in 2022. The president exerts near-total control over the political system. <br><br>Equatorial Guinea experienced rapid economic growth in the early years of the 21st century due to the discovery of large offshore oil reserves in 1996. Production peaked in 2004 and has declined since. The country's economic windfall from oil production resulted in massive increases in government revenue, a significant portion of which was earmarked for infrastructure development. Systemic corruption, however, has hindered socio-economic development, and the population has seen only limited improvements to living standards. Equatorial Guinea continues to seek to diversify its economy, increase foreign investment, and assume a greater role in regional and international affairs.&amp;nbsp"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, bordering the Bight of Biafra, between Cameroon and Gabon"
+      },
+      "Area": {
+        "total ": {
+          "text": "28,051 sq km"
+        },
+        "land": {
+          "text": "28,051 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "528 km"
+        },
+        "border countries": {
+          "text": "Cameroon 183 km; Gabon 345 km"
+        }
+      },
+      "Coastline": {
+        "text": "296 km"
+      },
+      "Climate": {
+        "text": "tropical; always hot, humid"
+      },
+      "Terrain": {
+        "text": "coastal plains rise to interior hills; islands are volcanic"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico Basile 3,008 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "577 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, timber, gold, bauxite, diamonds, tantalum, sand and gravel, clay"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "3.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "86.4% (2023 est.)"
+        },
+        "other": {
+          "text": "9.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "violent windstorms; flash floods <br><br><strong>volcanism:</strong> Santa Isabel (3,007 m), which last erupted in 1923, is the country's only historically active volcano; Santa Isabel and two dormant volcanoes form Bioko Island in the Gulf of Guinea"
+      },
+      "Geography - note": {
+        "text": "insular and continental regions widely separated; despite its name, no part of the equator passes through Equatorial Guinea -- the mainland part of the country is located just north of the equator"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,795,834 (2024 est.)"
+        },
+        "male": {
+          "text": "962,385"
+        },
+        "female": {
+          "text": "833,449"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 67.6%, other (includes Fang, Bubi, Portuguese (official), French (official), Fa d'Ambo spoken in Annobon) 32.4% (1994 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 88%, Protestant 5%, Muslim 2%, other 5% (animist, Baha'i, Jewish) (2015 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Fang 78.1%, Bubi 9.4%, Ndowe 2.8%, Nanguedambo 2.7%, Bisio 0.9%, foreigner 5.3%, other 0.7%, unspecified 0.2% (2011 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "74.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.62% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the two large cities are Bata on the mainland and the capital Malabo on the island of Bioko; small communities are scattered throughout the mainland and the five inhabited islands, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "growing CEMAC economy and new OPEC member; large oil and gas reserves; targeting economic diversification and poverty reduction; still recovering from CEMAC crisis; improving public financial management; persistent poverty; hard-hit by COVID-19"
+      },
+      "Agricultural products": {
+        "text": "sweet potatoes, cassava, plantains, oil palm fruit, root vegetables, bananas, coconuts, coffee, cocoa beans, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, natural gas, sawmilling"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, natural gas, alcohols, wood, scrap iron (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 27%, Netherlands 12%, Spain 10%, Italy 7%, Germany 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, poultry, plastic products, beer, valves (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; always hot, humid"
+      }
+    }
+  }
+}

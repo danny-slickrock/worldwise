@@ -1,0 +1,73 @@
+{
+  "iso": "cg",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.410Z",
+  "structured": {
+    "code": "cg",
+    "name": "Republic of the Congo",
+    "capital": "Brazzaville",
+    "continent": "Africa",
+    "areaKm2": 342000,
+    "population": 6142180,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "landBorderNames": [
+      "Angola",
+      "Cameroon",
+      "Central African Republic",
+      "Democratic Republic of the Congo",
+      "Gabon"
+    ],
+    "landBorderCodes": [
+      "ao",
+      "cm",
+      "cf",
+      "cd",
+      "ga"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, timber, potash, lead, zinc, uranium, copper, phosphates, gold, magnesium, natural gas, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, bordering the South Atlantic Ocean, between Angola and Gabon || coastal plain, southern basin, central plateau, northern basin || about 70% of the population lives in Brazzaville, Pointe-Noire, or along the railroad between them || Resources: petroleum, timber, potash, lead, zinc, uranium, copper, phosphates, gold, magnesium, natural gas, hydropower || Exports: crude petroleum, refined copper, gold, wood, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "coastal plain, southern basin, central plateau, northern basin || Central Africa, bordering the South Atlantic Ocean, between Angola and Gabon"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; rainy season (March to June); dry season (June to October); persistent high temperatures and humidity; particularly enervating climate astride the Equator || seasonal flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "primarily an oil- and natural resources-based economy; recovery from mid-2010s oil devaluation has been slow and curtailed by COVID-19; extreme poverty increasing, particularly in southern rural regions; attempting to implement recommended CEMAC reforms; increasing likelihood of debt default || Exports: crude petroleum, refined copper, gold, wood, refined petroleum (2023) || Industries: petroleum extraction, cement, lumber, brewing, sugar, palm oil, soap, flour, cigarettes"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 33.1%, Awakening Churches/Christian Revival 22.3%, Protestant 19.9%, Salutiste 2.2%, Muslim 1.6%, Kimbanguist 1.5%, other 8.1%, none 11.3% (2007 est.) || Kongo (Bakongo) 40.5%, Teke 16.9%, Mbochi 13.1%, foreigner 8.2%, Sangha 5.6%, Mbere/Mbeti/Kele 4.4%, Punu 4.3%, Pygmy 1.6%, Oubanguiens 1.6%, Duma 1.5%, Makaa 1.3%, other and unspecified 1% (2014-15 est.)"
+    }
+  }
+}

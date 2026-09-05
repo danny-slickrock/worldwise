@@ -1,0 +1,176 @@
+{
+  "iso": "km",
+  "fetchedAt": "2026-09-04T23:56:56.011Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/cn.json"
+    }
+  },
+  "wikidata": {
+    "name": "Comoros",
+    "gec": "CN",
+    "capital": "Moroni",
+    "areaKm2": 2034,
+    "population": 902348,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "Arabic",
+      "Comorian"
+    ],
+    "currencies": [
+      "Comorian franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "fr",
+      "tz",
+      "mg",
+      "mz",
+      "sc"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/cn.json",
+    "Introduction": {
+      "Background": {
+        "text": "For centuries prior to colonization in the 19th century, the Comoros archipelago in the Indian Ocean served as a key node in maritime trade networks that connected the Middle East, India, and eastern African regions. Composed of the islands of Anjouan, Mayotte, Moheli, and Grande Comore, Comoros spent most of the 20th century as a colonial outpost until it declared independence from France on 6 July 1975. Residents of Mayotte, however, voted to remain in France, and the French Government has since classified it as a French Overseas Department. <br><br>Since independence, Comoros has weathered approximately 20 successful and attempted coups, mostly between 1975 and 2000, resulting in prolonged political instability and stunted economic development. In 2002, President AZALI Assoumani became the first elected president following the completion of the Fomboni Accords, in which the islands of Grande Comore, Anjouan, and Moheli agreed to rotate the presidency among the islands every five years. This power-sharing agreement also included provisions allowing each island to maintain its local government. In 2007, Mohamed BACAR effected Anjouan's de-facto secession from the Union of the Comoros, refusing to step down when Comoros' other islands held legitimate elections. The African Union (AU) initially attempted to resolve the political crisis with sanctions and a naval blockade of Anjouan, but in 2008, the AU and Comoran soldiers seized the island. The island's inhabitants generally welcomed the move. In 2011, Ikililou DHOININE won the presidency in peaceful elections widely deemed to be free and fair. In closely contested elections in 2016, AZALI won a second term, when the rotating presidency returned to Grande Comore. In 2018, a referendum -- which the opposition parties boycotted -- approved a new constitution that extended presidential term limits and abolished the requirement for the presidency to rotate between the three main islands. AZALI formed a new government later that year, and he subsequently ran and was reelected in 2019. AZALI was reelected again in January 2024 in an election that the opposition disputed but the Supreme Court validated."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Africa, group of islands at the northern mouth of the Mozambique Channel, about two-thirds of the way between northern Madagascar and northern Mozambique"
+      },
+      "Area": {
+        "total ": {
+          "text": "2,235 sq km"
+        },
+        "land": {
+          "text": "2,235 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "340 km"
+      },
+      "Climate": {
+        "text": "tropical marine; rainy season (November to May)"
+      },
+      "Terrain": {
+        "text": "volcanic islands, interiors vary from steep mountains to low hills"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Karthala 2,360 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "71.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 34.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 28.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 8.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "17.8% (2023 est.)"
+        },
+        "other": {
+          "text": "10.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "cyclones possible during rainy season (December to April); volcanic activity on Grand Comore <br><br><strong>volcanism:</strong> Karthala (2,361 m) on Grand Comore Island last erupted in 2007; a 2005 eruption forced thousands of people to be evacuated and produced a large ash cloud"
+      },
+      "Geography - note": {
+        "text": "important location at northern end of Mozambique Channel; the only Arab League country that lies entirely in the Southern Hemisphere"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "911,707 (2025 est.)"
+        },
+        "male": {
+          "text": "441,215"
+        },
+        "female": {
+          "text": "470,492"
+        }
+      },
+      "Languages": {
+        "text": "Arabic (official), French (official), Shikomoro (official; similar to Swahili), Comorian"
+      },
+      "Religions": {
+        "text": "Muslim 98.1% (overwhelmingly Sunni Muslim, small Shia Muslim and Ahmadiyya Muslim populations), ethnic religionist 1.1%, Christian 0.6%, other 0.3% (2020 est.)",
+        "note": "<strong>note:</strong> Sunni Islam is the state religion"
+      },
+      "Ethnic groups": {
+        "text": "Antalote, Cafre, Makoa, Oimatsaha, Sakalava"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "30.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.97% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the capital city of Maroni, on the western side of the island of Grande Comore, is the country's largest city; however, Anjouan is the most densely populated of the three islands that comprise Comoros, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "small trade-based island economy; declining remittances; new structural and fiscal reforms; adverse cyclone and COVID-19 impacts; manageable debts; fragile liquidity environment; large foreign direct investment; state-owned enterprises suffering"
+      },
+      "Agricultural products": {
+        "text": "bananas, coconuts, cassava, yams, maize, taro, milk, tomatoes, sweet potatoes, pulses (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "fishing, tourism, perfume distillation"
+      },
+      "Exports - commodities": {
+        "text": "cloves, ships, essential oils, vanilla, scrap iron (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Indonesia 25%, India 23%, Turkey 16%, UAE 11%, USA 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, poultry, rice, flavored water, additive manufacturing machines (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical marine; rainy season (November to May)"
+      }
+    }
+  }
+}

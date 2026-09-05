@@ -1,0 +1,185 @@
+{
+  "iso": "jo",
+  "fetchedAt": "2026-09-04T23:56:46.136Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/jo.json"
+    }
+  },
+  "wikidata": {
+    "name": "Jordan",
+    "gec": "JO",
+    "capital": "Amman",
+    "areaKm2": 89341,
+    "population": 10428241,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Jordanian dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "sa",
+      "sy",
+      "ps",
+      "iq",
+      "il"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/jo.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>After World War I and the dissolution of the Ottoman Empire, the League of Nations awarded Britain the mandate to govern much of the Middle East. In 1921, Britain demarcated from Palestine a semi-autonomous region of Transjordan and recognized ABDALLAH I from the Hashemite family as the country's first leader. The Hashemites also controlled the Hijaz, or the western coastal area of modern-day Saudi Arabia, until 1925, when IBN SAUD and Wahhabi tribes pushed them out. The country gained its independence in 1946 and thereafter became the Hashemite Kingdom of Jordan.</p> The country has had four kings. Long-time ruler King HUSSEIN (r. 1953-99) successfully navigated competing pressures from the major powers (US, UK, and Soviet Union), various Arab states, Israel, and Palestinian militants, the latter of which led to a brief civil war in 1970 that is known as \"Black September\" and ended in King HUSSEIN ousting the militants.<br><br>Jordan's borders have changed since it gained independence. In 1948, Jordan took control of the West Bank and East Jerusalem in the first Arab-Israeli War, eventually annexing those territories in 1950 and granting its new Palestinian residents Jordanian citizenship. In 1967, Jordan lost the West Bank and East Jerusalem to Israel in the Six-Day War but retained administrative claims to the West Bank until 1988, when King HUSSEIN permanently relinquished Jordanian claims to the West Bank in favor of the Palestine Liberation Organization (PLO). King HUSSEIN signed a peace treaty with Israel in 1994, after Israel and the PLO signed the Oslo Accords in 1993.<br><br>Jordanian kings continue to claim custodianship of the Muslim holy sites in Jerusalem by virtue of their Hashemite heritage as descendants of the Prophet Mohammad and agreements with Israel and Jerusalem-based religious and Palestinian leaders. After Israel captured East Jerusalem in the 1967 War, it authorized the Jordanian-controlled Islamic Trust, or Waqf, to continue administering the Al Haram ash Sharif/Temple Mount holy compound, and the Jordan-Israel peace treaty reaffirmed Jordan's \"special role\" in administering the Muslim holy shrines in Jerusalem. Jordanian kings claim custodianship of the Christian sites in Jerusalem on the basis of the 7th-century Pact of Omar, when the Muslim leader, after conquering Jerusalem, agreed to permit Christian worship.<br><br>King HUSSEIN died in 1999 and was succeeded by his eldest son and current King ABDALLAH II. In 2009, ABDALLAH II designated his son HUSSEIN as the Crown Prince. During his reign, ABDALLAH II has contended with a series of challenges, including the Arab Spring influx of refugees from neighboring states, the COVID-19 pandemic, the effects of the war in Ukraine, a perennially weak economy, and the Israel-HAMAS conflict that began in October 2023."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, northwest of Saudi Arabia, between Israel (to the west) and Iraq"
+      },
+      "Area": {
+        "total ": {
+          "text": "89,342 sq km"
+        },
+        "land": {
+          "text": "88,802 sq km"
+        },
+        "water": {
+          "text": "540 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,744 km"
+        },
+        "border countries": {
+          "text": "Iraq 179 km; Israel 307 km; Saudi Arabia 731 km; Syria 379 km; West Bank 148 km"
+        }
+      },
+      "Coastline": {
+        "text": "26 km"
+      },
+      "Climate": {
+        "text": "mostly arid desert; rainy season in west (November to April)"
+      },
+      "Terrain": {
+        "text": "mostly arid desert plateau; a great north-south geological rift along the west of the country is the dominant topographical feature and includes the Jordan River Valley, the Dead Sea, and the Jordanian Highlands"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jabal Umm ad Dami 1,854 m"
+        },
+        "lowest point": {
+          "text": "Dead Sea -431 m"
+        },
+        "mean elevation": {
+          "text": "812 m"
+        }
+      },
+      "Natural resources": {
+        "text": "phosphates, potash, shale oil"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "11.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 8.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "0.8% (2023 est.)"
+        },
+        "other": {
+          "text": "87.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts; periodic earthquakes; flash floods"
+      },
+      "Geography - note": {
+        "text": "strategic location at the head of the Gulf of Aqaba; the Arab country that shares the longest border with Israel and the West Bank; the Dead Sea, the lowest point in Asia and the second saltiest body of water in the world (after Lac Assal in Djibouti), lies on Jordan's western border with Israel and the West Bank; Jordan is almost landlocked but does have a 26 km southwestern coastline with a single port, Al 'Aqabah (Aqaba)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "11,312,507 (2025 est.)"
+        },
+        "male": {
+          "text": "5,908,853"
+        },
+        "female": {
+          "text": "5,403,654"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English (widely understood among upper and middle classes)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 97.1% (official; predominantly Sunni), Christian 2.1% (majority Greek Orthodox, but some Greek and Roman Catholics, Syrian Orthodox, Coptic Orthodox, Armenian Orthodox, and Protestant denominations), Buddhist 0.4%, Hindu 0.1%, Jewish &lt;0.1%, folk &lt;0.1%, other &lt;0.1%, unaffiliated &lt;0.1% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Jordanian 69.3%, Syrian 13.3%, Palestinian 6.7%, Egyptian 6.7%, Iraqi 1.4%, other 2.6% (2015 est.)",
+        "note": "<strong>note:</strong> data represent population by self-identified nationality in national census"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "92% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.98% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population heavily concentrated in the west, and particularly the northwest, in and around the capital of Amman; a sizeable but smaller population is located in the southwest along the shore of the Gulf of Aqaba"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income Middle Eastern economy; high debt and unemployment, especially for youth and women; global events triggering trade slump and decreased revenue from tourism; growing manufacturing and agricultural sectors; key US foreign assistance recipient; natural-resource-poor and import-reliant </p>"
+      },
+      "Agricultural products": {
+        "text": "tomatoes, milk, chicken, potatoes, olives, cucumbers/gherkins, onions, chillies/peppers, peaches/nectarines, sheep milk (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, information technology, clothing, fertilizer, potash, phosphate mining, pharmaceuticals, petroleum refining, cement, inorganic chemicals, light manufacturing"
+      },
+      "Exports - commodities": {
+        "text": "fertilizers, garments, phosphates, jewelry, phosphoric acid (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 21%, India 13%, Saudi Arabia 11%, China 7%, Iraq 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, gold, crude petroleum, jewelry (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly arid desert; rainy season in west (November to April)"
+      }
+    }
+  }
+}

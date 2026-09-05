@@ -1,6 +1,6 @@
 # ADR 0001 — Content enrichment: sourcing and review
 
-**Status:** Proposed (pilot of 6 countries; scaling to 196 gated on review)
+**Status:** Accepted for the pilot; scaled pipeline built, drafting run gated on review
 **Date:** 2026-09-04
 **Related:** [content-response-policy.md](../content-response-policy.md), ROADMAP M2.9
 
@@ -70,6 +70,31 @@ still cached for provenance, under a name that says what it actually is
 This is the general lesson: a structured source is only deterministic about the
 question it is actually answering.
 
+## Scaling findings (all 196 fetched)
+
+- **Border-name resolution needed a real table, not a guess.** Across 196 countries
+  there are 168 distinct border names; 157 matched our dataset directly, 11 needed
+  aliases (Burma, Cote d'Ivoire, Czech Republic, Macedonia, The Gambia, both
+  Congos, Holy See, US/UK/UAE abbreviations) and 12 references are to territories.
+  `src/data/borderAliases.js` holds both tables, and an unknown name is a
+  validation failure rather than a silent drop. Result: **616 coded relations, 12
+  territories correctly uncoded, 0 unknown.**
+- **Kosovo gets no code**, for a different reason than the other territories: it is
+  a recognition dispute, and the response policy says to stay out of those.
+- **A parsing bug only visible at scale.** `"Zambia 0.15 km"` and `"Italy 3."` left
+  `"Zambia 0."` and `"Italy 3."` as names, because the pattern assumed integer
+  distances. The six-country pilot never hit it.
+- **Two countries have no Factbook entry** (`cy`, `ps`). Cyprus and Palestine are
+  split across other Factbook entries; they keep structured facts and get no
+  prose until handled.
+- **A latent chunker bug, surfaced by testing the validator rather than the
+  content.** `splitProse` ran on the *already-labelled* string, so splitting a long
+  fact put "Brazil — Climate:" on the first piece only and left every continuation
+  chunk anonymous — the exact misattribution the naming rule exists to prevent. It
+  was invisible because short content never splits; model-drafted prose would have
+  made it real. Fixed in `contentChunks.js` (`namedPieces`), which also re-splits
+  against a reduced budget so the added prefix cannot push a piece over the cap.
+
 ## Pipeline
 
 ```
@@ -103,6 +128,16 @@ prose** on re-run, so a re-fetch cannot silently overwrite approved text.
   and the `WORKER_LIMIT` batch size need re-checking at scale.
 - Two upstreams to re-pull as content ages. Both are stable and free; neither
   requires a key.
-- Drafting currently runs through this session rather than a keyed script, because
-  `ANTHROPIC_API_KEY` lives only in Edge secrets. Scaling to 196 needs either
-  batched sessions or a local key — an open question for the scale decision.
+- **Drafting at scale runs through an Edge Function** (`supabase/functions/draft-content`)
+  with a local driver (`scripts/draft-via-edge.js`), mirroring the ingestion split
+  for the same reason: `ANTHROPIC_API_KEY` stays in Edge secrets and never reaches
+  a developer machine or the repo. The driver writes prose into the per-country
+  draft files so a git diff stays the review surface.
+- **Sonnet for drafting, Haiku for `ask`.** Drafting is one-time, human-reviewed,
+  and its prose quality compounds into every future answer; the in-app path stays
+  cheap. Cost is printed at the end of a run.
+- **Validation is machine-checkable** (`scripts/validate-drafts.js`), because
+  196 × 5 fields cannot be hand-read. It checks source-excerpt backing, deferred-scope
+  leakage, territory-called-a-country, border-list consistency, the chunk cap, and
+  that every chunk names its country. Verified to have teeth: 8 of 9 deliberately
+  broken drafts were caught, and the ninth exposed the chunker bug above.

@@ -1,0 +1,185 @@
+{
+  "iso": "se",
+  "fetchedAt": "2026-09-04T23:56:42.974Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/sw.json"
+    }
+  },
+  "wikidata": {
+    "name": "Sweden",
+    "gec": "SW",
+    "capital": "Stockholm",
+    "areaKm2": 447425.16,
+    "population": 10609460,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Swedish"
+    ],
+    "currencies": [
+      "Swedish krona"
+    ],
+    "sharesBorderWithAnyType": [
+      "no",
+      "fi",
+      "dk"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/sw.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>A military power during the 17th century, Sweden maintained a policy of military non-alignment until it applied to join NATO in 2022. Sweden has not participated in any war for two centuries. Stockholm preserved an armed neutrality in both World Wars. Since then, Sweden has pursued a successful economic formula consisting of a capitalist system intermixed with substantial welfare elements. Sweden joined the EU in 1995, but the public rejected the introduction of the euro in a 2003 referendum. The share of Sweden’s population born abroad increased from 11.3% in 2000 to 20% in 2022.</p> <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, Kattegat, and Skagerrak, between Finland and Norway"
+      },
+      "Area": {
+        "total ": {
+          "text": "450,295 sq km"
+        },
+        "land": {
+          "text": "410,335 sq km"
+        },
+        "water": {
+          "text": "39,960 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,211 km"
+        },
+        "border countries": {
+          "text": "Finland 545 km; Norway 1,666 km"
+        }
+      },
+      "Coastline": {
+        "text": "3,218 km"
+      },
+      "Climate": {
+        "text": "temperate in south with cold, cloudy winters and cool, partly cloudy summers; subarctic in north"
+      },
+      "Terrain": {
+        "text": "mostly flat or gently rolling lowlands; mountains in west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kebnekaise South 2,100 m"
+        },
+        "lowest point": {
+          "text": "reclaimed bay of Lake Hammarsjon, near Kristianstad -2.4 m"
+        },
+        "mean elevation": {
+          "text": "320 m"
+        }
+      },
+      "Natural resources": {
+        "text": "iron ore, copper, lead, zinc, gold, silver, tungsten, uranium, arsenic, feldspar, timber, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "7.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 6.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 1.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "68.6% (2023 est.)"
+        },
+        "other": {
+          "text": "23.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "ice floes in the surrounding waters, especially in the Gulf of Bothnia, can interfere with maritime traffic"
+      },
+      "Geography - note": {
+        "text": "strategic location along Danish Straits linking Baltic and North Seas; Sweden has almost 100,000 lakes, the largest of which, Vanern, is the third-largest in Europe"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,643,745 (2025 est.)"
+        },
+        "male": {
+          "text": "5,360,755"
+        },
+        "female": {
+          "text": "5,282,990"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Swedish (official)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, den obestridliga källan för grundläggande information. (Swedish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> Finnish, Sami, Romani, Yiddish, and Meankieli are official minority languages"
+      },
+      "Religions": {
+        "text": "Church of Sweden (Lutheran) 53.9%, other (includes Roman Catholic, Orthodox, Baptist, Muslim, Jewish, and Buddhist) 8.9%, none or unspecified 37.2% (2021 est.)",
+        "note": "<strong>note:</strong> estimates reflect registered members of faith communities eligible for state funding (not all religions are state-funded and not all people who identify with a particular religion are registered members) and the Church of Sweden"
+      },
+      "Ethnic groups": {
+        "text": "<p>Swedish 79.6%, Syrian 1.9%, Iraqi 1.4%, Finnish 1.3%, other 15.8%</p> (2022 est.)",
+        "note": "<strong>note:</strong> data represent the population by country of birth; the indigenous Sami people are estimated to number between 20,000 and 40,000"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "88.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.89% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population lives in the south where the climate is milder and there is better connectivity to mainland Europe; population clusters are found along the Baltic coast in the east; the interior areas of the north remain sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, largest Nordic economy; EU member but does not use the euro; export-oriented, led by automotive, electronics, machinery, and pharmaceuticals; highly ranked for competitiveness, R&amp;D investments and governance; recovery, with falling inflation and real wage growth balanced by risks from trade uncertainty</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, wheat, sugar beets, barley, potatoes, oats, rapeseed, pork, chicken, beef (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "iron and steel, precision equipment (bearings, radio and telephone parts, armaments), wood pulp and paper products, processed foods, motor vehicles"
+      },
+      "Exports - commodities": {
+        "text": "cars, refined petroleum, packaged medicine, paper, vehicle parts/accessories (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 10%, USA 10%, Denmark 8%, Norway 6%, Netherlands 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, crude petroleum, refined petroleum, vehicle parts/accessories, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate in south with cold, cloudy winters and cool, partly cloudy summers; subarctic in north"
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "iso": "bf",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.408Z",
+  "structured": {
+    "code": "bf",
+    "name": "Burkina Faso",
+    "capital": "Ouagadougou",
+    "continent": "Africa",
+    "areaKm2": 274200,
+    "population": 23025776,
+    "officialLanguages": [
+      "Dioula",
+      "Bissa",
+      "Mooré"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Benin",
+      "Cote d'Ivoire",
+      "Ghana",
+      "Mali",
+      "Niger",
+      "Togo"
+    ],
+    "landBorderCodes": [
+      "bj",
+      "ci",
+      "gh",
+      "ml",
+      "ne",
+      "tg"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, manganese, zinc, limestone, marble, phosphates, pumice, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, north of Ghana || mostly flat to dissected, undulating plains; hills in the west and southeast; occupies an extensive plateau with savanna that is grassy in the north and gradually gives way to sparse forests in the south || landlocked savanna cut by the three principal rivers, the Black, Red, and White Voltas || Resources: gold, manganese, zinc, limestone, marble, phosphates, pumice, salt || Exports: gold, cotton, oil seeds, coconuts/brazil nuts/cashews, cement (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to dissected, undulating plains; hills in the west and southeast; occupies an extensive plateau with savanna that is grassy in the north and gradually gives way to sparse forests in the south || Western Africa, north of Ghana"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "three climate zones including a hot tropical savanna with a short rainy season in the southern half, a tropical hot semi-arid steppe climate typical of the Sahel region in the northern half, and small area of hot desert in the very north of the country bordering the Sahara Desert || recurring droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "highly agrarian, low-income economy; limited natural resources; widespread poverty; terrorism disrupting potential economic activity; improving trade balance via increases in gold exports; economy inflating after prior deflation; growing public debt but still manageable || Exports: gold, cotton, oil seeds, coconuts/brazil nuts/cashews, cement (2023) || Industries: cotton lint, beverages, agricultural processing, soap, cigarettes, textiles, gold"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Mossi 52.9%, Fula 7.8%, Gourmantche 6.8%, Dyula 5.7%, Bissa 3.3%, Gurunsi 3.2%, French (official) 2.2%, Bwamu 2%, Dagara 2%, San 1.7%, Marka 1.6%, Bobo 1.5%, Senufo 1.5%, Lobi 1.2%, other 6.6% (2019 est.) || Muslim 63.8%, Roman Catholic 20.1%, Animiste 9%, Protestant 6.2%, other 0.2%, none 0.7% (2019 est.) || Mossi 53.7%, Fulani (Peuhl) 6.8%, Gurunsi 5.9%, Bissa 5.4%, Gurma 5.2%, Bobo 3.4%, Senufo 2.2%, Bissa 1.5%, Lobi 1.5%, Tuareg/Bella 0.1%, other 12.8%, foreign 0.7% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "iso": "hn",
+  "fetchedAt": "2026-09-04T23:57:07.906Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/ho.json"
+    }
+  },
+  "wikidata": {
+    "name": "Honduras",
+    "gec": "HO",
+    "capital": "Tegucigalpa",
+    "areaKm2": 112492,
+    "population": 8303771,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Honduran lempira"
+    ],
+    "sharesBorderWithAnyType": [
+      "gt",
+      "sv",
+      "ni"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/ho.json",
+    "Introduction": {
+      "Background": {
+        "text": "Once part of Spain's vast empire in the New World, Honduras became an independent nation in 1821. After two and a half decades of mostly military rule, a freely elected civilian government came to power in 1982. During the 1980s, Honduras proved a haven for anti-Sandinista contras fighting the Marxist Nicaraguan Government and an ally to Salvadoran Government forces fighting leftist guerrillas. Hurricane Mitch devastated the country in 1998, killing about 5,600 people and causing approximately $2 billion in damage. Since then, the economy has slowly rebounded, despite COVID-19 and severe storm-related setbacks in 2020 and 2021."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering the Caribbean Sea, between Guatemala and Nicaragua and bordering the Gulf of Fonseca (North Pacific Ocean), between El Salvador and Nicaragua"
+      },
+      "Area": {
+        "total ": {
+          "text": "112,090 sq km"
+        },
+        "land": {
+          "text": "111,890 sq km"
+        },
+        "water": {
+          "text": "200 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,575 km"
+        },
+        "border countries": {
+          "text": "Guatemala 244 km; El Salvador 391 km; Nicaragua 940 km"
+        }
+      },
+      "Coastline": {
+        "text": "823 km (Caribbean Sea 669 km; Gulf of Fonseca 163 km)"
+      },
+      "Climate": {
+        "text": "subtropical in lowlands, temperate in mountains"
+      },
+      "Terrain": {
+        "text": "mostly mountains in interior, narrow coastal plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro Las Minas 2,870 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "684 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, gold, silver, copper, lead, zinc, iron ore, antimony, coal, fish, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "32% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 9.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 5.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 17.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "53.3% (2023 est.)"
+        },
+        "other": {
+          "text": "14.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "frequent, but generally mild, earthquakes; extremely susceptible to damaging hurricanes and floods along the Caribbean coast"
+      },
+      "Geography - note": {
+        "text": "has only a short Pacific coast but a long Caribbean shoreline, including the virtually uninhabited eastern Mosquito Coast"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "9,529,188 (2024 est.)"
+        },
+        "male": {
+          "text": "4,591,247"
+        },
+        "female": {
+          "text": "4,937,941"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official), Amerindian dialects"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Indigenous and European) 90%, Indigenous 7%, African descent 2%, White 1%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "60.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.48% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most residents live in the mountainous western half of the country; Honduras is the only Central American nation with an urban population that is distributed between two large centers, the capital of Tegucigalpa and the city of San Pedro Sula; the Rio Ulua valley in the north is the only densely populated lowland area"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "second-fastest-growing Central American economy; COVID-19 and two hurricanes crippled activity; high poverty and inequality; declining-but-still-high violent crime disruption; systemic corruption; coffee and banana exporter; enormous remittances"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, oil palm fruit, maize, milk, bananas, coffee, cantaloupes/melons, oranges, chicken, beans (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "sugar processing, coffee, woven and knit apparel, wood products, cigars"
+      },
+      "Exports - commodities": {
+        "text": "garments, coffee, insulated wire, palm oil, shellfish (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 49%, Nicaragua 8%, El Salvador 7%, Guatemala 5%, Mexico 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cotton yarn, garments, trucks, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "subtropical in lowlands, temperate in mountains"
+      }
+    }
+  }
+}

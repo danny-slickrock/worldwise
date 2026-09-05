@@ -1,0 +1,72 @@
+{
+  "iso": "pk",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.400Z",
+  "structured": {
+    "code": "pk",
+    "name": "Pakistan",
+    "capital": "Islamabad",
+    "continent": "Asia",
+    "areaKm2": 881913,
+    "population": 223773700,
+    "officialLanguages": [
+      "Urdu",
+      "English"
+    ],
+    "currencies": [
+      "Pakistani rupee"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "China",
+      "India",
+      "Iran"
+    ],
+    "landBorderCodes": [
+      "af",
+      "cn",
+      "in",
+      "ir"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "arable land, extensive natural gas reserves, limited petroleum, poor quality coal, iron ore, copper, salt, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, bordering the Arabian Sea, between India on the east and Iran and Afghanistan on the west and China in the north || divided into three major geographic areas: the northern highlands, the Indus River plain in the center and east, and the Balochistan Plateau in the south and west || controls Khyber Pass and Bolan Pass, traditional invasion routes between Central Asia and India || Resources: arable land, extensive natural gas reserves, limited petroleum, poor quality coal, iron ore, copper, salt, limestone || Exports: garments, fabric, refined petroleum, rice, cotton fabric (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "divided into three major geographic areas: the northern highlands, the Indus River plain in the center and east, and the Balochistan Plateau in the south and west || Southern Asia, bordering the Arabian Sea, between India on the east and Iran and Afghanistan on the west and China in the north"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly hot, dry desert; temperate in northwest; arctic in north || frequent earthquakes, occasionally severe especially in north and west; flooding along the Indus after heavy rains (July and August)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income South Asian economy; extremely high debt; endemic corruption; regional disputes with India and Afghanistan hinder investment; falling inflation, IMF relief programs, and strong agricultural output slowly contributing to economic recovery || Exports: garments, fabric, refined petroleum, rice, cotton fabric (2023) || Industries: textiles and apparel, food processing, pharmaceuticals, surgical instruments, construction materials, paper products, fertilizer, shrimp"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 96.4%, Hindu 1.6%, Christian 1.4%; less than 1%: scheduled castes, Qadiani/Ahmadi, other, Sikh. (2020 est.) || Punjabi 44.7%, Pashtun (Pathan) 15.4%, Sindhi 14.1%, Saraiki 8.4%, Muhajirs 7.6%, Baloch 3.6%, other 6.3%"
+    }
+  }
+}

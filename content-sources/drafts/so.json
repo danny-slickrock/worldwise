@@ -1,0 +1,70 @@
+{
+  "iso": "so",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.419Z",
+  "structured": {
+    "code": "so",
+    "name": "Somalia",
+    "capital": "Mogadishu",
+    "continent": "Africa",
+    "areaKm2": 637657,
+    "population": 11031386,
+    "officialLanguages": [
+      "Somali",
+      "Arabic"
+    ],
+    "currencies": [
+      "Somali shilling"
+    ],
+    "landBorderNames": [
+      "Djibouti",
+      "Ethiopia",
+      "Kenya"
+    ],
+    "landBorderCodes": [
+      "dj",
+      "et",
+      "ke"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "uranium and largely unexploited reserves of iron ore, tin, gypsum, bauxite, copper, salt, natural gas, likely oil reserves",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, bordering the Gulf of Aden and the Indian Ocean, east of Ethiopia || mostly flat to undulating plateau rising to hills in north || strategic location on Horn of Africa along southern approaches to Bab el Mandeb and route through Red Sea and Suez Canal || Resources: uranium and largely unexploited reserves of iron ore, tin, gypsum, bauxite, copper, salt, natural gas, likely oil reserves || Exports: sheep and goats, gold, postage stamps/documents, other animals, cattle (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to undulating plateau rising to hills in north || Eastern Africa, bordering the Gulf of Aden and the Indian Ocean, east of Ethiopia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "principally desert; northeast monsoon (December to February), moderate temperatures in north and hot in south; southwest monsoon (May to October), torrid in the north and hot in the south, irregular rainfall, hot and humid periods (tangambili) between monsoons || recurring droughts; frequent dust storms over eastern plains in summer; floods during rainy season"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income African Horn economy; 30 years of war and instability crippled economic potential; high remittances for basic survival; new fiscal federalism approach; cleared some unsustainable debt; environmentally fragile; digitally driven urbanization efforts || Exports: sheep and goats, gold, postage stamps/documents, other animals, cattle (2023) || Industries: light industries, including sugar refining, textiles, wireless communication"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 99.9% (Sunni Muslim 98.1%, Shia Muslim 1.2%, Islamic schismatic 0.6%), ethnic religionist 0.1% (2020 est.) || predominantly Somali with lesser numbers of Arabs, Bantus, and others"
+    }
+  }
+}

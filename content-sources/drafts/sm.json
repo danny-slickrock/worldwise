@@ -1,0 +1,63 @@
+{
+  "iso": "sm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.387Z",
+  "structured": {
+    "code": "sm",
+    "name": "San Marino",
+    "capital": "San Marino",
+    "continent": "Europe",
+    "areaKm2": 61.2,
+    "population": 33600,
+    "officialLanguages": [
+      "Italian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Italy"
+    ],
+    "landBorderCodes": [
+      "it"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "building stone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Europe, an enclave in central Italy || rugged mountains || landlocked; an enclave of (completely surrounded by) Italy; smallest independent state in Europe after the Holy See and Monaco; dominated by the Apennine Mountains || Resources: building stone || Exports: washing and bottling machines, other foods, packaged medicine, woodworking machines, aircraft (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rugged mountains || Southern Europe, an enclave in central Italy"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean; mild to cool winters; warm, sunny summers || occasional earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, non-EU European economy; surrounded by Italy, which is the dominant importer and exporter; open border to EU and a euro user; strong financial sector; high foreign investments; low taxation; increasingly high and risky debt || Exports: washing and bottling machines, other foods, packaged medicine, woodworking machines, aircraft (2023) || Industries: tourism, banking, textiles, electronics, ceramics, cement, wine"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic || Sammarinese, Italian"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "iso": "ba",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.375Z",
+  "structured": {
+    "code": "ba",
+    "name": "Bosnia and Herzegovina",
+    "capital": "Sarajevo",
+    "continent": "Europe",
+    "areaKm2": 51197,
+    "population": 3816459,
+    "officialLanguages": [
+      "Croatian",
+      "Serbian",
+      "Bosnian"
+    ],
+    "currencies": [
+      "Bosnia and Herzegovina dinar",
+      "convertible mark"
+    ],
+    "landBorderNames": [
+      "Croatia",
+      "Montenegro",
+      "Serbia"
+    ],
+    "landBorderCodes": [
+      "hr",
+      "me",
+      "rs"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, iron ore, antimony, bauxite, copper, lead, zinc, chromite, cobalt, manganese, nickel, clay, gypsum, salt, sand, timber, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, bordering the Adriatic Sea and Croatia || mountains and valleys || within Bosnia and Herzegovina's recognized borders, the country is divided into a joint Bosniak/Croat Federation (about 51% of the territory) and the Bosnian Serb-led Republika Srpska or RS (about 49% of the territory); the region called Herzegovina is contiguous to Croatia and Montenegro || Resources: coal, iron ore, antimony, bauxite, copper, lead, zinc, chromite, cobalt, manganese, nickel, clay, gypsum, salt, sand, timber, hydropower || Exports: footwear, electricity, garments, plastic products, insulated wire (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountains and valleys || Southeastern Europe, bordering the Adriatic Sea and Croatia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "hot summers and cold winters; areas of high elevation have short, cool summers and long, severe winters; mild, rainy winters along coast || destructive earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "import-dominated economy; remains consumption-heavy; lack of private sector investments and diversification; jointly addressing structural economic challenges; Chinese energy infrastructure investments; high unemployment; tourism industry impacted by COVID-19 || Exports: footwear, electricity, garments, plastic products, insulated wire (2023) || Industries: steel, coal, iron ore, lead, zinc, manganese, bauxite, aluminum, motor vehicle assembly, textiles, tobacco products, wooden furniture, ammunition, domestic appliances, oil refining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 50.7%, Orthodox 30.7%, Roman Catholic 15.2%, atheist 0.8%, agnostic 0.3%, other 1.2%, undeclared/no answer 1.1% (2013 est.) || Bosniak 50.1%, Serb 30.8%, Croat 15.4%, other 2.7%, not declared/no answer 1% (2013 est.)"
+    }
+  }
+}

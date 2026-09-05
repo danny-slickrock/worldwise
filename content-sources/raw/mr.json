@@ -1,0 +1,185 @@
+{
+  "iso": "mr",
+  "fetchedAt": "2026-09-04T23:57:00.217Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/mr.json"
+    }
+  },
+  "wikidata": {
+    "name": "Mauritania",
+    "gec": "MR",
+    "capital": "Nouakchott",
+    "areaKm2": 1030700,
+    "population": 4736139,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Mauritanian ouguiya"
+    ],
+    "sharesBorderWithAnyType": [
+      "dz",
+      "ml",
+      "sn",
+      "eh"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/mr.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Amazigh and Bafour people were among the earliest settlers in what is now Mauritania and among the first in recorded history to convert from a nomadic to agricultural lifestyle. These groups account for roughly one third of Mauritania’s ethnic makeup. The remainder of Mauritania’s ethnic groups derive from Sub-Saharan ethnic groups originating mainly from the Senegal River Valley, including descendants of former enslaved peoples. These three groups are organized according to a strict caste system with deep ethnic divides that impact access to resources and power dynamics.<br><br>A former French colony, Mauritania achieved independence from France in 1960. Mauritania initially began as a single-party, authoritarian regime and experienced 49 years of dictatorships, flawed elections, failed attempts at democracy, and military coups. Ould Abdel AZIZ led the last coup in 2008, was elected president in 2009, and was reelected in 2014. Mohamed Ould Cheikh GHAZOUANI was elected president in 2019, and his inauguration marked the first peaceful transition of power from one democratically elected president to another, solidifying the country's status as an emerging democracy. International observers recognized the elections as relatively free and fair. GHAZOUANI is seeking re-election in June 2024 for a second, and final, five-year term.</p> <p>The country is working to address vestigial practices of slavery and its hereditary impacts. Mauritania officially abolished slavery in 1981, but the practice was not criminalized until 2007. Between 2005 and 2011, Al-Qaeda in the Islamic Maghreb (AQIM) launched a series of attacks killing western tourists and aid workers, attacking diplomatic and government facilities, and ambushing Mauritanian soldiers and gendarmes. Although Mauritania has not seen an attack since 2011, AQIM and similar groups remain active in the Sahel region.</p> <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Senegal and Western Sahara"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,030,700 sq km"
+        },
+        "land": {
+          "text": "1,030,700 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,002 km"
+        },
+        "border countries": {
+          "text": "Algeria 460 km; Mali 2,236 km; Morocco 1,564 km; Senegal 742 km"
+        }
+      },
+      "Coastline": {
+        "text": "754 km"
+      },
+      "Climate": {
+        "text": "desert; constantly hot, dry, dusty"
+      },
+      "Terrain": {
+        "text": "mostly barren, flat plains of the Sahara; some central hills"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kediet Ijill 915 m"
+        },
+        "lowest point": {
+          "text": "Sebkhet Te-n-Dghamcha -5 m"
+        },
+        "mean elevation": {
+          "text": "276 m"
+        }
+      },
+      "Natural resources": {
+        "text": "iron ore, gypsum, copper, phosphate, diamonds, gold, oil, fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "38.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 38.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "1% (2023 est.)"
+        },
+        "other": {
+          "text": "60.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry, dust/sand-laden sirocco wind primarily in March and April; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "Mauritania is considered part of both North Africa's Maghreb region and West Africa's Sahel region; most of the population is concentrated in the cities of Nouakchott and Nouadhibou and along the Senegal River in the southern part of the country"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,202,109 (2025 est.)"
+        },
+        "male": {
+          "text": "2,578,114"
+        },
+        "female": {
+          "text": "2,623,995"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official and national), Pular, Soninke, Wolof (all national languages), French"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> the spoken Arabic in Mauritania differs considerably from Modern Standard Arabic; the Mauritanian dialect, which incorporates many Tamazight words, is referred to as Hassaniya"
+      },
+      "Religions": {
+        "text": "Muslim (official) 100%"
+      },
+      "Ethnic groups": {
+        "text": "Black Moors (Haratines - Arabic-speaking descendants of African origin who are or were enslaved by White Moors) 40%, White Moors (of Arab-Amazigh descent, known as Beydane) 30%, Sub-Saharan Mauritanians (non-Arabic speaking, largely resident in or originating from the Senegal River Valley, including Halpulaar, Fulani, Soninke, Wolof, and Bambara ethnic groups) 30%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "57.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.84% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "vast areas of the country, particularly in the central, northern, and eastern areas, are desert and lack sizeable population clusters; half the population lives in or around the coastal capital of Nouakchott; smaller clusters are found near the southern border with Mali and Senegal, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income West African economy; primarily agrarian; rising urbanization; poor property rights; systemic corruption; endemic social and workforce tensions; wide-scale terrorism; foreign over-fishing; environmentally fragile"
+      },
+      "Agricultural products": {
+        "text": "rice, milk, goat milk, sorghum, sheep milk, lamb/mutton, beef, camel meat, camel milk, dates (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "fish processing, oil production, mining (iron ore, gold, copper)",
+        "note": "<strong>note:</strong> gypsum deposits have never been exploited"
+      },
+      "Exports - commodities": {
+        "text": "gold, iron ore, fish, processed crustaceans, copper ore (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 25%, Switzerland 14%, Canada 12%, UAE 9%, Spain 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, raw sugar, palm oil, wheat, soybean oil (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "desert; constantly hot, dry, dusty"
+      }
+    }
+  }
+}

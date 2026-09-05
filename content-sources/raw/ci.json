@@ -1,0 +1,185 @@
+{
+  "iso": "ci",
+  "fetchedAt": "2026-09-04T23:56:56.410Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/iv.json"
+    }
+  },
+  "wikidata": {
+    "name": "Ivory Coast",
+    "gec": "IV",
+    "capital": "Yamoussoukro",
+    "areaKm2": 322463,
+    "population": 31165654,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ml",
+      "bf",
+      "gn",
+      "lr",
+      "gh"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/iv.json",
+    "Introduction": {
+      "Background": {
+        "text": "Various small kingdoms ruled the area of Cote d'Ivoire between the 15th and 19th centuries, when European explorers arrived and then began to expand their presence. In 1844, France established a protectorate. During this period, many of these kingdoms and tribes fought to maintain their cultural identities -- some well into the 20th century. For example, the Sanwi kingdom -- originally founded in the 17th century -- tried to break away from Cote d’Ivoire and establish an independent state in 1969.  <br><br>Cote d’Ivoire achieved independence from France in 1960 but has maintained close ties. Foreign investment and the export and production of cocoa drove economic growth that led Cote d’Ivoire to become one of the most prosperous states in West Africa. Then in 1999, a military coup overthrew the government, and a year later, junta leader Robert GUEI held rigged elections and declared himself the winner. Popular protests forced him to step aside, and Laurent GBAGBO was elected. Ivoirian dissidents and members of the military launched a failed coup in 2002 that developed into a civil war. In 2003, a cease-fire resulted in rebels holding the north, the government holding the south, and peacekeeping forces occupying a buffer zone in the middle. In 2007, President GBAGBO and former rebel leader Guillaume SORO signed an agreement in which SORO joined GBAGBO's government as prime minister. The two agreed to reunite the country by dismantling the buffer zone, integrating rebel forces into the national armed forces, and holding elections. <br><br>In 2010, Alassane Dramane OUATTARA won the presidential election, but GBAGBO refused to hand over power, resulting in five months of violent conflict. Armed OUATTARA supporters and UN and French troops eventually forced GBAGBO to step down in 2011. OUATTARA won a second term in 2015 and a controversial third term in 2020 -- despite the two-term limit in the Ivoirian constitution -- in an election boycotted by the opposition. Through political compromise with OUATTARA, the opposition participated peacefully in 2021 legislative elections and won a substantial minority of seats. Also in 2021, the International Criminal Court in The Hague ruled on a final acquittal for GBAGBO, who was on trial for crimes against humanity, paving the way for GBAGBO’s return to Abidjan the same year. GBAGBO has publicly met with OUATTARA since his return as a demonstration of political reconciliation."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Ghana and Liberia"
+      },
+      "Area": {
+        "total ": {
+          "text": "322,463 sq km"
+        },
+        "land": {
+          "text": "318,003 sq km"
+        },
+        "water": {
+          "text": "4,460 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,458 km"
+        },
+        "border countries": {
+          "text": "Burkina Faso 545 km; Ghana 720 km; Guinea 816 km; Liberia 778 km; Mali 599 km"
+        }
+      },
+      "Coastline": {
+        "text": "515 km"
+      },
+      "Climate": {
+        "text": "tropical along coast, semiarid in far north; three seasons - warm and dry (November to March), hot and dry (March to May), hot and wet (June to October)"
+      },
+      "Terrain": {
+        "text": "mostly flat to undulating plains; mountains in northwest"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Monts Nimba 1,752 m"
+        },
+        "lowest point": {
+          "text": "Gulf of Guinea 0 m"
+        },
+        "mean elevation": {
+          "text": "250 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, diamonds, manganese, iron ore, cobalt, bauxite, copper, gold, nickel, tantalum, silica sand, clay, cocoa beans, coffee, palm oil, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "86.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 15.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 29.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 41.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "12.4% (2023 est.)"
+        },
+        "other": {
+          "text": "1.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "coast has heavy surf and no natural harbors; during the rainy season torrential flooding is possible"
+      },
+      "Geography - note": {
+        "text": "most of the inhabitants live along the sandy coastal region; apart from the capital area, the forested interior is sparsely populated"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "31,855,971 (2025 est.)"
+        },
+        "male": {
+          "text": "15,992,906"
+        },
+        "female": {
+          "text": "15,863,065"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), 60 native dialects of which Dioula is the most widely spoken"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 42.9%, Catholic 17.2%, Evangelical 11.8%, Methodist 1.7%, other Christian 3.2%, animist 3.6%, other religion 0.5%, none 19.1% (2014 est.)",
+        "note": "<strong>note:</strong> the majority of foreign migrant workers are Muslim (72.7%) and Christian (17.7%)"
+      },
+      "Ethnic groups": {
+        "text": "Akan 38%, Voltaique or Gur 22%, Northern Mande 22%, Kru 9.1%, Southern Mande 8.6%, other 0.3% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "53.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.38% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the population is primarily located in the forested south, with the highest concentration of people residing in and around the cities on the Atlantic coast; most of the northern savanna remains sparsely populated, with higher concentrations located along transportation corridors, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "one of West Africa&rsquo;s most influential, stable, and rapidly developing economies; poverty declines in urban but increases in rural areas; strong construction sector and increasingly diverse economic portfolio; increasing but manageable public debt; large labor force in agriculture"
+      },
+      "Agricultural products": {
+        "text": "yams, cassava, oil palm fruit, cocoa beans, sugarcane, plantains, rice, rubber, maize, cashews (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "foodstuffs, beverages; wood products, oil refining, gold mining, truck and bus assembly, textiles, fertilizer, building materials, electricity"
+      },
+      "Exports - commodities": {
+        "text": "gold, cocoa beans, rubber, refined petroleum, coconuts/brazil nuts/cashews (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 17%, Netherlands 9%, Mali 7%, USA 5%, Malaysia 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, ships, refined petroleum, fish, rice (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical along coast, semiarid in far north; three seasons - warm and dry (November to March), hot and dry (March to May), hot and wet (June to October)"
+      }
+    }
+  }
+}

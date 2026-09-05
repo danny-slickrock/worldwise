@@ -1,0 +1,182 @@
+{
+  "iso": "sn",
+  "fetchedAt": "2026-09-04T23:57:01.774Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/sg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Senegal",
+    "gec": "SG",
+    "capital": "Dakar",
+    "areaKm2": 196722,
+    "population": 16876720,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Badyara",
+      "French",
+      "Wolof",
+      "Balanta"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "gn",
+      "gw",
+      "mr",
+      "ml",
+      "gm"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/sg.json",
+    "Introduction": {
+      "Background": {
+        "text": "Senegal is one of the few countries in the world with evidence of continuous human life from the Paleolithic period to present. Between the 14th and 16th centuries, the Jolof Empire ruled most of Senegal. Starting in the 15th century, Portugal, the Netherlands, France, and Great Britain traded along the Senegalese coast. Senegal’s location on the western tip of Africa made it a favorable base for the European slave trade. European powers used the Senegalese island of Goree as a base to purchase slaves from the warring chiefdoms on the mainland, and at the height of the slave trade in Senegal, over one-third of the Senegalese population was enslaved. In 1815, France abolished slavery and began expanding inland. During the second half of the 19th century, France took possession of Senegal as a French colony. In 1959, the French colonies of Senegal and French Sudan were merged and granted independence in 1960 as the Mali Federation. The union broke up after only a few months. In 1982, Senegal joined with The Gambia to form the nominal confederation of Senegambia. The envisaged integration of the two countries was never implemented, and the union dissolved in 1989.<br><br>Since the 1980s, the Movement of Democratic Forces in the Casamance -- a separatist movement based in southern Senegal -- has led a low-level insurgency. Several attempts at reaching a comprehensive peace agreement have failed. Since 2012, despite sporadic incidents of violence, an unofficial cease-fire has remained largely in effect. Senegal is one of the most stable democracies in Africa and has a long history of participating in international peacekeeping and regional mediation. The Socialist Party of Senegal ruled for 40 years until Abdoulaye WADE was elected president in 2000 and re-elected in 2007. WADE amended Senegal's constitution over a dozen times to increase executive power and weaken the opposition. In 2012, WADE’s decision to run for a third presidential term sparked public backlash that led to his loss to current President Macky SALL. A 2016 constitutional referendum limited future presidents to two consecutive five-year terms. President Bassirou Diomaye FAYE took office in April 2024."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Mauritania"
+      },
+      "Area": {
+        "total ": {
+          "text": "196,722 sq km"
+        },
+        "land": {
+          "text": "192,530 sq km"
+        },
+        "water": {
+          "text": "4,192 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,684 km"
+        },
+        "border countries": {
+          "text": "The Gambia 749 km; Guinea 363 km; Guinea-Bissau 341 km; Mali 489 km; Mauritania 742 km"
+        }
+      },
+      "Coastline": {
+        "text": "531 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; rainy season (May to November) has strong southeast winds; dry season (December to April) dominated by hot, dry, harmattan wind"
+      },
+      "Terrain": {
+        "text": "generally low, rolling, plains rising to foothills in southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "unnamed elevation 2.8 km southeast of Nepen Diaka 648 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "69 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, phosphates, iron ore"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "49.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 19.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 29.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "45.1% (2023 est.)"
+        },
+        "other": {
+          "text": "5.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "lowlands seasonally flooded; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "westernmost country on the African continent; The Gambia is almost an enclave within Senegal"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "18,847,519 (2024 est.)"
+        },
+        "male": {
+          "text": "9,283,314"
+        },
+        "female": {
+          "text": "9,564,205"
+        }
+      },
+      "Languages": {
+        "text": "French (official), Wolof, Pulaar, Jola, Mandinka, Serer, Soninke"
+      },
+      "Religions": {
+        "text": "Muslim 97.2% (most adhere to one of the four main Sufi brotherhoods), Christian 2.7% (mostly Roman Catholic) (2019 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Wolof 39.7%, Pulaar 27.5%, Sereer 16%, Mandinka 4.9%, Jola 4.2%, Soninke 2.4%, other 5.4% (includes Europeans and persons of Lebanese descent) (2019 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "49.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.59% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the population is concentrated in the west, with Dakar anchoring a well-defined core area; approximately 70% of the population is rural, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income, services-driven West African economy; key mining, construction, agriculture, and fishing industries; tourism and exports hit hard by COVID-19; large informal economy; developing offshore oil and gas fields; systemic corruption"
+      },
+      "Agricultural products": {
+        "text": "rice, groundnuts, watermelons, millet, cassava, sugarcane, maize, sorghum, onions, milk (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agricultural and fish processing, phosphate mining, fertilizer production, petroleum refining, zircon, and gold mining, construction materials, ship construction and repair"
+      },
+      "Exports - commodities": {
+        "text": "gold, refined petroleum, phosphoric acid, fish, cement (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Mali 21%, India 12%, Switzerland 11%, China 5%, UAE 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, rice, garments, wheat (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; rainy season (May to November) has strong southeast winds; dry season (December to April) dominated by hot, dry, harmattan wind"
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "iso": "qa",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.401Z",
+  "structured": {
+    "code": "qa",
+    "name": "Qatar",
+    "capital": "Doha",
+    "continent": "Asia",
+    "areaKm2": 11437,
+    "population": 2639211,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Qatari riyal"
+    ],
+    "landBorderNames": [
+      "Saudi Arabia"
+    ],
+    "landBorderCodes": [
+      "sa"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, fish, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, peninsula bordering the Persian Gulf and Saudi Arabia || mostly flat and barren desert || the peninsula occupies a strategic location in the central Persian Gulf near major petroleum deposits || Resources: petroleum, fish, natural gas || Exports: natural gas, crude petroleum, refined petroleum, plastics, fertilizers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat and barren desert || Middle East, peninsula bordering the Persian Gulf and Saudi Arabia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "arid; mild, pleasant winters; very hot, humid summers || haze, dust storms, sandstorms common"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, oil-and-gas-based Middle Eastern economy; implementing “National Vision 2030” government strategy for economic development, diversification, and favorable business conditions to boost investment and employment; expansion of LNG sector expected to boost growth; Islamic finance leader || Exports: natural gas, crude petroleum, refined petroleum, plastics, fertilizers (2023) || Industries: liquefied natural gas, crude oil production and refining, ammonia, fertilizer, petrochemicals, steel reinforcing bars, cement, commercial ship repair"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 65.2%, Christian 13.7%, Hindu 15.9%, Buddhist 3.8%, folk religion &lt;0.1%, Jewish &lt;0.1%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || non-Qatari 88.4%, Qatari 11.6% (2015 est.)"
+    }
+  }
+}

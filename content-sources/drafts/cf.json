@@ -1,0 +1,74 @@
+{
+  "iso": "cf",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.409Z",
+  "structured": {
+    "code": "cf",
+    "name": "Central African Republic",
+    "capital": "Bangui",
+    "continent": "Africa",
+    "areaKm2": 622984,
+    "population": 5152421,
+    "officialLanguages": [
+      "French",
+      "Sango"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "landBorderNames": [
+      "Cameroon",
+      "Chad",
+      "Democratic Republic of the Congo",
+      "South Sudan",
+      "Sudan"
+    ],
+    "landBorderCodes": [
+      "cm",
+      "td",
+      "cd",
+      "ss",
+      "sd"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "diamonds, uranium, timber, gold, oil, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, north of Democratic Republic of the Congo || vast, flat to rolling plateau; scattered hills in northeast and southwest || landlocked; almost the precise center of Africa || Resources: diamonds, uranium, timber, gold, oil, hydropower || Exports: gold, wood, diamonds, vehicle parts/accessories, cotton (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "vast, flat to rolling plateau; scattered hills in northeast and southwest || Central Africa, north of Democratic Republic of the Congo"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, dry winters; mild to hot, wet summers || hot, dry, dusty harmattan winds affect northern areas; floods are common"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "enormous natural resources; extreme poverty; weak public institutions and infrastructure; political and gender-based violence have led to displacement of roughly 25% of population; Bangui-Douala corridor blockade reduced activity and tax collection; strong agricultural performance offset COVID-19 downturn || Exports: gold, wood, diamonds, vehicle parts/accessories, cotton (2023) || Industries: gold and diamond mining, logging, brewing, sugar refining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official), Sangho (lingua franca and national language), tribal languages || Roman Catholic 34.6%, Protestant 15.7%, other Christian 22.9%, Muslim 13.8%, ethnic religionist 12%, Baha'i 0.2%, agnostic/atheist 0.7% (2020 est.) || Baya 28.8%, Banda 22.9%, Mandjia 9.9%, Sara 7.9%, M'Baka-Bantu 7.9%, Arab-Fulani (Peuhl) 6%, Mbum 6%, Ngbanki 5.5%, Zande-Nzakara 3%, other Central African Republic ethnic groups 2%, non-Central African Republic ethnic groups .1% (2003 est.)"
+    }
+  }
+}

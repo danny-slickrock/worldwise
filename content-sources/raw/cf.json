@@ -1,0 +1,182 @@
+{
+  "iso": "cf",
+  "fetchedAt": "2026-09-04T23:56:55.482Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ct.json"
+    }
+  },
+  "wikidata": {
+    "name": "Central African Republic",
+    "gec": "CT",
+    "capital": "Bangui",
+    "areaKm2": 622984,
+    "population": 5152421,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "Sango"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "td",
+      "ss",
+      "cg",
+      "cd",
+      "cm",
+      "sd"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ct.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Central African Republic (CAR) is a perennially weak state that sits at the crossroads of ethnic and linguistic groups in the center of the African continent. Among the last areas of Sub-Saharan Africa to be drawn into the world economy, its introduction into trade networks around the early 1700s fostered significant competition among its population. The local population sought to benefit from the lucrative Atlantic, trans-Saharan, and Indian Ocean trade in enslaved people and ivory. Slave raids aided by the local populations fostered animosity between ethnic groups that remains today. The territory was established as a French colony named Ubangui-Shari in 1903, and France modeled its administration of the colony after the Belgian Congo, subcontracting control of the territory to private companies that collected rubber and ivory. Although France banned the domestic slave trade in CAR in the 1910s, the private companies continued to exploit the population through forced labor. The colony of Ubangi-Shari gained independence from France as the Central African Republic in 1960, but the death of independence leader Barthelemy BOGANDA six months prior led to an immediate struggle for power. <br><br>CAR’s political history has since been marred by a series of coups, the first of which brought Jean-Bedel BOKASSA to power in 1966. Widespread corruption and intolerance for any political opposition characterized his regime. In an effort to prolong his mandate, BOKASSA named himself emperor in 1976 and changed the country’s name to the Central African Empire. His regime’s economic mismanagement culminated in widespread student protests in 1979 that were violently suppressed by security forces. BOKASSA fell out of favor with the international community and was overthrown in a French-backed coup in 1979. After BOKASSA’s departure, the country’s name once again became the Central African Republic. <br><br>CAR’s fifth coup in 2013 unseated President Francois BOZIZE after the Seleka, a mainly Muslim rebel coalition, seized the capital and forced BOZIZE to flee the country. The Seleka's widespread abuses spurred the formation of mainly Christian self-defense groups that called themselves the anti-Balaka, which have also committed human rights abuses against Muslim populations in retaliation. Since the rise of these groups, conflict in CAR has become increasingly ethnoreligious, although focused on identity rather than religious ideology. Elections in 2016 installed independent candidate Faustin-Archange TOUADERA as president; he was reelected in 2020. A peace agreement signed in 2019 between the government and the main armed factions has had little effect, and armed groups remain in control of large swaths of the country's territory. TOUADERA's United Hearts Movement has governed the country since 2016, and a new constitution approved by referendum on 30 July 2023 effectively ended term limits, creating the potential for TOUADERA to extend his rule."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, north of Democratic Republic of the Congo"
+      },
+      "Area": {
+        "total ": {
+          "text": "622,984 sq km"
+        },
+        "land": {
+          "text": "622,984 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,920 km"
+        },
+        "border countries": {
+          "text": "Cameroon 901 km; Chad 1556 km; Democratic Republic of the Congo 1,747 km, Republic of the Congo 487 km; South Sudan 1055 km; Sudan 174 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "tropical; hot, dry winters; mild to hot, wet summers"
+      },
+      "Terrain": {
+        "text": "vast, flat to rolling plateau; scattered hills in northeast and southwest"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Ngaoui 1,410 m"
+        },
+        "lowest point": {
+          "text": "Oubangui River 335 m"
+        },
+        "mean elevation": {
+          "text": "635 m"
+        }
+      },
+      "Natural resources": {
+        "text": "diamonds, uranium, timber, gold, oil, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "9.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "72.5% (2023 est.)"
+        },
+        "other": {
+          "text": "18.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry, dusty harmattan winds affect northern areas; floods are common"
+      },
+      "Geography - note": {
+        "text": "landlocked; almost the precise center of Africa"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,750,570 (2025 est.)"
+        },
+        "male": {
+          "text": "2,864,870"
+        },
+        "female": {
+          "text": "2,885,700"
+        }
+      },
+      "Languages": {
+        "text": "French (official), Sangho (lingua franca and national language), tribal languages"
+      },
+      "Religions": {
+        "text": "Roman Catholic 34.6%, Protestant 15.7%, other Christian 22.9%, Muslim 13.8%, ethnic religionist 12%, Baha'i 0.2%, agnostic/atheist 0.7% (2020 est.)",
+        "note": "<strong>note:</strong> animistic beliefs and practices strongly influence the Christian majority"
+      },
+      "Ethnic groups": {
+        "text": "Baya 28.8%, Banda 22.9%, Mandjia 9.9%, Sara 7.9%, M'Baka-Bantu 7.9%, Arab-Fulani (Peuhl) 6%, Mbum 6%, Ngbanki 5.5%, Zande-Nzakara 3%, other Central African Republic ethnic groups 2%, non-Central African Republic ethnic groups .1% (2003 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "43.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.32% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "majority of residents live in the western and central areas of the country, especially in and around the capital of Bangui, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "enormous natural resources; extreme poverty; weak public institutions and infrastructure; political and gender-based violence have led to displacement of roughly 25% of population; Bangui-Douala corridor blockade reduced activity and tax collection; strong agricultural performance offset COVID-19 downturn"
+      },
+      "Agricultural products": {
+        "text": "cassava, groundnuts, yams, coffee, maize, sesame seeds, taro, sugarcane, beef, milk (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "gold and diamond mining, logging, brewing, sugar refining"
+      },
+      "Exports - commodities": {
+        "text": "gold, wood, diamonds, vehicle parts/accessories, cotton (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 54%, China 14%, France 6%, Turkey 5%, Belgium 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, packaged medicine, vaccines, tanks and armored vehicles (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, dry winters; mild to hot, wet summers"
+      }
+    }
+  }
+}

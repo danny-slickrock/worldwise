@@ -1,0 +1,77 @@
+{
+  "iso": "sa",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.402Z",
+  "structured": {
+    "code": "sa",
+    "name": "Saudi Arabia",
+    "capital": "Riyadh",
+    "continent": "Asia",
+    "areaKm2": 2250000,
+    "population": 33000000,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Saudi riyal"
+    ],
+    "landBorderNames": [
+      "Iraq",
+      "Jordan",
+      "Kuwait",
+      "Oman",
+      "Qatar",
+      "UAE",
+      "Yemen"
+    ],
+    "landBorderCodes": [
+      "iq",
+      "jo",
+      "kw",
+      "om",
+      "qa",
+      "ae",
+      "ye"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, iron ore, gold, copper",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Persian Gulf and the Red Sea, north of Yemen || mostly sandy desert || Saudi Arabia is the largest country in the world without a river; extensive coastlines on the Persian Gulf and Red Sea allow for considerable shipping (especially of crude oil) through the Persian Gulf and Suez Canal || Resources: petroleum, natural gas, iron ore, gold, copper || Exports: crude petroleum, refined petroleum, plastics, alcohols, ships (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly sandy desert || Middle East, bordering the Persian Gulf and the Red Sea, north of Yemen"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "harsh, dry desert with great temperature extremes || frequent sand and dust storms volcanism: little activity in the past few centuries, despite many volcanic formations; volcanoes include Harrat Rahat, Harrat Khaybar, Harrat Lunayyir, and Jabal Yar"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, oil-based Middle Eastern economy; OPEC founding member; Vision 2030 strategy prioritizing economic diversification, increased private sector involvement, and projects funded by sovereign wealth fund and foreign investment; young labor force; falling but significant poverty rate despite lack of official statistics || Exports: crude petroleum, refined petroleum, plastics, alcohols, ships (2023) || Industries: crude oil production, petroleum refining, basic petrochemicals, ammonia, industrial gases, sodium hydroxide (caustic soda), cement, fertilizer, plastics, metals, commercial ship repair, commercial aircraft repair, construction"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official; citizens are 85-90% Sunni and 10-12% Shia), other (includes Eastern Orthodox, Protestant, Roman Catholic, Jewish, Hindu, Buddhist, and Sikh) (2020 est.) || Arab 90%, Afro-Asian 10%"
+    }
+  }
+}

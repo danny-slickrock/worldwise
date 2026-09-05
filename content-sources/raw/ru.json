@@ -1,0 +1,200 @@
+{
+  "iso": "ru",
+  "fetchedAt": "2026-09-04T23:56:41.412Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/rs.json"
+    }
+  },
+  "wikidata": {
+    "name": "Russia",
+    "gec": "RS",
+    "capital": "Moscow",
+    "areaKm2": 17075400,
+    "population": 146119928,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Russian"
+    ],
+    "currencies": [
+      "Russian ruble"
+    ],
+    "sharesBorderWithAnyType": [
+      "jp",
+      "no",
+      "us",
+      "fi",
+      "se",
+      "pl",
+      "lt",
+      "cn",
+      "by",
+      "ee",
+      "lv",
+      "ua",
+      "az",
+      "ge",
+      "kz",
+      "kp",
+      "mn"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/rs.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Founded in the 12th century, the Principality of Muscovy emerged from over 200 years of Mongol domination (13th-15th centuries) and gradually conquered and absorbed surrounding principalities. In the early 17th century, a new ROMANOV dynasty continued this policy of expansion across Siberia to the Pacific. Under PETER I (1682-1725), hegemony was extended to the Baltic Sea and the country was renamed the Russian Empire. During the 19th century, more territorial acquisitions were made in Europe and Asia. Defeat in the Russo-Japanese War of 1904-05 contributed to the Revolution of 1905, which resulted in the formation of a parliament and other reforms. Devastating defeats and food shortages in World War I led to widespread rioting in the major cities of the Russian Empire and to the overthrow of the ROMANOV Dynasty in 1917. The communists under Vladimir LENIN seized power soon after and formed the Union of Soviet Socialist Republics (USSR). <br><br>The brutal rule of Iosif STALIN (1928-53) strengthened communist control and Russian dominance of the Soviet Union at a cost of tens of millions of lives. After defeating Germany in World War II as part of an alliance with the US (1939-1945), the USSR expanded its territory and influence in Eastern Europe and emerged as a global power. The USSR was the principal US adversary during the Cold War (1947-1991). The Soviet economy and society stagnated in the decades following Stalin's rule, until General Secretary Mikhail GORBACHEV (1985-91) introduced glasnost (openness) and perestroika (restructuring) in an attempt to modernize communism. His initiatives inadvertently released political and economic forces that by December 1991 led to the dissolution of the USSR into Russia and 14 other independent states. In response to the ensuing turmoil during President Boris YELTSIN's term (1991-99), Russia shifted toward a centralized authoritarian state under President Vladimir PUTIN (2000-2008, 2012-present) in which the regime seeks to legitimize its rule through managed elections, populist appeals, a foreign policy focused on enhancing the country's geopolitical influence, and commodity-based economic growth. <br><br>In 2014, Russia purported to annex Ukraine's Crimean Peninsula and occupied large portions of two eastern Ukrainian oblasts. In sporadic fighting over the next eight years, more than 14,000 civilians were killed or wounded as a result of the Russian invasion in eastern Ukraine. On 24 February 2022, Russia escalated its conflict with Ukraine by invading the country on several fronts in what has become the largest conventional military attack on a sovereign state in Europe since World War II. The invasion received near-universal international condemnation, and many countries imposed sanctions on Russia and supplied humanitarian and military aid to Ukraine. In September 2022, Russia unilaterally declared its annexation of four Ukrainian oblasts -- Donetsk, Kherson, Luhansk, and Zaporizhzhia -- even though none were fully under Russian control. The annexations remain unrecognized by the international community. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "North Asia bordering the Arctic Ocean, extending from Eastern Europe (the portion west of the Urals) to the North Pacific Ocean"
+      },
+      "Area": {
+        "total ": {
+          "text": "17,098,242 sq km"
+        },
+        "land": {
+          "text": "16,377,742 sq km"
+        },
+        "water": {
+          "text": "720,500 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "22,407 km"
+        },
+        "border countries": {
+          "text": "Azerbaijan 338 km; Belarus 1,312 km; China (southeast) 4,133 km and China (south) 46 km; Estonia 324 km; Finland 1,309 km; Georgia 894 km; Kazakhstan 7,644 km; North Korea 18 km; Latvia 332 km; Lithuania (Kaliningrad Oblast) 261 km; Mongolia 3,452 km; Norway 191 km; Poland (Kaliningrad Oblast) 209 km; Ukraine 1,944 km"
+        }
+      },
+      "Coastline": {
+        "text": "37,653 km"
+      },
+      "Climate": {
+        "text": "ranges from steppes in the south through humid continental in much of European Russia; subarctic in Siberia to tundra climate in the polar north; winters vary from cool along Black Sea coast to frigid in Siberia; summers vary from warm in the steppes to cool along Arctic coast"
+      },
+      "Terrain": {
+        "text": "broad plain with low hills west of Urals; vast coniferous forest and tundra in Siberia; uplands and mountains along southern border regions"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gora El'brus (highest point in Europe) 5,642 m"
+        },
+        "lowest point": {
+          "text": "Caspian Sea -28 m"
+        },
+        "mean elevation": {
+          "text": "600 m"
+        }
+      },
+      "Natural resources": {
+        "text": "wide natural-resource base including major deposits of oil, natural gas, coal, and many strategic minerals, bauxite, reserves of rare earth elements, timber",
+        "note": "<strong>note:</strong> formidable obstacles of climate, terrain, and distance hinder exploitation of natural resources"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "13.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "50.7% (2023 est.)"
+        },
+        "other": {
+          "text": "35.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "permafrost over much of Siberia is a major impediment to development; volcanic activity in the Kuril Islands; volcanoes and earthquakes on the Kamchatka Peninsula; spring floods and summer/autumn forest fires in Siberia and parts of European Russia <br><br><strong>volcanism:</strong> Kamchatka Peninsula is home to 29 historically active volcanoes, with dozens more in the Kuril Islands; Kliuchevskoi (4,835 m) is Kamchatka's most active volcano; Avachinsky and Koryaksky volcanoes, which pose a threat to the city of Petropavlovsk-Kamchatsky, have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; other notable historically active volcanoes include Bezymianny, Chikurachki, Ebeko, Gorely, Grozny, Karymsky, Ketoi, Kronotsky, Ksudach, Medvezhia, Mutnovsky, Sarychev Peak, Shiveluch, Tiatia, Tolbachik, and Zheltovsky; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> largest country in the world in terms of area; despite its size, much of the country lacks the soil and climate (either too cold or too dry) for agriculture <br><br><strong>note 2:</strong> Russia's far east, particularly the Kamchatka Peninsula, lies along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 3:</strong> Mount El'brus is Europe's tallest peak; Lake Baikal, the deepest lake in the world, is estimated to hold one fifth of the world's fresh surface water<br><br><strong>note 4:</strong> Kaliningrad oblast is an exclave annexed from Germany after World War II; its capital city of Kaliningrad -- formerly Koenigsberg -- is the only Baltic port in Russia that remains ice-free in the winter"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "140,134,279 (2025 est.)"
+        },
+        "male": {
+          "text": "65,166,555"
+        },
+        "female": {
+          "text": "74,967,724"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Russian (official) 85.7%, Tatar 3.2%, Chechen 1%, other 10.1% (2010 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Книга фактов о мире – незаменимый источник базовой информации. (Russian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent native language spoken"
+      },
+      "Religions": {
+        "text": "Russian Orthodox 15-20%, Muslim 10-15%, other Christian 2% (2006 est.)",
+        "note": "<strong>note:</strong> estimates are of practicing worshipers; Russia has large populations of non-practicing believers and non-believers, a legacy of over seven decades of official atheism under Soviet rule; Russia officially recognizes Orthodox Christianity, Islam, Judaism, and Buddhism as the country's traditional religions"
+      },
+      "Ethnic groups": {
+        "text": "Russian 77.7%, Tatar 3.7%, Ukrainian 1.4%, Bashkir 1.1%, Chuvash 1%, Chechen 1%, other 10.2%, unspecified 3.9% (2010 est.)",
+        "note": "<strong>note:</strong> nearly 200 national and/or ethnic groups are represented in Russia's 2010 census"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "75.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.11% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is heavily concentrated in the westernmost fifth of the country, extending from the Baltic Sea south to the Caspian Sea, and eastward parallel to the Kazakh border; elsewhere, sizeable population pockets are isolated and generally found in the south"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "natural resource-rich Eurasian economy; leading energy exporter to Europe and Asia; decreased oil export reliance; endemic corruption, Ukrainian invasion, and lack of green infrastructure limit investment and have led to sanctions"
+      },
+      "Agricultural products": {
+        "text": "wheat, sugar beets, milk, barley, potatoes, sunflower seeds, maize, soybeans, chicken, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "complete range of mining and extractive industries producing coal, oil, gas, chemicals, and metals; all forms of machine building from rolling mills to high-performance aircraft and space vehicles; defense industries (including radar, missile production, advanced electronic components), shipbuilding; road and rail transportation equipment; communications equipment; agricultural machinery, tractors, and construction equipment; electric power generating and transmitting equipment; medical and scientific instruments; consumer durables, textiles, foodstuffs, handicrafts"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined petroleum, natural gas, coal, fertilizers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 33%, India 17%, Turkey 8%, Kazakhstan 4%, Brazil 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, packaged medicine, broadcasting equipment, garments, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "ranges from steppes in the south through humid continental in much of European Russia; subarctic in Siberia to tundra climate in the polar north; winters vary from cool along Black Sea coast to frigid in Siberia; summers vary from warm in the steppes to cool along Arctic coast"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "iso": "dz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.407Z",
+  "structured": {
+    "code": "dz",
+    "name": "Algeria",
+    "capital": "Algiers",
+    "continent": "Africa",
+    "areaKm2": 2381741,
+    "population": 46164219,
+    "officialLanguages": [
+      "Arabic",
+      "Standard Algerian Berber"
+    ],
+    "currencies": [
+      "Algerian dinar"
+    ],
+    "landBorderNames": [
+      "Libya",
+      "Mali",
+      "Mauritania",
+      "Morocco",
+      "Niger",
+      "Tunisia"
+    ],
+    "landBorderCodes": [
+      "ly",
+      "ml",
+      "mr",
+      "ma",
+      "ne",
+      "tn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, iron ore, phosphates, uranium, lead, zinc",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the Mediterranean Sea, between Morocco and Tunisia || mostly high plateau and desert; Atlas Mountains in the far north and Hoggar Mountains in the south; narrow, discontinuous coastal plain || largest country in Africa but 80% desert; canyons and caves in the southern Hoggar Mountains and in the barren Tassili n'Ajjer area in the southeast of the country contain numerous examples of prehistoric art -- rock paintings and carvings depicting human activities and wild and domestic animals (elephants, giraffes, cattle) -- that date to the African Humid Period, roughly 5,000 to 11,000 years ago, when the region was completely vegetated || Resources: petroleum, natural gas, iron ore, phosphates, uranium, lead, zinc || Exports: natural gas, crude petroleum, refined petroleum, fertilizers, iron bars (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly high plateau and desert; Atlas Mountains in the far north and Hoggar Mountains in the south; narrow, discontinuous coastal plain || Northern Africa, bordering the Mediterranean Sea, between Morocco and Tunisia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "arid to semiarid; mild, wet winters with hot, dry summers along coast; drier with cold winters and hot summers on high plateau; sirocco is a hot, dust/sand-laden wind especially common in summer || mountainous areas subject to severe earthquakes; mudslides and floods in rainy season; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "suffering oil and gas economy; lack of sector and market diversification; political instability chilling domestic consumption; poor credit access and declines in business confidence; COVID-19 austerity policies; delayed promised socio-economic reforms || Exports: natural gas, crude petroleum, refined petroleum, fertilizers, iron bars (2023) || Industries: petroleum, natural gas, light industries, mining, electrical, petrochemical, food processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official; predominantly Sunni) 99%, other (includes Christian, Jewish, Ahmadi Muslim, Shia Muslim, Ibadi Muslim) &lt;1% (2012 est.) || Arab-Amazigh 99%, European less than 1%"
+    }
+  }
+}

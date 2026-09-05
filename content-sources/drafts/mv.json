@@ -1,0 +1,61 @@
+{
+  "iso": "mv",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.398Z",
+  "structured": {
+    "code": "mv",
+    "name": "Maldives",
+    "capital": "Malé",
+    "continent": "Asia",
+    "areaKm2": 298,
+    "population": 436330,
+    "officialLanguages": [
+      "Maldivian"
+    ],
+    "currencies": [
+      "Maldivian rufiyaa"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, group of atolls in the Indian Ocean, south-southwest of India || flat coral atolls, with white sandy beaches; sits atop the submarine volcanic Chagos-Laccadive Ridge || smallest Asian country; archipelago of 1,190 coral islands grouped into 26 atolls (200 inhabited islands, plus 80 islands with tourist resorts); strategic location along major sea lanes in Indian Ocean || Resources: fish || Exports: fish, aircraft, refined petroleum, scrap iron, natural gas (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat coral atolls, with white sandy beaches; sits atop the submarine volcanic Chagos-Laccadive Ridge || Southern Asia, group of atolls in the Indian Ocean, south-southwest of India"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; dry, northeast monsoon (November to March); rainy, southwest monsoon (June to August) || tsunamis; low elevation of islands makes them sensitive to sea level rise"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Indian Ocean island economy; major tourism, fishing, and shipping industries; high public debt; systemic corruption; crippled by COVID-19; ongoing deflation; poverty has tripled since pandemic began || Exports: fish, aircraft, refined petroleum, scrap iron, natural gas (2023) || Industries: tourism, fish processing, shipping, boat building, coconut processing, woven mats, rope, handicrafts, coral and sand mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Dhivehi (official, closely related to Sinhala, script derived from Arabic), English (spoken by most government officials) || Sunni Muslim (official) || homogeneous mixture of Sinhalese, Dravidian, Arab, Australasian, and African resulting from historical changes in regional hegemony over marine trade routes"
+    }
+  }
+}

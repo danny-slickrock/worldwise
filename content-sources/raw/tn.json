@@ -1,0 +1,182 @@
+{
+  "iso": "tn",
+  "fetchedAt": "2026-09-04T23:57:03.608Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ts.json"
+    }
+  },
+  "wikidata": {
+    "name": "Tunisia",
+    "gec": "TS",
+    "capital": "Tunis",
+    "areaKm2": 163610,
+    "population": 11565204,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Tunisian dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "dz",
+      "ly"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ts.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Many empires have controlled Tunisia, including the Phoenicians (as early as the 12 century B.C.), Carthaginians, Romans, Vandals, Byzantines, various Arab and Berber kingdoms, and Ottomans (16th to late-19th centuries). Rivalry between French and Italian interests in Tunisia culminated in a French invasion in 1881 and the creation of a protectorate. Agitation for independence in the decades after World War I finally convinced the French to recognize Tunisia as an independent state in 1956. The country's first president, Habib BOURGUIBA, established a strict one-party state. He dominated the country for 31 years, repressing Islamic fundamentalism and establishing rights for women. In 1987, Zine el Abidine BEN ALI replaced BOURGUIBA in a bloodless coup. <br><br>Street protests that began in Tunis in 2010 over high unemployment, corruption, widespread poverty, and high food prices escalated in 2011, culminating in rioting that led to hundreds of deaths and later became known as the start of the regional Arab Spring uprising. BEN ALI dismissed the government and fled the country, and a \"national unity government\" was formed. Elections for the new Constituent Assembly were held later that year, and human rights activist Moncef MARZOUKI was elected as interim president. The Assembly began drafting a new constitution in 2012 and, after several iterations and a months-long political crisis that stalled the transition, ratified the document in 2014. Parliamentary and presidential elections for a permanent government were held at the end of 2014. Beji CAID ESSEBSI was elected as the first president under the country's new constitution. After ESSEBSI’s death in office in 2019, Kais SAIED was elected. SAIED's term, as well as that of Tunisia's 217-member parliament, was set to expire in 2024. However, in 2021, SAIED used the exceptional powers allowed under Tunisia's constitution to dismiss the prime minister and suspend the legislature. Tunisians approved a new constitution through public referendum in 2022, expanding presidential powers and creating a new bicameral legislature. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Africa, bordering the Mediterranean Sea, between Algeria and Libya"
+      },
+      "Area": {
+        "total ": {
+          "text": "163,610 sq km"
+        },
+        "land": {
+          "text": "155,360 sq km"
+        },
+        "water": {
+          "text": "8,250 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,495 km"
+        },
+        "border countries": {
+          "text": "Algeria 1,034 km; Libya 461 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,148 km"
+      },
+      "Climate": {
+        "text": "temperate in north with mild, rainy winters and hot, dry summers; desert in south"
+      },
+      "Terrain": {
+        "text": "mountains in north; hot, dry central plain; semiarid south merges into the Sahara"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jebel ech Chambi 1,544 m"
+        },
+        "lowest point": {
+          "text": "Shatt al Gharsah -17 m"
+        },
+        "mean elevation": {
+          "text": "246 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, phosphates, iron ore, lead, zinc, salt"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "62.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 18.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 13.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 30.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "4.5% (2023 est.)"
+        },
+        "other": {
+          "text": "33.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding; earthquakes; droughts"
+      },
+      "Geography - note": {
+        "text": "strategic location in central Mediterranean"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "11,962,995 (2025 est.)"
+        },
+        "male": {
+          "text": "5,926,741"
+        },
+        "female": {
+          "text": "6,036,254"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official, one of the languages of commerce), French (commerce), Tamazight"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، أحسن كتاب تتعلم به المعلومات الأساسية (Arabic)<br><br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> despite having no official status, French plays a major role in the country and is spoken by about two thirds of the population"
+      },
+      "Religions": {
+        "text": "Muslim (official; Sunni) 99%, other (includes Christian, Jewish, Shia Muslim, and Baha'i) &lt;1%"
+      },
+      "Ethnic groups": {
+        "text": "Arab 98%, European 1%, Jewish and other 1%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "70.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.34% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the overwhelming majority of the population is located in the northern half of the country; the south remains largely underpopulated, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income North African economy; drafting reforms for foreign lenders; high unemployment, especially for youth and women; hit hard by COVID-19; high public sector wages; high public debt; protectionist austerity measures; key EU trade partner"
+      },
+      "Agricultural products": {
+        "text": "milk, tomatoes, olives, onions, chillies/peppers, watermelons, potatoes, wheat, dates, oranges (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, mining (particularly phosphate, iron ore), tourism, textiles, footwear, agribusiness, beverages"
+      },
+      "Exports - commodities": {
+        "text": "garments, insulated wire, olive oil, refined petroleum, crude petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "France 22%, Italy 17%, Germany 13%, USA 4%, Libya 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, natural gas, plastic products, cars, plastics (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate in north with mild, rainy winters and hot, dry summers; desert in south"
+      }
+    }
+  }
+}

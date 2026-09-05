@@ -1,0 +1,63 @@
+{
+  "iso": "mc",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.384Z",
+  "structured": {
+    "code": "mc",
+    "name": "Monaco",
+    "capital": "Monaco",
+    "continent": "Europe",
+    "areaKm2": 2.08,
+    "population": 38857,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "France"
+    ],
+    "landBorderCodes": [
+      "fr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "none",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Europe, bordering the Mediterranean Sea on the southern coast of France, near the border with Italy || hilly, rugged, rocky || second-smallest independent state in the world (after the Holy See); smallest country with a coastline; almost entirely urban || Resources: none || Exports: jewelry, perfumes, watches, packaged medicines, cars (2021)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "hilly, rugged, rocky || Western Europe, bordering the Mediterranean Sea on the southern coast of France, near the border with Italy"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean with mild, wet winters and hot, dry summers || none"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income European economy; non-EU euro user; considered a tax haven; tourism and banking are largest sectors; negatively impacted by COVID-19; major oceanographic museum; among most expensive real estate; major state-owned enterprises || Exports: jewelry, perfumes, watches, packaged medicines, cars (2021) || Industries: banking, insurance, tourism, construction, small-scale industrial and consumer products"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 90% (official), other 10% || Monegasque 32.1%, French 19.9%, Italian 15.3%, British 5%, Belgian 2.3%, Swiss 2%, German 1.9%, Russian 1.8%, American 1.1%, Dutch 1.1%, Moroccan 1%, other 16.6% (2016 est.)"
+    }
+  }
+}

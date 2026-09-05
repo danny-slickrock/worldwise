@@ -1,0 +1,94 @@
+{
+  "iso": "zw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.422Z",
+  "structured": {
+    "code": "zw",
+    "name": "Zimbabwe",
+    "capital": "Harare",
+    "continent": "Africa",
+    "areaKm2": 390757,
+    "population": 15178979,
+    "officialLanguages": [
+      "English",
+      "Xhosa",
+      "Ndau",
+      "Venda",
+      "Chewa",
+      "Khoisan",
+      "Kalanga",
+      "Shona",
+      "Tonga",
+      "Tswana",
+      "Tsonga",
+      "Sesotho",
+      "Northern Ndebele",
+      "Barwe",
+      "Nambya",
+      "Zimbabwe Sign Language"
+    ],
+    "currencies": [
+      "Zimbabwe ZiG",
+      "Australian dollar",
+      "Zimbabwean dollar",
+      "rand",
+      "Indian rupee",
+      "renminbi",
+      "pound sterling",
+      "yen",
+      "United States dollar"
+    ],
+    "landBorderNames": [
+      "Botswana",
+      "Mozambique",
+      "South Africa",
+      "Zambia"
+    ],
+    "landBorderCodes": [
+      "bw",
+      "mz",
+      "za",
+      "zm"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, chromium ore, asbestos, gold, nickel, copper, iron ore, vanadium, lithium, tin, platinum group metals",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, between South Africa and Zambia || mostly high plateau with higher central plateau (high veld); mountains in east || landlocked; the Zambezi forms a natural river boundary with Zambia; in full flood (February-April), the massive Victoria Falls on the river forms the world's largest curtain of falling water; Lake Kariba on the Zambia-Zimbabwe border forms the world's largest reservoir by volume (180 cu km; 43 cu mi) || Resources: coal, chromium ore, asbestos, gold, nickel, copper, iron ore, vanadium, lithium, tin, platinum group metals || Exports: gold, tobacco, nickel, minerals, diamonds (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly high plateau with higher central plateau (high veld); mountains in east || Southern Africa, between South Africa and Zambia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; moderated by altitude; rainy season (November to March) || recurring droughts; floods and severe storms are rare"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low income Sub-Saharan economy; political instability and endemic corruption have prevented reforms and stalled debt restructuring; new Zimbabwe Gold (ZiG) currency latest effort to combat ongoing hyperinflation; reliant on natural resource extraction, agriculture and remittances || Exports: gold, tobacco, nickel, minerals, diamonds (2023) || Industries: mining (coal, gold, platinum, copper, nickel, tin, diamonds, clay, numerous metallic and nonmetallic ores), steel, wood products, cement, chemicals, fertilizer, clothing and footwear, foodstuffs, beverages"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Shona (official, most widely spoken) 80.9%, Ndebele (official, second most widely spoken) 11.5%, English (official, traditionally used for official business) 0.3%, 13 minority languages (official; includes Chewa, Chibarwe, Kalanga, Koisan, Nambya, Ndau, Shangani, sign language, Sotho, Tonga, Tswana, Venda, and Xhosa) 7%, other 0.3% (2022 est.) || Apostolic Sect 40.3%, Pentecostal 17%, Protestant 13.8%, other Christian 7.8%, Roman Catholic 6.4%, African traditionalist 5%, other 1.5% (includes Muslim, Jewish, Hindu), none 8.3% (2022 est.) || African 99.6% (predominantly Shona; Ndebele is the second largest ethnic group), other (includes Caucasian, Asiatic, mixed race) 0.4% (2022 est.)"
+    }
+  }
+}

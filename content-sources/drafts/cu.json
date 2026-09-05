@@ -1,0 +1,63 @@
+{
+  "iso": "cu",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.427Z",
+  "structured": {
+    "code": "cu",
+    "name": "Cuba",
+    "capital": "Havana",
+    "continent": "North America",
+    "areaKm2": 109884,
+    "population": 10985974,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Cuban peso"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [
+      "US Naval Base at Guantanamo Bay"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "cobalt, nickel, iron ore, chromium, copper, salt, timber, silica, petroleum, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, 150 km south of Key West, Florida || mostly flat to rolling plains, with rugged hills and mountains in the southeast || largest country in Caribbean and westernmost island of the Greater Antilles || Resources: cobalt, nickel, iron ore, chromium, copper, salt, timber, silica, petroleum, arable land || Exports: tobacco, nickel, liquor, zinc ore, precious metal ore (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling plains, with rugged hills and mountains in the southeast || Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, 150 km south of Key West, Florida"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; moderated by trade winds; dry season (November to April); rainy season (May to October) || the east coast is subject to hurricanes from August to November (in general, the country averages about one hurricane every other year); droughts are common"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "still largely state-run planned economy, although privatization increasing under new constitution; widespread protests due to lack of basic necessities and electricity; massive foreign investment increases recently; known tobacco exporter; unique oil-for-doctors relationship with Venezuela; widespread corruption || Exports: tobacco, nickel, liquor, zinc ore, precious metal ore (2023) || Industries: petroleum, nickel, cobalt, pharmaceuticals, tobacco, construction, steel, cement, agricultural machinery, sugar"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 58.9%, folk religion 17.6%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, Muslim &lt;1%, other &lt;1%, none 23.2% (2020 est.) || White 64.1%, Mulatto or mixed 26.6%, Black 9.3% (2012 est.)"
+    }
+  }
+}

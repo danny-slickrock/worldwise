@@ -1,0 +1,71 @@
+{
+  "iso": "mx",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.430Z",
+  "structured": {
+    "code": "mx",
+    "name": "Mexico",
+    "capital": "Mexico City",
+    "continent": "North America",
+    "areaKm2": 1964375,
+    "population": 132274416,
+    "officialLanguages": [
+      "Nahuatl",
+      "Spanish",
+      "Yucatec Maya"
+    ],
+    "currencies": [
+      "peso"
+    ],
+    "landBorderNames": [
+      "Belize",
+      "Guatemala",
+      "US"
+    ],
+    "landBorderCodes": [
+      "bz",
+      "gt",
+      "us"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, silver, antimony, copper, gold, lead, zinc, natural gas, timber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "North America, bordering the Caribbean Sea and the Gulf of America, between Belize and the United States and bordering the North Pacific Ocean, between Guatemala and the United States || high, rugged mountains; low coastal plains; high plateaus; desert || strategic location on southern border of the US; Mexico is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes the Sac Actun cave system at 348 km (216 mi) is the longest underwater cave in the world and the second longest cave worldwide, after Mammoth Cave in the United States (see \"Geography - note\" under United States) the prominent Yucatán Peninsula that divides the Gulf of America from the Caribbean Sea is shared by Mexico, Guatemala, and Belize; on the northern coast of Yucatan near the town of Chicxulub lie the remnants of a massive asteroid or comet crater about 150 km (93 mi) in diameter and extending into the Gulf of America; the impact is believed to have initiated a worldwide climate disruption that caused a mass extinction of 75% of the earth's plant and animal species, including the non-avian dinosaurs || Resources: petroleum, silver, antimony, copper, gold, lead, zinc, natural gas, timber || Exports: cars, vehicle parts/accessories, crude petroleum, trucks, computers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "high, rugged mountains; low coastal plains; high plateaus; desert || North America, bordering the Caribbean Sea and the Gulf of America, between Belize and the United States and bordering the North Pacific Ocean, between Guatemala and the United States"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical to desert || tsunamis along the Pacific coast; volcanoes and destructive earthquakes in the center and south; hurricanes on the Pacific, Gulf of America, and Caribbean coasts volcanism: volcanic activity in the central-southern part of the country; the volcanoes in Baja California are mostly dormant; Colima (3,850 m) is Mexico's most active volcano and is responsible for periodic evacuations of nearby villagers; it has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Popocatepetl (5,426 m) poses a threat to Mexico City; other historically active volcanoes include Barcena, Ceboruco, El Chichon, Michoacan-Guanajuato, Pico de Orizaba, San Martin, Socorro, and Tacana; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income economy; highly integrated with US via trade and nearshore manufacturing; weak domestic demand, fiscal consolidation, and trade uncertainty contributing to sluggish growth; low unemployment; challenges from income inequality, corruption, and cartel-based violence || Exports: cars, vehicle parts/accessories, crude petroleum, trucks, computers (2023) || Industries: food and beverages, tobacco, chemicals, iron and steel, petroleum, mining, textiles, clothing, motor vehicles, consumer durables, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 77.7%, no religion 10.6%, other Evangelical Churches 7.5%, Jehovah Witness 1.2%; less than 1 percent: Pentecostal, Seventh Day Adventist, Historics, not specified, Latter Day Saints, other religions (2020 est.) || Mestizo (Indigenous-Spanish) 62%, predominantly Indigenous 21%, Indigenous 7%, other 10% (mostly European) (2012 est.)"
+    }
+  }
+}

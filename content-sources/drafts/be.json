@@ -1,0 +1,71 @@
+{
+  "iso": "be",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.375Z",
+  "structured": {
+    "code": "be",
+    "name": "Belgium",
+    "capital": "Brussels",
+    "continent": "Europe",
+    "areaKm2": 30688,
+    "population": 11825551,
+    "officialLanguages": [
+      "French",
+      "German",
+      "Dutch"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "France",
+      "Germany",
+      "Luxembourg",
+      "Netherlands"
+    ],
+    "landBorderCodes": [
+      "fr",
+      "de",
+      "lu",
+      "nl"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "construction materials, silica sand, carbonates, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Europe, bordering the North Sea, between France and the Netherlands || flat coastal plains in northwest, central rolling hills, rugged mountains of Ardennes Forest in southeast || crossroads of Western Europe; most West European capitals are within 1,000 km of Brussels, the seat of both the EU and NATO || Resources: construction materials, silica sand, carbonates, arable land || Exports: refined petroleum, natural gas, vaccines, cars, packaged medicine (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat coastal plains in northwest, central rolling hills, rugged mountains of Ardennes Forest in southeast || Western Europe, bordering the North Sea, between France and the Netherlands"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; mild winters, cool summers; rainy, humid, cloudy || flooding is a threat along rivers and in areas of reclaimed coastal land, protected from the sea by concrete dikes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, core EU and eurozone economy; slow growth with weakened domestic consumption and export demand; high public debt and structural deficits linked to social spending; aging workforce with weak productivity growth and participation rates || Exports: refined petroleum, natural gas, vaccines, cars, packaged medicine (2023) || Industries: engineering and metal products, motor vehicle assembly, transportation equipment, scientific instruments, processed food and beverages, chemicals, pharmaceuticals, base metals, textiles, glass, petroleum"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 57.1%, Protestant 2.3%, other Christian, 2.8%, Muslim 6.8%, other 1.7%, atheist 9.1%, nonbeliever/agnostic 20.2% (2018 est.) || Belgian 75.2%, Italian 4.1%, Moroccan 3.7%, French 2.4%, Turkish 2%, Dutch 2%, other 10.6% (2012 est.)"
+    }
+  }
+}

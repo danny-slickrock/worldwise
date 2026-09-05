@@ -1,0 +1,183 @@
+{
+  "iso": "kw",
+  "fetchedAt": "2026-09-04T23:56:46.539Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/ku.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kuwait",
+    "gec": "KU",
+    "capital": "Kuwait City",
+    "areaKm2": 17818,
+    "population": 4464000,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Kuwaiti dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "ir",
+      "iq",
+      "sa"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/ku.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Kuwait has been ruled by the AL-SABAH dynasty since the 18th century. The threat of Ottoman invasion in 1899 prompted Amir Mubarak AL-SABAH to seek protection from Britain, ceding foreign and defense responsibility to Britain until 1961, when the country attained its independence. Iraq attacked and overran Kuwait in 1990. After several weeks of aerial bombardment, a US-led UN coalition began a ground assault in 1991 that liberated Kuwait in four days. In 1992, the Amir reconstituted the parliament that he had dissolved in 1986. Amid the 2010-11 uprisings and protests across the Arab world, stateless Arabs known as Bidoon staged small protests demanding citizenship, jobs, and other benefits available to Kuwaiti nationals. Other demographic groups, notably Islamists and Kuwaitis from tribal backgrounds, soon joined the growing protest movements, which culminated with the resignation of the prime minister amid allegations of corruption. Demonstrations renewed in 2012 in response to a decree amending the electoral law that lessened the voting power of the tribal blocs. <br><br>An opposition coalition of Sunni Islamists, tribal populists, and some liberals largely boycotted legislative elections in 2012 and 2013, which ushered in a legislature more amenable to the government's agenda. Faced with the prospect of painful subsidy cuts, oppositionists and independents actively participated in the 2016 election, winning nearly half the seats, but the opposition became increasingly factionalized. Between 2006 and his death in 2020, the Amir dissolved the National Assembly on seven occasions and shuffled the cabinet over a dozen times, usually citing political stagnation and gridlock between the legislature and the government. <br><br>The current Amir, who assumed his role in 2020, launched a \"National Dialogue\" in 2021 meant to resolve political gridlock. As part of this initiative, the Amir pardoned several opposition figures who had been living in exile, and they returned to Kuwait. Legislative challenges remain, and the cabinet has been reshuffled six times since 2020. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Persian Gulf, between Iraq and Saudi Arabia"
+      },
+      "Area": {
+        "total ": {
+          "text": "17,818 sq km"
+        },
+        "land": {
+          "text": "17,818 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "475 km"
+        },
+        "border countries": {
+          "text": "Iraq 254 km; Saudi Arabia 221 km"
+        }
+      },
+      "Coastline": {
+        "text": "499 km"
+      },
+      "Climate": {
+        "text": "dry desert; intensely hot summers; short, cool winters"
+      },
+      "Terrain": {
+        "text": "flat to slightly undulating desert plain"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "3.6 km W. of Al-Salmi Border Post 300 m"
+        },
+        "lowest point": {
+          "text": "Persian Gulf 0 m"
+        },
+        "mean elevation": {
+          "text": "108 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, fish, shrimp, natural gas"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "8.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 7.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "0.4% (2023 est.)"
+        },
+        "other": {
+          "text": "91.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "sudden cloudbursts are common from October to April and bring heavy rain, which can damage roads and houses; sandstorms and dust storms occur throughout the year but are most common between March and August"
+      },
+      "Geography - note": {
+        "text": "strategic location at head of Persian Gulf"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "3,172,511 (2025 est.)"
+        },
+        "male": {
+          "text": "1,827,274"
+        },
+        "female": {
+          "text": "1,345,237"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English widely spoken"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim (official) 74.6%, Christian 18.2%, other and unspecified 7.2% (2013 est.)",
+        "note": "<strong>note:</strong> data represent the total population; about 72% of the population consists of immigrants"
+      },
+      "Ethnic groups": {
+        "text": "Kuwaiti 30.4%, other Arab 27.4%, Asian 40.3%, African 1%, other 0.9% (includes European, North American, South American, and Australian) (2018 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "100% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.35% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "densest settlement is along the Persian Gulf, particularly in Kuwait City and on Bubiyan Island; significant population threads extend south and west along highways that radiate from the capital, particularly in the southern half of the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "small, high-income, oil-based Middle East economy; renewable energy proponent; regional finance and investment leader; maintains oldest sovereign wealth fund; emerging space and tourism industries; mid-way through 25-year development program"
+      },
+      "Agricultural products": {
+        "text": "dates, eggs, milk, tomatoes, chicken, lamb/mutton, cucumbers/gherkins, vegetables, maize, eggplants (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, petrochemicals, cement, shipbuilding and repair, water desalination, food processing, construction materials"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined petroleum, natural gas, hydrocarbons, plastics (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 25%, India 13%, Japan 13%, Taiwan 7%, UK 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, natural gas, garments, broadcasting equipment, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "dry desert; intensely hot summers; short, cool winters"
+      }
+    }
+  }
+}

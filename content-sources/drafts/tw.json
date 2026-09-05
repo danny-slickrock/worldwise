@@ -1,0 +1,82 @@
+{
+  "iso": "tw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.403Z",
+  "structured": {
+    "code": "tw",
+    "name": "Taiwan",
+    "capital": "Taipei",
+    "continent": "Asia",
+    "areaKm2": 36193,
+    "population": 23317031,
+    "officialLanguages": [
+      "Taiwanese Sign Language",
+      "Amis",
+      "Taiwanese Hokkien",
+      "Rukai",
+      "Bunun",
+      "Kanakanavu",
+      "Standard Taiwanese Mandarin",
+      "Paiwan",
+      "Yami",
+      "Atayal",
+      "Saaroa",
+      "Kavalan",
+      "Tsou",
+      "Seediq",
+      "Puyuma",
+      "Saisiyat",
+      "Sakizaya",
+      "Taiwanese Hakka",
+      "Truku",
+      "Matsu dialect",
+      "Kinmen dialect",
+      "Wuqiu dialect"
+    ],
+    "currencies": [
+      "New Taiwan dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "small deposits of coal, natural gas, limestone, marble, asbestos, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Asia, islands bordering the East China Sea, Philippine Sea, South China Sea, and Taiwan Strait, north of the Philippines, off the southeastern coast of China || eastern two-thirds mostly rugged mountains; flat to gently rolling plains in west || strategic location adjacent to both the Taiwan Strait and the Luzon Strait || Resources: small deposits of coal, natural gas, limestone, marble, asbestos, arable land || Exports: integrated circuits, machine parts, broadcasting equipment, computers, plastics (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "eastern two-thirds mostly rugged mountains; flat to gently rolling plains in west || Eastern Asia, islands bordering the East China Sea, Philippine Sea, South China Sea, and Taiwan Strait, north of the Philippines, off the southeastern coast of China"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; marine; rainy season during southwest monsoon (June to August); persistent and extensive cloudiness all year || earthquakes; typhoons volcanism: Kueishantao Island (401 m), east of Taiwan, is the only historically active volcano, but it has not erupted in centuries"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income East Asian economy; most technologically advanced computer microchip manufacturing; increasing Chinese interference threatens market capabilities; minimum wages rising; longstanding regional socioeconomic inequality || Exports: integrated circuits, machine parts, broadcasting equipment, computers, plastics (2023) || Industries: electronics, communications and information technology products, petroleum refining, chemicals, textiles, iron and steel, machinery, cement, food processing, vehicles, consumer products, pharmaceuticals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Buddhist 35.3%, Taoist 33.2%, Christian 3.9%, folk religion (includes Confucian) approximately 10%, none or unspecified 18.2% (2005 est.) || Han Chinese (including Holo, who compose approximately 70% of Taiwan's population, Hakka, and other groups originating in mainland China) more than 95%, indigenous Malayo-Polynesian peoples 2.3%"
+    }
+  }
+}

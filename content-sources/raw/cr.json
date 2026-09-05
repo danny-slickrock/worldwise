@@ -1,0 +1,182 @@
+{
+  "iso": "cr",
+  "fetchedAt": "2026-09-04T23:57:06.187Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/cs.json"
+    }
+  },
+  "wikidata": {
+    "name": "Costa Rica",
+    "gec": "CS",
+    "capital": "San José",
+    "areaKm2": 51179.92,
+    "population": 5265575,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Costa Rican colón"
+    ],
+    "sharesBorderWithAnyType": [
+      "pa",
+      "ni"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/cs.json",
+    "Introduction": {
+      "Background": {
+        "text": "Although explored by the Spanish early in the 16th century, initial attempts at colonizing Costa Rica proved unsuccessful due to a combination of factors, including disease from mosquito-infested swamps, brutal heat, resistance from Indigenous populations, and pirate raids. It was not until 1563 that a permanent settlement of Cartago was established in the cooler, fertile central highlands. The area remained a colony for some two-and-a-half centuries. In 1821, Costa Rica was one of several Central American provinces that jointly declared independence from Spain. Two years later it joined the United Provinces of Central America, but this federation disintegrated in 1838, at which time Costa Rica proclaimed its sovereignty and independence. <br><br>Since the late 19th century, only two brief periods of violence have marred the country's democratic development. General Federico TINOCO Granados led a coup in 1917, but the threat of US intervention pushed him to resign in 1919. In 1948, landowner Jose FIGUERES Ferrer raised his own army and rebelled against the government. The brief civil war ended with an agreement to allow FIGUERES to remain in power for 18 months, then step down in favor of the previously elected Otilio ULATE. FIGUERES was later elected twice in his own right, in 1953 and 1970. <br><br>Costa Rica experienced destabilizing waves of refugees from Central American civil wars in the 1970s and 1980s, but peace in the region has since helped the economy rebound.  Although it still maintains a large agricultural sector, Costa Rica has expanded its economy to include strong technology and tourism industries."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Nicaragua and Panama"
+      },
+      "Area": {
+        "total ": {
+          "text": "51,100 sq km"
+        },
+        "land": {
+          "text": "51,060 sq km"
+        },
+        "water": {
+          "text": "40 sq km"
+        },
+        "note": "<strong>note:</strong> includes Isla del Coco"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "661 km"
+        },
+        "border countries": {
+          "text": "Nicaragua 313 km; Panama 348 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,290 km"
+      },
+      "Climate": {
+        "text": "tropical and subtropical; dry season (December to April); rainy season (May to November); cooler in highlands"
+      },
+      "Terrain": {
+        "text": "coastal plains separated by rugged mountains including over 100 volcanic cones, of which several are major active volcanoes"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro Chirripo 3,819 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "746 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "33.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 3.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 7.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 22.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "58.4% (2023 est.)"
+        },
+        "other": {
+          "text": "8.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional earthquakes, hurricanes along Atlantic coast; frequent flooding of lowlands at onset of rainy season and landslides; active volcanoes <br><br><strong>volcanism:</strong> Arenal (1,670 m) is the most active volcano in Costa Rica; a 1968 eruption destroyed the town of Tabacon; Irazu (3,432 m), situated just east of San Jose, has the potential to spew ash over the capital city, as it did between 1963 and 1965; other historically active volcanoes include Miravalles, Poas, Rincon de la Vieja, and Turrialba"
+      },
+      "Geography - note": {
+        "text": "four volcanoes, two of them active, rise near the capital of San Jose in the center of the country; one of the volcanoes, Irazu, erupted destructively in 1963-65"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,304,932 (2025 est.)"
+        },
+        "male": {
+          "text": "2,654,314"
+        },
+        "female": {
+          "text": "2,650,618"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official), English"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 47.5%, Evangelical and Pentecostal 19.8%, Jehovah's Witness 1.4%, other Protestant 1.2%, other 3.1%, none 27% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "White or Mestizo 83.6%, Mulatto 6.7%, Indigenous 2.4%, Black or African descent 1.1%, other 1.1%, none 2.9%, unspecified 2.2% (2011 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "82.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.5% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "roughly half of the nation's population resides in urban areas; the capital of San Jose is the largest city and home to approximately one fifth of the population"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "trade-based upper middle-income economy; green economy leader, having reversed deforestation; investing in blue economy infrastructure; declining poverty until hard impacts of COVID-19; lingering inequality and growing government debts have prompted a liquidity crisis"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, pineapples, bananas, oil palm fruit, milk, fruits, oranges, chicken, cassava, beef (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "medical equipment, food processing, textiles and clothing, construction materials, fertilizer, plastic products"
+      },
+      "Exports - commodities": {
+        "text": "medical instruments, integrated circuits, orthopedic appliances, bananas, tropical fruits (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 40%, Netherlands 6%, China 5%, Guatemala 4%, Belgium 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, plastic products, cars, medical instruments, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical and subtropical; dry season (December to April); rainy season (May to November); cooler in highlands"
+      }
+    }
+  }
+}

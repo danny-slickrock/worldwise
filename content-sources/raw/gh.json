@@ -1,0 +1,178 @@
+{
+  "iso": "gh",
+  "fetchedAt": "2026-09-04T23:56:58.067Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/gh.json"
+    }
+  },
+  "wikidata": {
+    "name": "Ghana",
+    "gec": "GH",
+    "capital": "Accra",
+    "areaKm2": 238535,
+    "population": 32833031,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Ghana cedi"
+    ],
+    "sharesBorderWithAnyType": [
+      "tg",
+      "bf",
+      "ci"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/gh.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Ghana is a multiethnic country rich in natural resources and is one of the most stable and democratic countries in West Africa. Ghana has been inhabited for at least several thousand years, but little is known about its early inhabitants. By the 12th century, the gold trade started to boom in Bono (Bonoman) state in what is today southern Ghana, and it became the genesis of the Akan people's power and wealth in the region. Beginning in the 15th century, the Portuguese, followed by other European powers, arrived and competed for trading rights. Numerous kingdoms and empires emerged in the area, among the most powerful were the Kingdom of Dagbon in the north and the Asante (Ashanti) Empire in the south. By the mid-18th century, Asante was a highly organized state with immense wealth; it provided enslaved people for the Atlantic slave trade, and in return received firearms that facilitated its territorial expansion. The Asante resisted increasing British influence in the coastal areas, engaging in a series of wars during the 19th century before ultimately falling under British control. Formed from the merger of the British colony of the Gold Coast and the Togoland trust territory, Ghana in 1957 became the first Sub-Saharan country in colonial Africa to gain its independence, with Kwame NKRUMAH as its first leader.<br><br>Ghana endured a series of coups before Lt. Jerry RAWLINGS took power in 1981 and banned political parties. After approving a new constitution and restoring multiparty politics in 1992, RAWLINGS won presidential elections in 1992 and 1996 but was constitutionally prevented from running for a third term in 2000. John KUFUOR of the opposition New Patriotic Party (NPP) succeeded him and was reelected in 2004. John Atta MILLS of the National Democratic Congress won the 2008 presidential election and took over as head of state. MILLS died in 2012 and was constitutionally succeeded by his vice president, John Dramani MAHAMA, who subsequently won the 2012 presidential election. In 2016, Nana Addo Dankwa AKUFO-ADDO of the NPP defeated MAHAMA, marking the third time that Ghana’s presidency had changed parties since the return to democracy. AKUFO-ADDO was reelected in 2020. In recent years, Ghana has taken an active role in promoting regional stability and is highly integrated in international affairs.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the Gulf of Guinea, between Cote d'Ivoire and Togo"
+      },
+      "Area": {
+        "total ": {
+          "text": "238,533 sq km"
+        },
+        "land": {
+          "text": "227,533 sq km"
+        },
+        "water": {
+          "text": "11,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,420 km"
+        },
+        "border countries": {
+          "text": "Burkina Faso 602 km; Cote d'Ivoire 720 km; Togo 1098 km"
+        }
+      },
+      "Coastline": {
+        "text": "539 km"
+      },
+      "Climate": {
+        "text": "tropical; warm and comparatively dry along southeast coast; hot and humid in southwest; hot and dry in north"
+      },
+      "Terrain": {
+        "text": "mostly low plains with dissected plateau in south-central area"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Afadjato 885 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "190 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, timber, industrial diamonds, bauxite, manganese, fish, rubber, hydropower, petroleum, silver, salt, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "55.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 20.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 22.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "30.7% (2023 est.)"
+        },
+        "other": {
+          "text": "13.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "dry, dusty, northeastern harmattan winds from January to March; droughts"
+      },
+      "Geography - note": {
+        "text": "Lake Volta is the world's largest artificial lake (manmade reservoir) by surface area (8,482 sq km; 3,275 sq mi); the lake was created after the Akosombo Dam was completed in 1965"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "35,336,133 (2025 est.)"
+        },
+        "male": {
+          "text": "17,278,776"
+        },
+        "female": {
+          "text": "18,057,357"
+        }
+      },
+      "Languages": {
+        "text": "Asante 16%, Ewe 14%, Fante 11.6%, Boron (Brong) 4.9%, Dagomba 4.4%, Dangme 4.2%, Dagarte (Dagaba) 3.9%, Kokomba 3.5%, Akyem 3.2%, Ga 3.1%, other 31.2% (2010 est.)",
+        "note": "<strong>note:</strong> English is the official language"
+      },
+      "Religions": {
+        "text": "Christian 71.3% (Pentecostal/Charismatic 31.6%, Protestant 17.4%, Catholic 10%, other 12.3%), Muslim 19.9%, traditionalist 3.2%, other 4.5%, none 1.1% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Akan 45.7%, Mole-Dagbani 18.5%, Ewe 12.8%, Ga-Dangme 7.1%, Gurma 6.4%, Guan 3.2%, Grusi 2.7%, Mande 2%, other 1.6% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "59.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.06% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is concentrated in the southern half of the country, with the highest concentrations on or near the Atlantic coast, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "West African lower-middle income economy; major gold, oil and cocoa exporter; macroeconomic challenges following nearly four decades of sustained growth; recent progress in debt restructuring, fiscal reforms, financial stability, and curbing runaway inflation under 2023-26 IMF credit facility program"
+      },
+      "Agricultural products": {
+        "text": "cassava, yams, plantains, maize, oil palm fruit, taro, rice, oranges, pineapples, cocoa beans (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining, lumbering, light manufacturing, aluminum smelting, food processing, cement, small commercial ship building, petroleum"
+      },
+      "Exports - commodities": {
+        "text": "gold, crude petroleum, cocoa beans, manganese ore, cocoa paste (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 24%, UAE 18%, India 8%, South Africa 7%, China 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, plastics, plastic products, footwear (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; warm and comparatively dry along southeast coast; hot and humid in southwest; hot and dry in north"
+      }
+    }
+  }
+}

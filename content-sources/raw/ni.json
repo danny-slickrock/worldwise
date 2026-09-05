@@ -1,0 +1,183 @@
+{
+  "iso": "ni",
+  "fetchedAt": "2026-09-04T23:57:08.384Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/nu.json"
+    }
+  },
+  "wikidata": {
+    "name": "Nicaragua",
+    "gec": "NU",
+    "capital": "Managua",
+    "areaKm2": 120340,
+    "population": 5142098,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Nicaraguan córdoba"
+    ],
+    "sharesBorderWithAnyType": [
+      "co",
+      "hn",
+      "cr"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/nu.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Pacific coast of Nicaragua was settled as a Spanish colony in the early 16th century. Independence from Spain was declared in 1821, and the country became an independent republic in 1838. Britain occupied the Caribbean Coast in the first half of the 19th century, but gradually ceded control of the region in subsequent decades. By 1978, violent opposition to governmental manipulation and corruption resulted in a short-lived civil war that brought a civil-military coalition to power in 1979, spearheaded by Marxist Sandinista guerrillas led by Daniel ORTEGA Saavedra. Nicaraguan aid to leftist rebels in El Salvador prompted the US to sponsor anti-Sandinista Contra guerrillas through much of the 1980s. <br><br>After losing free and fair elections in 1990, 1996, and 2001, ORTEGA was elected president in 2006, 2011, 2016, and most recently in 2021. Municipal, regional, and national-level elections since 2008 have been marred by widespread irregularities. Democratic institutions have lost their independence under the ORTEGA regime as the president has assumed full control over all branches of government, as well as cracking down on a nationwide pro-democracy protest movement in 2018 and shuttering over 3,300 civil society organizations between 2018 and 2024. In the lead-up to the 2021 presidential election, authorities arrested over 40 individuals linked to the opposition, including presidential candidates, private sector leaders, NGO workers, human rights defenders, and journalists. Only five lesser-known presidential candidates from mostly small parties allied to ORTEGA's Sandinistas were allowed to run against ORTEGA. He then awarded the Sandinistas control of all 153 of Nicaraguan municipalities in the 2022 municipal elections, consolidating one-party rule. "
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Costa Rica and Honduras"
+      },
+      "Area": {
+        "total ": {
+          "text": "130,370 sq km"
+        },
+        "land": {
+          "text": "119,990 sq km"
+        },
+        "water": {
+          "text": "10,380 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,253 km"
+        },
+        "border countries": {
+          "text": "Costa Rica 313 km; Honduras 940 km"
+        }
+      },
+      "Coastline": {
+        "text": "910 km"
+      },
+      "Climate": {
+        "text": "tropical in lowlands, cooler in highlands"
+      },
+      "Terrain": {
+        "text": "extensive Atlantic coastal plains rising to central interior mountains; narrow Pacific coastal plain interrupted by volcanoes"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mogoton 2,085 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "298 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, silver, copper, tungsten, lead, zinc, timber, fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "42.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 12.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 27.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "40.1% (2023 est.)"
+        },
+        "other": {
+          "text": "17.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "destructive earthquakes; volcanoes; landslides; extremely susceptible to hurricanes <strong><br><br>volcanism:</strong> significant volcanic activity; Cerro Negro (728 m) is one of Nicaragua's most active volcanoes; its lava flows and ash have been known to cause significant damage to farmland and buildings; other historically active volcanoes include Concepcion, Cosiguina, Las Pilas, Masaya, Momotombo, San Cristobal, and Telica"
+      },
+      "Geography - note": {
+        "text": "largest country in Central America; contains the largest freshwater body in Central America, Lago de Nicaragua"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,739,380 (2025 est.)"
+        },
+        "male": {
+          "text": "3,304,133"
+        },
+        "female": {
+          "text": "3,435,247"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 99.5%, Indigenous 0.3%, Portuguese 0.1%, other 0.1% (2020 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note: </strong>English and indigenous languages found on the Caribbean coast"
+      },
+      "Religions": {
+        "text": "Roman Catholic 44.9%, Protestant 38.7% (Evangelical 38.2, Adventist 0.5%), other 1.2%, (includes Jehovah's Witness and Church of Jesus Christ), believer but not belonging to a church 1%, agnostic or atheist 0.4%, none 13.7%, unspecified 0.2% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Indigenous and White) 69%, White 17%, Black 9%, Indigenous 5%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "59.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.45% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the overwhelming majority of the population resides in the western half of the country, with much of the urban growth centered in the capital city of Managua; coastal areas also show large population clusters"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income Central American economy; until 2018, nearly 20 years of sustained GDP growth; recent struggles due to COVID-19, political instability, and hurricanes; significant remittances; increasing poverty and food scarcity since 2005; sanctions limit investment"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, milk, rice, oil palm fruit, maize, plantains, cassava, groundnuts, beans, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food processing, chemicals, machinery and metal products, knit and woven apparel, petroleum refining and distribution, beverages, footwear, wood, electric wire harness manufacturing, mining"
+      },
+      "Exports - commodities": {
+        "text": "garments, gold, insulated wire, coffee, beef (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 51%, Mexico 12%, El Salvador 6%, Canada 6%, Switzerland 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "garments, refined petroleum, crude petroleum, plastic products, fabric (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical in lowlands, cooler in highlands"
+      }
+    }
+  }
+}

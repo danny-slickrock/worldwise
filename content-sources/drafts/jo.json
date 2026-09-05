@@ -1,0 +1,73 @@
+{
+  "iso": "jo",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.396Z",
+  "structured": {
+    "code": "jo",
+    "name": "Jordan",
+    "capital": "Amman",
+    "continent": "Asia",
+    "areaKm2": 89341,
+    "population": 10428241,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Jordanian dinar"
+    ],
+    "landBorderNames": [
+      "Iraq",
+      "Israel",
+      "Saudi Arabia",
+      "Syria"
+    ],
+    "landBorderCodes": [
+      "iq",
+      "il",
+      "sa",
+      "sy"
+    ],
+    "landBorderTerritories": [
+      "West Bank"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "phosphates, potash, shale oil",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, northwest of Saudi Arabia, between Israel (to the west) and Iraq || mostly arid desert plateau; a great north-south geological rift along the west of the country is the dominant topographical feature and includes the Jordan River Valley, the Dead Sea, and the Jordanian Highlands || strategic location at the head of the Gulf of Aqaba; the Arab country that shares the longest border with Israel and the West Bank; the Dead Sea, the lowest point in Asia and the second saltiest body of water in the world (after Lac Assal in Djibouti), lies on Jordan's western border with Israel and the West Bank; Jordan is almost landlocked but does have a 26 km southwestern coastline with a single port, Al 'Aqabah (Aqaba) || Resources: phosphates, potash, shale oil || Exports: fertilizers, garments, phosphates, jewelry, phosphoric acid (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly arid desert plateau; a great north-south geological rift along the west of the country is the dominant topographical feature and includes the Jordan River Valley, the Dead Sea, and the Jordanian Highlands || Middle East, northwest of Saudi Arabia, between Israel (to the west) and Iraq"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly arid desert; rainy season in west (November to April) || droughts; periodic earthquakes; flash floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income Middle Eastern economy; high debt and unemployment, especially for youth and women; global events triggering trade slump and decreased revenue from tourism; growing manufacturing and agricultural sectors; key US foreign assistance recipient; natural-resource-poor and import-reliant || Exports: fertilizers, garments, phosphates, jewelry, phosphoric acid (2023) || Industries: tourism, information technology, clothing, fertilizer, potash, phosphate mining, pharmaceuticals, petroleum refining, cement, inorganic chemicals, light manufacturing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 97.1% (official; predominantly Sunni), Christian 2.1% (majority Greek Orthodox, but some Greek and Roman Catholics, Syrian Orthodox, Coptic Orthodox, Armenian Orthodox, and Protestant denominations), Buddhist 0.4%, Hindu 0.1%, Jewish &lt;0.1%, folk &lt;0.1%, other &lt;0.1%, unaffiliated &lt;0.1% (2020 est.) || Jordanian 69.3%, Syrian 13.3%, Palestinian 6.7%, Egyptian 6.7%, Iraqi 1.4%, other 2.6% (2015 est.)"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "iso": "cy",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.376Z",
+  "structured": {
+    "code": "cy",
+    "name": "Cyprus",
+    "capital": "Nicosia",
+    "continent": "Europe",
+    "areaKm2": 9234,
+    "population": 1120489,
+    "officialLanguages": [
+      "Turkish",
+      "Greek"
+    ],
+    "currencies": [],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": null,
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": ""
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": ""
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": ""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": ""
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": ""
+    }
+  }
+}

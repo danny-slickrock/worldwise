@@ -1,0 +1,175 @@
+{
+  "iso": "ad",
+  "fetchedAt": "2026-09-04T23:56:35.599Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/an.json"
+    }
+  },
+  "wikidata": {
+    "name": "Andorra",
+    "gec": "AN",
+    "capital": "Andorra la Vella",
+    "areaKm2": 468,
+    "population": 89752,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Catalan"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "es",
+      "fr"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/an.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The landlocked Principality of Andorra -- one of the smallest states in Europe and nestled high in the Pyrenees between the French and Spanish borders -- is the last independent survivor of the Hispanic March states created by Frankish King Charlemagne in 795 after he halted the Moorish invasion of Spain. The March states were a series of buffer states to keep the Muslim Moors from advancing into Christian France. For 715 years, from 1278 to 1993, Andorrans lived under a unique co-principality, ruled by French and Spanish leaders (from 1607 onward, the French chief of state and the Bishop of Urgell). In 1993, this feudal system was modified with the introduction of a modern constitution; the co-princes remained as titular heads of state, but the government transformed into a parliamentary democracy.</p> <p>Andorra's winter sports, summer climate, and duty-free shopping attract approximately 8 million people each year. Andorra has also become a wealthy international commercial center because of its mature banking sector and low taxes. As part of the effort to modernize its economy, Andorra has opened to foreign investment and engaged in other reforms, such as tax initiatives aimed at supporting broader infrastructure. Although not a member of the EU, Andorra enjoys a special relationship with the bloc that is governed by various customs and cooperation agreements, and Andorra uses the euro as its national currency.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Europe, Pyrenees mountains, on the border between France and Spain"
+      },
+      "Area": {
+        "total ": {
+          "text": "468 sq km"
+        },
+        "land": {
+          "text": "468 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "118 km"
+        },
+        "border countries": {
+          "text": "France 55 km; Spain 63 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "temperate; snowy, cold winters and warm, dry summers"
+      },
+      "Terrain": {
+        "text": "rugged mountains dissected by narrow valleys"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pic de Coma Pedrosa 2,946 m"
+        },
+        "lowest point": {
+          "text": "Riu Runer 840 m"
+        },
+        "mean elevation": {
+          "text": "1,996 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower, mineral water, timber, iron ore, lead"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "39.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 38.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "38.7% (2023 est.)"
+        },
+        "other": {
+          "text": "21.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "avalanches"
+      },
+      "Geography - note": {
+        "text": "landlocked; straddles a number of important crossroads in the Pyrenees"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "85,370 (2024 est.)"
+        },
+        "male": {
+          "text": "43,652"
+        },
+        "female": {
+          "text": "41,718"
+        }
+      },
+      "Languages": {
+        "text": "Catalan (official) 44.1%, Castilian 40.3%, Portuguese 13.5%, French 10%, English 3%, other 6.8% (2022 est.)",
+        "note": "<strong>note:</strong> data represent mother tongue"
+      },
+      "Religions": {
+        "text": "Christian (predominantly Roman Catholic) 89.5, other 8.8%, unaffiliated 1.7% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Spanish 34.3%, Andorran 32.1%, Portuguese 10%, French 5.6%, other 18% (2024 est.)",
+        "note": "<strong>note:</strong> data represent population by country of birth"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "87.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.11% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is unevenly distributed and is concentrated in the seven urbanized valleys that make up the country's parishes (political administrative divisions)"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high GDP; low unemployment; non-EU Euro user; co-principality duty-free area between Spain and France; tourist hub but hit hard by COVID-19; modern, non-tax haven financial sector; looking for big tech investments; new member of SEPA and IMF"
+      },
+      "Agricultural products": {
+        "text": "small quantities of rye, wheat, barley, oats, vegetables, tobacco, sheep, cattle"
+      },
+      "Industries": {
+        "text": "tourism (particularly skiing), banking, timber, furniture"
+      },
+      "Exports - commodities": {
+        "text": "paintings, integrated circuits, cars, orthopedic appliances, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Spain 39%, USA 21%, France 11%, UK 5%, UAE 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, garments, perfumes, electricity (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; snowy, cold winters and warm, dry summers"
+      }
+    }
+  }
+}

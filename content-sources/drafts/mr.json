@@ -1,0 +1,71 @@
+{
+  "iso": "mr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.416Z",
+  "structured": {
+    "code": "mr",
+    "name": "Mauritania",
+    "capital": "Nouakchott",
+    "continent": "Africa",
+    "areaKm2": 1030700,
+    "population": 4736139,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Mauritanian ouguiya"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Mali",
+      "Morocco",
+      "Senegal"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "ml",
+      "ma",
+      "sn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "iron ore, gypsum, copper, phosphate, diamonds, gold, oil, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Senegal and Western Sahara || mostly barren, flat plains of the Sahara; some central hills || Mauritania is considered part of both North Africa's Maghreb region and West Africa's Sahel region; most of the population is concentrated in the cities of Nouakchott and Nouadhibou and along the Senegal River in the southern part of the country || Resources: iron ore, gypsum, copper, phosphate, diamonds, gold, oil, fish || Exports: gold, iron ore, fish, processed crustaceans, copper ore (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly barren, flat plains of the Sahara; some central hills || Western Africa, bordering the North Atlantic Ocean, between Senegal and Western Sahara"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "desert; constantly hot, dry, dusty || hot, dry, dust/sand-laden sirocco wind primarily in March and April; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income West African economy; primarily agrarian; rising urbanization; poor property rights; systemic corruption; endemic social and workforce tensions; wide-scale terrorism; foreign over-fishing; environmentally fragile || Exports: gold, iron ore, fish, processed crustaceans, copper ore (2023) || Industries: fish processing, oil production, mining (iron ore, gold, copper)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official) 100% || Black Moors (Haratines - Arabic-speaking descendants of African origin who are or were enslaved by White Moors) 40%, White Moors (of Arab-Amazigh descent, known as Beydane) 30%, Sub-Saharan Mauritanians (non-Arabic speaking, largely resident in or originating from the Senegal River Valley, including Halpulaar, Fulani, Soninke, Wolof, and Bambara ethnic groups) 30%"
+    }
+  }
+}

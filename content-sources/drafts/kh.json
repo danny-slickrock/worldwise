@@ -1,0 +1,69 @@
+{
+  "iso": "kh",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.393Z",
+  "structured": {
+    "code": "kh",
+    "name": "Cambodia",
+    "capital": "Phnom Penh",
+    "continent": "Asia",
+    "areaKm2": 181035,
+    "population": 17423880,
+    "officialLanguages": [
+      "Khmer"
+    ],
+    "currencies": [
+      "riel"
+    ],
+    "landBorderNames": [
+      "Laos",
+      "Thailand",
+      "Vietnam"
+    ],
+    "landBorderCodes": [
+      "la",
+      "th",
+      "vn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "oil and gas, timber, gemstones, iron ore, manganese, phosphates, hydropower potential, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, bordering the Gulf of Thailand, between Thailand, Vietnam, and Laos || mostly low, flat plains; mountains in southwest and north || a land of paddies and forests dominated by the Mekong River and Tonle Sap (Southeast Asia's largest freshwater lake) || Resources: oil and gas, timber, gemstones, iron ore, manganese, phosphates, hydropower potential, arable land || Exports: garments, semiconductors, trunks and cases, footwear, gold (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low, flat plains; mountains in southwest and north || Southeastern Asia, bordering the Gulf of Thailand, between Thailand, Vietnam, and Laos"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; rainy, monsoon season (May to November); dry season (December to April); little seasonal temperature variation || monsoonal rains (June to November); flooding; occasional droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "one of the fastest growing Southeast Asian economies; rebounding tourism and clothing exports; substantial manufacturing and construction sectors; new trade agreements expanding agricultural markets; significant public debt; investing in new ports and roads || Exports: garments, semiconductors, trunks and cases, footwear, gold (2023) || Industries: tourism, garments, construction, rice milling, fishing, wood and wood products, rubber, cement, gem mining, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Buddhist (official) 97.1%, Muslim 2%, Christian 0.3%, other 0.5% (2019 est.) || Khmer 95.4%, Cham 2.4%, Chinese 1.5%, other 0.7% (2019-20 est.)"
+    }
+  }
+}

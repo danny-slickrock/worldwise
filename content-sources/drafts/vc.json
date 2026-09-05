@@ -1,0 +1,61 @@
+{
+  "iso": "vc",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.432Z",
+  "structured": {
+    "code": "vc",
+    "name": "Saint Vincent and the Grenadines",
+    "capital": "Kingstown",
+    "continent": "North America",
+    "areaKm2": 389,
+    "population": 109897,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, islands between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago || volcanic, mountainous || the administration of the islands of the Grenadines group is divided between Saint Vincent and the Grenadines and Grenada; Saint Vincent and the Grenadines is composed of 32 islands and cays || Resources: hydropower, arable land || Exports: ships, wheat flours, animal food, shellfish, construction vehicles (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "volcanic, mountainous || Caribbean, islands between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; little seasonal temperature variation; rainy season (May to November) || hurricanes; La Soufrière volcano on the island of Saint Vincent is a constant threat volcanism: La Soufrière (1,234 m) last erupted in 1979; the island of Saint Vincent is part of the volcanic-island arc of the Lesser Antilles that extends from Saba in the north to Grenada in the south"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Caribbean island economy; key agriculture and tourism sectors; environmentally fragile; diversifying economy across services, science and knowledge, and creative industries; CARICOM member and US Caribbean Basin Initiative beneficiary || Exports: ships, wheat flours, animal food, shellfish, construction vehicles (2023) || Industries: tourism; food processing, cement, furniture, clothing, starch"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English, Vincentian Creole English, French patois || Protestant 75% (Pentecostal 27.6%, Anglican 13.9%, Seventh Day Adventist 11.6%, Baptist 8.9%, Methodist 8.7%, Evangelical 3.8%, Salvation Army 0.3%, Presbyterian/Congregational 0.3%), Roman Catholic 6.3%, Rastafarian 1.1%, Jehovah's Witness 0.8%, other 4.7%, none 7.5%, unspecified 4.7% (2012 est.) || African descent 71.2%, mixed 23%, Indigenous 3%, East Indian/Indian 1.1%, European 1.5%, other 0.2% (2012 est.)"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "iso": "ga",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.412Z",
+  "structured": {
+    "code": "ga",
+    "name": "Gabon",
+    "capital": "Libreville",
+    "continent": "Africa",
+    "areaKm2": 267667,
+    "population": 2025137,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "landBorderNames": [
+      "Cameroon",
+      "Republic of the Congo",
+      "Equatorial Guinea"
+    ],
+    "landBorderCodes": [
+      "cm",
+      "cg",
+      "gq"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, diamond, niobium, manganese, uranium, gold, timber, iron ore, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, bordering the Atlantic Ocean at the Equator, between Republic of the Congo and Equatorial Guinea || narrow coastal plain; hilly interior; savanna in east and south || the country has maintained its pristine rain forest and rich biodiversity || Resources: petroleum, natural gas, diamond, niobium, manganese, uranium, gold, timber, iron ore, hydropower || Exports: crude petroleum, ships, manganese ore, refined petroleum, wood (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "narrow coastal plain; hilly interior; savanna in east and south || Central Africa, bordering the Atlantic Ocean at the Equator, between Republic of the Congo and Equatorial Guinea"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; always hot, humid || none"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "natural-resource-rich, upper-middle-income, Central African economy; significant reliance on oil and mineral exports; highly urbanized population; high levels of poverty and unemployment; uncertainty on institutional and development reform progress following 2023 military coup || Exports: crude petroleum, ships, manganese ore, refined petroleum, wood (2023) || Industries: petroleum extraction and refining; manganese, gold; chemicals, ship repair, food and beverages, textiles, lumbering and plywood, cement"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official), Fang, Myene, Nzebi, Bapounou/Eschira, Bandjabi || Protestant 46.4% (Revival Church 37%, other Protestant 9.4%), Roman Catholic 29.8%, other Christian 4%, Muslim 10.8%, traditional/animist 1.1%, other 0.9%, none 7% (2019-21 est.) || Fang 23.5%, Shira-Punu'Vii 20.6%, Nzabi-Duma 11.2%, Mbede-Teke 5.6%, Myene 4.4%, Kota-Kele 4.3%, Okande-Tsogho 1.6%, other 12.6%, foreigner 16.2% (2021 est.)"
+    }
+  }
+}

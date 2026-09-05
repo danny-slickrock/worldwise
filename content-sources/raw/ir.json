@@ -1,0 +1,193 @@
+{
+  "iso": "ir",
+  "fetchedAt": "2026-09-04T23:56:45.721Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/ir.json"
+    }
+  },
+  "wikidata": {
+    "name": "Iran",
+    "gec": "IR",
+    "capital": "Tehran",
+    "areaKm2": 1648195,
+    "population": 92417700,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Persian"
+    ],
+    "currencies": [
+      "Iranian rial"
+    ],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "az",
+      "bh",
+      "am",
+      "iq",
+      "kw",
+      "om",
+      "pk",
+      "qa",
+      "sa",
+      "tm",
+      "ae",
+      "af"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/ir.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Known as Persia until 1935, Iran became an Islamic republic in 1979 after the ruling monarchy was overthrown and Shah Mohammad Reza PAHLAVI was forced into exile. Conservative clerical forces led by Ayatollah Ruhollah KHOMEINI established a theocratic system of government with ultimate political authority vested in a religious scholar known as the Supreme Leader, who is accountable only to the Assembly of Experts -- an elected 88-member body of clerics. US-Iran relations became strained when Iranian students seized the US Embassy in Tehran in November 1979 and held embassy personnel hostage until mid-January 1981. The US cut off diplomatic relations with Iran in April 1980. From 1980 to 1988, Iran fought a bloody, indecisive war with Iraq that eventually expanded into the Persian Gulf and led to clashes between US Navy and Iranian military forces. Iran has been designated a state sponsor of terrorism since 1984. <br><br>After the election of reformer Hojjat ol-Eslam Mohammad KHATAMI as president in 1997 and a reformist Majles (legislature) in 2000, a political reform campaign in response to popular dissatisfaction was initiated, but conservative politicians blocked reform measures while increasing repression. Municipal and legislative elections in 2003 and 2004 saw conservatives reestablish control over Iran's elected government institutions, culminating in the 2005 inauguration of hardliner Mahmud AHMADI-NEJAD as president. His reelection in 2009 sparked nationwide protests over allegations of electoral fraud, and the protests persisted until 2011. In 2013, Iranians elected to the presidency centrist cleric Dr. Hasan Fereidun RUHANI, a longtime senior regime member who promised to reform society and foreign policy. In 2019, Tehran's sudden decision to increase the gasoline price sparked nationwide protests, which the regime violently suppressed. Conservatives won the majority in Majles elections in 2020, and hardline cleric Ebrahim RAISI was elected president in 2021, resulting in a conservative monopoly across the regime's elected and unelected institutions.<br><br>Iran continues to be subject to a range of international sanctions and export controls because of its involvement in terrorism, weapons proliferation, human rights abuses, and concerns over the nature of its nuclear program. Iran received nuclear-related sanctions relief in exchange for nuclear concessions under the Joint Comprehensive Plan of Action's (JCPOA) Implementation Day beginning in 2016. However, the US reimposed nuclear-related sanctions on Iran after it unilaterally terminated its JCPOA participation in 2018. In October 2023, the EU and the UK also decided to maintain nuclear-proliferation-related measures on Iran, as well as arms and missile embargoes, in response to Iran's non-compliance with its JCPOA commitments.<br><br>As president, RAISI has concentrated on deepening Iran's foreign relations with anti-US states -- particularly China and Russia -- to weather US sanctions and diplomatic pressure, while supporting negotiations to restore a nuclear deal that began in 2021. RAISI contended with nationwide protests that began in September 2022 and persisted for over three months after the death of a Kurdish Iranian woman, Mahsa AMINI, in morality police custody. Young people and women led the protests, and demands focused on regime change.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Gulf of Oman, the Persian Gulf, and the Caspian Sea, between Iraq and Pakistan"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,648,195 sq km"
+        },
+        "land": {
+          "text": "1,531,595 sq km"
+        },
+        "water": {
+          "text": "116,600 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,894 km"
+        },
+        "border countries": {
+          "text": "Afghanistan 921 km; Armenia 44 km; Azerbaijan 689 km; Iraq 1,599 km; Pakistan 959 km; Turkey 534 km; Turkmenistan 1,148 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,440 km",
+        "note": "<strong>note: </strong>Iran also borders the Caspian Sea (740 km)"
+      },
+      "Climate": {
+        "text": "mostly arid or semiarid, subtropical along Caspian coast"
+      },
+      "Terrain": {
+        "text": "rugged, mountainous rim; high, central basin with deserts, mountains; small, discontinuous plains along both coasts"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kuh-e Damavand 5,625 m"
+        },
+        "lowest point": {
+          "text": "Caspian Sea -28 m"
+        },
+        "mean elevation": {
+          "text": "1,305 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, coal, chromium, copper, iron ore, lead, manganese, zinc, sulfur"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "29% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 9.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 18.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "6.6% (2023 est.)"
+        },
+        "other": {
+          "text": "64.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts, floods; dust storms, sandstorms; earthquakes"
+      },
+      "Geography - note": {
+        "text": "strategic location on the Persian Gulf and Strait of Hormuz"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "89,177,357 (2025 est.)"
+        },
+        "male": {
+          "text": "45,098,223"
+        },
+        "female": {
+          "text": "44,079,134"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Persian Farsi&nbsp;(official), Azeri&nbsp;and other&nbsp;Turkic dialects, Kurdish, Gilaki and Mazandarani, Luri, Balochi, Arabic"
+        },
+        "major-language sample(s)": {
+          "text": "<br>چکیده نامه جهان، منبعی ضروری برای کسب اطلاعات کلی جهان (Persian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim (official) 98.5%, Christian 0.7%, Baha'i 0.3%, agnostic 0.3%, other (includes Zoroastrian, Jewish, Hindu) 0.2% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Persian, Azeri, Kurd, Lur, Baloch, Arab, Turkmen, and Turkic tribes"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "77.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.32% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is concentrated in the north, northwest, and west, reflecting the position of the Zagros and Elburz Mountains; the vast, dry areas in the center and eastern parts of the country, around the deserts of the Dasht-e Kavir and Dasht-e Lut, have a much lower population density"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "traditionally state-controlled economy but reforming state-owned financial entities; strong oil/gas, agricultural, and service sectors; recent massive inflation due to exchange rate depreciation, international sanctions, and investor uncertainty; increasing poverty"
+      },
+      "Agricultural products": {
+        "text": "wheat, sugarcane, milk, sugar beets, rice, tomatoes, barley, potatoes, oranges, apples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, petrochemicals, gas, fertilizer, caustic soda, textiles, cement and other construction materials, food processing (particularly sugar refining and vegetable oil production), ferrous and nonferrous metal fabrication, armaments"
+      },
+      "Exports - commodities": {
+        "text": "plastics, iron ore, alcohols, natural gas, refined copper (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 35%, Turkey 16%, India 8%, Pakistan 7%, Armenia 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "broadcasting equipment, vehicle parts/accessories, corn, soybeans, vehicle bodies (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly arid or semiarid, subtropical along Caspian coast"
+      }
+    }
+  }
+}

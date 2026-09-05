@@ -1,0 +1,175 @@
+{
+  "iso": "ee",
+  "fetchedAt": "2026-09-04T23:56:37.567Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/en.json"
+    }
+  },
+  "wikidata": {
+    "name": "Estonia",
+    "gec": "EN",
+    "capital": "Tallinn",
+    "areaKm2": 45335,
+    "population": 1369995,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Estonian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "ru",
+      "lv"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/en.json",
+    "Introduction": {
+      "Background": {
+        "text": "After centuries of Danish, Swedish, German, and Russian rule, Estonia attained independence in 1918. Forcibly incorporated into the USSR in 1940 -- an action never recognized by the US and many other countries -- it regained its freedom in 1991 with the collapse of the Soviet Union. Since the last Russian troops left in 1994, Estonia has been free to promote economic and political ties with the West. It joined both NATO and the EU in 2004, formally joined the OECD in 2010, and adopted the euro as its official currency in 2011."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Europe, bordering the Baltic Sea and Gulf of Finland, between Latvia and Russia"
+      },
+      "Area": {
+        "total ": {
+          "text": "45,228 sq km"
+        },
+        "land": {
+          "text": "42,388 sq km"
+        },
+        "water": {
+          "text": "2,840 sq km"
+        },
+        "note": "<strong>note:</strong> includes 1,520 islands in the Baltic Sea"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "657 km"
+        },
+        "border countries": {
+          "text": "Latvia 333 km; Russia 324 km"
+        }
+      },
+      "Coastline": {
+        "text": "3,794 km"
+      },
+      "Climate": {
+        "text": "maritime; wet, moderate winters, cool summers"
+      },
+      "Terrain": {
+        "text": "marshy, lowlands; flat in the north, hilly in the south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Suur Munamagi 318 m"
+        },
+        "lowest point": {
+          "text": "Baltic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "61 m"
+        }
+      },
+      "Natural resources": {
+        "text": "oil shale, peat, rare earth elements, phosphorite, clay, limestone, sand, dolomite, arable land, sea mud"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "23.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 16.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 6.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "57.2% (2023 est.)"
+        },
+        "other": {
+          "text": "19.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "sometimes flooding occurs in the spring"
+      },
+      "Geography - note": {
+        "text": "the mainland terrain is flat, boggy, and partly wooded; over 1,500 islands lie offshore"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,340,478 (2025 est.)"
+        },
+        "male": {
+          "text": "634,988"
+        },
+        "female": {
+          "text": "705,490"
+        }
+      },
+      "Languages": {
+        "text": "Estonian (official) 67.2%, Russian 28.5%, other 3.7%, unspecified 0.6% (2021est.)"
+      },
+      "Religions": {
+        "text": "Orthodox 16.5%, Protestant 9.2% (Lutheran 7.7%, other Protestant 1.5%), other 3% (includes Roman Catholic, Muslim, Jehovah's Witness, Pentecostal, Buddhist, and Taara Believer), none 58.4%, unspecified 12.9% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Estonian 69.1%, Russian 23.7%, Ukrainian 2.1%, other 4.6%, unspecified 0.5% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "69.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.03% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, with urban areas attracting larger and denser populations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, service-based EU and eurozone economy; rebound in exports playing a role in economic recovery; rising food prices contributing to inflation; decrease in labor force participation and rising unemployment rate; recovery depends on boosting private investment and productivity rates</p> <p> </p>"
+      },
+      "Agricultural products": {
+        "text": "milk, wheat, barley, rapeseed, peas, oats, potatoes, rye, pork, triticale (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food, engineering, electronics, wood and wood products, textiles; information technology, telecommunications"
+      },
+      "Exports - commodities": {
+        "text": "cars, wood, broadcasting equipment, refined petroleum, prefabricated buildings (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Finland 14%, Latvia 10%, Lithuania 9%, Sweden 7%, Russia 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, broadcasting equipment, natural gas, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "maritime; wet, moderate winters, cool summers"
+      }
+    }
+  }
+}

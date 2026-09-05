@@ -1,0 +1,184 @@
+{
+  "iso": "gt",
+  "fetchedAt": "2026-09-04T23:57:07.364Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/gt.json"
+    }
+  },
+  "wikidata": {
+    "name": "Guatemala",
+    "gec": "GT",
+    "capital": "Guatemala City",
+    "areaKm2": 108889,
+    "population": 17263239,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "quetzal"
+    ],
+    "sharesBorderWithAnyType": [
+      "mx",
+      "bz",
+      "hn",
+      "sv"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/gt.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Maya civilization flourished in Guatemala and surrounding regions during the first millennium A.D. After almost three centuries as a Spanish colony, Guatemala won its independence in 1821. During the second half of the 20th century, it experienced a variety of military and civilian governments, as well as a 36-year guerrilla war. In 1996, the government signed a peace agreement formally ending the internal conflict."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering the North Pacific Ocean, between El Salvador and Mexico, and bordering the Gulf of Honduras (Caribbean Sea) between Honduras and Belize"
+      },
+      "Area": {
+        "total ": {
+          "text": "108,889 sq km"
+        },
+        "land": {
+          "text": "107,159 sq km"
+        },
+        "water": {
+          "text": "1,730 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,667 km"
+        },
+        "border countries": {
+          "text": "Belize 266 km; El Salvador 199 km; Honduras 244 km; Mexico 958 km"
+        }
+      },
+      "Coastline": {
+        "text": "400 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid in lowlands; cooler in highlands"
+      },
+      "Terrain": {
+        "text": "two east-west trending mountain chains divide the country into three regions: the mountainous highlands, the Pacific coast south of mountains, and the vast northern Peten lowlands"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Volcan Tajumulco (highest point in Central America) 4,220 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "759 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, nickel, rare woods, fish, chicle, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "43% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 14.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 17.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "33.2% (2023 est.)"
+        },
+        "other": {
+          "text": "23.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "numerous volcanoes in mountains, with occasional violent earthquakes; Caribbean coast extremely susceptible to hurricanes and other tropical storms <br><br><strong>volcanism:</strong> significant volcanic activity in the Sierra Madre range; Santa Maria (3,772 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Pacaya (2,552 m) is one of the country's most active volcanoes, with frequent eruptions since 1965; other historically active volcanoes include Acatenango, Almolonga, Atitlan, Fuego, and Tacana; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> despite having both eastern and western coastlines (Caribbean Sea and Pacific Ocean), there are no natural harbors on the west coast <br><br><strong>note 2:</strong> Guatemala is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "18,255,216 (2024 est.)"
+        },
+        "male": {
+          "text": "9,050,684"
+        },
+        "female": {
+          "text": "9,204,532"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 69.9%, Maya languages 29.7% (Q'eqchi' 8.3%, K'iche 7.8%, Mam 4.4%, Kaqchikel 3%, Q'anjob'al 1.2%, Poqomchi' 1%, other 4%), other 0.4% (includes Xinca and Garifuna) (2018 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> the 2003 Law of National Languages officially recognized 23 indigenous languages, including 21 Maya languages, Xinca, and Garifuna"
+      },
+      "Religions": {
+        "text": "Evangelical 45.7%, Roman Catholic 42.4%, none 11%, unspecified 0.9% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Indigenous-Spanish - in local Spanish called Ladino) 56%, Maya 41.7%, Xinca (Indigenous, non-Maya) 1.8%, African descent 0.2%, Garifuna (mixed West and Central African, Island Carib, and Arawak) 0.1%, foreign 0.2% (2018 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "53.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.59% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of the populace resides in the southern half of the country, particularly in the mountainous regions; more than half of the population lives in rural areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "developing Central American economy; steady economic growth fueled by remittances; high poverty and income inequality; limited government services, lack of employment opportunities, and frequent natural disasters impede human development efforts and drive emigration"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, bananas, oil palm fruit, maize, cantaloupes/melons, potatoes, milk, tomatoes, chicken, pineapples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "sugar, textiles and clothing, furniture, chemicals, petroleum, metals, rubber, tourism"
+      },
+      "Exports - commodities": {
+        "text": "garments, bananas, coffee, palm oil, raw sugar (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 33%, El Salvador 11%, Honduras 9%, Nicaragua 6%, Mexico 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, video displays, cars, trucks, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid in lowlands; cooler in highlands"
+      }
+    }
+  }
+}

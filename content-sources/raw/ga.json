@@ -1,0 +1,179 @@
+{
+  "iso": "ga",
+  "fetchedAt": "2026-09-04T23:56:57.795Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/gb.json"
+    }
+  },
+  "wikidata": {
+    "name": "Gabon",
+    "gec": "GB",
+    "capital": "Libreville",
+    "areaKm2": 267667,
+    "population": 2025137,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ao",
+      "cg",
+      "gq",
+      "cm",
+      "st"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/gb.json",
+    "Introduction": {
+      "Background": {
+        "text": "Gabon, a sparsely populated country known for its dense rainforests and vast petroleum reserves, is one of the most prosperous and stable countries in central Africa. Approximately 40 ethnic groups are represented, the largest of which is the Fang, a group that covers the northern third of Gabon and expands north into Equatorial Guinea and Cameroon. From about the early 1300s, various kingdoms emerged in present-day Gabon and the surrounding area, including the Kingdoms of Loango and Orungu. Because most early Bantu languages spoken in these kingdoms did not have a written form, much of Gabon's early history was lost over time. Portuguese traders who arrived in the mid-1400s gave the area its name of Gabon. At that time, indigenous trade networks began to engage with European traders, exchanging goods such as ivory and wood. For a century beginning in the 1760s, trade came to focus mostly on enslaved people. While many groups in Gabon participated in the slave trade, the Fang were a notable exception. As the slave trade declined in the late 1800s, France colonized the country and directed a widespread extraction of Gabonese resources. Anti-colonial rhetoric by Gabon’s educated elites increased significantly in the early 1900s, but no widespread rebellion materialized. French decolonization after World War II led to the country’s independence in 1960. <br><br>Within a year of independence, the government changed from a parliamentary to a presidential system, and Leon M’BA won the first presidential election in 1961. El Hadj Omar BONGO Ondimba was M’BA’s vice president and assumed the presidency after M’BA’s death in 1967. BONGO went on to dominate the country's political scene for four decades (1967-2009). In 1968, he declared Gabon a single-party state and created the still-dominant Parti Democratique Gabonais (PDG). In the early 1990s, he reintroduced a multiparty system under a new constitution in response to growing political opposition. He was reelected by wide margins in 1995, 1998, 2002, and 2005 against a divided opposition and amidst allegations of fraud. After BONGO's death in 2009, a new election brought his son, Ali BONGO Ondimba, to power, and he was reelected in 2016. He won a third term in the August 2023 election but was overthrown in a military coup a few days later. Gen. Brice OLIGUI Nguema led a military group called the Committee for the Transition and Restoration of Institutions that arrested BONGO, canceled the election results, and dissolved state institutions. In September 2023, OLIGUI was sworn in as transitional president of Gabon."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, bordering the Atlantic Ocean at the Equator, between Republic of the Congo and Equatorial Guinea"
+      },
+      "Area": {
+        "total ": {
+          "text": "267,667 sq km"
+        },
+        "land": {
+          "text": "257,667 sq km"
+        },
+        "water": {
+          "text": "10,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,261 km"
+        },
+        "border countries": {
+          "text": "Cameroon 349 km; Republic of the Congo 2,567 km; Equatorial Guinea 345 km"
+        }
+      },
+      "Coastline": {
+        "text": "885 km"
+      },
+      "Climate": {
+        "text": "tropical; always hot, humid"
+      },
+      "Terrain": {
+        "text": "narrow coastal plain; hilly interior; savanna in east and south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Bengoue 1,050 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "377 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, diamond, niobium, manganese, uranium, gold, timber, iron ore, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "8.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 6.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "91.5% (2023 est.)"
+        },
+        "other": {
+          "text": "0.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "none"
+      },
+      "Geography - note": {
+        "text": "the country has maintained its pristine rain forest and rich biodiversity"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,513,738 (2025 est.)"
+        },
+        "male": {
+          "text": "1,299,085"
+        },
+        "female": {
+          "text": "1,214,653"
+        }
+      },
+      "Languages": {
+        "text": "French (official), Fang, Myene, Nzebi, Bapounou/Eschira, Bandjabi"
+      },
+      "Religions": {
+        "text": "Protestant 46.4% (Revival Church 37%, other Protestant 9.4%), Roman Catholic 29.8%, other Christian 4%, Muslim 10.8%, traditional/animist 1.1%, other 0.9%, none 7% (2019-21 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Fang 23.5%, Shira-Punu'Vii 20.6%, Nzabi-Duma 11.2%, Mbede-Teke 5.6%, Myene 4.4%, Kota-Kele 4.3%, Okande-Tsogho 1.6%, other 12.6%, foreigner 16.2% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "91% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.27% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the relatively small population is spread in pockets throughout the country; the largest urban center is the capital of Libreville, located along the Atlantic coast in the northwest, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "natural-resource-rich, upper-middle-income, Central African economy; significant reliance on oil and mineral exports; highly urbanized population; high levels of poverty and unemployment; uncertainty on institutional and development reform progress following 2023 military coup"
+      },
+      "Agricultural products": {
+        "text": "oil palm fruit, plantains, cassava, sugarcane, yams, taro, vegetables, maize, groundnuts, game meat (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum extraction and refining; manganese, gold; chemicals, ship repair, food and beverages, textiles, lumbering and plywood, cement"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, ships, manganese ore, refined petroleum, wood (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 26%, Indonesia 8%, Spain 7%, Israel 6%, Congo, Republic of the 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, iron pipes, cars, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; always hot, humid"
+      }
+    }
+  }
+}

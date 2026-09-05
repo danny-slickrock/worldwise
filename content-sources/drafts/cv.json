@@ -1,0 +1,62 @@
+{
+  "iso": "cv",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.408Z",
+  "structured": {
+    "code": "cv",
+    "name": "Cape Verde",
+    "capital": "Praia",
+    "continent": "Africa",
+    "areaKm2": 4033,
+    "population": 555988,
+    "officialLanguages": [
+      "Portuguese",
+      "Cape Verdean Creole"
+    ],
+    "currencies": [
+      "Cape Verdean escudo"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "salt, basalt rock, limestone, kaolin, fish, clay, gypsum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, group of islands in the North Atlantic Ocean, west of Senegal || steep, rugged, rocky, volcanic || strategic location 500 km from west coast of Africa near major north-south sea routes; one of four North Atlantic archipelagos that make up Macaronesia; the others are Azores (Portugal), Canary Islands (Spain), and Madeira (Portugal) || Resources: salt, basalt rock, limestone, kaolin, fish, clay, gypsum || Exports: fish, refined petroleum, railway cargo containers, shellfish, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "steep, rugged, rocky, volcanic || Western Africa, group of islands in the North Atlantic Ocean, west of Senegal"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; warm, dry summer; precipitation meager and erratic || prolonged droughts; seasonal harmattan wind produces obscuring dust; volcanically and seismically active volcanism: Fogo (2,829 m), which last erupted in 1995, is Cabo Verde's only active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "stable, middle-income, developing island economy; strong GDP growth led by tourism sector recovery; sustained poverty reduction through PEDS II development plan; high reliance on foreign remittances and aid to finance external debt || Exports: fish, refined petroleum, railway cargo containers, shellfish, garments (2023) || Industries: food and beverages, fish processing, shoes and garments, salt mining, ship repair"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Portuguese (official), Crioulo (a Portuguese-based creole language with two main dialects) || Roman Catholic 72.5%, Protestant 4% (includes Adventist 1.9%, Nazarene 1.8%, Assembly of God 0.2%, God is Love 0.1%), Christian Rationalism 1.7%, Muslim 1.3%, Jehovah's Witness 1.2%, Church of Jesus Christ 1%, other Christian 1.3%, other 1.2%, none 15.6%, no response 0.4% (2021 est.) || Creole (Mulatto) 71%, African 28%, European 1%"
+    }
+  }
+}

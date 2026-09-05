@@ -1,0 +1,61 @@
+{
+  "iso": "fm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.436Z",
+  "structured": {
+    "code": "fm",
+    "name": "Federated States of Micronesia",
+    "capital": "Palikir",
+    "continent": "Oceania",
+    "areaKm2": 702,
+    "population": 75817,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, marine products, deep-seabed minerals, phosphate",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, island group in the North Pacific Ocean, about three-quarters of the way from Hawaii to Indonesia || islands vary geologically from high mountainous islands to low, coral atolls; volcanic outcroppings on Pohnpei, Kosrae, and Chuuk || composed of four major island groups totaling 607 islands || Resources: timber, marine products, deep-seabed minerals, phosphate || Exports: fish, diamonds, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "islands vary geologically from high mountainous islands to low, coral atolls; volcanic outcroppings on Pohnpei, Kosrae, and Chuuk || Oceania, island group in the North Pacific Ocean, about three-quarters of the way from Hawaii to Indonesia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; heavy year-round rainfall, especially in the eastern islands; located on southern edge of the typhoon belt with occasionally severe damage || typhoons (June to December)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income Pacific island economy; US aid reliance, sunsetting in 2024; low entrepreneurship; mostly fishing and farming; US dollar user; no patent laws; tourism remains underdeveloped; significant corruption || Exports: fish, diamonds, garments (2023) || Industries: tourism, construction; specialized aquaculture, craft items (shell and wood)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official and common language), Chuukese, Kosrean, Pohnpeian, Yapese, Ulithian, Woleaian, Nukuoro, Kapingamarangi || Roman Catholic 54.7%, Protestant 41.1% (includes Congregational 38.5%, Baptist 1.1%, Seventh Day Adventist 0.8%, Assembly of God 0.7%), Church of Jesus Christ 1.5%, other 1.9%, none 0.7%, unspecified 0.1% (2010 est.) || Chuukese/Mortlockese 49.3%, Pohnpeian 29.8%, Kosraean 6.3%, Yapese 5.7%, Yap outer islanders 5.1%, Polynesian 1.6%, Asian 1.4%, other 0.8% (2010 est.)"
+    }
+  }
+}

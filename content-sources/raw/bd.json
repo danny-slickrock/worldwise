@@ -1,0 +1,179 @@
+{
+  "iso": "bd",
+  "fetchedAt": "2026-09-04T23:56:44.359Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-asia/bg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Bangladesh",
+    "gec": "BG",
+    "capital": "Dhaka",
+    "areaKm2": 147570,
+    "population": 171466990,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Bangla"
+    ],
+    "currencies": [
+      "Bangladeshi taka"
+    ],
+    "sharesBorderWithAnyType": [
+      "in",
+      "mm"
+    ]
+  },
+  "factbook": {
+    "_path": "south-asia/bg.json",
+    "Introduction": {
+      "Background": {
+        "text": "The huge delta region at the confluence of the Ganges and Brahmaputra River systems -- now referred to as Bangladesh -- was a loosely incorporated outpost of various empires for much of the first millennium A.D. Muslim conversions and settlement in the region began in the 10th century, primarily from Arab and Persian traders and preachers. Europeans established trading posts in the area in the 16th century. Eventually the area known as Bengal, which is primarily Hindu in the western section and mostly Muslim in the eastern half, became part of British India. After the partition of India in 1947, the Muslim-majority area became East Pakistan. Calls for greater autonomy and animosity between the eastern and western areas of Pakistan led to a Bengali independence movement. That movement, led by the Awami League (AL) and supported by India, won the independence war for Bangladesh in 1971. <br><br>The military overthrew the post-independence AL government in 1975, the first of a series of military coups that resulted in a military-backed government and the subsequent creation of the Bangladesh Nationalist Party (BNP) that took power in 1979. That government also ended in a coup in 1981, followed by military-backed rule until democratic elections were held in 1991. The BNP and AL alternated in power from 1991 to 2008, with the exception of a military-backed, emergency caretaker regime in 2007. The country returned to fully democratic rule in 2008 with the election of the AL and Prime Minister Sheikh HASINA. With the help of international development assistance, Bangladesh is on track to graduate from the UN’s Least Developed Countries (LDC) list in 2026. <br><br>The economy has grown at an annual average of about 6.25% for the last two decades. Poverty declined from 11.8 percent in 2010 to 5.0 percent in 2022, based on the international poverty line of $2.15 a day (using 2017 Purchasing Power Parity exchange rate). The country made a rapid recovery from the COVID-19 pandemic, but still faces economic challenges."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Asia, bordering the Bay of Bengal, between Burma and India"
+      },
+      "Area": {
+        "total ": {
+          "text": "148,460 sq km"
+        },
+        "land": {
+          "text": "130,170 sq km"
+        },
+        "water": {
+          "text": "18,290 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,413 km"
+        },
+        "border countries": {
+          "text": "Burma 271 km; India 4,142 km"
+        }
+      },
+      "Coastline": {
+        "text": "580 km"
+      },
+      "Climate": {
+        "text": "tropical; mild winter (October to March); hot, humid summer (March to June); humid, warm rainy monsoon (June to October)"
+      },
+      "Terrain": {
+        "text": "mostly flat alluvial plain; hilly in southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mowdok Taung 1,060 m"
+        },
+        "lowest point": {
+          "text": "Bay of Bengal 0 m"
+        },
+        "mean elevation": {
+          "text": "85 m"
+        }
+      },
+      "Natural resources": {
+        "text": "natural gas, arable land, timber, coal"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "72.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 60.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 7.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "14.4% (2023 est.)"
+        },
+        "other": {
+          "text": "13.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts; cyclones; much of the country routinely inundated during the summer monsoon season"
+      },
+      "Geography - note": {
+        "text": "most of the country is situated on deltas of large rivers flowing from the Himalayas: the Ganges unites with the Jamuna (main channel of the Brahmaputra) and later joins the Meghna to eventually empty into the Bay of Bengal"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "174,370,536 (2025 est.)"
+        },
+        "male": {
+          "text": "83,908,720"
+        },
+        "female": {
+          "text": "90,461,816"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Bangla 98.8% (official, also known as Bengali), other 1.2% (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<p><br>বিশ্ব ফ্যাক্টবুক, মৌলিক তথ্যের অপরিহার্য উৎস (Bangla)</p> <br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 91%, Hindu 8%, other 1% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Bengali at least 99%, other indigenous ethnic groups 1% (2022 est.)",
+        "note": "<strong>note:</strong> Bangladesh's government recognizes 27 indigenous ethnic groups under the 2010 Cultural Institution for Small Anthropological Groups Act; other sources estimate there are about 75 ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "40.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.88% annual rate of change (2020-25 est.)"
+        }
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "one of the fastest growing emerging market economies; strong economic rebound following COVID-19; significant poverty reduction; exports dominated by textile industry; weakened exports and remittances resulted in declining foreign exchange reserves and 2022 IMF loan request"
+      },
+      "Agricultural products": {
+        "text": "rice, milk, potatoes, maize, sugarcane, onions, jute, vegetables, mangoes/guavas, tropical fruits (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "cotton, textiles and clothing, jute, tea, paper, cement, fertilizer, sugar, light engineering&nbsp;"
+      },
+      "Exports - commodities": {
+        "text": "garments, footwear, fabric, textiles, trunks and cases (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 16%, Germany 15%, UK 8%, Spain 7%, Poland 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cotton fabric, natural gas, cotton, fabric (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; mild winter (October to March); hot, humid summer (March to June); humid, warm rainy monsoon (June to October)"
+      }
+    }
+  }
+}

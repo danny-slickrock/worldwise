@@ -159,6 +159,12 @@ import {
 } from "../src/game/contentChunks";
 import { rerankByInterests, matchesInterests, INTEREST_BOOST } from "../src/game/ragRanking";
 import {
+  parseBorderNames,
+  resolveBorderName,
+  BORDER_ALIASES,
+  NON_COUNTRY_BORDERS,
+} from "../src/data/borderAliases";
+import {
   systemPrompt,
   buildUserMessage,
   formatSources,
@@ -2225,6 +2231,36 @@ check(
   "a nearly-empty row never produces blank chunks"
 );
 
+// Long fields split into several chunks, and EVERY piece must still name its
+// country. Splitting an already-labelled string used to put the label on the
+// first piece only, leaving anonymous continuation chunks — silent, because
+// short content never splits.
+const longFact = "This country has a very long and detailed economic profile. ".repeat(40);
+const splitChunks = chunkCountry(
+  { ...chunkSrcRow, facts: { economy: longFact } },
+  neighborNames
+);
+check(
+  splitChunks.filter((c) => c.source === "facts.economy").length > 1,
+  "an over-long fact splits into several chunks"
+);
+check(
+  splitChunks.every((c) => c.content.includes("Brazil")),
+  "...and every piece still names its country"
+);
+check(
+  splitChunks.every((c) => c.content.length <= MAX_CHUNK_CHARS),
+  "...while still respecting the budget"
+);
+const longSummary = chunkCountry(
+  { ...chunkSrcRow, summary: longFact },
+  neighborNames
+);
+check(
+  longSummary.every((c) => c.content.includes("Brazil")),
+  "a split summary names its country in every piece too"
+);
+
 // splitProse
 check(splitProse("").length === 0, "empty text yields no pieces");
 check(splitProse("One sentence.")[0] === "One sentence.", "short text passes through whole");
@@ -2532,6 +2568,68 @@ check(
   dailyCapResetsAt(new Date("2026-09-04T23:59:59Z")) === "2026-09-05T00:00:00.000Z",
   "...even a second before it"
 );
+
+
+console.log("Border aliases (content enrichment)");
+
+const borderIndex = new Map([["argentina", "ar"], ["china", "cn"], ["myanmar", "mm"], ["brazil", "br"]]);
+
+// Parsing. Every one of these shapes appeared in the real 196-country corpus,
+// and the naive integer-only pattern left "Zambia 0." and "Italy 3." as names.
+check(
+  JSON.stringify(parseBorderNames("Argentina 1,263 km; Bolivia 3,403 km")) ===
+    JSON.stringify(["Argentina", "Bolivia"]),
+  "border names parse out of the km list"
+);
+check(parseBorderNames("Zambia 0.15 km")[0] === "Zambia", "a decimal distance is stripped");
+check(parseBorderNames("Italy 3.")[0] === "Italy", "a trailing note marker is stripped");
+check(parseBorderNames("Spain (Ceuta) 8 km")[0] === "Spain", "a parenthetical qualifier is stripped");
+check(parseBorderNames("").length === 0, "an empty field yields no names");
+check(parseBorderNames(null).length === 0, "a missing field yields no names");
+
+// Aliases resolve to a code.
+check(resolveBorderName("Burma", borderIndex).code === "mm", "Burma resolves to Myanmar");
+check(resolveBorderName("China", borderIndex).code === "cn", "a direct dataset name resolves");
+check(resolveBorderName("Cote d'Ivoire", borderIndex).code === "ci", "an undiacriticised name resolves");
+check(resolveBorderName("Czech Republic", borderIndex).code === "cz", "a former name resolves");
+check(resolveBorderName("Holy See", borderIndex).code === "va", "the Holy See resolves to Vatican City");
+check(resolveBorderName("UAE", borderIndex).code === "ae", "an abbreviation resolves");
+check(
+  resolveBorderName("BURMA", borderIndex).code === "mm",
+  "resolution is case-insensitive"
+);
+
+// Territories resolve to NOTHING, on purpose. This is the pilot review's
+// finding: coding French Guiana would make Brazil border France.
+const fg = resolveBorderName("French Guiana", borderIndex);
+check(fg.code === null, "a territory gets no country code");
+check(fg.isCountry === false, "...and is not marked a country");
+check(fg.known === true, "...but is known, so it is not flagged as unresolved");
+check(
+  resolveBorderName("Gaza Strip", borderIndex).code === null,
+  "the Gaza Strip gets no code"
+);
+check(
+  resolveBorderName("Kosovo", borderIndex).code === null,
+  "Kosovo gets no code — a recognition dispute the policy says to stay out of"
+);
+
+// An unknown name must surface rather than vanish.
+const unknown = resolveBorderName("Atlantis", borderIndex);
+check(unknown.known === false, "an unknown name is flagged unknown");
+check(unknown.code === null, "...and gets no code");
+check(
+  resolveBorderName("", borderIndex).known === false,
+  "an empty name is not silently treated as known"
+);
+
+// The two tables must not disagree with each other.
+for (const key of Object.keys(BORDER_ALIASES)) {
+  if (NON_COUNTRY_BORDERS.has(key)) {
+    check(false, `"${key}" is both an alias and a non-country`);
+  }
+}
+check(true, "no name is both an alias and a declared non-country");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

@@ -1,0 +1,75 @@
+{
+  "iso": "pl",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.385Z",
+  "structured": {
+    "code": "pl",
+    "name": "Poland",
+    "capital": "Warsaw",
+    "continent": "Europe",
+    "areaKm2": 312683,
+    "population": 37563071,
+    "officialLanguages": [
+      "Polish"
+    ],
+    "currencies": [
+      "złoty"
+    ],
+    "landBorderNames": [
+      "Belarus",
+      "Czechia",
+      "Germany",
+      "Lithuania",
+      "Slovakia",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "by",
+      "cz",
+      "de",
+      "lt",
+      "sk",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, sulfur, copper, natural gas, silver, lead, salt, amber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, east of Germany || mostly flat plain; mountains along southern border || historically an area of conflict because of flat terrain and the lack of natural barriers on the North European Plain || Resources: coal, sulfur, copper, natural gas, silver, lead, salt, amber, arable land || Exports: vehicle parts/accessories, electric batteries, plastic products, cars, seats (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat plain; mountains along southern border || Central Europe, east of Germany"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate with cold, cloudy, moderately severe winters with frequent precipitation; mild summers with frequent showers and thundershowers || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, diversified, EU-member economy; significant growth in GDP, trade, and investment since joining EU in 2004; private consumption and EU-funded public investments driving GDP growth; increased social spending, flooding recovery costs, and defense spending have added to public debt || Exports: vehicle parts/accessories, electric batteries, plastic products, cars, seats (2023) || Industries: machine building, iron and steel, coal mining, chemicals, shipbuilding, food processing, glass, beverages, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 70.7%, refused to answer 20.9%, no religion 6.9%; less than 1 percent: Orthodox, Jehovah Witness, Evangelic of Augsburg, Greek Catholic, Pentecostal, other Protestant, not stated, old Catholic Mariavite Church, other Christians, Islam, Buddhist, Polish Catholic Church, other, Baptist Union of Poland, Pagan, Seventh Day Adventist, Hindu, other Catholic (2021 est.) || Polish 96.9%, Silesian 1.1%, German 0.2%, Ukrainian 0.1%, other and unspecified 1.7% (2011 est.)"
+    }
+  }
+}

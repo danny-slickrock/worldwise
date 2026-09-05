@@ -1,0 +1,67 @@
+{
+  "iso": "np",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.400Z",
+  "structured": {
+    "code": "np",
+    "name": "Nepal",
+    "capital": "Kathmandu",
+    "continent": "Asia",
+    "areaKm2": 147181.254346,
+    "population": 29164578,
+    "officialLanguages": [
+      "Nepali"
+    ],
+    "currencies": [
+      "Nepalese rupee"
+    ],
+    "landBorderNames": [
+      "China",
+      "India"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "in"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "quartz, water, timber, hydropower, scenic beauty, small deposits of lignite, copper, cobalt, iron ore",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, between China and India || Tarai or flat river plain of the Ganges in south; central hill region with rugged Himalayas in north || landlocked; strategic location between China and India; contains eight of world's 10 highest peaks, including Mount Everest and Kanchenjunga -- the world's tallest and third-tallest mountains -- on the borders with China and India, respectively || Resources: quartz, water, timber, hydropower, scenic beauty, small deposits of lignite, copper, cobalt, iron ore || Exports: knotted carpets, garments, flat-rolled iron, synthetic fibers, palm oil (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "Tarai or flat river plain of the Ganges in south; central hill region with rugged Himalayas in north || Southern Asia, between China and India"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from cool summers and severe winters in north to subtropical summers and mild winters in south || severe thunderstorms; flooding; landslides; drought and famine depending on the timing, intensity, and duration of the summer monsoons"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income South Asian economy; post-conflict fiscal federalism increasing stability; COVID-19 hurt trade and tourism; widening current account deficits; environmentally fragile economy from earthquakes; growing Chinese relations and investments || Exports: knotted carpets, garments, flat-rolled iron, synthetic fibers, palm oil (2023) || Industries: tourism, carpets, textiles, small rice, jute, sugar, oilseed mills, cigarettes, cement and brick production"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Hindu 81.2%, Buddhist 8.2%, Muslim 5.1%, Kirat 3.2%, Christian 1.8%; less than 1%: Prakriti, Bon, Jains, Sikh (2021 est.) || Chhettri 16.5%, Brahman-Hill 11.3%, Magar 6.9%, Tharu 6.2%, Tamang 5.6%, Bishwokarma 5%, Musalman 4.9%, Newar 4.6%, Yadav 4.2%, Rai 2.2%, Pariyar 1.9%, Gurung 1.9%, Thakuri 1.7%, Mijar 1.6%, Teli 1.5%, Yakthung/Limbu 1.4%, Chamar/Harijan/Ram 1.4%, Koiri/Kushwaha 1.2%, other 20% (2021 est.)"
+    }
+  }
+}

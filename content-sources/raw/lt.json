@@ -1,0 +1,182 @@
+{
+  "iso": "lt",
+  "fetchedAt": "2026-09-04T23:56:38.989Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/lh.json"
+    }
+  },
+  "wikidata": {
+    "name": "Lithuania",
+    "gec": "LH",
+    "capital": "Vilnius",
+    "areaKm2": 65300,
+    "population": 2860002,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Lithuanian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "se",
+      "pl",
+      "ru",
+      "by",
+      "lv"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/lh.json",
+    "Introduction": {
+      "Background": {
+        "text": "Lithuanian lands were united under MINDAUGAS in 1236; over the next century, Lithuania extended its territory through alliances and conquest to include most of present-day Belarus and Ukraine. By the end of the 14th century, Lithuania was the largest state in Europe. An alliance with Poland in 1386 led the two countries into a union through a common ruler. In 1569, Lithuania and Poland formally united into a single dual state, the Polish-Lithuanian Commonwealth. This entity survived until 1795 when surrounding countries partitioned its remnants. Lithuania regained its independence after World War I, but the USSR annexed it in 1940 -- an action never recognized by the US and many other countries. In 1990, Lithuania became the first of the Soviet republics to declare its independence, but Moscow did not recognize this proclamation until 1991. The last Russian troops withdrew in 1993. Lithuania subsequently restructured its economy for integration into West European institutions; it joined both NATO and the EU in 2004. In 2015, Lithuania joined the euro zone, and it joined the Organization for Economic Cooperation and Development in 2018."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Europe, bordering the Baltic Sea, between Latvia and Russia, west of Belarus"
+      },
+      "Area": {
+        "total ": {
+          "text": "65,300 sq km"
+        },
+        "land": {
+          "text": "62,680 sq km"
+        },
+        "water": {
+          "text": "2,620 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,545 km"
+        },
+        "border countries": {
+          "text": "Belarus 640 km; Latvia 544 km; Poland 100 km; Russia (Kaliningrad) 261 km"
+        }
+      },
+      "Coastline": {
+        "text": "90 km"
+      },
+      "Climate": {
+        "text": "transitional, between maritime and continental; wet, moderate winters and summers"
+      },
+      "Terrain": {
+        "text": "lowland, many scattered small lakes, fertile soil"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Aukstojas 294 m"
+        },
+        "lowest point": {
+          "text": "Baltic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "110 m"
+        }
+      },
+      "Natural resources": {
+        "text": "peat, arable land, amber"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "45.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 36.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 8.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "35.3% (2023 est.)"
+        },
+        "other": {
+          "text": "18.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional floods, droughts"
+      },
+      "Geography - note": {
+        "text": "fertile central plains are separated by hilly uplands that are ancient glacial deposits"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,815,687 (2025 est.)"
+        },
+        "male": {
+          "text": "1,334,600"
+        },
+        "female": {
+          "text": "1,481,087"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Lithuanian (official) 85.3%, Russian 6.8%, Polish 5.1%, other 1.1%, two mother tongues 1.7% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Pasaulio enciklopedija – naudingas bendrosios informacijos šaltinis. (Lithuanian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 74.2%, Russian Orthodox 3.7%, Old Believer 0.6%, Evangelical Lutheran 0.6%, Evangelical Reformist 0.2%, other (including Sunni Muslim, Jewish, Greek Catholic, and Karaite) 0.9%, none 6.1%, unspecified 13.7% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Lithuanian 84.6%, Polish 6.5%, Russian 5%, Belarusian 1%, other 1.1%, unspecified 1.8% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "68.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.12% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "fairly even population distribution throughout the country, but somewhat greater concentrations in the southern cities of Vilnius and Kaunas, as well as the western port of Klaipeda"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone member, largest Baltic economy; recovery supported by private consumption and EU fund-driven investments; structural challenges include pension reform, aging workforce, and high energy-import costs</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, milk, sugar beets, rapeseed, barley, potatoes, triticale, oats, beans, peas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "metal-cutting machine tools, electric motors, televisions, refrigerators and freezers, petroleum refining, shipbuilding (small ships), furniture, textiles, food processing, fertilizer, agricultural machinery, optical equipment, lasers, electronic components, computers, amber jewelry, information technology, video game development, app/software development, biotechnology"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, furniture, plastic products, wheat, cars (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Latvia 11%, Poland 8%, Germany 7%, Netherlands 6%, Russia 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, cars, natural gas, packaged medicine, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "transitional, between maritime and continental; wet, moderate winters and summers"
+      }
+    }
+  }
+}

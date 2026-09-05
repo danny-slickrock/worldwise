@@ -1,0 +1,66 @@
+{
+  "iso": "bn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.393Z",
+  "structured": {
+    "code": "bn",
+    "name": "Brunei",
+    "capital": "Bandar Seri Begawan",
+    "continent": "Asia",
+    "areaKm2": 5765.313533,
+    "population": 458949,
+    "officialLanguages": [
+      "British English",
+      "Malay"
+    ],
+    "currencies": [
+      "Brunei dollar"
+    ],
+    "landBorderNames": [
+      "Malaysia"
+    ],
+    "landBorderCodes": [
+      "my"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, timber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, along the northern coast of the island of Borneo, bordering the South China Sea and Malaysia || flat coastal plain rises to mountains in east; hilly lowland in west || close to vital sea lanes through South China Sea linking Indian and Pacific Oceans; two parts physically separated by Malaysia; the eastern part, the Temburong district, is an exclave and is almost an enclave within Malaysia || Resources: petroleum, natural gas, timber || Exports: refined petroleum, natural gas, crude petroleum, hydrocarbons, fertilizers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat coastal plain rises to mountains in east; hilly lowland in west || Southeastern Asia, along the northern coast of the island of Borneo, bordering the South China Sea and Malaysia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid, rainy || typhoons, earthquakes, and severe flooding are rare"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "almost exclusively an oil and gas economy; high income country; expansive and robust welfare system; the majority of the population works for the government; promulgating a nationalized halal brand; considering establishment of a bond market and stock exchange || Exports: refined petroleum, natural gas, crude petroleum, hydrocarbons, fertilizers (2023) || Industries: petroleum, petroleum refining, liquefied natural gas, construction, agriculture, aquaculture, transportation"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official) 82.1%, Christian 6.7%, Buddhist 6.3%, other 4.9% (2021 est.) || Malay 67.4%, Chinese 9.6%, other 23% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "iso": "li",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.382Z",
+  "structured": {
+    "code": "li",
+    "name": "Liechtenstein",
+    "capital": "Vaduz",
+    "continent": "Europe",
+    "areaKm2": 160,
+    "population": 37922,
+    "officialLanguages": [
+      "German"
+    ],
+    "currencies": [
+      "Swiss franc"
+    ],
+    "landBorderNames": [
+      "Austria",
+      "Switzerland"
+    ],
+    "landBorderCodes": [
+      "at",
+      "ch"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydroelectric potential, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, between Austria and Switzerland || mostly mountainous (Alps) with Rhine Valley in western third || along with Uzbekistan, one of only two doubly landlocked countries in the world; variety of microclimatic variations based on elevation || Resources: hydroelectric potential, arable land || Exports: small specialty machinery, connectors for audio and video, parts for motor vehicles, dental products, hardware"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountainous (Alps) with Rhine Valley in western third || Central Europe, between Austria and Switzerland"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "continental; cold, cloudy winters with frequent snow or rain; cool to moderately warm, cloudy, humid summers || avalanches, landslides"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income European economy; Schengen Area participant; key European financial leader; integrated with Swiss economy and franc currency user; one of the highest GDP per capita countries; relies on US and Eurozone markets for exports || Exports: small specialty machinery, connectors for audio and video, parts for motor vehicles, dental products, hardware || Industries: electronics, metal manufacturing, dental products, ceramics, pharmaceuticals, food products, precision instruments, tourism, optical instruments"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic (official) 73.4%, Protestant Reformed 6.3%, Muslim 5.9%, Christian Orthodox 1.3%, Lutheran 1.2%, other Protestant 0.7%, other Christian 0.3%, other 0.8%, none 7%, unspecified 3.3% (2015 est.) || Liechtensteiner 65.6%, Swiss 9.6%, Austrian 5.8%, German 4.5%, Italian 3.1%, other 11.4% (2021 est.)"
+    }
+  }
+}

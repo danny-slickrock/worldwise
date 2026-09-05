@@ -1,4 +1,4 @@
-import { COUNTRY_PATHS } from "./worldMap";
+import { COUNTRY_PATHS } from "./worldMap.js";
 
 // Full country dataset: the 196 sovereign states of the world
 // (193 UN members + Taiwan, Vatican City, and Palestine).

@@ -1,0 +1,202 @@
+{
+  "iso": "zw",
+  "fetchedAt": "2026-09-04T23:57:04.136Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/zi.json"
+    }
+  },
+  "wikidata": {
+    "name": "Zimbabwe",
+    "gec": "ZI",
+    "capital": "Harare",
+    "areaKm2": 390757,
+    "population": 15178979,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Xhosa",
+      "Ndau",
+      "Venda",
+      "Chewa",
+      "Khoisan",
+      "Kalanga",
+      "Shona",
+      "Tonga",
+      "Tswana",
+      "Tsonga",
+      "Sesotho",
+      "Northern Ndebele",
+      "Barwe",
+      "Nambya",
+      "Zimbabwe Sign Language"
+    ],
+    "currencies": [
+      "Zimbabwe ZiG",
+      "Australian dollar",
+      "Zimbabwean dollar",
+      "rand",
+      "Indian rupee",
+      "renminbi",
+      "pound sterling",
+      "yen",
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "za",
+      "zm",
+      "bw",
+      "mz"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/zi.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The hunter-gatherer San people first inhabited the area that eventually became Zimbabwe. Farming communities migrated to the area around A.D. 500 during the Bantu expansion, and Shona-speaking societies began to develop in the Limpopo valley and Zimbabwean highlands around the 9th century. These societies traded with Arab merchants on the Indian Ocean coast and organized under the Kingdom of Mapungubwe in the 11th century. A series of powerful trade-oriented Shona states succeeded Mapungubwe, including the Kingdom of Zimbabwe (ca. 1220-1450), Kingdom of Mutapa (ca. 1450-1760), and the Rozwi Empire. The Rozwi Empire expelled Portuguese colonists from the Zimbabwean plateau, but the Ndebele clan of Zulu King MZILIKAZI eventually conquered the area in 1838 during the era of conflict and population displacement known as the Mfecane. <br><br>In the 1880s, colonists arrived with the British South Africa Company (BSAC) and obtained a written concession for mining rights from Ndebele King LOBENGULA. The king later disavowed the concession and accused the BSAC agents of deceit. The BSAC annexed Mashonaland and then conquered Matabeleland during the First Matabele War of 1893-1894, establishing company rule over the territory. In 1923, the UK annexed BSAC holdings south of the Zambezi River, which became the British colony of Southern Rhodesia. The 1930 Land Apportionment Act restricted Black land ownership and established rules that would favor the White minority for decades. A new constitution in 1961 further cemented White minority rule.<br><br>In 1965, the government under White Prime Minister Ian SMITH unilaterally declared its independence from the UK. London did not recognize Rhodesia’s independence and demanded more voting rights for the Black majority in the country. International diplomacy and an uprising by Black Zimbabweans led to biracial elections in 1979 and independence (as Zimbabwe) in 1980. Robert MUGABE, who led the uprising and became the nation's first prime minister, was the country's only ruler (as president since 1987) from independence until 2017. In the mid-1980s, the government tortured and killed thousands of civilians in a crackdown on dissent known as the Gukurahundi campaign. Economic mismanagement and chaotic implementation of land redistribution policies periodically crippled the economy. General elections in 2002, 2008, and 2013 were severely flawed and widely condemned but allowed MUGABE to remain president. In 2017, Vice President Emmerson MNANGAGWA became president after a military intervention that forced MUGABE to resign, and MNANGAGWA cemented power by sidelining rival Grace MUGABE (Robert MUGABE’s wife). In 2018, MNANGAGWA won the presidential election, and he has maintained the government's longstanding practice of violently disrupting protests and politicizing institutions. Economic conditions remain dire under MNANGAGWA.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Africa, between South Africa and Zambia"
+      },
+      "Area": {
+        "total ": {
+          "text": "390,757 sq km"
+        },
+        "land": {
+          "text": "386,847 sq km"
+        },
+        "water": {
+          "text": "3,910 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,229 km"
+        },
+        "border countries": {
+          "text": "Botswana 834 km; Mozambique 1,402 km; South Africa 230 km; Zambia 763 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "tropical; moderated by altitude; rainy season (November to March)"
+      },
+      "Terrain": {
+        "text": "mostly high plateau with higher central plateau (high veld); mountains in east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Inyangani 2,592 m"
+        },
+        "lowest point": {
+          "text": "junction of the Runde and Save Rivers 162 m"
+        },
+        "mean elevation": {
+          "text": "961 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, chromium ore, asbestos, gold, nickel, copper, iron ore, vanadium, lithium, tin, platinum group metals"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "41.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 10.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 31.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "35.9% (2023 est.)"
+        },
+        "other": {
+          "text": "22.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "recurring droughts; floods and severe storms are rare"
+      },
+      "Geography - note": {
+        "text": "landlocked; the Zambezi forms a natural river boundary with Zambia; in full flood (February-April), the massive Victoria Falls on the river forms the world's largest curtain of falling water; Lake Kariba on the Zambia-Zimbabwe border forms the world's largest reservoir by volume (180 cu km; 43 cu mi)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "17,472,752 (2025 est.)"
+        },
+        "male": {
+          "text": "8,503,108"
+        },
+        "female": {
+          "text": "8,969,644"
+        }
+      },
+      "Languages": {
+        "text": "Shona (official, most widely spoken) 80.9%, Ndebele (official, second most widely spoken) 11.5%, English (official, traditionally used for official business) 0.3%, 13 minority languages (official; includes Chewa, Chibarwe, Kalanga, Koisan, Nambya, Ndau, Shangani, sign language, Sotho, Tonga, Tswana, Venda, and Xhosa) 7%, other 0.3% (2022 est.)",
+        "note": "<strong>note:</strong> data represent population by mother tongue"
+      },
+      "Religions": {
+        "text": "Apostolic Sect 40.3%, Pentecostal 17%, Protestant 13.8%, other Christian 7.8%, Roman Catholic 6.4%, African traditionalist 5%, other 1.5% (includes Muslim, Jewish, Hindu), none 8.3% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "African 99.6% (predominantly Shona; Ndebele is the second largest ethnic group), other (includes Caucasian, Asiatic, mixed race) 0.4% (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "32.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.41% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "aside from major urban agglomerations in Harare and Bulawayo, population distribution is fairly even, with slightly greater overall numbers in the eastern half, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low income Sub-Saharan economy; political instability and endemic corruption have prevented reforms and stalled debt restructuring; new Zimbabwe Gold (ZiG) currency latest effort to combat ongoing hyperinflation; reliant on natural resource extraction, agriculture and remittances"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, beef, maize, cabbages, potatoes, tomatoes, milk, onions, bananas, wheat (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining (coal, gold, platinum, copper, nickel, tin, diamonds, clay, numerous metallic and nonmetallic ores), steel, wood products, cement, chemicals, fertilizer, clothing and footwear, foodstuffs, beverages"
+      },
+      "Exports - commodities": {
+        "text": "gold, tobacco, nickel, minerals, diamonds (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 45%, China 18%, South Africa 15%, Mozambique 4%, Hong Kong 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, fertilizers, trucks, soybean oil, stone processing machines (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; moderated by altitude; rainy season (November to March)"
+      }
+    }
+  }
+}

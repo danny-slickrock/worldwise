@@ -1,0 +1,186 @@
+{
+  "iso": "pe",
+  "fetchedAt": "2026-09-04T23:57:08.744Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/pe.json"
+    }
+  },
+  "wikidata": {
+    "name": "Peru",
+    "gec": "PE",
+    "capital": "Lima",
+    "areaKm2": 1285216,
+    "population": 34157732,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish",
+      "Quechua",
+      "Aymara"
+    ],
+    "currencies": [
+      "Nuevo sol"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "cl",
+      "ec",
+      "co",
+      "bo"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/pe.json",
+    "Introduction": {
+      "Background": {
+        "text": "Ancient Peru was the seat of several prominent Andean civilizations, most notably that of the Incas whose empire was captured by Spanish conquistadors in 1533. Peru declared its independence in 1821, and remaining Spanish forces were defeated in 1824. After a dozen years of military rule, Peru returned to democratic leadership in 1980 but experienced economic problems and the growth of a violent insurgency. President Alberto FUJIMORI's election in 1990 ushered in a decade that saw a dramatic turnaround in the economy and significant progress in curtailing guerrilla activity. Nevertheless, an economic slump and the president's increasing reliance on authoritarian measures in the late 1990s generated mounting dissatisfaction with his regime, which led to his resignation in 2000. <br><br>A caretaker government oversaw a new election in 2001 that installed Alejandro TOLEDO Manrique as the new head of government - Peru's first democratically elected president of indigenous ethnicity. The presidential election of 2006 saw the return of Alan GARCIA Perez who, after a disappointing presidential term from 1985 to 1990, presided over a robust economic rebound. Former army officer Ollanta HUMALA Tasso was elected president in 2011 and carried on the market-oriented economic policies of the three preceding administrations. Pedro Pablo KUCZYNSKI Godard won a very narrow runoff in the 2016 presidential election. Facing impeachment after evidence surfaced of his involvement in a vote-buying scandal, KUCZYNSKI offered his resignation in 2018, and First Vice President Martin Alberto VIZCARRA Cornejo was sworn in as president. In 2019, VIZCARRA invoked his constitutional authority to dissolve Peru's Congress after months of battling with the body over anticorruption reforms. New congressional elections in 2020 resulted in an opposition-led legislature. The Congress impeached VIZCARRA for a second time and removed him from office after accusations of corruption and mishandling of the COVID-19 pandemic. Because of vacancies in the vice-presidential positions, the President of the Peruvian Congress, Manuel MERINO, became the next president. His ascension to office was not well received, and large protests forced his resignation later in 2020. Francisco SAGASTI assumed the position of President of Peru after being appointed President of the Congress the previous day. Jose Pedro CASTILLO Terrones won presidential election in 2021 but was impeached and ousted the following year; his vice president, Dina BOLUARTE, assumed the presidency by constitutional succession in 2022."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western South America, bordering the South Pacific Ocean, between Chile and Ecuador"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,285,216 sq km"
+        },
+        "land": {
+          "text": "1,279,996 sq km"
+        },
+        "water": {
+          "text": "5,220 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "7,062 km"
+        },
+        "border countries": {
+          "text": "Bolivia 1,212 km; Brazil 2,659 km; Chile 168 km; Colombia 1,494 km; Ecuador 1,529 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,414 km"
+      },
+      "Climate": {
+        "text": "varies from tropical in east to dry desert in west; temperate to frigid in Andes"
+      },
+      "Terrain": {
+        "text": "western coastal plain (costa), high and rugged Andes in center (sierra), eastern lowland jungle of Amazon Basin (selva)"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Nevado Huascaran 6,746 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "1,555 m"
+        }
+      },
+      "Natural resources": {
+        "text": "copper, silver, gold, petroleum, timber, fish, iron ore, coal, phosphate, potash, hydropower, natural gas"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "19.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 3.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 14.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "52.9% (2023 est.)"
+        },
+        "other": {
+          "text": "28% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes, tsunamis, flooding, landslides, mild volcanic activity <br><br><strong>volcanism:</strong> volcanic activity in the Andes Mountains; Ubinas (5,672 m) is the country's most active volcano; other historically active volcanoes include El Misti, Huaynaputina, Sabancaya, and Yucamane; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> shares control of Lago Titicaca, world's highest navigable lake, with Bolivia; a remote slope of Nevado Mismi, a 5,316-m (17,441-ft) peak, is the ultimate source of the Amazon River <br><br><strong>note 2:</strong> Peru is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 3:</strong> on 19 February 1600, Mount Huaynaputina in the southern Peruvian Andes erupted in the largest volcanic explosion in South America in historical times; intermittent eruptions lasted until 5 March 1600 and pumped an estimated 16 to 32 million metric tons of particulates into the atmosphere, reducing the amount of sunlight reaching the earth's surface and affecting weather worldwide; over the next two-and-a-half years, millions died around the globe in famines from bitterly cold winters, cool summers, and the loss of crops and animals"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "32,768,614 (2025 est.)"
+        },
+        "male": {
+          "text": "16,016,448"
+        },
+        "female": {
+          "text": "16,752,166"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 82.9%, Quechua (official) 13.6%, Aymara (official) 1.6%, Ashaninka 0.3%, other native languages (includes many minor Amazonian languages) 0.8%, other 0.2%, none 0.1%, unspecified 0.7% (2017 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Catholic 76%, Evangelical Christian 15.7%, no religion 5.1%, other religions 3.2% (2017 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Indigenous and White) 60.2%, Indigenous 25.8%, White 5.9%, African descent 3.6%, other (includes Chinese and Japanese descent) 1.2%, unspecified 3.3% (2017 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "78.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.33% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "approximately one third of the population resides along the desert coastal belt in the&nbsp; west, with a strong focus on the capital city of Lima; the Andean highlands, or sierra, contain roughly half of the population; the eastern slopes of the Andes and adjoining rainforest are sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income South American economy; strong post-COVID rebound tempered by political uncertainty and climate risks; exports driven by mineral extraction and agriculture; large informal sector and uneven access to public services; stable fiscal position and financial sector</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, potatoes, rice, bananas, milk, maize, chicken, oil palm fruit, cassava, grapes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining and refining of minerals; steel, metal fabrication; petroleum extraction and refining, natural gas and natural gas liquefaction; fishing and fish processing, cement, glass, textiles, clothing, food processing, beer, soft drinks, rubber, machinery, electrical machinery, chemicals, furniture"
+      },
+      "Exports - commodities": {
+        "text": "copper ore, gold, refined copper, refined petroleum, grapes (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 34%, USA 14%, Canada 5%, India 4%, Switzerland 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, cars, trucks, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical in east to dry desert in west; temperate to frigid in Andes"
+      }
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "iso": "sk",
+  "fetchedAt": "2026-09-04T23:56:42.089Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/lo.json"
+    }
+  },
+  "wikidata": {
+    "name": "Slovakia",
+    "gec": "LO",
+    "capital": "Bratislava",
+    "areaKm2": 49033.720839,
+    "population": 5409407,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Slovak"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "hu",
+      "pl",
+      "at",
+      "ua",
+      "cz"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/lo.json",
+    "Introduction": {
+      "Background": {
+        "text": "Slovakia traces its roots to the 9th century state of Great Moravia. The Slovaks then became part of the Hungarian Kingdom, where they remained for the next 1,000 years. After the formation of the dual Austro-Hungarian monarchy in 1867, language and education policies favoring the use of Hungarian (known as \"Magyarization\") led to a public backlash that boosted Slovak nationalism and strengthened Slovak cultural ties with the closely related Czechs, who fell administratively under the Austrian half of the empire. When the Austro-Hungarian Empire dissolved at the end of World War I, the Slovaks joined the Czechs to form Czechoslovakia. During the interwar period, Slovak nationalist leaders pushed for autonomy within Czechoslovakia, and in 1939, in the wake of Germany's annexation of the Sudetenland, the newly established Slovak Republic became a German client state for the remainder of World War II. <br><br>After World War II, Czechoslovakia was reconstituted and came under communist rule within Soviet-dominated Eastern Europe. In 1968, Warsaw Pact troops invaded and ended the efforts of Czechoslovakia's leaders to liberalize communist rule and create \"socialism with a human face,\" ushering in a period of repression known as \"normalization.\" The peaceful Velvet Revolution swept the Communist Party from power at the end of 1989 and inaugurated a return to democratic rule and a market economy. On 1 January 1993, Czechoslovakia underwent a nonviolent \"velvet divorce\" into its two national components, Slovakia and the Czech Republic. Slovakia joined both NATO and the EU in 2004 and the euro zone in 2009."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Europe, south of Poland"
+      },
+      "Area": {
+        "total ": {
+          "text": "49,035 sq km"
+        },
+        "land": {
+          "text": "48,105 sq km"
+        },
+        "water": {
+          "text": "930 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,587 km"
+        },
+        "border countries": {
+          "text": "Austria 105 km; Czechia 241 km; Hungary 627 km; Poland 517 km; Ukraine 97 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "temperate; cool summers; cold, cloudy, humid winters"
+      },
+      "Terrain": {
+        "text": "rugged mountains in the central and northern part and lowlands in the south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gerlachovsky Stit 2,655 m"
+        },
+        "lowest point": {
+          "text": "Bodrok River 94 m"
+        },
+        "mean elevation": {
+          "text": "458 m"
+        }
+      },
+      "Natural resources": {
+        "text": "lignite, small amounts of iron ore, copper and manganese ore; salt; arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "38% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 27.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 10.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "40.3% (2023 est.)"
+        },
+        "other": {
+          "text": "21.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding"
+      },
+      "Geography - note": {
+        "text": "landlocked; most of the country is rugged and mountainous; the Tatra Mountains in the north are interspersed with many scenic lakes and valleys"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,563,649 (2024 est.)"
+        },
+        "male": {
+          "text": "2,684,747"
+        },
+        "female": {
+          "text": "2,878,902"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Slovak (official) 81.8%, Hungarian 8.5%, Roma 1.8%, other 2.2%, unspecified 5.7% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Svetova Kniha Faktov, nenahraditelny zdroj zakladnej informacie. (Slovak)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 55.8%, Evangelical Church of the Augsburg Confession 5.3%, Greek Catholic 4%, Reformed Christian 1.6%, other 3%, none 23.8%, unspecified 6.5% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Slovak 83.8%, Hungarian 7.8%, Romani 1.2%, other 1.8% (includes Czech, Ruthenian, Ukrainian, Russian, German, Polish), unspecified 5.4% (2021 est.)",
+        "note": "<strong>note:</strong> data represent population by nationality; Romani populations are usually underestimated in official statistics and may represent 7–11% of Slovakia's population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "54% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.17% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country; slightly larger concentration in the west in proximity to the Czech border"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone economy; manufacturing and exports led by automotive sector;  growth supported by private consumption and public investment from EU funds, tempered by trade risks; increased taxes and withdrawal of energy subsidies contributing to rising but manageable inflation; strong labor demand and influx of foreign labor offsets aging workforce</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, sugar beets, maize, milk, barley, rapeseed, sunflower seeds, potatoes, soybeans, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "automobiles; metal and metal products; electricity, gas, coke, oil, nuclear fuel; chemicals, synthetic fibers, wood and paper products; machinery; earthenware and ceramics; textiles; electrical and optical apparatus; rubber products; food and beverages; pharmaceutical"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, video displays, broadcasting equipment, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 20%, Czechia 10%, Hungary 7%, USA 6%, Poland 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "vehicle parts/accessories, broadcasting equipment, cars, plastic products, insulated wire (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; cool summers; cold, cloudy, humid winters"
+      }
+    }
+  }
+}

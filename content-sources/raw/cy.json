@@ -1,0 +1,30 @@
+{
+  "iso": "cy",
+  "fetchedAt": "2026-09-04T23:56:36.890Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": null
+    }
+  },
+  "wikidata": {
+    "name": "Cyprus",
+    "gec": null,
+    "capital": "Nicosia",
+    "areaKm2": 9234,
+    "population": 1120489,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Turkish",
+      "Greek"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": []
+  },
+  "factbook": null
+}

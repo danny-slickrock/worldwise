@@ -1,0 +1,191 @@
+{
+  "iso": "az",
+  "fetchedAt": "2026-09-04T23:56:44.106Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/aj.json"
+    }
+  },
+  "wikidata": {
+    "name": "Azerbaijan",
+    "gec": "AJ",
+    "capital": "Baku",
+    "areaKm2": 86600,
+    "population": 10180770,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Azerbaijani",
+      "Azerbaijani Sign Language"
+    ],
+    "currencies": [
+      "Azerbaijani manat"
+    ],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "ru",
+      "ge",
+      "am",
+      "ir"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/aj.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Azerbaijan -- a secular nation with a majority-Turkic and majority-Shia Muslim population -- was briefly independent (from 1918 to 1920) following the collapse of the Russian Empire; it was subsequently incorporated into the Soviet Union for seven decades. <br><br>Beginning in 1988, Azerbaijan and Armenia fought over the Nagorno-Karabakh region, which was populated largely by ethnic Armenians but incorporated into Soviet Azerbaijan as an autonomous oblast in the early 1920s. In the late Soviet period, an ethnic-Armenian separatist movement sought to end Azerbaijani control over the region. Fighting over Nagorno-Karabakh escalated after Armenia and Azerbaijan gained independence from the Soviet Union in 1991. By the time a ceasefire took effect in 1994, separatists with Armenian support controlled Nagorno‑Karabakh and seven surrounding Azerbaijani territories. After decades of cease-fire violations and sporadic flare-ups, a second sustained conflict began in 2020 when Azerbaijan tried to win back the territories it had lost in the 1990s. After significant Azerbaijani gains, Armenia returned the southern part of Nagorno-Karabakh and the surrounding territories to Azerbaijan. In September 2023, Azerbaijan took military action to regain the rest of Nagorno-Karabakh; after a conflict that lasted only one day, nearly the entire ethnic Armenian population of Nagorno-Karabakh fled to Armenia.<br><br>Since gaining its independence in 1991, Azerbaijan has significantly reduced the poverty rate and has directed some revenue from its oil and gas production to develop the country’s infrastructure. However, corruption remains a burden on the economy, and Western observers and members of the country’s political opposition have accused the government of authoritarianism. The country’s leadership has remained in the ALIYEV family since Heydar ALIYEV, the most highly ranked Azerbaijani member of the Communist Party during the Soviet period, became president during the first Nagorno-Karabakh War in 1993. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Asia, bordering the Caspian Sea, between Iran and Russia, with a small European portion north of the Caucasus range"
+      },
+      "Area": {
+        "total ": {
+          "text": "86,600 sq km"
+        },
+        "land": {
+          "text": "82,629 sq km"
+        },
+        "water": {
+          "text": "3,971 sq km"
+        },
+        "note": "<strong>note:</strong> includes the exclave of Naxcivan Autonomous Republic and the Nagorno-Karabakh region; the final status of the region has yet to be determined"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,468 km"
+        },
+        "border countries": {
+          "text": "Armenia 996 km; Georgia 428 km; Iran 689 km; Russia 338 km; Turkey 17 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)",
+        "note": "<strong>note:</strong> Azerbaijan borders the Caspian Sea (713 km)"
+      },
+      "Climate": {
+        "text": "dry, semiarid steppe"
+      },
+      "Terrain": {
+        "text": "large, flat Kur-Araz Ovaligi (Kura-Araks Lowland, much of it below sea level) with Great Caucasus Mountains to the north, Qarabag Yaylasi (Karabakh Upland) to the west; Baku lies on Abseron Yasaqligi (Apsheron Peninsula) that juts into Caspian Sea"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Bazarduzu Dagi 4,466 m"
+        },
+        "lowest point": {
+          "text": "Caspian Sea -28 m"
+        },
+        "mean elevation": {
+          "text": "384 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, iron ore, nonferrous metals, bauxite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "57.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 25.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 29.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "14.4% (2023 est.)"
+        },
+        "other": {
+          "text": "27.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts"
+      },
+      "Geography - note": {
+        "text": "both the main area of the country and the Naxcivan exclave are landlocked"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,694,370 (2025 est.)"
+        },
+        "male": {
+          "text": "5,354,376"
+        },
+        "female": {
+          "text": "5,339,994"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Azerbaijani 96.1%, other 1.4%; less than 1%: Russian, Avar, Talyshi, Turkish, Tatar, Sakhur, Tat, Ukrainian, Georgian, Hebrew (2019 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Dünya fakt kitabı, əsas məlumatlar üçün əvəz olunmaz mənbədir (Azerbaijani)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> Russian is widely spoken"
+      },
+      "Religions": {
+        "text": "Muslim 97.3% (predominantly Shia), Christian 2.6%, other &lt;0.1, unaffiliated &lt;0.1 (2020 est.)",
+        "note": "<strong>note:</strong> religious affiliation for the majority of Azerbaijanis is largely nominal, percentages for actual practicing adherents are probably much lower"
+      },
+      "Ethnic groups": {
+        "text": "Azerbaijani 94.8%, other 1.8%; less than 1%: Talish, Russian, Avar, Sakhur, Tartar, Georgian, Jewish, Kurd<br><!--EndFragment --> (2019 est.)",
+        "note": "<strong>note:</strong> Nagorno-Karabakh, which is part of Azerbaijan on the basis of the borders recognized when the Soviet Union dissolved in 1991, was populated almost entirely by ethnic Armenians; Azerbaijan has over 80 ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "57.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.38% annual rate of change (2020-25 est.)"
+        },
+        "note": "<strong>note:</strong> data include Nagorno-Karabakh"
+      },
+      "Population distribution": {
+        "text": "highest population density is found in the far eastern area of the country, in and around Baku; apart from smaller urbanized areas, the rest of the country has a fairly light and evenly distributed population"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle income, oil-dependent Caucasus economy; minimal economic diversification and dominance of state-owned enterprises; growth and fiscal consolidation supported by oil revenues, but risks remain from demand shocks; potential economic gains from Nagorno-Karabakh ceasefire; education investments to diversify and retain human capital</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, wheat, barley, potatoes, tomatoes, watermelons, onions, apples, maize, cotton (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum and petroleum products, natural gas, oilfield equipment; steel, iron ore; cement; chemicals and petrochemicals; textiles"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, natural gas, refined petroleum, plastics, electricity (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 37%, Turkey 19%, Israel 5%, Greece 4%, Russia 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, crude petroleum, refined petroleum, broadcasting equipment, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "dry, semiarid steppe"
+      }
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "iso": "fm",
+  "fetchedAt": "2026-09-04T23:57:11.300Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/fm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Federated States of Micronesia",
+    "gec": "FM",
+    "capital": "Palikir",
+    "areaKm2": 702,
+    "population": 75817,
+    "continent": "Oceania",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "pg",
+      "pw"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/fm.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Each of the four states that compose the Federated States of Micronesia (FSM) -- Chuuk, Kosrae, Pohnpei, and Yap -- has its own unique history and cultural traditions. The first humans arrived in what is now the FSM in the second millennium B.C. In the 800s A.D., construction of the artificial islets at the Nan Madol complex in Pohnpei began, with the main architecture being built around 1200. At its height, Nan Madol united the approximately 25,000 people of Pohnpei under the Saudeleur Dynasty. By 1250, Kosrae was united in a kingdom centered in Leluh. Yap’s society became strictly hierarchical, with chiefs receiving tributes from islands up to 1,100 km (700 mi) away. Widespread human settlement in Chuuk began in the 1300s, and the different islands in the Chuuk Lagoon were frequently at war with one another.</p> <p>Portuguese and Spanish explorers visited a few of the islands in the 1500s, and Spain began exerting nominal, but not day-to-day, control over some of the islands -- which they named the Caroline Islands -- in the 1600s. In 1899, Spain sold all of the FSM to Germany. Japan seized the islands in 1914 and was granted a League of Nations mandate to administer them in 1920. During WWII, Japan built military bases across most of the islands and headquartered their Pacific naval operations in Chuuk. The US bombed Chuuk in 1944 but largely bypassed the other islands in its leapfrog campaign across the Pacific. </p> <p>In 1947, the FSM came under US administration as part of the Trust Territory of the Pacific Islands, which comprised six districts: Chuuk, the Marshall Islands, the Northern Mariana Islands, Palau, Pohnpei, and Yap; Kosrae was separated from Pohnpei into a separate district in 1977. In 1979, Chuuk, Kosrae, Pohnpei, and Yap ratified the FSM Constitution and declared independence while the other three districts opted to pursue separate political status. There are significant inter-island rivalries stemming from their different histories and cultures. Chuuk, the most populous but poorest state, has pushed for secession, but an independence referendum has been repeatedly postponed.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, island group in the North Pacific Ocean, about three-quarters of the way from Hawaii to Indonesia"
+      },
+      "Area": {
+        "total ": {
+          "text": "702 sq km"
+        },
+        "land": {
+          "text": "702 sq km"
+        },
+        "water": {
+          "text": "0 sq km (fresh water only)"
+        },
+        "note": "<strong>note:</strong> includes Pohnpei (Ponape), Chuuk (Truk) Islands, Yap Islands, and Kosrae (Kosaie)"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "6,112 km"
+      },
+      "Climate": {
+        "text": "tropical; heavy year-round rainfall, especially in the eastern islands; located on southern edge of the typhoon belt with occasionally severe damage"
+      },
+      "Terrain": {
+        "text": "islands vary geologically from high mountainous islands to low, coral atolls; volcanic outcroppings on Pohnpei, Kosrae, and Chuuk"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Nanlaud on Pohnpei 782 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, marine products, deep-seabed minerals, phosphate"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "7.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2022 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "92.2% (2023 est.)"
+        },
+        "other": {
+          "text": "0.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "typhoons (June to December)"
+      },
+      "Geography - note": {
+        "text": "composed of four major island groups totaling 607 islands"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "99,603 (2024 est.)"
+        },
+        "male": {
+          "text": "48,708"
+        },
+        "female": {
+          "text": "50,895"
+        }
+      },
+      "Languages": {
+        "text": "English (official and common language), Chuukese, Kosrean, Pohnpeian, Yapese, Ulithian, Woleaian, Nukuoro, Kapingamarangi"
+      },
+      "Religions": {
+        "text": "Roman Catholic 54.7%, Protestant 41.1% (includes Congregational 38.5%, Baptist 1.1%, Seventh Day Adventist 0.8%, Assembly of God 0.7%), Church of Jesus Christ 1.5%, other 1.9%, none 0.7%, unspecified 0.1% (2010 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Chuukese/Mortlockese 49.3%, Pohnpeian 29.8%, Kosraean 6.3%, Yapese 5.7%, Yap outer islanders 5.1%, Polynesian 1.6%, Asian 1.4%, other 0.8% (2010 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "23.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.52% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the majority of the population lives in the coastal areas of the high islands; the mountainous interior is largely uninhabited; less than half of the population lives in urban areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income Pacific island economy; US aid reliance, sunsetting in 2024; low entrepreneurship; mostly fishing and farming; US dollar user; no patent laws; tourism remains underdeveloped; significant corruption"
+      },
+      "Agricultural products": {
+        "text": "coconuts, cassava, vegetables, sweet potatoes, bananas, pork, plantains, fruits, beef, eggs (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, construction; specialized aquaculture, craft items (shell and wood)"
+      },
+      "Exports - commodities": {
+        "text": "fish, diamonds, garments (2023)",
+        "note": "<strong>note:</strong> top export commodities based on value in dollars over $500,000"
+      },
+      "Exports - partners": {
+        "text": "Thailand 64%, China 16%, Philippines 11%, Japan 5%, Ecuador 1% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "poultry, fish, plastic products, cars, prepared meat (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; heavy year-round rainfall, especially in the eastern islands; located on southern edge of the typhoon belt with occasionally severe damage"
+      }
+    }
+  }
+}

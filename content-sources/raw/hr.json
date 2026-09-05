@@ -1,0 +1,182 @@
+{
+  "iso": "hr",
+  "fetchedAt": "2026-09-04T23:56:36.889Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/hr.json"
+    }
+  },
+  "wikidata": {
+    "name": "Croatia",
+    "gec": "HR",
+    "capital": "Zagreb",
+    "areaKm2": 56594,
+    "population": 3871833,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Croatian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "hu",
+      "si",
+      "ba",
+      "me",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/hr.json",
+    "Introduction": {
+      "Background": {
+        "text": "The lands that today comprise Croatia were part of the Austro-Hungarian Empire until the end of World War I. In 1918, the Croats, Serbs, and Slovenes formed a kingdom known after 1929 as Yugoslavia. Following World War II, Yugoslavia became a federal independent communist state consisting of six socialist republics, including Croatia, under the strong hand of Josip Broz, aka TITO. Although Croatia declared its independence from Yugoslavia in 1991, it took four years of sporadic, but often bitter, fighting before Yugoslav forces were cleared from Croatian lands, along with a majority of Croatia's ethnic Serb population. Under UN supervision, the last Serb-held enclave in eastern Slavonia was returned to Croatia in 1998. The country joined NATO in 2009 and the EU in 2013. In January 2023, Croatia further integrated into the EU by joining the Eurozone and the Schengen Area."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, bordering the Adriatic Sea, between Bosnia and Herzegovina and Slovenia"
+      },
+      "Area": {
+        "total ": {
+          "text": "56,594 sq km"
+        },
+        "land": {
+          "text": "55,974 sq km"
+        },
+        "water": {
+          "text": "620 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,237 km"
+        },
+        "border countries": {
+          "text": "Bosnia and Herzegovina 956 km; Hungary 348 km; Montenegro 19 km; Serbia 314 km; Slovenia 600 km"
+        }
+      },
+      "Coastline": {
+        "text": "5,835 km (mainland 1,777 km; islands 4,058 km)"
+      },
+      "Climate": {
+        "text": "Mediterranean and continental; continental climate predominant with hot summers and cold winters; mild winters, dry summers along coast"
+      },
+      "Terrain": {
+        "text": "geographically diverse; flat plains along Hungarian border, low mountains and highlands near Adriatic coastline and islands"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Dinara 1,831 m"
+        },
+        "lowest point": {
+          "text": "Adriatic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "331 m"
+        }
+      },
+      "Natural resources": {
+        "text": "oil, some coal, bauxite, low-grade iron ore, calcium, gypsum, natural asphalt, silica, mica, clays, salt, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "26.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 15.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "34.7% (2023 est.)"
+        },
+        "other": {
+          "text": "38.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "destructive earthquakes"
+      },
+      "Geography - note": {
+        "text": "controls most land routes from Western Europe to the Aegean Sea and Turkish Straits; most Adriatic Sea islands lie off the coast of Croatia -- some 1,200 islands, islets, ridges, and rocks"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "4,071,208 (2025 est.)"
+        },
+        "male": {
+          "text": "1,968,334"
+        },
+        "female": {
+          "text": "2,102,874"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Croatian (official) 95.2%, Serbian 1.2%, other 3.1% (including Bosnian, Romani, Albanian, and Italian) unspecified 0.5% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Knjiga svjetskih činjenica, nužan izvor osnovnih informacija. (Croatian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 79%, Orthodox 3.3%, Protestant 0.3%, other Christian 4.8%, Muslim 1.3%, other 1.1%, agnostic 1.7%, none or atheist 4.7%, unspecified 3.9% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Croat 91.6%, Serb 3.2%, other 3.9% (including Bosniak, Romani, Albanian, Italian, and Hungarian), unspecified 1.3% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "58.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.05% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "more of the population lives in the northern half of the country, with approximately a quarter of the populace residing in and around the capital of Zagreb; many of the islands are sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income Balkan economy; newest euro user (introduced in 2023); increased investments from EU structural funds and tourism sector contributing to strong but moderating economic growth; declining energy prices and restrictive monetary policy easing inflation; historically low unemployment rate with labor shortages within services and manufacturing sectors</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, wheat, sugar beets, milk, barley, soybeans, sunflower seeds, potatoes, pork, grapes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "chemicals and plastics, machine tools, fabricated metal, electronics, pig iron and rolled steel products, aluminum, paper, wood products, construction materials, textiles, shipbuilding, petroleum and petroleum refining, food and beverages, tourism"
+      },
+      "Exports - commodities": {
+        "text": "ships, garments, electricity, packaged medicine, wood (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 14%, Germany 11%, Slovenia 11%, Bosnia &amp; Herzegovina 6%, Austria 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, garments, natural gas, crude petroleum (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "Mediterranean and continental; continental climate predominant with hot summers and cold winters; mild winters, dry summers along coast"
+      }
+    }
+  }
+}

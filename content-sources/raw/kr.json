@@ -1,0 +1,185 @@
+{
+  "iso": "kr",
+  "fetchedAt": "2026-09-04T23:56:51.272Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/ks.json"
+    }
+  },
+  "wikidata": {
+    "name": "South Korea",
+    "gec": "KS",
+    "capital": "Seoul",
+    "areaKm2": 100295,
+    "population": 51466201,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Korean",
+      "Korean Sign Language"
+    ],
+    "currencies": [
+      "Korean mun",
+      "won"
+    ],
+    "sharesBorderWithAnyType": [
+      "jp",
+      "cn",
+      "kp"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/ks.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The first recorded kingdom (Choson) on the Korean Peninsula dates from approximately 2300 B.C. Over the subsequent centuries, three main kingdoms -- Kogoryo, Baekche, and Silla -- were established on the Peninsula. By the 5th century A.D., Kogoryo emerged as the most powerful, with control over much of the Peninsula and part of Manchuria (modern-day northeast China). However, Silla allied with the Chinese to create the first unified Korean state in 688. Following the collapse of Silla in the 9th century, Korea was unified under the Koryo (Goryeo; 918-1392) and the Chosen (Joseon; 1392-1910) dynasties.</p> <p>Korea became the object of intense imperialistic rivalry among the Chinese (its traditional benefactor), Japanese, and Russian empires in the latter half of the 19th and early 20th centuries. After the Sino-Japanese War (1894-95) and the Russo-Japanese War (1904-1905), Korea was occupied by Imperial Japan. In 1910, Japan formally annexed the entire Peninsula. Korea regained its independence after Japan's surrender to the US and its allies in 1945. A US-supported democratic government (Republic of Korea, ROK) was set up in the southern half of the Korean Peninsula, while a communist-style government backed by the Soviet Union was installed in the north (North Korea; aka Democratic People's Republic of Korea, DPRK). During the Korean War (1950-53), US troops and UN forces fought alongside ROK soldiers to defend South Korea from a North Korean invasion supported by communist China and the Soviet Union. After the 1953 armistice, the two Koreas were separated by a demilitarized zone.<br><br>Syngman RHEE led the country as its first president from 1948 to 1960. PARK Chung-hee took over leadership of the country in a 1961 coup. During his controversial rule (1961-79), South Korea achieved rapid economic growth, with per capita income rising to roughly 17 times the level of North Korea by 1979. PARK was assassinated in 1979, and subsequent years were marked by political turmoil and continued military rule as the country's pro-democracy movement grew. South Korea held its first free presidential election under a revised democratic constitution in 1987, with former South Korean Army general ROH Tae-woo winning a close race. In 1993, KIM Young-sam became the first civilian president of South Korea's new democratic era. President KIM Dae-jung (1998-2003) won the Nobel Peace Prize in 2000 for his contributions to South Korean democracy and his \"Sunshine Policy\" of engagement with North Korea. President PARK Geun-hye, daughter of former South Korean President PARK Chung-hee, took office in 2013 as South Korea's first female leader. In 2016, the National Assembly passed an impeachment motion against PARK over her alleged involvement in a corruption and influence-peddling scandal, triggering an early presidential election in 2017 won by MOON Jae-in. In 2022, longtime prosecutor and political newcomer YOON Suk Yeol won the presidency by the slimmest margin in South Korean history.</p> <p>Discord and tensions with North Korea, punctuated by North Korean military provocations, missile launches, and nuclear tests, have permeated inter-Korean relations for years. Relations remained strained, despite a period of respite in 2018-2019 ushered in by North Korea's participation in the 2018 Winter Olympic and Paralympic Games in South Korea and high-level diplomatic meetings, including historic US-North Korea summits. In 2024, Pyongyang announced it was ending all economic cooperation with South Korea, a move that followed earlier proclamations that it was scrapping a 2018 military pact to de-escalate tensions along their militarized border, abandoning the country’s decades-long pursuit of peaceful unification with South Korea, and designating the South as North Korea’s “principal enemy.”</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Asia, southern half of the Korean Peninsula bordering the Sea of Japan and the Yellow Sea"
+      },
+      "Area": {
+        "total ": {
+          "text": "99,720 sq km"
+        },
+        "land": {
+          "text": "96,920 sq km"
+        },
+        "water": {
+          "text": "2,800 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "237 km"
+        },
+        "border countries": {
+          "text": "North Korea 237 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,413 km"
+      },
+      "Climate": {
+        "text": "temperate, with rainfall heavier in summer than winter; cold winters"
+      },
+      "Terrain": {
+        "text": "mostly hills and mountains; wide coastal plains in west and south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Halla-san 1,950 m"
+        },
+        "lowest point": {
+          "text": "Sea of Japan 0 m"
+        },
+        "mean elevation": {
+          "text": "282 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, tungsten, graphite, molybdenum, lead, hydropower potential"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "16.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 14.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "64.4% (2023 est.)"
+        },
+        "other": {
+          "text": "19.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional typhoons bring high winds and floods; low-level seismic activity common in southwest <br><br><strong>volcanism:</strong> Halla (1,950 m) is considered historically active; it has not erupted in many centuries"
+      },
+      "Geography - note": {
+        "text": "strategic location on Korea Strait; about 3,000 mostly small and uninhabited islands lie off the western and southern coasts"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "51,486,343 (2025 est.)"
+        },
+        "male": {
+          "text": "25,636,127"
+        },
+        "female": {
+          "text": "25,850,216"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Korean, English&nbsp;"
+        },
+        "major-language sample(s)": {
+          "text": "<br>월드 팩트북, 필수적인 기본 정보 제공처 (Korean)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Protestant 17%, Buddhist 16%, Catholic 6%, none 60% (2021 est.)",
+        "note": "<strong>note:</strong> many people also carry on at least some Confucian traditions and practices"
+      },
+      "Ethnic groups": {
+        "text": "Korean"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "81.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.31% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the population is primarily concentrated in the lowland areas, where density is high; Gyeonggi Province in the northwest, which surrounds the capital of Seoul and contains the port of Incheon, is the most densely populated province; Gangwon in the northeast is the least populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, export- and technology-oriented East Asian economy; manufacturing led by semiconductor and automotive industries; slow growth amid declining construction investment, export risks, and recent political instability; aging workforce; increased restraint in fiscal policy while maintaining industry support initiatives</p>"
+      },
+      "Agricultural products": {
+        "text": "rice, vegetables, cabbages, milk, onions, pork, chicken, eggs, tangerines/mandarins, potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "electronics, telecommunications, automobile production, chemicals, shipbuilding, steel"
+      },
+      "Exports - commodities": {
+        "text": "integrated circuits, cars, refined petroleum, plastics, machine parts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 25%, USA 18%, Hong Kong 4%, Japan 4%, Taiwan 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "integrated circuits, natural gas, crude petroleum, machinery, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate, with rainfall heavier in summer than winter; cold winters"
+      }
+    }
+  }
+}

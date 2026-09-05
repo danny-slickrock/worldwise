@@ -1,0 +1,67 @@
+{
+  "iso": "dk",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.377Z",
+  "structured": {
+    "code": "dk",
+    "name": "Denmark",
+    "capital": "Copenhagen",
+    "continent": "Europe",
+    "areaKm2": 42925.46,
+    "population": 5822863,
+    "officialLanguages": [
+      "Danish"
+    ],
+    "currencies": [
+      "Danish krone"
+    ],
+    "landBorderNames": [
+      "Germany",
+      "Canada"
+    ],
+    "landBorderCodes": [
+      "de",
+      "ca"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, fish, arable land, salt, limestone, chalk, stone, gravel and sand",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Europe, bordering the Baltic Sea and the North Sea, on a peninsula north of Germany (Jutland); also includes several major islands (Sjaelland, Fyn, and Bornholm) || low and flat to gently rolling plains || composed of the Jutland Peninsula and a group of more than 400 islands (Danish Archipelago); controls Danish Straits (Skagerrak and Kattegat) linking Baltic and North Seas; about one-quarter of the population lives in greater Copenhagen || Resources: petroleum, natural gas, fish, arable land, salt, limestone, chalk, stone, gravel and sand || Exports: packaged medicine, fish, vaccines, refined petroleum, pork (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "low and flat to gently rolling plains || Northern Europe, bordering the Baltic Sea and the North Sea, on a peninsula north of Germany (Jutland); also includes several major islands (Sjaelland, Fyn, and Bornholm)"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; humid and overcast; mild, windy winters and cool summers || flooding is a threat in some areas of the country (e.g., parts of Jutland, along the southern coast of the island of Lolland) that are protected from the sea by a system of dikes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, EU-member, trade-oriented Nordic economy; growth driven by pharmaceuticals, energy, and services; large share of employment in public sector; fixed exchange rate pegged to euro; strong fiscal position and declining public debt; tight labor market mitigated by migrant workers and higher retirement age || Exports: packaged medicine, fish, vaccines, refined petroleum, pork (2023) || Industries: wind turbines, pharmaceuticals, medical equipment, shipbuilding and refurbishment, iron, steel, nonferrous metals, chemicals, food processing, machinery and transportation equipment, textiles and clothing, electronics, construction, furniture and other wood products"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Evangelical Lutheran (official) 71.4%, Muslim 4.3%, other/none/unspecified (denominations include Roman Catholic, Jehovah's Witness, Serbian Orthodox Christian, Jewish, Baptist, Buddhist, Church of Jesus Christ, Pentecostal, and nondenominational Christian) 24.3% (2024 est.) || Danish (includes Greenlandic (who are predominantly Inuit) and Faroese) 84.2%, Turkish 1.1%, other 14.7% (largest groups are Polish, Romanian, Syrian, Ukrainian, German, and Iraqi) (2023 est.)"
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "iso": "lb",
+  "fetchedAt": "2026-09-04T23:56:48.677Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/le.json"
+    }
+  },
+  "wikidata": {
+    "name": "Lebanon",
+    "gec": "LE",
+    "capital": "Beirut",
+    "areaKm2": 10452,
+    "population": 6100075,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Lebanese pound"
+    ],
+    "sharesBorderWithAnyType": [
+      "il",
+      "sy"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/le.json",
+    "Introduction": {
+      "Background": {
+        "text": "As a result of its location at the crossroads of three continents, the area that is modern-day Lebanon is rich in cultural and religious diversity. This region was subject to various foreign conquerors for much of its history, including the Romans, Arabs, and Ottomans. Following World War I, France acquired a mandate over the northern portion of the former Ottoman Empire province of Syria. From it the French demarcated the region of Lebanon in 1920, and it gained independence in 1943. Lebanon subsequently experienced periods of political turmoil interspersed with prosperity built on its position as a regional center for finance and trade.<br><br>The country's 1975-90 civil war, which resulted in an estimated 120,000 fatalities, was followed by years of social and political instability, and sectarianism remains a key element of Lebanese political life. The Israeli defense forces, which occupied parts of Lebanon during the civil war, did not completely withdraw until 2000. Neighboring Syria influenced Lebanon's foreign and domestic policies while its military occupied Lebanon from 1976 until 2005, but its influence diminished significantly after 2005. Over 1.5 million Syrian refugees fled to Lebanon after the start of the Syrian conflict in 2011. Hizballah -- a major Lebanese political party, militia, and US-designated foreign terrorist organization -- and Israel continued attacks and counterattacks against each other after Syria's withdrawal and fought a brief war in 2006. After HAMAS attacked Israel on 7 October 2023, the intensity and frequency of these cross-border attacks increased substantially into a cycle of hostilities, mostly limited to the border areas as of January 2024. Lebanon's borders with Syria and Israel remain unresolved.<br><br>Lebanon's prosperity has significantly diminished since the beginning of the country's economic crisis in 2019, which has crippled its economy, shut down its previously lucrative banking sector, reduced the value of its currency, and caused many Lebanese to emigrate in search of better prospects."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Mediterranean Sea, between Israel and Syria"
+      },
+      "Area": {
+        "total ": {
+          "text": "10,400 sq km"
+        },
+        "land": {
+          "text": "10,230 sq km"
+        },
+        "water": {
+          "text": "170 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "484 km"
+        },
+        "border countries": {
+          "text": "Israel 81 km; Syria 403 km"
+        }
+      },
+      "Coastline": {
+        "text": "225 km"
+      },
+      "Climate": {
+        "text": "Mediterranean; mild to cool, wet winters with hot, dry summers; the Lebanon Mountains experience heavy winter snows"
+      },
+      "Terrain": {
+        "text": "narrow coastal plain; El Beqaa (Bekaa Valley) separates Lebanon and Anti-Lebanon Mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Qornet es Saouda 3,088 m"
+        },
+        "lowest point": {
+          "text": "Mediterranean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "1,250 m"
+        }
+      },
+      "Natural resources": {
+        "text": "limestone, iron ore, salt, water-surplus state in a water-deficit region, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "65.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 13.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 13.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 39.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "13.8% (2023 est.)"
+        },
+        "other": {
+          "text": "20.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes; dust storms, sandstorms"
+      },
+      "Geography - note": {
+        "text": "smallest country in continental Asia; Nahr el Litani is the only major river in Near East not crossing an international boundary"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,364,482 (2024 est.)"
+        },
+        "male": {
+          "text": "2,678,543"
+        },
+        "female": {
+          "text": "2,685,939"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), French, English, Armenian"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 67.8% (31.9% Sunni, 31.2% Shia, smaller percentages of Alawites and Ismailis), Christian 32.4% (Maronite Catholics are the largest Christian group), Druze 4.5%, very small numbers of Jews, Baha'is, Buddhists, and Hindus (2020 est.)",
+        "note": "<strong>note:</strong> data represent the religious affiliation of the citizen population (data do not include Lebanon's sizable Syrian and Palestinian refugee populations); 18 religious sects recognized"
+      },
+      "Ethnic groups": {
+        "text": "Arab 95%, Armenian 4%, other 1%",
+        "note": "<strong>note:</strong> many Christian Lebanese do not identify as Arab but rather as descendants of the ancient Canaanites and prefer to be called Phoenicians"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "89.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-1.23% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the majority of people live on or near the Mediterranean coast, particularly in and around the capital of Beirut"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income Middle Eastern economy; hyperinflation and sharp poverty increases; banks have ceased lending; economic contraction, destroyed infrastructure, and reduced consumer demand resulting from Israel-Hezbollah conflict"
+      },
+      "Agricultural products": {
+        "text": "potatoes, milk, tomatoes, apples, oranges, olives, cucumbers/gherkins, chicken, lemons/limes, wheat (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "banking, tourism, real estate and construction, food processing, wine, jewelry, cement, textiles, mineral and chemical products, wood and furniture products, oil refining, metal fabricating"
+      },
+      "Exports - commodities": {
+        "text": "jewelry, cars, diamonds, scrap iron, gold (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 26%, Egypt 7%, Turkey 5%, Iraq 5%, USA 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, gold, cars, packaged medicine, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "Mediterranean; mild to cool, wet winters with hot, dry summers; the Lebanon Mountains experience heavy winter snows"
+      }
+    }
+  }
+}

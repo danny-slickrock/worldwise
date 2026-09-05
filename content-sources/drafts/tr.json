@@ -1,0 +1,79 @@
+{
+  "iso": "tr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.405Z",
+  "structured": {
+    "code": "tr",
+    "name": "Turkey",
+    "capital": "Ankara",
+    "continent": "Europe",
+    "areaKm2": 783562,
+    "population": 85372377,
+    "officialLanguages": [
+      "Turkish"
+    ],
+    "currencies": [
+      "Turkish lira"
+    ],
+    "landBorderNames": [
+      "Armenia",
+      "Azerbaijan",
+      "Bulgaria",
+      "Georgia",
+      "Greece",
+      "Iran",
+      "Iraq",
+      "Syria"
+    ],
+    "landBorderCodes": [
+      "am",
+      "az",
+      "bg",
+      "ge",
+      "gr",
+      "ir",
+      "iq",
+      "sy"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, iron ore, copper, chromium, antimony, mercury, gold, barite, borate, celestite (strontium), emery, feldspar, limestone, magnesite, marble, perlite, pumice, pyrites (sulfur), clay, arable land, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe and Southwestern Asia (that portion of Turkey west of the Bosporus is geographically part of Europe), bordering the Black Sea, between Bulgaria and Georgia, and bordering the Aegean Sea and the Mediterranean Sea, between Greece and Syria || high central plateau (Anatolia); narrow coastal plain; several mountain ranges || strategic location controlling the Turkish Straits (Bosporus, Sea of Marmara, Dardanelles) that link the Black and Aegean Seas; the 3% of Turkish territory north of the Straits lies in Europe and goes by the names of European Turkey, Eastern Thrace, or Turkish Thrace; the 97% of the country in Asia is referred to as Anatolia; Istanbul, which straddles the Bosporus, is the only metropolis in the world located on two continents; Mount Ararat, reputed to be the landing place of Noah's ark, is in the far-eastern part of the country || Resources: coal, iron ore, copper, chromium, antimony, mercury, gold, barite, borate, celestite (strontium), emery, feldspar, limestone, magnesite, marble, perlite, pumice, pyrites (sulfur), clay, arable land, hydropower || Exports: garments, cars, gold, refined petroleum, vehicle parts/accessories (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "high central plateau (Anatolia); narrow coastal plain; several mountain ranges || Southeastern Europe and Southwestern Asia (that portion of Turkey west of the Bosporus is geographically part of Europe), bordering the Black Sea, between Bulgaria and Georgia, and bordering the Aegean Sea and the Mediterranean Sea, between Greece and Syria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; hot, dry summers with mild, wet winters; harsher in interior || severe earthquakes, especially in northern Turkey, along an arc extending from the Sea of Marmara to Lake Van; landslides; flooding volcanism: limited volcanic activity; the three historically active volcanoes (Ararat, Nemrut Dagi, and Tendurek Dagi) have not erupted since the 19th century or earlier"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income, diversified Middle Eastern economy; industrializing economy that maintains large agricultural base; key energy, tourism, and construction sectors; high inflation, interest rates, and foreign debt pose risk to financial stability || Exports: garments, cars, gold, refined petroleum, vehicle parts/accessories (2023) || Industries: textiles, food processing, automobiles, electronics, mining (coal, chromate, copper, boron), steel, petroleum, construction, lumber, paper"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 99.8% (mostly Sunni), other 0.2% (mostly Christians and Jews) || Turkish 70-75%, Kurdish 19%, other minorities 6-11% (2016 est.)"
+    }
+  }
+}

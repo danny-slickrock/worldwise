@@ -1,0 +1,64 @@
+{
+  "iso": "ie",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.381Z",
+  "structured": {
+    "code": "ie",
+    "name": "Ireland",
+    "capital": "Dublin",
+    "continent": "Europe",
+    "areaKm2": 69797,
+    "population": 5149139,
+    "officialLanguages": [
+      "English",
+      "Irish"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "UK"
+    ],
+    "landBorderCodes": [
+      "gb"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, peat, copper, lead, zinc, silver, barite, gypsum, limestone, dolomite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Europe, occupying five-sixths of the island of Ireland in the North Atlantic Ocean, west of Great Britain || mostly flat to rolling interior plain surrounded by rugged hills and low mountains; sea cliffs on west coast || strategic location on major air and sea routes between North America and northern Europe; over 40% of the population resides within 100 km of Dublin || Resources: natural gas, peat, copper, lead, zinc, silver, barite, gypsum, limestone, dolomite || Exports: vaccines, packaged medicine, nitrogen compounds, integrated circuits, hormones (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling interior plain surrounded by rugged hills and low mountains; sea cliffs on west coast || Western Europe, occupying five-sixths of the island of Ireland in the North Atlantic Ocean, west of Great Britain"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate maritime; modified by North Atlantic Current; mild winters, cool summers; consistently humid; overcast about half the time || rare extreme weather events"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, export-oriented EU economy; large multinational business sector contributes to growth and tax revenues but poses volatility risks; high living standards; strong labor market challenged by skill shortages and aging workforce || Exports: vaccines, packaged medicine, nitrogen compounds, integrated circuits, hormones (2023) || Industries: pharmaceuticals, chemicals, computer hardware and software, food products, beverages and brewing; medical devices"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official, the language generally used), Irish (Gaelic or Gaeilge) (official, spoken by approximately 37.7% of the population) || Roman Catholic 69.2% (includes lapsed), Protestant 3.7% (Church of Ireland/England/Anglican/Episcopalian 2.5%, other Protestant 1.2%), Orthodox 2%, other Christian 0.9%, Muslim 1.6%, other 1.4%, agnostic/atheist 0.1%, none 14.5%, unspecified 6.7% (2022 est.) || Irish 76.6%, Irish travelers 0.6%, other White 9.9%, Asian 3.3%, Black 1.5%, other (includes Arab, Roma, and persons of mixed backgrounds) 2%, unspecified 2.6% (2022 est.)"
+    }
+  }
+}

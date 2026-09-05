@@ -1,0 +1,79 @@
+{
+  "iso": "rs",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.387Z",
+  "structured": {
+    "code": "rs",
+    "name": "Serbia",
+    "capital": "Belgrade",
+    "continent": "Europe",
+    "areaKm2": 88499,
+    "population": 6605168,
+    "officialLanguages": [
+      "Serbian"
+    ],
+    "currencies": [
+      "Serbian dinar"
+    ],
+    "landBorderNames": [
+      "Bosnia and Herzegovina",
+      "Bulgaria",
+      "Croatia",
+      "Hungary",
+      "North Macedonia",
+      "Montenegro",
+      "Romania"
+    ],
+    "landBorderCodes": [
+      "ba",
+      "bg",
+      "hr",
+      "hu",
+      "mk",
+      "me",
+      "ro"
+    ],
+    "landBorderTerritories": [
+      "Kosovo"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "oil, gas, coal, iron ore, copper, zinc, antimony, chromite, gold, silver, magnesium, pyrite, limestone, marble, salt, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, between Macedonia and Hungary || extremely varied; to the north, rich fertile plains; to the east, limestone ranges and basins; to the southeast, ancient mountains and hills || landlocked; controls one of the major land routes from Western Europe to Turkey and the Near East || Resources: oil, gas, coal, iron ore, copper, zinc, antimony, chromite, gold, silver, magnesium, pyrite, limestone, marble, salt, arable land || Exports: insulated wire, electricity, copper ore, plastic products, electric motors (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "extremely varied; to the north, rich fertile plains; to the east, limestone ranges and basins; to the southeast, ancient mountains and hills || Southeastern Europe, between Macedonia and Hungary"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "in the north, continental climate (cold winters and hot, humid summers with well-distributed rainfall); in other parts, continental and Mediterranean climate (relatively cold winters with heavy snowfall and hot, dry summers and autumns) || destructive earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Balkan economy; current EU accession candidate; hit by COVID-19; pursuing green growth development; manageable public debt; new anticorruption efforts; falling unemployment; historic Russian relations; energy import-dependent || Exports: insulated wire, electricity, copper ore, plastic products, electric motors (2023) || Industries: automobiles, base metals, furniture, food processing, machinery, chemicals, sugar, tires, clothes, pharmaceuticals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Serbian Orthodox 81.1%, unknown 5.3%, Islam 4.2%, Catholic 3.9%, no response 2.5%, atheist 1.1%; less than 1%: other Christians, Protestant, agnostic (2022) || Serb 83.3%, Hungarian 3.5%, Romani 2.1%, Bosniak 2%, other 5.7%, undeclared or unknown 3.4% (2011 est.)"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "iso": "us",
+  "fetchedAt": "2026-09-04T23:57:09.859Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "north-america/us.json"
+    }
+  },
+  "wikidata": {
+    "name": "United States",
+    "gec": "US",
+    "capital": "Washington, D.C.",
+    "areaKm2": 9826675,
+    "population": 340110988,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish",
+      "Carolinian",
+      "Hawaiian",
+      "Chamorro",
+      "Samoan"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "ca",
+      "mx"
+    ]
+  },
+  "factbook": {
+    "_path": "north-america/us.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Thirteen of Britain's American colonies broke with the mother country in 1776 and were recognized as the new nation of the United States of America following the Treaty of Paris in 1783. During the 19th and 20th centuries, 37 new states were added as the nation expanded across the North American continent and acquired a number of overseas possessions. Two of the most traumatic experiences in the nation's history were the Civil War (1861-65), in which a northern Union of states defeated a secessionist Confederacy of 11 southern slave states, and the Great Depression of the 1930s, an economic downturn during which about a quarter of the labor force lost its jobs. Buoyed by victories in World Wars I and II and the end of the Cold War in 1991, the US remains the world's most powerful nation state. Since the end of World War II, the economy has achieved relatively steady growth, low unemployment, and rapid advances in technology.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "North America, bordering both the North Atlantic Ocean and the North Pacific Ocean, between Canada and Mexico"
+      },
+      "Area": {
+        "total ": {
+          "text": "9,833,517 sq km"
+        },
+        "land": {
+          "text": "9,147,593 sq km"
+        },
+        "water": {
+          "text": "685,924 sq km"
+        },
+        "note": "<strong>note:</strong> includes only the 50 states and District of Columbia, no overseas territories"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "12,002 km"
+        },
+        "border countries": {
+          "text": "Canada 8,891 km (including 2,475 km with Alaska); Mexico 3,111 km"
+        },
+        "note": "<strong>note:</strong> US Naval Base at Guantanamo Bay, Cuba is leased by the US and is part of Cuba; the base boundary is 28.5 km"
+      },
+      "Coastline": {
+        "text": "19,924 km"
+      },
+      "Climate": {
+        "text": "mostly temperate, but tropical in Hawaii and Florida, arctic in Alaska, semiarid in the great plains west of the Mississippi River, and arid in the Great Basin of the southwest; low winter temperatures in the northwest are ameliorated occasionally in January and February by warm chinook winds from the eastern slopes of the Rocky Mountains",
+        "note": "<strong>note:</strong> many consider Mount McKinley, the highest peak in the United States, to be the world’s coldest mountain because of its combination of high elevation and its subarctic location at 63 degrees north latitude; permanent snow and ice cover over 75 percent of the mountain, and enormous glaciers, up to 45 miles long and 3,700 feet thick, spider out from its base in every direction; it is home to some of the world’s coldest and most violent weather, where winds of over 150 miles per hour and temperatures of -93˚F have been recorded."
+      },
+      "Terrain": {
+        "text": "vast central plain, mountains in west, hills and low mountains in east; rugged mountains and broad river valleys in Alaska; rugged, volcanic topography in Hawaii"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount McKinley 6,190 m (highest point in North America)"
+        },
+        "lowest point": {
+          "text": "Death Valley (lowest point in North America) -86 m"
+        },
+        "mean elevation": {
+          "text": "760 m"
+        },
+        "note": "<strong>note 1: </strong>Mount McKinley is one of the most striking features on the entire planet; at 20,310 feet, it is the crowning peak of the Alaska Range and the highest mountain on North America; it towers three and one-half vertical miles above its base, making it a mile taller from base to summit than Mt. Everest; McKinley's base sits at about 2,000 feet above sea level and rises over three and one-half miles to its 20,310 foot summit; Everest begins on a 14,000-foot high plain, then summits at 29,028 feet<strong><br><br>note 2:</strong> the peak of Mauna Kea (4,207 m above sea level) on the island of Hawaii rises about 10,200 m above the Pacific Ocean floor; by this measurement, it is the world's tallest mountain -- higher than Mount Everest (8,850 m), which is recognized as the tallest mountain above sea level"
+      },
+      "Natural resources": {
+        "text": "coal, copper, lead, molybdenum, phosphates, rare earth elements, uranium, bauxite, gold, iron, mercury, nickel, potash, silver, tungsten, zinc, petroleum, natural gas, timber, arable land",
+        "note": "<strong>note: </strong>the US has the world's largest coal reserves with 491 billion short tons accounting for 27% of the world's total"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "46.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 16.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 29.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "33.8% (2023 est.)"
+        },
+        "other": {
+          "text": "18.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "tsunamis; volcanoes; earthquake activity around Pacific Basin; hurricanes along the Atlantic and Gulf of America coasts; tornadoes in the Midwest and Southeast; mud slides in California; forest fires in the west; flooding; permafrost in northern Alaska is a major impediment to development <br><br><strong>volcanism:</strong> volcanic activity in the Hawaiian Islands, Western Alaska, the Pacific Northwest, and in the Northern Mariana Islands; Mauna Loa (4,170 m) in Hawaii and Mount Rainier (4,392 m) in Washington have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; Pavlof (2,519 m) is the most active volcano in Alaska's Aleutian Arc and poses a significant threat to intercontinental air travel; St. Helens (2,549 m), famous for the devastating 1980 eruption, remains active today; other historically active volcanoes are mostly concentrated in the Aleutian arc and Hawaii, including (in Alaska) Aniakchak, Augustine, Chiginagak, Fourpeaked, Iliamna, Katmai, Kupreanof, Martin, Novarupta, Redoubt, Spurr, Wrangell, Trident, Ugashik-Peulik, Ukinrek Maars, Veniaminof, (in Hawaii) Haleakala, Kilauea, Loihi, (in the Northern Mariana Islands) Anatahan, (in the Pacific Northwest) Mount Baker, and Mount Hood; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> world's third-largest country by size (after Russia and Canada) and by population (after China and India); Mt. McKinley is the highest point (6,190 m; 20,308 ft) in North America, and Death Valley is the lowest point (-86 m; -282 ft) <br><br><strong>note 2:</strong> the western US coast and the southern coast of Alaska lie along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 3:</strong> the Aleutian Islands are a chain of volcanic islands that divide the Bering Sea (north) from the main Pacific Ocean (south); they extend about 1,800 km (1,118 mi) westward from the Alaskan Peninsula; the archipelago consists of 14 larger islands, 55 smaller islands, and hundreds of islets; there are 41 active volcanoes on the islands, which together form a large northern section of the Ring of Fire<br><br><strong>note 4: </strong>Mammoth Cave, in west-central Kentucky, is the world's longest known cave system with more than 650 km (405 miles) of surveyed passageways, which is nearly twice as long as the second-longest cave system, the Sac Actun underwater cave in Mexico (see \"Geography - note\" under Mexico)<br><br><strong>note 5:</strong> Kazumura Cave on the island of Hawaii is the world's longest and deepest lava-tube cave; it has been surveyed at 66 km (41 mi) long and 1,102 m (3,614 ft) deep <br><br><strong>note 6: </strong>Bracken Cave outside San Antonio, Texas is the world's largest bat cave and the summer home to the largest colony of bats in the world; an estimated 20 million Mexican free-tailed bats roost in the cave from March to October, making it the world's largest known concentration of mammals"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "338,016,259 (2025 est.)"
+        },
+        "male": {
+          "text": "167,543,554"
+        },
+        "female": {
+          "text": "170,472,705"
+        }
+      },
+      "Languages": {
+        "text": "English only (official) 78.2%, Spanish 13.4%, Chinese 1.1%, other 7.3% (2017 est.)",
+        "note": "<strong>note:</strong> data represent the language spoken at home; English is the official national language as of March 2025, but English previously had official status in 32 of the 50 states; Hawaiian is an official language in the state of Hawaii, and 20 indigenous languages are official in Alaska"
+      },
+      "Religions": {
+        "text": "Protestant 46.5%, Roman Catholic 20.8%, Jewish 1.9%, Church of Jesus Christ 1.6%, other Christian 0.9%, Muslim 0.9%, Jehovah's Witness 0.8%, Buddhist 0.7%, Hindu 0.7%, other 1.8%, unaffiliated 22.8%, don't know/refused 0.6% (2014 est.)"
+      },
+      "Ethnic groups": {
+        "text": "White 61.6%, Black or African American 12.4%, Asian 6%, Indigenous and Alaska native 1.1%, Native Hawaiian and Other Pacific Islander 0.2%, other 8.4%, two or more races 10.2% (2020 est.)",
+        "note": "<strong>note:</strong> a separate listing for Hispanic is not included because the US Census Bureau considers Hispanic to mean persons of Spanish/Hispanic/Latino origin including those of Mexican, Cuban, Puerto Rican, Dominican Republic, Spanish, and Central or South American origin living in the US who may be of any race or ethnic group (White, Black, Asian, etc.); an estimated 18.7% of the total US population is Hispanic as of 2020"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "83.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.96% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "large urban clusters are spread throughout the eastern half of the US (particularly the Great Lakes area, northeast, east, and southeast) and the western-tier states; mountainous areas such as the Rocky Mountains and Appalachians, deserts in the southwest, the dense boreal forests in the extreme north, and the central prairie states are less densely populated; Alaska's population is concentrated along its southern coast, particularly around Anchorage, and Hawaii's is centered on the island of Oahu"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>world’s largest economy by nominal GDP; largest importer and second-largest exporter; home to leading financial exchanges and global reserve currency; high and growing public debt; inflation moderating but remains above pre-pandemic levels</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, soybeans, milk, wheat, sugar beets, sugarcane, potatoes, chicken, pork, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "highly diversified, world leading, high-technology innovator, second-largest industrial output in the world; petroleum, steel, motor vehicles, aerospace, telecommunications, chemicals, electronics, food processing, consumer goods, lumber, mining"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined petroleum, natural gas, gas turbines, cars (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Canada 14%, Mexico 13%, China 8%, Germany 5%, Japan 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, crude petroleum, broadcasting equipment, computers, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly temperate, but tropical in Hawaii and Florida, arctic in Alaska, semiarid in the great plains west of the Mississippi River, and arid in the Great Basin of the southwest; low winter temperatures in the northwest are ameliorated occasionally in January and February by warm chinook winds from the eastern slopes of the Rocky Mountains",
+        "note": "<strong>note:</strong> many consider Mount McKinley, the highest peak in the United States, to be the world’s coldest mountain because of its combination of high elevation and its subarctic location at 63 degrees north latitude; permanent snow and ice cover over 75 percent of the mountain, and enormous glaciers, up to 45 miles long and 3,700 feet thick, spider out from its base in every direction; it is home to some of the world’s coldest and most violent weather, where winds of over 150 miles per hour and temperatures of -93˚F have been recorded."
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "iso": "nz",
+  "fetchedAt": "2026-09-04T23:57:11.539Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/nz.json"
+    }
+  },
+  "wikidata": {
+    "name": "New Zealand",
+    "gec": "NZ",
+    "capital": "Wellington",
+    "areaKm2": 268021,
+    "population": 5307800,
+    "continent": "Oceania",
+    "officialLanguages": [
+      "English",
+      "New Zealand Sign Language",
+      "Māori"
+    ],
+    "currencies": [
+      "New Zealand dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "au"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/nz.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Polynesians settled New Zealand between the late 1200s and the mid-1300s. They called the land Aotearoa, which legend holds is the name of the canoe that Kupe, the first Polynesian in New Zealand, used to sail to the country; the name Aotearoa is now in widespread use as the local Maori name for the country. By the 1500s, competition for land and resources led to intermittent fighting between different Maori tribes as large game became extinct. Dutch explorer Abel TASMAN was the first European to see the islands in 1642 but left after an encounter with local Maori. British sea captain James COOK arrived in 1769, followed by whalers, sealers, and traders. The UK only nominally claimed New Zealand and included it as part of New South Wales in Australia. Concerns about increasing lawlessness led the UK to appoint its first British Resident in New Zealand in 1832, although the position had few legal powers. In 1835, some Maori tribes from the North Island declared independence. Fearing an impending French settlement and takeover, the majority of Maori chiefs signed the Treaty of Waitangi with the British in 1840. Land tenure issues stemming from the treaty are still being actively negotiated in New Zealand.<br><br>The UK declared New Zealand a separate colony in 1841 and granted limited self-government in 1852. Different traditions of authority and land use led to a series of wars between Europeans and various Maori tribes from the 1840s to the 1870s. Along with disease, these conflicts halved the Maori population. In the 1890s, New Zealand initially expressed interest in joining independence talks with Australia but ultimately opted against it and changed its status to an independent dominion in 1907. New Zealand provided more than 100,000 troops during each World War, many of whom fought as part of the Australia and New Zealand Army Corps (ANZAC). New Zealand reaffirmed its independence in 1947 and signed the Australia, New Zealand, and US (ANZUS) Treaty in 1951. <br><br>Beginning in 1984, New Zealand began to adopt nuclear-free policies, contributing to a dispute with the US over naval ship visits that led the US to suspend its defense obligations to New Zealand in 1986, but bilateral relations and military ties have been revitalized since the 2010s with new security agreements. A key challenge for Auckland that has emerged over the past decade is balancing concerns over China’s growing influence in the Pacific region with its role as New Zealand's largest export destination. New Zealand has close ties with Australia based to a large extent on the two nations’ common origins as British colonies and their shared military history.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, islands in the South Pacific Ocean, southeast of Australia"
+      },
+      "Area": {
+        "total ": {
+          "text": "268,838 sq km"
+        },
+        "land": {
+          "text": "264,537 sq km"
+        },
+        "water": {
+          "text": "4,301 sq km"
+        },
+        "note": "<strong>note:</strong> includes Antipodes Islands, Auckland Islands, Bounty Islands, Campbell Island, Chatham Islands, and Kermadec Islands"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "15,134 km"
+      },
+      "Climate": {
+        "text": "temperate with sharp regional contrasts"
+      },
+      "Terrain": {
+        "text": "predominately mountainous with large coastal plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Aoraki/Mount Cook 3,724 m; note - the mountain's height was 3,764 m until 14 December 1991 when it lost about 10 m in an avalanche of rock and ice; erosion of the ice cap since then has brought the height down another 30 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "388 m"
+        }
+      },
+      "Natural resources": {
+        "text": "natural gas, iron ore, sand, coal, timber, hydropower, gold, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "36.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 34.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "38.6% (2023 est.)"
+        },
+        "other": {
+          "text": "24.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes are common, though usually not severe; volcanic activity <br><br><strong>volcanism:</strong> significant volcanism on North Island; Ruapehu (2,797 m) has a history of large eruptions in the past century; Taranaki has the potential to produce dangerous avalanches and lahars; other historically active volcanoes include Okataina, Raoul Island, Tongariro, and White Island; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> consists of two main islands and a number of smaller islands; South Island, the larger main island, is the 12th-largest island in the world and is divided along its length by the Southern Alps; North Island is the 14th-largest island in the world and is not as mountainous, but it is marked by volcanism <br><br><strong>note 2:</strong> New Zealand lies along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 3:</strong> almost 90% of the population lives in cities and over three-quarters on North Island; Wellington is the southernmost national capital in the world"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,161,211 (2024 est.)"
+        },
+        "male": {
+          "text": "2,584,607"
+        },
+        "female": {
+          "text": "2,576,604"
+        }
+      },
+      "Languages": {
+        "text": "English (de facto official) 95.4%, Maori (de jure official) 4%, Samoan 2.2%, Northern Chinese 2%, Hindi 1.5%, French 1.2%, Yue 1.1%, New Zealand Sign Language (de jure official) 0.5%, other or not stated 17.2% (2018 est.)",
+        "note": "<strong>note:</strong> shares sum to 124.1% due to multiple responses on the 2018 census"
+      },
+      "Religions": {
+        "text": "Christian 37.3% (Catholic 10.1%, Anglican 6.8%, Presbyterian and Congregational 5.2%, Pentecostal 1.8%, Methodist 1.6%, Church of Jesus Christ 1.2%, other 10.7%), Hindu 2.7%, Maori 1.3%, Muslim, 1.3%, Buddhist 1.1%, other religion 1.6% (includes Judaism, Spiritualism and New Age religions, Baha'i, Asian religions other than Buddhism), no religion 48.6%, objected to answering 6.7% (2018 est.)",
+        "note": "<strong>note:</strong> based on the 2018 census of the usually resident population; percentages add up to more than 100% because respondents were able to identify more than one religion"
+      },
+      "Ethnic groups": {
+        "text": "European 64.1%, Maori 16.5%, Chinese 4.9%, Indian 4.7%, Samoan 3.9%, Tongan 1.8%, Cook Islands Maori 1.7%, English 1.5%, Filipino 1.5%, New Zealander 1%, other 13.7% (2018 est.)",
+        "note": "<strong>note:</strong> based on the 2018 census of the usually resident population; percentages add up to more than 100% because respondents were able to identify more than one ethnic group"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "87% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.92% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "over three quarters of New Zealanders, including the Maori, live on the North Island, primarily in urban areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, globally integrated Pacific island economy; strong agriculture, manufacturing, and tourism sectors; reliant on Chinese market for exports; recovery trajectory following deep post-pandemic recession; challenges of fiscal deficits, below-average productivity, cost of living, and drop in net migration</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, beef, kiwifruit, apples, grapes, lamb/mutton, potatoes, wheat, barley, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agriculture, forestry, fishing, logs and wood articles, manufacturing, mining, construction, financial services, real estate services, tourism"
+      },
+      "Exports - commodities": {
+        "text": "milk, wood, beef, butter, sheep and goat meat (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 28%, USA 12%, Australia 12%, Japan 6%, S. Korea 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, gas turbines, broadcasting equipment, trucks (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate with sharp regional contrasts"
+      }
+    }
+  }
+}

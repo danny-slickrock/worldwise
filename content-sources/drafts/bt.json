@@ -1,0 +1,67 @@
+{
+  "iso": "bt",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.392Z",
+  "structured": {
+    "code": "bt",
+    "name": "Bhutan",
+    "capital": "Thimphu",
+    "continent": "Asia",
+    "areaKm2": 38394,
+    "population": 787424,
+    "officialLanguages": [
+      "Dzongkha"
+    ],
+    "currencies": [
+      "ngultrum"
+    ],
+    "landBorderNames": [
+      "China",
+      "India"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "in"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, hydropower, gypsum, calcium carbonate",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, between China and India || mostly mountainous with some fertile valleys and savanna || landlocked; strategic location between China and India; controls several key Himalayan mountain passes || Resources: timber, hydropower, gypsum, calcium carbonate || Exports: iron alloys, aircraft, dolomite, semi-finished iron, cement (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountainous with some fertile valleys and savanna || Southern Asia, between China and India"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies; tropical in southern plains; cool winters and hot summers in central valleys; severe winters and cool summers in Himalayas || violent storms from the Himalayas are the source of the country's Bhutanese name, which translates as Land of the Thunder Dragon; frequent landslides during the rainy season"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "hydropower investments spurring economic development; Gross National Happiness economy; sharp poverty declines; low inflation; strong monetary and fiscal policies; stable currency; fairly resilient response to COVID-19; key economic and strategic relations with India; climate vulnerabilities || Exports: iron alloys, aircraft, dolomite, semi-finished iron, cement (2023) || Industries: cement, wood products, processed fruits, alcoholic beverages, calcium carbide, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Sharchopkha 28%, Dzongkha (official) 24%, Lhotshamkha 22%, other 26% (includes foreign languages) (2005 est.) || Lamaistic Buddhist 75.3%, Indian- and Nepali-influenced Hinduism 22.1%, other 2.6% (2005 est.) || Ngalop (also known as Bhote) 50%, ethnic Nepali 35% (predominantly Lhotshampas), indigenous or migrant tribes 15%"
+    }
+  }
+}

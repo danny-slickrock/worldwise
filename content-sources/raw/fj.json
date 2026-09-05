@@ -1,0 +1,172 @@
+{
+  "iso": "fj",
+  "fetchedAt": "2026-09-04T23:57:10.686Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/fj.json"
+    }
+  },
+  "wikidata": {
+    "name": "Fiji",
+    "gec": "FJ",
+    "capital": "Suva",
+    "areaKm2": 18274,
+    "population": 926276,
+    "continent": "Insular Oceania",
+    "officialLanguages": [
+      "English",
+      "Fijian",
+      "Fiji Hindi"
+    ],
+    "currencies": [
+      "Fijian dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "sb"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/fj.json",
+    "Introduction": {
+      "Background": {
+        "text": "Austronesians settled Fiji around 1000 B.C., followed by successive waves of Melanesians starting around the first century A.D. Fijians traded with Polynesian groups in Samoa and Tonga, and by about 900, much of Fiji was in the Tu’i Tongan Empire’s sphere of influence. The Tongan influence declined significantly by 1200, while Melanesian seafarers continued to periodically arrive in Fiji, further mixing Melanesian and Polynesian cultural traditions. The first European spotted Fiji in 1643 and by the 1800s, European merchants, missionaries, traders, and whalers frequented the islands. Rival kings and chiefs competed for power, at times aided by Europeans, and in 1865, Seru Epenisa CAKOBAU united many groups into the Confederacy of Independent Kingdoms of Viti. The arrangement proved weak, however, and in 1871 CAKOBAU formed the Kingdom of Fiji in an attempt to centralize power. Fearing a hostile takeover by a foreign power as the kingdom’s economy began to falter, CAKOBAU ceded Fiji to the UK in 1874.<br><br>The first British governor set up a plantation-style economy and brought in more than 60,000 Indians as indentured laborers, most of whom chose to stay in Fiji rather than return to India when their contracts expired. In the early 1900s, society was divided along ethnic lines, with iTaukei (indigenous Fijians), Europeans, and Indo-Fijians living in separate areas and maintaining their own languages and traditions. ITaukei fears of an Indo-Fijian takeover of government delayed independence through the 1960s; Fiji achieved independence in 1970 with agreements to allocate parliamentary seats by ethnic groups. After two coups in 1987, a new constitution in 1990 cemented iTaukei control of politics, leading thousands of Indo-Fijians to leave. A reformed constitution in 1997 was more equitable and led to the election of an Indo-Fijian prime minister in 1999, who was ousted in a coup the following year. In 2005, the new prime minister put forward a bill that would grant pardons to the coup perpetrators, leading Josaia Voreqe \"Frank\" BAINIMARAMA to launch a coup in 2006. BAINIMARAMA appointed himself prime minister in 2007 and retained the position after elections in 2014 and 2018 that international observers deemed credible. BAINIMARAMA's party lost control of the prime minister position after elections in 2022 with former opposition leader Sitiveni Ligamamada RABUKA winning the office by a narrow margin."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, island group in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand"
+      },
+      "Area": {
+        "total ": {
+          "text": "18,274 sq km"
+        },
+        "land": {
+          "text": "18,274 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,129 km"
+      },
+      "Climate": {
+        "text": "tropical marine; only slight seasonal temperature variation"
+      },
+      "Terrain": {
+        "text": "mostly mountains of volcanic origin"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Tomanivi 1,324 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, fish, gold, copper, offshore oil potential, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "17.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 4.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "61.7% (2023 est.)"
+        },
+        "other": {
+          "text": "21.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "cyclonic storms can occur from November to January"
+      },
+      "Geography - note": {
+        "text": "consists of 332 islands, approximately 110 of which are inhabited, and more than 500 islets"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "951,611 (2024 est.)"
+        },
+        "male": {
+          "text": "482,304"
+        },
+        "female": {
+          "text": "469,307"
+        }
+      },
+      "Languages": {
+        "text": "English (official), iTaukei (official), Fiji Hindi (official)"
+      },
+      "Religions": {
+        "text": "Protestant 45% (Methodist 34.6%, Assembly of God 5.7%, Seventh Day Adventist 3.9%, and Anglican 0.8%), Hindu 27.9%, other Christian 10.4%, Roman Catholic 9.1%, Muslim 6.3%, Sikh 0.3%, other 0.3%, none 0.8% (2007 est.)"
+      },
+      "Ethnic groups": {
+        "text": "iTaukei 56.8% (predominantly Melanesian with a Polynesian admixture), Indo-Fijian 37.5%, Rotuman 1.2%, other 4.5% (European, part European, other Pacific Islanders, Chinese) (2007 est.)",
+        "note": "<strong>note:</strong> a 2010 law replaces 'Fijian' with 'iTaukei' when referring to the original and native settlers of Fiji"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "58.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.37% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "approximately 70% of the population lives on the island of Viti Levu; roughly half of the population lives in urban areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper-middle income, tourism-based Pacific island economy; susceptible to ocean rises; key energy and infrastructure investments; post-pandemic tourism resurgence; improved debt standing; limited workforce"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, cassava, taro, vegetables, chicken, coconuts, eggs, ginger, milk, sweet potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, sugar processing, clothing, copra, gold, silver, lumber"
+      },
+      "Exports - commodities": {
+        "text": "water, fish, raw sugar, refined petroleum, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 32%, Australia 12%, Tonga 6%, NZ 6%, Samoa 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, medical instruments, cars, broadcasting equipment, plastics (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical marine; only slight seasonal temperature variation"
+      }
+    }
+  }
+}

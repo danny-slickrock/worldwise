@@ -15,11 +15,10 @@
     "currencies": [
       "Brazilian real"
     ],
-    "landBorders": [
+    "landBorderNames": [
       "Argentina",
       "Bolivia",
       "Colombia",
-      "French Guiana",
       "Guyana",
       "Paraguay",
       "Peru",
@@ -27,11 +26,26 @@
       "Uruguay",
       "Venezuela"
     ],
+    "landBorderCodes": [
+      "ar",
+      "bo",
+      "co",
+      "gy",
+      "py",
+      "pe",
+      "sr",
+      "uy",
+      "ve"
+    ],
+    "landBorderTerritories": [
+      "French Guiana"
+    ],
+    "landBorderUnresolved": [],
     "naturalResources": "alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "Brazil occupies the eastern bulge of South America and shares a land border with ten of its neighbours, which is most of the continent. The terrain is largely flat to rolling lowland behind a narrow coastal belt, and what the country sends the world follows from that: soybeans, iron ore, crude petroleum, raw sugar and corn. Its mineral list runs further than the export figures suggest, taking in bauxite, gold, manganese, tin, niobium, rare earth elements and uranium.",
+    "hook": "Brazil shares common boundaries with every South American country except Chile and Ecuador — nine neighbours, plus the French territory of French Guiana. It is the largest country in South America and in the Southern Hemisphere, mostly flat to rolling lowland behind a narrow coastal belt, and most of the Pantanal, the world's largest tropical wetland, extends through its west. What it sends the world follows from that scale: soybeans, crude petroleum, iron ore, raw sugar and corn, drawn from a mineral list that also runs to bauxite, gold, manganese, tin, niobium, rare earth elements and uranium.",
     "physicalGeography": "Mostly flat to rolling lowlands in the north, with plains, hills and mountains elsewhere and a narrow coastal belt along the Atlantic. That combination of low relief and enormous extent is what makes agriculture at continental scale possible.",
     "climate": "Mostly tropical, turning temperate in the south — a range wide enough that the same country sees recurring drought in the northeast and occasional frost in the south. Flooding is a regular hazard in the southern states.",
     "economy": "The largest economy in Latin America and upper-middle-income, driven substantially by domestic consumption rather than exports alone. Brazil is a member of Mercosur, BRICS and the G20 and a candidate for OECD accession. Its industrial base is unusually broad for a major commodity exporter — aircraft, motor vehicles and parts, steel, chemicals, cement, textiles and footwear. Inequality in income and in access to health and education remains high.",
@@ -47,7 +61,7 @@
   "_sourceExcerpts": {
     "hook": {
       "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
-      "excerpt": "Eastern South America, bordering the Atlantic Ocean || mostly flat to rolling lowlands in north; some plains, hills, mountains, and narrow coastal belt || note 1: largest country in South America and in the Southern Hemisphere; shares common boundaries with every South American country except Chile and Ecuador; most of the Pantanal, the world's largest tropical wetland, extends through the west central part of the country; shares Iguaçu Falls (Iguazú Falls), the world's largest waterfalls system, with Argentina note 2: Rocas Atoll, located off the northeast coast of Brazil, is the only atoll in the South Atlantic || Resources: alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber || Exports: soybeans, crude petroleum, iron ore, raw sugar, corn (2023)"
+      "excerpt": "Eastern South America, bordering the Atlantic Ocean || mostly flat to rolling lowlands in north; some plains, hills, mountains, and narrow coastal belt || largest country in South America and in the Southern Hemisphere; shares common boundaries with every South American country except Chile and Ecuador; most of the Pantanal, the world's largest tropical wetland, extends through the west central part of the country; shares Iguaçu Falls (Iguazú Falls), the world's largest waterfalls system, with Argentina Rocas Atoll, located off the northeast coast of Brazil, is the only atoll in the South Atlantic || Resources: alumina, bauxite, beryllium, gold, iron ore, manganese, nickel, niobium, phosphates, platinum, tantalum, tin, rare earth elements, uranium, petroleum, hydropower, timber || Exports: soybeans, crude petroleum, iron ore, raw sugar, corn (2023)"
     },
     "physicalGeography": {
       "from": "Geography > Terrain, Location, Elevation",

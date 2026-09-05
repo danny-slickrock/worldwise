@@ -1,0 +1,186 @@
+{
+  "iso": "co",
+  "fetchedAt": "2026-09-04T23:57:06.060Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/co.json"
+    }
+  },
+  "wikidata": {
+    "name": "Colombia",
+    "gec": "CO",
+    "capital": "Bogotá",
+    "areaKm2": 1141748,
+    "population": 52321152,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Colombian peso"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "pe",
+      "ve",
+      "ec",
+      "pa",
+      "ni"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/co.json",
+    "Introduction": {
+      "Background": {
+        "text": "Colombia was one of three countries that emerged after the dissolution of Gran Colombia in 1830 -- the others are Ecuador and Venezuela. A decades-long conflict among government forces, paramilitaries, and antigovernment insurgent groups heavily funded by the drug trade -- principally the Revolutionary Armed Forces of Colombia (FARC) -- escalated during the 1990s. In the wake of the paramilitary demobilization in the 2000s, new criminal groups arose that included some former paramilitaries. After four years of formal peace negotiations, the Colombian Government signed a final accord with the FARC in 2016 that called for its members to demobilize, disarm, and reincorporate into society and politics. The accord also committed the Colombian Government to create three new institutions to form a 'comprehensive system for truth, justice, reparation, and non-repetition,' including a truth commission, a special unit to coordinate the search for those who disappeared during the conflict, and a 'Special Jurisdiction for Peace' to administer justice for conflict-related crimes. Despite decades of internal conflict and drug-trade-related security challenges, Colombia maintains relatively strong and independent democratic institutions characterized by peaceful, transparent elections and the protection of civil liberties."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern South America, bordering the Caribbean Sea, between Panama and Venezuela, and bordering the North Pacific Ocean, between Ecuador and Panama"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,138,910 sq km"
+        },
+        "land": {
+          "text": "1,038,700 sq km"
+        },
+        "water": {
+          "text": "100,210 sq km"
+        },
+        "note": "<strong>note:</strong> includes Isla de Malpelo, Roncador Cay, and Serrana Bank"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "6,672 km"
+        },
+        "border countries": {
+          "text": "Brazil 1,790 km; Ecuador 708 km; Panama 339 km; Peru 1,494 km; Venezuela 2,341 km"
+        }
+      },
+      "Coastline": {
+        "text": "3,208 km (Caribbean Sea 1,760 km, North Pacific Ocean 1,448 km)"
+      },
+      "Climate": {
+        "text": "tropical along coast and eastern plains; cooler in highlands"
+      },
+      "Terrain": {
+        "text": "flat coastal lowlands, central highlands, high Andes Mountains, eastern lowland plains (Llanos)"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico Cristobal Colon 5,730 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "593 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, coal, iron ore, nickel, gold, copper, emeralds, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "36.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 32% (2023 est.)"
+        },
+        "forest": {
+          "text": "53.8% (2023 est.)"
+        },
+        "other": {
+          "text": "9.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "highlands subject to volcanic eruptions; occasional earthquakes; periodic droughts <br><br><strong>volcanism:</strong> Galeras (4,276 m) is one of Colombia's most active volcanoes; it has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Nevado del Ruiz (5,321 m), 129 km (80 mi) west of Bogota, erupted in 1985, producing lahars (mudflows) that killed 23,000 people; the volcano last erupted in 1991; after 500 years of dormancy, Nevado del Huila reawakened in 2007 and has experienced frequent eruptions since then; other historically active volcanoes include Cumbal, Dona Juana, Nevado del Tolima, and Purace"
+      },
+      "Geography - note": {
+        "text": "only South American country with coastlines on both the North Pacific Ocean and Caribbean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "49,842,298 (2025 est.)"
+        },
+        "male": {
+          "text": "24,320,959"
+        },
+        "female": {
+          "text": "25,521,339"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 98.9%, indigenous 1%, Portuguese 0.1%; 65 indigenous languages exist (2023 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 63.6%, Protestant 17.2% (Evangelical 16.7%, Adventist 0.3%, other Protestant 0.2%), Jehovah's Witness 0.6%, Church of Jesus Christ 0.1%, other 0.3%, believer, 0.2%. agnostic 1%, atheist 1%, none 14.2%, unspecified 1.8% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo and White 87.6%, Afro-Colombian (includes Mulatto, Raizal, and Palenquero) 6.8%, Indigenous 4.3%, unspecified 1.4% (2018 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "82.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.01% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the majority of people live in the north and west, where agricultural opportunities and natural resources are found; the vast grasslands of the llanos to the south and east, which make up approximately 60% of the country, are sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "prior to COVID-19, one of the most consistent growth economies; declining poverty; large stimulus package has mitigated economic fallout, but delayed key infrastructure investments; successful inflation management; sound flexible exchange rate regime; domestic economy suffers from lack of trade integration and infrastructure"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, oil palm fruit, milk, rice, plantains, potatoes, bananas, maize, chicken, avocados (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, food processing, oil, clothing and footwear, beverages, chemicals, cement; gold, coal, emeralds"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, coal, gold, coffee, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 27%, Panama 9%, India 5%, China 5%, Netherlands 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, broadcasting equipment, aircraft, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical along coast and eastern plains; cooler in highlands"
+      }
+    }
+  }
+}

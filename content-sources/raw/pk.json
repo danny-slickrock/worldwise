@@ -1,0 +1,185 @@
+{
+  "iso": "pk",
+  "fetchedAt": "2026-09-04T23:56:50.466Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-asia/pk.json"
+    }
+  },
+  "wikidata": {
+    "name": "Pakistan",
+    "gec": "PK",
+    "capital": "Islamabad",
+    "areaKm2": 881913,
+    "population": 223773700,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Urdu",
+      "English"
+    ],
+    "currencies": [
+      "Pakistani rupee"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "in",
+      "ir",
+      "af"
+    ]
+  },
+  "factbook": {
+    "_path": "south-asia/pk.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Indus Valley civilization, one of the oldest in the world and dating back at least 5,000 years, spread over much of modern-day Pakistan. During the second millennium B.C., remnants of this culture fused with the migrating Indo-Aryan peoples. The area underwent successive invasions in subsequent centuries from the Persians, Greeks, Scythians, Arabs (who brought Islam), Afghans, and Turks. The Mughal Empire flourished in the 16th and 17th centuries; the British came to dominate the region in the 18th century. The partition in 1947 of British India into the Muslim state of Pakistan (with West and East sections) and largely Hindu India created lasting tension between the two countries. They have fought two wars and a limited conflict -- in 1947-48, 1965, and 1999 respectively -- over the Kashmir territory, a dispute that continues to this day. A third war in 1971 -- in which India assisted an indigenous movement reacting to Bengali marginalization in Pakistani politics -- resulted in East Pakistan becoming the separate nation of Bangladesh.</p> <p>In response to Indian nuclear weapons testing, Pakistan conducted its own tests in 1998. Pakistan has been engaged in a decades-long armed conflict with militant groups, including the Tehreek-e-Taliban Pakistan (TTP) and other militant networks that target government institutions and civilians.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Asia, bordering the Arabian Sea, between India on the east and Iran and Afghanistan on the west and China in the north"
+      },
+      "Area": {
+        "total ": {
+          "text": "796,095 sq km"
+        },
+        "land": {
+          "text": "770,875 sq km"
+        },
+        "water": {
+          "text": "25,220 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "7,257 km"
+        },
+        "border countries": {
+          "text": "Afghanistan 2,670 km; China 438 km; India 3,190 km; Iran 959 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,046 km"
+      },
+      "Climate": {
+        "text": "mostly hot, dry desert; temperate in northwest; arctic in north"
+      },
+      "Terrain": {
+        "text": "divided into three major geographic areas: the northern highlands, the Indus River plain in the center and east, and the Balochistan Plateau in the south and west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "K2 (Mt. Godwin-Austen) 8,611 m"
+        },
+        "lowest point": {
+          "text": "Arabian Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "900 m"
+        }
+      },
+      "Natural resources": {
+        "text": "arable land, extensive natural gas reserves, limited petroleum, poor quality coal, iron ore, copper, salt, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "46.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 39.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 6.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "4.1% (2023 est.)"
+        },
+        "other": {
+          "text": "49.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "frequent earthquakes, occasionally severe especially in north and west; flooding along the Indus after heavy rains (July and August)"
+      },
+      "Geography - note": {
+        "text": "controls Khyber Pass and Bolan Pass, traditional invasion routes between Central Asia and India"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "257,047,044 (2025 est.)"
+        },
+        "male": {
+          "text": "130,727,015"
+        },
+        "female": {
+          "text": "126,320,029"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Punjabi 38.8%, Pashto (alternate name, Pashtu) 18.2%, Sindhi 14.6%, Saraiki (a Punjabi variant) 12.2%, Urdu 7.1%, Balochi 3%, Hindko 2.4%, Brahui 1.2%, other 2.4%"
+        },
+        "major-language sample(s)": {
+          "text": "<br>دنیا کا قاموس، ایک لازمی زریہ بنیادی معلومات کا (Urdu)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent population by mother tongue; English (official; lingua franca of Pakistani elite and most government ministries)"
+      },
+      "Religions": {
+        "text": "Muslim 96.4%, Hindu 1.6%, Christian 1.4%; less than 1%: scheduled castes, Qadiani/Ahmadi, other, Sikh. (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Punjabi 44.7%, Pashtun (Pathan) 15.4%, Sindhi 14.1%, Saraiki 8.4%, Muhajirs 7.6%, Baloch 3.6%, other 6.3%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "38% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.1% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the Indus River and its tributaries attract most of the settlement, with Punjab province the most densely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income South Asian economy; extremely high debt; endemic corruption; regional disputes with India and Afghanistan hinder investment; falling inflation, IMF relief programs, and strong agricultural output slowly contributing to economic recovery"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, bison milk, wheat, milk, rice, maize, potatoes, cotton, mangoes/guavas, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles and apparel, food processing, pharmaceuticals, surgical instruments, construction materials, paper products, fertilizer, shrimp"
+      },
+      "Exports - commodities": {
+        "text": "garments, fabric, refined petroleum, rice, cotton fabric (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 14%, UAE 10%, China 9%, Germany 7%, UK 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "natural gas, refined petroleum, crude petroleum, palm oil, plastics (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly hot, dry desert; temperate in northwest; arctic in north"
+      }
+    }
+  }
+}

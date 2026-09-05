@@ -1,0 +1,187 @@
+{
+  "iso": "mk",
+  "fetchedAt": "2026-09-04T23:56:40.323Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/mk.json"
+    }
+  },
+  "wikidata": {
+    "name": "North Macedonia",
+    "gec": "MK",
+    "capital": "Skopje",
+    "areaKm2": 25713,
+    "population": 1836713,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Albanian",
+      "Macedonian"
+    ],
+    "currencies": [
+      "Macedonian denar"
+    ],
+    "sharesBorderWithAnyType": [
+      "gr",
+      "bg",
+      "al",
+      "rs",
+      "xk"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/mk.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>North Macedonia gained its independence peacefully from Yugoslavia in 1991 under the name of \"Macedonia.\" Greece objected to the new country’s name, insisting it implied territorial pretensions to the northern Greek province of Macedonia, and democratic backsliding for several years stalled North Macedonia's movement toward Euro-Atlantic integration. Immediately after Macedonia declared independence, Greece sought to block its efforts to gain UN membership if the name \"Macedonia\" was used. The country was eventually admitted to the UN in 1993 as \"The former Yugoslav Republic of Macedonia,\" and at the same time it agreed to UN-sponsored negotiations on the name dispute. In 1995, Greece lifted a 20-month trade embargo and the two countries agreed to normalize relations, but the issue of the name remained unresolved amid ongoing negotiations. As an interim measure, the US and over 130 other nations recognized Macedonia by its constitutional name, Republic of Macedonia. <br><br>Ethnic Albanian grievances over perceived political and economic inequities escalated into an armed conflict in 2001 that eventually led to the internationally brokered Ohrid Framework Agreement, which ended the fighting and established guidelines for constitutional amendments and new laws that enhanced the rights of minorities. In 2018, the government adopted a new law on languages, which elevated the Albanian language to an official language at the national level and kept the Macedonian language as the sole official language in international relations, but ties between ethnic Macedonians and ethnic Albanians remain complicated.</p> <p>In 2018, Macedonia and Greece signed the Prespa Agreement whereby Macedonia agreed to change its name to North Macedonia, and the agreement went in to force on 12 February 2019. North Macedonia joined NATO in 2020 after amending its constitution as agreed and opened EU accession talks in 2022 after a two-year veto by Bulgaria over identity, language, and historical disputes. The 2014 legislative and presidential election triggered a political crisis that lasted almost three years and escalated in 2015 when the opposition party began releasing wiretapped material revealing alleged widespread government corruption and abuse. The country still faces challenges, including fully implementing reforms to overcome years of democratic backsliding, stimulating economic growth and development, and fighting organized crime and corruption. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, north of Greece"
+      },
+      "Area": {
+        "total ": {
+          "text": "25,713 sq km"
+        },
+        "land": {
+          "text": "25,433 sq km"
+        },
+        "water": {
+          "text": "280 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "838 km"
+        },
+        "border countries": {
+          "text": "Albania 181 km; Bulgaria 162 km; Greece 234 km; Kosovo 160 km; Serbia 101 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "warm, dry summers and autumns; relatively cold winters with heavy snowfall"
+      },
+      "Terrain": {
+        "text": "mountainous with deep basins and valleys; three large lakes, each divided by a frontier line; country bisected by the Vardar River"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Golem Korab (Maja e Korabit) 2,764 m"
+        },
+        "lowest point": {
+          "text": "Vardar River 50 m"
+        },
+        "mean elevation": {
+          "text": "741 m"
+        }
+      },
+      "Natural resources": {
+        "text": "low-grade iron ore, copper, lead, zinc, chromite, manganese, nickel, tungsten, gold, silver, asbestos, gypsum, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "49.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 16.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 31.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "40.9% (2023 est.)"
+        },
+        "other": {
+          "text": "9.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "high seismic risks"
+      },
+      "Geography - note": {
+        "text": "landlocked; major transportation corridor from Western and Central Europe to Aegean Sea and Southern Europe to Western Europe"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,137,556 (2025 est.)"
+        },
+        "male": {
+          "text": "1,065,634"
+        },
+        "female": {
+          "text": "1,071,922"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Macedonian (official) 61.4%, Albanian (official) 24.3%, Turkish 3.4%, Romani 1.7%, other (includes Aromanian (Vlach) and Bosnian) 2%, unspecified 7.2% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Книга на Светски Факти, неопходен извор на основни информации. (Macedonian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent mother tongue; minority languages are co-official with Macedonian in municipalities where at least 20% of the population are speakers, with Albanian co-official in Tetovo, Brvenica, Vrapciste, and other municipalities, Turkish in Centar Zupa and Plasnica, Romani in Suto Orizari, Aromanian in Krusevo, Serbian in Cucer Sandevo"
+      },
+      "Religions": {
+        "text": "Orthodox 46.1%, Islam 32.2%, Christian 13.2%, Other 7.2%; less than 1%: atheist, Catholic, other religions, not specified, Protestant (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Macedonian 58.4%, Albanian 24.3%, Turkish 3.9%, Romani 2.5%, Serb 1.3%, other 2.3%, no ethnic affiliation data available 7.2% (2021 est.)",
+        "note": "<strong>note:</strong> data represent total resident population; Romani populations are usually underestimated in official statistics and may represent 6.5–13% of North Macedonia’s population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "59.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.61% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, with urban areas attracting larger and denser populations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income European economy; GDP growth driven by private consumption, public infrastructure investments, and wage growth; stalled progress on EU accession; public debt rising due to high pensions, wages, and interest payments; structural challenges of emigration, low productivity growth, and governance</p>"
+      },
+      "Agricultural products": {
+        "text": "chillies/peppers, milk, wheat, potatoes, grapes, barley, cabbages, maize, watermelons, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food processing, beverages, textiles, chemicals, iron, steel, cement, energy, pharmaceuticals, automotive parts"
+      },
+      "Exports - commodities": {
+        "text": "reaction and catalytic products, insulated wire, electricity, garments, seats (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 39%, Serbia 8%, Bulgaria 6%, Greece 5%, Czechia 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "platinum, refined petroleum, laboratory ceramic ware, cars, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "warm, dry summers and autumns; relatively cold winters with heavy snowfall"
+      }
+    }
+  }
+}

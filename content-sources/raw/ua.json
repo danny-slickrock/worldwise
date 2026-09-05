@@ -1,0 +1,189 @@
+{
+  "iso": "ua",
+  "fetchedAt": "2026-09-04T23:56:43.395Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/up.json"
+    }
+  },
+  "wikidata": {
+    "name": "Ukraine",
+    "gec": "UP",
+    "capital": "Kyiv",
+    "areaKm2": 603550,
+    "population": 41167335,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Ukrainian"
+    ],
+    "currencies": [
+      "hryvnia"
+    ],
+    "sharesBorderWithAnyType": [
+      "hu",
+      "pl",
+      "ru",
+      "by",
+      "sk",
+      "md",
+      "ro"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/up.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Ukraine was the center of the first eastern Slavic state, Kyivan Rus, which was the largest and most powerful state in Europe during the 10th and 11th centuries. Weakened by internecine quarrels and Mongol invasions, Kyivan Rus was incorporated into the Grand Duchy of Lithuania and eventually into the Polish-Lithuanian Commonwealth. The cultural and religious legacy of Kyivan Rus laid the foundation for Ukrainian nationalism. A new Ukrainian state, the Cossack Hetmanate, was established during the mid-17th century after an uprising against the Poles. Despite continuous Muscovite pressure, the Hetmanate managed to remain autonomous for well over 100 years. During the latter part of the 18th century, the Russian Empire absorbed most Ukrainian territory. After czarist Russia collapsed in 1917, Ukraine -- which has long been known as the region's \"bread basket\" for its agricultural production -- achieved a short-lived period of independence (1917-20), but the country was reconquered and endured a Soviet rule that engineered two famines (1921-22 and 1932-33) in which over eight million died. In World War II, German and Soviet armies were responsible for seven to eight million more deaths. In 1986, a sudden power surge during a reactor-systems test at Ukraine's Chernobyl power station triggered the worst nuclear disaster in history, releasing massive amounts of radioactive material. Although Ukraine overwhelmingly voted for independence in 1991 as the Union of Soviet Socialist Republics (USSR) dissolved, democracy and prosperity remained elusive, with the legacy of state control, patronage politics, and endemic corruption stalling efforts at economic reform, privatization, and civil liberties.</p> <p>In 2004 and 2005, a mass protest dubbed the \"Orange Revolution\" forced the authorities to overturn a presidential election and allow a new internationally monitored vote that swept into power a reformist slate under Viktor YUSHCHENKO. Rival Viktor YANUKOVYCH became prime minister in 2006 and was elected president in 2010. In 2012, Ukraine held legislative elections that Western observers widely criticized as corrupt. In 2013, YANUKOVYCH backtracked on a trade and cooperation agreement with the EU -- in favor of closer economic ties with Russia -- and then used force against protestors who supported the agreement, leading to a three-month protestor occupation of Kyiv's central square. The government's use of violence to break up the protest camp in 2014 led to multiple deaths, international condemnation, a failed political deal, and the president's abrupt departure for Russia. Pro-West President Petro POROSHENKO took office later that year; Volodymyr ZELENSKYY succeeded him in 2019.</p> <p>Shortly after YANUKOVYCH's departure in 2014, Russian President Vladimir PUTIN ordered the invasion of Ukraine's Crimean Peninsula. In response, the UN passed a resolution confirming Ukraine's sovereignty and independence. In mid-2014, Russia began an armed conflict in two of Ukraine's eastern provinces. International efforts to end the conflict failed, and by 2022, more than 14,000 civilians were killed or wounded. On 24 February 2022, Russia escalated the conflict by invading the country on several fronts, in what has become the largest conventional military attack on a sovereign state in Europe since World War II. Russia made substantial gains in the early weeks of the invasion but underestimated Ukrainian resolve and combat capabilities. Despite Ukrainian resistance, Russia has laid claim to four Ukrainian oblasts -- Donetsk, Kherson, Luhansk, and Zaporizhzhia -- although none is fully under Russian control. The international community has not recognized the annexations. The invasion has also created Europe's largest refugee crisis since World War II, with over six million Ukrainian refugees recorded globally. It remains one of the two largest displacement crises worldwide (the other is the conflict in Syria). President ZELENSKYY has focused on boosting Ukrainian identity to unite the country behind the goals of ending the war through reclaiming territory and advancing Ukraine’s candidacy for EU membership. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Europe, bordering the Black Sea, between Poland, Belarus, Romania, and Moldova in the west and Russia in the east"
+      },
+      "Area": {
+        "total ": {
+          "text": "603,550 sq km"
+        },
+        "land": {
+          "text": "579,330 sq km"
+        },
+        "water": {
+          "text": "24,220 sq km"
+        },
+        "note": "<strong>note:</strong> Russia annexed Crimea in 2014, an area of approximately 27,000 sq km (10,400 sq miles)"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,581 km"
+        },
+        "border countries": {
+          "text": "Belarus 1,111 km; Hungary 128 km; Moldova 1,202 km; Poland 498 km; Romania 601 km; Russia 1,944 km, Slovakia 97 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,782 km"
+      },
+      "Climate": {
+        "text": "temperate continental; Mediterranean only on the southern Crimean coast; precipitation disproportionately distributed, highest in west and north, lesser in east and southeast; winters vary from cool along the Black Sea to cold farther inland; warm summers across the greater part of the country, hot in the south"
+      },
+      "Terrain": {
+        "text": "mostly fertile plains (steppes) and plateaus, with mountains found only in the west (the Carpathians) or in the extreme south of the Crimean Peninsula"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Hora Hoverla 2,061 m"
+        },
+        "lowest point": {
+          "text": "Black Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "175 m"
+        }
+      },
+      "Natural resources": {
+        "text": "iron ore, coal, manganese, natural gas, oil, salt, sulfur, graphite, titanium, magnesium, kaolin, nickel, mercury, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "71.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 56.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 13% (2023 est.)"
+        },
+        "forest": {
+          "text": "17.3% (2023 est.)"
+        },
+        "other": {
+          "text": "10.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional floods; occasional droughts"
+      },
+      "Geography - note": {
+        "text": "strategic position at the crossroads between Europe and Asia; second-largest country in Europe after Russia"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "35,661,826 (2024 est.)"
+        },
+        "male": {
+          "text": "17,510,149"
+        },
+        "female": {
+          "text": "18,151,677"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Ukrainian (official) 67.5%, Russian (regional language) 29.6%, other (includes Crimean Tatar, Moldovan/Romanian, and Hungarian) 2.9% (2001 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Свiтова Книга Фактiв – найкраще джерело базової інформації. (Ukrainian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Orthodox (includes the Orthodox Church of Ukraine (OCU), Ukrainian Autocephalous Orthodox Church (UAOC), and the Ukrainian Orthodox - Moscow Patriarchate (UOC-MP)), Ukrainian Greek Catholic, Roman Catholic, Protestant, Muslim, Jewish (2013 est.)",
+        "note": "<strong>note:</strong> Ukraine's population is overwhelmingly Christian; the vast majority - up to two thirds - identify themselves as Orthodox, but many do not specify a particular branch; the OCU and the UOC-MP each represent less than a quarter of the country's population, the Ukrainian Greek Catholic Church accounts for 8-10%, and the UAOC accounts for 1-2%; Muslim and Jewish adherents each compose less than 1% of the total population"
+      },
+      "Ethnic groups": {
+        "text": "Ukrainian 77.8%, Russian 17.3%, Belarusian 0.6%, Moldovan 0.5%, Crimean Tatar 0.5%, Bulgarian 0.4%, Hungarian 0.3%, Romanian 0.3%, Polish 0.3%, Jewish 0.2%, other 1.8% (2001 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "70.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.27% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "densest settlement in the eastern (Donbas) and western regions; notable concentrations in and around major urban areas of Kyiv, Kharkiv, Donets'k, Dnipropetrovs'k, and Odesa",
+        "note": "<strong>note: </strong>the ongoing war with Russia has shifted significant portions of the population, particularly in the east"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>lower-middle-income, non-EU, Eastern European economy; key wheat and corn exporter; gradual recovery after 30% GDP contraction at start of war; damage to infrastructure and agriculture balanced by consumer and business resilience in western Ukraine; international aid has stabilized foreign exchange reserves, allowing managed currency float; continued progress on anti-corruption reforms</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, wheat, potatoes, sugar beets, sunflower seeds, milk, barley, soybeans, rapeseed, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "industrial machinery, ferrous and nonferrous metals, automotive and aircraft components, electronics, chemicals, textiles, mining, construction"
+      },
+      "Exports - commodities": {
+        "text": "corn, seed oils, wheat, iron ore, soybeans (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Poland 12%, Romania 9%, Turkey 7%, China 6%, Spain 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, natural gas, packaged medicine, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate continental; Mediterranean only on the southern Crimean coast; precipitation disproportionately distributed, highest in west and north, lesser in east and southeast; winters vary from cool along the Black Sea to cold farther inland; warm summers across the greater part of the country, hot in the south"
+      }
+    }
+  }
+}

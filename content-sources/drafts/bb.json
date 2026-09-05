@@ -1,0 +1,62 @@
+{
+  "iso": "bb",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.423Z",
+  "structured": {
+    "code": "bb",
+    "name": "Barbados",
+    "capital": "Bridgetown",
+    "continent": "North America",
+    "areaKm2": 439,
+    "population": 303431,
+    "officialLanguages": [
+      "English",
+      "Bajan Creole"
+    ],
+    "currencies": [
+      "Barbadian dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, fish, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, island in the North Atlantic Ocean, northeast of Venezuela || relatively flat; rises gently to central highland region || easternmost Caribbean island || Resources: petroleum, fish, natural gas || Exports: liquor, refined petroleum, packaged medicine, margarine, baked goods (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "relatively flat; rises gently to central highland region || Caribbean, island in the North Atlantic Ocean, northeast of Venezuela"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; rainy season (June to October) || infrequent hurricanes; periodic landslides"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income Eastern Caribbean economy; high standard of living among regional peers; key tourism, construction, and financial sectors driving recent GDP growth; declining but still very high public debt leading to IMF support programs; susceptible to natural disasters and reliance on import partners || Exports: liquor, refined petroleum, packaged medicine, margarine, baked goods (2023) || Industries: tourism, sugar, light manufacturing, component assembly for export"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Bajan (English-based creole language, widely spoken in informal settings) || Protestant 66.4% (includes Anglican 23.9%, other Pentecostal 19.5%, Adventist 5.9%, Methodist 4.2%, Wesleyan 3.4%, Nazarene 3.2%, Church of God 2.4%, Baptist 1.8%, Moravian 1.2%, other Protestant 0.9%), Roman Catholic 3.8%, other Christian 5.4% (includes Jehovah's Witness 2.0%, other 3.4%), Rastafarian 1%, other 1.5%, none 20.6%, unspecified 1.2% (2010 est.) || African descent 92.4%, mixed 3.1%, White 2.7%, East Indian 1.3%, other 0.2%, unspecified 0.3% (2010 est.)"
+    }
+  }
+}

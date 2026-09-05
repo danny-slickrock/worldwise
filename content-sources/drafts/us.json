@@ -1,0 +1,71 @@
+{
+  "iso": "us",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.433Z",
+  "structured": {
+    "code": "us",
+    "name": "United States",
+    "capital": "Washington, D.C.",
+    "continent": "North America",
+    "areaKm2": 9826675,
+    "population": 340110988,
+    "officialLanguages": [
+      "Spanish",
+      "Carolinian",
+      "Hawaiian",
+      "Chamorro",
+      "Samoan"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "landBorderNames": [
+      "Canada",
+      "Mexico"
+    ],
+    "landBorderCodes": [
+      "ca",
+      "mx"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, copper, lead, molybdenum, phosphates, rare earth elements, uranium, bauxite, gold, iron, mercury, nickel, potash, silver, tungsten, zinc, petroleum, natural gas, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "North America, bordering both the North Atlantic Ocean and the North Pacific Ocean, between Canada and Mexico || vast central plain, mountains in west, hills and low mountains in east; rugged mountains and broad river valleys in Alaska; rugged, volcanic topography in Hawaii || world's third-largest country by size (after Russia and Canada) and by population (after China and India); Mt. McKinley is the highest point (6,190 m; 20,308 ft) in North America, and Death Valley is the lowest point (-86 m; -282 ft) the western US coast and the southern coast of Alaska lie along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes the Aleutian Islands are a chain of volcanic islands that divide the Bering Sea (north) from the main Pacific Ocean (south); they extend about 1,800 km (1,118 mi) westward from the Alaskan Peninsula; the archipelago consists of 14 larger islands, 55 smaller islands, and hundreds of islets; there are 41 active volcanoes on the islands, which together form a large northern section of the Ring of Fire Mammoth Cave, in west-central Kentucky, is the world's longest known cave system with more than 650 km (405 miles) of surveyed passageways, which is nearly twice as long as the second-longest cave system, the Sac Actun underwater cave in Mexico (see \"Geography - note\" under Mexico) Kazumura Cave on the island of Hawaii is the world's longest and deepest lava-tube cave; it has been surveyed at 66 km (41 mi) long and 1,102 m (3,614 ft) deep Bracken Cave outside San Antonio, Texas is the world's largest bat cave and the summer home to the largest colony of bats in the world; an estimated 20 million Mexican free-tailed bats roost in the cave from March to October, making it the world's largest known concentration of mammals || Resources: coal, copper, lead, molybdenum, phosphates, rare earth elements, uranium, bauxite, gold, iron, mercury, nickel, potash, silver, tungsten, zinc, petroleum, natural gas, timber, arable land || Exports: crude petroleum, refined petroleum, natural gas, gas turbines, cars (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "vast central plain, mountains in west, hills and low mountains in east; rugged mountains and broad river valleys in Alaska; rugged, volcanic topography in Hawaii || North America, bordering both the North Atlantic Ocean and the North Pacific Ocean, between Canada and Mexico"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly temperate, but tropical in Hawaii and Florida, arctic in Alaska, semiarid in the great plains west of the Mississippi River, and arid in the Great Basin of the southwest; low winter temperatures in the northwest are ameliorated occasionally in January and February by warm chinook winds from the eastern slopes of the Rocky Mountains || tsunamis; volcanoes; earthquake activity around Pacific Basin; hurricanes along the Atlantic and Gulf of America coasts; tornadoes in the Midwest and Southeast; mud slides in California; forest fires in the west; flooding; permafrost in northern Alaska is a major impediment to development volcanism: volcanic activity in the Hawaiian Islands, Western Alaska, the Pacific Northwest, and in the Northern Mariana Islands; Mauna Loa (4,170 m) in Hawaii and Mount Rainier (4,392 m) in Washington have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; Pavlof (2,519 m) is the most active volcano in Alaska's Aleutian Arc and poses a significant threat to intercontinental air travel; St. Helens (2,549 m), famous for the devastating 1980 eruption, remains active today; other historically active volcanoes are mostly concentrated in the Aleutian arc and Hawaii, including (in Alaska) Aniakchak, Augustine, Chiginagak, Fourpeaked, Iliamna, Katmai, Kupreanof, Martin, Novarupta, Redoubt, Spurr, Wrangell, Trident, Ugashik-Peulik, Ukinrek Maars, Veniaminof, (in Hawaii) Haleakala, Kilauea, Loihi, (in the Northern Mariana Islands) Anatahan, (in the Pacific Northwest) Mount Baker, and Mount Hood; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "world’s largest economy by nominal GDP; largest importer and second-largest exporter; home to leading financial exchanges and global reserve currency; high and growing public debt; inflation moderating but remains above pre-pandemic levels || Exports: crude petroleum, refined petroleum, natural gas, gas turbines, cars (2023) || Industries: highly diversified, world leading, high-technology innovator, second-largest industrial output in the world; petroleum, steel, motor vehicles, aerospace, telecommunications, chemicals, electronics, food processing, consumer goods, lumber, mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English only (official) 78.2%, Spanish 13.4%, Chinese 1.1%, other 7.3% (2017 est.) || Protestant 46.5%, Roman Catholic 20.8%, Jewish 1.9%, Church of Jesus Christ 1.6%, other Christian 0.9%, Muslim 0.9%, Jehovah's Witness 0.8%, Buddhist 0.7%, Hindu 0.7%, other 1.8%, unaffiliated 22.8%, don't know/refused 0.6% (2014 est.) || White 61.6%, Black or African American 12.4%, Asian 6%, Indigenous and Alaska native 1.1%, Native Hawaiian and Other Pacific Islander 0.2%, other 8.4%, two or more races 10.2% (2020 est.)"
+    }
+  }
+}

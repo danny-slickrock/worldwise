@@ -1,0 +1,182 @@
+{
+  "iso": "fi",
+  "fetchedAt": "2026-09-04T23:56:37.701Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/fi.json"
+    }
+  },
+  "wikidata": {
+    "name": "Finland",
+    "gec": "FI",
+    "capital": "Helsinki",
+    "areaKm2": 338478.34,
+    "population": 5652881,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Finnish",
+      "Swedish"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "no",
+      "se",
+      "ru"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/fi.json",
+    "Introduction": {
+      "Background": {
+        "text": "Finland was a province and then a grand duchy under Sweden from the 12th to the 19th centuries and an autonomous grand duchy of Russia after 1809. It gained complete independence in 1917. During World War II, Finland successfully defended its independence through cooperation with Germany and resisted subsequent invasions by the Soviet Union, albeit with some loss of territory. During the next half-century, Finland transformed from a farm/forest economy to a diversified modern industrial economy; per-capita income is among the highest in Western Europe. A member of the EU since 1995, Finland was the only Nordic state to join the euro single currency at its initiation in January 1999. In the 21st century, the key features of Finland's modern welfare state are high-quality education, promotion of equality, and a national social welfare system, although the system is currently facing the challenges of an aging population and the fluctuations of an export-driven economy. Following Russia's invasion of Ukraine in 2022, Finland opted to join NATO; it became the organization's 31st member in April 2023."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, and Gulf of Finland, between Sweden and Russia"
+      },
+      "Area": {
+        "total ": {
+          "text": "338,145 sq km"
+        },
+        "land": {
+          "text": "303,815 sq km"
+        },
+        "water": {
+          "text": "34,330 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,563 km"
+        },
+        "border countries": {
+          "text": "Norway 709 km; Sweden 545 km; Russia 1,309 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,250 km"
+      },
+      "Climate": {
+        "text": "cold temperate; potentially subarctic but comparatively mild because of moderating influence of the North Atlantic Current, Baltic Sea, and more than 60,000 lakes"
+      },
+      "Terrain": {
+        "text": "mostly low, flat to rolling plains interspersed with lakes and low hills"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Halti (alternatively Haltia, Haltitunturi, Haltiatunturi) 1,328 m"
+        },
+        "lowest point": {
+          "text": "Baltic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "164 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, iron ore, copper, lead, zinc, chromite, nickel, gold, silver, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "7.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2023 est.)"
+        },
+        "forest": {
+          "text": "74.2% (2023 est.)"
+        },
+        "other": {
+          "text": "18.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "severe winters in the north"
+      },
+      "Geography - note": {
+        "text": "long boundary with Russia; Helsinki is northernmost national capital on European continent; population concentrated on small southwestern coastal plain"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,550,449 (2025 est.)"
+        },
+        "male": {
+          "text": "2,750,057"
+        },
+        "female": {
+          "text": "2,800,392"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Finnish (official) 85.9%, Swedish (official) 5.2%, Russian 1.7%, other 7.2% (2022 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>World Factbook, korvaamaton perustietolähde. (Finnish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Lutheran 66.6%, Greek Orthodox 1.1%, other 1.7%, none 30.6% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Finnish, Swedish, Russian, Estonian, Romani, Sami",
+        "note": "<strong>note:</strong> 90.9% of the population has a Finnish background (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "85.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.42% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of people are found in the south; the northern interior areas remain sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, export-based EU and eurozone economy; major timber, metals, engineering, telecom, and electronics industries; emerging from recession triggered by inflation, weak consumer and export demand, and lower private investment; labor market reform plan to address structural rigidities</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, barley, oats, wheat, potatoes, sugar beets, pork, chicken, peas, rye (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "metals and metal products, electronics, machinery and scientific instruments, shipbuilding, pulp and paper, foodstuffs, chemicals, textiles, clothing"
+      },
+      "Exports - commodities": {
+        "text": "paper, refined petroleum, steel, wood pulp, ships (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 11%, Germany 11%, Sweden 10%, Netherlands 7%, China 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, cars, refined petroleum, packaged medicine, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "cold temperate; potentially subarctic but comparatively mild because of moderating influence of the North Atlantic Current, Baltic Sea, and more than 60,000 lakes"
+      }
+    }
+  }
+}

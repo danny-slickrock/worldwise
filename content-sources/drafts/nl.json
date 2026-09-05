@@ -1,0 +1,65 @@
+{
+  "iso": "nl",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.384Z",
+  "structured": {
+    "code": "nl",
+    "name": "Netherlands",
+    "capital": "Amsterdam",
+    "continent": "Europe",
+    "areaKm2": 37378,
+    "population": 17942942,
+    "officialLanguages": [
+      "Dutch"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Belgium",
+      "Germany"
+    ],
+    "landBorderCodes": [
+      "be",
+      "de"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, petroleum, peat, limestone, salt, sand and gravel, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Europe, bordering the North Sea, between Belgium and Germany || mostly coastal lowland and reclaimed land (polders); some hills in southeast || located at mouths of three major European rivers (Rhine (Rijn), Meuse (Maas), and Scheldt (Schelde)); about a quarter of the country lies below sea level and only about half of the land exceeds one meter above sea level || Resources: natural gas, petroleum, peat, limestone, salt, sand and gravel, arable land || Exports: refined petroleum, vaccines, machinery, crude petroleum, broadcasting equipment (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly coastal lowland and reclaimed land (polders); some hills in southeast || Western Europe, bordering the North Sea, between Belgium and Germany"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; marine; cool summers and mild winters || flooding volcanism: Mount Scenery (887 m), located on the island of Saba in the Caribbean, last erupted in 1640; Round Hill (601 m), a dormant volcano also known as \"The Quill,\" is located on the island of St. Eustatius in the Caribbean; these islands are at the northern end of the volcanic island arc of the Lesser Antilles that extends south to Grenada"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, core EU- and eurozone-member economy; strong services, logistics, and tech sectors; strongly trade-oriented with heightened risks from global tensions; declining inflation aided by easing energy prices and wage growth; rising but manageable deficits and public debt; strong ratings for innovation, competitiveness, and business climate || Exports: refined petroleum, vaccines, machinery, crude petroleum, broadcasting equipment (2023) || Industries: agroindustries, metal and engineering products, electrical machinery and equipment, chemicals, petroleum, construction, microelectronics, fishing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 20.1%, Protestant 14.8% (includes Dutch Reformed, Protestant Church of The Netherlands, Calvinist), Muslim 5%, other 5.9% (includes Hindu, Buddhist, Jewish), none 54.1% (2019 est.) || Dutch 75.4%, EU (excluding Dutch) 6.4%, Turkish 2.4%, Moroccan 2.4%, Surinamese 2.1%, Indonesian 2%, other 9.3% (2021 est.)"
+    }
+  }
+}

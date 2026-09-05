@@ -1,0 +1,73 @@
+{
+  "iso": "la",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.397Z",
+  "structured": {
+    "code": "la",
+    "name": "Laos",
+    "capital": "Vientiane",
+    "continent": "Asia",
+    "areaKm2": 236800,
+    "population": 6858160,
+    "officialLanguages": [
+      "Lao"
+    ],
+    "currencies": [
+      "Lao kip"
+    ],
+    "landBorderNames": [
+      "Burma",
+      "Cambodia",
+      "China",
+      "Thailand",
+      "Vietnam"
+    ],
+    "landBorderCodes": [
+      "mm",
+      "kh",
+      "cn",
+      "th",
+      "vn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, hydropower, gypsum, tin, gold, gemstones",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, northeast of Thailand, west of Vietnam || mostly rugged mountains; some plains and plateaus || landlocked; most of the country is mountainous and thickly forested; the Mekong River forms a large part of the western boundary with Thailand || Resources: timber, hydropower, gypsum, tin, gold, gemstones || Exports: electricity, fertilizers, gold, garments, paper (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged mountains; some plains and plateaus || Southeastern Asia, northeast of Thailand, west of Vietnam"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical monsoon; rainy season (May to November); dry season (December to April) || floods, droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income, industrial Southeast Asian economy; high inflation due to 2022 currency depreciation brought on by persistently high debt; new Laos-China railway and dry port; rising inequities; ongoing labor shortages || Exports: electricity, fertilizers, gold, garments, paper (2023) || Industries: mining (copper, tin, gold, gypsum); timber, electric power, agricultural processing, rubber, construction, garments, cement, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Buddhist 64.7%, Christian 1.7%, none 31.4%, other/not stated 2.1% (2015 est.) || Lao 53.2%, Khmou 11%, Hmong 9.2%, Phouthay 3.4%, Tai 3.1%, Makong 2.5%, Katong 2.2%, Lue 2%, Akha 1.8%, other 11.6% (2015 est.)"
+    }
+  }
+}

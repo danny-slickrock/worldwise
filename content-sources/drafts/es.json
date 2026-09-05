@@ -1,0 +1,71 @@
+{
+  "iso": "es",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.389Z",
+  "structured": {
+    "code": "es",
+    "name": "Spain",
+    "capital": "Madrid",
+    "continent": "Europe",
+    "areaKm2": 505990,
+    "population": 48592909,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Andorra",
+      "France",
+      "Portugal",
+      "Morocco"
+    ],
+    "landBorderCodes": [
+      "ad",
+      "fr",
+      "pt",
+      "ma"
+    ],
+    "landBorderTerritories": [
+      "Gibraltar"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, lignite, iron ore, copper, lead, zinc, uranium, tungsten, mercury, pyrites, magnesite, fluorspar, gypsum, sepiolite, kaolin, potash, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Europe, bordering the Mediterranean Sea, North Atlantic Ocean, Bay of Biscay, and Pyrenees Mountains; southwest of France || large, flat to dissected plateau surrounded by rugged hills; Pyrenees Mountains in north || strategic location along approaches to Strait of Gibraltar; Spain controls a number of territories in northern Morocco, including the enclaves of Ceuta and Melilla and the islands of Penon de Velez de la Gomera, Penon de Alhucemas, and Islas Chafarinas; Spain's Canary Islands are one of four North Atlantic archipelagos that make up Macaronesia; the others are the Azores (Portugal), Madeira (Portugal), and Cabo Verde || Resources: coal, lignite, iron ore, copper, lead, zinc, uranium, tungsten, mercury, pyrites, magnesite, fluorspar, gypsum, sepiolite, kaolin, potash, hydropower, arable land || Exports: cars, packaged medicine, refined petroleum, vehicle parts/accessories, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "large, flat to dissected plateau surrounded by rugged hills; Pyrenees Mountains in north || Southwestern Europe, bordering the Mediterranean Sea, North Atlantic Ocean, Bay of Biscay, and Pyrenees Mountains; southwest of France"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; clear, hot summers in interior, more moderate and cloudy along coast; cloudy, cold winters in interior, partly cloudy and cool along coast || periodic droughts, occasional flooding volcanism: volcanic activity in the Canary Islands, located off Africa's northwest coast; Teide (3,715 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; La Palma (2,426 m) is the most active of the Canary Islands volcanoes; Lanzarote is the only other historically active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, core-EU and eurozone economy; strong growth driven by public consumption, tourism, and other service exports; tight labor market despite high structural unemployment; efforts to narrow persistent fiscal deficits through tax and spending measures; high but declining unemployment supported by job growth and immigration || Exports: cars, packaged medicine, refined petroleum, vehicle parts/accessories, garments (2023) || Industries: textiles and apparel (including footwear), food and beverages, metals and metal manufactures, chemicals, shipbuilding, automobiles, machine tools, tourism, clay and refractory products, footwear, pharmaceuticals, medical equipment"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 58.2%, atheist 16.2%, agnostic 10.8%, other 2.7%, non-believer 10.5%, unspecified 1.7% (2021 est.) || Spanish 84.8%, Moroccan 1.7%, Romanian 1.2%, other 12.3% (2021 est.)"
+    }
+  }
+}

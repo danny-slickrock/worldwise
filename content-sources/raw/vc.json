@@ -1,0 +1,169 @@
+{
+  "iso": "vc",
+  "fetchedAt": "2026-09-04T23:57:09.215Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/vc.json"
+    }
+  },
+  "wikidata": {
+    "name": "Saint Vincent and the Grenadines",
+    "gec": "VC",
+    "capital": "Kingstown",
+    "areaKm2": 389,
+    "population": 109897,
+    "continent": "North America",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "ve"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/vc.json",
+    "Introduction": {
+      "Background": {
+        "text": "Resistance from native Caribs prevented colonization on Saint Vincent until 1719. France and England disputed the island for most of the 18th century, but it was ceded to England in 1783. The British prized Saint Vincent because of its fertile soil, which allowed for thriving slave-run plantations of sugar, coffee, indigo, tobacco, cotton, and cocoa. In 1834, the British abolished slavery. Immigration of indentured servants eased the ensuing labor shortage, as did subsequent immigrant waves from Portugal and East India. Conditions remained harsh for both former slaves and immigrant agricultural workers, however, as depressed world sugar prices kept the economy stagnant until the early 1900s. The economy then went into a period of decline, with many landowners abandoning their estates and leaving the land to be cultivated by liberated slaves. <br><br>Between 1960 and 1962, Saint Vincent and the Grenadines was a separate administrative unit of the Federation of the West Indies. Autonomy was granted in 1969 and independence in 1979. In 2021, the eruption of the La Soufrière volcano in the north of Saint Vincent destroyed much of Saint Vincent’s most productive agricultural lands. Unlike most of its tourism-dependent neighbors, the Vincentian economy is primarily agricultural. "
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, islands between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago"
+      },
+      "Area": {
+        "total ": {
+          "text": "389 sq km (Saint Vincent 344 sq km)"
+        },
+        "land": {
+          "text": "389 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "84 km"
+      },
+      "Climate": {
+        "text": "tropical; little seasonal temperature variation; rainy season (May to November)"
+      },
+      "Terrain": {
+        "text": "volcanic, mountainous"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "La Soufriere 1,234 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "17.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 5.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 7.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "73.2% (2023 est.)"
+        },
+        "other": {
+          "text": "8.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hurricanes; La Soufrière volcano on the island of Saint Vincent is a constant threat<br><br><strong>volcanism:</strong> La Soufrière (1,234 m) last erupted in 1979; the island of Saint Vincent is part of the volcanic-island arc of the Lesser Antilles that extends from Saba in the north to Grenada in the south"
+      },
+      "Geography - note": {
+        "text": "the administration of the islands of the Grenadines group is divided between Saint Vincent and the Grenadines and Grenada; Saint Vincent and the Grenadines is composed of 32 islands and cays"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "100,647 (2024 est.)"
+        },
+        "male": {
+          "text": "51,249"
+        },
+        "female": {
+          "text": "49,398"
+        }
+      },
+      "Languages": {
+        "text": "English, Vincentian Creole English, French patois"
+      },
+      "Religions": {
+        "text": "Protestant 75% (Pentecostal 27.6%, Anglican 13.9%, Seventh Day Adventist 11.6%,&nbsp; Baptist 8.9%, Methodist 8.7%, Evangelical 3.8%, Salvation Army 0.3%, Presbyterian/Congregational 0.3%), Roman Catholic 6.3%,&nbsp; Rastafarian 1.1%, Jehovah's Witness 0.8%, other 4.7%, none 7.5%, unspecified 4.7% (2012 est.)"
+      },
+      "Ethnic groups": {
+        "text": "African descent 71.2%, mixed 23%, Indigenous 3%, East Indian/Indian 1.1%, European 1.5%, other 0.2% (2012 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "54.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.94% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is concentrated in and around the capital of Kingstown"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income Caribbean island economy; key agriculture and tourism sectors; environmentally fragile; diversifying economy across services, science and knowledge, and creative industries; CARICOM member and US Caribbean Basin Initiative beneficiary"
+      },
+      "Agricultural products": {
+        "text": "bananas, root vegetables, plantains, spices, coconuts, fruits, apples, vegetables, mangoes/guavas, sweet potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism; food processing, cement, furniture, clothing, starch"
+      },
+      "Exports - commodities": {
+        "text": "ships, wheat flours, animal food, shellfish, construction vehicles (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Croatia 16%, Barbados 14%, USA 10%, St. Lucia 10%, St. Kitts &amp; Nevis 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, wheat, coal, poultry (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; little seasonal temperature variation; rainy season (May to November)"
+      }
+    }
+  }
+}

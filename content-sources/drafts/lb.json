@@ -1,0 +1,67 @@
+{
+  "iso": "lb",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.398Z",
+  "structured": {
+    "code": "lb",
+    "name": "Lebanon",
+    "capital": "Beirut",
+    "continent": "Asia",
+    "areaKm2": 10452,
+    "population": 6100075,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Lebanese pound"
+    ],
+    "landBorderNames": [
+      "Israel",
+      "Syria"
+    ],
+    "landBorderCodes": [
+      "il",
+      "sy"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "limestone, iron ore, salt, water-surplus state in a water-deficit region, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Mediterranean Sea, between Israel and Syria || narrow coastal plain; El Beqaa (Bekaa Valley) separates Lebanon and Anti-Lebanon Mountains || smallest country in continental Asia; Nahr el Litani is the only major river in Near East not crossing an international boundary || Resources: limestone, iron ore, salt, water-surplus state in a water-deficit region, arable land || Exports: jewelry, cars, diamonds, scrap iron, gold (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "narrow coastal plain; El Beqaa (Bekaa Valley) separates Lebanon and Anti-Lebanon Mountains || Middle East, bordering the Mediterranean Sea, between Israel and Syria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean; mild to cool, wet winters with hot, dry summers; the Lebanon Mountains experience heavy winter snows || earthquakes; dust storms, sandstorms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income Middle Eastern economy; hyperinflation and sharp poverty increases; banks have ceased lending; economic contraction, destroyed infrastructure, and reduced consumer demand resulting from Israel-Hezbollah conflict || Exports: jewelry, cars, diamonds, scrap iron, gold (2023) || Industries: banking, tourism, real estate and construction, food processing, wine, jewelry, cement, textiles, mineral and chemical products, wood and furniture products, oil refining, metal fabricating"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 67.8% (31.9% Sunni, 31.2% Shia, smaller percentages of Alawites and Ismailis), Christian 32.4% (Maronite Catholics are the largest Christian group), Druze 4.5%, very small numbers of Jews, Baha'is, Buddhists, and Hindus (2020 est.) || Arab 95%, Armenian 4%, other 1%"
+    }
+  }
+}

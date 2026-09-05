@@ -1,0 +1,79 @@
+{
+  "iso": "fr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.379Z",
+  "structured": {
+    "code": "fr",
+    "name": "France",
+    "capital": "Paris",
+    "continent": "Europe",
+    "areaKm2": 643801,
+    "population": 68605616,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "CFP Franc"
+    ],
+    "landBorderNames": [
+      "Andorra",
+      "Belgium",
+      "Germany",
+      "Italy",
+      "Luxembourg",
+      "Monaco",
+      "Spain",
+      "Switzerland"
+    ],
+    "landBorderCodes": [
+      "ad",
+      "be",
+      "de",
+      "it",
+      "lu",
+      "mc",
+      "es",
+      "ch"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "metropolitan France: coal, iron ore, bauxite, zinc, uranium, antimony, arsenic, potash, feldspar, fluorspar, gypsum, timber, arable land, fish; French Guiana : gold deposits, petroleum, kaolin, niobium, tantalum, clay",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "metropolitan France: Western Europe, bordering the Bay of Biscay and English Channel, between Belgium and Spain, southeast of the UK; bordering the Mediterranean Sea, between Italy and Spain French Guiana: Northern South America, bordering the North Atlantic Ocean, between Brazil and Suriname Guadeloupe: Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, southeast of Puerto Rico Martinique: Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago Mayotte: Southern Indian Ocean, island in the Mozambique Channel, about halfway between northern Madagascar and northern Mozambique Reunion: Southern Africa, island in the Indian Ocean, east of Madagascar || metropolitan France: mostly flat plains or gently rolling hills in north and west; remainder is mountainous, especially Pyrenees in south, Alps in east French Guiana: low-lying coastal plains rising to hills and small mountains Guadeloupe: Basse-Terre is volcanic in origin with interior mountains; Grande-Terre is low limestone formation; most of the seven other islands are volcanic in origin Martinique: mountainous with indented coastline; dormant volcano Mayotte: generally undulating, with deep ravines and ancient volcanic peaks Reunion: mostly rugged and mountainous; fertile lowlands along coast || largest Western European nation; most major French rivers -- the Meuse, Seine, Loire, Charente, Dordogne, and Garonne -- flow northward or westward into the Atlantic Ocean, only the Rhone flows southward into the Mediterranean Sea || Resources: metropolitan France: coal, iron ore, bauxite, zinc, uranium, antimony, arsenic, potash, feldspar, fluorspar, gypsum, timber, arable land, fish; French Guiana : gold deposits, petroleum, kaolin, niobium, tantalum, clay || Exports: aircraft, cars, packaged medicine, gas turbines, vehicle parts/accessories (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "metropolitan France: mostly flat plains or gently rolling hills in north and west; remainder is mountainous, especially Pyrenees in south, Alps in east French Guiana: low-lying coastal plains rising to hills and small mountains Guadeloupe: Basse-Terre is volcanic in origin with interior mountains; Grande-Terre is low limestone formation; most of the seven other islands are volcanic in origin Martinique: mountainous with indented coastline; dormant volcano Mayotte: generally undulating, with deep ravines and ancient volcanic peaks Reunion: mostly rugged and mountainous; fertile lowlands along coast || metropolitan France: Western Europe, bordering the Bay of Biscay and English Channel, between Belgium and Spain, southeast of the UK; bordering the Mediterranean Sea, between Italy and Spain French Guiana: Northern South America, bordering the North Atlantic Ocean, between Brazil and Suriname Guadeloupe: Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, southeast of Puerto Rico Martinique: Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago Mayotte: Southern Indian Ocean, island in the Mozambique Channel, about halfway between northern Madagascar and northern Mozambique Reunion: Southern Africa, island in the Indian Ocean, east of Madagascar"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "metropolitan France: generally cool winters and mild summers, but mild winters and hot summers along the Mediterranean; occasional strong, cold, dry, north-to-northwesterly wind known as the mistral || metropolitan France: flooding; avalanches; midwinter windstorms; drought; forest fires in south overseas departments: hurricanes (cyclones); flooding volcanism: Montagne Pelée (1,394 m) on the island of Martinique in the Caribbean is the most active volcano of the Lesser Antilles arc, although it last erupted in 1932; a catastrophic eruption in 1902 destroyed the city of St. Pierre, killing an estimated 30,000 people; La Soufrière (1,467 m) on the island of Guadeloupe has also had explosive eruptions in recent years"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, advanced EU economy and eurozone member; strong tourism, aircraft manufacturing, pharmaceuticals, and industrial sectors; high public debt; ongoing pension reform efforts; transitioning to a green economy via \"France 2030\" strategy || Exports: aircraft, cars, packaged medicine, gas turbines, vehicle parts/accessories (2023) || Industries: machinery, chemicals, automobiles, metallurgy, aircraft, electronics, textiles, food processing, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 47%, Muslim 4%, Protestant 2%, Buddhist 2%, Orthodox 1%, Jewish 1%, other 1%, none 33%, unspecified 9% (2021 est.) || Celtic and Latin with Teutonic, Slavic, North African (Algerian, Moroccan, Tunisian), Indochinese, Basque minorities"
+    }
+  }
+}

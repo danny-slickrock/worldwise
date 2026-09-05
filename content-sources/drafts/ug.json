@@ -1,0 +1,74 @@
+{
+  "iso": "ug",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.422Z",
+  "structured": {
+    "code": "ug",
+    "name": "Uganda",
+    "capital": "Kampala",
+    "continent": "Africa",
+    "areaKm2": 241038,
+    "population": 47123531,
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Ugandan shilling"
+    ],
+    "landBorderNames": [
+      "Democratic Republic of the Congo",
+      "Kenya",
+      "Rwanda",
+      "South Sudan",
+      "Tanzania"
+    ],
+    "landBorderCodes": [
+      "cd",
+      "ke",
+      "rw",
+      "ss",
+      "tz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "copper, cobalt, hydropower, limestone, salt, arable land, gold",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "East-Central Africa, west of Kenya, east of the Democratic Republic of the Congo || mostly plateau with rim of mountains || landlocked; fertile, well-watered country with many lakes and rivers; Lake Victoria, the world's largest tropical lake and second-largest freshwater lake, is shared among three countries: Kenya, Tanzania, and Uganda || Resources: copper, cobalt, hydropower, limestone, salt, arable land, gold || Exports: gold, coffee, fish, refined petroleum, tobacco (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly plateau with rim of mountains || East-Central Africa, west of Kenya, east of the Democratic Republic of the Congo"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; generally rainy with two dry seasons (December to February, June to August); semiarid in northeast || droughts; floods; earthquakes; landslides; hailstorms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income, primarily agrarian East African economy; COVID-19 hurt economic growth and poverty reduction; lower oil prices threaten prior sector investments; endemic corruption; natural resource rich; high female labor force participation but undervalued || Exports: gold, coffee, fish, refined petroleum, tobacco (2023) || Industries: sugar processing, brewing, tobacco, cotton textiles; cement, steel production"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Ganda or Luganda (most widely used of the Niger-Congo languages and the language used most often in the capital), other Niger-Congo languages, Nilo-Saharan languages, Swahili (official), Arabic || Protestant 45.1% (Anglican 32.0%, Pentecostal/Born Again/Evangelical 11.1%, Seventh Day Adventist 1.7%, Baptist .3%), Roman Catholic 39.3%, Muslim 13.7%, other 1.6%, none 0.2% (2014 est.) || Baganda 16.5%, Banyankole 9.6%, Basoga 8.8%, Bakiga 7.1%, Iteso 7%, Langi 6.3%, Bagisu 4.9%, Acholi 4.4%, Lugbara 3.3%, other 32.1% (2014 est.)"
+    }
+  }
+}

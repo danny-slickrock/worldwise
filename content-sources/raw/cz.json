@@ -1,0 +1,185 @@
+{
+  "iso": "cz",
+  "fetchedAt": "2026-09-04T23:56:37.169Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/ez.json"
+    }
+  },
+  "wikidata": {
+    "name": "Czech Republic",
+    "gec": "EZ",
+    "capital": "Prague",
+    "areaKm2": 78871,
+    "population": 10909500,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Czech"
+    ],
+    "currencies": [
+      "Czech koruna"
+    ],
+    "sharesBorderWithAnyType": [
+      "pl",
+      "at",
+      "de",
+      "sk"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/ez.json",
+    "Introduction": {
+      "Background": {
+        "text": "At the close of World War I, the Czechs and Slovaks of the former Austro-Hungarian Empire merged to form Czechoslovakia, a parliamentarian democracy. During the interwar years, having rejected a federal system, the new country's predominantly Czech leaders were frequently preoccupied with meeting the increasingly strident demands of other ethnic minorities within the republic, most notably the Slovaks, the Sudeten Germans, and the Ruthenians (Ukrainians). On the eve of World War II, Nazi Germany occupied the territory that today comprises Czechia, and Slovakia became an independent state allied with Germany. After the war, a reunited but truncated Czechoslovakia (less Ruthenia) fell within the Soviet sphere of influence when the pro-Soviet Communist party staged a coup in February 1948. In 1968, an invasion by fellow Warsaw Pact troops ended the efforts of the country's leaders to liberalize communist rule and create \"socialism with a human face,\" ushering in a period of repression known as \"normalization.\" The peaceful \"Velvet Revolution\" swept the Communist Party from power at the end of 1989 and inaugurated a return to democratic rule and a market economy. On 1 January 1993, the country underwent a nonviolent \"velvet divorce\" into its two national components, the Czech Republic and Slovakia. The Czech Republic joined NATO in 1999 and the European Union in 2004. The country formally added the short-form name Czechia in 2016, while also continuing to use the full form name, the Czech Republic."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Europe, between Germany, Poland, Slovakia, and Austria"
+      },
+      "Area": {
+        "total ": {
+          "text": "78,867 sq km"
+        },
+        "land": {
+          "text": "77,247 sq km"
+        },
+        "water": {
+          "text": "1,620 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,046 km"
+        },
+        "border countries": {
+          "text": "Austria 402 km; Germany 704 km; Poland 699 km; Slovakia 241 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "temperate; cool summers; cold, cloudy, humid winters"
+      },
+      "Terrain": {
+        "text": "Bohemia in the west consists of rolling plains, hills, and plateaus surrounded by low mountains; Moravia in the east consists of very hilly country"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Snezka 1,602 m"
+        },
+        "lowest point": {
+          "text": "Labe (Elbe) River 115 m"
+        },
+        "mean elevation": {
+          "text": "433 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hard coal, soft coal, kaolin, clay, graphite, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "45.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 32.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 12.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "38.2% (2023 est.)"
+        },
+        "other": {
+          "text": "16% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> landlocked; strategically located on some of oldest and most significant land routes in Europe; Moravian Gate is a traditional military corridor between the North European Plain and the Danube in central Europe<br><br><strong>note 2:</strong> the Hranice Abyss in Czechia is the world's deepest surveyed freshwater cave at 519 m (1,703 ft); its survey is not complete, and it may be up to 800-1,200 m (2,625-3,937 ft) deep"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,838,703 (2025 est.)"
+        },
+        "male": {
+          "text": "5,337,128"
+        },
+        "female": {
+          "text": "5,501,575"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Czech (official) 88.4%, Slovak 1.5%, other 2.6%, unspecified 7.2% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>World Factbook, nepostradatelný zdroj základních informací. (Czech)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> includes only persons with one mother tongue"
+      },
+      "Religions": {
+        "text": "Roman Catholic 7%, other believers belonging to a church or religious society 6% (includes Evangelical United Brethren Church and Czechoslovak Hussite Church), believers unaffiliated with a religious society 9.1%, none 47.8%, unspecified 30.1% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Czech 57.3%, Moravian 3.4%, other 7.7%, unspecified 31.6% (2021 est.)",
+        "note": "<strong>note:</strong> includes only persons with one ethnicity"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "74.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.2% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, but the northern and eastern regions tend to have larger urban concentrations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, diversified EU economy; manufacturing-oriented exporter led by automotive industry; moderate growth driven by household consumption and investments, despite negative contribution from net exports; tight labor market with low unemployment; gained energy independence from Russian oil in April 2025</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, sugar beets, milk, barley, rapeseed, potatoes, maize, triticale, pork, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "motor vehicles, metallurgy, machinery and equipment, glass, armaments"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, broadcasting equipment, computers, plastic products (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 29%, Slovakia 7%, Poland 6%, France 5%, UK 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "broadcasting equipment, vehicle parts/accessories, cars, plastic products, computers (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; cool summers; cold, cloudy, humid winters"
+      }
+    }
+  }
+}

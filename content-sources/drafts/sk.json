@@ -1,0 +1,71 @@
+{
+  "iso": "sk",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.388Z",
+  "structured": {
+    "code": "sk",
+    "name": "Slovakia",
+    "capital": "Bratislava",
+    "continent": "Europe",
+    "areaKm2": 49033.720839,
+    "population": 5409407,
+    "officialLanguages": [
+      "Slovak"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Austria",
+      "Czechia",
+      "Hungary",
+      "Poland",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "at",
+      "cz",
+      "hu",
+      "pl",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "lignite, small amounts of iron ore, copper and manganese ore; salt; arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, south of Poland || rugged mountains in the central and northern part and lowlands in the south || landlocked; most of the country is rugged and mountainous; the Tatra Mountains in the north are interspersed with many scenic lakes and valleys || Resources: lignite, small amounts of iron ore, copper and manganese ore; salt; arable land || Exports: cars, vehicle parts/accessories, video displays, broadcasting equipment, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rugged mountains in the central and northern part and lowlands in the south || Central Europe, south of Poland"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; cool summers; cold, cloudy, humid winters || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone economy; manufacturing and exports led by automotive sector; growth supported by private consumption and public investment from EU funds, tempered by trade risks; increased taxes and withdrawal of energy subsidies contributing to rising but manageable inflation; strong labor demand and influx of foreign labor offsets aging workforce || Exports: cars, vehicle parts/accessories, video displays, broadcasting equipment, refined petroleum (2023) || Industries: automobiles; metal and metal products; electricity, gas, coke, oil, nuclear fuel; chemicals, synthetic fibers, wood and paper products; machinery; earthenware and ceramics; textiles; electrical and optical apparatus; rubber products; food and beverages; pharmaceutical"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 55.8%, Evangelical Church of the Augsburg Confession 5.3%, Greek Catholic 4%, Reformed Christian 1.6%, other 3%, none 23.8%, unspecified 6.5% (2021 est.) || Slovak 83.8%, Hungarian 7.8%, Romani 1.2%, other 1.8% (includes Czech, Ruthenian, Ukrainian, Russian, German, Polish), unspecified 5.4% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "iso": "gy",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.429Z",
+  "structured": {
+    "code": "gy",
+    "name": "Guyana",
+    "capital": "Georgetown",
+    "continent": "South America",
+    "areaKm2": 214970,
+    "population": 878674,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Guyanese dollar"
+    ],
+    "landBorderNames": [
+      "Brazil",
+      "Suriname",
+      "Venezuela"
+    ],
+    "landBorderCodes": [
+      "br",
+      "sr",
+      "ve"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, gold, diamonds, hardwood timber, shrimp, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern South America, bordering the North Atlantic Ocean, between Suriname and Venezuela || mostly rolling highlands; low coastal plain; savanna in south || the third-smallest country in South America after Suriname and Uruguay; contains some of the largest unspoiled rainforests on the continent || Resources: bauxite, gold, diamonds, hardwood timber, shrimp, fish || Exports: crude petroleum, railway cargo containers, gold, ships, rice (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rolling highlands; low coastal plain; savanna in south || Northern South America, bordering the North Atlantic Ocean, between Suriname and Venezuela"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid, moderated by northeast trade winds; two rainy seasons (May to August, November to January) || flash flood threat during rainy seasons"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "small, hydrocarbon-driven South American export economy; major forest coverage being leveraged in carbon credit offsets to encourage preservation; strengthening financial sector; large bauxite and gold resources || Exports: crude petroleum, railway cargo containers, gold, ships, rice (2023) || Industries: bauxite, sugar, rice milling, timber, textiles, gold mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Guyanese Creole, Amerindian languages (including Caribbean and Arawak languages), Indian languages (including Caribbean Hindustani, a dialect of Hindi), Chinese (2014 est.) || Protestant 34.8% (Pentecostal 22.8%, Seventh Day Adventist 5.4%, Anglican 5.2%, Methodist 1.4%), Hindu 24.8%, other Christian 20.8%, Roman Catholic 7.1%, Muslim 6.8%, Jehovah's Witness 1.3%, Rastafarian 0.5%, other 0.9%, none 3.1% (2012 est.) || East Indian 39.8%, African descent 29.3%, mixed 19.9%, Indigenous 10.5%, other 0.5% (includes Portuguese, Chinese, White) (2012 est.)"
+    }
+  }
+}

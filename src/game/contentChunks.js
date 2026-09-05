@@ -80,6 +80,33 @@ export function splitProse(text, maxChars = MAX_CHUNK_CHARS) {
   return out;
 }
 
+
+// Split a body of text and make sure EVERY resulting piece names its country.
+//
+// The bug this exists to prevent: splitting an already-labelled string
+// ("Brazil — Climate: ...") puts the label on the first piece only, so every
+// continuation chunk is anonymous prose. Retrieved on its own, an anonymous
+// chunk is exactly the misattribution risk the naming rule exists to stop —
+// and it fails silently, because short content never splits. It was latent
+// until model-drafted prose made long fields realistic.
+//
+// A single piece is returned untouched, so output is unchanged for everything
+// that fits — only the split path differs.
+function namedPieces(name, text, maxChars = MAX_CHUNK_CHARS) {
+  const first = splitProse(text, maxChars);
+  if (first.length <= 1) return first;
+
+  // It splits, so continuation pieces will each gain a "<Name> — " prefix.
+  // Re-split against the reduced budget: adding the prefix afterwards would
+  // push a piece that exactly filled the budget over the gte-small cap, which
+  // is the silent truncation this whole cap exists to avoid.
+  const prefix = `${name} — `;
+  const pieces = splitProse(text, Math.max(1, maxChars - prefix.length));
+  return pieces.map((piece, i) =>
+    i === 0 || piece.startsWith(name) ? piece : prefix + piece
+  );
+}
+
 // Render the numeric/relational columns as a sentence rather than shipping a
 // JSON blob. An embedding of `{"population":216422446}` is close to meaningless;
 // "Brazil has a population of about 216.4 million" sits in the same space as
@@ -145,13 +172,13 @@ export function chunkCountry(row, neighborNames = {}) {
     .filter(Boolean)
     .join(" ");
   const summary = String(row.summary ?? "").trim();
-  for (const piece of splitProse(`${identity} ${summary}`.trim())) {
+  for (const piece of namedPieces(name, `${identity} ${summary}`.trim())) {
     drafts.push({ content: piece, source: "summary" });
   }
 
   // Geography and borders.
   const geo = geographyText(row, name, (row.neighbors ?? []).map((c) => neighborNames[c]));
-  for (const piece of splitProse(geo)) {
+  for (const piece of namedPieces(name, geo)) {
     drafts.push({ content: piece, source: "geography" });
   }
 
@@ -163,7 +190,7 @@ export function chunkCountry(row, neighborNames = {}) {
     const value = String(facts[key] ?? "").trim();
     if (!value) continue;
     const labelled = `${name} — ${titleCase(key)}: ${value}`;
-    for (const piece of splitProse(labelled)) {
+    for (const piece of namedPieces(name, labelled)) {
       drafts.push({ content: piece, source: `facts.${key}` });
     }
   }

@@ -1,0 +1,67 @@
+{
+  "iso": "ni",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.430Z",
+  "structured": {
+    "code": "ni",
+    "name": "Nicaragua",
+    "capital": "Managua",
+    "continent": "North America",
+    "areaKm2": 120340,
+    "population": 5142098,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Nicaraguan córdoba"
+    ],
+    "landBorderNames": [
+      "Costa Rica",
+      "Honduras"
+    ],
+    "landBorderCodes": [
+      "cr",
+      "hn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, silver, copper, tungsten, lead, zinc, timber, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Costa Rica and Honduras || extensive Atlantic coastal plains rising to central interior mountains; narrow Pacific coastal plain interrupted by volcanoes || largest country in Central America; contains the largest freshwater body in Central America, Lago de Nicaragua || Resources: gold, silver, copper, tungsten, lead, zinc, timber, fish || Exports: garments, gold, insulated wire, coffee, beef (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "extensive Atlantic coastal plains rising to central interior mountains; narrow Pacific coastal plain interrupted by volcanoes || Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Costa Rica and Honduras"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical in lowlands, cooler in highlands || destructive earthquakes; volcanoes; landslides; extremely susceptible to hurricanes volcanism: significant volcanic activity; Cerro Negro (728 m) is one of Nicaragua's most active volcanoes; its lava flows and ash have been known to cause significant damage to farmland and buildings; other historically active volcanoes include Concepcion, Cosiguina, Las Pilas, Masaya, Momotombo, San Cristobal, and Telica"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Central American economy; until 2018, nearly 20 years of sustained GDP growth; recent struggles due to COVID-19, political instability, and hurricanes; significant remittances; increasing poverty and food scarcity since 2005; sanctions limit investment || Exports: garments, gold, insulated wire, coffee, beef (2023) || Industries: food processing, chemicals, machinery and metal products, knit and woven apparel, petroleum refining and distribution, beverages, footwear, wood, electric wire harness manufacturing, mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 44.9%, Protestant 38.7% (Evangelical 38.2, Adventist 0.5%), other 1.2%, (includes Jehovah's Witness and Church of Jesus Christ), believer but not belonging to a church 1%, agnostic or atheist 0.4%, none 13.7%, unspecified 0.2% (2020 est.) || Mestizo (mixed Indigenous and White) 69%, White 17%, Black 9%, Indigenous 5%"
+    }
+  }
+}

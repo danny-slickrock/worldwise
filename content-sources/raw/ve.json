@@ -1,0 +1,194 @@
+{
+  "iso": "ve",
+  "fetchedAt": "2026-09-04T23:57:10.320Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/ve.json"
+    }
+  },
+  "wikidata": {
+    "name": "Venezuela",
+    "gec": "VE",
+    "capital": "Caracas",
+    "areaKm2": 912050,
+    "population": 31250306,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish",
+      "Venezuelan Sign Language"
+    ],
+    "currencies": [
+      "sovereign bolivar"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "fr",
+      "gb",
+      "br",
+      "gy",
+      "co",
+      "tt",
+      "vc",
+      "lc",
+      "kn",
+      "gd",
+      "dm",
+      "do",
+      "nl"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/ve.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Venezuela was one of three countries that emerged from the collapse of Gran Colombia in 1830, the others being Ecuador and New Granada (Colombia). For most of the first half of the 20th century, military strongmen ruled Venezuela and promoted the oil industry while allowing some social reforms. Democratically elected governments largely held sway until 1999, but Hugo CHAVEZ, who was president from 1999 to 2013, exercised authoritarian control over other branches of government. This trend continued in 2018 when Nicolas MADURO claimed the presidency for his second term in an election boycotted by most opposition parties and widely viewed as fraudulent. The legislative elections in 2020 were also seen as fraudulent, and most opposition parties and many international actors consider the resulting National Assembly illegitimate. In 2021, many opposition parties broke a three-year election boycott and participated in mayoral and gubernatorial elections, despite flawed conditions. As a result, the opposition more than doubled its representation at the mayoral level and retained four of 23 governorships. The 2021 regional elections marked the first time since 2006 that the EU was allowed to send an electoral observation mission to Venezuela.<br><br>MADURO has placed strong restrictions on free speech and the press. Since CHAVEZ, the ruling party has expanded the state's role in the economy through expropriations of major enterprises, strict currency exchange and price controls, and over-dependence on the petroleum industry for revenues. Years of economic mismanagement left Venezuela ill-prepared to weather the global drop in oil prices in 2014, sparking an economic decline that has resulted in reduced government social spending, shortages of basic goods, and high inflation. Worsened living conditions have prompted nearly 8 million Venezuelans to emigrate, mainly settling in nearby countries. The US imposed financial sanctions on MADURO and his representatives in 2017 and on sectors of the Venezuelan economy in 2018. Limited sanctions relief followed when the MADURO administration began making democratic and electoral concessions. <br><br>The government's mismanagement and lack of investment in infrastructure has also weakened the country's energy sector. Caracas has relaxed some controls to mitigate the impact of its sustained economic crisis, such as allowing increased import flexibility for the private sector and the informal use of US dollars and other international currencies. Ongoing concerns include human rights abuses, rampant violent crime, political manipulation of the judicial and electoral systems, and corruption.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern South America, bordering the Caribbean Sea and the North Atlantic Ocean, between Colombia and Guyana"
+      },
+      "Area": {
+        "total ": {
+          "text": "912,050 sq km"
+        },
+        "land": {
+          "text": "882,050 sq km"
+        },
+        "water": {
+          "text": "30,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,267 km"
+        },
+        "border countries": {
+          "text": "Brazil 2,137 km; Colombia 2,341 km; Guyana 789 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,800 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; more moderate in highlands"
+      },
+      "Terrain": {
+        "text": "Andes Mountains and Maracaibo Lowlands in northwest; central plains (llanos); Guiana Highlands in southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico Bolivar 4,978 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "450 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, iron ore, gold, bauxite, other minerals, hydropower, diamonds"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "24.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 20.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "53.5% (2023 est.)"
+        },
+        "other": {
+          "text": "22.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "subject to floods, rockslides, mudslides; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "<p><strong>note 1:</strong> the country lies on major sea and air routes linking North and South America</p> <p><strong>note 2:</strong> Venezuela has some of the most unique geology in the world; <em>tepuis </em>are the massive table-top mountains of the western Guiana Highlands that tend to be isolated and thus support unique endemic plant and animal species; their sheer cliffsides help create some of the most spectacular waterfalls in the world, including Angel Falls, the world's highest (979 m; 3,212 ft) that drops from Auyan Tepui</p>"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "31,755,435 (2025 est.)"
+        },
+        "male": {
+          "text": "15,808,263"
+        },
+        "female": {
+          "text": "15,947,172"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 98.2%, indigenous 1.3%, Portuguese 0.1%, other 0.4% (2023 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 48.1%, Protestant 31.6% (Evangelical 31.4%, Adventist 0.2%), Jehovah's Witness 1.4%, African American/umbanda 0.7%, other 0.1%, believer 3.5%, agnostic 0.1%, atheist, 0.4%, none 13.6%, unspecified 0.6% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "unspecified Spanish, Italian, Portuguese, Arab, German, African, Indigenous"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "88.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.16% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is concentrated in the northern and western highlands along an eastern spur at the northern end of the Andes, an area that includes the capital of Caracas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "South American economy; ongoing hyperinflation since mid-2010s; chaotic economy due to political corruption, infrastructure cuts, and human rights abuses; in debt default; oil exporter; hydropower consumer; rising Chinese relations"
+      },
+      "Agricultural products": {
+        "text": "milk, sugarcane, maize, rice, plantains, oil palm fruit, bananas, chicken, pineapples, potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agricultural products, livestock, raw materials, machinery and equipment, transport equipment, construction materials, medical equipment, pharmaceuticals, chemicals, iron and steel products, crude oil and petroleum products"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, petroleum coke, scrap iron, alcohols, fertilizers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 50%, China 10%, Spain 9%, Brazil 6%, Turkey 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, soybean meal, corn, plastic products, vehicle parts/accessories (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; more moderate in highlands"
+      }
+    }
+  }
+}

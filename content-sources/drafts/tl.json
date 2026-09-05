@@ -1,0 +1,67 @@
+{
+  "iso": "tl",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.404Z",
+  "structured": {
+    "code": "tl",
+    "name": "Timor-Leste",
+    "capital": "Dili",
+    "continent": "Asia",
+    "areaKm2": 14918.72,
+    "population": 1400638,
+    "officialLanguages": [
+      "Portuguese",
+      "Tetum"
+    ],
+    "currencies": [
+      "East Timor centavo coins",
+      "United States dollar"
+    ],
+    "landBorderNames": [
+      "Indonesia"
+    ],
+    "landBorderCodes": [
+      "id"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, petroleum, natural gas, manganese, marble",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, northwest of Australia in the Lesser Sunda Islands at the eastern end of the Indonesian archipelago; note - Timor-Leste includes the eastern half of the island of Timor, the Oecussi (Ambeno) region on the northwest portion of the island of Timor, and the islands of Pulau Atauro and Pulau Jaco || mountainous || the island of Timor is part of the Malay Archipelago and is the largest and easternmost of the Lesser Sunda Islands; the district of Oecussi is an exclave separated from Timor-Leste proper by Indonesia; Timor-Leste is the only Asian country located completely in the Southern Hemisphere || Resources: gold, petroleum, natural gas, manganese, marble || Exports: crude petroleum, natural gas, coffee, scrap iron, telephones (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountainous || Southeastern Asia, northwest of Australia in the Lesser Sunda Islands at the eastern end of the Indonesian archipelago; note - Timor-Leste includes the eastern half of the island of Timor, the Oecussi (Ambeno) region on the northwest portion of the island of Timor, and the islands of Pulau Atauro and Pulau Jaco"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; distinct rainy and dry seasons || floods and landslides are common; earthquakes; tsunamis; tropical cyclones"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income Southeast Asian economy; government expenditures funded via oil fund drawdowns; endemic corruption undermines growth; foreign aid-dependent; wide-scale poverty, unemployment, and illiteracy || Exports: crude petroleum, natural gas, coffee, scrap iron, telephones (2023) || Industries: printing, soap manufacturing, handicrafts, woven cloth"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Tetun Prasa 30.6%, Mambai 16.6%, Makasai 10.5%, Tetun Terik 6.1%, Baikenu 5.9%, Kemak 5.8%, Bunak 5.5%, Tokodede 4%, Fataluku 3.5%, Waima'a 1.8%, Galoli 1.4%, Naueti 1.4%, Idate 1.2%, Midiki 1.2%, other 4.5% (2015 est.) || Catholic 90.7%, other 7.1%, Protestant Evangelical 1.9%; less than 1%: Islam, Buddhist, Hindu (2022 est.) || Austronesian (Malayo-Polynesian) (includes Tetun, Mambai, Tokodede, Galoli, Kemak, Baikeno), Melanesian-Papuan (includes Bunak, Fataluku, Bakasai), small Chinese minority"
+    }
+  }
+}

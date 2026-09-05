@@ -1,0 +1,62 @@
+{
+  "iso": "mu",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.416Z",
+  "structured": {
+    "code": "mu",
+    "name": "Mauritius",
+    "capital": "Port Louis",
+    "continent": "Africa",
+    "areaKm2": 2040,
+    "population": 1264613,
+    "officialLanguages": [
+      "French",
+      "English"
+    ],
+    "currencies": [
+      "Mauritian rupee"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "arable land, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, island in the Indian Ocean, about 800 km (500 mi) east of Madagascar || small coastal plain rising to discontinuous mountains encircling central plateau || the main island, from which the country derives its name, is of volcanic origin and is almost entirely surrounded by coral reefs; former home of the extinct dodo, a large flightless bird related to pigeons || Resources: arable land, fish || Exports: fish, garments, raw sugar, fertilizers, diamonds (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "small coastal plain rising to discontinuous mountains encircling central plateau || Southern Africa, island in the Indian Ocean, about 800 km (500 mi) east of Madagascar"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical, modified by southeast trade winds; warm, dry winter (May to November); hot, wet, humid summer (November to May) || cyclones (November to April); almost completely surrounded by reefs that may pose maritime hazards"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Indian Ocean island economy; diversified portfolio; investing in maritime security; strong tourism sector decimated by COVID-19; expanding in information and financial services; environmentally fragile || Exports: fish, garments, raw sugar, fertilizers, diamonds (2023) || Industries: food processing (largely sugar milling), textiles, clothing, mining, chemicals, metal products, transport equipment, nonelectrical machinery, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Creole 86.5%, Bhojpuri 5.3%, French 4.1%, two languages 1.4%, other 2.6% (includes English, one of the two official languages of the National Assembly, which is spoken by less than 1% of the population), unspecified 0.1% (2011 est.) || Hindu 48.5%, Roman Catholic 26.3%, Muslim 17.3%, other Christian 6.4%, other 0.6%, none 0.7%, unspecified 0.1% (2011 est.) || Indo-Mauritian (compose approximately two thirds of the total population), Creole, Sino-Mauritian, Franco-Mauritian"
+    }
+  }
+}

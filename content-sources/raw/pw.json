@@ -1,0 +1,173 @@
+{
+  "iso": "pw",
+  "fetchedAt": "2026-09-04T23:57:11.784Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/ps.json"
+    }
+  },
+  "wikidata": {
+    "name": "Palau",
+    "gec": "PS",
+    "capital": "Ngerulmud",
+    "areaKm2": 465.550362,
+    "population": 21729,
+    "continent": "Insular Oceania",
+    "officialLanguages": [
+      "English",
+      "Japanese",
+      "Palauan"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "id",
+      "fm",
+      "ph"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/ps.json",
+    "Introduction": {
+      "Background": {
+        "text": "Humans arrived in the Palauan archipelago from Southeast Asia around 1000 B.C. and developed a complex, highly organized matrilineal society where high-ranking women picked the chiefs. The islands were the westernmost part of the widely scattered Pacific islands north of New Guinea that Spanish explorers named the Caroline Islands in the 17th century. The 18th and 19th centuries saw occasional visits of whalers and traders as Spain gained some influence in the islands and administered it from the Philippines. Spain sold Palau to Germany in 1899 after losing the Philippines in the Spanish-American War.<br><br>Japan seized Palau in 1914, was granted a League of Nations mandate to administer the islands in 1920, and made Koror the capital of its South Seas Mandate in 1922. By the outbreak of World War II, there were four times as many Japanese living in Koror as Palauans. In 1944, the US invasion of the island of Peleliu was one of the bloodiest island fights of the Pacific War. After the war, Palau became part of the US-administered Trust Territory of the Pacific Islands.<br><br>Palau voted against joining the Federated States of Micronesia in 1978 and adopted its own constitution in 1981, which stated that Palau was a nuclear-free country. In 1982, Palau signed a Compact of Free Association (COFA) with the US, which granted Palau financial assistance and access to many US domestic programs in exchange for exclusive US military access and defense responsibilities. However, many Palauans saw the COFA as incompatible with the Palauan Constitution because of the US military’s nuclear arsenal, and seven referenda failed to achieve ratification. Following a constitutional amendment and eighth referendum in 1993, the COFA was ratified and entered into force in 1994 when the islands gained their independence. Its funding was renewed in 2010.<br><br>Palau has been on the frontlines of combatting climate change and protecting marine resources. In 2011, Palau banned commercial shark fishing and created the world’s first shark sanctuary. In 2017, Palau began stamping the Palau Pledge into passports, reminding visitors to act in ecologically and culturally responsible ways. In 2020, Palau banned coral reef-toxic sunscreens and expanded its fishing prohibition to include 80% of its exclusive economic zone."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, group of islands in the North Pacific Ocean, southeast of the Philippines"
+      },
+      "Area": {
+        "total ": {
+          "text": "459 sq km"
+        },
+        "land": {
+          "text": "459 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,519 km"
+      },
+      "Climate": {
+        "text": "tropical; hot and humid; wet season May to November"
+      },
+      "Terrain": {
+        "text": "varying topography from the high, mountainous main island of Babelthuap to low, coral islands usually fringed by large barrier reefs"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Ngerchelchuus 242 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "forests, minerals (especially gold), marine products, deep-seabed minerals"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "9.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 4.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "90.6% (2023 est.)"
+        },
+        "other": {
+          "text": "0% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "typhoons (June to December)"
+      },
+      "Geography - note": {
+        "text": "westernmost archipelago in the Caroline chain, consists of six island groups totaling more than 300 islands; includes world-famous Rock Islands"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "21,947 (2025 est.)"
+        },
+        "male": {
+          "text": "11,257"
+        },
+        "female": {
+          "text": "10,690"
+        }
+      },
+      "Languages": {
+        "text": "Palauan (official on most islands) 65.2%, other Micronesian 1.9%, English (official) 19.1%, Filipino 9.9%, Chinese 1.2%, other 2.8% (2015 est.)",
+        "note": "<strong>note:</strong> Sonsoralese is official in Sonsoral; Tobian is official in Tobi; Angaur and Japanese are official in Angaur"
+      },
+      "Religions": {
+        "text": "Roman Catholic 46.9%, Protestant 30.9% (Evangelical 24.6%, Seventh Day Adventist 5%, other Protestant 1.4%), Modekngei 5.1% (indigenous to Palau), Muslim 4.9%, other 12.3% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Palauan (Micronesian with Malayan and Melanesian admixtures) 70.6%, Carolinian 1.2%, Asian 26.5%, other 1.7% (2020 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "82.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.59% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is located on the southern end of the main island of Babelthuap"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income Pacific island economy; environmentally fragile; subsistence agriculture and fishing industries; US aid reliance; rebounding post-pandemic tourism industry and services sector; very high living standard and low unemployment"
+      },
+      "Agricultural products": {
+        "text": "coconuts, cassava (manioc, tapioca), sweet potatoes; fish, pigs, chickens, eggs, bananas, papaya, breadfruit, calamansi, soursop, Polynesian chestnuts, Polynesian almonds, mangoes, taro, guava, beans, cucumbers, squash/pumpkins (various), eggplant, green onions, kangkong (watercress), cabbages (various), radishes, betel nuts, melons, peppers, noni, okra"
+      },
+      "Industries": {
+        "text": "tourism, fishing, subsistence agriculture"
+      },
+      "Exports - commodities": {
+        "text": "ships, refined petroleum (2023)",
+        "note": "<strong>note:</strong> top export commodities based on value in dollars over $500,000"
+      },
+      "Exports - partners": {
+        "text": "India 41%, Turkey 26%, Taiwan 10%, USA 9%, Japan 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, additive manufacturing machines, cars, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot and humid; wet season May to November"
+      }
+    }
+  }
+}

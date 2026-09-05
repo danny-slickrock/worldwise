@@ -1,0 +1,185 @@
+{
+  "iso": "th",
+  "fetchedAt": "2026-09-04T23:56:51.984Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/th.json"
+    }
+  },
+  "wikidata": {
+    "name": "Thailand",
+    "gec": "TH",
+    "capital": "Bangkok",
+    "areaKm2": 513119.5,
+    "population": 66188503,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Thai"
+    ],
+    "currencies": [
+      "baht"
+    ],
+    "sharesBorderWithAnyType": [
+      "kh",
+      "la",
+      "my",
+      "mm"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/th.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Two unified Thai kingdoms emerged in the mid-13th century. The Sukhothai Kingdom, located in the south-central plains, gained its independence from the Khmer Empire to the east. By the late 13th century, Sukhothai’s territory extended into present-day Burma and Laos. Sukhothai lasted until the mid-15th century. The Thai Lan Na Kingdom was established in the north with its capital at Chang Mai; the Burmese conquered Lan Na in the 16th century. The Ayutthaya Kingdom (14th-18th centuries) succeeded the Sukhothai and would become known as the Siamese Kingdom. During the Ayutthaya period, the Thai/Siamese peoples consolidated their hold on what is present-day central and north-central Thailand. Following a military defeat at the hands of the Burmese in 1767, the Siamese Kingdom rose to new heights under the military ruler TAKSIN, who defeated the Burmese occupiers and expanded the kingdom’s territory into modern-day northern Thailand (formerly the Lan Na Kingdom), Cambodia, Laos, and the Malay Peninsula. In the mid-1800s, Western pressure led to Siam signing trade treaties that reduced the country’s sovereignty and independence. In the 1890s and 1900s, the British and French forced the kingdom to cede Cambodian, Laotian, and Malay territories that had been under Siamese control.</p> <p>Following a bloodless revolution in 1932 that led to the establishment of a constitutional monarchy, Thailand's political history was marked by a series of mostly bloodless coups with power concentrated among military and bureaucratic elites. Periods of civilian rule were unstable. The Cold War era saw a communist insurgency and the rise of strongman leaders. Thailand became a US treaty ally in 1954 after sending troops to Korea and later fighting alongside the US in Vietnam. In the 21st century, Thailand has experienced additional turmoil, including a military coup in 2006 that ousted then Prime Minister THAKSIN Chinnawat and large-scale street protests led by competing political factions in 2008-2010. In 2011, THAKSIN's youngest sister, YINGLAK Chinnawat, led the Puea Thai Party to an electoral win and assumed control of the government.</p> <p>In 2014, after months of major anti-government protests in Bangkok, the Constitutional Court removed YINGLAK from office, and the Army, led by Gen. PRAYUT Chan-ocha, then staged a coup against the caretaker government. The military-affiliated National Council for Peace and Order (NCPO) ruled the country under PRAYUT for more than four years, drafting a new constitution that allowed the military to appoint the entire 250-member Senate and required a joint meeting of the House and Senate to select the prime minister -- which effectively gave the military a veto on the selection. King PHUMIPHON Adunyadet passed away in 2016 after 70 years on the throne; his only son, WACHIRALONGKON (aka King RAMA X), formally ascended the throne in 2019. The same year, a long-delayed election allowed PRAYUT to continue his premiership, although the results were disputed and widely viewed as skewed in favor of the party aligned with the military. The country again experienced major anti-government protests in 2020. The reformist Move Forward Party won the most seats in the 2023 election but was unable to form a government, and Srettha THRAVISIN from the Pheu Thai Party replaced PRAYUT as prime minister after forming a coalition of moderate and conservative parties.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, bordering the Andaman Sea and the Gulf of Thailand, southeast of Burma"
+      },
+      "Area": {
+        "total ": {
+          "text": "513,120 sq km"
+        },
+        "land": {
+          "text": "510,890 sq km"
+        },
+        "water": {
+          "text": "2,230 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,673 km"
+        },
+        "border countries": {
+          "text": "Burma 2,416 km; Cambodia 817 km; Laos 1,845 km; Malaysia 595 km"
+        }
+      },
+      "Coastline": {
+        "text": "3,219 km"
+      },
+      "Climate": {
+        "text": "tropical; rainy, warm, cloudy southwest monsoon (mid-May to September); dry, cool northeast monsoon (November to mid-March); southern isthmus always hot and humid"
+      },
+      "Terrain": {
+        "text": "central plain; Khorat Plateau in the east; mountains elsewhere"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Doi Inthanon 2,565 m"
+        },
+        "lowest point": {
+          "text": "Gulf of Thailand 0 m"
+        },
+        "mean elevation": {
+          "text": "287 m"
+        }
+      },
+      "Natural resources": {
+        "text": "tin, rubber, natural gas, tungsten, tantalum, timber, lead, fish, gypsum, lignite, fluorite, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "43.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 31% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 1.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "39% (2023 est.)"
+        },
+        "other": {
+          "text": "17.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "land subsidence in Bangkok area resulting from the depletion of the water table; droughts"
+      },
+      "Geography - note": {
+        "text": "controls only land route from Asia to Malaysia and Singapore"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "70,025,248 (2025 est.)"
+        },
+        "male": {
+          "text": "34,101,016"
+        },
+        "female": {
+          "text": "35,924,232"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Thai (official) only 90.7%, Thai and other languages 6.4%, only other languages 2.9% (includes Malay, Burmese); English is a secondary language among the elite (2010 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>สารานุกรมโลก - แหล่งข้อมูลพื้นฐานที่สำคัญ (Thai)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent population by language(s) spoken at home"
+      },
+      "Religions": {
+        "text": "Buddhist 92.5%, Muslim 5.4%, Christian 1.2%, other 0.9% (includes animist, Confucian, Hindu, Jewish, Sikh, and Taoist) (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Thai 97.5%, Burmese 1.3%, other 1.1%, unspecified &lt;0.1% (2015 est.)",
+        "note": "<strong>note:</strong> data represent population by nationality"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "53.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.43% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "highest population density is found in and around Bangkok; significant population clusters throughout large parts of the country, particularly north and northeast of Bangkok and in the extreme southern region of the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income Southeast Asian economy; substantial infrastructure; major electronics, food, and automobile parts exporter; globally used currency; extremely low unemployment; ongoing Thailand 4.0 economic development"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, rice, cassava, oil palm fruit, maize, rubber, tropical fruits, chicken, mangoes/guavas, fruits (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, textiles and garments, agricultural processing, beverages, tobacco, cement, light manufacturing such as jewelry and electric appliances, computers and parts, integrated circuits, furniture, plastics, automobiles and automotive parts, agricultural machinery, air conditioning and refrigeration, ceramics, aluminum, chemical, environmental management, glass, granite and marble, leather, machinery and metal work, petrochemical, petroleum refining, pharmaceuticals, printing, pulp and paper, rubber, sugar, rice, fishing, cassava, world's second-largest tungsten producer and third-largest tin producer"
+      },
+      "Exports - commodities": {
+        "text": "machine parts, integrated circuits, trucks, cars, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 18%, China 13%, Japan 7%, Australia 4%, Singapore 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, integrated circuits, natural gas, gold, vehicle parts/accessories (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; rainy, warm, cloudy southwest monsoon (mid-May to September); dry, cool northeast monsoon (November to mid-March); southern isthmus always hot and humid"
+      }
+    }
+  }
+}

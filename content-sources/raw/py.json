@@ -1,0 +1,184 @@
+{
+  "iso": "py",
+  "fetchedAt": "2026-09-04T23:57:08.623Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/pa.json"
+    }
+  },
+  "wikidata": {
+    "name": "Paraguay",
+    "gec": "PA",
+    "capital": "Asunción",
+    "areaKm2": 406756,
+    "population": 6811297,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish",
+      "Guarani"
+    ],
+    "currencies": [
+      "Paraguayan guaraní"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "ar",
+      "bo"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/pa.json",
+    "Introduction": {
+      "Background": {
+        "text": "Several Indigenous groups, principally belonging to the Guarani language family, inhabited the area of modern Paraguay before the arrival of the Spanish in the early 16th century, when the territory was incorporated into the Viceroyalty of Peru. Paraguay achieved its independence from Spain in 1811 with the help of neighboring states. In the aftermath of independence, a series of military dictators ruled the country until 1870. During the disastrous War of the Triple Alliance (1864-70) -- fought against Argentina, Brazil, and Uruguay -- Paraguay lost two thirds of its adult males and much of its territory. The country stagnated economically for the next half-century and experienced a tumultuous series of political regimes. Following the Chaco War of 1932-35 with Bolivia, Paraguay gained a large part of the Chaco lowland region. The 35-year military dictatorship of Alfredo STROESSNER ended in 1989, and Paraguay has held relatively free and regular presidential elections since the country's return to democracy."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central South America, northeast of Argentina, southwest of Brazil"
+      },
+      "Area": {
+        "total ": {
+          "text": "406,752 sq km"
+        },
+        "land": {
+          "text": "397,302 sq km"
+        },
+        "water": {
+          "text": "9,450 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,655 km"
+        },
+        "border countries": {
+          "text": "Argentina 2,531 km; Bolivia 753 km; Brazil 1,371 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "subtropical to temperate; substantial rainfall in the eastern portions, becoming semiarid in the far west"
+      },
+      "Terrain": {
+        "text": "grassy plains and wooded hills east of Rio Paraguay; Gran Chaco region west of Rio Paraguay mostly low, marshy plain near the river, and dry forest and thorny scrub elsewhere"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro Pero 842 m"
+        },
+        "lowest point": {
+          "text": "junction of R&iacute;o Paraguay and R&iacute;o Paran&aacute; 46 m"
+        },
+        "mean elevation": {
+          "text": "178 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower, timber, iron ore, manganese, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "54.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 42.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "36.9% (2023 est.)"
+        },
+        "other": {
+          "text": "7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "local flooding in southeast (early September to June); poorly drained plains may become boggy (early October to June)"
+      },
+      "Geography - note": {
+        "text": "landlocked; lies between Argentina, Bolivia, and Brazil; population concentrated in eastern and southern part of country"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "7,604,044 (2025 est.)"
+        },
+        "male": {
+          "text": "3,809,407"
+        },
+        "female": {
+          "text": "3,794,637"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) and Guarani (official) 46.3%, only Guarani 34%, only Spanish 15.2%, other (includes Portuguese, German, other Indigenous languages) 4.1%, no response 0.4% (2012 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent predominant household language"
+      },
+      "Religions": {
+        "text": "Roman Catholic 80.4%, Protestant 7% (Evangelical (non-specific) 6.7%, Evangelical Pentecostal &lt;0.1%, Adventist &lt;0.1%, Protestant (non-specific) &lt;0.1%), Believer (not belonging to the church) 5.7%, other 0.6%, agnostic &lt;0.1%, none 0.2%, unspecified 6.2% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed Spanish and Indigenous ancestry) 95%, other 5%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "63.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.64% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population resides in the eastern half of the country; to the west lies the Gran Chaco (a semi-arid lowland plain), which accounts for 60% of the land territory, but only 2% of the overall population"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income South American economy; COVID-19 hit while still recovering from 2019 Argentina-driven recession; global hydroelectricity leader; major corruption and money-laundering locale; highly agrarian economy; significant income inequality"
+      },
+      "Agricultural products": {
+        "text": "soybeans, sugarcane, maize, cassava, wheat, rice, milk, beef, oranges, bananas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "sugar processing, cement, textiles, beverages, wood products, steel, base metals, electric power"
+      },
+      "Exports - commodities": {
+        "text": "soybeans, beef, electricity, corn, soybean meal (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Argentina 33%, Brazil 25%, Chile 10%, USA 2%, Uruguay 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "broadcasting equipment, refined petroleum, fertilizers, cars, pesticides (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "subtropical to temperate; substantial rainfall in the eastern portions, becoming semiarid in the far west"
+      }
+    }
+  }
+}

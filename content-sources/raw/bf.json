@@ -1,0 +1,182 @@
+{
+  "iso": "bf",
+  "fetchedAt": "2026-09-04T23:56:54.687Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/uv.json"
+    }
+  },
+  "wikidata": {
+    "name": "Burkina Faso",
+    "gec": "UV",
+    "capital": "Ouagadougou",
+    "areaKm2": 274200,
+    "population": 23025776,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Dioula",
+      "Bissa",
+      "Mooré"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ml",
+      "tg",
+      "bj",
+      "ci",
+      "ne",
+      "gh"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/uv.json",
+    "Introduction": {
+      "Background": {
+        "text": "Many of Burkina Faso’s ethnic groups arrived in the region between the 12th and 15th centuries. The Gurma and Mossi peoples established several of the largest kingdoms in the area and used horse-mounted warriors in military campaigns. Of the various Mossi kingdoms, the most powerful were Ouagadougou and Yatenga. In the late 19th century, European states competed for control of the region. France eventually conquered the area and established it as a French protectorate. <br><br>The country achieved independence from France in 1960 and changed its name to Burkina Faso in 1984. Repeated military coups were common in the country’s first few decades. In 1987 Blaise COMPAORE deposed the president, established a government, and ruled for 27 years. In 2014, COMPAORE resigned after protests against his repeated efforts to amend the constitution's two-term presidential limit. An interim administration led a year-long transition, organizing presidential and legislative elections. In 2015, Roch Marc Christian KABORE was elected president, and he was reelected in 2020. In 2022, the military conducted two takeovers: In January, army colonel Paul Henri DAMIBA overthrew KABORE in a coup d'etat, and then in September, army captain Ibrahim TRAORE deposed DAMIBA and declared himself transition president. The transition government planned to hold elections by July 2024, but they may be delayed due to security concerns.<br><br>Terrorist groups -- including groups affiliated with Al-Qa’ida and the Islamic State -- began attacks in the country in 2016 and conducted attacks in the capital in 2016, 2017, and 2018. By early 2023, insecurity in Burkina Faso had displaced more than 2 million people and led to significant jumps in humanitarian needs and food insecurity. In addition to terrorism, the country faces a myriad of problems including high population growth, recurring drought, pervasive and perennial food insecurity, and limited natural resources. It is one of the world’s poorest countries."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, north of Ghana"
+      },
+      "Area": {
+        "total ": {
+          "text": "274,200 sq km"
+        },
+        "land": {
+          "text": "273,800 sq km"
+        },
+        "water": {
+          "text": "400 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,611 km"
+        },
+        "border countries": {
+          "text": "Benin 386 km; Cote d'Ivoire 545 km; Ghana 602 km; Mali 1325 km; Niger 622 km; Togo 131 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "three climate zones including a hot tropical savanna with a short rainy season in the southern half, a tropical hot semi-arid steppe climate typical of the Sahel region in the northern half, and small area of hot desert in the very north of the country bordering the Sahara Desert"
+      },
+      "Terrain": {
+        "text": "mostly flat to dissected, undulating plains; hills in the west and southeast; occupies an extensive plateau with savanna that is grassy in the north and gradually gives way to sparse forests in the south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Tena Kourou 749 m"
+        },
+        "lowest point": {
+          "text": "Mouhoun (Black Volta) River 200 m"
+        },
+        "mean elevation": {
+          "text": "297 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, manganese, zinc, limestone, marble, phosphates, pumice, salt"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "53.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 28.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 21.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "12.7% (2023 est.)"
+        },
+        "other": {
+          "text": "33.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "recurring droughts"
+      },
+      "Geography - note": {
+        "text": "landlocked savanna cut by the three principal rivers, the Black, Red, and White Voltas"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "23,490,300 (2025 est.)"
+        },
+        "male": {
+          "text": "11,529,979"
+        },
+        "female": {
+          "text": "11,960,321"
+        }
+      },
+      "Languages": {
+        "text": "Mossi 52.9%, Fula 7.8%, Gourmantche 6.8%, Dyula 5.7%, Bissa 3.3%, Gurunsi 3.2%, French (official) 2.2%, Bwamu 2%, Dagara 2%, San 1.7%, Marka 1.6%, Bobo 1.5%, Senufo 1.5%, Lobi 1.2%, other 6.6% (2019 est.)"
+      },
+      "Religions": {
+        "text": "Muslim 63.8%, Roman Catholic 20.1%, Animiste 9%, Protestant 6.2%, other 0.2%, none 0.7% (2019 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mossi 53.7%, Fulani (Peuhl) 6.8%, Gurunsi 5.9%, Bissa 5.4%, Gurma 5.2%, Bobo 3.4%, Senufo 2.2%, Bissa 1.5%, Lobi 1.5%, Tuareg/Bella 0.1%, other 12.8%, foreign 0.7% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "32.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.75% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is located in the center and south; nearly one third lives in cities, including the capital city of Ouagadougou (Ouaga), as shown in this population distribution map (2019)"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "highly agrarian, low-income economy; limited natural resources; widespread poverty; terrorism disrupting potential economic activity; improving trade balance via increases in gold exports; economy inflating after prior deflation; growing public debt but still manageable"
+      },
+      "Agricultural products": {
+        "text": "maize, sorghum, fruits, vegetables, millet, cowpeas, cotton, groundnuts, sugarcane, rice (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "cotton lint, beverages, agricultural processing, soap, cigarettes, textiles, gold"
+      },
+      "Exports - commodities": {
+        "text": "gold, cotton, oil seeds, coconuts/brazil nuts/cashews, cement (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 72%, UAE 10%, India 3%, Mali 3%, Cote d'Ivoire 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, plastic products, cement, electricity, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "three climate zones including a hot tropical savanna with a short rainy season in the southern half, a tropical hot semi-arid steppe climate typical of the Sahel region in the northern half, and small area of hot desert in the very north of the country bordering the Sahara Desert"
+      }
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "iso": "af",
+  "fetchedAt": "2026-09-04T23:56:43.848Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-asia/af.json"
+    }
+  },
+  "wikidata": {
+    "name": "Afghanistan",
+    "gec": "AF",
+    "capital": "Kabul",
+    "areaKm2": 652230,
+    "population": 41454761,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Balochi",
+      "Pashayi",
+      "Nuristani",
+      "Pashto",
+      "Dari",
+      "Pamir",
+      "Uzbek",
+      "Turkmen",
+      "Arabic"
+    ],
+    "currencies": [
+      "afghani"
+    ],
+    "sharesBorderWithAnyType": [
+      "uz",
+      "ir",
+      "pk",
+      "tj",
+      "tm",
+      "cn"
+    ]
+  },
+  "factbook": {
+    "_path": "south-asia/af.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Ahmad Shah DURRANI unified the Pashtun tribes and founded Afghanistan in 1747. The country served as a buffer between the British and Russian Empires until it won independence from notional British control in 1919. A brief experiment in increased democracy ended in a 1973 coup and a 1978 communist countercoup. The Soviet Union invaded in 1979 to support the tottering Afghan communist regime, touching off a long and destructive war. Internationally supported anti-communist mujahidin rebels forced the USSR to withdraw in 1989. A series of subsequent civil wars saw Kabul finally fall in 1996 to the Taliban, a hardline Pakistani-sponsored movement. Following the 11 September 2001 terrorist attacks, a US and Allied military action toppled the Taliban for sheltering Usama BIN LADIN.</p> <p>A UN-sponsored Bonn Conference in 2001 established a process for political reconstruction that included the adoption of a new constitution, a presidential election in 2004, and National Assembly elections in 2005. In 2004, Hamid KARZAI became the first democratically elected president of Afghanistan, and he was reelected in 2009. Ashraf Ghani AHMADZAI succeeded him as president in 2014 following a disputed election. The Taliban conducted an insurgency for two decades against the Afghan Government and forces from the United States and other countries. In February 2020, the US and the Taliban signed an agreement that led to the withdrawal of international forces in exchange for commitments on counterterrorism and other assurances. The Taliban took over Afghanistan on 15 August 2021.<br><br>The Taliban established an all-male interim leadership structure dominated by Pashtun clerics under the leadership of Haivatrullah AKHUNDZADA. The Taliban issued numerous edicts that constrained women's mobility, ability to study and work, and access to education beyond primary school. To date, no country has recognized the Taliban as the government of Afghanistan.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Asia, north and west of Pakistan, east of Iran"
+      },
+      "Area": {
+        "total ": {
+          "text": "652,230 sq km"
+        },
+        "land": {
+          "text": "652,230 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,987 km"
+        },
+        "border countries": {
+          "text": "China 91 km; Iran 921 km; Pakistan 2,670 km; Tajikistan 1,357 km; Turkmenistan 804 km; Uzbekistan 144 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "arid to semiarid; cold winters and hot summers"
+      },
+      "Terrain": {
+        "text": "mostly rugged mountains; plains in north and southwest"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Noshak 7,492 m"
+        },
+        "lowest point": {
+          "text": "Amu Darya 258 m"
+        },
+        "mean elevation": {
+          "text": "1,884 m"
+        }
+      },
+      "Natural resources": {
+        "text": "natural gas, petroleum, coal, copper, chromite, talc, barites, sulfur, lead, zinc, iron ore, salt, precious and semiprecious stones, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "58.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 12% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 46% (2023 est.)"
+        },
+        "forest": {
+          "text": "1.9% (2023 est.)"
+        },
+        "other": {
+          "text": "39.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "damaging earthquakes occur in Hindu Kush mountains; flooding; droughts"
+      },
+      "Geography - note": {
+        "text": "landlocked; the Hindu Kush mountains that run northeast to southwest divide the northern provinces from the rest of the country; the highest peaks are in the northern Vakhan (Wakhan Corridor)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "49,474,805 (2025 est.)"
+        },
+        "male": {
+          "text": "25,051,967"
+        },
+        "female": {
+          "text": "24,422,838"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Afghan Persian or Dari (official, lingua franca) 77%, Pashto (official) 48%, Uzbeki 11%, English 6%, Turkmani 3%, Urdu 3%, Pashaie 1%, Nuristani 1%, Arabic 1%, Balochi 1%, other &lt;1% (2020 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br> <p>کتاب حقایق جهان، مرجعی ضروری برای اطلاعات اولیە (Dari)</p> د دنیا د حقائېقو کتاب، بنیادی معلوماتو لپاره ضروری سرچینه- (Pashto)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note 1:</strong> percentages sum to more than 100% because many people are multilingual <br><br><strong>note 2: </strong>Uzbeki, Turkmani, Pashaie, Nuristani, Balochi, and Pamiri are the third official languages in areas where the majority speaks them"
+      },
+      "Religions": {
+        "text": "Muslim 99.7% (Sunni 84.7 - 89.7%, Shia 10 - 15%), other &lt;0.3% (2009 est.)"
+      },
+      "Ethnic groups": {
+        "text": "current, reliable statistical data on ethnicity in Afghanistan are not available; Afghanistan's 2004 Constitution cited Pashtun, Tajik, Hazara, Uzbek, Turkman, Baluch, Pashaie, Nuristani, Aymaq, Arab, Qirghiz, Qizilbash, Gujur, and Brahwui ethnicities; Afghanistan has dozens of other small ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "26.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.34% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "populations tend to cluster in the foothills and periphery of the rugged Hindu Kush range; smaller groups are found in many of the country's interior valleys; in general, the east is more densely settled, while the south is sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>low-income South Asian economy; economy stable after major contraction due to Taliban takeover, but recovery remains fragile; widespread poverty and obstacles to human development; import-reliant for food, fuel, and machinery; ongoing sanctions, suspended development aid, and frozen reserve assets</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, milk, grapes, watermelons, potatoes, cantaloupes/melons, vegetables, rice, onions, maize (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "small-scale production of bricks, textiles, soap, furniture, shoes, fertilizer, apparel, food products, non-alcoholic beverages, mineral water, cement; handwoven carpets; natural gas, coal, copper"
+      },
+      "Exports - commodities": {
+        "text": "coal, grapes, tropical fruits, gum resins, other nuts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Pakistan 42%, India 40%, China 4%, UAE 2%, Turkey 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "wheat flours, tobacco, palm oil, broadcasting equipment, synthetic fabric (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "arid to semiarid; cold winters and hot summers"
+      }
+    }
+  }
+}

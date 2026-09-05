@@ -1,0 +1,71 @@
+{
+  "iso": "bj",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.407Z",
+  "structured": {
+    "code": "bj",
+    "name": "Benin",
+    "capital": "Porto-Novo",
+    "continent": "Africa",
+    "areaKm2": 114763,
+    "population": 14111034,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Burkina Faso",
+      "Niger",
+      "Nigeria",
+      "Togo"
+    ],
+    "landBorderCodes": [
+      "bf",
+      "ne",
+      "ng",
+      "tg"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "small offshore oil deposits, limestone, marble, timber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the Bight of Benin, between Nigeria and Togo || mostly flat to undulating plain; some hills and low mountains || sandbanks create difficult access to a coast with no natural harbors, river mouths, or islands || Resources: small offshore oil deposits, limestone, marble, timber || Exports: gold, cotton, coconuts/brazil nuts/cashews, soybeans, wood (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to undulating plain; some hills and low mountains || Western Africa, bordering the Bight of Benin, between Nigeria and Togo"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid in south; semiarid in north || hot, dry, dusty harmattan wind may affect north from December to March"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "robust economic growth; slightly declining but still widespread poverty; strong trade relations with Nigeria; cotton exporter; COVID-19 has led to capital outflows and border closures; WAEMU member with currency pegged to the euro; recent fiscal deficit and debt reductions || Exports: gold, cotton, coconuts/brazil nuts/cashews, soybeans, wood (2023) || Industries: textiles, food processing, construction materials, cement"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "55 languages; French (official); Fon (a Gbe language), Yom (a Gur language) and Yoruba are the most important indigenous languages in the south; half a dozen regionally important languages in the north, including Bariba and Fulfulde || Muslim 27.7%, Roman Catholic 25.5%, Protestant 13.5% (Celestial 6.7%, Methodist 3.4%, other Protestant 3.4%), Vodoun 11.6%, other Christian 9.5%, other traditional religions 2.6%, other 2.6%, none 5.8% (2013 est.) || Fon and related 38.4%, Adja and related 15.1%, Yoruba and related 12%, Bariba and related 9.6%, Fulani and related 8.6%, Ottamari and related 6.1%, Yoa-Lokpa and related 4.3%, Dendi and related 2.9%, other 0.9%, foreigner 1.9% (2013 est.)"
+    }
+  }
+}

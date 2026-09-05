@@ -1,0 +1,173 @@
+{
+  "iso": "jm",
+  "fetchedAt": "2026-09-04T23:57:08.138Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/jm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Jamaica",
+    "gec": "JM",
+    "capital": "Kingston",
+    "areaKm2": 10991.90954,
+    "population": 2697983,
+    "continent": "North America",
+    "officialLanguages": [
+      "English",
+      "Jamaican Patois"
+    ],
+    "currencies": [
+      "Jamaican dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "gb"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/jm.json",
+    "Introduction": {
+      "Background": {
+        "text": "Europeans first saw Jamaica when Christopher COLUMBUS arrived in 1494, and the Spanish settled the island early in the 16th century. The Native Taino, who had inhabited Jamaica for centuries, were gradually exterminated and replaced with African slaves. England seized the island in 1655 and established a plantation economy based on sugar, cocoa, and coffee. The abolition of slavery in 1834 freed a quarter-million slaves, many of whom became small farmers. Jamaica gradually increased its independence from Britain. In 1958, it joined other British Caribbean colonies in forming the Federation of the West Indies. Jamaica withdrew from the Federation in 1961 and gained full independence in 1962. Deteriorating economic conditions during the 1970s led to recurring violence as rival gangs affiliated with the major political parties evolved into powerful organized crime networks involved in international drug smuggling and money laundering. Violent crime, drug trafficking, corruption, and poverty pose significant challenges to the government today. Nonetheless, many rural and resort areas remain relatively safe and contribute substantially to the economy."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, island in the Caribbean Sea, south of Cuba"
+      },
+      "Area": {
+        "total ": {
+          "text": "10,991 sq km"
+        },
+        "land": {
+          "text": "10,831 sq km"
+        },
+        "water": {
+          "text": "160 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,022 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; temperate interior"
+      },
+      "Terrain": {
+        "text": "mostly mountains, with narrow, discontinuous coastal plain"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Blue Mountain Peak 2,256 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "18 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, alumina, gypsum, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "38.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 6.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 21.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "56.2% (2023 est.)"
+        },
+        "other": {
+          "text": "5.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hurricanes (especially July to November)"
+      },
+      "Geography - note": {
+        "text": "third largest island in the Caribbean (after Cuba and Hispaniola); strategic location between Cayman Trench and Jamaica Channel, the main sea lanes for the Panama Canal"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,938,503 (2025 est.)"
+        },
+        "male": {
+          "text": "1,453,759"
+        },
+        "female": {
+          "text": "1,484,744"
+        }
+      },
+      "Languages": {
+        "text": "English, Jamaican patois"
+      },
+      "Religions": {
+        "text": "Protestant 64.8% (includes Seventh Day Adventist 12.0%, Pentecostal 11.0%, Other Church of God 9.2%, New Testament Church of God 7.2%, Baptist 6.7%, Church of God in Jamaica 4.8%, Church of God of Prophecy 4.5%, Anglican 2.8%, United Church 2.1%, Methodist 1.6%, Revived 1.4%, Brethren 0.9%, and Moravian 0.7%), Roman Catholic 2.2%, Jehovah's Witness 1.9%, Rastafarian 1.1%, other 6.5%, none 21.3%, unspecified 2.3% (2011 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Black 92.1%, mixed 6.1%, East Indian 0.8%, other 0.4%, unspecified 0.7% (2011 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "57.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.79% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population density is high throughout, but increases in and around Kingston, Montego Bay, and Port Esquivel"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income Caribbean island economy; key agriculture and tourism sectors; high crime, youth unemployment, and poverty; susceptible to natural disasters and global commodity price shocks; progress in reducing public debt and moderating inflation within target range</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, goat milk, yams, chicken, oranges, coconuts, bananas, plantains, pumpkins/squash, pineapples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agriculture, mining, manufacture, construction, financial and insurance services, tourism, telecommunications"
+      },
+      "Exports - commodities": {
+        "text": "aluminum oxide, refined petroleum, natural gas, liquor, processed fruits and nuts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 37%, Russia 7%, Latvia 7%, Iceland 7%, UK 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, natural gas, cars, crude petroleum, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; temperate interior"
+      }
+    }
+  }
+}

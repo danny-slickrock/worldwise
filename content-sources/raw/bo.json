@@ -1,0 +1,188 @@
+{
+  "iso": "bo",
+  "fetchedAt": "2026-09-04T23:57:05.526Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/bl.json"
+    }
+  },
+  "wikidata": {
+    "name": "Bolivia",
+    "gec": "BL",
+    "capital": "Sucre",
+    "areaKm2": 1098581,
+    "population": 12244159,
+    "continent": "South America",
+    "officialLanguages": [
+      "Spanish",
+      "Aymara",
+      "Quechua",
+      "Guarani"
+    ],
+    "currencies": [
+      "boliviano"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "cl",
+      "ar",
+      "pe",
+      "py"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/bl.json",
+    "Introduction": {
+      "Background": {
+        "text": "Bolivia, named after independence fighter Simón BOLÍVAR, broke away from Spanish rule in 1825. Much of its subsequent history has consisted of a series of coups and countercoups, with the last coup occurring in 1980. Democratic civilian rule was established in 1982, but leaders have faced problems of deep-seated poverty, social unrest, and illegal drug production. <br><br>In 2005, Bolivians elected Movement Toward Socialism leader Evo MORALES as president -- by the widest margin of any leader since 1982 -- after he ran on a promise to change the country's traditional political class and empower the poor and indigenous majority. In 2009 and 2014, MORALES easily won reelection, and his party maintained control of the legislative branch. In 2016, MORALES narrowly lost a referendum to approve a constitutional amendment that would have allowed him to compete in the 2019 presidential election. A subsequent Supreme Court ruling stating that term limits violate human rights provided the justification for MORALES to run despite the referendum, but rising violence, pressure from the military, and widespread allegations of electoral fraud ultimately forced him to flee the country. An interim government, led by President Jeanine AÑEZ Chávez, held new elections in 2020, and Luis Alberto ARCE Catacora was elected president."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central South America, southwest of Brazil"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,098,581 sq km"
+        },
+        "land": {
+          "text": "1,083,301 sq km"
+        },
+        "water": {
+          "text": "15,280 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "7,252 km"
+        },
+        "border countries": {
+          "text": "Argentina 942 km; Brazil 3,403 km; Chile 942 km; Paraguay 753 km; Peru 1,212 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "varies with altitude; humid and tropical to cold and semiarid"
+      },
+      "Terrain": {
+        "text": "rugged Andes Mountains with a highland plateau (Altiplano), hills, lowland plains of the Amazon Basin"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Nevado Sajama 6,542 m"
+        },
+        "lowest point": {
+          "text": "Rio Paraguay 90 m"
+        },
+        "mean elevation": {
+          "text": "1,192 m"
+        }
+      },
+      "Natural resources": {
+        "text": "lithium, tin, natural gas, petroleum, zinc, tungsten, antimony, silver, iron, lead, gold, timber, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "35.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 5.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 30.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "50.6% (2023 est.)"
+        },
+        "other": {
+          "text": "13.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding in the northeast (March to April) <br><br><strong>volcanism:</strong> volcanic activity in Andes Mountains on the border with Chile; historically active volcanoes in this region are Irruputuncu (5,163 m), which last erupted in 1995, and the Olca-Paruma volcanic complex (5,762 m to 5,167 m)"
+      },
+      "Geography - note": {
+        "text": "landlocked; shares control of Lago Titicaca, world's highest navigable lake (elevation 3,805 m), with Peru"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "12,436,103 (2025 est.)"
+        },
+        "male": {
+          "text": "6,257,914"
+        },
+        "female": {
+          "text": "6,178,189"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official) 68.1%, Quechua (official) 17.2%, Aymara (official) 10.5%, Guarani (official) 0.6%, other 1.5%, unspecified 2.1%; note - Spanish and all Indigenous languages are official (2012 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 65%, Protestant 19.6% (Evangelical (non-specific) 11.9%, Evangelical Baptist 2.1%, Evangelical Pentecostal 1.8%, Evangelical Methodist 0.7%, Adventist 2.8%, Protestant (non-specific) 0.3%), Believer (not belonging to the church) 0.9%, other 4.8%, atheist 1.7%, agnostic 0.6%, none 6.1%, unspecified 1.3% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (mixed White and Indigenous ancestry) 68%, Indigenous 20%, White 5%, Cholo/Chola 2%, African descent 1%, other 1%, unspecified 3%; 44% other Indigenous group, predominantly Quechua or Aymara (2009 est.)",
+        "note": "<strong>note:</strong> results among surveys vary based on the wording of the ethnicity question and the available response choices; the 2001 national census did not provide \"Mestizo\" as a response choice, resulting in a much higher proportion of respondents identifying themselves as belonging to one of the available indigenous ethnicity choices; the use of \"Mestizo\" and \"Cholo\" varies among response choices in surveys, with surveys using the terms interchangeably, providing one or the other as a response choice, or providing the two as separate response choices"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "71.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.87% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a high-altitude plain in the west between two cordillera of the Andes, known as the Altiplano, is the focal area for most of the population; a dense settlement pattern is also found in and around the city of Santa Cruz, located on the eastern side of the Andes"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "resource-rich economy benefits during commodity booms; has bestowed juridical rights to Mother Earth, impacting extraction industries; increasing Chinese lithium mining trade relations; hard hit by COVID-19; increased fiscal spending amid poverty increases; rampant banking and finance corruption"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, soybeans, maize, potatoes, sorghum, rice, milk, chicken, plantains, beef (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining, smelting, electricity, petroleum, food and beverages, handicrafts, clothing, jewelry"
+      },
+      "Exports - commodities": {
+        "text": "gold, natural gas, precious metal ore, zinc ore, soybean meal (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Brazil 15%, India 13%, China 11%, Argentina 11%, UAE 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, pesticides, trucks, plastics (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies with altitude; humid and tropical to cold and semiarid"
+      }
+    }
+  }
+}

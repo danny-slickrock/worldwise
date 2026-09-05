@@ -1,0 +1,202 @@
+{
+  "iso": "tw",
+  "fetchedAt": "2026-09-04T23:56:51.729Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/tw.json"
+    }
+  },
+  "wikidata": {
+    "name": "Taiwan",
+    "gec": "TW",
+    "capital": "Taipei",
+    "areaKm2": 36193,
+    "population": 23317031,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Taiwanese Sign Language",
+      "Amis",
+      "Taiwanese Hokkien",
+      "Rukai",
+      "Bunun",
+      "Kanakanavu",
+      "Standard Taiwanese Mandarin",
+      "Paiwan",
+      "Yami",
+      "Atayal",
+      "Saaroa",
+      "Kavalan",
+      "Tsou",
+      "Seediq",
+      "Puyuma",
+      "Saisiyat",
+      "Sakizaya",
+      "Taiwanese Hakka",
+      "Truku",
+      "Matsu dialect",
+      "Kinmen dialect",
+      "Wuqiu dialect"
+    ],
+    "currencies": [
+      "New Taiwan dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "jp",
+      "cn",
+      "ph"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/tw.json",
+    "Introduction": {
+      "Background": {
+        "text": "First inhabited by Austronesian people, Taiwan became home to Han immigrants beginning in the late Ming Dynasty (17th century). In 1895, military defeat forced China's Qing Dynasty to cede Taiwan to Japan, which then governed Taiwan for 50 years. Taiwan came under Chinese Nationalist (Kuomintang, KMT) control after World War II. With the communist victory in the Chinese civil war in 1949, the Nationalist-controlled Republic of China government and 2 million Nationalists fled to Taiwan and continued to claim to be the legitimate government for mainland China and Taiwan, based on a 1947 constitution drawn up for all of China. Until 1987, however, the Nationalist Government ruled Taiwan under a civil war martial law declaration dating to 1948. Beginning in the 1970s, Nationalist authorities gradually began to incorporate the native population into the governing structure beyond the local level. <br><br>The democratization process expanded rapidly in the 1980s, leading to the then-illegal founding of the Democratic Progressive Party (DPP), Taiwan’s first opposition party, in 1986 and the lifting of martial law the following year. Taiwan held legislative elections in 1992, the first in over 40 years, and its first direct presidential election in 1996. In the 2000 presidential elections, Taiwan underwent its first peaceful transfer of power with the KMT loss to the DPP and afterwards experienced two additional democratic transfers of power in 2008 and 2016. Throughout this period, the island prospered and turned into one of East Asia's economic \"Tigers,\" becoming a major investor in mainland China after 2000 as cross-Strait ties matured. The dominant political issues continue to be economic reform and growth, as well as management of sensitive relations between Taiwan and China."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Asia, islands bordering the East China Sea, Philippine Sea, South China Sea, and Taiwan Strait, north of the Philippines, off the southeastern coast of China"
+      },
+      "Area": {
+        "total ": {
+          "text": "35,980 sq km"
+        },
+        "land": {
+          "text": "32,260 sq km"
+        },
+        "water": {
+          "text": "3,720 sq km"
+        },
+        "note": "<strong>note:</strong> includes the Pescadores, Matsu, and Kinmen islands"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,566.3 km"
+      },
+      "Climate": {
+        "text": "tropical; marine; rainy season during southwest monsoon (June to August); persistent and extensive cloudiness all year"
+      },
+      "Terrain": {
+        "text": "eastern two-thirds mostly rugged mountains; flat to gently rolling plains in west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Yu Shan 3,952 m"
+        },
+        "lowest point": {
+          "text": "South China Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "1,150 m"
+        }
+      },
+      "Natural resources": {
+        "text": "small deposits of coal, natural gas, limestone, marble, asbestos, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "22% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 16.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 5.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2022 est.)"
+        },
+        "forest": {
+          "text": "0% (2022 est.)"
+        },
+        "other": {
+          "text": "78% (2022 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes; typhoons <br><br><strong>volcanism:</strong> Kueishantao Island (401 m), east of Taiwan, is the only historically active volcano, but it has not erupted in centuries"
+      },
+      "Geography - note": {
+        "text": "strategic location adjacent to both the Taiwan Strait and the Luzon Strait"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "23,600,776 (2025 est.)"
+        },
+        "male": {
+          "text": "11,596,835"
+        },
+        "female": {
+          "text": "12,003,941"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Mandarin (official), Min Nan, Hakka dialects, approximately 16 indigenous languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>世界概況  –  不可缺少的基本消息來源 (Mandarin)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Buddhist 35.3%, Taoist 33.2%, Christian 3.9%, folk religion (includes Confucian) approximately 10%, none or unspecified 18.2% (2005 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Han Chinese (including Holo, who compose approximately 70% of Taiwan's population, Hakka, and other groups originating in mainland China) more than 95%, indigenous Malayo-Polynesian peoples 2.3%",
+        "note": "<strong>note 1:</strong> there are 16 officially recognized indigenous groups: Amis, Atayal, Bunun, Hla'alua, Kanakaravu, Kavalan, Paiwan, Puyuma, Rukai, Saisiyat, Sakizaya, Seediq, Thao, Truku, Tsou, and Yami; Amis, Paiwan, and Atayal are the largest and account for roughly 70% of the indigenous population<br><br><strong>note 2:</strong> although not definitive, the majority of current genetic, archeological, and linguistic data support the theory that Taiwan is the ultimate source for the spread of humans across the Pacific to Polynesia; the expansion (ca. 3000 B.C. to A.D. 1200) took place via the Philippines and eastern Indonesia and reached Fiji and Tonga by about 900 B.C.; from there voyagers spread across the rest of the Pacific islands over the next two millennia"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "80.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.65% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "distribution exhibits a peripheral coastal settlement pattern, with the largest populations on the north and west coasts"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income East Asian economy; most technologically advanced computer microchip manufacturing; increasing Chinese interference threatens market capabilities; minimum wages rising; longstanding regional socioeconomic inequality"
+      },
+      "Agricultural products": {
+        "text": "rice, vegetables, pork, chicken, cabbages, milk, sugarcane, tropical fruits, pineapples, eggs (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "electronics, communications and information technology products, petroleum refining, chemicals, textiles, iron and steel, machinery, cement, food processing, vehicles, consumer products, pharmaceuticals"
+      },
+      "Exports - commodities": {
+        "text": "integrated circuits, machine parts, broadcasting equipment, computers, plastics (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 20%, USA 17%, Hong Kong 13%, Singapore 9%, Japan 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "integrated circuits, crude petroleum, machinery, natural gas, coal (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; marine; rainy season during southwest monsoon (June to August); persistent and extensive cloudiness all year"
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "iso": "pa",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.430Z",
+  "structured": {
+    "code": "pa",
+    "name": "Panama",
+    "capital": "Panama City",
+    "continent": "North America",
+    "areaKm2": 74177.3,
+    "population": 4570133,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Panamanian balboa",
+      "United States dollar"
+    ],
+    "landBorderNames": [
+      "Colombia",
+      "Costa Rica"
+    ],
+    "landBorderCodes": [
+      "co",
+      "cr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "copper, mahogany forests, shrimp, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Colombia and Costa Rica || interior mostly steep, rugged mountains with dissected, upland plains; coastal plains with rolling hills || strategic location on eastern end of isthmus forming land bridge that connects North and South America; controls the Panama Canal, which links the North Atlantic Ocean with the North Pacific Ocean via the Caribbean Sea || Resources: copper, mahogany forests, shrimp, hydropower || Exports: copper ore, ships, refined petroleum, bananas, fish (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "interior mostly steep, rugged mountains with dissected, upland plains; coastal plains with rolling hills || Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Colombia and Costa Rica"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical maritime; hot, humid, cloudy; prolonged rainy season (May to January), short dry season (January to May) || occasional severe storms and forest fires in the Darien area"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Central American economy; increasing Chinese trade; US dollar user; canal expansion fueling broader infrastructure investment; services sector dominates economy; historic money-laundering and illegal drug hub || Exports: copper ore, ships, refined petroleum, bananas, fish (2023) || Industries: construction, brewing, cement and other construction materials, sugar milling"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.) || Mestizo (mixed Indigenous and White) 65%, Indigenous 12.3% (Ngabe 7.6%, Kuna 2.4%, Embera 0.9%, Bugle 0.8%, other 0.4%, unspecified 0.2%), Black or African descent 9.2%, Mulatto 6.8%, White 6.7% (2010 est.)"
+    }
+  }
+}

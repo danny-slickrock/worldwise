@@ -1,0 +1,70 @@
+{
+  "iso": "kp",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.400Z",
+  "structured": {
+    "code": "kp",
+    "name": "North Korea",
+    "capital": "Pyongyang",
+    "continent": "Asia",
+    "areaKm2": 120540,
+    "population": 26418204,
+    "officialLanguages": [
+      "Korean",
+      "North Korean standard language"
+    ],
+    "currencies": [
+      "North Korean won"
+    ],
+    "landBorderNames": [
+      "China",
+      "South Korea",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "kr",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, iron ore, limestone, magnesite, graphite, copper, zinc, lead, precious metals, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Asia, northern half of the Korean Peninsula bordering the Korea Bay and the Sea of Japan, between China and South Korea || mostly hills and mountains separated by deep, narrow valleys; wide coastal plains in west, discontinuous in east || strategic location bordering China, South Korea, and Russia; mountainous interior is isolated and sparsely populated || Resources: coal, iron ore, limestone, magnesite, graphite, copper, zinc, lead, precious metals, hydropower || Exports: fake hair, iron alloys, tungsten ore, electricity, cars (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly hills and mountains separated by deep, narrow valleys; wide coastal plains in west, discontinuous in east || Eastern Asia, northern half of the Korean Peninsula bordering the Korea Bay and the Sea of Japan, between China and South Korea"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate, with rainfall concentrated in summer; long, bitter winters || late spring droughts often followed by severe flooding; occasional typhoons during the early fall volcanism: P'aektu-san (2,744 m) (also known as Baitoushan, Baegdu, or Changbaishan), on the Chinese border, is considered historically active"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "one of the last centrally planned economies; hard hit by COVID-19, crop failures, international sanctions, and isolationist policies; declining growth and trade, and heavily reliant on China; poor exchange rate stability; economic data integrity issues || Exports: fake hair, iron alloys, tungsten ore, electricity, cars (2023) || Industries: military products; machine building, electric power, chemicals; mining (coal, iron ore, limestone, magnesite, graphite, copper, zinc, lead, and precious metals), metallurgy; textiles, food processing; tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "traditionally Buddhist and Confucian, some Christian and syncretic Chondogyo (Religion of the Heavenly Way) || racially homogeneous; there is a small Chinese community and a few ethnic Japanese"
+    }
+  }
+}

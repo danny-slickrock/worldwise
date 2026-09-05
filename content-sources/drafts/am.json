@@ -1,0 +1,71 @@
+{
+  "iso": "am",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.391Z",
+  "structured": {
+    "code": "am",
+    "name": "Armenia",
+    "capital": "Yerevan",
+    "continent": "Asia",
+    "areaKm2": 29743.423459,
+    "population": 2930450,
+    "officialLanguages": [
+      "Armenian"
+    ],
+    "currencies": [
+      "Armenian dram"
+    ],
+    "landBorderNames": [
+      "Azerbaijan",
+      "Georgia",
+      "Iran",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "az",
+      "ge",
+      "ir",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "small deposits of gold, copper, molybdenum, zinc, bauxite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Asia, between Turkey (to the west) and Azerbaijan; note - Armenia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both || Armenian Highland with mountains; little forest land; fast flowing rivers; good soil in Aras River valley || landlocked in the Lesser Caucasus Mountains; Sevana Lich (Lake Sevan) is the largest lake in this mountain range || Resources: small deposits of gold, copper, molybdenum, zinc, bauxite || Exports: gold, diamonds, copper ore, broadcasting equipment, jewelry (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "Armenian Highland with mountains; little forest land; fast flowing rivers; good soil in Aras River valley || Southwestern Asia, between Turkey (to the west) and Azerbaijan; note - Armenia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "highland continental, hot summers, cold winters || occasionally severe earthquakes; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle income, fast-growing Caucasus economy; stable fiscal and monetary regime but vulnerable to geopolitical shocks; economic and energy ties to Russia but seeking more EU and US trade; key copper and gold exporter; business-friendly and anti-corruption reforms; persistent unemployment; influx of migrants from Ukraine war easing || Exports: gold, diamonds, copper ore, broadcasting equipment, jewelry (2023) || Industries: brandy, mining, diamond processing, metal-cutting machine tools, forging and pressing machines, electric motors, knitted wear, hosiery, shoes, silk fabric, chemicals, trucks, instruments, microelectronics, jewelry, software, food processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Armenian Apostolic 95.2%, not stated 1.7%; less than 1%: Catholic, no religion, Evangelical, Shar-fadinian, other, Armenian Orthodox, Jehovah's Witness, Pagan, Molokan (2022 est.) || Armenian 98.1%, Yezidi 1.1%; less than 1%: Russian, other, Assyrian, Kurd, Ukrainian, Greek (2022 est.)"
+    }
+  }
+}

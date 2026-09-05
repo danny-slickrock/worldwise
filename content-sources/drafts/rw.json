@@ -1,0 +1,74 @@
+{
+  "iso": "rw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.418Z",
+  "structured": {
+    "code": "rw",
+    "name": "Rwanda",
+    "capital": "Kigali",
+    "continent": "Africa",
+    "areaKm2": 26338,
+    "population": 14569341,
+    "officialLanguages": [
+      "French",
+      "English",
+      "Swahili",
+      "Kinyarwanda"
+    ],
+    "currencies": [
+      "Rwandan franc"
+    ],
+    "landBorderNames": [
+      "Burundi",
+      "Democratic Republic of the Congo",
+      "Tanzania",
+      "Uganda"
+    ],
+    "landBorderCodes": [
+      "bi",
+      "cd",
+      "tz",
+      "ug"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, cassiterite (tin ore), wolframite (tungsten ore), methane, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, east of the Democratic Republic of the Congo, north of Burundi || mostly grassy uplands and hills; relief is mountainous with altitude declining from west to east || landlocked; most of the country is intensively cultivated and rugged, with the population predominantly rural || Resources: gold, cassiterite (tin ore), wolframite (tungsten ore), methane, hydropower, arable land || Exports: gold, rare earth ores, coffee, tea, tin ores (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly grassy uplands and hills; relief is mountainous with altitude declining from west to east || Central Africa, east of the Democratic Republic of the Congo, north of Burundi"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; two rainy seasons (February to April, November to January); mild in mountains with frost and snow possible || periodic droughts; the volcanic Virunga Mountains are in the northwest along the border with Democratic Republic of the Congo volcanism: Visoke (3,711 m), on the border with the Democratic Republic of the Congo, is the country's only historically active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Sub-Saharan economy; services, industry, and agriculture sectors driving growth; increased government spending on human capital, energy, and healthcare; major infrastructure projects including the Bugesera Airport intended to support long-term growth; challenges include lack of economic diversification, high inflation, and wide current account deficit || Exports: gold, rare earth ores, coffee, tea, tin ores (2023) || Industries: cement, agricultural products, small-scale beverages, soap, furniture, shoes, plastic goods, textiles, cigarettes"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 39.9%, Pentecostal 21.3%, Protestant 14.6%, Adventist 12.2%, other Christians 4.2%, no religion 3.0%, Muslim 2.0%, other religions 2.0%; less than 1%: Jehovah Witness, not specified, Animist (2022 est.) || Hutu, Tutsi, Twa"
+    }
+  }
+}

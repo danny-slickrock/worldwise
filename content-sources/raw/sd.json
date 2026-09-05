@@ -1,0 +1,191 @@
+{
+  "iso": "sd",
+  "fetchedAt": "2026-09-04T23:57:02.699Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/su.json"
+    }
+  },
+  "wikidata": {
+    "name": "Sudan",
+    "gec": "SU",
+    "capital": "Khartoum",
+    "areaKm2": 1886068,
+    "population": 40533330,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Arabic"
+    ],
+    "currencies": [
+      "Sudanese pound"
+    ],
+    "sharesBorderWithAnyType": [
+      "eg",
+      "ke",
+      "et",
+      "td",
+      "cf",
+      "ss",
+      "cd",
+      "er",
+      "ly",
+      "ug"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/su.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Long referred to as Nubia, modern-day Sudan was the site of the Kingdom of Kerma (ca. 2500-1500 B.C.) until it was absorbed into the New Kingdom of Egypt. By the 11th century B.C., the Kingdom of Kush gained independence from Egypt; it lasted in various forms until the middle of the 4th century A.D. After the fall of Kush, the Nubians formed three Christian kingdoms of Nobatia, Makuria, and Alodia, with the latter two enduring until around 1500. Between the 14th and 15th centuries, Arab nomads settled much of Sudan, leading to extensive Islamization between the 16th and 19th centuries. Following Egyptian occupation early in the 19th century, an agreement in 1899 set up a joint British-Egyptian government in Sudan, but it was effectively a British colony. <br><br>Military regimes favoring Islamic-oriented governments have dominated national politics since Sudan gained independence from Anglo-Egyptian co-rule in 1956. During most of the second half of the 20th century, Sudan was embroiled in two prolonged civil wars rooted in northern domination of the largely non-Muslim, non-Arab southern portion of the country. The first civil war ended in 1972, but another broke out in 1983. Peace talks gained momentum in 2002-04, and the final North/South Comprehensive Peace Agreement in 2005 granted the southern rebels autonomy for six years, followed by a referendum on independence for Southern Sudan. South Sudan became independent in 2011, but Sudan and South Sudan have yet to fully implement security and economic agreements to normalize relations between the two countries. Sudan has also faced conflict in Darfur, Southern Kordofan, and Blue Nile starting in 2003.<br><br>In 2019, after months of nationwide protests, the 30-year reign of President Omar Hassan Ahmad al-BASHIR ended when the military forced him out. Economist and former international civil servant Abdalla HAMDOUK al-Kinani was selected to serve as the prime minister of a transitional government as the country prepared for elections in 2022. In late 2021, however, the Sudanese military ousted HAMDOUK and his government and replaced civilian members of the Sovereign Council (Sudan’s collective Head of State) with individuals selected by the military. HAMDOUK was briefly reinstated but resigned in January 2022. General Abd-al-Fatah al-BURHAN Abd-al-Rahman, the Chair of Sudan’s Sovereign Council and Commander-in-Chief of the Sudanese Armed Forces, currently serves as de facto head of state and government. He presides over a Sovereign Council consisting of military leaders, former armed opposition group representatives, and military-appointed civilians. A cabinet of acting ministers handles day-to-day administration. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "north-eastern Africa, bordering the Red Sea, between Egypt and Eritrea"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,861,484 sq km"
+        },
+        "land": {
+          "text": "1,731,671 sq km"
+        },
+        "water": {
+          "text": "129,813 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "6,819 km"
+        },
+        "border countries": {
+          "text": "Central African Republic 174 km; Chad 1,403 km; Egypt 1,276 km; Eritrea 682 km; Ethiopia 744 km; Libya 382 km; South Sudan 2,158 km"
+        },
+        "note": "<strong>note:</strong> Sudan-South Sudan boundary represents 1 January 1956 alignment; final alignment pending negotiations and demarcation; final sovereignty status of Abyei region pending negotiations between Sudan and South Sudan"
+      },
+      "Coastline": {
+        "text": "853 km"
+      },
+      "Climate": {
+        "text": "hot and dry; arid desert; rainy season varies by region (April to November)"
+      },
+      "Terrain": {
+        "text": "generally flat, featureless plain; desert dominates the north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jabal Marrah 3,042 m"
+        },
+        "lowest point": {
+          "text": "Red Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "568 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum; small reserves of iron ore, copper, chromium ore, zinc, tungsten, mica, silver, gold; hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "60.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 49% (2023 est.)"
+        },
+        "forest": {
+          "text": "12% (2023 est.)"
+        },
+        "other": {
+          "text": "27.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "dust storms and periodic persistent droughts"
+      },
+      "Geography - note": {
+        "text": "the Nile is Sudan's primary water source; its major tributaries, the White Nile and the Blue Nile, meet at Khartoum to form the River Nile, which flows northward through Egypt to the Mediterranean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "50,467,278 (2024 est.)"
+        },
+        "male": {
+          "text": "25,335,092"
+        },
+        "female": {
+          "text": "25,132,186"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English (official), Nubian, Ta Bedawie, Fur"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information. (English)"
+        }
+      },
+      "Religions": {
+        "text": "Sunni Muslim, small Christian minority"
+      },
+      "Ethnic groups": {
+        "text": "Sudanese Arab (approximately 70%), Fur, Beja, Nuba, Ingessana, Uduk, Fallata, Masalit, Dajo, Gimir, Tunjur, Berti; there are over 500 ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "36.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.43% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "with the exception of a ribbon of settlement that corresponds to the banks of the Nile, northern Sudan is sparsely populated; sizeable areas of population are found around Khartoum, southeast between the Blue and White Nile Rivers, and throughout South Darfur, as shown on this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>low-income Sahel economy devastated by ongoing civil war; major impacts on rural income, basic commodity prices, industrial production, agricultural supply chain, communications and commerce; hyperinflation and currency depreciation worsening food access and humanitarian conditions</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, sorghum, milk, onions, groundnuts, sesame seeds, goat milk, bananas, mangoes/guavas, millet (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "oil, cotton ginning, textiles, cement, edible oils, sugar, soap distilling, shoes, petroleum refining, pharmaceuticals, armaments, automobile/light truck assembly, milling"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, gold, oil seeds, sheep and goats, ground nuts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 21%, China 17%, Saudi Arabia 16%, Malaysia 9%, Egypt 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "raw sugar, wheat flours, refined petroleum, garments, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "hot and dry; arid desert; rainy season varies by region (April to November)"
+      }
+    }
+  }
+}

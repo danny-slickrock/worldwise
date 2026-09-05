@@ -1,0 +1,71 @@
+{
+  "iso": "cz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.377Z",
+  "structured": {
+    "code": "cz",
+    "name": "Czech Republic",
+    "capital": "Prague",
+    "continent": "Europe",
+    "areaKm2": 78871,
+    "population": 10909500,
+    "officialLanguages": [
+      "Czech"
+    ],
+    "currencies": [
+      "Czech koruna"
+    ],
+    "landBorderNames": [
+      "Austria",
+      "Germany",
+      "Poland",
+      "Slovakia"
+    ],
+    "landBorderCodes": [
+      "at",
+      "de",
+      "pl",
+      "sk"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hard coal, soft coal, kaolin, clay, graphite, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, between Germany, Poland, Slovakia, and Austria || Bohemia in the west consists of rolling plains, hills, and plateaus surrounded by low mountains; Moravia in the east consists of very hilly country || landlocked; strategically located on some of oldest and most significant land routes in Europe; Moravian Gate is a traditional military corridor between the North European Plain and the Danube in central Europe the Hranice Abyss in Czechia is the world's deepest surveyed freshwater cave at 519 m (1,703 ft); its survey is not complete, and it may be up to 800-1,200 m (2,625-3,937 ft) deep || Resources: hard coal, soft coal, kaolin, clay, graphite, timber, arable land || Exports: cars, vehicle parts/accessories, broadcasting equipment, computers, plastic products (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "Bohemia in the west consists of rolling plains, hills, and plateaus surrounded by low mountains; Moravia in the east consists of very hilly country || Central Europe, between Germany, Poland, Slovakia, and Austria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; cool summers; cold, cloudy, humid winters || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, diversified EU economy; manufacturing-oriented exporter led by automotive industry; moderate growth driven by household consumption and investments, despite negative contribution from net exports; tight labor market with low unemployment; gained energy independence from Russian oil in April 2025 || Exports: cars, vehicle parts/accessories, broadcasting equipment, computers, plastic products (2023) || Industries: motor vehicles, metallurgy, machinery and equipment, glass, armaments"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 7%, other believers belonging to a church or religious society 6% (includes Evangelical United Brethren Church and Czechoslovak Hussite Church), believers unaffiliated with a religious society 9.1%, none 47.8%, unspecified 30.1% (2021 est.) || Czech 57.3%, Moravian 3.4%, other 7.7%, unspecified 31.6% (2021 est.)"
+    }
+  }
+}

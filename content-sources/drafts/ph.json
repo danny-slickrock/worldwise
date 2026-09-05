@@ -1,0 +1,63 @@
+{
+  "iso": "ph",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.401Z",
+  "structured": {
+    "code": "ph",
+    "name": "Philippines",
+    "capital": "Manila",
+    "continent": "Asia",
+    "areaKm2": 343448,
+    "population": 112729484,
+    "officialLanguages": [
+      "English",
+      "Filipino",
+      "Taglish"
+    ],
+    "currencies": [
+      "Philippine peso"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, petroleum, nickel, cobalt, silver, gold, salt, copper",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, archipelago between the Philippine Sea and the South China Sea, east of Vietnam || mostly mountains with narrow to extensive coastal lowlands || for decades, the Philippine archipelago was reported as having 7,107 islands; in 2016, the national mapping authority reported that hundreds of new islands had been discovered and increased the number of islands to 7,641, though not all of the new islands have been verified the Philippines is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes the Philippines sits on the Pacific typhoon belt, and an average of 9 typhoons make landfall on the islands each year, with about 5 being destructive; the country is the most exposed in the world to tropical storms || Resources: timber, petroleum, nickel, cobalt, silver, gold, salt, copper || Exports: integrated circuits, machine parts, gold, insulated wire, semiconductors (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains with narrow to extensive coastal lowlands || Southeastern Asia, archipelago between the Philippine Sea and the South China Sea, east of Vietnam"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical marine; northeast monsoon (November to April); southwest monsoon (May to October) || astride typhoon belt, usually affected by several cyclonic storms each year; landslides; active volcanoes; destructive earthquakes; tsunamis volcanism: significant volcanic activity; Taal (311 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Mayon (2,462 m), the country's most active volcano, erupted in 2009 and forced over 33,000 to be evacuated; other historically active volcanoes include Biliran, Babuyan Claro, Bulusan, Camiguin, Camiguin de Babuyanes, Didicas, Iraya, Jolo, Kanlaon, Makaturing, Musuan, Parker, Pinatubo, and Ragang; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "growing Southeast Asian economy; commercial rebound led by transportation, construction and financial services; electronics exports recovering from sector slowdown; significant remittances; interest rate rises following heightened inflation; uncertainties due to increased regional tensions with China || Exports: integrated circuits, machine parts, gold, insulated wire, semiconductors (2023) || Industries: semiconductors and electronics assembly, business process outsourcing, food and beverage manufacturing, construction, electric/gas/water supply, chemical products, radio/television/communications equipment and apparatus, petroleum and fuel, textile and garments, non-metallic minerals, basic metal industries, transport equipment"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 78.8%, Muslim 6.4%, Iglesia ni Cristo 2.6%, other Christian 3.9%, other 8.2%, none/unspecified &lt;0.1 (2020 est.) || Tagalog 26%, Bisaya/Binisaya 14.3%, Ilocano 8%, Cebuano 8%, Illonggo 7.9%, Bikol/Bicol 6.5%, Waray 3.8%, Kapampangan 3%, Maguindanao 1.9%, Pangasinan 1.9%, other local ethnicities 18.5%, foreign ethnicities 0.2% (2020 est.)"
+    }
+  }
+}

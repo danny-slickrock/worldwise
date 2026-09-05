@@ -1,0 +1,187 @@
+{
+  "iso": "de",
+  "fetchedAt": "2026-09-04T23:56:37.959Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/gm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Germany",
+    "gec": "GM",
+    "capital": "Berlin",
+    "areaKm2": 357587.77,
+    "population": 83577140,
+    "continent": "Europe",
+    "officialLanguages": [
+      "German"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "pl",
+      "ch",
+      "at",
+      "nl",
+      "fr",
+      "cz",
+      "be",
+      "lu",
+      "dk"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/gm.json",
+    "Introduction": {
+      "Background": {
+        "text": "As Europe's largest economy and second most-populous nation (after Russia), Germany is a key member of the continent's economic, political, and defense organizations. European power struggles immersed Germany in two devastating world wars in the first half of the 20th century and left the country occupied by the victorious Allied powers of the US, UK, France, and the Soviet Union in 1945. With the advent of the Cold War, two German states were formed in 1949: the western Federal Republic of Germany (FRG) and the eastern German Democratic Republic (GDR). The democratic FRG embedded itself in key western economic and security organizations, including the EC (now the EU) and NATO, while the communist GDR was on the front line of the Soviet-led Warsaw Pact. The decline of the Soviet Union and the end of the Cold War allowed German reunification to occur in 1990. Since then, Germany has expended considerable funds to bring eastern productivity and wages up to western standards. In January 1999, Germany and 10 other EU countries introduced a common European exchange currency, the euro."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Europe, bordering the Baltic Sea and the North Sea, between the Netherlands and Poland, south of Denmark"
+      },
+      "Area": {
+        "total ": {
+          "text": "357,022 sq km"
+        },
+        "land": {
+          "text": "348,672 sq km"
+        },
+        "water": {
+          "text": "8,350 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,694 km"
+        },
+        "border countries": {
+          "text": "Austria 801 km; Belgium 133 km; Czechia 704 km; Denmark 140 km; France 418 km; Luxembourg 128 km; Netherlands 575 km; Poland 447 km; Switzerland 348 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,389 km"
+      },
+      "Climate": {
+        "text": "temperate and marine; cool, cloudy, wet winters and summers; occasional warm mountain (foehn) wind"
+      },
+      "Terrain": {
+        "text": "lowlands in north, uplands in center, Bavarian Alps in south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Zugspitze 2,963 m"
+        },
+        "lowest point": {
+          "text": "Neuendorf bei Wilster -3.5 m"
+        },
+        "mean elevation": {
+          "text": "263 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, lignite, natural gas, iron ore, copper, nickel, uranium, potash, salt, construction materials, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "47.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 33.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 13.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "32.8% (2023 est.)"
+        },
+        "other": {
+          "text": "15% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding"
+      },
+      "Geography - note": {
+        "text": "strategic location on North European Plain and along the entrance to the Baltic Sea; most major rivers in Germany -- the Rhine, Weser, Oder, Elbe -- flow northward; the Danube, which originates in the Black Forest, flows eastward"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "84,012,284 (2025 est.)"
+        },
+        "male": {
+          "text": "41,517,301"
+        },
+        "female": {
+          "text": "42,494,983"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "German (official); note - Danish, Frisian, Sorbian, and Romani are official minority languages; Low German, Danish, North Frisian, Sater Frisian, Lower Sorbian, Upper Sorbian, and Romani are recognized as regional languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Das World Factbook, die unverzichtbare Quelle für grundlegende Informationen. (German)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 24.8%, Protestant 22.6%, Muslim 3.7%, other 5.1%, none 43.8% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "German 85.4%, Turkish 1.8%, Ukrainian 1.4%, Syrian 1.1%, Romanian 1%, Poland 1%, other/stateless/unspecified 8.3% (2022 est.)",
+        "note": "<strong>note:</strong>  data represent population by nationality"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "77.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.13% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "second most populous country in Europe; a fairly even distribution throughout most of the country, with urban areas attracting larger and denser populations, particularly in the far-western part of the industrial state of North Rhine-Westphalia"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>leading export-driven, core EU and eurozone economy; key automotive, chemical, engineering, finance, and green energy industries; growth stalled by energy crisis and declining exports; tight labor market with falling working-age population; fiscal rebalancing with phaseout of energy price supports</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, sugar beets, wheat, potatoes, barley, maize, rapeseed, pork, rye, triticale (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "<p>iron, steel, coal, cement, chemicals, machinery, vehicles, machine tools, electronics, automobiles, food and beverages, shipbuilding, textiles</p>"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, packaged medicine, plastic products, vaccines (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 10%, France 8%, Netherlands 7%, China 7%, Italy 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, vehicle parts/accessories, garments, natural gas, vaccines (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate and marine; cool, cloudy, wet winters and summers; occasional warm mountain (foehn) wind"
+      }
+    }
+  }
+}

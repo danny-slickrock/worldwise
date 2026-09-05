@@ -1,0 +1,74 @@
+{
+  "iso": "az",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.391Z",
+  "structured": {
+    "code": "az",
+    "name": "Azerbaijan",
+    "capital": "Baku",
+    "continent": "Asia",
+    "areaKm2": 86600,
+    "population": 10180770,
+    "officialLanguages": [
+      "Azerbaijani",
+      "Azerbaijani Sign Language"
+    ],
+    "currencies": [
+      "Azerbaijani manat"
+    ],
+    "landBorderNames": [
+      "Armenia",
+      "Georgia",
+      "Iran",
+      "Russia",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "am",
+      "ge",
+      "ir",
+      "ru",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, iron ore, nonferrous metals, bauxite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Asia, bordering the Caspian Sea, between Iran and Russia, with a small European portion north of the Caucasus range || large, flat Kur-Araz Ovaligi (Kura-Araks Lowland, much of it below sea level) with Great Caucasus Mountains to the north, Qarabag Yaylasi (Karabakh Upland) to the west; Baku lies on Abseron Yasaqligi (Apsheron Peninsula) that juts into Caspian Sea || both the main area of the country and the Naxcivan exclave are landlocked || Resources: petroleum, natural gas, iron ore, nonferrous metals, bauxite || Exports: crude petroleum, natural gas, refined petroleum, plastics, electricity (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "large, flat Kur-Araz Ovaligi (Kura-Araks Lowland, much of it below sea level) with Great Caucasus Mountains to the north, Qarabag Yaylasi (Karabakh Upland) to the west; Baku lies on Abseron Yasaqligi (Apsheron Peninsula) that juts into Caspian Sea || Southwestern Asia, bordering the Caspian Sea, between Iran and Russia, with a small European portion north of the Caucasus range"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "dry, semiarid steppe || droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle income, oil-dependent Caucasus economy; minimal economic diversification and dominance of state-owned enterprises; growth and fiscal consolidation supported by oil revenues, but risks remain from demand shocks; potential economic gains from Nagorno-Karabakh ceasefire; education investments to diversify and retain human capital || Exports: crude petroleum, natural gas, refined petroleum, plastics, electricity (2023) || Industries: petroleum and petroleum products, natural gas, oilfield equipment; steel, iron ore; cement; chemicals and petrochemicals; textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 97.3% (predominantly Shia), Christian 2.6%, other &lt;0.1, unaffiliated &lt;0.1 (2020 est.) || Azerbaijani 94.8%, other 1.8%; less than 1%: Talish, Russian, Avar, Sakhur, Tartar, Georgian, Jewish, Kurd (2019 est.)"
+    }
+  }
+}

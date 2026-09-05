@@ -1,0 +1,79 @@
+{
+  "iso": "de",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.379Z",
+  "structured": {
+    "code": "de",
+    "name": "Germany",
+    "capital": "Berlin",
+    "continent": "Europe",
+    "areaKm2": 357587.77,
+    "population": 83577140,
+    "officialLanguages": [
+      "German"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Austria",
+      "Belgium",
+      "Czechia",
+      "Denmark",
+      "France",
+      "Luxembourg",
+      "Netherlands",
+      "Poland",
+      "Switzerland"
+    ],
+    "landBorderCodes": [
+      "at",
+      "be",
+      "cz",
+      "dk",
+      "fr",
+      "lu",
+      "nl",
+      "pl",
+      "ch"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, lignite, natural gas, iron ore, copper, nickel, uranium, potash, salt, construction materials, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, bordering the Baltic Sea and the North Sea, between the Netherlands and Poland, south of Denmark || lowlands in north, uplands in center, Bavarian Alps in south || strategic location on North European Plain and along the entrance to the Baltic Sea; most major rivers in Germany -- the Rhine, Weser, Oder, Elbe -- flow northward; the Danube, which originates in the Black Forest, flows eastward || Resources: coal, lignite, natural gas, iron ore, copper, nickel, uranium, potash, salt, construction materials, timber, arable land || Exports: cars, vehicle parts/accessories, packaged medicine, plastic products, vaccines (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "lowlands in north, uplands in center, Bavarian Alps in south || Central Europe, bordering the Baltic Sea and the North Sea, between the Netherlands and Poland, south of Denmark"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate and marine; cool, cloudy, wet winters and summers; occasional warm mountain (foehn) wind || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "leading export-driven, core EU and eurozone economy; key automotive, chemical, engineering, finance, and green energy industries; growth stalled by energy crisis and declining exports; tight labor market with falling working-age population; fiscal rebalancing with phaseout of energy price supports || Exports: cars, vehicle parts/accessories, packaged medicine, plastic products, vaccines (2023) || Industries: iron, steel, coal, cement, chemicals, machinery, vehicles, machine tools, electronics, automobiles, food and beverages, shipbuilding, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 24.8%, Protestant 22.6%, Muslim 3.7%, other 5.1%, none 43.8% (2022 est.) || German 85.4%, Turkish 1.8%, Ukrainian 1.4%, Syrian 1.1%, Romanian 1%, Poland 1%, other/stateless/unspecified 8.3% (2022 est.)"
+    }
+  }
+}

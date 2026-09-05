@@ -1,0 +1,187 @@
+{
+  "iso": "ro",
+  "fetchedAt": "2026-09-04T23:56:41.149Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/ro.json"
+    }
+  },
+  "wikidata": {
+    "name": "Romania",
+    "gec": "RO",
+    "capital": "Bucharest",
+    "areaKm2": 238397,
+    "population": 19053815,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Romanian"
+    ],
+    "currencies": [
+      "Romanian Leu"
+    ],
+    "sharesBorderWithAnyType": [
+      "hu",
+      "ua",
+      "md",
+      "bg",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/ro.json",
+    "Introduction": {
+      "Background": {
+        "text": "The principalities of Wallachia and Moldavia -- for centuries under the control of the Turkish Ottoman Empire -- secured their autonomy through the Treaty of Paris in 1856. They were de facto linked in 1859 and formally united in 1862 under the new name of Romania. The country joined the Allied Powers in World War I and subsequently acquired new territories -- most notably Transylvania -- that more than doubled its size. In 1940, Romania allied with the Axis powers and participated in the 1941 German invasion of the USSR. Three years later, overrun by the Soviets, Romania signed an armistice. The post-war Soviet occupation led to the formation of a communist \"people's republic\" in 1947 and the abdication of the king. The decades-long rule of dictator Nicolae CEAUSESCU, who took power in 1965, and his Securitate police state became increasingly oppressive and draconian through the 1980s. CEAUSESCU was overthrown and executed in late 1989. Former communists dominated the government until 1996 when they were swept from power. Romania joined NATO in 2004, the EU in 2007, and the Schengen Area for air and sea travel in 2024."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, bordering the Black Sea, between Bulgaria and Ukraine"
+      },
+      "Area": {
+        "total ": {
+          "text": "238,391 sq km"
+        },
+        "land": {
+          "text": "229,891 sq km"
+        },
+        "water": {
+          "text": "8,500 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,844 km"
+        },
+        "border countries": {
+          "text": "Bulgaria 605 km; Hungary 424 km; Moldova 683 km; Serbia 531 km; Ukraine 601 km"
+        }
+      },
+      "Coastline": {
+        "text": "225 km"
+      },
+      "Climate": {
+        "text": "temperate; cold, cloudy winters with frequent snow and fog; sunny summers with frequent showers and thunderstorms"
+      },
+      "Terrain": {
+        "text": "central Transylvanian Basin is separated from the Moldavian Plateau on the east by the Eastern Carpathian Mountains and separated from the Walachian Plain on the south by the Transylvanian Alps"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Moldoveanu 2,544 m"
+        },
+        "lowest point": {
+          "text": "Black Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "414 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum (reserves declining), timber, natural gas, coal, iron ore, salt, arable land, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "55.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 36.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 17% (2023 est.)"
+        },
+        "forest": {
+          "text": "30.2% (2023 est.)"
+        },
+        "other": {
+          "text": "14.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes, most severe in south and southwest; geologic structure and climate promote landslides"
+      },
+      "Geography - note": {
+        "text": "controls the most easily traversable land route between the Balkans, Moldova, and Ukraine; the Carpathian Mountains dominate the center of the country, and the Danube River forms much of the southern boundary with Serbia and Bulgaria"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "18,148,155 (2024 est.)"
+        },
+        "male": {
+          "text": "8,747,795"
+        },
+        "female": {
+          "text": "9,400,360"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Romanian (official) 91.6%, Hungarian 6.3%, Romani 1.2%, other 0.7% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Cartea informativa a lumii, sursa indispensabila pentru informatii de baza. (Romanian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent individuals who declared a maternal language in the 2021 national census; 13.1% did not respond"
+      },
+      "Religions": {
+        "text": "Romanian Orthodox 85.3%, Roman Catholic 4.5%, Reformed 3%, Pentecostal 2.5%, other 4.7% (2021 est.)",
+        "note": "<strong>note:</strong> data represent individuals who declared a religion in the 2021 national census; 13.9% did not respond"
+      },
+      "Ethnic groups": {
+        "text": "Romanian 89.3%, Hungarian 6%, Romani 3.4%, Ukrainian 0.3%, German 0.1%, other 0.9% (2021 est.)",
+        "note": "<strong>note:</strong> data represent individuals who declared an ethnic group in the 2021 national census; 13% did not respond; Romani populations are usually underestimated in official statistics and may represent 5–11% of Romania's population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "54.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.15% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "urbanization is not particularly high, and the population distribution is fairly even throughout most of the country, with urban areas attracting larger and denser populations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, EU-member economy; euro membership delayed over macroeconomic indicators; persistent inflation, but consumption and EU-funded investments driving recovery; skilled labor shortage; high public debt and budget deficit; challenges include fiscal sustainability and political instability</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, maize, milk, sunflower seeds, barley, rapeseed, potatoes, grapes, plums, apples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "electric machinery and equipment, auto assembly, textiles and footwear, light machinery, metallurgy, chemicals, food processing, petroleum refining, mining, timber, construction materials"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, insulated wire, garments, wheat (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 19%, Italy 10%, France 6%, UK 5%, Hungary 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "vehicle parts/accessories, packaged medicine, cars, crude petroleum, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; cold, cloudy winters with frequent snow and fog; sunny summers with frequent showers and thunderstorms"
+      }
+    }
+  }
+}

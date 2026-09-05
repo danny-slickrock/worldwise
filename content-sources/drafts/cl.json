@@ -15,11 +15,18 @@
     "currencies": [
       "Chilean peso"
     ],
-    "landBorders": [
+    "landBorderNames": [
       "Argentina",
       "Bolivia",
       "Peru"
     ],
+    "landBorderCodes": [
+      "ar",
+      "bo",
+      "pe"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
     "naturalResources": "copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
@@ -40,7 +47,7 @@
   "_sourceExcerpts": {
     "hook": {
       "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
-      "excerpt": "Southern South America, bordering the South Pacific Ocean, between Argentina and Peru || low coastal mountains, fertile central valley, rugged Andes in east || note 1: Chile is the longest country north-to-south in the world, extending across 39 degrees of latitude note 2: Chile is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes note 3: the Atacama Desert in the north of Chile is the driest desert in the world; Ojos del Salado (6,893 m) in the Atacama Desert is the highest active volcano in the world, Chile's tallest mountain, and the second-highest in the Western Hemisphere and the Southern Hemisphere; the volcano's small crater lake is the world's highest lake at 6,390 m || Resources: copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower || Exports: copper ore, refined copper, fish, carbonates, pitted fruits (2023)"
+      "excerpt": "Southern South America, bordering the South Pacific Ocean, between Argentina and Peru || low coastal mountains, fertile central valley, rugged Andes in east || Chile is the longest country north-to-south in the world, extending across 39 degrees of latitude Chile is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes the Atacama Desert in the north of Chile is the driest desert in the world; Ojos del Salado (6,893 m) in the Atacama Desert is the highest active volcano in the world, Chile's tallest mountain, and the second-highest in the Western Hemisphere and the Southern Hemisphere; the volcano's small crater lake is the world's highest lake at 6,390 m || Resources: copper, timber, iron ore, nitrates, precious metals, molybdenum, hydropower || Exports: copper ore, refined copper, fish, carbonates, pitted fruits (2023)"
     },
     "physicalGeography": {
       "from": "Geography > Terrain, Location, Elevation",

@@ -1,0 +1,76 @@
+{
+  "iso": "cm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.409Z",
+  "structured": {
+    "code": "cm",
+    "name": "Cameroon",
+    "capital": "Yaoundé",
+    "continent": "Africa",
+    "areaKm2": 475442,
+    "population": 28372687,
+    "officialLanguages": [
+      "French",
+      "English"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "landBorderNames": [
+      "Central African Republic",
+      "Chad",
+      "Republic of the Congo",
+      "Equatorial Guinea",
+      "Gabon",
+      "Nigeria"
+    ],
+    "landBorderCodes": [
+      "cf",
+      "td",
+      "cg",
+      "gq",
+      "ga",
+      "ng"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, bauxite, iron ore, timber, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, bordering the Bight of Biafra, between Equatorial Guinea and Nigeria || diverse, with coastal plain in southwest, dissected plateau in center, mountains in west, plains in north || sometimes referred to as the hinge of Africa because of its central location on the continent and its position at the west-south juncture of the Gulf of Guinea; areas of thermal springs and indications of current or prior volcanic activity; Mount Cameroon, the highest mountain in Sub-Saharan west Africa, is an active volcano || Resources: petroleum, bauxite, iron ore, timber, hydropower || Exports: crude petroleum, natural gas, gold, cocoa beans, wood (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "diverse, with coastal plain in southwest, dissected plateau in center, mountains in west, plains in north || Central Africa, bordering the Bight of Biafra, between Equatorial Guinea and Nigeria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies with terrain, from tropical along coast to semiarid and hot in north || volcanic activity with periodic releases of poisonous gases from Lake Nyos and Lake Monoun volcanoes volcanism: Mt. Cameroon (4,095 m), which last erupted in 2000, is the most frequently active volcano in West Africa; lakes in the Oku volcanic field sometimes release fatal levels of gas, which killed about 1,700 people in 1986"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "largest CEMAC economy with many natural resources; recent political instability and terrorism reducing economic output; systemic corruption; poor property rights enforcement; increasing poverty in northern regions || Exports: crude petroleum, natural gas, gold, cocoa beans, wood (2023) || Industries: petroleum production and refining, aluminum production, food processing, light consumer goods, textiles, lumber, ship repair"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 33.1%, Muslim 30.6%, Protestant 27.1% other Christian 6.1%, animist 1.3%, other 0.7%, none 1.2% (2022 est.) || Bamileke-Bamu 22.2%, Biu-Mandara 16.4%, Arab-Choa/Hausa/Kanuri 13.5%, Beti/Bassa, Mbam 13.1%, Grassfields 9.9%, Adamawa-Ubangi, 9.8%, Cotier/Ngoe/Oroko 4.6%, Southwestern Bantu 4.3%, Kako/Meka 2.3%, foreign/other ethnic group 3.8% (2022 est.)"
+    }
+  }
+}

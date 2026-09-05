@@ -1,0 +1,68 @@
+{
+  "iso": "fi",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.378Z",
+  "structured": {
+    "code": "fi",
+    "name": "Finland",
+    "capital": "Helsinki",
+    "continent": "Europe",
+    "areaKm2": 338478.34,
+    "population": 5652881,
+    "officialLanguages": [
+      "Finnish",
+      "Swedish"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Norway",
+      "Sweden",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "no",
+      "se",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, iron ore, copper, lead, zinc, chromite, nickel, gold, silver, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, and Gulf of Finland, between Sweden and Russia || mostly low, flat to rolling plains interspersed with lakes and low hills || long boundary with Russia; Helsinki is northernmost national capital on European continent; population concentrated on small southwestern coastal plain || Resources: timber, iron ore, copper, lead, zinc, chromite, nickel, gold, silver, limestone || Exports: paper, refined petroleum, steel, wood pulp, ships (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low, flat to rolling plains interspersed with lakes and low hills || Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, and Gulf of Finland, between Sweden and Russia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "cold temperate; potentially subarctic but comparatively mild because of moderating influence of the North Atlantic Current, Baltic Sea, and more than 60,000 lakes || severe winters in the north"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, export-based EU and eurozone economy; major timber, metals, engineering, telecom, and electronics industries; emerging from recession triggered by inflation, weak consumer and export demand, and lower private investment; labor market reform plan to address structural rigidities || Exports: paper, refined petroleum, steel, wood pulp, ships (2023) || Industries: metals and metal products, electronics, machinery and scientific instruments, shipbuilding, pulp and paper, foodstuffs, chemicals, textiles, clothing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Lutheran 66.6%, Greek Orthodox 1.1%, other 1.7%, none 30.6% (2022 est.) || Finnish, Swedish, Russian, Estonian, Romani, Sami"
+    }
+  }
+}

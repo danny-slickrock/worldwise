@@ -1,0 +1,67 @@
+{
+  "iso": "gw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.413Z",
+  "structured": {
+    "code": "gw",
+    "name": "Guinea-Bissau",
+    "capital": "Bissau",
+    "continent": "Africa",
+    "areaKm2": 36125,
+    "population": 1861283,
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Guinea",
+      "Senegal"
+    ],
+    "landBorderCodes": [
+      "gn",
+      "sn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, timber, phosphates, bauxite, clay, granite, limestone, unexploited deposits of petroleum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Guinea and Senegal || mostly low-lying coastal plain with a deeply indented estuarine coastline rising to savanna in east; numerous off-shore islands including the Arquipelago Dos Bijagos consisting of 18 main islands and many small islets || this small country is swampy along its western coast and is low-lying inland || Resources: fish, timber, phosphates, bauxite, clay, granite, limestone, unexploited deposits of petroleum || Exports: coconuts/brazil nuts/cashews, fish, fish oil, processed crustaceans, malt extract (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low-lying coastal plain with a deeply indented estuarine coastline rising to savanna in east; numerous off-shore islands including the Arquipelago Dos Bijagos consisting of 18 main islands and many small islets || Western Africa, bordering the North Atlantic Ocean, between Guinea and Senegal"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds || hot, dry, dusty harmattan haze may reduce visibility during dry season; brush fires"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "extremely poor West African economy; ethnically diverse labor force; increasing government expenditures; slight inflation due to food supply disruptions; major cashew exporter; systemic banking instabilities and corruption; vulnerable to oil price shocks || Exports: coconuts/brazil nuts/cashews, fish, fish oil, processed crustaceans, malt extract (2023) || Industries: agricultural products processing, beer, soft drinks"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Portuguese-based Creole, Portuguese (official; largely used as a second or third language), Pular (a Fula language), Mandingo || Muslim 46.1%, folk religions 30.6%, Christian 18.9%, other or unaffiliated 4.4% (2020 est.) || Balanta 30%, Fulani 30%, Manjaco 14%, Mandinga 13%, Papel 7%, unspecified smaller ethnic groups 6% (2015 est.)"
+    }
+  }
+}

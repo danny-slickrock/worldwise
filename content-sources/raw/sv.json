@@ -1,0 +1,182 @@
+{
+  "iso": "sv",
+  "fetchedAt": "2026-09-04T23:57:07.124Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/es.json"
+    }
+  },
+  "wikidata": {
+    "name": "El Salvador",
+    "gec": "ES",
+    "capital": "San Salvador",
+    "areaKm2": 21041,
+    "population": 6029976,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Bitcoin",
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "gt",
+      "hn"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/es.json",
+    "Introduction": {
+      "Background": {
+        "text": "El Salvador achieved independence from Spain in 1821 and from the Central American Federation in 1839. A 12-year civil war, which cost about 75,000 lives, was brought to a close in 1992 when the government and leftist rebels signed a treaty that provided for military and political reforms. El Salvador is beset by one of the world's highest homicide rates and pervasive criminal gangs."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering the North Pacific Ocean, between Guatemala and Honduras"
+      },
+      "Area": {
+        "total ": {
+          "text": "21,041 sq km"
+        },
+        "land": {
+          "text": "20,721 sq km"
+        },
+        "water": {
+          "text": "320 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "590 km"
+        },
+        "border countries": {
+          "text": "Guatemala 199 km; Honduras 391 km"
+        }
+      },
+      "Coastline": {
+        "text": "307 km"
+      },
+      "Climate": {
+        "text": "tropical; rainy season (May to October); dry season (November to April); tropical on coast; temperate in uplands"
+      },
+      "Terrain": {
+        "text": "mostly mountains with narrow coastal belt and central plateau"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro El Pital 2,730 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "442 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower, geothermal power, petroleum, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "57.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 34.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 7.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 15.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "33% (2023 est.)"
+        },
+        "other": {
+          "text": "9.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "known as the Land of Volcanoes; frequent and sometimes destructive earthquakes and volcanic activity; extremely susceptible to hurricanes <br><br><strong>volcanism:</strong> significant volcanic activity; San Salvador (1,893 m), which last erupted in 1917, has the potential to cause major harm to the country's capital, which lies just below the volcano's slopes; San Miguel (2,130 m) is one of the most active volcanoes in the country; other historically active volcanoes include Conchaguita, Ilopango, Izalco, and Santa Ana"
+      },
+      "Geography - note": {
+        "text": "smallest Central American country and only one without a coastline on the Caribbean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,334,723 (2025 est.)"
+        },
+        "male": {
+          "text": "3,026,645"
+        },
+        "female": {
+          "text": "3,308,078"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official), Nawat (among some indigenous)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 43.9%, Protestant 39.6% (Evangelical - unspecified 38.2%, Evangelical - Methodist 1.3%, Evangelical - Baptist 0.1%), none 16.3%, unspecified 0.2% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo 86.3%, White 12.7%, Indigenous 0.2% (includes Lenca, Kakawira, Nahua-Pipil), Black 0.1%, other 0.6% (2007 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "75.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.33% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "high population density country-wide, with particular concentration around the capital of San Salvador"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper-middle-income, dollarized Central American economy; reliant on remittances from US; recent growth linked to infrastructure investment, consumption, and crime reduction; $1.3 billion IMF loan to address fiscal imbalances; Bitcoin adopted as legal tender; persistent poverty and large informal sector"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, maize, milk, chicken, sorghum, beans, oranges, coconuts, eggs, mangoes/guavas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food processing, beverages, petroleum, chemicals, fertilizer, textiles, furniture, light metals"
+      },
+      "Exports - commodities": {
+        "text": "garments, plastic products, electrical capacitors, raw sugar, toilet paper (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 36%, Guatemala 17%, Honduras 15%, Nicaragua 8%, Costa Rica 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, natural gas, garments, packaged medicine, plastics (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; rainy season (May to October); dry season (November to April); tropical on coast; temperate in uplands"
+      }
+    }
+  }
+}

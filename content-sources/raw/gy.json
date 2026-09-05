@@ -1,0 +1,177 @@
+{
+  "iso": "gy",
+  "fetchedAt": "2026-09-04T23:57:07.487Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/gy.json"
+    }
+  },
+  "wikidata": {
+    "name": "Guyana",
+    "gec": "GY",
+    "capital": "Georgetown",
+    "areaKm2": 214970,
+    "population": 878674,
+    "continent": "South America",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Guyanese dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "ve",
+      "sr"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/gy.json",
+    "Introduction": {
+      "Background": {
+        "text": "Originally a Dutch colony in the 17th century, by 1815 Guyana had become a British possession. The abolition of slavery led to former slaves settling urban areas and indentured servants being imported from India to work the sugar plantations. The resulting ethnocultural divide has persisted and has led to turbulent politics. Guyana achieved independence from the UK in 1966, and since then primarily socialist-oriented governments have ruled the country. <br><br>In 1992, Cheddi JAGAN was elected president in what is considered the country's first free and fair election since independence. After his death five years later, his wife, Janet JAGAN, became president but resigned in 1999 due to poor health. Her successor, Bharrat JAGDEO, was elected in 2001 and again in 2006. Donald RAMOTAR won in 2011, but early elections held in 2015 resulted in the first change in governing party, and David GRANGER took office. After a 2018 no-confidence vote against the GRANGER government, the administration ignored a constitutional requirement to hold elections and remained in place until the 2020 elections, when Irfaan ALI became president. <br><br>The discovery of massive offshore oil reserves in 2015 has been Guyana's primary economic and political focus, with many hoping the reserves will transform one of the poorest countries in the region. Guyana is the only English-speaking country in South America and shares cultural and historical bonds with the Anglophone Caribbean."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern South America, bordering the North Atlantic Ocean, between Suriname and Venezuela"
+      },
+      "Area": {
+        "total ": {
+          "text": "214,969 sq km"
+        },
+        "land": {
+          "text": "196,849 sq km"
+        },
+        "water": {
+          "text": "18,120 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,933 km"
+        },
+        "border countries": {
+          "text": "Brazil 1,308 km; Suriname 836 km; Venezuela 789 km"
+        }
+      },
+      "Coastline": {
+        "text": "459 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid, moderated by northeast trade winds; two rainy seasons (May to August, November to January)"
+      },
+      "Terrain": {
+        "text": "mostly rolling highlands; low coastal plain; savanna in south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Laberintos del Norte on Mount Roraima 2,775 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "207 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, gold, diamonds, hardwood timber, shrimp, fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "3.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 2.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "87.1% (2023 est.)"
+        },
+        "other": {
+          "text": "9.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flash flood threat during rainy seasons"
+      },
+      "Geography - note": {
+        "text": "the third-smallest country in South America after Suriname and Uruguay; contains some of the largest unspoiled rainforests on the continent"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "794,099 (2024 est.)"
+        },
+        "male": {
+          "text": "405,244"
+        },
+        "female": {
+          "text": "388,855"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Guyanese Creole, Amerindian languages (including Caribbean and Arawak languages), Indian languages (including Caribbean Hindustani, a dialect of Hindi), Chinese (2014 est.)"
+      },
+      "Religions": {
+        "text": "Protestant 34.8% (Pentecostal 22.8%, Seventh Day Adventist 5.4%, Anglican 5.2%, Methodist 1.4%), Hindu 24.8%, other Christian 20.8%, Roman Catholic 7.1%, Muslim 6.8%, Jehovah's Witness 1.3%, Rastafarian 0.5%, other 0.9%, none 3.1% (2012 est.)"
+      },
+      "Ethnic groups": {
+        "text": "East Indian 39.8%, African descent 29.3%, mixed 19.9%, Indigenous 10.5%, other 0.5% (includes Portuguese, Chinese, White) (2012 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "27.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.01% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is heavily concentrated in the northeast in and around Georgetown, with notable concentrations along the Berbice River to the east; the remainder of the country is sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "small, hydrocarbon-driven South American export economy; major forest coverage being leveraged in carbon credit offsets to encourage preservation; strengthening financial sector; large bauxite and gold resources"
+      },
+      "Agricultural products": {
+        "text": "rice, sugarcane, plantains, cassava, papayas, pumpkins/squash, chicken, milk, ginger, eggplants (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "bauxite, sugar, rice milling, timber, textiles, gold mining"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, railway cargo containers, gold, ships, rice (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 20%, Trinidad &amp; Tobago 11%, Netherlands 10%, Singapore 10%, Germany 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, ships, construction vehicles, excavation machinery, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid, moderated by northeast trade winds; two rainy seasons (May to August, November to January)"
+      }
+    }
+  }
+}

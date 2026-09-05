@@ -1,0 +1,183 @@
+{
+  "iso": "bz",
+  "fetchedAt": "2026-09-04T23:57:05.405Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/bh.json"
+    }
+  },
+  "wikidata": {
+    "name": "Belize",
+    "gec": "BH",
+    "capital": "Belmopan",
+    "areaKm2": 22966,
+    "population": 411106,
+    "continent": "North America",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Belize dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "mx",
+      "gt"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/bh.json",
+    "Introduction": {
+      "Background": {
+        "text": "Belize was the site of several Mayan city states until their decline at the end of the first millennium A.D. The British and Spanish disputed the region in the 17th and 18th centuries; it formally became the colony of British Honduras in 1862. Territorial disputes between the UK and Guatemala delayed the independence of Belize until 1981. Guatemala refused to recognize the new nation until 1992, and the two countries are still involved in an ongoing border dispute. Tourism has become the mainstay of the economy. Current concerns include the country's heavy foreign debt burden, high crime rates, high unemployment combined with a majority youth population, growing involvement in the Mexican and South American drug trade, and one of the highest HIV/AIDS prevalence rates in Central America."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central America, bordering the Caribbean Sea, between Guatemala and Mexico"
+      },
+      "Area": {
+        "total ": {
+          "text": "22,966 sq km"
+        },
+        "land": {
+          "text": "22,806 sq km"
+        },
+        "water": {
+          "text": "160 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "542 km"
+        },
+        "border countries": {
+          "text": "Guatemala 266 km; Mexico 276 km"
+        }
+      },
+      "Coastline": {
+        "text": "386 km"
+      },
+      "Climate": {
+        "text": "tropical; very hot and humid; rainy season (May to November); dry season (February to May)"
+      },
+      "Terrain": {
+        "text": "flat, swampy coastal plain; low mountains in south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Doyle's Delight 1,124 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "173 m"
+        }
+      },
+      "Natural resources": {
+        "text": "arable land potential, timber, fish, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 4.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 2.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "58.3% (2023 est.)"
+        },
+        "other": {
+          "text": "33.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "frequent, devastating hurricanes (June to November) and coastal flooding (especially in south)"
+      },
+      "Geography - note": {
+        "text": "only country in Central America without a coastline on the North Pacific Ocean"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "421,960 (2025 est.)"
+        },
+        "male": {
+          "text": "208,844"
+        },
+        "female": {
+          "text": "213,116"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "English 62.9% (official), Spanish 56.6%, Creole 44.6%, Maya 10.5%, German 3.2%, Garifuna 2.9%, other 1.8%, unknown 0.5% (2010 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, the indispensable source for basic information. (English)<br><br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)"
+        },
+        "note": "<strong>note:</strong> shares sum to more than 100% because some respondents gave more than one answer on the census"
+      },
+      "Religions": {
+        "text": "Roman Catholic 40.1%, Protestant 31.5% (includes Pentecostal 8.4%, Seventh Day Adventist 5.4%, Anglican 4.7%, Mennonite 3.7%, Baptist 3.6%, Methodist 2.9%, Nazarene 2.8%), Jehovah's Witness 1.7%, other 10.5% (includes Baha'i, Buddhist, Hindu, Church of Jesus Christ, Muslim, Rastafarian, Salvation Army), unspecified 0.6%, none 15.5% (2010 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo 52.9%, Creole 25.9%, Maya 11.3%, Garifuna 6.1%, East Indian 3.9%, Mennonite 3.6%, White 1.2%, Asian 1%, other 1.2%, unknown 0.3% (2010 est.)",
+        "note": "<strong>note:</strong> percentages add up to more than 100% because respondents were able to identify more than one ethnic origin"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "46.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.3% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "approximately 25% to 30% of the population lives in the former capital, Belize City; over half of the overall population is rural; population density is slightly higher in the north and east"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "tourism- and agriculture-driven economy; strong post-pandemic rebound; innovative and ecological bond restructuring that significantly lowered public debt and expanded marine protections; central bank offering USD-denominated treasury notes; high mobility across borders"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, maize, bananas, sorghum, soybeans, chicken, rice, oranges, fruits, plantains (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "garment production, food processing, tourism, construction, oil"
+      },
+      "Exports - commodities": {
+        "text": "raw sugar, bananas, fish, shellfish, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 22%, UK 14%, Spain 9%, Guatemala 7%, Portugal 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, orthopedic appliances, ships, garments, tobacco (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; very hot and humid; rainy season (May to November); dry season (February to May)"
+      }
+    }
+  }
+}

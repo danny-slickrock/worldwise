@@ -1,0 +1,70 @@
+{
+  "iso": "py",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.431Z",
+  "structured": {
+    "code": "py",
+    "name": "Paraguay",
+    "capital": "Asunción",
+    "continent": "South America",
+    "areaKm2": 406756,
+    "population": 6811297,
+    "officialLanguages": [
+      "Spanish",
+      "Guarani"
+    ],
+    "currencies": [
+      "Paraguayan guaraní"
+    ],
+    "landBorderNames": [
+      "Argentina",
+      "Bolivia",
+      "Brazil"
+    ],
+    "landBorderCodes": [
+      "ar",
+      "bo",
+      "br"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, timber, iron ore, manganese, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central South America, northeast of Argentina, southwest of Brazil || grassy plains and wooded hills east of Rio Paraguay; Gran Chaco region west of Rio Paraguay mostly low, marshy plain near the river, and dry forest and thorny scrub elsewhere || landlocked; lies between Argentina, Bolivia, and Brazil; population concentrated in eastern and southern part of country || Resources: hydropower, timber, iron ore, manganese, limestone || Exports: soybeans, beef, electricity, corn, soybean meal (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "grassy plains and wooded hills east of Rio Paraguay; Gran Chaco region west of Rio Paraguay mostly low, marshy plain near the river, and dry forest and thorny scrub elsewhere || Central South America, northeast of Argentina, southwest of Brazil"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "subtropical to temperate; substantial rainfall in the eastern portions, becoming semiarid in the far west || local flooding in southeast (early September to June); poorly drained plains may become boggy (early October to June)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income South American economy; COVID-19 hit while still recovering from 2019 Argentina-driven recession; global hydroelectricity leader; major corruption and money-laundering locale; highly agrarian economy; significant income inequality || Exports: soybeans, beef, electricity, corn, soybean meal (2023) || Industries: sugar processing, cement, textiles, beverages, wood products, steel, base metals, electric power"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 80.4%, Protestant 7% (Evangelical (non-specific) 6.7%, Evangelical Pentecostal &lt;0.1%, Adventist &lt;0.1%, Protestant (non-specific) &lt;0.1%), Believer (not belonging to the church) 5.7%, other 0.6%, agnostic &lt;0.1%, none 0.2%, unspecified 6.2% (2023 est.) || Mestizo (mixed Spanish and Indigenous ancestry) 95%, other 5%"
+    }
+  }
+}

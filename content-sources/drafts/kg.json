@@ -1,0 +1,71 @@
+{
+  "iso": "kg",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.397Z",
+  "structured": {
+    "code": "kg",
+    "name": "Kyrgyzstan",
+    "capital": "Bishkek",
+    "continent": "Asia",
+    "areaKm2": 199951,
+    "population": 7281800,
+    "officialLanguages": [
+      "Kyrgyz"
+    ],
+    "currencies": [
+      "Kyrgyz som"
+    ],
+    "landBorderNames": [
+      "China",
+      "Kazakhstan",
+      "Tajikistan",
+      "Uzbekistan"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "kz",
+      "tj",
+      "uz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "abundant hydropower; gold, rare earth metals; locally exploitable coal, oil, and natural gas; other deposits of nepheline, mercury, bismuth, lead, and zinc",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Asia, west of China, south of Kazakhstan || peaks of the Tien Shan mountain range and associated valleys and basins encompass the entire country || landlocked; entirely mountainous, dominated by the Tien Shan range; 94% of the country is 1,000 m above sea level with an average elevation of 2,750 m; many tall peaks, glaciers, and high-altitude lakes || Resources: abundant hydropower; gold, rare earth metals; locally exploitable coal, oil, and natural gas; other deposits of nepheline, mercury, bismuth, lead, and zinc || Exports: gold, coal, precious metal ore, refined petroleum, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "peaks of the Tien Shan mountain range and associated valleys and basins encompass the entire country || Central Asia, west of China, south of Kazakhstan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "dry continental to polar in high Tien Shan Mountains; subtropical in southwest (Fergana Valley); temperate in northern foothill zone || major flooding during snow melt; prone to earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "landlocked, lower-middle-income Central Asian economy; natural resource rich; growing hydroelectricity and tourism; high remittances; corruption limits investment; COVID-19 and political turmoil hurt GDP, limited public revenues, and increased spending || Exports: gold, coal, precious metal ore, refined petroleum, garments (2023) || Industries: small machinery, textiles, food processing, cement, shoes, lumber, refrigerators, furniture, electric motors, gold, rare earth metals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 90% (majority Sunni), Christian 7% (Russian Orthodox 3%), other 3% (includes Jewish, Buddhist, Baha'i) (2017 est.) || Kyrgyz 73.8%, Uzbek 14.8%, Russian 5.1%, Dungan 1.1%, other 5.2% (includes Uyghur, Tajik, Turk, Kazakh, Tatar, Ukrainian, Korean, German) (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "iso": "ma",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.416Z",
+  "structured": {
+    "code": "ma",
+    "name": "Morocco",
+    "capital": "Rabat",
+    "continent": "Africa",
+    "areaKm2": 446550,
+    "population": 36828330,
+    "officialLanguages": [
+      "Arabic",
+      "Standard Moroccan Tamazight"
+    ],
+    "currencies": [
+      "Moroccan dirham"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Mauritania",
+      "Spain"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "mr",
+      "es"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "phosphates, iron ore, manganese, lead, zinc, fish, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the North Atlantic Ocean and the Mediterranean Sea, between Algeria and Mauritania || mountainous northern coast (Rif Mountains) and interior (Atlas Mountains) bordered by large plateaus with intermontane valleys, and fertile coastal plains; the south is mostly low, flat desert with large areas of rocky or sandy surfaces || strategic location along Strait of Gibraltar; the only African nation to have both Atlantic and Mediterranean coastlines; the waters off the Atlantic coast are particularly rich fishing areas || Resources: phosphates, iron ore, manganese, lead, zinc, fish, salt || Exports: fertilizers, cars, garments, insulated wire, tomatoes (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountainous northern coast (Rif Mountains) and interior (Atlas Mountains) bordered by large plateaus with intermontane valleys, and fertile coastal plains; the south is mostly low, flat desert with large areas of rocky or sandy surfaces || Northern Africa, bordering the North Atlantic Ocean and the Mediterranean Sea, between Algeria and Mauritania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean in the north, becoming more extreme in the interior; in the south, hot, dry desert; rain is rare; cold offshore air currents produce fog and heavy dew || in the north, the mountains are geologically unstable and subject to earthquakes; periodic droughts; windstorms; flash floods; landslides; in the south, a hot, dry, dust/sand-laden sirocco wind can occur during winter and spring; widespread harmattan haze exists 60% of time, often severely restricting visibility"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income North African economy; ongoing recovery from recent drought and earthquake; rebounding via tourism, manufacturing, and raw materials processing; significant trade and investment with EU; reform programs include fiscal rebalancing, state enterprise governance and private sector investments || Exports: fertilizers, cars, garments, insulated wire, tomatoes (2023) || Industries: automotive parts, phosphate mining and processing, aerospace, food processing, leather goods, textiles, construction, energy, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 99% (official; virtually all Sunni, &lt;0.1% Shia), other 1% (includes Christian, Jewish, and Baha'i); note - Jewish about 3,000-3,500 (2020 est.) || Arab-Amazigh 99%, other 1%"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "iso": "ca",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.425Z",
+  "structured": {
+    "code": "ca",
+    "name": "Canada",
+    "capital": "Ottawa",
+    "continent": "North America",
+    "areaKm2": 9984670,
+    "population": 36991981,
+    "officialLanguages": [
+      "French",
+      "English"
+    ],
+    "currencies": [
+      "Canadian dollar"
+    ],
+    "landBorderNames": [
+      "US",
+      "Denmark"
+    ],
+    "landBorderCodes": [
+      "us",
+      "dk"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, iron ore, nickel, zinc, copper, gold, lead, uranium, rare earth elements, molybdenum, potash, diamonds, silver, fish, timber, wildlife, coal, petroleum, natural gas, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern North America, bordering the North Atlantic Ocean on the east, North Pacific Ocean on the west, and the Arctic Ocean on the north, north of the conterminous US || mostly plains with mountains in west, lowlands in southeast || second-largest country in the world (after Russia) and largest in the Americas; strategic location between Russia and US via north polar route; approximately 90% of the population is concentrated within 160 km (100 mi) of the US border Canada has more fresh water than any other country, and almost 9% of Canadian territory is water; Canada has at least 2 million and possibly over 3 million lakes, more than all other countries combined || Resources: bauxite, iron ore, nickel, zinc, copper, gold, lead, uranium, rare earth elements, molybdenum, potash, diamonds, silver, fish, timber, wildlife, coal, petroleum, natural gas, hydropower || Exports: crude petroleum, cars, gold, natural gas, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly plains with mountains in west, lowlands in southeast || Northern North America, bordering the North Atlantic Ocean on the east, North Pacific Ocean on the west, and the Arctic Ocean on the north, north of the conterminous US"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from temperate in south to subarctic and arctic in north || continuous permafrost in north is a serious obstacle to development; cyclonic storms form east of the Rocky Mountains, a result of the mixing of air masses from the Arctic, Pacific, and North American interior, and produce most of the country's rain and snow east of the mountains volcanism: the vast majority of volcanoes in Western Canada's Coast Mountains remain dormant"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income economy and second-largest US trading partner; key timber, oil, and gas industries; trade uncertainties and weak business investments contributing to economic slowdown; high and growing public debt; inflation moderating but remains above target range || Exports: crude petroleum, cars, gold, natural gas, refined petroleum (2023) || Industries: transportation equipment, chemicals, processed and unprocessed minerals, food products, wood and paper products, fish products, petroleum, natural gas"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 53.3%, Muslim 4.9%, Hindu 2.3%, Sikh 2.1%, Buddhist 1%, Jewish 0.9%, Traditional (North American Indigenous) 0.2%, other religions and traditional spirituality 0.6%, none 34.6% (2021 est.) || Canadian 15.6%, English 14.7%, Scottish 12.1%, French 11%, Irish 12.1%, German 8.1%, Chinese 4.7%, Italian 4.3%, First Nations 1.7%, Indian 3.7%, Ukrainian 3.5%, Metis 1.5% (2021 est.)"
+    }
+  }
+}

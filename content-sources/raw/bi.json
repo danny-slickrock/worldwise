@@ -1,0 +1,185 @@
+{
+  "iso": "bi",
+  "fetchedAt": "2026-09-04T23:56:54.940Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/by.json"
+    }
+  },
+  "wikidata": {
+    "name": "Burundi",
+    "gec": "BY",
+    "capital": "Gitega",
+    "areaKm2": 27834,
+    "population": 13689450,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "English",
+      "Kirundi"
+    ],
+    "currencies": [
+      "Burundian franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "tz",
+      "cd",
+      "rw"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/by.json",
+    "Introduction": {
+      "Background": {
+        "text": "Established in the 1600s, the Burundi Kingdom has had borders similar to those of modern Burundi since the 1800s. Burundi’s two major ethnic groups, the majority Hutu and minority Tutsi, share a common language and culture and largely lived in peaceful cohabitation under Tutsi monarchs in pre-colonial Burundi. Regional, class, and clan distinctions contributed to social status in the Burundi Kingdom, yielding a complex class structure. German colonial rule in the late 19th and early 20th centuries and Belgian rule after World War I preserved Burundi’s monarchy. Seeking to simplify administration, Belgian colonial officials reduced the number of chiefdoms and eliminated most Hutu chiefs from positions of power. In 1961, the Burundian Tutsi king’s oldest son, Louis RWAGASORE, was murdered by a competing political faction shortly before he was set to become prime minister, triggering increased political competition that contributed to later instability. <br><br>Burundi gained its independence from Belgium in 1962 as the Kingdom of Burundi. Revolution in neighboring Rwanda stoked ethnic polarization as the Tutsi increasingly feared violence and loss of political power. A failed Hutu-led coup in 1965 triggered a purge of Hutu officials and set the stage for Tutsi officers to overthrow the monarchy in 1966 and establish a Tutsi-dominated republic. A Hutu rebellion in 1972 resulted in the deaths of several thousand Tutsi civilians and sparked brutal Tutsi-led military reprisals against Hutu civilians which ultimately killed 100,000-200,000 people. International pressure led to a new constitution in 1992 and democratic elections in 1993. Tutsi military officers feared Hutu domination and assassinated Burundi's first democratically elected president, Hutu Melchior NDADAYE, in 1993 after only 100 days in office, sparking a civil war. In 1994, his successor, Cyprien NTARYAMIRA, died when the Rwandan president’s plane he was traveling on was shot down, which triggered the Rwandan genocide and further entrenched ethnic conflict in Burundi. The internationally brokered Arusha Agreement, signed in 2000, and subsequent cease-fire agreements with armed movements ended the 1993-2005 civil war. Burundi’s second democratic elections were held in 2005, resulting in the election of Pierre NKURUNZIZA as president. He was reelected in 2010 and again in 2015 after a controversial court decision allowed him to circumvent a term limit. President Evariste NDAYISHIMIYE -- from NKURUNZIZA’s ruling party -- was elected in 2020."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, east of the Democratic Republic of the Congo, west of Tanzania"
+      },
+      "Area": {
+        "total ": {
+          "text": "27,830 sq km"
+        },
+        "land": {
+          "text": "25,680 sq km"
+        },
+        "water": {
+          "text": "2,150 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,140 km"
+        },
+        "border countries": {
+          "text": "Democratic Republic of the Congo 236 km; Rwanda 315 km; Tanzania 589 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "equatorial; high plateau with considerable altitude variation (772 m to 2,670 m above sea level); average annual temperature varies with altitude from 23 to 17 degrees Celsius but is generally moderate; average annual rainfall is about 150 cm with two wet seasons (February to May and September to November) and two dry seasons (June to August and December to January)"
+      },
+      "Terrain": {
+        "text": "hilly and mountainous, dropping to a plateau in east, some plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "unnamed elevation on Mukike Range 2,685 m"
+        },
+        "lowest point": {
+          "text": "Lake Tanganyika 772 m"
+        },
+        "mean elevation": {
+          "text": "1,504 m"
+        }
+      },
+      "Natural resources": {
+        "text": "nickel, uranium, rare earth oxides, peat, cobalt, copper, platinum, vanadium, arable land, hydropower, niobium, tantalum, gold, tin, tungsten, kaolin, limestone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "83.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 51.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 13.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 18.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "10.9% (2023 est.)"
+        },
+        "other": {
+          "text": "5.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding; landslides; drought"
+      },
+      "Geography - note": {
+        "text": "landlocked; straddles crest of the Nile-Congo watershed; the Kagera, which drains into Lake Victoria, is the most remote headstream of the White Nile"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "13,590,102 (2024 est.)"
+        },
+        "male": {
+          "text": "6,755,456"
+        },
+        "female": {
+          "text": "6,834,646"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Kirundi (official), French (official), English (official, least spoken), Swahili (2008 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Igitabo Mpuzamakungu c'ibimenyetso bifatika, isoko ntabanduka ku nkuru z'urufatiro. (Kirundi)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent languages read and written by people 10 years of age or older; spoken Kirundi is nearly universal"
+      },
+      "Religions": {
+        "text": "Christian 93.9% (Roman Catholic 58.6%, Protestant 35.3% [includes Adventist 2.7% and other Protestant religions 32.6%]), Muslim 3.4%, other 1.3%, none 1.3% (2016-17 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Hutu, Tutsi, Twa, South Asian"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "14.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "5.43% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "one of Africa's most densely populated countries; concentrations tend to be in the north and along the northern shore of Lake Tanganyika in the west; most people live on farms near areas of fertile volcanic soil, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "highly agrarian, low-income Sub-Saharan economy; declining foreign assistance; increasing fiscal insolvencies; dense and still growing population; COVID-19 weakened economic recovery and flipped two years of deflation"
+      },
+      "Agricultural products": {
+        "text": "cassava, bananas, sweet potatoes, beans, maize, vegetables, potatoes, rice, sugarcane, fruits (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "light consumer goods (sugar, shoes, soap, beer); cement, assembly of imported components; public works construction; food processing (fruits)"
+      },
+      "Exports - commodities": {
+        "text": "gold, coffee, tea, tin ores, iron bars (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 59%, Uganda 8%, China 5%, Germany 5%, USA 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "fertilizers, cement, packaged medicine, plastic products, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "equatorial; high plateau with considerable altitude variation (772 m to 2,670 m above sea level); average annual temperature varies with altitude from 23 to 17 degrees Celsius but is generally moderate; average annual rainfall is about 150 cm with two wet seasons (February to May and September to November) and two dry seasons (June to August and December to January)"
+      }
+    }
+  }
+}

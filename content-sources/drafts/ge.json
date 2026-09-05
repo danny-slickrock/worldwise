@@ -1,0 +1,71 @@
+{
+  "iso": "ge",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.394Z",
+  "structured": {
+    "code": "ge",
+    "name": "Georgia",
+    "capital": "Tbilisi",
+    "continent": "Europe",
+    "areaKm2": 69700,
+    "population": 3929581,
+    "officialLanguages": [
+      "Georgian"
+    ],
+    "currencies": [
+      "Georgian lari"
+    ],
+    "landBorderNames": [
+      "Armenia",
+      "Azerbaijan",
+      "Russia",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "am",
+      "az",
+      "ru",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, hydropower, manganese deposits, iron ore, copper, minor coal and oil deposits; coastal climate and soils allow for important tea and citrus growth",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Asia, bordering the Black Sea, between Turkey and Russia, with a sliver of land north of the Caucasus extending into Europe; note - Georgia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both || largely mountainous with Great Caucasus Mountains in the north and Lesser Caucasus Mountains in the south; Kolkhet'is Dablobi (Kolkhida Lowland) opens to the Black Sea in the west; Mtkvari River Basin in the east; fertile soils in river valley flood plains and foothills of Kolkhida Lowland || strategically located east of the Black Sea, Georgia controls much of the Caucasus Mountains and the routes through them the world's four deepest caves are all in Georgia, including two that are the only known caves on earth deeper than 2,000 m: Krubera Cave at -2,197 m (-7,208 ft; reached in 2012) and Veryovkina Cave at -2,212 (-7,257 ft; reached in 2018) || Resources: timber, hydropower, manganese deposits, iron ore, copper, minor coal and oil deposits; coastal climate and soils allow for important tea and citrus growth || Exports: cars, copper ore, electricity, garments, wine (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "largely mountainous with Great Caucasus Mountains in the north and Lesser Caucasus Mountains in the south; Kolkhet'is Dablobi (Kolkhida Lowland) opens to the Black Sea in the west; Mtkvari River Basin in the east; fertile soils in river valley flood plains and foothills of Kolkhida Lowland || Southwestern Asia, bordering the Black Sea, between Turkey and Russia, with a sliver of land north of the Caucasus extending into Europe; note - Georgia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "warm and pleasant; Mediterranean-like on Black Sea coast || earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle income, fast-growing South Caucasus economy; regionally focused exporter of cars, metal ores, and energy; financial and migrant inflows resulting from Ukraine conflict; EU accession talks suspended over disputed election and foreign influence law; low inflation but persistent high unemployment || Exports: cars, copper ore, electricity, garments, wine (2023) || Industries: steel, machine tools, electrical appliances, mining (manganese, copper, gold), chemicals, wood products, wine"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Eastern Orthodox Christian (official) 83.4%, Muslim 10.7%, Armenian Apostolic Christian 2.9%, other 1.2% (includes Roman Catholic Christian, Jehovah's Witness, Yazidi, Protestant Christian, Jewish), none 0.5%, unspecified/no answer 1.2% (2014 est.) || Georgian 86.8%, Azeri 6.3%, Armenian 4.5%, other 2.3% (includes Russian, Ossetian, Yazidi, Ukrainian, Kist, Greek) (2014 est.)"
+    }
+  }
+}

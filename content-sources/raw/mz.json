@@ -1,0 +1,181 @@
+{
+  "iso": "mz",
+  "fetchedAt": "2026-09-04T23:57:00.740Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/mz.json"
+    }
+  },
+  "wikidata": {
+    "name": "Mozambique",
+    "gec": "MZ",
+    "capital": "Maputo",
+    "areaKm2": 801590,
+    "population": 29668834,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "Mozambican metical"
+    ],
+    "sharesBorderWithAnyType": [
+      "za",
+      "tz",
+      "zm",
+      "zw",
+      "km",
+      "mw",
+      "sz"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/mz.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>In the first half of the second millennium A.D., northern Mozambican port towns were frequented by traders from Somalia, Ethiopia, Egypt, Arabia, Persia, and India. The Portuguese were able to wrest much of the coastal trade from Arab Muslims in the centuries after 1500, and they set up their own colonies. Portugal did not relinquish Mozambique until 1975. Large-scale emigration, economic dependence on South Africa, a severe drought, and a prolonged civil war hindered the country's development until the mid-1990s. <br><br>The ruling Front for the Liberation of Mozambique (FRELIMO) party formally abandoned Marxism in 1989, and a new constitution the following year provided for multiparty elections and a free-market economy. A UN-negotiated peace agreement between FRELIMO and rebel Mozambique National Resistance (RENAMO) forces ended the fighting in 1992. In 2004, Mozambique underwent a delicate transition as Joaquim CHISSANO stepped down after 18 years in office. His elected successor, Armando GUEBUZA, served two terms and then passed executive power to Filipe NYUSI in 2015. RENAMO’s residual armed forces intermittently engaged in a low-level insurgency after 2012, but a 2016 cease-fire eventually led to the two sides signing a comprehensive peace deal in 2019. <br><br>Since 2017, violent extremists -- who an official ISIS media outlet recognized as ISIS's network in Mozambique for the first time in 2019 -- have been conducting attacks against civilians and security services in the northern province of Cabo Delgado. In 2021, Rwanda and the Southern African Development Community deployed forces to support Mozambique’s efforts to counter the extremist group.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Africa, bordering the Mozambique Channel, between South Africa and Tanzania"
+      },
+      "Area": {
+        "total ": {
+          "text": "799,380 sq km"
+        },
+        "land": {
+          "text": "786,380 sq km"
+        },
+        "water": {
+          "text": "13,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,783 km"
+        },
+        "border countries": {
+          "text": "Malawi 1498 km; South Africa 496 km; Eswatini 108 km; Tanzania 840 km; Zambia 439 km; Zimbabwe 1,402 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,470 km"
+      },
+      "Climate": {
+        "text": "tropical to subtropical"
+      },
+      "Terrain": {
+        "text": "mostly coastal lowlands, uplands in center, high plateaus in northwest, mountains in west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Monte Binga 2,436 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "345 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, titanium, natural gas, hydropower, tantalum, graphite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "52.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 45.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "41.7% (2023 est.)"
+        },
+        "other": {
+          "text": "5.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "severe droughts; devastating cyclones and floods in central and southern provinces"
+      },
+      "Geography - note": {
+        "text": "the Zambezi River flows through the north-central and most fertile part of the country"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "34,206,144 (2025 est.)"
+        },
+        "male": {
+          "text": "16,880,529"
+        },
+        "female": {
+          "text": "17,325,615"
+        }
+      },
+      "Languages": {
+        "text": "Makhuwa 26.1%, Portuguese (official) 16.6%, Tsonga 8.6%, Nyanja 8.1, Sena 7.1%, Lomwe 7.1%, Chuwabo 4.7%, Ndau 3.8%, Tswa 3.8%, other Mozambican languages 11.8%, other 0.5%, unspecified 1.8% (2017 est.)"
+      },
+      "Religions": {
+        "text": "Catholic 27.3%, Islam 19.1%, Pentecostal 16.7%, Saio/Zione 16.3%, no religion 13.5%, other 4.3%, Anglican 1.7%, unknown 1.2% (2017 est.)"
+      },
+      "Ethnic groups": {
+        "text": "African 99% (Makhuwa, Tsonga, Lomwe, Sena, and others), Mestizo 0.8%, other (includes European, Indian, Pakistani, Chinese) 0.2% (2017 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "38.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.24% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "three large population clusters are found along the southern coast between Maputo and Inhambane, in the central area between Beira and Chimoio along the Zambezi River, and in and around the northern cities of Nampula, Cidade de Nacala, and Pemba; the northwest and southwest are the least populated areas, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income East African economy; subsistence farming dominates labor force; return to growth led by agriculture and extractive industries; Islamist insurgency threatens natural gas projects in north; ongoing foreign debt restructuring and resolution under IMF Highly Indebted Poor Countries (HIPC) initiative"
+      },
+      "Agricultural products": {
+        "text": "cassava, maize, sugarcane, tomatoes, beans, potatoes, sweet potatoes, bananas, coconuts, onions (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "aluminum, petroleum products, chemicals (fertilizer, soap, paints), textiles, cement, glass, asbestos, tobacco, food, beverages"
+      },
+      "Exports - commodities": {
+        "text": "coal, natural gas, aluminum, gold, precious stones (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "India 18%, China 13%, South Africa 9%, UAE 6%, Thailand 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, chromium ore, iron alloys, iron ore, palm oil (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical to subtropical"
+      }
+    }
+  }
+}

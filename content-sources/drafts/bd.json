@@ -1,0 +1,67 @@
+{
+  "iso": "bd",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.392Z",
+  "structured": {
+    "code": "bd",
+    "name": "Bangladesh",
+    "capital": "Dhaka",
+    "continent": "Asia",
+    "areaKm2": 147570,
+    "population": 171466990,
+    "officialLanguages": [
+      "Bangla"
+    ],
+    "currencies": [
+      "Bangladeshi taka"
+    ],
+    "landBorderNames": [
+      "Burma",
+      "India"
+    ],
+    "landBorderCodes": [
+      "mm",
+      "in"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, arable land, timber, coal",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, bordering the Bay of Bengal, between Burma and India || mostly flat alluvial plain; hilly in southeast || most of the country is situated on deltas of large rivers flowing from the Himalayas: the Ganges unites with the Jamuna (main channel of the Brahmaputra) and later joins the Meghna to eventually empty into the Bay of Bengal || Resources: natural gas, arable land, timber, coal || Exports: garments, footwear, fabric, textiles, trunks and cases (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat alluvial plain; hilly in southeast || Southern Asia, bordering the Bay of Bengal, between Burma and India"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; mild winter (October to March); hot, humid summer (March to June); humid, warm rainy monsoon (June to October) || droughts; cyclones; much of the country routinely inundated during the summer monsoon season"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "one of the fastest growing emerging market economies; strong economic rebound following COVID-19; significant poverty reduction; exports dominated by textile industry; weakened exports and remittances resulted in declining foreign exchange reserves and 2022 IMF loan request || Exports: garments, footwear, fabric, textiles, trunks and cases (2023) || Industries: cotton, textiles and clothing, jute, tea, paper, cement, fertilizer, sugar, light engineering"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 91%, Hindu 8%, other 1% (2022 est.) || Bengali at least 99%, other indigenous ethnic groups 1% (2022 est.)"
+    }
+  }
+}

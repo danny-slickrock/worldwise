@@ -1,0 +1,184 @@
+{
+  "iso": "dk",
+  "fetchedAt": "2026-09-04T23:56:37.442Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/da.json"
+    }
+  },
+  "wikidata": {
+    "name": "Denmark",
+    "gec": "DA",
+    "capital": "Copenhagen",
+    "areaKm2": 42925.46,
+    "population": 5822863,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Danish"
+    ],
+    "currencies": [
+      "Danish krone"
+    ],
+    "sharesBorderWithAnyType": [
+      "no",
+      "se",
+      "de"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/da.json",
+    "Introduction": {
+      "Background": {
+        "text": "Once the seat of Viking raiders and later a major north European power, Denmark has evolved into a modern, prosperous nation that is part of the general political and economic integration of Europe. It joined NATO in 1949 and the EEC (now the EU) in 1973. The country has opted out of certain elements of the EU's Maastricht Treaty, including the European Economic and Monetary Union and justice and home affairs issues. a 2022 referendum resulted in the removal of Denmark's 30-year opt-out on defense issues, now allowing Denmark to participate fully in the EU's Common Security and Defense Policy."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Europe, bordering the Baltic Sea and the North Sea, on a peninsula north of Germany (Jutland); also includes several major islands (Sjaelland, Fyn, and Bornholm)"
+      },
+      "Area": {
+        "total ": {
+          "text": "43,094 sq km"
+        },
+        "land": {
+          "text": "42,434 sq km"
+        },
+        "water": {
+          "text": "660 sq km"
+        },
+        "note": "<strong>note:</strong> includes the island of Bornholm in the Baltic Sea and the rest of metropolitan Denmark (the Jutland Peninsula, and the major islands of Sjaelland and Fyn) but excludes the Faroe Islands and Greenland"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "141 km"
+        },
+        "border countries": {
+          "text": "Germany 140 km; Canada 1.3 km"
+        }
+      },
+      "Coastline": {
+        "text": "7,314 km"
+      },
+      "Climate": {
+        "text": "temperate; humid and overcast; mild, windy winters and cool summers"
+      },
+      "Terrain": {
+        "text": "low and flat to gently rolling plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Store Mollehoj 171 m"
+        },
+        "lowest point": {
+          "text": "Lammefjord -7 m"
+        },
+        "mean elevation": {
+          "text": "34 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, fish, arable land, salt, limestone, chalk, stone, gravel and sand"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "65.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 59.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "16% (2023 est.)"
+        },
+        "other": {
+          "text": "18.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding is a threat in some areas of the country (e.g., parts of Jutland, along the southern coast of the island of Lolland) that are protected from the sea by a system of dikes"
+      },
+      "Geography - note": {
+        "text": "composed of the Jutland Peninsula and a group of more than 400 islands (Danish Archipelago); controls Danish Straits (Skagerrak and Kattegat) linking Baltic and North Seas; about one-quarter of the population lives in greater Copenhagen"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,051,491 (2025 est.)"
+        },
+        "male": {
+          "text": "3,001,698"
+        },
+        "female": {
+          "text": "3,049,793"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Danish, Faroese, Greenlandic (an Inuit dialect), German (small minority); note - English is the predominant second language"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Verdens Faktabog, den uundværlig kilde til grundlæggende oplysninger. (Danish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Evangelical Lutheran (official) 71.4%, Muslim 4.3%, other/none/unspecified (denominations include Roman Catholic, Jehovah's Witness, Serbian Orthodox Christian, Jewish, Baptist, Buddhist, Church of Jesus Christ, Pentecostal, and nondenominational Christian) 24.3% (2024 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Danish (includes Greenlandic (who are predominantly Inuit) and Faroese) 84.2%, Turkish 1.1%, other 14.7% (largest groups are Polish, Romanian, Syrian, Ukrainian, German, and Iraqi) (2023 est.)",
+        "note": "<strong>note:</strong> data represent population by country of origin"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "88.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.54% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population centers tend to be along coastal areas, particularly in Copenhagen and the eastern side of the country's mainland"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, EU-member, trade-oriented Nordic economy; growth driven by pharmaceuticals, energy, and services; large share of employment in public sector; fixed exchange rate pegged to euro; strong fiscal position and declining public debt; tight labor market mitigated by migrant workers and higher retirement age</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, wheat, potatoes, barley, sugar beets, pork, rapeseed, rye, oats, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "wind turbines, pharmaceuticals, medical equipment, shipbuilding and refurbishment, iron, steel, nonferrous metals, chemicals, food processing, machinery and transportation equipment, textiles and clothing, electronics, construction, furniture and other wood products"
+      },
+      "Exports - commodities": {
+        "text": "packaged medicine, fish, vaccines, refined petroleum, pork (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 13%, USA 10%, Sweden 9%, Netherlands 7%, China 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "natural gas, cars, garments, packaged medicine, refined petroleum (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; humid and overcast; mild, windy winters and cool summers"
+      }
+    }
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "iso": "ru",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.387Z",
+  "structured": {
+    "code": "ru",
+    "name": "Russia",
+    "capital": "Moscow",
+    "continent": "Europe",
+    "areaKm2": 17075400,
+    "population": 146119928,
+    "officialLanguages": [
+      "Russian"
+    ],
+    "currencies": [
+      "Russian ruble"
+    ],
+    "landBorderNames": [
+      "Azerbaijan",
+      "Belarus",
+      "China",
+      "Estonia",
+      "Finland",
+      "Georgia",
+      "Kazakhstan",
+      "North Korea",
+      "Latvia",
+      "Lithuania",
+      "Mongolia",
+      "Norway",
+      "Poland",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "az",
+      "by",
+      "cn",
+      "ee",
+      "fi",
+      "ge",
+      "kz",
+      "kp",
+      "lv",
+      "lt",
+      "mn",
+      "no",
+      "pl",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "wide natural-resource base including major deposits of oil, natural gas, coal, and many strategic minerals, bauxite, reserves of rare earth elements, timber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "North Asia bordering the Arctic Ocean, extending from Eastern Europe (the portion west of the Urals) to the North Pacific Ocean || broad plain with low hills west of Urals; vast coniferous forest and tundra in Siberia; uplands and mountains along southern border regions || largest country in the world in terms of area; despite its size, much of the country lacks the soil and climate (either too cold or too dry) for agriculture Russia's far east, particularly the Kamchatka Peninsula, lies along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes Mount El'brus is Europe's tallest peak; Lake Baikal, the deepest lake in the world, is estimated to hold one fifth of the world's fresh surface water Kaliningrad oblast is an exclave annexed from Germany after World War II; its capital city of Kaliningrad -- formerly Koenigsberg -- is the only Baltic port in Russia that remains ice-free in the winter || Resources: wide natural-resource base including major deposits of oil, natural gas, coal, and many strategic minerals, bauxite, reserves of rare earth elements, timber || Exports: crude petroleum, refined petroleum, natural gas, coal, fertilizers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "broad plain with low hills west of Urals; vast coniferous forest and tundra in Siberia; uplands and mountains along southern border regions || North Asia bordering the Arctic Ocean, extending from Eastern Europe (the portion west of the Urals) to the North Pacific Ocean"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "ranges from steppes in the south through humid continental in much of European Russia; subarctic in Siberia to tundra climate in the polar north; winters vary from cool along Black Sea coast to frigid in Siberia; summers vary from warm in the steppes to cool along Arctic coast || permafrost over much of Siberia is a major impediment to development; volcanic activity in the Kuril Islands; volcanoes and earthquakes on the Kamchatka Peninsula; spring floods and summer/autumn forest fires in Siberia and parts of European Russia volcanism: Kamchatka Peninsula is home to 29 historically active volcanoes, with dozens more in the Kuril Islands; Kliuchevskoi (4,835 m) is Kamchatka's most active volcano; Avachinsky and Koryaksky volcanoes, which pose a threat to the city of Petropavlovsk-Kamchatsky, have been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; other notable historically active volcanoes include Bezymianny, Chikurachki, Ebeko, Gorely, Grozny, Karymsky, Ketoi, Kronotsky, Ksudach, Medvezhia, Mutnovsky, Sarychev Peak, Shiveluch, Tiatia, Tolbachik, and Zheltovsky; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "natural resource-rich Eurasian economy; leading energy exporter to Europe and Asia; decreased oil export reliance; endemic corruption, Ukrainian invasion, and lack of green infrastructure limit investment and have led to sanctions || Exports: crude petroleum, refined petroleum, natural gas, coal, fertilizers (2023) || Industries: complete range of mining and extractive industries producing coal, oil, gas, chemicals, and metals; all forms of machine building from rolling mills to high-performance aircraft and space vehicles; defense industries (including radar, missile production, advanced electronic components), shipbuilding; road and rail transportation equipment; communications equipment; agricultural machinery, tractors, and construction equipment; electric power generating and transmitting equipment; medical and scientific instruments; consumer durables, textiles, foodstuffs, handicrafts"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Russian Orthodox 15-20%, Muslim 10-15%, other Christian 2% (2006 est.) || Russian 77.7%, Tatar 3.7%, Ukrainian 1.4%, Bashkir 1.1%, Chuvash 1%, Chechen 1%, other 10.2%, unspecified 3.9% (2010 est.)"
+    }
+  }
+}

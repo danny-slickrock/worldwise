@@ -1,0 +1,183 @@
+{
+  "iso": "bg",
+  "fetchedAt": "2026-09-04T23:56:36.742Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/bu.json"
+    }
+  },
+  "wikidata": {
+    "name": "Bulgaria",
+    "gec": "BU",
+    "capital": "Sofia",
+    "areaKm2": 110993.6,
+    "population": 6423207,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Bulgarian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "gr",
+      "tr",
+      "ro",
+      "mk",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/bu.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Bulgars, a Central Asian Turkic tribe, merged with the local Slavic inhabitants in the late 7th century to form the first Bulgarian state. In succeeding centuries, Bulgaria struggled with the Byzantine Empire to assert its place in the Balkans, but by the end of the 14th century, the Ottoman Turks overran the country. Northern Bulgaria attained autonomy in 1878, and all of Bulgaria became independent from the Ottoman Empire in 1908. Having fought on the losing side in both World Wars, Bulgaria fell within the Soviet sphere of influence and became a People's Republic in 1946. Communist domination ended in 1990, when Bulgaria held its first multiparty election since World War II and began the contentious process of moving toward political democracy and a market economy while combating inflation, unemployment, corruption, and crime. The country joined NATO in 2004, the EU in 2007, and the Schengen Area for air and sea travel in 2024."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, bordering the Black Sea, between Romania and Turkey"
+      },
+      "Area": {
+        "total ": {
+          "text": "110,879 sq km"
+        },
+        "land": {
+          "text": "108,489 sq km"
+        },
+        "water": {
+          "text": "2,390 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,806 km"
+        },
+        "border countries": {
+          "text": "Greece 472 km; Macedonia 162 km; Romania 605 km; Serbia 344 km; Turkey 223 km"
+        }
+      },
+      "Coastline": {
+        "text": "354 km"
+      },
+      "Climate": {
+        "text": "temperate; cold, damp winters; hot, dry summers"
+      },
+      "Terrain": {
+        "text": "mostly mountains with lowlands in north and southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Musala 2,925 m"
+        },
+        "lowest point": {
+          "text": "Black Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "472 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, copper, lead, zinc, coal, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "46.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 32.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 12.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "36.2% (2023 est.)"
+        },
+        "other": {
+          "text": "17.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes; landslides"
+      },
+      "Geography - note": {
+        "text": "strategic location near Turkish Straits; controls key land routes from Europe to Middle East and Asia"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,737,997 (2025 est.)"
+        },
+        "male": {
+          "text": "3,281,215"
+        },
+        "female": {
+          "text": "3,456,782"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Bulgarian (official) 77.3%, Turkish 7.9%, Romani 3.5%, other 1%, unspecified 10.4% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Светoвен Алманах, незаменимият източник за основна информация. (Bulgarian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Christian 64.7%, Muslim 9.8%, other 0.1%, none 4.7%, unspecified 20.7% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Bulgarian 78.5%, Turkish 7.8%, Roma 4.1%, other 1.2%, unspecified 9.4% (2021 est.)",
+        "note": "<strong>note:</strong> Romani populations are usually underestimated in official statistics and may represent 9–11% of Bulgaria's population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "76.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.28% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, with urban areas attracting larger populations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income EU economy; currency pegged to the euro, with eurozone accession pending; declining energy prices helping lower inflation rate; EU structural funds contributing to investment recovery; skilled labor shortage driven by emigration and aging population</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, maize, sunflower seeds, barley, milk, rapeseed, grapes, potatoes, triticale, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "electricity, gas, water; food, beverages, tobacco; machinery and equipment, automotive parts, base metals, chemical products, coke, refined petroleum, nuclear fuel; outsourcing centers"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, garments, refined copper, wheat, natural gas (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 14%, Romania 11%, Italy 8%, Greece 6%, Turkey 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, copper ore, cars, packaged medicine, electricity (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; cold, damp winters; hot, dry summers"
+      }
+    }
+  }
+}

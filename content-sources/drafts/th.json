@@ -1,0 +1,71 @@
+{
+  "iso": "th",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.404Z",
+  "structured": {
+    "code": "th",
+    "name": "Thailand",
+    "capital": "Bangkok",
+    "continent": "Asia",
+    "areaKm2": 513119.5,
+    "population": 66188503,
+    "officialLanguages": [
+      "Thai"
+    ],
+    "currencies": [
+      "baht"
+    ],
+    "landBorderNames": [
+      "Burma",
+      "Cambodia",
+      "Laos",
+      "Malaysia"
+    ],
+    "landBorderCodes": [
+      "mm",
+      "kh",
+      "la",
+      "my"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "tin, rubber, natural gas, tungsten, tantalum, timber, lead, fish, gypsum, lignite, fluorite, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, bordering the Andaman Sea and the Gulf of Thailand, southeast of Burma || central plain; Khorat Plateau in the east; mountains elsewhere || controls only land route from Asia to Malaysia and Singapore || Resources: tin, rubber, natural gas, tungsten, tantalum, timber, lead, fish, gypsum, lignite, fluorite, arable land || Exports: machine parts, integrated circuits, trucks, cars, broadcasting equipment (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "central plain; Khorat Plateau in the east; mountains elsewhere || Southeastern Asia, bordering the Andaman Sea and the Gulf of Thailand, southeast of Burma"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; rainy, warm, cloudy southwest monsoon (mid-May to September); dry, cool northeast monsoon (November to mid-March); southern isthmus always hot and humid || land subsidence in Bangkok area resulting from the depletion of the water table; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Southeast Asian economy; substantial infrastructure; major electronics, food, and automobile parts exporter; globally used currency; extremely low unemployment; ongoing Thailand 4.0 economic development || Exports: machine parts, integrated circuits, trucks, cars, broadcasting equipment (2023) || Industries: tourism, textiles and garments, agricultural processing, beverages, tobacco, cement, light manufacturing such as jewelry and electric appliances, computers and parts, integrated circuits, furniture, plastics, automobiles and automotive parts, agricultural machinery, air conditioning and refrigeration, ceramics, aluminum, chemical, environmental management, glass, granite and marble, leather, machinery and metal work, petrochemical, petroleum refining, pharmaceuticals, printing, pulp and paper, rubber, sugar, rice, fishing, cassava, world's second-largest tungsten producer and third-largest tin producer"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Buddhist 92.5%, Muslim 5.4%, Christian 1.2%, other 0.9% (includes animist, Confucian, Hindu, Jewish, Sikh, and Taoist) (2021 est.) || Thai 97.5%, Burmese 1.3%, other 1.1%, unspecified &lt;0.1% (2015 est.)"
+    }
+  }
+}

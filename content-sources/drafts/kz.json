@@ -1,0 +1,74 @@
+{
+  "iso": "kz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.396Z",
+  "structured": {
+    "code": "kz",
+    "name": "Kazakhstan",
+    "capital": "Astana",
+    "continent": "Europe",
+    "areaKm2": 2724900,
+    "population": 20139914,
+    "officialLanguages": [
+      "Russian",
+      "Kazakh"
+    ],
+    "currencies": [
+      "Kazakhstani tenge"
+    ],
+    "landBorderNames": [
+      "China",
+      "Kyrgyzstan",
+      "Russia",
+      "Turkmenistan",
+      "Uzbekistan"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "kg",
+      "ru",
+      "tm",
+      "uz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "major deposits of petroleum, natural gas, coal, iron ore, manganese, chrome ore, nickel, cobalt, copper, molybdenum, lead, zinc, bauxite, gold, uranium",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Asia, northwest of China; a small portion west of the Ural (Oral) River in easternmost Europe || vast flat steppe extending from the Volga in the west to the Altai Mountains in the east and from the plains of western Siberia in the north to oases and deserts of Central Asia in the south || world's largest landlocked country and one of only two landlocked countries in the world that extends into two continents (the other is Azerbaijan); Russia leases approximately 6,000 sq km (2,317 sq mi) of territory enclosing the Baikonur Cosmodrome || Resources: major deposits of petroleum, natural gas, coal, iron ore, manganese, chrome ore, nickel, cobalt, copper, molybdenum, lead, zinc, bauxite, gold, uranium || Exports: crude petroleum, gold, radioactive chemicals, refined copper, copper ore (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "vast flat steppe extending from the Volga in the west to the Altai Mountains in the east and from the plains of western Siberia in the north to oases and deserts of Central Asia in the south || Central Asia, northwest of China; a small portion west of the Ural (Oral) River in easternmost Europe"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "continental, cold winters and hot summers, arid and semiarid || earthquakes in the south; mudslides around Almaty"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income Central Asian economy; robust growth due to rising oil production, expansion in manufacturing and services, rising domestic demand, and infrastructure investments; however, rapid growth contributing to high inflation rate; declining unemployment and poverty rates || Exports: crude petroleum, gold, radioactive chemicals, refined copper, copper ore (2023) || Industries: oil, coal, iron ore, manganese, chromite, lead, zinc, copper, titanium, bauxite, gold, silver, phosphates, sulfur, uranium, iron and steel; tractors and other agricultural machinery, electric motors, construction materials"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 69.3%, Christian 17.2% (Orthodox 17%, other 0.2%), Buddhism 0.1%, other 0.1%, non-believers 2.3%, unspecified 11% (2021 est.) || Kazakh 71%, Russian 14.9%, Uzbek 3.3%, Ukrainian 1.9%, Uyghurs 1.5%, German 1.1%, Tatar 1.1%, other 4.9%, unspecified 0.3% (2023 est.)"
+    }
+  }
+}

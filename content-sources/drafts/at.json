@@ -1,0 +1,78 @@
+{
+  "iso": "at",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.374Z",
+  "structured": {
+    "code": "at",
+    "name": "Austria",
+    "capital": "Vienna",
+    "continent": "Europe",
+    "areaKm2": 83878.99,
+    "population": 8979894,
+    "officialLanguages": [
+      "German",
+      "Austrian Sign Language"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Czech Republic",
+      "Germany",
+      "Hungary",
+      "Italy",
+      "Liechtenstein",
+      "Slovakia",
+      "Slovenia",
+      "Switzerland"
+    ],
+    "landBorderCodes": [
+      "cz",
+      "de",
+      "hu",
+      "it",
+      "li",
+      "sk",
+      "si",
+      "ch"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "oil, coal, lignite, timber, iron ore, copper, zinc, antimony, magnesite, tungsten, graphite, salt, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, north of Italy and Slovenia || mostly mountains (Alps) in the west and south; mostly flat or gently sloping along the eastern and northern margins || landlocked; strategic location at the crossroads of central Europe with many easily traversable Alpine passes and valleys; major river is the Danube; population is concentrated on eastern lowlands because of steep slopes, poor soils, and low temperatures elsewhere the world's largest and longest ice cave system at 42 km (26 mi) is the Eisriesenwelt (Ice Giants World) inside the Hochkogel mountain near Werfen, about 40 km south of Salzburg; ice caves are bedrock caves that contain year-round ice formations; they differ from glacial caves, which are transient and are formed by melting ice and flowing water within and under glaciers || Resources: oil, coal, lignite, timber, iron ore, copper, zinc, antimony, magnesite, tungsten, graphite, salt, hydropower || Exports: cars, packaged medicine, vaccines, vehicle parts/accessories, nitrogen compounds (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains (Alps) in the west and south; mostly flat or gently sloping along the eastern and northern margins || Central Europe, north of Italy and Slovenia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; continental, cloudy; cold winters with frequent rain and some snow in lowlands and snow in mountains; moderate summers with occasional showers || landslides; avalanches; earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "one of the strongest EU and euro economies; diversified trade portfolios and relations; enormous trade economy; Russian energy dependence, but investing in alternative energy; aging labor force but large refugee population; large government debt || Exports: cars, packaged medicine, vaccines, vehicle parts/accessories, nitrogen compounds (2023) || Industries: construction, machinery, vehicles and parts, food, metals, chemicals, lumber and paper, electronics, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 55.2%, Muslim 8.3%, Orthodox 4.9%, Evangelical Christian 3.8%, Jewish 0.1%, other 5.4%, none 22.4% (2021 est.) || Austrian 80.8%, German 2.6%, Bosnian and Herzegovinian 1.9%, Turkish 1.8%, Serbian 1.6%, Romanian 1.3%, other 10% (2018 est.)"
+    }
+  }
+}

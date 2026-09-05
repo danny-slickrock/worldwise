@@ -1,0 +1,71 @@
+{
+  "iso": "eg",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.411Z",
+  "structured": {
+    "code": "eg",
+    "name": "Egypt",
+    "capital": "Cairo",
+    "continent": "Africa",
+    "areaKm2": 1010407.87,
+    "population": 114535772,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Egyptian pound"
+    ],
+    "landBorderNames": [
+      "Israel",
+      "Libya",
+      "Sudan"
+    ],
+    "landBorderCodes": [
+      "il",
+      "ly",
+      "sd"
+    ],
+    "landBorderTerritories": [
+      "Gaza Strip"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, iron ore, phosphates, manganese, limestone, gypsum, talc, asbestos, lead, rare earth elements, zinc",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the Mediterranean Sea, between Libya and the Gaza Strip, and the Red Sea north of Sudan, and includes the Asian Sinai Peninsula || vast desert plateau interrupted by Nile valley and delta || controls Sinai Peninsula, the only land bridge between Africa and remainder of Eastern Hemisphere; controls Suez Canal, a sea link between Indian Ocean and Mediterranean Sea || Resources: petroleum, natural gas, iron ore, phosphates, manganese, limestone, gypsum, talc, asbestos, lead, rare earth elements, zinc || Exports: refined petroleum, natural gas, fertilizers, garments, crude petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "vast desert plateau interrupted by Nile valley and delta || Northern Africa, bordering the Mediterranean Sea, between Libya and the Gaza Strip, and the Red Sea north of Sudan, and includes the Asian Sinai Peninsula"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "desert; hot, dry summers with moderate winters || periodic droughts; frequent earthquakes; flash floods; landslides; hot, driving windstorms called khamsin occur in spring; dust storms; sandstorms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "Africa&rsquo;s second-largest economy; 2030 Vision to diversify markets and energy infrastructure; improving fiscal, external, and current accounts; underperforming private sector; poor labor force participation; expanded credit access || Exports: refined petroleum, natural gas, fertilizers, garments, crude petroleum (2023) || Industries: textiles, food processing, tourism, chemicals, pharmaceuticals, hydrocarbons, construction, cement, metals, light manufactures"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (predominantly Sunni) 90%, Christian (majority Coptic Orthodox, other Christians include Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican) 10% || Egyptian 99.7%, other 0.3% (2006 est.)"
+    }
+  }
+}

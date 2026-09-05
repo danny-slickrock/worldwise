@@ -1,0 +1,65 @@
+{
+  "iso": "do",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.427Z",
+  "structured": {
+    "code": "do",
+    "name": "Dominican Republic",
+    "capital": "Santo Domingo",
+    "continent": "North America",
+    "areaKm2": 48670.82,
+    "population": 10760028,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Dominican peso"
+    ],
+    "landBorderNames": [
+      "Haiti"
+    ],
+    "landBorderCodes": [
+      "ht"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "nickel, bauxite, gold, silver, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, eastern two-thirds of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, east of Haiti || rugged highlands and mountains interspersed with fertile valleys || shares island of Hispaniola with Haiti (eastern two-thirds makes up the Dominican Republic, western one-third is Haiti); the second largest country in the Antilles (after Cuba); geographically diverse with the Caribbean's tallest mountain, Pico Duarte, and lowest elevation and largest lake, Lago Enriquillo || Resources: nickel, bauxite, gold, silver, arable land || Exports: medical instruments, tobacco, gold, garments, power equipment (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rugged highlands and mountains interspersed with fertile valleys || Caribbean, eastern two-thirds of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, east of Haiti"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical maritime; little seasonal temperature variation; seasonal variation in rainfall || lies in the middle of the hurricane belt and subject to severe storms from June to October; occasional flooding; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "surging middle-income tourism, construction, mining, and telecommunications OECS economy; major foreign US direct investment and free-trade zones; developing local financial markets; improving debt management; declining poverty || Exports: medical instruments, tobacco, gold, garments, power equipment (2023) || Industries: tourism, sugar processing, gold mining, textiles, cement, tobacco, electrical components, medical devices"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Evangelical 50.2%, Roman Catholic 30.1%, none 18.5%, unspecified 1.2% (2023 est.) || mixed 70.4% (Mestizo/Indio 58%, Mulatto 12.4%), Black 15.8%, White 13.5%, other 0.3% (2014 est.)"
+    }
+  }
+}

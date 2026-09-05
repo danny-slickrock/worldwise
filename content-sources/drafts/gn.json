@@ -1,0 +1,76 @@
+{
+  "iso": "gn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.413Z",
+  "structured": {
+    "code": "gn",
+    "name": "Guinea",
+    "capital": "Conakry",
+    "continent": "Africa",
+    "areaKm2": 245857,
+    "population": 17521167,
+    "officialLanguages": [
+      "French",
+      "languages of Guinea"
+    ],
+    "currencies": [
+      "Guinean franc"
+    ],
+    "landBorderNames": [
+      "Cote d'Ivoire",
+      "Guinea-Bissau",
+      "Liberia",
+      "Mali",
+      "Senegal",
+      "Sierra Leone"
+    ],
+    "landBorderCodes": [
+      "ci",
+      "gw",
+      "lr",
+      "ml",
+      "sn",
+      "sl"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, iron ore, diamonds, gold, uranium, hydropower, fish, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Sierra Leone || generally flat coastal plain, hilly to mountainous interior || the Niger and its important tributary, the Milo River, have their sources in the Guinean highlands || Resources: bauxite, iron ore, diamonds, gold, uranium, hydropower, fish, salt || Exports: gold, aluminum ore, cocoa beans, crude petroleum, coconuts/brazil nuts/cashews (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "generally flat coastal plain, hilly to mountainous interior || Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Sierra Leone"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds || hot, dry, dusty harmattan haze may reduce visibility during dry season"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "growing but primarily agrarian West African economy; major mining sector; improving fiscal and debt balances prior to COVID-19; economy increasingly vulnerable to climate change; slow infrastructure improvements; gender wealth and human capital gaps || Exports: gold, aluminum ore, cocoa beans, crude petroleum, coconuts/brazil nuts/cashews (2023) || Industries: bauxite, gold, diamonds, iron ore; light manufacturing, agricultural processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official), Pular, Maninka, Susu, other native languages || Muslim 85.2%, Christian 13.4%, animist 0.2%, none 1.2% (2018 est.) || Fulani (Peuhl) 33.4%, Malinke 29.4%, Susu 21.2%, Guerze 7.8%, Kissi 6.2%, Toma 1.6%, other/foreign 0.4% (2018 est.)"
+    }
+  }
+}

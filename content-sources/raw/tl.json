@@ -1,0 +1,176 @@
+{
+  "iso": "tl",
+  "fetchedAt": "2026-09-04T23:56:52.245Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/tt.json"
+    }
+  },
+  "wikidata": {
+    "name": "Timor-Leste",
+    "gec": "TT",
+    "capital": "Dili",
+    "areaKm2": 14918.72,
+    "population": 1400638,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Portuguese",
+      "Tetum"
+    ],
+    "currencies": [
+      "East Timor centavo coins",
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "id",
+      "au"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/tt.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The island of Timor was actively involved in Southeast Asian trading networks for centuries, and by the 14th century, it exported sandalwood, slaves, honey, and wax. The sandalwood trade attracted the Portuguese, who arrived in the early 16th century; by mid-century, they had colonized the island, which was previously ruled by local chieftains. In 1859, Portugal ceded the western portion of the island to the Dutch. Imperial Japan occupied Portuguese Timor from 1942 to 1945, but Portugal resumed colonial authority after the Japanese defeat in World War II. The eastern part of Timor declared itself independent from Portugal on 28 November 1975, but Indonesian forces invaded and occupied the area nine days later. It was incorporated into Indonesia in 1976 as the province of Timor Timur (East Timor or Timor Leste). Indonesia conducted an unsuccessful pacification campaign in the province over the next two decades, during which as many as 250,000 people died. <br><br>In a UN-supervised referendum in 1999, an overwhelming majority of the people of Timor-Leste voted for independence from Indonesia. However, anti-independence Timorese militias -- organized and supported by the Indonesian military -- began a large-scale, scorched-earth campaign of retribution, killing approximately 1,400 Timorese and displacing nearly 500,000. Most of the country's infrastructure was destroyed, including homes, irrigation systems, water supply systems, schools, and most of the electrical grid. Australian-led peacekeeping troops eventually deployed to the country and ended the violence. In 2002, Timor-Leste was internationally recognized as an independent state.</p> <p>In 2006, Australia and the UN had to step in again to stabilize the country, which allowed presidential and parliamentary elections to be conducted in 2007 in a largely peaceful atmosphere. In 2008, rebels staged an unsuccessful attack against the president and prime minister. Since that attack, Timor-Leste has made considerable progress in building stability and democratic institutions, holding a series of successful parliamentary and presidential elections since 2012. Nonetheless, weak and unstable political coalitions have led to periodic episodes of stalemate and crisis. The UN continues to provide assistance on economic development and strengthening governing institutions. Currently, Timor-Leste is one of the world's poorest nations, with an economy that relies heavily on energy resources in the Timor Sea.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, northwest of Australia in the Lesser Sunda Islands at the eastern end of the Indonesian archipelago; note - Timor-Leste includes the eastern half of the island of Timor, the Oecussi (Ambeno) region on the northwest portion of the island of Timor, and the islands of Pulau Atauro and Pulau Jaco"
+      },
+      "Area": {
+        "total ": {
+          "text": "14,874 sq km"
+        },
+        "land": {
+          "text": "14,874 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "253 km"
+        },
+        "border countries": {
+          "text": "Indonesia 253 km"
+        }
+      },
+      "Coastline": {
+        "text": "706 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; distinct rainy and dry seasons"
+      },
+      "Terrain": {
+        "text": "mountainous"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Foho Tatamailau 2,963 m"
+        },
+        "lowest point": {
+          "text": "Timor Sea, Savu Sea, and Banda Sea 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, petroleum, natural gas, manganese, marble"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "23% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 5.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 10.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "71% (2023 est.)"
+        },
+        "other": {
+          "text": "6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "floods and landslides are common; earthquakes; tsunamis; tropical cyclones"
+      },
+      "Geography - note": {
+        "text": "the island of Timor is part of the Malay Archipelago and is the largest and easternmost of the Lesser Sunda Islands; the district of Oecussi is an exclave separated from Timor-Leste proper by Indonesia; Timor-Leste is the only Asian country located completely in the Southern Hemisphere"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,404,785 (2025 est.)"
+        },
+        "male": {
+          "text": "693,940"
+        },
+        "female": {
+          "text": "710,845"
+        }
+      },
+      "Languages": {
+        "text": "Tetun Prasa 30.6%, Mambai 16.6%, Makasai 10.5%, Tetun Terik 6.1%, Baikenu 5.9%, Kemak 5.8%, Bunak 5.5%, Tokodede 4%, Fataluku 3.5%, Waima'a 1.8%, Galoli 1.4%, Naueti 1.4%, Idate 1.2%, Midiki 1.2%, other 4.5% (2015 est.)",
+        "note": "<strong>note:</strong> data represent population by mother tongue; Tetun and Portuguese are official languages; Indonesian and English are working languages; there are about 32 indigenous languages"
+      },
+      "Religions": {
+        "text": "Catholic 90.7%, other 7.1%, Protestant Evangelical 1.9%; less than 1%: Islam, Buddhist, Hindu (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Austronesian (Malayo-Polynesian) (includes Tetun, Mambai, Tokodede, Galoli, Kemak, Baikeno), Melanesian-Papuan (includes Bunak, Fataluku, Bakasai), small Chinese minority"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "32.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.31% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is concentrated in the western third of the country, particularly around Dili"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income Southeast Asian economy; government expenditures funded via oil fund drawdowns; endemic corruption undermines growth; foreign aid-dependent; wide-scale poverty, unemployment, and illiteracy"
+      },
+      "Agricultural products": {
+        "text": "maize, rice, coconuts, root vegetables, vegetables, cassava, other meats, pork, beans, coffee (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "printing, soap manufacturing, handicrafts, woven cloth"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, natural gas, coffee, scrap iron, telephones (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 46%, Singapore 25%, Japan 15%, Indonesia 5%, USA 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, rice, cars, plastic products, trucks (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; distinct rainy and dry seasons"
+      }
+    }
+  }
+}

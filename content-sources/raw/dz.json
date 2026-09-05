@@ -1,0 +1,190 @@
+{
+  "iso": "dz",
+  "fetchedAt": "2026-09-04T23:56:53.777Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ag.json"
+    }
+  },
+  "wikidata": {
+    "name": "Algeria",
+    "gec": "AG",
+    "capital": "Algiers",
+    "areaKm2": 2381741,
+    "population": 46164219,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Arabic",
+      "Standard Algerian Berber"
+    ],
+    "currencies": [
+      "Algerian dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "es",
+      "it",
+      "ml",
+      "tn",
+      "ly",
+      "mr",
+      "ma",
+      "ne",
+      "eh"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ag.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Algeria has known many empires and dynasties, including the ancient Numidians (3rd century B.C.), Phoenicians, Carthaginians, Romans, Vandals, Byzantines, over a dozen different Arab and Amazigh dynasties, Spaniards, and Ottoman Turks. Under the Turks, the Barbary pirates operated from North Africa and preyed on shipping, from about 1500 until the French captured Algiers in 1830. The French southward conquest of Algeria proceeded throughout the 19th century and was marked by many atrocities. A bloody eight-year struggle culminated in Algerian independence in 1962. <br><br>Algeria's long-dominant political party, the National Liberation Front (FLN), was established in 1954 as part of the struggle for independence and has since played a large role in politics, though it is falling out of favor with the youth and current President Abdelmadjid TEBBOUNE. The Government of Algeria in 1988 instituted a multi-party system in response to public unrest, but the surprising first-round success of the Islamic Salvation Front (FIS) in the 1991 legislative election led the Algerian military to intervene and postpone the second round of elections to prevent what the secular elite feared would be an extremist-led government from assuming power. An army crackdown on the FIS escalated into an FIS insurgency and intense violence from 1992-98 that resulted in over 100,000 deaths, many of which were attributed to extremist groups massacring villagers. The government gained the upper hand by the late 1990s, and FIS’s armed wing, the Islamic Salvation Army, disbanded in 2000. FIS membership is now illegal.</p> <p>In 1999, Abdelaziz BOUTEFLIKA won the presidency with the backing of the military, in an election that was boycotted by several candidates protesting alleged fraud.  He won subsequent elections in 2004, 2009, and 2014. Widespread protests against his decision to seek a fifth term broke out in early 2019. BOUTEFLIKA resigned in April 2019, and in December 2019, Algerians elected former Prime Minister Abdelmadjid TEBBOUNE as the country’s new president. A longtime FLN member, TEBBOUNE ran for president as an independent. In 2020, Algeria held a constitutional referendum on governmental reforms, which TEBBOUNE enacted in 2021. Subsequent reforms to the national electoral law introduced open-list voting to curb corruption. The new law also eliminated gender quotas in Parliament, and the 2021 legislative elections saw female representation plummet. The referendum, parliamentary elections, and local elections saw record-low voter turnout.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Africa, bordering the Mediterranean Sea, between Morocco and Tunisia"
+      },
+      "Area": {
+        "total ": {
+          "text": "2,381,740 sq km"
+        },
+        "land": {
+          "text": "2,381,740 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "6,734 km"
+        },
+        "border countries": {
+          "text": "Libya 989 km; Mali 1,359 km; Mauritania 460 km; Morocco 1,941 km; Niger 951 km; Tunisia 1,034 km"
+        }
+      },
+      "Coastline": {
+        "text": "998 km"
+      },
+      "Climate": {
+        "text": "arid to semiarid; mild, wet winters with hot, dry summers along coast; drier with cold winters and hot summers on high plateau; sirocco is a hot, dust/sand-laden wind especially common in summer"
+      },
+      "Terrain": {
+        "text": "mostly high plateau and desert; Atlas Mountains in the far north and Hoggar Mountains in the south; narrow, discontinuous coastal plain"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Tahat 2,908 m"
+        },
+        "lowest point": {
+          "text": "Chott Melrhir -40 m"
+        },
+        "mean elevation": {
+          "text": "800 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, iron ore, phosphates, uranium, lead, zinc"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "17.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 3.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 13.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "0.7% (2023 est.)"
+        },
+        "other": {
+          "text": "81.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "mountainous areas subject to severe earthquakes; mudslides and floods in rainy season; droughts"
+      },
+      "Geography - note": {
+        "text": "largest country in Africa but 80% desert; canyons and caves in the southern Hoggar Mountains and in the barren Tassili n'Ajjer area in the southeast of the country contain numerous examples of prehistoric art -- rock paintings and carvings depicting human activities and wild and domestic animals (elephants, giraffes, cattle) -- that date to the African Humid Period, roughly 5,000 to 11,000 years ago, when the region was completely vegetated"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "47,735,685 (2025 est.)"
+        },
+        "male": {
+          "text": "24,219,668"
+        },
+        "female": {
+          "text": "23,516,017"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), French (lingua franca), Tamazight (official) (dialects include Kabyle (Taqbaylit), Shawiya (Tacawit), Mzab, Tuareg (Tamahaq))"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim (official; predominantly Sunni) 99%, other (includes Christian, Jewish, Ahmadi Muslim, Shia Muslim, Ibadi Muslim) &lt;1% (2012 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Arab-Amazigh 99%, European less than 1%",
+        "note": "<strong>note:</strong> although almost all Algerians are Amazigh in origin and not Arab, only a minority identify themselves as primarily Amazigh, about 15% of the total population; these people live mostly in the mountainous region of Kabylie east of Algiers and in several other communities; the Amazigh are also Muslim but identify with their Amazigh rather than Arab cultural heritage; some Amazigh have long agitated, sometimes violently, for autonomy; the government is unlikely to grant autonomy but has officially recognized Amazigh languages and introduced them into public schools"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "75.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of the populace is found in the extreme northern part of the country along the Mediterranean Coast"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "suffering oil and gas economy; lack of sector and market diversification; political instability chilling domestic consumption; poor credit access and declines in business confidence; COVID-19 austerity policies; delayed promised socio-economic reforms"
+      },
+      "Agricultural products": {
+        "text": "potatoes, watermelons, wheat, milk, onions, tomatoes, vegetables, oranges, dates, barley (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, natural gas, light industries, mining, electrical, petrochemical, food processing"
+      },
+      "Exports - commodities": {
+        "text": "natural gas, crude petroleum, refined petroleum, fertilizers, iron bars (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 29%, France 14%, Spain 13%, USA 6%, Netherlands 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "wheat, plastics, cars, milk, corn (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "arid to semiarid; mild, wet winters with hot, dry summers along coast; drier with cold winters and hot summers on high plateau; sirocco is a hot, dust/sand-laden wind especially common in summer"
+      }
+    }
+  }
+}

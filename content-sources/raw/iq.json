@@ -1,0 +1,188 @@
+{
+  "iso": "iq",
+  "fetchedAt": "2026-09-04T23:56:45.849Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/iz.json"
+    }
+  },
+  "wikidata": {
+    "name": "Iraq",
+    "gec": "IZ",
+    "capital": "Baghdad",
+    "areaKm2": 437072,
+    "population": 38274618,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic",
+      "Kurdish"
+    ],
+    "currencies": [
+      "Iraqi dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "ir",
+      "jo",
+      "kw",
+      "sa",
+      "sy"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/iz.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Formerly part of the Ottoman Empire, Iraq was occupied by the United Kingdom during World War I and was declared a League of Nations mandate under UK administration in 1920. Iraq attained its independence as a kingdom in 1932. It was proclaimed a republic in 1958 after a coup overthrew the monarchy, but in actuality, a series of strongmen ruled the country until 2003. The last was SADDAM Hussein, from 1979 to 2003. Territorial disputes with Iran led to an inconclusive and costly war from 1980 to 1988. In 1990, Iraq seized Kuwait but was expelled by US-led UN coalition forces during the two-month-long Gulf War of 1991. After Iraq's expulsion, the UN Security Council (UNSC) required Iraq to scrap all weapons of mass destruction and long-range missiles and to allow UN verification inspections. Continued Iraqi noncompliance with UNSC resolutions led to the Second Gulf War in 2003, when US-led forces ousted the SADDAM regime.</p> <p>In 2005, Iraqis approved a constitution in a national referendum and elected a 275-member Council of Representatives (COR). The COR approved most of the cabinet ministers, marking the transition to Iraq's first constitutional government in nearly a half-century. Iraq's constitution also established the Kurdistan Regional Government (KRG), a semi-autonomous region that administers the governorates of Erbil, Dahuk, and As Sulaymaniyah. Iraq has held four national legislative elections since 2006, most recently in 2021. The COR approved Mohammad Shia' al-SUDANI as prime minister in 2022. Iraq has repeatedly postponed elections for provincial councils -- last held in 2013 -- and since 2019, the prime minister has had the authority to appoint governors rather than provincial councils.</p> <p>Between 2014 and 2017, Iraq fought a military campaign against the Islamic State of Iraq and ash-Sham (ISIS) to recapture territory the group seized in 2014. In 2017, then-Prime Minister Haydar al-ABADI publicly declared victory against ISIS, although military operations against the group continue in rural areas. Also in 2017, Baghdad forcefully seized disputed territories across central and northern Iraq from the KRG, after a non-binding Kurdish independence referendum.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Persian Gulf, between Iran and Kuwait"
+      },
+      "Area": {
+        "total ": {
+          "text": "438,317 sq km"
+        },
+        "land": {
+          "text": "437,367 sq km"
+        },
+        "water": {
+          "text": "950 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,809 km"
+        },
+        "border countries": {
+          "text": "Iran 1,599 km; Jordan 179 km; Kuwait 254 km; Saudi Arabia 811 km; Syria 599 km; Turkey 367 km"
+        }
+      },
+      "Coastline": {
+        "text": "58 km"
+      },
+      "Climate": {
+        "text": "mostly desert; mild to cool winters with dry, hot, cloudless summers; northern mountainous regions along Iranian and Turkish borders experience cold winters with occasionally heavy snows that melt in early spring, sometimes causing extensive flooding in central and southern Iraq"
+      },
+      "Terrain": {
+        "text": "mostly broad plains; reedy marshes along Iranian border in south with large flooded areas; mountains along borders with Iran and Turkey"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cheekha Dar (Kurdish for \"Black Tent\") 3,611 m"
+        },
+        "lowest point": {
+          "text": "Persian Gulf 0 m"
+        },
+        "mean elevation": {
+          "text": "312 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, phosphates, sulfur"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "21.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "1.6% (2023 est.)"
+        },
+        "other": {
+          "text": "76.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "dust storms; sandstorms; floods"
+      },
+      "Geography - note": {
+        "text": "strategic location on Shatt al Arab waterway and at the head of the Persian Gulf"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "42,917,742 (2025 est.)"
+        },
+        "male": {
+          "text": "21,614,894"
+        },
+        "female": {
+          "text": "21,302,848"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), Kurdish (official); Turkmen (a Turkish dialect) and Syriac (Neo-Aramaic) are recognized as official languages where native speakers of these languages are present"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، أحسن مصدر للمعلومات الأساسية (Arabic)<br><br>ڕاستییەکانی جیهان، باشترین سەرچاوەیە بۆ زانیارییە بنەڕەتییەکان (Kurdish)<br> <p>The World Factbook, the indispensable source for basic information.</p>"
+        }
+      },
+      "Religions": {
+        "text": "Muslim (official) 95-98% (Shia 61-64%, Sunni 29-34%), Christian 1% (includes Catholic, Orthodox, Protestant, Assyrian Church of the East), other 1-4% (2015 est.)",
+        "note": "<strong>note:</strong> the last census in Iraq was in 1997; while there has been voluntary relocation of many Christian families to northern Iraq, the overall Christian population has decreased at least 50% and perhaps as much as 90% since 2003, according to US Embassy estimates, with many fleeing to Syria, Jordan, and Lebanon"
+      },
+      "Ethnic groups": {
+        "text": "Arab 75-80%, Kurdish 15-20%, other 5% (includes Turkmen, Yezidi, Shabak, Kaka'i, Bedouin, Romani, Assyrian, Circassian, Sabaean-Mandaean, Persian)",
+        "note": "<strong>note:</strong> data is a 1987 government estimate; no more recent reliable numbers are available"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "71.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.91% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population is concentrated in the north, center, and eastern parts of the country, with many of the larger urban agglomerations found along extensive parts of the Tigris and Euphrates Rivers; much of the western and southern areas are either lightly populated or uninhabited"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "highly oil-dependent Middle Eastern economy; fiscal sustainability subject to fluctuation in oil prices; rising public confidence in economic conditions; import-dependent for most sectors; persistent challenges of corruption, informal markets, banking access, and political fragility"
+      },
+      "Agricultural products": {
+        "text": "wheat, dates, maize, tomatoes, rye, grapes, milk, chicken, potatoes, fruits (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, chemicals, textiles, leather, construction materials, food processing, fertilizer, metal fabrication/processing"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined petroleum, petroleum coke, gold, natural gas (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 33%, India 28%, USA 8%, Greece 5%, UAE 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, broadcasting equipment, jewelry, gold (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly desert; mild to cool winters with dry, hot, cloudless summers; northern mountainous regions along Iranian and Turkish borders experience cold winters with occasionally heavy snows that melt in early spring, sometimes causing extensive flooding in central and southern Iraq"
+      }
+    }
+  }
+}

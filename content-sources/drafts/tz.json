@@ -1,0 +1,80 @@
+{
+  "iso": "tz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.421Z",
+  "structured": {
+    "code": "tz",
+    "name": "Tanzania",
+    "capital": "Dodoma",
+    "continent": "Africa",
+    "areaKm2": 947303,
+    "population": 57310019,
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Tanzanian shilling"
+    ],
+    "landBorderNames": [
+      "Burundi",
+      "Democratic Republic of the Congo",
+      "Kenya",
+      "Malawi",
+      "Mozambique",
+      "Rwanda",
+      "Uganda",
+      "Zambia"
+    ],
+    "landBorderCodes": [
+      "bi",
+      "cd",
+      "ke",
+      "mw",
+      "mz",
+      "rw",
+      "ug",
+      "zm"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, tin, phosphates, iron ore, coal, diamonds, gemstones (including tanzanite, found only in Tanzania), gold, natural gas, nickel",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, bordering the Indian Ocean, between Kenya and Mozambique || plains along coast; central plateau; highlands in north, south || Kilimanjaro is the highest point in Africa and one of only three mountain ranges on the continent that has glaciers (the others are Mount Kenya in Kenya and the Ruwenzori Mountains on the Uganda-Democratic Republic of the Congo border); Tanzania is bordered by three of the largest lakes on the continent: Lake Victoria (the world's second-largest freshwater lake) in the north, Lake Tanganyika (the world's second-deepest) in the west, and Lake Nyasa (Lake Malawi) in the southwest || Resources: hydropower, tin, phosphates, iron ore, coal, diamonds, gemstones (including tanzanite, found only in Tanzania), gold, natural gas, nickel || Exports: gold, refined petroleum, dried legumes, refined copper, coal (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "plains along coast; central plateau; highlands in north, south || Eastern Africa, bordering the Indian Ocean, between Kenya and Mozambique"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical along coast to temperate in highlands || flooding on the central plateau during the rainy season; drought volcanism: limited volcanic activity; Ol Doinyo Lengai (2,962 m) has emitted lava in recent years; other historically active volcanoes include Kieyo and Meru"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "emerging lower middle-income East African economy; resource-rich and growing tourism; strong post-pandemic recovery from hospitality, electricity, mining, and transit sectors; declining poverty; stable inflation; gender-based violence economic and labor force disruptions || Exports: gold, refined petroleum, dried legumes, refined copper, coal (2023) || Industries: agricultural processing (sugar, beer, cigarettes, sisal twine); mining (diamonds, gold, and iron), salt, soda ash; cement, oil refining, shoes, apparel, wood products, fertilizer"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 63.1%, Muslim 34.1%, folk religion 1.1%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, other &lt;1%, unspecified 1.6% (2020 est.) || mainland - African 99% (of which 95% are Bantu consisting of more than 130 tribes), other 1% (consisting of Asian, European, and Arab); Zanzibar - Arab, African, mixed Arab and African"
+    }
+  }
+}

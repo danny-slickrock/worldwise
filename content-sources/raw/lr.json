@@ -1,0 +1,177 @@
+{
+  "iso": "lr",
+  "fetchedAt": "2026-09-04T23:56:58.952Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/li.json"
+    }
+  },
+  "wikidata": {
+    "name": "Liberia",
+    "gec": "LI",
+    "capital": "Monrovia",
+    "areaKm2": 111369,
+    "population": 5214030,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Liberian dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "gn",
+      "ci",
+      "sl"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/li.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>With 28 ethnic groups and languages, Liberia is one of the most ethnically diverse countries in the world. For hundreds of years, the Mali and Songhai Empires claimed most of Liberia. Beginning in the 15th century, European traders began establishing outposts along the Liberian coast. Unlike its neighbors, however, Liberia did not fall under European colonial rule. In the early 19th century, the US began sending freed enslaved people and other people of color to Liberia to establish settlements. In 1847, these settlers declared independence from the US, writing their own constitution and establishing Africa’s first republic.</p> <p>Early in Liberia’s history, tensions arose between the Americo-Liberian settlers and the indigenous population. In 1980, Samuel DOE, who was from the indigenous population, led a military coup and ushered in a decade of authoritarian rule. In 1989, Charles TAYLOR launched a rebellion that led to a prolonged civil war in which DOE was killed. A period of relative peace in 1997 permitted an election that brought TAYLOR to power. In 2000, fighting resumed. A 2003 peace agreement ended the war and prompted TAYLOR’s resignation. He was later convicted by the UN-backed Special Court for Sierra Leone in The Hague for his involvement in Sierra Leone's civil war. <br><br>In 2005, Ellen JOHNSON SIRLEAF became president after two years of transitional governments; she was the first female head of state in Africa. In 2011, JOHNSON SIRLEAF won reelection but struggled to rebuild Liberia's economy -- particularly after the 2014-15 Ebola epidemic -- and to reconcile a nation still recovering from 14 years of fighting. In 2017, former soccer star George WEAH won the presidential runoff election, marking the first successful transfer of power from one democratically elected government to another since the end of Liberia’s civil wars. Like his predecessor, WEAH struggled to improve the country’s economy. In 2023, former Vice President Joseph BOAKAI was elected president, edging out WEAH by a thin margin, the first time since 1927 that an incumbent was not re-elected after one term. </p> <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Cote d'Ivoire and Sierra Leone"
+      },
+      "Area": {
+        "total ": {
+          "text": "111,369 sq km"
+        },
+        "land": {
+          "text": "96,320 sq km"
+        },
+        "water": {
+          "text": "15,049 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,667 km"
+        },
+        "border countries": {
+          "text": "Guinea 590 km; Cote d'Ivoire 778 km; Sierra Leone 299 km"
+        }
+      },
+      "Coastline": {
+        "text": "579 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; dry winters with hot days and cool to cold nights; wet, cloudy summers with frequent heavy showers"
+      },
+      "Terrain": {
+        "text": "mostly flat to rolling coastal plains rising to rolling plateau and low mountains in northeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Wuteve 1,447 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "243 m"
+        }
+      },
+      "Natural resources": {
+        "text": "iron ore, timber, diamonds, gold, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "20% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 5.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 12.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "66.5% (2023 est.)"
+        },
+        "other": {
+          "text": "13.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "dust-laden harmattan winds blow from the Sahara (December to March)"
+      },
+      "Geography - note": {
+        "text": "facing the Atlantic Ocean, the coastline is characterized by lagoons, mangrove swamps, and river-deposited sandbars; the inland grassy plateau supports limited agriculture"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,563,541 (2025 est.)"
+        },
+        "male": {
+          "text": "2,774,006"
+        },
+        "female": {
+          "text": "2,789,535"
+        }
+      },
+      "Languages": {
+        "text": "English 20% (official) and 27 indigenous languages, including Liberian English variants"
+      },
+      "Religions": {
+        "text": "Christian 84.9%, Muslim 12%, Traditional 0.5%, other 0.1%, none 2.6% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kpelle 20.2%, Bassa 13.6%, Grebo 9.9%, Gio 7.9%, Mano 7.2%, Kru 5.5%, Lorma 4.8%, Krahn 4.5%, Kissi, 4.3%, Mandingo 4.2%, Vai 3.8%, Gola 3.8%, Gbandi 2.9%, Mende 1.7%, Sapo 1%, Belle 0.7%, Dey 0.3%, other Liberian ethnic group 0.4%, other African 3%, non-African 0.2% (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "53.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.41% annual rate of change (2015-20 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "more than half of the population lives in urban areas, with approximately one third living within an 80-km (50-mi) radius of Monrovia, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income West African economy; food scarcity, especially in rural areas; high poverty and inflation; bad recession prior to COVID-19 due to Ebola crisis; growing government debt; longest continuously operated rubber plantation; large informal economy"
+      },
+      "Agricultural products": {
+        "text": "cassava, sugarcane, rice, oil palm fruit, bananas, rubber, vegetables, plantains, taro, maize (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining (iron ore and gold), rubber processing, palm oil processing, diamonds"
+      },
+      "Exports - commodities": {
+        "text": "gold, ships, iron ore, rubber, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 30%, UK 13%, France 8%, Germany 7%, Lebanon 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, rice, trucks, centrifuges (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; dry winters with hot days and cool to cold nights; wet, cloudy summers with frequent heavy showers"
+      }
+    }
+  }
+}

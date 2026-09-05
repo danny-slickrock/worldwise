@@ -16,7 +16,7 @@
     "currencies": [
       "Indian rupee"
     ],
-    "landBorders": [
+    "landBorderNames": [
       "Bangladesh",
       "Bhutan",
       "Burma",
@@ -24,6 +24,16 @@
       "Nepal",
       "Pakistan"
     ],
+    "landBorderCodes": [
+      "bd",
+      "bt",
+      "mm",
+      "cn",
+      "np",
+      "pk"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
     "naturalResources": "coal (fourth-largest reserves in the world), antimony, iron ore, lead, manganese, mica, bauxite, rare earth elements, titanium ore, chromite, natural gas, diamonds, petroleum, limestone, arable land",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },

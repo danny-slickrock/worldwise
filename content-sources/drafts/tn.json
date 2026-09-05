@@ -1,0 +1,67 @@
+{
+  "iso": "tn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.422Z",
+  "structured": {
+    "code": "tn",
+    "name": "Tunisia",
+    "capital": "Tunis",
+    "continent": "Africa",
+    "areaKm2": 163610,
+    "population": 11565204,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Tunisian dinar"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Libya"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "ly"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, phosphates, iron ore, lead, zinc, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the Mediterranean Sea, between Algeria and Libya || mountains in north; hot, dry central plain; semiarid south merges into the Sahara || strategic location in central Mediterranean || Resources: petroleum, phosphates, iron ore, lead, zinc, salt || Exports: garments, insulated wire, olive oil, refined petroleum, crude petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountains in north; hot, dry central plain; semiarid south merges into the Sahara || Northern Africa, bordering the Mediterranean Sea, between Algeria and Libya"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate in north with mild, rainy winters and hot, dry summers; desert in south || flooding; earthquakes; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income North African economy; drafting reforms for foreign lenders; high unemployment, especially for youth and women; hit hard by COVID-19; high public sector wages; high public debt; protectionist austerity measures; key EU trade partner || Exports: garments, insulated wire, olive oil, refined petroleum, crude petroleum (2023) || Industries: petroleum, mining (particularly phosphate, iron ore), tourism, textiles, footwear, agribusiness, beverages"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official; Sunni) 99%, other (includes Christian, Jewish, Shia Muslim, and Baha'i) &lt;1% || Arab 98%, European 1%, Jewish and other 1%"
+    }
+  }
+}

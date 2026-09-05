@@ -1,0 +1,185 @@
+{
+  "iso": "la",
+  "fetchedAt": "2026-09-04T23:56:46.790Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/la.json"
+    }
+  },
+  "wikidata": {
+    "name": "Laos",
+    "gec": "LA",
+    "capital": "Vientiane",
+    "areaKm2": 236800,
+    "population": 6858160,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Lao"
+    ],
+    "currencies": [
+      "Lao kip"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "kh",
+      "mm",
+      "th",
+      "vn"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/la.json",
+    "Introduction": {
+      "Background": {
+        "text": "Modern-day Laos has its roots in the ancient Lao kingdom of Lan Xang, established in the 14th century under King FA NGUM. For 300 years, Lan Xang had influence reaching into present-day Cambodia and Thailand, as well as over all of what is now Laos. After centuries of gradual decline, Laos came under the domination of Siam (Thailand) from the late 18th century until the late 19th century, when it became part of French Indochina. The Franco-Siamese Treaty of 1907 defined the current Lao border with Thailand. Following more than 15 years of civil war, the communist Pathet Lao took control of the government in 1975, ending a six-century-old monarchy and instituting a one party--the Lao People's Revolutionary Party--communist state. A gradual, limited return to private enterprise and the liberalization of foreign investment laws began in the late 1980s. Laos became a member of ASEAN in 1997 and the WTO in 2013.<br><br>In the 2010s, the country benefited from direct foreign investment, particularly in the natural resource and industry sectors. Construction of a number of large hydropower dams and expanding mining activities have also boosted the economy. Laos has retained its official commitment to communism and maintains close ties with its two communist neighbors, Vietnam and China, both of which continue to exert substantial political and economic influence on the country. China, for example, provided 70% of the funding for a $5.9 billion, 400-km railway line between the Chinese border and the capital Vientiane, which opened for operations in 2021. Laos financed the remaining 30% with loans from China. At the same time, Laos has expanded its economic reliance on the West and other Asian countries, such as Japan, Malaysia, Singapore, Taiwan, and Thailand. Nevertheless, despite steady economic growth for more than a decade, it remains one of Asia's poorest countries."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, northeast of Thailand, west of Vietnam"
+      },
+      "Area": {
+        "total ": {
+          "text": "236,800 sq km"
+        },
+        "land": {
+          "text": "230,800 sq km"
+        },
+        "water": {
+          "text": "6,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,274 km"
+        },
+        "border countries": {
+          "text": "Burma 238 km; Cambodia 555 km; China 475 km; Thailand 1,845 km; Vietnam 2,161 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "tropical monsoon; rainy season (May to November); dry season (December to April)"
+      },
+      "Terrain": {
+        "text": "mostly rugged mountains; some plains and plateaus"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Phu Bia 2,817 m"
+        },
+        "lowest point": {
+          "text": "Mekong River 70 m"
+        },
+        "mean elevation": {
+          "text": "710 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, hydropower, gypsum, tin, gold, gemstones"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "9.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 5.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 2.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "56.8% (2023 est.)"
+        },
+        "other": {
+          "text": "33.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "floods, droughts"
+      },
+      "Geography - note": {
+        "text": "landlocked; most of the country is mountainous and thickly forested; the Mekong River forms a large part of the western boundary with Thailand"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "7,953,556 (2024 est.)"
+        },
+        "male": {
+          "text": "3,966,320"
+        },
+        "female": {
+          "text": "3,987,236"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Lao (official), French, English, various ethnic languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>ແຫລ່ງທີ່ຂາດບໍ່ໄດ້ສຳລັບຂໍ້ມູນຕົ້ນຕໍ່” (Lao)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Buddhist 64.7%, Christian 1.7%, none 31.4%, other/not stated 2.1% (2015 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Lao 53.2%, Khmou 11%, Hmong 9.2%, Phouthay 3.4%, Tai 3.1%, Makong 2.5%, Katong 2.2%, Lue 2%, Akha 1.8%, other 11.6% (2015 est.)",
+        "note": "<strong>note:</strong> the Laos Government officially recognizes 49 ethnic groups, but the total number of ethnic groups is estimated to be well over 200"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "38.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most densely populated area is in and around the capital city of Vientiane; large communities are primarily found along the Mekong River along the southwestern border; overall density is considered one of the lowest in Southeast Asia"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income, industrial Southeast Asian economy; high inflation due to 2022 currency depreciation brought on by persistently high debt; new Laos-China railway and dry port; rising inequities; ongoing labor shortages"
+      },
+      "Agricultural products": {
+        "text": "cassava, root vegetables, rice, sugarcane, vegetables, bananas, maize, rubber, coffee, watermelons (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining (copper, tin, gold, gypsum); timber, electric power, agricultural processing, rubber, construction, garments, cement, tourism"
+      },
+      "Exports - commodities": {
+        "text": "electricity, fertilizers, gold, garments, paper (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 39%, Thailand 34%, Australia 4%, USA 4%, Cambodia 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, raw sugar, plastic products, trucks (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical monsoon; rainy season (May to November); dry season (December to April)"
+      }
+    }
+  }
+}

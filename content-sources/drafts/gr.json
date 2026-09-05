@@ -1,0 +1,69 @@
+{
+  "iso": "gr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.379Z",
+  "structured": {
+    "code": "gr",
+    "name": "Greece",
+    "capital": "Athens",
+    "continent": "Europe",
+    "areaKm2": 131957,
+    "population": 10482487,
+    "officialLanguages": [
+      "Greek"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Albania",
+      "Bulgaria",
+      "North Macedonia",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "al",
+      "bg",
+      "mk",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "lignite, petroleum, iron ore, bauxite, lead, zinc, nickel, magnesite, marble, salt, hydropower potential",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Europe, bordering the Aegean Sea, Ionian Sea, and the Mediterranean Sea, between Albania and Turkey || mountainous with ranges extending into the sea as peninsulas or chains of islands || strategic location dominating the Aegean Sea and southern approach to Turkish Straits; a peninsular country, with an archipelago of about 2,000 islands || Resources: lignite, petroleum, iron ore, bauxite, lead, zinc, nickel, magnesite, marble, salt, hydropower potential || Exports: refined petroleum, packaged medicine, aluminum, olive oil, tobacco (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountainous with ranges extending into the sea as peninsulas or chains of islands || Southern Europe, bordering the Aegean Sea, Ionian Sea, and the Mediterranean Sea, between Albania and Turkey"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; mild, wet winters; hot, dry summers || severe earthquakes volcanism: Santorini (367 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Methana and Nisyros in the Aegean are also classified as historically active"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone economy; growth above euro average, supported by private consumption and EU fund investments; structural reforms strengthening public finances and enhancing resilience within banking system; declining unemployment but low labor productivity and skill shortages || Exports: refined petroleum, packaged medicine, aluminum, olive oil, tobacco (2023) || Industries: tourism, food and tobacco processing, textiles, chemicals, metal products; mining, petroleum"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Greek Orthodox 81-90%, Muslim 2%, other 3%, none 4-15%, unspecified 1% (2015 est.) || Greek 91.6%, Albanian 4.4%, other 4% (2011 est.)"
+    }
+  }
+}

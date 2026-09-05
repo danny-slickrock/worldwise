@@ -1,0 +1,73 @@
+{
+  "iso": "ro",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.386Z",
+  "structured": {
+    "code": "ro",
+    "name": "Romania",
+    "capital": "Bucharest",
+    "continent": "Europe",
+    "areaKm2": 238397,
+    "population": 19053815,
+    "officialLanguages": [
+      "Romanian"
+    ],
+    "currencies": [
+      "Romanian Leu"
+    ],
+    "landBorderNames": [
+      "Bulgaria",
+      "Hungary",
+      "Moldova",
+      "Serbia",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "bg",
+      "hu",
+      "md",
+      "rs",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum (reserves declining), timber, natural gas, coal, iron ore, salt, arable land, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, bordering the Black Sea, between Bulgaria and Ukraine || central Transylvanian Basin is separated from the Moldavian Plateau on the east by the Eastern Carpathian Mountains and separated from the Walachian Plain on the south by the Transylvanian Alps || controls the most easily traversable land route between the Balkans, Moldova, and Ukraine; the Carpathian Mountains dominate the center of the country, and the Danube River forms much of the southern boundary with Serbia and Bulgaria || Resources: petroleum (reserves declining), timber, natural gas, coal, iron ore, salt, arable land, hydropower || Exports: cars, vehicle parts/accessories, insulated wire, garments, wheat (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "central Transylvanian Basin is separated from the Moldavian Plateau on the east by the Eastern Carpathian Mountains and separated from the Walachian Plain on the south by the Transylvanian Alps || Southeastern Europe, bordering the Black Sea, between Bulgaria and Ukraine"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; cold, cloudy winters with frequent snow and fog; sunny summers with frequent showers and thunderstorms || earthquakes, most severe in south and southwest; geologic structure and climate promote landslides"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, EU-member economy; euro membership delayed over macroeconomic indicators; persistent inflation, but consumption and EU-funded investments driving recovery; skilled labor shortage; high public debt and budget deficit; challenges include fiscal sustainability and political instability || Exports: cars, vehicle parts/accessories, insulated wire, garments, wheat (2023) || Industries: electric machinery and equipment, auto assembly, textiles and footwear, light machinery, metallurgy, chemicals, food processing, petroleum refining, mining, timber, construction materials"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Romanian Orthodox 85.3%, Roman Catholic 4.5%, Reformed 3%, Pentecostal 2.5%, other 4.7% (2021 est.) || Romanian 89.3%, Hungarian 6%, Romani 3.4%, Ukrainian 0.3%, German 0.1%, other 0.9% (2021 est.)"
+    }
+  }
+}

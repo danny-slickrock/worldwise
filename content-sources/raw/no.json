@@ -1,0 +1,188 @@
+{
+  "iso": "no",
+  "fetchedAt": "2026-09-04T23:56:40.476Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/no.json"
+    }
+  },
+  "wikidata": {
+    "name": "Norway",
+    "gec": "NO",
+    "capital": "Oslo",
+    "areaKm2": 385207,
+    "population": 5627400,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Norwegian",
+      "Nynorsk",
+      "Bokmål",
+      "Sámi"
+    ],
+    "currencies": [
+      "Norwegian krone"
+    ],
+    "sharesBorderWithAnyType": [
+      "fi",
+      "se",
+      "ru"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/no.json",
+    "Introduction": {
+      "Background": {
+        "text": "Two centuries of Viking raids into Europe tapered off after King Olav TRYGGVASON adopted Christianity in 994; conversion of the Norwegian kingdom occurred over the next several decades. In 1397, Norway was absorbed into a union with Denmark that lasted more than four centuries. In 1814, Norwegians resisted the cession of their country to Sweden and adopted a new constitution. Sweden then invaded Norway but agreed to let Norway keep its constitution in return for accepting the union under a Swedish king. Rising nationalism throughout the 19th century led to a 1905 referendum granting Norway independence. Norway remained neutral in World War I and proclaimed its neutrality at the outset of World War II, but Nazi Germany nonetheless occupied the country for five years (1940-45). In 1949, Norway abandoned neutrality and became a member of NATO. Discovery of oil and gas in adjacent waters in the late 1960s boosted Norway's economic fortunes. In referenda held in 1972 and 1994, Norway rejected joining the EU. Key domestic issues include immigration and integration of ethnic minorities, maintaining the country's extensive social safety net with an aging population, and preserving economic competitiveness."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Europe, bordering the North Sea and the North Atlantic Ocean, west of Sweden"
+      },
+      "Area": {
+        "total ": {
+          "text": "323,802 sq km"
+        },
+        "land": {
+          "text": "304,282 sq km"
+        },
+        "water": {
+          "text": "19,520 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,566 km"
+        },
+        "border countries": {
+          "text": "Finland 709 km; Sweden 1,666 km; Russia 191 km"
+        }
+      },
+      "Coastline": {
+        "text": "25,148 km",
+        "note": "<strong>note:</strong> includes the mainland at 2,650 km, as well as long fjords, numerous small islands, and minor indentations at 22,498 km; length of island coastlines is 58,133 km"
+      },
+      "Climate": {
+        "text": "temperate along coast, modified by North Atlantic Current; colder interior with increased precipitation and colder summers; rainy year-round on west coast"
+      },
+      "Terrain": {
+        "text": "glaciated; mostly high plateaus and rugged mountains broken by fertile valleys; small, scattered plains; coastline deeply indented by fjords; arctic tundra in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Galdhopiggen 2,469 m"
+        },
+        "lowest point": {
+          "text": "Norwegian Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "460 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, iron ore, copper, lead, zinc, titanium, pyrites, nickel, fish, timber, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "2.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "33.3% (2023 est.)"
+        },
+        "other": {
+          "text": "64% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "rockslides, avalanches <br><br><strong>volcanism:</strong> Beerenberg (2,227 m) on Jan Mayen Island in the Norwegian Sea is the country's only active volcano"
+      },
+      "Geography - note": {
+        "text": "about two-thirds mountains; some 50,000 islands off its much-indented coastline; strategic location adjacent to sea lanes and air routes in North Atlantic; one of the most rugged and longest coastlines in the world"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "5,509,733 (2024 est.)"
+        },
+        "male": {
+          "text": "2,780,972"
+        },
+        "female": {
+          "text": "2,728,761"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Bokmal Norwegian (official), Nynorsk Norwegian (official), small Sami- and Finnish-speaking minorities"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Verdens Faktabok, den essensielle kilden for grunnleggende informasjon. (Norwegian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> Sami has three dialects (Lule, North Sami, and South Sami) and is an official language in nine municipalities in the northernmost counties of Finnmark, Nordland, and Troms"
+      },
+      "Religions": {
+        "text": "Church of Norway (Evangelical Lutheran - official) 67.5%, Muslim 3.1%, Roman Catholic 3.1%, other Christian 3.8%, other 2.6%, unspecified 19.9% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Norwegian 81.5% (includes about 60,000 Sami), other European 8.9%, other 9.6% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "84% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.32% annual rate of change (2020-25 est.)"
+        },
+        "note": "<strong>note:</strong> data include Svalbard and Jan Mayen Islands"
+      },
+      "Population distribution": {
+        "text": "most people live in the south; population clusters are found along the North Sea coast in the southwest and Skaggerak in the southeast; the interior areas of the north remain sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, non-EU economy with trade links via European Economic Area (EEA); key role in European energy security as leader in oil, gas, and electricity exports; major fishing, forestry, and oil(?) extraction industries; oil sovereign fund supports generous welfare system; low unemployment; inflation moderating but remains above target level</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, barley, potatoes, oats, wheat, pork, chicken, beef, eggs, carrots/turnips (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum and gas, shipping, fishing, aquaculture, food processing, shipbuilding, pulp and paper products, metals, chemicals, timber, mining, textiles"
+      },
+      "Exports - commodities": {
+        "text": "natural gas, crude petroleum, fish, refined petroleum, aluminum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 18%, UK 17%, Sweden 9%, Denmark 7%, Netherlands 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, ships, nickel, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate along coast, modified by North Atlantic Current; colder interior with increased precipitation and colder summers; rainy year-round on west coast"
+      }
+    }
+  }
+}

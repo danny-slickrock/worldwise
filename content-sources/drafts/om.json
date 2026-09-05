@@ -1,0 +1,69 @@
+{
+  "iso": "om",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.400Z",
+  "structured": {
+    "code": "om",
+    "name": "Oman",
+    "capital": "Muscat",
+    "continent": "Asia",
+    "areaKm2": 309500,
+    "population": 4829480,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Omani rial"
+    ],
+    "landBorderNames": [
+      "Saudi Arabia",
+      "UAE",
+      "Yemen"
+    ],
+    "landBorderCodes": [
+      "sa",
+      "ae",
+      "ye"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, copper, asbestos, some marble, limestone, chromium, gypsum, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Arabian Sea, Gulf of Oman, and Persian Gulf, between Yemen and the UAE || central desert plain, rugged mountains in north and south || consists of Oman proper and two northern exclaves, Musandam and Al Madhah; the former is a peninsula that occupies a strategic location adjacent to the Strait of Hormuz || Resources: petroleum, copper, asbestos, some marble, limestone, chromium, gypsum, natural gas || Exports: crude petroleum, refined petroleum, natural gas, semi-finished iron, fertilizers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "central desert plain, rugged mountains in north and south || Middle East, bordering the Arabian Sea, Gulf of Oman, and Persian Gulf, between Yemen and the UAE"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "dry desert; hot, humid along coast; hot, dry interior; strong southwest summer monsoon (May to September) in far south || summer winds often raise large sandstorms and dust storms in interior; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, oil-based economy; large welfare system; growing government debt; citizenship-based labor force growth policy; US free trade agreement; diversifying portfolio; high female labor force participation || Exports: crude petroleum, refined petroleum, natural gas, semi-finished iron, fertilizers (2023) || Industries: crude oil production and refining, natural and liquefied natural gas production; construction, cement, copper, steel, chemicals, optic fiber"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 85.9%, Christian 6.4%, Hindu 5.7%, other and unaffiliated 2% (2020 est.) || Arab, Baluchi, South Asian (Indian, Pakistani, Sri Lankan, Bangladeshi), African"
+    }
+  }
+}

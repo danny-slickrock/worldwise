@@ -1,0 +1,69 @@
+{
+  "iso": "lr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.414Z",
+  "structured": {
+    "code": "lr",
+    "name": "Liberia",
+    "capital": "Monrovia",
+    "continent": "Africa",
+    "areaKm2": 111369,
+    "population": 5214030,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Liberian dollar"
+    ],
+    "landBorderNames": [
+      "Guinea",
+      "Cote d'Ivoire",
+      "Sierra Leone"
+    ],
+    "landBorderCodes": [
+      "gn",
+      "ci",
+      "sl"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "iron ore, timber, diamonds, gold, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Cote d'Ivoire and Sierra Leone || mostly flat to rolling coastal plains rising to rolling plateau and low mountains in northeast || facing the Atlantic Ocean, the coastline is characterized by lagoons, mangrove swamps, and river-deposited sandbars; the inland grassy plateau supports limited agriculture || Resources: iron ore, timber, diamonds, gold, hydropower || Exports: gold, ships, iron ore, rubber, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling coastal plains rising to rolling plateau and low mountains in northeast || Western Africa, bordering the North Atlantic Ocean, between Cote d'Ivoire and Sierra Leone"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; dry winters with hot days and cool to cold nights; wet, cloudy summers with frequent heavy showers || dust-laden harmattan winds blow from the Sahara (December to March)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income West African economy; food scarcity, especially in rural areas; high poverty and inflation; bad recession prior to COVID-19 due to Ebola crisis; growing government debt; longest continuously operated rubber plantation; large informal economy || Exports: gold, ships, iron ore, rubber, refined petroleum (2023) || Industries: mining (iron ore and gold), rubber processing, palm oil processing, diamonds"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English 20% (official) and 27 indigenous languages, including Liberian English variants || Christian 84.9%, Muslim 12%, Traditional 0.5%, other 0.1%, none 2.6% (2022 est.) || Kpelle 20.2%, Bassa 13.6%, Grebo 9.9%, Gio 7.9%, Mano 7.2%, Kru 5.5%, Lorma 4.8%, Krahn 4.5%, Kissi, 4.3%, Mandingo 4.2%, Vai 3.8%, Gola 3.8%, Gbandi 2.9%, Mende 1.7%, Sapo 1%, Belle 0.7%, Dey 0.3%, other Liberian ethnic group 0.4%, other African 3%, non-African 0.2% (2022 est.)"
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "iso": "eg",
+  "fetchedAt": "2026-09-04T23:56:56.911Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/eg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Egypt",
+    "gec": "EG",
+    "capital": "Cairo",
+    "areaKm2": 1010407.87,
+    "population": 114535772,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Egyptian pound"
+    ],
+    "sharesBorderWithAnyType": [
+      "il",
+      "ly",
+      "sd",
+      "ps"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/eg.json",
+    "Introduction": {
+      "Background": {
+        "text": "The regularity and richness of the annual Nile River flood, coupled with semi-isolation provided by deserts to the east and west, allowed for the development of one of the world's great civilizations in Egypt. A unified kingdom arose circa 3200 B.C., and a series of dynasties ruled in Egypt for the next three millennia. The last native dynasty fell to the Persians in 341 B.C., who in turn were replaced by the Greeks, Romans, and Byzantines. Arab conquerors introduced Islam and the Arabic language in the 7th century and ruled for the next six centuries. The Mamluks, a local military caste, took control around 1250 and continued to govern after the Ottoman Turks conquered Egypt in 1517.<br><br>Completion of the Suez Canal in 1869 elevated Egypt as an important world transportation hub. Ostensibly to protect its investments, Britain seized control of Egypt's government in 1882, but the country's nominal allegiance to the Ottoman Empire continued until 1914. Egypt gained partial independence from the UK in 1922 and full sovereignty in 1952. British forces evacuated the Suez Canal Zone in 1956. The completion of the Aswan High Dam in 1971 and the resultant Lake Nasser have reaffirmed the time-honored place of the Nile River in the agriculture and ecology of Egypt. A rapidly growing population (the largest in the Arab world), limited arable land, and dependence on the Nile all continue to overtax resources and stress society. The government has struggled to meet the demands of Egypt's fast-growing population as it implements large-scale infrastructure projects, energy cooperation, and foreign direct investment appeals. <br><br>Inspired by the 2010 Tunisian revolution, Egyptian opposition groups led demonstrations and labor strikes countrywide, culminating in President Hosni MUBARAK's ouster in 2011. Egypt's military assumed national leadership until a new legislature was in place in early 2012; later that same year, Muslim Brotherhood candidate Mohamed MORSI won the presidential election. Following protests throughout the spring of 2013 against MORSI's government and the Muslim Brotherhood, the Egyptian Armed Forces intervened and removed MORSI from power in July 2013 and replaced him with interim president Adly MANSOUR. Simultaneously, the government began enacting laws to limit freedoms of assembly and expression. In 2014, voters approved a new constitution by referendum and then elected former defense minister Abdel Fattah EL-SISI president. EL-SISI was reelected to a second four-year term in 2018 and a third term in December 2023."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Africa, bordering the Mediterranean Sea, between Libya and the Gaza Strip, and the Red Sea north of Sudan, and includes the Asian Sinai Peninsula"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,001,450 sq km"
+        },
+        "land": {
+          "text": "995,450 sq km"
+        },
+        "water": {
+          "text": "6,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,612 km"
+        },
+        "border countries": {
+          "text": "Gaza Strip 13 km; Israel 208 km; Libya 1,115 km; Sudan 1,276 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,450 km"
+      },
+      "Climate": {
+        "text": "desert; hot, dry summers with moderate winters"
+      },
+      "Terrain": {
+        "text": "vast desert plateau interrupted by Nile valley and delta"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Catherine 2,629 m"
+        },
+        "lowest point": {
+          "text": "Qattara Depression -133 m"
+        },
+        "mean elevation": {
+          "text": "321 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, iron ore, phosphates, manganese, limestone, gypsum, talc, asbestos, lead, rare earth elements, zinc"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "4.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 3.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2022 est.)"
+        },
+        "forest": {
+          "text": "0% (2023 est.)"
+        },
+        "other": {
+          "text": "95.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts; frequent earthquakes; flash floods; landslides; hot, driving windstorms called khamsin occur in spring; dust storms; sandstorms"
+      },
+      "Geography - note": {
+        "text": "controls Sinai Peninsula, the only land bridge between Africa and remainder of Eastern Hemisphere; controls Suez Canal, a sea link between Indian Ocean and Mediterranean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "112,870,457 (2025 est.)"
+        },
+        "male": {
+          "text": "57,960,635"
+        },
+        "female": {
+          "text": "54,909,822"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official); English and French widely understood by educated classes"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، أفضل مصدر للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim (predominantly Sunni) 90%, Christian (majority Coptic Orthodox, other Christians include Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican) 10%"
+      },
+      "Ethnic groups": {
+        "text": "Egyptian 99.7%, other 0.3% (2006 est.)",
+        "note": "<strong>note:</strong> data represent respondents by nationality"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "43.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.9% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "approximately 95% of the population lives within 20 km (12 mi) of the Nile River and its delta; vast areas of the country remain sparsely populated or uninhabited, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "Africa&rsquo;s second-largest economy; 2030 Vision to diversify markets and energy infrastructure; improving fiscal, external, and current accounts; underperforming private sector; poor labor force participation; expanded credit access"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, sugar beets, wheat, maize, potatoes, tomatoes, rice, milk, onions, oranges (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, food processing, tourism, chemicals, pharmaceuticals, hydrocarbons, construction, cement, metals, light manufactures"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, natural gas, fertilizers, garments, crude petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Saudi Arabia 10%, Turkey 9%, Italy 6%, USA 5%, UAE 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, wheat, plastics, natural gas, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "desert; hot, dry summers with moderate winters"
+      }
+    }
+  }
+}

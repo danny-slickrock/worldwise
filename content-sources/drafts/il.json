@@ -1,0 +1,74 @@
+{
+  "iso": "il",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.395Z",
+  "structured": {
+    "code": "il",
+    "name": "Israel",
+    "capital": "Jerusalem",
+    "continent": "Asia",
+    "areaKm2": 20770,
+    "population": 9840000,
+    "officialLanguages": [
+      "Hebrew"
+    ],
+    "currencies": [
+      "new shekel"
+    ],
+    "landBorderNames": [
+      "Egypt",
+      "Jordan",
+      "Lebanon",
+      "Syria"
+    ],
+    "landBorderCodes": [
+      "eg",
+      "jo",
+      "lb",
+      "sy"
+    ],
+    "landBorderTerritories": [
+      "Gaza Strip",
+      "West Bank"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, potash, copper ore, natural gas, phosphate rock, magnesium bromide, clays, sand",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Mediterranean Sea, between Egypt and Lebanon || Negev desert in the south; low coastal plain; central mountains; Jordan Rift Valley || Lake Tiberias (Sea of Galilee) is an important freshwater source; the Dead Sea is the second saltiest body of water in the world (after Lake Assal in Djibouti) the Malham Cave in Mount Sodom is the world's longest salt cave at 10 km (6 mi); Mount Sodom is a hill about 220 m (722 ft) high that is 80% salt, with multiple salt layers covered by a veneer of rock || Resources: timber, potash, copper ore, natural gas, phosphate rock, magnesium bromide, clays, sand || Exports: integrated circuits, diamonds, broadcasting equipment, medical instruments, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "Negev desert in the south; low coastal plain; central mountains; Jordan Rift Valley || Middle East, bordering the Mediterranean Sea, between Egypt and Lebanon"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; hot and dry in southern and eastern desert areas || sandstorms may occur during spring and summer; droughts; periodic earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, technology- and industrial-based economy; economic contraction and fiscal deficits resulting from war in Gaza; labor force stabilizing following military reservist mobilization; high-tech industry remains resilient while construction and tourism among hardest-hit sectors || Exports: integrated circuits, diamonds, broadcasting equipment, medical instruments, refined petroleum (2023) || Industries: high-technology products (including aviation, communications, computer-aided design and manufactures, medical electronics, fiber optics), wood and paper products, potash and phosphates, food, beverages, and tobacco, caustic soda, cement, pharmaceuticals, construction, metal products, chemical products, plastics, cut diamonds, textiles, footwear"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Jewish 73.5%, Muslim 18.1%, Christian 1.9%, Druze 1.6%, other 4.9% (2022 est.) || Jewish 73.5% (of which Israel-born 79.7%, Europe/America/Oceania-born 14.3%, Africa-born 3.9%, Asia-born 2.1%), Arab 21.1%, other 5.4% (2022 est.)"
+    }
+  }
+}

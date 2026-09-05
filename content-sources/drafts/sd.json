@@ -1,0 +1,78 @@
+{
+  "iso": "sd",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.421Z",
+  "structured": {
+    "code": "sd",
+    "name": "Sudan",
+    "capital": "Khartoum",
+    "continent": "Africa",
+    "areaKm2": 1886068,
+    "population": 40533330,
+    "officialLanguages": [
+      "English",
+      "Arabic"
+    ],
+    "currencies": [
+      "Sudanese pound"
+    ],
+    "landBorderNames": [
+      "Central African Republic",
+      "Chad",
+      "Egypt",
+      "Eritrea",
+      "Ethiopia",
+      "Libya",
+      "South Sudan"
+    ],
+    "landBorderCodes": [
+      "cf",
+      "td",
+      "eg",
+      "er",
+      "et",
+      "ly",
+      "ss"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum; small reserves of iron ore, copper, chromium ore, zinc, tungsten, mica, silver, gold; hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "north-eastern Africa, bordering the Red Sea, between Egypt and Eritrea || generally flat, featureless plain; desert dominates the north || the Nile is Sudan's primary water source; its major tributaries, the White Nile and the Blue Nile, meet at Khartoum to form the River Nile, which flows northward through Egypt to the Mediterranean Sea || Resources: petroleum; small reserves of iron ore, copper, chromium ore, zinc, tungsten, mica, silver, gold; hydropower || Exports: crude petroleum, gold, oil seeds, sheep and goats, ground nuts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "generally flat, featureless plain; desert dominates the north || north-eastern Africa, bordering the Red Sea, between Egypt and Eritrea"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "hot and dry; arid desert; rainy season varies by region (April to November) || dust storms and periodic persistent droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Sahel economy devastated by ongoing civil war; major impacts on rural income, basic commodity prices, industrial production, agricultural supply chain, communications and commerce; hyperinflation and currency depreciation worsening food access and humanitarian conditions || Exports: crude petroleum, gold, oil seeds, sheep and goats, ground nuts (2023) || Industries: oil, cotton ginning, textiles, cement, edible oils, sugar, soap distilling, shoes, petroleum refining, pharmaceuticals, armaments, automobile/light truck assembly, milling"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Sunni Muslim, small Christian minority || Sudanese Arab (approximately 70%), Fur, Beja, Nuba, Ingessana, Uduk, Fallata, Masalit, Dajo, Gimir, Tunjur, Berti; there are over 500 ethnic groups"
+    }
+  }
+}

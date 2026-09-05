@@ -1,0 +1,176 @@
+{
+  "iso": "gw",
+  "fetchedAt": "2026-09-04T23:56:58.458Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/pu.json"
+    }
+  },
+  "wikidata": {
+    "name": "Guinea-Bissau",
+    "gec": "PU",
+    "capital": "Bissau",
+    "areaKm2": 36125,
+    "population": 1861283,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "gn",
+      "sn"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/pu.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>For much of its history, Guinea-Bissau was under the control of the Mali Empire and the Kaabu Kingdom. In the 16th century, Portugal began establishing trading posts along Guinea-Bissau’s shoreline. Initially, the Portuguese were restricted to the coastline and islands. However, the slave and gold trades were lucrative to local African leaders, and the Portuguese were slowly able to expand their power and influence inland. Starting in the 18th century, the Mali Empire and Kingdom of Kaabu slowly disintegrated into smaller local entities. By the 19th century, Portugal had fully incorporated Guinea-Bissau into its empire.<br><br>Since gaining independence in 1974, Guinea-Bissau has experienced considerable political and military upheaval. In 1980, a military coup established General Joao Bernardo 'Nino' VIEIRA as president. VIEIRA's regime suppressed political opposition and purged political rivals. Several coup attempts through the 1980s and early 1990s failed to unseat him, but a military mutiny and civil war in 1999 led to VIEIRA's ouster. In 2000, a transitional government turned over power to opposition leader Kumba YALA. In 2003, a bloodless military coup overthrew YALA and installed businessman Henrique ROSA as interim president. In 2005, VIEIRA was reelected, pledging to pursue economic development and national reconciliation; he was assassinated in 2009. Malam Bacai SANHA was then elected president, but he passed away in 2012 from a long-term illness. A military coup blocked the second round of the election to replace him, but after mediation from the Economic Community of Western African States, a civilian transitional government assumed power. In 2014, Jose Mario VAZ was elected president in a free and fair election, and in 2019, he became the first president in Guinea-Bissau’s history to complete a full term. Umaro Sissoco EMBALO was elected president in 2019, but he did not take office until 2020 because of a prolonged challenge to the election results.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Guinea and Senegal"
+      },
+      "Area": {
+        "total ": {
+          "text": "36,125 sq km"
+        },
+        "land": {
+          "text": "28,120 sq km"
+        },
+        "water": {
+          "text": "8,005 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "762 km"
+        },
+        "border countries": {
+          "text": "Guinea 421 km; Senegal 341 km"
+        }
+      },
+      "Coastline": {
+        "text": "350 km"
+      },
+      "Climate": {
+        "text": "tropical; generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds"
+      },
+      "Terrain": {
+        "text": "mostly low-lying coastal plain with a deeply indented estuarine coastline rising to savanna in east; numerous off-shore islands including the Arquipelago Dos Bijagos consisting of 18 main islands and many small islets"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Dongol Ronde 277 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "70 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, timber, phosphates, bauxite, clay, granite, limestone, unexploited deposits of petroleum"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "29.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 14.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 8.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 6.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "75% (2023 est.)"
+        },
+        "other": {
+          "text": "0% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry, dusty harmattan haze may reduce visibility during dry season; brush fires"
+      },
+      "Geography - note": {
+        "text": "this small country is swampy along its western coast and is low-lying inland"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,132,325 (2024 est.)"
+        },
+        "male": {
+          "text": "1,042,910"
+        },
+        "female": {
+          "text": "1,089,415"
+        }
+      },
+      "Languages": {
+        "text": "Portuguese-based Creole, Portuguese (official; largely used as a second or third language), Pular (a Fula language), Mandingo"
+      },
+      "Religions": {
+        "text": "Muslim 46.1%, folk religions 30.6%, Christian 18.9%, other or unaffiliated 4.4% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Balanta 30%, Fulani 30%, Manjaco 14%, Mandinga 13%, Papel 7%, unspecified smaller ethnic groups 6% (2015 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "45.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.22% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "approximately one fifth of the population lives in the capital city of Bissau along the Atlantic coast; the remainder is distributed among the eight mainly rural regions, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "extremely poor West African economy; ethnically diverse labor force; increasing government expenditures; slight inflation due to food supply disruptions; major cashew exporter; systemic banking instabilities and corruption; vulnerable to oil price shocks"
+      },
+      "Agricultural products": {
+        "text": "rice, groundnuts, cashews, root vegetables, oil palm fruit, plantains, cassava, coconuts, vegetables, sweet potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agricultural products processing, beer, soft drinks"
+      },
+      "Exports - commodities": {
+        "text": "coconuts/brazil nuts/cashews, fish, fish oil, processed crustaceans, malt extract (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "India 66%, Chile 9%, Cote d'Ivoire 5%, Ghana 4%, Netherlands 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, iron bars, rice, plastics, flavored water (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds"
+      }
+    }
+  }
+}

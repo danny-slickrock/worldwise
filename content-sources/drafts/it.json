@@ -1,0 +1,73 @@
+{
+  "iso": "it",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.381Z",
+  "structured": {
+    "code": "it",
+    "name": "Italy",
+    "capital": "Rome",
+    "continent": "Europe",
+    "areaKm2": 302068,
+    "population": 58850717,
+    "officialLanguages": [
+      "Italian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Austria",
+      "France",
+      "Holy See",
+      "San Marino",
+      "Slovenia",
+      "Switzerland"
+    ],
+    "landBorderCodes": [
+      "at",
+      "fr",
+      "va",
+      "sm",
+      "si",
+      "ch"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, antimony, mercury, zinc, potash, marble, barite, asbestos, pumice, fluorspar, feldspar, pyrite (sulfur), natural gas and crude oil reserves, fish, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Europe, a peninsula extending into the central Mediterranean Sea, northeast of Tunisia || mostly rugged and mountainous; some plains, coastal lowlands || strategic location dominating central Mediterranean, as well as southern sea and air approaches to Western Europe || Resources: coal, antimony, mercury, zinc, potash, marble, barite, asbestos, pumice, fluorspar, feldspar, pyrite (sulfur), natural gas and crude oil reserves, fish, arable land || Exports: packaged medicine, garments, cars, refined petroleum, vehicle parts/accessories (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged and mountainous; some plains, coastal lowlands || Southern Europe, a peninsula extending into the central Mediterranean Sea, northeast of Tunisia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "predominantly Mediterranean; alpine in far north; hot, dry in south || regional risks include landslides, mudflows, avalanches, earthquakes, volcanic eruptions, flooding; land subsidence in Venice volcanism: significant volcanic activity; Etna (3,330 m) is Europe's most active volcano, and its flank eruptions pose a threat to nearby Sicilian villages; Etna, along with the famous Vesuvius, have both been deemed Decade Volcanoes by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to their explosive history and close proximity to human populations; Stromboli, on its namesake island, has also been continuously active with moderate volcanic activity; other historically active volcanoes include Campi Flegrei, Ischia, Larderello, Pantelleria, Vulcano, and Vulsini"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, core EU economy; strong services, manufacturing, and tourism sectors; modest growth supported by net exports, low inflation, and public investments via EU funds; tight labor market with aging workforce and shortages in specialized skills; high public debt levels || Exports: packaged medicine, garments, cars, refined petroleum, vehicle parts/accessories (2023) || Industries: tourism, machinery, iron and steel, chemicals, food processing, textiles, motor vehicles, clothing, footwear, ceramics"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 80.8% (overwhelmingly Roman Catholic with very small groups of Jehovah's Witnesses and Protestants), Muslim 4.9%, unaffiliated 13.4%, other 0.9% (2020 est.) || Italian (includes small clusters of German-, French-, and Slovene-Italians in the north, Albanian-Italians, Croat-Italians, and Greek-Italians in the south)"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "iso": "by",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.374Z",
+  "structured": {
+    "code": "by",
+    "name": "Belarus",
+    "capital": "Minsk",
+    "continent": "Europe",
+    "areaKm2": 207596.76,
+    "population": 9056080,
+    "officialLanguages": [
+      "Russian",
+      "Belarusian"
+    ],
+    "currencies": [
+      "Belarusian ruble"
+    ],
+    "landBorderNames": [
+      "Latvia",
+      "Lithuania",
+      "Poland",
+      "Russia",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "lv",
+      "lt",
+      "pl",
+      "ru",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, peat deposits, small quantities of oil and natural gas, granite, dolomitic limestone, marl, chalk, sand, gravel, clay",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Europe, east of Poland || generally flat with much marshland || landlocked; glacial scouring accounts for the flatness of Belarusian terrain and for its 11,000 lakes || Resources: timber, peat deposits, small quantities of oil and natural gas, granite, dolomitic limestone, marl, chalk, sand, gravel, clay || Exports: fertilizers, rapeseed oil, wood, poultry, beef (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "generally flat with much marshland || Eastern Europe, east of Poland"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "cold winters, cool and moist summers; transitional between continental and maritime || large tracts of marshy land"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "declining Russian energy subsidies will end in 2024; growing public debt; strong currency pressures have led to higher inflation; recent price controls on basic food and drugs; public sector wage increases and fragile private sector threaten household income gains and economic growth || Exports: fertilizers, rapeseed oil, wood, poultry, beef (2023) || Industries: metal-cutting machine tools, tractors, trucks, earthmovers, motorcycles, synthetic fibers, fertilizer, textiles, refrigerators, washing machines and other household appliances"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Orthodox 48.3%, Catholic 7.1%, other 3.5%, non-believers 41.1% (2011 est.) || Belarusian 83.7%, Russian 8.3%, Polish 3.1%, Ukrainian 1.7%, other 2.4%, unspecified 0.9% (2009 est.)"
+    }
+  }
+}

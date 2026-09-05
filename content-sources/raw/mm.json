@@ -1,0 +1,187 @@
+{
+  "iso": "mm",
+  "fetchedAt": "2026-09-04T23:56:49.670Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/bm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Myanmar",
+    "gec": "BM",
+    "capital": "Naypyidaw",
+    "areaKm2": 676577.2,
+    "population": 53370609,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Burmese"
+    ],
+    "currencies": [
+      "kyat"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "in",
+      "la",
+      "th",
+      "bd"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/bm.json",
+    "Introduction": {
+      "Background": {
+        "text": "Burma is home to ethnic Burmans and scores of other ethnic and religious minority groups that have resisted external efforts to consolidate control of the country throughout its history. Britain conquered Burma over a period extending from the 1820s to the 1880s and administered it as a province of India until 1937, when Burma became a self-governing colony.  Burma gained full independence in 1948. In 1962, General NE WIN seized power and ruled the country until 1988 when a new military regime took control. <br><br>In 1990, the military regime permitted an election but then rejected the results after the main opposition National League for Democracy (NLD) and its leader AUNG SAN SUU KYI (ASSK) won in a landslide. The military regime placed ASSK under house arrest until 2010. In 2007, rising fuel prices in Burma led pro-democracy activists and Buddhist monks to launch a \"Saffron Revolution\" consisting of large protests against the regime, which violently suppressed the movement. The regime prevented new elections until it had drafted a constitution designed to preserve the military's political control; it passed the new constitution in its 2008 referendum. The regime conducted an election in 2010, but the NLD boycotted the vote, and the military’s political proxy, the Union Solidarity and Development Party, easily won; international observers denounced the election as flawed. <br><br>Burma nonetheless began a halting process of political and economic reforms. ASSK's return to government in 2012 eventually led to the NLD's sweeping victory in the 2015 election. With ASSK as the de facto head of state, Burma’s first credibly elected civilian government drew international criticism for blocking investigations into Burma’s military operations -- which the US Department of State determined constituted genocide -- against its ethnic Rohingya population. When the 2020 elections resulted in further NLD gains, the military denounced the vote as fraudulent. In 2021, the military's senior leader General MIN AUNG HLAING launched a coup that returned Burma to authoritarian rule, with military crackdowns that undid reforms and resulted in the detention of ASSK and thousands of pro-democracy actors.<br><br>Pro-democracy organizations have formed in the wake of the coup, including the National Unity Government (NUG). Members of the NUG include representatives from the NLD, ethnic minority groups, and civil society. In 2021, the NUG announced the formation of armed militias called the People's Defense Forces (PDF) and an insurgency against the military junta. As of 2024, PDF units across the country continued to fight the regime with varying levels of support from and cooperation with the NUG and other anti-regime organizations, including armed ethnic groups that have been fighting the central government for decades."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, bordering the Andaman Sea and the Bay of Bengal, between Bangladesh and Thailand"
+      },
+      "Area": {
+        "total ": {
+          "text": "676,578 sq km"
+        },
+        "land": {
+          "text": "653,508 sq km"
+        },
+        "water": {
+          "text": "23,070 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "6,522 km"
+        },
+        "border countries": {
+          "text": "Bangladesh 271 km; China 2,129 km; India 1,468 km; Laos 238 km; Thailand 2,416 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,930 km"
+      },
+      "Climate": {
+        "text": "tropical monsoon; cloudy, rainy, hot, humid summers (southwest monsoon, June to September); less cloudy, scant rainfall, mild temperatures, lower humidity during winter (northeast monsoon, December to April)"
+      },
+      "Terrain": {
+        "text": "central lowlands ringed by steep, rugged highlands"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gamlang Razi 5,870 m"
+        },
+        "lowest point": {
+          "text": "Andaman Sea/Bay of Bengal 0 m"
+        },
+        "mean elevation": {
+          "text": "702 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, timber, tin, antimony, zinc, copper, tungsten, lead, coal, marble, limestone, precious stones, natural gas, hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "19.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 16.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "42.4% (2023 est.)"
+        },
+        "other": {
+          "text": "37.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "destructive earthquakes and cyclones; flooding and landslides common during rainy season (June to September); periodic droughts"
+      },
+      "Geography - note": {
+        "text": "strategic location near major Indian Ocean shipping lanes; the north-south flowing Irrawaddy River is the country's largest and most important commercial waterway"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "57,931,718 (2025 est.)"
+        },
+        "male": {
+          "text": "28,591,467"
+        },
+        "female": {
+          "text": "29,340,251"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Burmese (official)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>ကမ္ဘာ့အချက်အလက်စာအုပ်- အခြေခံအချက်အလက်တွေအတွက် မရှိမဖြစ်တဲ့ အရင်းအမြစ် (Burmese)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> minority ethnic groups use their own languages"
+      },
+      "Religions": {
+        "text": "Buddhist 87.9%, Christian 6.2%, Muslim 4.3%, Animist 0.8%, Hindu 0.5%, other 0.2%, none 0.1% (2014 est.)",
+        "note": "<strong>note:</strong> religion estimate is based on the 2014 national census, including an estimate for the non-enumerated population of Rakhine State, which is assumed to mainly affiliate with the Islamic faith; as of December 2019, Muslims probably make up less than 3% of Burma's total population due to the large outmigration of the Rohingya population since 2017"
+      },
+      "Ethnic groups": {
+        "text": "Burman (Bamar) 68%, Shan 9%, Karen 7%, Rakhine 4%, Chinese 3%, Indian 2%, Mon 2%, other 5%",
+        "note": "<strong>note: </strong>the largest ethnic group — the Burman (or Bamar) — dominate politics, and the military ranks are largely drawn from this ethnic group; the Burman mainly populate the central parts of the country, while various ethnic minorities have traditionally lived in the peripheral regions that surround the plains in a horseshoe shape; the government recognizes 135 indigenous ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "32.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.85% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population concentrated along coastal areas and in general proximity to the shores of the Irrawaddy River; the extreme north is relatively underpopulated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "slowly recovering Southeast Asian economy; household incomes weaken domestic consumption; growing trade deficit; declining employment; high inflation and reduced currency power; agriculture sector remains most stable&nbsp;"
+      },
+      "Agricultural products": {
+        "text": "rice, sugarcane, vegetables, beans, maize, groundnuts, plantains, fruits, coconuts, onions (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agricultural processing; wood and wood products; copper, tin, tungsten, iron; cement, construction materials; pharmaceuticals; fertilizer; oil and natural gas; garments; jade and gems"
+      },
+      "Exports - commodities": {
+        "text": "garments, natural gas, dried legumes, rare-earth metal compounds, precious stones (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 32%, Thailand 16%, Japan 7%, Germany 6%, India 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, synthetic fabric, fertilizers, crude petroleum, fabric (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical monsoon; cloudy, rainy, hot, humid summers (southwest monsoon, June to September); less cloudy, scant rainfall, mild temperatures, lower humidity during winter (northeast monsoon, December to April)"
+      }
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "iso": "sm",
+  "fetchedAt": "2026-09-04T23:56:41.535Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/sm.json"
+    }
+  },
+  "wikidata": {
+    "name": "San Marino",
+    "gec": "SM",
+    "capital": "San Marino",
+    "areaKm2": 61.2,
+    "population": 33600,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Italian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "it"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/sm.json",
+    "Introduction": {
+      "Background": {
+        "text": "Geographically the third-smallest state in Europe (after the Holy See and Monaco), San Marino also claims to be the world's oldest republic. According to tradition, it was founded by a Christian stonemason named MARINUS in A.D. 301. San Marino's foreign policy is aligned with that of the EU, although it is not a member.&nbsp; San Marino is negotiating an Association Agreement that is expected to allow participation in the EU&rsquo;s internal market and cooperation in other policy areas by late 2024. Social and political trends in the republic track closely with those of its larger neighbor, Italy."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Europe, an enclave in central Italy"
+      },
+      "Area": {
+        "total ": {
+          "text": "61 sq km"
+        },
+        "land": {
+          "text": "61 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "37 km"
+        },
+        "border countries": {
+          "text": "Italy 37 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "Mediterranean; mild to cool winters; warm, sunny summers"
+      },
+      "Terrain": {
+        "text": "rugged mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Monte Titano 739 m"
+        },
+        "lowest point": {
+          "text": "Torrente Ausa 55 m"
+        }
+      },
+      "Natural resources": {
+        "text": "building stone"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "38.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 33.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 5.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2022 est.)"
+        },
+        "forest": {
+          "text": "16.7% (2023 est.)"
+        },
+        "other": {
+          "text": "45% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional earthquakes"
+      },
+      "Geography - note": {
+        "text": "landlocked; an enclave of (completely surrounded by) Italy; smallest independent state in Europe after the Holy See and Monaco; dominated by the Apennine Mountains"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "35,291 (2025 est.)"
+        },
+        "male": {
+          "text": "17,035"
+        },
+        "female": {
+          "text": "18,256"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Italian"
+        },
+        "major-language sample(s)": {
+          "text": "<br>L'Almanacco dei fatti del mondo, l'indispensabile fonte per le informazioni di base. (Italian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic"
+      },
+      "Ethnic groups": {
+        "text": "Sammarinese, Italian"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "97.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.41% annual rate of change (2020-25 est.)"
+        }
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income, non-EU European economy; surrounded by Italy, which is the dominant importer and exporter; open border to EU and a euro user; strong financial sector; high foreign investments; low taxation; increasingly high and risky debt"
+      },
+      "Agricultural products": {
+        "text": "wheat, grapes, corn, olives; cattle, pigs, horses, beef, cheese, hides"
+      },
+      "Industries": {
+        "text": "tourism, banking, textiles, electronics, ceramics, cement, wine"
+      },
+      "Exports - commodities": {
+        "text": "washing and bottling machines, other foods, packaged medicine, woodworking machines, aircraft (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 12%, Austria 10%, USA 9%, Romania 8%, Brazil 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "garments, cars, electricity, animal food, footwear (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "Mediterranean; mild to cool winters; warm, sunny summers"
+      }
+    }
+  }
+}

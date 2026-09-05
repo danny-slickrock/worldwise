@@ -1,0 +1,175 @@
+{
+  "iso": "bh",
+  "fetchedAt": "2026-09-04T23:56:44.229Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/ba.json"
+    }
+  },
+  "wikidata": {
+    "name": "Bahrain",
+    "gec": "BA",
+    "capital": "Manama",
+    "areaKm2": 786.5,
+    "population": 1569666,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Bahraini dinar"
+    ],
+    "sharesBorderWithAnyType": [
+      "ir",
+      "sa"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/ba.json",
+    "Introduction": {
+      "Background": {
+        "text": "In 1783, the Sunni AL-KHALIFA family took power in Bahrain. In order to secure these holdings, it entered into a series of treaties with the UK during the 19th century that made Bahrain a British protectorate. The archipelago attained its independence in 1971. A steady decline in oil production and reserves since 1970 prompted Bahrain to take steps to diversify its economy, in the process developing petroleum processing and refining, aluminum production, and hospitality and retail sectors. It has also endeavored to become a leading regional banking center, especially with respect to Islamic finance. Bahrain's small size, central location among Gulf countries, economic dependence on Saudi Arabia, and proximity to Iran require it to play a delicate balancing act in foreign affairs among its larger neighbors. Its foreign policy activities usually fall in line with Saudi Arabia and the UAE. In 2022, the United States designated Bahrain as a major non-NATO ally. <br><br>The Sunni royal family has long struggled to manage relations with its Shia-majority population. In 2011, amid Arab uprisings elsewhere in the region, the Bahraini Government responded to similar pro-democracy and reform protests at home with police and military action, including deploying Gulf Cooperation Council security forces. Ongoing dissatisfaction with the political status quo continues to factor into sporadic clashes between demonstrators and security forces. In 2020, Bahrain and the United Arab Emirates signed the US-brokered Abraham Accords with Israel. In 2023, Bahrain and the United States signed the Comprehensive Security Integration and Prosperity Agreement to enhance cooperation across a wide range of areas, from defense and security to emerging technology, trade, and investment."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, archipelago in the Persian Gulf, east of Saudi Arabia"
+      },
+      "Area": {
+        "total ": {
+          "text": "760 sq km"
+        },
+        "land": {
+          "text": "760 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "161 km"
+      },
+      "Climate": {
+        "text": "arid; mild, pleasant winters; very hot, humid summers"
+      },
+      "Terrain": {
+        "text": "mostly low desert plain rising gently to low central escarpment"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jabal ad Dukhan 135 m"
+        },
+        "lowest point": {
+          "text": "Persian Gulf 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "oil, associated and nonassociated natural gas, fish, pearls"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "10.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5% (2023 est.)"
+        },
+        "forest": {
+          "text": "4.3% (2023 est.)"
+        },
+        "other": {
+          "text": "84.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts; dust storms"
+      },
+      "Geography - note": {
+        "text": "close to primary Middle Eastern petroleum sources; strategic location in Persian Gulf, through which much of the Western world's petroleum must transit to reach open ocean"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,566,888 (2024 est.)"
+        },
+        "male": {
+          "text": "940,022"
+        },
+        "female": {
+          "text": "626,866"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English, Farsi, Urdu"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 74.2%, other 25.9% (2020 est)"
+      },
+      "Ethnic groups": {
+        "text": "Bahraini 47.4%, Asian 43.4%, other Arab 4.9%, African 1.4%, North American 1.1%, Gulf Co-operative countries 0.9%, European 0.8%, other 0.1% (2020 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "89.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "smallest population of the Gulf States, but urbanization rate exceeds 90%; largest settlement concentration is found on the far northern end of the island in and around Manamah and Al Muharraq"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, growing Middle Eastern island economy; oil and aluminum exporter with diversification led by services, construction and manufacturing; regional finance and tourism hub; high public debt linked to oil revenue dependence and limited tax base; vulnerable to water reservoir depletion</p>"
+      },
+      "Agricultural products": {
+        "text": "lamb/mutton, dates, milk, tomatoes, chicken, eggs, sheep offal, sheepskins, eggplants, chillies/peppers (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum processing and refining, aluminum smelting, iron pelletization, fertilizers, Islamic and offshore banking, insurance, ship repairing, tourism"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, aluminum, iron ore, aluminum wire, jewelry (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 16%, Saudi Arabia 15%, South Africa 8%, USA 6%, India 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "iron ore, aluminum oxide, ships, cars, gold (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "arid; mild, pleasant winters; very hot, humid summers"
+      }
+    }
+  }
+}

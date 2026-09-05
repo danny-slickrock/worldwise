@@ -1,0 +1,67 @@
+{
+  "iso": "cr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.427Z",
+  "structured": {
+    "code": "cr",
+    "name": "Costa Rica",
+    "capital": "San José",
+    "continent": "North America",
+    "areaKm2": 51179.92,
+    "population": 5265575,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Costa Rican colón"
+    ],
+    "landBorderNames": [
+      "Nicaragua",
+      "Panama"
+    ],
+    "landBorderCodes": [
+      "ni",
+      "pa"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Nicaragua and Panama || coastal plains separated by rugged mountains including over 100 volcanic cones, of which several are major active volcanoes || four volcanoes, two of them active, rise near the capital of San Jose in the center of the country; one of the volcanoes, Irazu, erupted destructively in 1963-65 || Resources: hydropower || Exports: medical instruments, integrated circuits, orthopedic appliances, bananas, tropical fruits (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "coastal plains separated by rugged mountains including over 100 volcanic cones, of which several are major active volcanoes || Central America, bordering both the Caribbean Sea and the North Pacific Ocean, between Nicaragua and Panama"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical and subtropical; dry season (December to April); rainy season (May to November); cooler in highlands || occasional earthquakes, hurricanes along Atlantic coast; frequent flooding of lowlands at onset of rainy season and landslides; active volcanoes volcanism: Arenal (1,670 m) is the most active volcano in Costa Rica; a 1968 eruption destroyed the town of Tabacon; Irazu (3,432 m), situated just east of San Jose, has the potential to spew ash over the capital city, as it did between 1963 and 1965; other historically active volcanoes include Miravalles, Poas, Rincon de la Vieja, and Turrialba"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "trade-based upper middle-income economy; green economy leader, having reversed deforestation; investing in blue economy infrastructure; declining poverty until hard impacts of COVID-19; lingering inequality and growing government debts have prompted a liquidity crisis || Exports: medical instruments, integrated circuits, orthopedic appliances, bananas, tropical fruits (2023) || Industries: medical equipment, food processing, textiles and clothing, construction materials, fertilizer, plastic products"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 47.5%, Evangelical and Pentecostal 19.8%, Jehovah's Witness 1.4%, other Protestant 1.2%, other 3.1%, none 27% (2021 est.) || White or Mestizo 83.6%, Mulatto 6.7%, Indigenous 2.4%, Black or African descent 1.1%, other 1.1%, none 2.9%, unspecified 2.2% (2011 est.)"
+    }
+  }
+}

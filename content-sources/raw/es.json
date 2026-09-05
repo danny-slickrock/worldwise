@@ -1,0 +1,187 @@
+{
+  "iso": "es",
+  "fetchedAt": "2026-09-04T23:56:42.707Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/sp.json"
+    }
+  },
+  "wikidata": {
+    "name": "Spain",
+    "gec": "SP",
+    "capital": "Madrid",
+    "areaKm2": 505990,
+    "population": 48592909,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "pt",
+      "fr",
+      "ad",
+      "ma",
+      "gi"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/sp.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Spain's powerful world empire of the 16th and 17th centuries ultimately yielded command of the seas to England.  Spain remained neutral during both World Wars but suffered through a devastating civil war (1936-39) resulting in a dictatorship. A peaceful transition to democracy after the death of dictator Francisco FRANCO in 1975 and rapid economic modernization after Spain joined the EU in 1986 gave Spain a dynamic and rapidly growing economy. After a severe recession in the wake of the global financial crisis in 2008, Spain has posted solid years of GDP growth above the EU average. Unemployment has fallen but remains high, especially among youth. Spain is the euro-zone's fourth-largest economy. The country has faced increased domestic turmoil in recent years due to the independence movement in its restive Catalonia region.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Europe, bordering the Mediterranean Sea, North Atlantic Ocean, Bay of Biscay, and Pyrenees Mountains; southwest of France"
+      },
+      "Area": {
+        "total ": {
+          "text": "505,370 sq km"
+        },
+        "land": {
+          "text": "498,980 sq km"
+        },
+        "water": {
+          "text": "6,390 sq km"
+        },
+        "note": "<strong>note:</strong> includes two autonomous cities (Ceuta and Melilla), 17 autonomous communities (including Balearic Islands and Canary Islands), and three small Spanish possessions off the coast of Morocco -- Islas Chafarinas, Penon de Alhucemas, and Penon de Velez de la Gomera"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,952.7 km"
+        },
+        "border countries": {
+          "text": "Andorra 63 km; France 646 km; Gibraltar 1.2 km; Portugal 1,224 km; Morocco (Ceuta) 8 km and Morocco (Melilla) 10.5 km"
+        },
+        "note": "<strong>note:</strong> an additional 75-meter border segment exists between Morocco and the Spanish exclave of Penon de Velez de la Gomera"
+      },
+      "Coastline": {
+        "text": "4,964 km"
+      },
+      "Climate": {
+        "text": "temperate; clear, hot summers in interior, more moderate and cloudy along coast; cloudy, cold winters in interior, partly cloudy and cool along coast"
+      },
+      "Terrain": {
+        "text": "large, flat to dissected plateau surrounded by rugged hills; Pyrenees Mountains in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico de Teide (Tenerife) on Canary Islands 3,718 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "660 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, lignite, iron ore, copper, lead, zinc, uranium, tungsten, mercury, pyrites, magnesite, fluorspar, gypsum, sepiolite, kaolin, potash, hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "49.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 23% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 10.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 19.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "38.2% (2023 est.)"
+        },
+        "other": {
+          "text": "12.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts, occasional flooding <br><br><strong>volcanism:</strong> volcanic activity in the Canary Islands, located off Africa's northwest coast; Teide (3,715 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; La Palma (2,426 m) is the most active of the Canary Islands volcanoes; Lanzarote is the only other historically active volcano"
+      },
+      "Geography - note": {
+        "text": "strategic location along approaches to Strait of Gibraltar; Spain controls a number of territories in northern Morocco, including the enclaves of Ceuta and Melilla and the islands of Penon de Velez de la Gomera, Penon de Alhucemas, and Islas Chafarinas; Spain's Canary Islands are one of four North Atlantic archipelagos that make up Macaronesia; the others are the Azores (Portugal), Madeira (Portugal), and Cabo Verde"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "47,280,433 (2024 est.)"
+        },
+        "male": {
+          "text": "23,069,327"
+        },
+        "female": {
+          "text": "24,211,106"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Castilian Spanish (official) 74%, Catalan (official in Catalonia, the Balearic Islands, and the Valencian Community) 17%, Galician (official in Galicia) 7%, Basque (official in the Basque Country and Navarre) 2%, Aranese (official in part of Catalonia) &lt;5,000 speakers"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> Aragonese, Aranese Asturian, Calo, and Valencian are also recognized as regional languages "
+      },
+      "Religions": {
+        "text": "Roman Catholic 58.2%, atheist 16.2%, agnostic 10.8%, other 2.7%, non-believer 10.5%, unspecified 1.7% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Spanish 84.8%, Moroccan 1.7%, Romanian 1.2%, other 12.3% (2021 est.)",
+        "note": "<strong>note:</strong> data represent population by country of birth"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "81.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.24% annual rate of change (2020-25 est.)"
+        },
+        "note": "<strong>note:</strong> data include Canary Islands, Ceuta, and Melilla"
+      },
+      "Population distribution": {
+        "text": "with the notable exception of Madrid, Sevilla, and Zaragoza, the largest urban agglomerations are found along the Mediterranean and Atlantic coasts; numerous smaller cities are spread throughout the interior; very dense settlement around the capital of Madrid, as well as the port city of Barcelona"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, core-EU and eurozone economy; strong growth driven by public consumption, tourism, and other service exports; tight labor market despite high structural unemployment; efforts to narrow persistent fiscal deficits through tax and spending measures; high but declining unemployment supported by job growth and immigration</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, olives, pork, grapes, wheat, tomatoes, barley, sugar beets, maize, oranges (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles and apparel (including footwear), food and beverages, metals and metal manufactures, chemicals, shipbuilding, automobiles, machine tools, tourism, clay and refractory products, footwear, pharmaceuticals, medical equipment"
+      },
+      "Exports - commodities": {
+        "text": "cars, packaged medicine, refined petroleum, vehicle parts/accessories, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "France 15%, Germany 10%, Portugal 9%, Italy 9%, UK 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, cars, garments, vehicle parts/accessories, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; clear, hot summers in interior, more moderate and cloudy along coast; cloudy, cold winters in interior, partly cloudy and cool along coast"
+      }
+    }
+  }
+}

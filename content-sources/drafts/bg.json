@@ -1,0 +1,71 @@
+{
+  "iso": "bg",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.375Z",
+  "structured": {
+    "code": "bg",
+    "name": "Bulgaria",
+    "capital": "Sofia",
+    "continent": "Europe",
+    "areaKm2": 110993.6,
+    "population": 6423207,
+    "officialLanguages": [
+      "Bulgarian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Greece",
+      "Macedonia",
+      "Romania",
+      "Serbia",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "gr",
+      "mk",
+      "ro",
+      "rs",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, copper, lead, zinc, coal, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, bordering the Black Sea, between Romania and Turkey || mostly mountains with lowlands in north and southeast || strategic location near Turkish Straits; controls key land routes from Europe to Middle East and Asia || Resources: bauxite, copper, lead, zinc, coal, timber, arable land || Exports: refined petroleum, garments, refined copper, wheat, natural gas (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains with lowlands in north and southeast || Southeastern Europe, bordering the Black Sea, between Romania and Turkey"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; cold, damp winters; hot, dry summers || earthquakes; landslides"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income EU economy; currency pegged to the euro, with eurozone accession pending; declining energy prices helping lower inflation rate; EU structural funds contributing to investment recovery; skilled labor shortage driven by emigration and aging population || Exports: refined petroleum, garments, refined copper, wheat, natural gas (2023) || Industries: electricity, gas, water; food, beverages, tobacco; machinery and equipment, automotive parts, base metals, chemical products, coke, refined petroleum, nuclear fuel; outsourcing centers"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 64.7%, Muslim 9.8%, other 0.1%, none 4.7%, unspecified 20.7% (2021 est.) || Bulgarian 78.5%, Turkish 7.8%, Roma 4.1%, other 1.2%, unspecified 9.4% (2021 est.)"
+    }
+  }
+}

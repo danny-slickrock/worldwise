@@ -1,0 +1,77 @@
+{
+  "iso": "ir",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.395Z",
+  "structured": {
+    "code": "ir",
+    "name": "Iran",
+    "capital": "Tehran",
+    "continent": "Asia",
+    "areaKm2": 1648195,
+    "population": 92417700,
+    "officialLanguages": [
+      "Persian"
+    ],
+    "currencies": [
+      "Iranian rial"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "Armenia",
+      "Azerbaijan",
+      "Iraq",
+      "Pakistan",
+      "Turkey",
+      "Turkmenistan"
+    ],
+    "landBorderCodes": [
+      "af",
+      "am",
+      "az",
+      "iq",
+      "pk",
+      "tr",
+      "tm"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, coal, chromium, copper, iron ore, lead, manganese, zinc, sulfur",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Gulf of Oman, the Persian Gulf, and the Caspian Sea, between Iraq and Pakistan || rugged, mountainous rim; high, central basin with deserts, mountains; small, discontinuous plains along both coasts || strategic location on the Persian Gulf and Strait of Hormuz || Resources: petroleum, natural gas, coal, chromium, copper, iron ore, lead, manganese, zinc, sulfur || Exports: plastics, iron ore, alcohols, natural gas, refined copper (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rugged, mountainous rim; high, central basin with deserts, mountains; small, discontinuous plains along both coasts || Middle East, bordering the Gulf of Oman, the Persian Gulf, and the Caspian Sea, between Iraq and Pakistan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly arid or semiarid, subtropical along Caspian coast || periodic droughts, floods; dust storms, sandstorms; earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "traditionally state-controlled economy but reforming state-owned financial entities; strong oil/gas, agricultural, and service sectors; recent massive inflation due to exchange rate depreciation, international sanctions, and investor uncertainty; increasing poverty || Exports: plastics, iron ore, alcohols, natural gas, refined copper (2023) || Industries: petroleum, petrochemicals, gas, fertilizer, caustic soda, textiles, cement and other construction materials, food processing (particularly sugar refining and vegetable oil production), ferrous and nonferrous metal fabrication, armaments"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official) 98.5%, Christian 0.7%, Baha'i 0.3%, agnostic 0.3%, other (includes Zoroastrian, Jewish, Hindu) 0.2% (2020 est.) || Persian, Azeri, Kurd, Lur, Baloch, Arab, Turkmen, and Turkic tribes"
+    }
+  }
+}

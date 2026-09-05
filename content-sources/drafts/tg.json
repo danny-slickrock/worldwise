@@ -1,0 +1,69 @@
+{
+  "iso": "tg",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.421Z",
+  "structured": {
+    "code": "tg",
+    "name": "Togo",
+    "capital": "Lomé",
+    "continent": "Africa",
+    "areaKm2": 56785,
+    "population": 7797694,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Benin",
+      "Burkina Faso",
+      "Ghana"
+    ],
+    "landBorderCodes": [
+      "bj",
+      "bf",
+      "gh"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "phosphates, limestone, marble, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the Bight of Benin, between Benin and Ghana || gently rolling savanna in north; central hills; southern plateau; low coastal plain with extensive lagoons and marshes || stretches through six distinct geographic regions; climate varies from tropical to savanna || Resources: phosphates, limestone, marble, arable land || Exports: gold, refined petroleum, soybeans, phosphates, coconuts/brazil nuts/cashews (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "gently rolling savanna in north; central hills; southern plateau; low coastal plain with extensive lagoons and marshes || Western Africa, bordering the Bight of Benin, between Benin and Ghana"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid in south; semiarid in north || hot, dry harmattan wind can reduce visibility in north during winter; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income West African economy; primarily agrarian economy; has a deep-water port; growing international shipping locale; improving privatization and public budgeting transparency; key phosphate mining industry; extremely high rural poverty || Exports: gold, refined petroleum, soybeans, phosphates, coconuts/brazil nuts/cashews (2023) || Industries: phosphate mining, agricultural processing, cement, handicrafts, textiles, beverages"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official, language of commerce), Ewe and Mina (in the south), Kabye (sometimes spelled Kabiye) and Dagomba (in the north) || Christian 42.3%, folk religion 36.9%, Muslim 14%, Hindu &lt;1%, Buddhist &lt;1%, Jewish &lt;1%, other &lt;1%, none 6.2% (2020 est.) || Adja-Ewe/Mina 42.4%, Kabye/Tem 25.9%, Para-Gourma/Akan 17.1%, Akposso/Akebu 4.1%, Ana-Ife 3.2%, other Togolese 1.7%, foreigners 5.2%, no response 0.4% (2013-14 est.)"
+    }
+  }
+}

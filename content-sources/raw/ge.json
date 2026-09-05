@@ -1,0 +1,185 @@
+{
+  "iso": "ge",
+  "fetchedAt": "2026-09-04T23:56:45.175Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/gg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Georgia",
+    "gec": "GG",
+    "capital": "Tbilisi",
+    "areaKm2": 69700,
+    "population": 3929581,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Georgian"
+    ],
+    "currencies": [
+      "Georgian lari"
+    ],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "ru",
+      "az",
+      "am"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/gg.json",
+    "Introduction": {
+      "Background": {
+        "text": "The region of present-day Georgia once contained the ancient kingdoms of Colchis (known as Egrisi locally) and Kartli-Iberia. The area came under Roman influence in the first centuries A.D., and Christianity became the state religion in the 330s. Persian, Arab, and Turk domination was followed by a Georgian golden age (11th-13th centuries) that was cut short when the Mongols invaded in 1236. Subsequently, the Ottoman and Persian empires competed for influence in the region. Georgia was absorbed into the Russian Empire in the 19th century. Independent for three years (1918-1921) following the Russian revolution, it was forcibly incorporated into the USSR in 1921 and regained its independence when the Soviet Union dissolved in 1991. <br><br>In 2003, mounting public discontent over rampant corruption, ineffective government services, and a government attempt to manipulate parliamentary elections touched off widespread protests that led to the resignation of Eduard SHEVARDNADZE, who had been president since 1995. In the aftermath of this \"Rose Revolution,\" new elections in 2004 swept Mikheil SAAKASHVILI and his United National Movement (UNM) party into power. SAAKASHVILI made progress on market reforms and governance, but he faced accusations of abuse of office. Progress was further complicated when Russian support for the separatist regions of Abkhazia and South Ossetia led to a five-day conflict between Russia and Georgia in August 2008, which included Russia invading large portions of Georgian territory. Russia initially pledged to pull back from most Georgian territory but then unilaterally recognized the independence of Abkhazia and South Ossetia, and Russian military forces have remained in those regions. <br><br>Billionaire Bidzina IVANISHVILI's unexpected entry into politics in 2011 brought the divided opposition together under his Georgian Dream coalition, which won a majority of seats in the 2012 parliamentary elections and removed UNM from power. Conceding defeat, SAAKASHVILI named IVANISHVILI as prime minister and left the country after his presidential term ended in 2013. IVANISHVILI voluntarily resigned from office after the presidential succession, and in the years since, the prime minister position has seen frequent turnover. In 2021, SAAKASHVILI returned to Georgia, where he was immediately arrested to serve six years in prison on outstanding abuse-of-office convictions. <br><br>Popular support for integration with the West is high in Georgia. Joining the EU and NATO are among the country's top foreign policy goals, and Georgia applied for EU membership in 2022, becoming a candidate country in December 2023. Georgia and the EU have a Deep and Comprehensive Free Trade Agreement, and since 2017, Georgian citizens have been able to travel to the Schengen area without a visa."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Asia, bordering the Black Sea, between Turkey and Russia, with a sliver of land north of the Caucasus extending into Europe; note - Georgia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
+      },
+      "Area": {
+        "total ": {
+          "text": "69,700 sq km"
+        },
+        "land": {
+          "text": "69,700 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        },
+        "note": "<strong>note:</strong> approximately 12,560 sq km, or about 18% of Georgia's area, is Russian-occupied; the seized area includes all of Abkhazia and the breakaway region of South Ossetia, which consists of the northern part of Shida Kartli, eastern slivers of the Imereti region, Racha-Lechkhumi, Kvemo Svaneti, and part of western Mtskheta-Mtianeti"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,814 km"
+        },
+        "border countries": {
+          "text": "Armenia 219 km; Azerbaijan 428 km; Russia 894 km; Turkey 273 km"
+        }
+      },
+      "Coastline": {
+        "text": "310 km"
+      },
+      "Climate": {
+        "text": "warm and pleasant; Mediterranean-like on Black Sea coast"
+      },
+      "Terrain": {
+        "text": "largely mountainous with Great Caucasus Mountains in the north and Lesser Caucasus Mountains in the south; Kolkhet'is Dablobi (Kolkhida Lowland) opens to the Black Sea in the west; Mtkvari River Basin in the east; fertile soils in river valley flood plains and foothills of Kolkhida Lowland"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mt'a Shkhara 5,193 m"
+        },
+        "lowest point": {
+          "text": "Black Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "1,432 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, hydropower, manganese deposits, iron ore, copper, minor coal and oil deposits; coastal climate and soils allow for important tea and citrus growth"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "34.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 4.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 27.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "44.6% (2023 est.)"
+        },
+        "other": {
+          "text": "21.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> strategically located east of the Black Sea, Georgia controls much of the Caucasus Mountains and the routes through them <br><br><strong>note 2:</strong> the world's four deepest caves are all in Georgia, including two that are the only known caves on earth deeper than 2,000 m: Krubera Cave at -2,197 m (-7,208 ft; reached in 2012) and Veryovkina Cave at -2,212 (-7,257 ft; reached in 2018)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "4,900,961 (2024 est.)"
+        },
+        "male": {
+          "text": "2,343,068"
+        },
+        "female": {
+          "text": "2,557,893"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Georgian (official) 87.6%, Azeri 6.2%, Armenian 3.9%, Russian 1.2%, other 1% (including Abkhaz, the official language in Abkhazia) (2014 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>მსოფლიო ფაქტების წიგნი, ძირითადი ინფორმაციის აუცილებელი წყარო. (Georgian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Eastern Orthodox Christian (official) 83.4%, Muslim 10.7%, Armenian Apostolic Christian 2.9%, other 1.2% (includes Roman Catholic Christian, Jehovah's Witness, Yazidi, Protestant Christian, Jewish), none 0.5%, unspecified/no answer 1.2% (2014 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Georgian 86.8%, Azeri 6.3%, Armenian 4.5%, other 2.3% (includes Russian, Ossetian, Yazidi, Ukrainian, Kist, Greek) (2014 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "60.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.35% annual rate of change (2020-25 est.)"
+        },
+        "note": "<strong>note:</strong> data include Abkhazia and South Ossetia"
+      },
+      "Population distribution": {
+        "text": "settlement concentrated in the central valley, particularly in the capital city of Tbilisi in the east; smaller urban agglomerations dot the Black Sea coast, with Bat'umi being the largest"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle income, fast-growing South Caucasus economy; regionally focused exporter of cars, metal ores, and energy; financial and migrant inflows resulting from Ukraine conflict; EU accession talks suspended over disputed election and foreign influence law; low inflation but persistent high unemployment</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, grapes, potatoes, maize, wheat, tangerines/mandarins, tomatoes, barley, apples, eggs (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "steel, machine tools, electrical appliances, mining (manganese, copper, gold), chemicals, wood products, wine"
+      },
+      "Exports - commodities": {
+        "text": "cars, copper ore, electricity, garments, wine (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Azerbaijan 13%, Turkey 11%, Armenia 11%, Russia 10%, Kyrgyzstan 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, packaged medicine, natural gas, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "warm and pleasant; Mediterranean-like on Black Sea coast"
+      }
+    }
+  }
+}

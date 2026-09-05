@@ -1,0 +1,71 @@
+{
+  "iso": "bw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.407Z",
+  "structured": {
+    "code": "bw",
+    "name": "Botswana",
+    "capital": "Gaborone",
+    "continent": "Africa",
+    "areaKm2": 581737,
+    "population": 2480244,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Botswana pula"
+    ],
+    "landBorderNames": [
+      "Namibia",
+      "South Africa",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "landBorderCodes": [
+      "na",
+      "za",
+      "zm",
+      "zw"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "diamonds, copper, nickel, salt, soda ash, potash, coal, iron ore, silver",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, north of South Africa || predominantly flat to gently rolling tableland; Kalahari Desert in southwest || landlocked; sparsely populated with most settlement concentrated in the southern and eastern parts of the country; geography dominated by the Kalahari Desert, which covers about 70% of the country, although the Okavango Delta brings considerable biodiversity as one of the largest inland deltas in the World || Resources: diamonds, copper, nickel, salt, soda ash, potash, coal, iron ore, silver || Exports: diamonds, copper ore, insulated wire, carbonates, cattle (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "predominantly flat to gently rolling tableland; Kalahari Desert in southwest || Southern Africa, north of South Africa"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "semiarid; warm winters and hot summers || periodic droughts; seasonal August winds blow from the west, carrying sand and dust across the country, which can obscure visibility"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "good economic governance and financial management; diamond-driven growth model declining; rapid poverty reductions; high unemployment, particularly among youth; COVID-19 sharply contracted the economy and recovery is slow; public sector wages have posed fiscal challenges || Exports: diamonds, copper ore, insulated wire, carbonates, cattle (2023) || Industries: diamonds, copper, nickel, salt, soda ash, potash, coal, iron ore, silver; beef processing; textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Setswana 77.3%, Sekalanga 7.4%, Shekgalagadi 3.4%, English (official) 2.8%, Zezuru/Shona 2%, Sesarwa 1.7%, Sembukushu 1.6%, Ndebele 1%, other 2.8% (2011 est.) || Christian 79.1%, Badimo 4.1%, other 1.4% (includes Baha'i, Hindu, Muslim, Rastafarian), none 15.2%, unspecified 0.3% (2011 est.) || Tswana (or Setswana) 79%, Kalanga 11%, Basarwa 3%, other, including Kgalagadi and people of European ancestry 7%"
+    }
+  }
+}

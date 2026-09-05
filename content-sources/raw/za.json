@@ -1,0 +1,200 @@
+{
+  "iso": "za",
+  "fetchedAt": "2026-09-04T23:57:02.433Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/sf.json"
+    }
+  },
+  "wikidata": {
+    "name": "South Africa",
+    "gec": "SF",
+    "capital": "Bloemfontein",
+    "areaKm2": 1221037,
+    "population": 62027503,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Zulu",
+      "Xhosa",
+      "Afrikaans",
+      "Venda",
+      "Northern Sotho",
+      "Swazi",
+      "Tswana",
+      "Tsonga",
+      "Sesotho",
+      "Southern Ndebele",
+      "South African Sign Language"
+    ],
+    "currencies": [
+      "rand"
+    ],
+    "sharesBorderWithAnyType": [
+      "zw",
+      "bw",
+      "ls",
+      "mz",
+      "na",
+      "sz"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/sf.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Some of the earliest human remains in the fossil record were found in South Africa. By about A.D. 500, Bantu-speaking groups began settling into what is now northeastern South Africa, displacing Khoisan-speaking groups to the southwest. Dutch traders landed at the southern tip of present-day South Africa in 1652 and established a stopover point on the spice route between the Netherlands and the Far East, founding the city of Cape Town. After the British seized the Cape of Good Hope area in 1806, many settlers of Dutch descent -- known then as \"Boers,\" or farmers, but later called Afrikaners -- trekked north to found their own republics, Transvaal and Orange Free State. In the 1820s, several decades of wars began as the Zulus expanded their territory, moving out of what is today southeastern South Africa and clashing with other indigenous peoples and the growing European settlements. The discovery of diamonds (1867) and gold (1886) spurred mass immigration, predominantly from Europe.<br><br>The Zulu kingdom's territory was incorporated into the British Empire after the Anglo-Zulu War in 1879, and the Afrikaner republics were incorporated after their defeat in the Second South African War (1899-1902). Beginning in 1910, the British and the Afrikaners ruled together under the Union of South Africa, which left the British Commonwealth to become a fully self-governing republic in 1961 after a Whites-only referendum. In 1948, the National Party was voted into power and instituted a policy of apartheid -– billed as \"separate development\" of the races -- which favored the White minority and suppressed the Black majority and other non-White groups. The African National Congress (ANC) led the resistance to apartheid, and many top ANC leaders such as Nelson MANDELA spent decades in South Africa's prisons. Internal protests and insurgency, as well as boycotts from some Western nations and institutions, led to the regime's eventual willingness to unban the ANC and negotiate a peaceful transition to majority rule.</p> <p>The first multi-racial elections in 1994 ushered in majority rule under an ANC-led government. South Africa has since struggled to address apartheid-era imbalances in wealth, housing, education, and health care under successive administrations. President Cyril RAMAPHOSA, who was reelected as the ANC leader in 2022, has made some progress in reigning in corruption. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Africa, at the southern tip of the continent of Africa"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,219,090 sq km"
+        },
+        "land": {
+          "text": "1,214,470 sq km"
+        },
+        "water": {
+          "text": "4,620 sq km"
+        },
+        "note": "<strong>note:</strong> includes Prince Edward Islands (Marion Island and Prince Edward Island)"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,244 km"
+        },
+        "border countries": {
+          "text": "Botswana 1,969 km; Lesotho 1,106 km; Mozambique 496 km; Namibia 1,005 km; Eswatini 438 km; Zimbabwe 230 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,798 km"
+      },
+      "Climate": {
+        "text": "mostly semiarid; subtropical along east coast; sunny days, cool nights"
+      },
+      "Terrain": {
+        "text": "vast interior plateau rimmed by rugged hills and narrow coastal plain"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Ntheledi (Mafadi) 3,450 m"
+        },
+        "lowest point": {
+          "text": "Atlantic/Indian Oceans 0 m"
+        },
+        "mean elevation": {
+          "text": "1,034 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, chromium, antimony, coal, iron ore, manganese, nickel, phosphates, tin, rare earth elements, uranium, gem diamonds, platinum, copper, vanadium, salt, natural gas",
+        "note": "<strong>note: </strong>South Africa was the World's leading chromite ore producer in 2022 with an output of 18,000 mt"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "79.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 9.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 69.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "18.7% (2023 est.)"
+        },
+        "other": {
+          "text": "1.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "prolonged droughts <br><br><strong>volcanism:</strong> the volcano that formed Marion Island in the Prince Edward Islands is South Africa's only active volcano"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> South Africa completely surrounds Lesotho and almost completely surrounds Eswatini<br><br><strong>note 2:</strong> sometimes mistaken for the southernmost point of Africa, the Cape of Good Hope is more accurately described as the southwestern-most point of the African continent; Cape Agulhas, the meeting point of the Atlantic and Indian Oceans, is the southernmost point of the African continent"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "61,089,926 (2025 est.)"
+        },
+        "male": {
+          "text": "29,989,969"
+        },
+        "female": {
+          "text": "31,099,957"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "isiZulu or Zulu (official) 25.3%, isiXhosa or Xhosa (official) 14.8%, Afrikaans (official) 12.2%, Sepedi or Pedi (official) 10.1%, Setswana or Tswana (official) 9.1%, English (official) 8.1%, Sesotho or Sotho (official) 7.9%, Xitsonga or Tsonga (official) 3.6%, siSwati or Swati (official) 2.8%, Tshivenda or Venda (official) 2.5%, isiNdebele or Ndebele (official) 1.6%, other (includes South African sign language (official) and Khoi or Khoisan or Khoe languages) 2% (2018 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Die Wereld Feite Boek, n’ onontbeerlike bron vir basiese informasie. (Afrikaans)<br><br>The World Factbook, the indispensable source for basic information. (English)"
+        },
+        "note": "<strong>note:</strong> data represent language spoken most often at home"
+      },
+      "Religions": {
+        "text": "Christian 86%, ancestral, tribal, animist, or other traditional African religions 5.4%, Muslim 1.9%, other 1.5%, nothing in particular 5.2% (2015 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Black African 80.9%, Colored 8.8%, White 7.8%, Indian/Asian 2.6%  (2021 est.)",
+        "note": "<strong>note:</strong> Colored is a term used in South Africa, including on the national census, for persons of mixed race ancestry who developed a distinct cultural identity over several hundred years"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "68.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.72% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the population is concentrated along the southern and southeastern coast, and inland around Pretoria; the eastern half of the country is more densely populated than the west, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income, largest southern African economy; Government of National Unity facing slow growth, fiscal gaps, and structural challenges; high income inequality, unemployment, and poverty; reforms to address electricity generation, transport, and logistics; leading producer and exporter of critical minerals</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, maize, milk, soybeans, potatoes, wheat, grapes, chicken, oranges, apples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining (world's largest producer of platinum, gold, chromium), automobile assembly, metalworking, machinery, textiles, iron and steel, chemicals, fertilizer, foodstuffs, commercial ship repair"
+      },
+      "Exports - commodities": {
+        "text": "gold, platinum, coal, cars, iron ore (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 19%, USA 8%, Germany 7%, India 7%, UK 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, gold, cars, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mostly semiarid; subtropical along east coast; sunny days, cool nights"
+      }
+    }
+  }
+}

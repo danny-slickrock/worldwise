@@ -1,0 +1,173 @@
+{
+  "iso": "mc",
+  "fetchedAt": "2026-09-04T23:56:39.643Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/mn.json"
+    }
+  },
+  "wikidata": {
+    "name": "Monaco",
+    "gec": "MN",
+    "capital": "Monaco",
+    "areaKm2": 2.08,
+    "population": 38857,
+    "continent": "Europe",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "fr"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/mn.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Genoese built a fortress on the site of present-day Monaco in 1215. The current ruling GRIMALDI family first seized control in 1297 but was not able to permanently secure its holding until 1419. Economic development was spurred in the late 19th century with a railroad linkup to France and the opening of a casino. Since then, the principality's mild climate, coastal Mediterranean scenery, and gambling facilities have made Monaco world-famous as a tourist and recreation center."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Europe, bordering the Mediterranean Sea on the southern coast of France, near the border with Italy"
+      },
+      "Area": {
+        "total ": {
+          "text": "2 sq km"
+        },
+        "land": {
+          "text": "2 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "6 km"
+        },
+        "border countries": {
+          "text": "France 6 km"
+        }
+      },
+      "Coastline": {
+        "text": "4.1 km"
+      },
+      "Climate": {
+        "text": "Mediterranean with mild, wet winters and hot, dry summers"
+      },
+      "Terrain": {
+        "text": "hilly, rugged, rocky"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Chemin des Revoires on Mont Agel 162 m"
+        },
+        "lowest point": {
+          "text": "Mediterranean Sea 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "none"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "0% (2022 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0% (2018 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1% (2018 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2018 est.)"
+        },
+        "forest": {
+          "text": "0% (2022 est.)"
+        },
+        "other": {
+          "text": "100% (2022 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "none"
+      },
+      "Geography - note": {
+        "text": "second-smallest independent state in the world (after the Holy See); smallest country with a coastline; almost entirely urban"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "32,047 (2025 est.)"
+        },
+        "male": {
+          "text": "15,467"
+        },
+        "female": {
+          "text": "16,580"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), English, Italian, Monegasque"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 90% (official), other 10%"
+      },
+      "Ethnic groups": {
+        "text": "Monegasque 32.1%, French 19.9%, Italian 15.3%, British 5%, Belgian 2.3%, Swiss 2%, German 1.9%, Russian 1.8%, American 1.1%, Dutch 1.1%, Moroccan 1%, other 16.6% (2016 est.)",
+        "note": "<strong>note:</strong> data represent population by country of birth"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "100% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.5% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the second most densely populated country in the world (after Macau); its entire population lives on 2 sq km (0.8 sq mi)"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income European economy; non-EU euro user; considered a tax haven; tourism and banking are largest sectors; negatively impacted by COVID-19; major oceanographic museum; among most expensive real estate; major state-owned enterprises"
+      },
+      "Agricultural products": {
+        "text": "none"
+      },
+      "Industries": {
+        "text": "banking, insurance, tourism, construction, small-scale industrial and consumer products"
+      },
+      "Exports - commodities": {
+        "text": "jewelry, perfumes, watches, packaged medicines, cars (2021)",
+        "note": "top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "<p>Italy, Switzerland, Germany, Belgium, Spain</p> (2021)"
+      },
+      "Imports - commodities": {
+        "text": "jewelry, cars and vehicle parts, recreational boats, plastic products, artwork (2021)"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "Mediterranean with mild, wet winters and hot, dry summers"
+      }
+    }
+  }
+}

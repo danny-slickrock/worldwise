@@ -1,0 +1,74 @@
+{
+  "iso": "mk",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.385Z",
+  "structured": {
+    "code": "mk",
+    "name": "North Macedonia",
+    "capital": "Skopje",
+    "continent": "Europe",
+    "areaKm2": 25713,
+    "population": 1836713,
+    "officialLanguages": [
+      "Albanian",
+      "Macedonian"
+    ],
+    "currencies": [
+      "Macedonian denar"
+    ],
+    "landBorderNames": [
+      "Albania",
+      "Bulgaria",
+      "Greece",
+      "Serbia"
+    ],
+    "landBorderCodes": [
+      "al",
+      "bg",
+      "gr",
+      "rs"
+    ],
+    "landBorderTerritories": [
+      "Kosovo"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "low-grade iron ore, copper, lead, zinc, chromite, manganese, nickel, tungsten, gold, silver, asbestos, gypsum, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, north of Greece || mountainous with deep basins and valleys; three large lakes, each divided by a frontier line; country bisected by the Vardar River || landlocked; major transportation corridor from Western and Central Europe to Aegean Sea and Southern Europe to Western Europe || Resources: low-grade iron ore, copper, lead, zinc, chromite, manganese, nickel, tungsten, gold, silver, asbestos, gypsum, timber, arable land || Exports: reaction and catalytic products, insulated wire, electricity, garments, seats (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountainous with deep basins and valleys; three large lakes, each divided by a frontier line; country bisected by the Vardar River || Southeastern Europe, north of Greece"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "warm, dry summers and autumns; relatively cold winters with heavy snowfall || high seismic risks"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income European economy; GDP growth driven by private consumption, public infrastructure investments, and wage growth; stalled progress on EU accession; public debt rising due to high pensions, wages, and interest payments; structural challenges of emigration, low productivity growth, and governance || Exports: reaction and catalytic products, insulated wire, electricity, garments, seats (2023) || Industries: food processing, beverages, textiles, chemicals, iron, steel, cement, energy, pharmaceuticals, automotive parts"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Orthodox 46.1%, Islam 32.2%, Christian 13.2%, Other 7.2%; less than 1%: atheist, Catholic, other religions, not specified, Protestant (2021 est.) || Macedonian 58.4%, Albanian 24.3%, Turkish 3.9%, Romani 2.5%, Serb 1.3%, other 2.3%, no ethnic affiliation data available 7.2% (2021 est.)"
+    }
+  }
+}

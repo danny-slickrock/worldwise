@@ -1,0 +1,186 @@
+{
+  "iso": "ba",
+  "fetchedAt": "2026-09-04T23:56:36.490Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/bk.json"
+    }
+  },
+  "wikidata": {
+    "name": "Bosnia and Herzegovina",
+    "gec": "BK",
+    "capital": "Sarajevo",
+    "areaKm2": 51197,
+    "population": 3816459,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Croatian",
+      "Serbian",
+      "Bosnian"
+    ],
+    "currencies": [
+      "Bosnia and Herzegovina dinar",
+      "convertible mark"
+    ],
+    "sharesBorderWithAnyType": [
+      "hr",
+      "me",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/bk.json",
+    "Introduction": {
+      "Background": {
+        "text": "After four centuries of Ottoman rule over Bosnia and Herzegovina, Austria-Hungary took control in 1878 and held the region until 1918, when it was incorporated into the newly created Kingdom of Serbs, Croats, and Slovenes. After World War II, Bosnia and Herzegovina joined the Socialist Federal Republic of Yugoslavia (SFRY). <br><br>Bosnia and Herzegovina declared sovereignty in October 1991 and independence from the SFRY on 3 March 1992 after a referendum boycotted by ethnic Serbs. Bosnian Serb militias, with the support of Serbia and Croatia, then tried to take control of territories they claimed as their own. From 1992 to 1995, ethnic cleansing campaigns killed thousands and displaced more than two million people. On 21 November 1995, in Dayton, Ohio, the warring parties initialed a peace agreement, and the final agreement was signed in Paris on 14 December 1995. <br><br>The Dayton Accords retained Bosnia and Herzegovina's international boundaries and created a multiethnic and democratic government composed of two entities roughly equal in size: the predominantly Bosniak-Bosnian Croat Federation of Bosnia and Herzegovina and the predominantly Bosnian Serb-led Republika Srpska (RS). The Dayton Accords also established the Office of the High Representative to oversee the agreement's implementation. In 1996, the NATO-led Stabilization Force (SFOR) took over responsibility for enforcing the peace. In 2004, European Union peacekeeping troops (EUFOR) replaced SFOR. As of 2022, EUFOR deploys around 1,600 troops in Bosnia in a peacekeeping capacity. Bosnia and Herzegovina became an official candidate for EU membership in 2022."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, bordering the Adriatic Sea and Croatia"
+      },
+      "Area": {
+        "total ": {
+          "text": "51,197 sq km"
+        },
+        "land": {
+          "text": "51,187 sq km"
+        },
+        "water": {
+          "text": "10 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,543 km"
+        },
+        "border countries": {
+          "text": "Croatia 956 km; Montenegro 242 km; Serbia 345 km"
+        }
+      },
+      "Coastline": {
+        "text": "20 km"
+      },
+      "Climate": {
+        "text": "hot summers and cold winters; areas of high elevation have short, cool summers and long, severe winters; mild, rainy winters along coast"
+      },
+      "Terrain": {
+        "text": "mountains and valleys"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Maglic 2,386 m"
+        },
+        "lowest point": {
+          "text": "Adriatic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "500 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, iron ore, antimony, bauxite, copper, lead, zinc, chromite, cobalt, manganese, nickel, clay, gypsum, salt, sand, timber, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "21.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 7.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 12.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "42.2% (2023 est.)"
+        },
+        "other": {
+          "text": "36.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "destructive earthquakes"
+      },
+      "Geography - note": {
+        "text": "within Bosnia and Herzegovina's recognized borders, the country is divided into a joint Bosniak/Croat Federation (about 51% of the territory) and the Bosnian Serb-led Republika Srpska or RS (about 49% of the territory); the region called Herzegovina is contiguous to Croatia and Montenegro"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "3,653,499 (2025 est.)"
+        },
+        "male": {
+          "text": "1,778,548"
+        },
+        "female": {
+          "text": "1,874,951"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Bosnian (official) 52.9%, Serbian (official) 30.8%, Croatian (official) 14.6%, other 1.6%, no answer 0.2% (2013 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Knjiga svjetskih činjenica, neophodan izvor osnovnih informacija. (Bosnian)<br><br>Knjiga svetskih činjenica, neophodan izvor osnovnih informacija. (Serbian)<br><br>Knjiga svjetskih činjenica, nužan izvor osnovnih informacija. (Croatian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 50.7%, Orthodox 30.7%, Roman Catholic 15.2%, atheist 0.8%, agnostic 0.3%, other 1.2%, undeclared/no answer 1.1% (2013 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Bosniak 50.1%, Serb 30.8%, Croat 15.4%, other 2.7%, not declared/no answer 1% (2013 est.)",
+        "note": "<strong>note:</strong> Republika Srpska authorities dispute the methodology and refuse to recognize the results; Bosniak has replaced Muslim as an ethnic term in part to avoid confusion with the religious term Muslim - an adherent of Islam"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "50.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.61% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the northern and central areas of the country are the most densely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "import-dominated economy; remains consumption-heavy; lack of private sector investments and diversification; jointly addressing structural economic challenges; Chinese energy infrastructure investments; high unemployment; tourism industry impacted by COVID-19"
+      },
+      "Agricultural products": {
+        "text": "maize, milk, vegetables, potatoes, plums, wheat, apples, barley, chicken, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "steel, coal, iron ore, lead, zinc, manganese, bauxite, aluminum, motor vehicle assembly, textiles, tobacco products, wooden furniture, ammunition, domestic appliances, oil refining"
+      },
+      "Exports - commodities": {
+        "text": "footwear, electricity, garments, plastic products, insulated wire (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 15%, Croatia 14%, Serbia 12%, Austria 10%, Slovenia 9% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, garments, plastic products, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "hot summers and cold winters; areas of high elevation have short, cool summers and long, severe winters; mild, rainy winters along coast"
+      }
+    }
+  }
+}

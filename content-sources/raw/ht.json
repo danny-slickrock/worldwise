@@ -1,0 +1,184 @@
+{
+  "iso": "ht",
+  "fetchedAt": "2026-09-04T23:57:07.774Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/ha.json"
+    }
+  },
+  "wikidata": {
+    "name": "Haiti",
+    "gec": "HA",
+    "capital": "Port-au-Prince",
+    "areaKm2": 27750,
+    "population": 10981229,
+    "continent": "North America",
+    "officialLanguages": [
+      "French",
+      "Haitian Creole"
+    ],
+    "currencies": [
+      "gourde"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "do",
+      "tc"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/ha.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The native Taino -- who inhabited the island of Hispaniola when Christopher COLUMBUS first landed in 1492 -- were virtually wiped out by Spanish settlers within 25 years. In the early 17th century, the French established a presence on Hispaniola. In 1697, Spain ceded to the French the western third of the island, which later became Haiti. The French colony, based on forestry and sugar-related industries, became one of the wealthiest in the Caribbean but relied heavily on the forced labor of enslaved Africans and environmentally degrading practices. In the late 18th century, Toussaint L'OUVERTURE led a revolution of Haiti's nearly half a million slaves that ended France's rule on the island. After a prolonged struggle, and under the leadership of Jean-Jacques DESSALINES, Haiti became the first country in the world led by former slaves after declaring its independence in 1804, but it was forced to pay an indemnity of 100 million francs (equivalent to $22 billion USD in March 2023) to France for more than a century and was shunned by other countries for nearly 40 years. In 1862, the US officially recognized Haiti, but foreign economic influence and internal political instability induced the US to occupy Haiti from 1915 to 1934.<br><br>Francois \"Papa Doc\" DUVALIER and then his son Jean-Claude \"Baby Doc\" DUVALIER led repressive and corrupt regimes that ruled Haiti in 1957-1971 and 1971-1986, respectively. Jean-Bertrand ARISTIDE was Haiti's first democratically elected president in 1991 and was elected a second time in 2000, but coups interrupted his first term after only a few months and ended his second term in 2004. President Jovenel MOÏSE was assassinated in 2021, leading the country further into an extra-constitutional governance structure and contributing to the country’s growing fragility. The Government of Haiti then installed Ariel HENRY -- whom President MOÏSE had nominated shortly before his death -- as prime minister. <br><br>On 29 February 2024, a significant escalation of gang violence occurred on the 20th anniversary of ARISTIDE's second overthrow, after the announcement that HENRY would not hold elections until August 2025. HENRY’s return from an overseas trip was diverted to Puerto Rico when the airport closed due to gang violence. With control of much of the capital, Port-au-Prince, gang leaders called for the ouster of HENRY’S government. By mid-March, Haiti’s continued violence, HENRY’S inability to return to the country, and increasing pressure from the international community led HENRY to pledge to resign. On 25 April 2024, HENRY formally submitted his resignation as a nine-member Transitional Presidential Council assumed control, tasked with returning stability to the country and preparing elections. Since January 2023, Haiti has had no sitting elected officials.<br><br>The country has long been plagued by natural disasters. In 2010, a major 7.0 magnitude earthquake struck Haiti with an epicenter about 25 km (15 mi) west of the capital, Port-au-Prince. An estimated 300,000 people were killed, and some 1.5 million left homeless. The earthquake was assessed as the worst in this region in 200 years. A 7.2 magnitude earthquake hit Haiti’s southern peninsula in 2021, causing well over 2,000 deaths; an estimated 500,000 required emergency humanitarian aid. Haiti is the poorest country in the Western Hemisphere, as well as one of the most unequal in wealth distribution.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, western one-third of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, west of the Dominican Republic"
+      },
+      "Area": {
+        "total ": {
+          "text": "27,750 sq km"
+        },
+        "land": {
+          "text": "27,560 sq km"
+        },
+        "water": {
+          "text": "190 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "376 km"
+        },
+        "border countries": {
+          "text": "Dominican Republic 376 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,771 km"
+      },
+      "Climate": {
+        "text": "tropical; semiarid where mountains in east cut off trade winds"
+      },
+      "Terrain": {
+        "text": "mostly rough and mountainous"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pic la Selle 2,674 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "470 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, copper, calcium carbonate, gold, marble, hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "65.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 36.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 10.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 17.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "13.4% (2023 est.)"
+        },
+        "other": {
+          "text": "21.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "lies in the middle of the hurricane belt and subject to severe storms from June to October; occasional flooding and earthquakes; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "shares island of Hispaniola with Dominican Republic (western one-third is Haiti, eastern two-thirds is the Dominican Republic); it is the most mountainous nation in the Caribbean"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "11,898,812 (2025 est.)"
+        },
+        "male": {
+          "text": "5,863,438"
+        },
+        "female": {
+          "text": "6,035,374"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), Creole (official)"
+        },
+        "major-language sample(s)": {
+          "text": "The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, sous endispansab pou enfomasyon debaz. (Haitian Creole)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Catholic 55%, Protestant 29%, Vodou 2.1%, other 4.6%, none 10% (2018 est.)",
+        "note": "<strong>note:</strong> 50-80% of Haitians incorporate some elements of Vodou culture or practice in addition to another religion, most often Roman Catholicism; Vodou was recognized as an official religion in 2003"
+      },
+      "Ethnic groups": {
+        "text": "Black 95%, mixed and White 5%"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "59.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.47% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "fairly even distribution; largest concentrations located near coastal areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "small Caribbean island economy and OECS-member state; extreme poverty and inflation; enormous income inequality; ongoing civil unrest due to recent presidential assassination; US preferential market access; very open to foreign direct investment"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, cassava, plantains, bananas, mangoes/guavas, avocados, maize, tropical fruits, rice, vegetables (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "textiles, sugar refining, flour milling, cement, light assembly using imported parts"
+      },
+      "Exports - commodities": {
+        "text": "garments, essential oils, scrap iron, industrial acids/oils/alcohols, bedding (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 82%, Canada 4%, Mexico 2%, France 2%, India 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, rice, garments, cotton fabric, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; semiarid where mountains in east cut off trade winds"
+      }
+    }
+  }
+}

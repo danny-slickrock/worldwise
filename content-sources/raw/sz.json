@@ -1,0 +1,177 @@
+{
+  "iso": "sz",
+  "fetchedAt": "2026-09-04T23:56:57.398Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/wz.json"
+    }
+  },
+  "wikidata": {
+    "name": "Eswatini",
+    "gec": "WZ",
+    "capital": "Lobamba",
+    "areaKm2": 17364,
+    "population": 1230506,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Swazi"
+    ],
+    "currencies": [
+      "lilangeni"
+    ],
+    "sharesBorderWithAnyType": [
+      "za",
+      "mz"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/wz.json",
+    "Introduction": {
+      "Background": {
+        "text": "A Swazi kingdom was founded in the mid-18th century and ruled by a series of kings, including MSWATI II, a 19th century ruler whose name was adopted for the country and its predominant ethnic group. European countries defined the kingdom’s modern borders during the late-19th century, and Swaziland (as it became known) was administered as a UK high commission territory from 1903 until its independence in 1968. A new constitution that came into effect in 2005 included provisions for a more independent parliament and judiciary, but the legal status of political parties remains unclear, and the kingdom is still considered an absolute monarchy. King MSWATI III renamed the country from Swaziland to Eswatini in 2018 to reflect the name most commonly used by its citizens. <br><br>In 2021, MSWATI III used security forces to suppress prodemocracy protests. A national dialogue and reconciliation process agreed to in the wake of violence has not materialized. In November 2023, King MSWATI III appointed a new prime minister following peaceful national elections.  Despite its classification as a lower-middle income country, Eswatini suffers from severe poverty, corruption, and high unemployment. Eswatini has the world's highest HIV/AIDS prevalence rate, although recent years have shown marked declines in new infections. Eswatini is the only country in Africa that recognizes Taiwan."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Africa, between Mozambique and South Africa"
+      },
+      "Area": {
+        "total ": {
+          "text": "17,364 sq km"
+        },
+        "land": {
+          "text": "17,204 sq km"
+        },
+        "water": {
+          "text": "160 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "546 km"
+        },
+        "border countries": {
+          "text": "Mozambique 108 km; South Africa 438 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "varies from tropical to near temperate"
+      },
+      "Terrain": {
+        "text": "mostly mountains and hills; some moderately sloping plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Emlembe 1,862 m"
+        },
+        "lowest point": {
+          "text": "Great Usutu River 21 m"
+        },
+        "mean elevation": {
+          "text": "305 m"
+        }
+      },
+      "Natural resources": {
+        "text": "asbestos, coal, clay, cassiterite, hydropower, forests, small gold and diamond deposits, quarry stone, and talc"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "69.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 10.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 58.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "25.4% (2023 est.)"
+        },
+        "other": {
+          "text": "5.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "drought"
+      },
+      "Geography - note": {
+        "text": "landlocked; almost completely surrounded by South Africa"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,137,268 (2025 est.)"
+        },
+        "male": {
+          "text": "557,204"
+        },
+        "female": {
+          "text": "580,064"
+        }
+      },
+      "Languages": {
+        "text": "English (official, used for government business), siSwati (official)"
+      },
+      "Religions": {
+        "text": "Christian 90% (Zionist - a blend of Christianity and traditional African religions - 40%, Roman Catholic 20%, other Christian 30% - includes Anglican, Methodist, Church of Jesus Christ, Jehovah's Witness), Muslim 2%, other 8% (includes Baha'i, Buddhist, Hindu, indigenous, Jewish) (2015 est.)"
+      },
+      "Ethnic groups": {
+        "text": "<p>predominantly Swazi; smaller populations of other African ethnic groups, including the Zulu, as well as people of European ancestry</p>"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "24.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.42% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "because of its mountainous terrain, the population distribution is uneven throughout the country, concentrating primarily in valleys and plains as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "landlocked southern African economy; South African trade dependent and currency pegging; CMA and SACU member state; COVID-19 economic slowdown; growing utilities inflation; persistent poverty and unemployment; HIV/AIDS labor force disruptions"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, maize, root vegetables, grapefruits, oranges, milk, pineapples, bananas, beef, sweet potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "soft drink concentrates, coal, forestry, sugar processing, textiles, and apparel"
+      },
+      "Exports - commodities": {
+        "text": "scented mixtures, raw sugar, industrial acids/oils/alcohols, garments, wood (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "South Africa 61%, Ireland 4%, Mozambique 4%, Kenya 4%, Nigeria 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, electricity, plastic products, cotton fabric, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical to near temperate"
+      }
+    }
+  }
+}

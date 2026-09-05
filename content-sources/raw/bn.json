@@ -1,0 +1,181 @@
+{
+  "iso": "bn",
+  "fetchedAt": "2026-09-04T23:56:44.727Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/bx.json"
+    }
+  },
+  "wikidata": {
+    "name": "Brunei",
+    "gec": "BX",
+    "capital": "Bandar Seri Begawan",
+    "areaKm2": 5765.313533,
+    "population": 458949,
+    "continent": "Asia",
+    "officialLanguages": [
+      "British English",
+      "Malay"
+    ],
+    "currencies": [
+      "Brunei dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "my"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/bx.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Sultanate of Brunei's influence peaked between the 15th and 17th centuries, when its control extended over coastal areas of northwest Borneo and the southern Philippines. Internal strife over royal succession, colonial expansion of European powers, and piracy subsequently brought on a period of decline. In 1888, Brunei became a British protectorate; independence was achieved in 1984. The same family has ruled Brunei for over six centuries, and in 2017, the country celebrated the 50th anniversary of Sultan Hassanal BOLKIAH&rsquo;s accession to the throne. Brunei has one of the highest per-capita GDPs in the world, thanks to extensive petroleum and natural gas fields."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, along the northern coast of the island of Borneo, bordering the South China Sea and Malaysia"
+      },
+      "Area": {
+        "total ": {
+          "text": "5,765 sq km"
+        },
+        "land": {
+          "text": "5,265 sq km"
+        },
+        "water": {
+          "text": "500 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "266 km"
+        },
+        "border countries": {
+          "text": "Malaysia 266 km"
+        }
+      },
+      "Coastline": {
+        "text": "161 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid, rainy"
+      },
+      "Terrain": {
+        "text": "flat coastal plain rises to mountains in east; hilly lowland in west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Bukit Pagon 1,850 m"
+        },
+        "lowest point": {
+          "text": "South China Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "478 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, timber"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "2.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "72.1% (2023 est.)"
+        },
+        "other": {
+          "text": "25.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "typhoons, earthquakes, and severe flooding are rare"
+      },
+      "Geography - note": {
+        "text": "close to vital sea lanes through South China Sea linking Indian and Pacific Oceans; two parts physically separated by Malaysia; the eastern part, the Temburong district, is an exclave and is almost an enclave within Malaysia"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "491,900 (2024 est.)"
+        },
+        "male": {
+          "text": "239,140"
+        },
+        "female": {
+          "text": "252,760"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Malay (Bahasa Melayu) (official), English, Chinese dialects"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Buku Fakta Dunia, sumber yang diperlukan untuk maklumat asas. (Malay)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim (official) 82.1%, Christian 6.7%, Buddhist 6.3%, other 4.9% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Malay 67.4%, Chinese 9.6%, other 23% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "79.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.44% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of the population is found along the coast in the western part of Brunei, which is separated from the eastern portion by Malaysia; the largest population concentration is in the far north on the western side of the Brunei Bay, in and around the capital of Bandar Seri Begawan"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "almost exclusively an oil and gas economy; high income country; expansive and robust welfare system; the majority of the population works for the government; promulgating a nationalized halal brand; considering establishment of a bond market and stock exchange"
+      },
+      "Agricultural products": {
+        "text": "chicken, eggs, fruits, vegetables, rice, bananas, beans, cucumbers/gherkins, pineapples, beef (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum, petroleum refining, liquefied natural gas, construction, agriculture, aquaculture, transportation"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, natural gas, crude petroleum, hydrocarbons, fertilizers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Australia 21%, Japan 17%, China 17%, Singapore 16%, Malaysia 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, gold, refined petroleum, coal, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid, rainy"
+      }
+    }
+  }
+}

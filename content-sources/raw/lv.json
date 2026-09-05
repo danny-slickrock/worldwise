@@ -1,0 +1,183 @@
+{
+  "iso": "lv",
+  "fetchedAt": "2026-09-04T23:56:38.734Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/lg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Latvia",
+    "gec": "LG",
+    "capital": "Riga",
+    "areaKm2": 64593.77,
+    "population": 1845096,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Latvian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "se",
+      "lt",
+      "ru",
+      "by",
+      "ee"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/lg.json",
+    "Introduction": {
+      "Background": {
+        "text": "Several eastern Baltic tribes merged in medieval times to form the ethnic core of the Latvian people (ca. 8th-12th centuries A.D.). The region subsequently came under the control of Germans, Poles, Swedes, and finally Russians. A Latvian republic emerged following World War I, but the USSR annexed it in 1940 -- an action never recognized by the US and many other countries. Latvia reestablished its independence in 1991 after the breakup of the Soviet Union. Although the last Russian troops left in 1994, the status of the Russian minority (some 25% of the population) remains of concern to Moscow. Latvia joined both NATO and the EU in 2004; it joined the euro zone in 2014 and the OECD in 2016."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Europe, bordering the Baltic Sea, between Estonia and Lithuania"
+      },
+      "Area": {
+        "total ": {
+          "text": "64,589 sq km"
+        },
+        "land": {
+          "text": "62,249 sq km"
+        },
+        "water": {
+          "text": "2,340 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,370 km"
+        },
+        "border countries": {
+          "text": "Belarus 161 km; Estonia 333 km; Lithuania 544 km; Russia 332 km"
+        }
+      },
+      "Coastline": {
+        "text": "498 km"
+      },
+      "Climate": {
+        "text": "maritime; wet, moderate winters"
+      },
+      "Terrain": {
+        "text": "low plain"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gaizina Kalns 312 m"
+        },
+        "lowest point": {
+          "text": "Baltic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "87 m"
+        }
+      },
+      "Natural resources": {
+        "text": "peat, limestone, dolomite, amber, hydropower, timber, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "31.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 21.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "55.5% (2023 est.)"
+        },
+        "other": {
+          "text": "12.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "large percentage of agricultural fields can become waterlogged and require drainage"
+      },
+      "Geography - note": {
+        "text": "most of the country is composed of fertile low-lying plains with some hills in the east"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,888,439 (2025 est.)"
+        },
+        "male": {
+          "text": "876,654"
+        },
+        "female": {
+          "text": "1,011,785"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Latvian (official) 56.3%, Russian 33.8%, other 0.6% (includes Polish, Ukrainian, and Belarusian), unspecified 9.4%&nbsp; (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>World Factbook, neaizstājams avots pamata informāciju. (Latvian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent language usually spoken at home"
+      },
+      "Religions": {
+        "text": "Lutheran 36.2%, Roman Catholic 19.5%, Orthodox 19.1%, other Christian 1.6%, other 0.1%, unspecified/none 23.5% (2017 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Latvian 62.7%, Russian 24.5%, Belarusian 3.1%, Ukrainian 2.2%, Polish 2%, Lithuanian 1.1%, other 1.8%, unspecified 2.6% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "68.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.68% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "largest concentration of people is found in and around the port and capital city of Riga; small agglomerations are scattered throughout the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone member; weak recovery following economic contraction, with slight increase in private consumption and uncertain trade environment; challenges from skilled-labor shortages, capital market access, large informal sector, and green and digital transitions</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, milk, rapeseed, barley, oats, potatoes, rye, beans, peas, chicken (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "processed foods, processed wood products, textiles, processed metals, pharmaceuticals, railroad cars, synthetic fibers, electronics"
+      },
+      "Exports - commodities": {
+        "text": "wood, wheat, broadcasting equipment, packaged medicine, natural gas (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Lithuania 19%, Estonia 6%, Russia 6%, Germany 6%, Sweden 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, packaged medicine, broadcasting equipment, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "maritime; wet, moderate winters"
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "iso": "ae",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.405Z",
+  "structured": {
+    "code": "ae",
+    "name": "United Arab Emirates",
+    "capital": "Abu Dhabi",
+    "continent": "Asia",
+    "areaKm2": 83600,
+    "population": 9890400,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "United Arab Emirates dirham"
+    ],
+    "landBorderNames": [
+      "Oman",
+      "Saudi Arabia"
+    ],
+    "landBorderCodes": [
+      "om",
+      "sa"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Gulf of Oman and the Persian Gulf, between Oman and Saudi Arabia || flat, barren coastal plain merging into rolling sand dunes of vast desert; mountains in east || strategic location along southern approaches to Strait of Hormuz, a transit point for crude oil; Abu Zaby (Abu Dhabi) and Dubayy (Dubai) together account for over 90% of UAE's area and two-thirds of the population || Resources: petroleum, natural gas || Exports: crude petroleum, refined petroleum, gold, broadcasting equipment, natural gas (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat, barren coastal plain merging into rolling sand dunes of vast desert; mountains in east || Middle East, bordering the Gulf of Oman and the Persian Gulf, between Oman and Saudi Arabia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "desert; cooler in eastern mountains || frequent sand and dust storms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, oil-driven Middle Eastern economy; fastest GDP growth of Gulf states; diversification through tourism, construction, and services; strong foreign direct investment orientation; continued government investment and business-friendly reforms || Exports: crude petroleum, refined petroleum, gold, broadcasting equipment, natural gas (2023) || Industries: petroleum and petrochemicals; fishing, aluminum, cement, fertilizer, commercial ship repair, construction materials, handicrafts, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 74.5% (official) (Sunni 63.3%, Shia 6.7%, other 4.4%), Christian 12.9%, Hindu 6.2%, Buddhist 3.2%, agnostic 1.3%, other 1.9% (2020 est.) || Emirati 11.6%, South Asian 59.4% (includes Indian 38.2%, Bangladeshi 9.5%, Pakistani 9.4%, other 2.3%), Egyptian 10.2%, Filipino 6.1%, other 12.8% (2015 est.)"
+    }
+  }
+}

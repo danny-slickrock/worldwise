@@ -1,0 +1,75 @@
+{
+  "iso": "pe",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.431Z",
+  "structured": {
+    "code": "pe",
+    "name": "Peru",
+    "capital": "Lima",
+    "continent": "South America",
+    "areaKm2": 1285216,
+    "population": 34157732,
+    "officialLanguages": [
+      "Spanish",
+      "Quechua",
+      "Aymara"
+    ],
+    "currencies": [
+      "Nuevo sol"
+    ],
+    "landBorderNames": [
+      "Bolivia",
+      "Brazil",
+      "Chile",
+      "Colombia",
+      "Ecuador"
+    ],
+    "landBorderCodes": [
+      "bo",
+      "br",
+      "cl",
+      "co",
+      "ec"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "copper, silver, gold, petroleum, timber, fish, iron ore, coal, phosphate, potash, hydropower, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western South America, bordering the South Pacific Ocean, between Chile and Ecuador || western coastal plain (costa), high and rugged Andes in center (sierra), eastern lowland jungle of Amazon Basin (selva) || shares control of Lago Titicaca, world's highest navigable lake, with Bolivia; a remote slope of Nevado Mismi, a 5,316-m (17,441-ft) peak, is the ultimate source of the Amazon River Peru is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes on 19 February 1600, Mount Huaynaputina in the southern Peruvian Andes erupted in the largest volcanic explosion in South America in historical times; intermittent eruptions lasted until 5 March 1600 and pumped an estimated 16 to 32 million metric tons of particulates into the atmosphere, reducing the amount of sunlight reaching the earth's surface and affecting weather worldwide; over the next two-and-a-half years, millions died around the globe in famines from bitterly cold winters, cool summers, and the loss of crops and animals || Resources: copper, silver, gold, petroleum, timber, fish, iron ore, coal, phosphate, potash, hydropower, natural gas || Exports: copper ore, gold, refined copper, refined petroleum, grapes (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "western coastal plain (costa), high and rugged Andes in center (sierra), eastern lowland jungle of Amazon Basin (selva) || Western South America, bordering the South Pacific Ocean, between Chile and Ecuador"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical in east to dry desert in west; temperate to frigid in Andes || earthquakes, tsunamis, flooding, landslides, mild volcanic activity volcanism: volcanic activity in the Andes Mountains; Ubinas (5,672 m) is the country's most active volcano; other historically active volcanoes include El Misti, Huaynaputina, Sabancaya, and Yucamane; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income South American economy; strong post-COVID rebound tempered by political uncertainty and climate risks; exports driven by mineral extraction and agriculture; large informal sector and uneven access to public services; stable fiscal position and financial sector || Exports: copper ore, gold, refined copper, refined petroleum, grapes (2023) || Industries: mining and refining of minerals; steel, metal fabrication; petroleum extraction and refining, natural gas and natural gas liquefaction; fishing and fish processing, cement, glass, textiles, clothing, food processing, beer, soft drinks, rubber, machinery, electrical machinery, chemicals, furniture"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 76%, Evangelical Christian 15.7%, no religion 5.1%, other religions 3.2% (2017 est.) || Mestizo (mixed Indigenous and White) 60.2%, Indigenous 25.8%, White 5.9%, African descent 3.6%, other (includes Chinese and Japanese descent) 1.2%, unspecified 3.3% (2017 est.)"
+    }
+  }
+}

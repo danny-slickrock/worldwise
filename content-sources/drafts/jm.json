@@ -1,0 +1,62 @@
+{
+  "iso": "jm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.430Z",
+  "structured": {
+    "code": "jm",
+    "name": "Jamaica",
+    "capital": "Kingston",
+    "continent": "North America",
+    "areaKm2": 10991.90954,
+    "population": 2697983,
+    "officialLanguages": [
+      "English",
+      "Jamaican Patois"
+    ],
+    "currencies": [
+      "Jamaican dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, alumina, gypsum, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, island in the Caribbean Sea, south of Cuba || mostly mountains, with narrow, discontinuous coastal plain || third largest island in the Caribbean (after Cuba and Hispaniola); strategic location between Cayman Trench and Jamaica Channel, the main sea lanes for the Panama Canal || Resources: bauxite, alumina, gypsum, limestone || Exports: aluminum oxide, refined petroleum, natural gas, liquor, processed fruits and nuts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains, with narrow, discontinuous coastal plain || Caribbean, island in the Caribbean Sea, south of Cuba"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; temperate interior || hurricanes (especially July to November)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income Caribbean island economy; key agriculture and tourism sectors; high crime, youth unemployment, and poverty; susceptible to natural disasters and global commodity price shocks; progress in reducing public debt and moderating inflation within target range || Exports: aluminum oxide, refined petroleum, natural gas, liquor, processed fruits and nuts (2023) || Industries: agriculture, mining, manufacture, construction, financial and insurance services, tourism, telecommunications"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English, Jamaican patois || Protestant 64.8% (includes Seventh Day Adventist 12.0%, Pentecostal 11.0%, Other Church of God 9.2%, New Testament Church of God 7.2%, Baptist 6.7%, Church of God in Jamaica 4.8%, Church of God of Prophecy 4.5%, Anglican 2.8%, United Church 2.1%, Methodist 1.6%, Revived 1.4%, Brethren 0.9%, and Moravian 0.7%), Roman Catholic 2.2%, Jehovah's Witness 1.9%, Rastafarian 1.1%, other 6.5%, none 21.3%, unspecified 2.3% (2011 est.) || Black 92.1%, mixed 6.1%, East Indian 0.8%, other 0.4%, unspecified 0.7% (2011 est.)"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "iso": "kr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.402Z",
+  "structured": {
+    "code": "kr",
+    "name": "South Korea",
+    "capital": "Seoul",
+    "continent": "Asia",
+    "areaKm2": 100295,
+    "population": 51466201,
+    "officialLanguages": [
+      "Korean",
+      "Korean Sign Language"
+    ],
+    "currencies": [
+      "Korean mun",
+      "won"
+    ],
+    "landBorderNames": [
+      "North Korea"
+    ],
+    "landBorderCodes": [
+      "kp"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, tungsten, graphite, molybdenum, lead, hydropower potential",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Asia, southern half of the Korean Peninsula bordering the Sea of Japan and the Yellow Sea || mostly hills and mountains; wide coastal plains in west and south || strategic location on Korea Strait; about 3,000 mostly small and uninhabited islands lie off the western and southern coasts || Resources: coal, tungsten, graphite, molybdenum, lead, hydropower potential || Exports: integrated circuits, cars, refined petroleum, plastics, machine parts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly hills and mountains; wide coastal plains in west and south || Eastern Asia, southern half of the Korean Peninsula bordering the Sea of Japan and the Yellow Sea"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate, with rainfall heavier in summer than winter; cold winters || occasional typhoons bring high winds and floods; low-level seismic activity common in southwest volcanism: Halla (1,950 m) is considered historically active; it has not erupted in many centuries"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, export- and technology-oriented East Asian economy; manufacturing led by semiconductor and automotive industries; slow growth amid declining construction investment, export risks, and recent political instability; aging workforce; increased restraint in fiscal policy while maintaining industry support initiatives || Exports: integrated circuits, cars, refined petroleum, plastics, machine parts (2023) || Industries: electronics, telecommunications, automobile production, chemicals, shipbuilding, steel"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Protestant 17%, Buddhist 16%, Catholic 6%, none 60% (2021 est.) || Korean"
+    }
+  }
+}

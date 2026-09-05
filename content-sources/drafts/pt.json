@@ -1,0 +1,63 @@
+{
+  "iso": "pt",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.386Z",
+  "structured": {
+    "code": "pt",
+    "name": "Portugal",
+    "capital": "Lisbon",
+    "continent": "Europe",
+    "areaKm2": 92225,
+    "population": 10347892,
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Spain"
+    ],
+    "landBorderCodes": [
+      "es"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, forests (cork), iron ore, copper, zinc, tin, tungsten, silver, gold, uranium, marble, clay, gypsum, salt, arable land, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Europe, bordering the North Atlantic Ocean, west of Spain || the west-flowing Tagus River divides the country: the north is mountainous toward the interior, while the south is characterized by rolling plains || Azores and Madeira Islands occupy strategic locations along western sea approaches to Strait of Gibraltar; they are two of the four North Atlantic archipelagos that make up Macaronesia; the others are the Canary Islands (Spain) and Cabo Verde || Resources: fish, forests (cork), iron ore, copper, zinc, tin, tungsten, silver, gold, uranium, marble, clay, gypsum, salt, arable land, hydropower || Exports: cars, garments, vehicle parts/accessories, unpackaged medicine, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "the west-flowing Tagus River divides the country: the north is mountainous toward the interior, while the south is characterized by rolling plains || Southwestern Europe, bordering the North Atlantic Ocean, west of Spain"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "maritime temperate; cool and rainy in north, warmer and drier in south || Azores subject to severe earthquakes volcanism: limited volcanic activity in the Azores Islands; Fayal or Faial (1,043 m) last erupted in 1958; most volcanoes have not erupted in centuries; historically active volcanoes include Agua de Pau, Furnas, Pico, Picos Volcanic System, San Jorge, Sete Cidades, and Terceira"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone economy; strong services sector led by tourism and banking; tight labor market; growth driven by private consumption, trade surplus, and public investment from EU funds; declining public debt || Exports: cars, garments, vehicle parts/accessories, unpackaged medicine, refined petroleum (2023) || Industries: textiles, clothing, footwear, wood and cork, paper and pulp, chemicals, fuels and lubricants, automobiles and auto parts, base metals, minerals, porcelain and ceramics, glassware, technology, telecommunications; dairy products, wine, other foodstuffs; ship construction and refurbishment; tourism, plastics, financial services, optics"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Portuguese (official), Mirandese (official, but locally used) || Catholic 68.1%, not applicable 12.9%, no religion 12.0%, no response 2.2%, Protestant 1.8%, other 1.0%; less than 1%: other Christians, Orthodox, Muslim (2021 est.) || Portuguese 95%; citizens from Portugal&rsquo;s former colonies in Africa, Asia (Han Chinese), and South America (Brazilian) and other foreign born 5%"
+    }
+  }
+}

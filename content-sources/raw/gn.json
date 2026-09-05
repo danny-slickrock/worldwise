@@ -1,0 +1,182 @@
+{
+  "iso": "gn",
+  "fetchedAt": "2026-09-04T23:56:58.196Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/gv.json"
+    }
+  },
+  "wikidata": {
+    "name": "Guinea",
+    "gec": "GV",
+    "capital": "Conakry",
+    "areaKm2": 245857,
+    "population": 17521167,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "languages of Guinea"
+    ],
+    "currencies": [
+      "Guinean franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ml",
+      "gw",
+      "ci",
+      "lr",
+      "sn",
+      "sl"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/gv.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Guinea's deep Muslim heritage arrived via the neighboring Almoravid Empire in the 11th century. Following Almoravid decline, Guinea existed on the fringe of several African kingdoms, all competing for regional dominance. In the 13th century, the Mali Empire took control of Guinea and encouraged its already growing Muslim faith. After the fall of the West African empires, various smaller kingdoms controlled Guinea. In the 18th century, Fulani Muslims established an Islamic state in central Guinea that provided one of the earliest examples of a written constitution and alternating leadership. European traders first arrived in the 16th century, and the French secured colonial rule in the 19th century.</p> <p>In 1958, Guinea achieved independence from France. Sekou TOURE became Guinea’s first post-independence president; he established a dictatorial regime and ruled until his death in 1984, after which General Lansana CONTE staged a coup and seized the government. He too established an authoritarian regime and manipulated presidential elections until his death in 2008, when Captain Moussa Dadis CAMARA led a military coup, seized power, and suspended the constitution. In 2009, CAMARA was wounded in an assassination attempt and was exiled to Burkina Faso. In 2010 and 2013 respectively, the country held its first free and fair presidential and legislative elections. Alpha CONDE won the 2010 and 2015 presidential elections, and his first cabinet was the first all-civilian government in Guinean history. CONDE won a third term in 2020 after a constitutional change to term limits. In 2021, Col Mamady DOUMBOUYA led another successful military coup, establishing the National Committee for Reconciliation and Development (CNRD), suspending the constitution, and dissolving the government and the legislature. DOUMBOUYA was sworn in as transition president and appointed Mohamed BEAVOGUI as transition prime minister. The National Transition Council (CNT), which acts as the legislative body for the transition, was formed in 2022 and consists of appointed members representing a broad swath of Guinean society.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Sierra Leone"
+      },
+      "Area": {
+        "total ": {
+          "text": "245,857 sq km"
+        },
+        "land": {
+          "text": "245,717 sq km"
+        },
+        "water": {
+          "text": "140 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,046 km"
+        },
+        "border countries": {
+          "text": "Cote d'Ivoire 816 km; Guinea-Bissau 421 km; Liberia 590 km; Mali 1062 km; Senegal 363 km; Sierra Leone 794 km"
+        }
+      },
+      "Coastline": {
+        "text": "320 km"
+      },
+      "Climate": {
+        "text": "generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds"
+      },
+      "Terrain": {
+        "text": "generally flat coastal plain, hilly to mountainous interior"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Nimba 1,752 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "472 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, iron ore, diamonds, gold, uranium, hydropower, fish, salt"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "73.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 24.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 5.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 43.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "20.3% (2023 est.)"
+        },
+        "other": {
+          "text": "6.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry, dusty harmattan haze may reduce visibility during dry season"
+      },
+      "Geography - note": {
+        "text": "the Niger and its important tributary, the Milo River, have their sources in the Guinean highlands"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "14,374,590 (2025 est.)"
+        },
+        "male": {
+          "text": "7,179,661"
+        },
+        "female": {
+          "text": "7,194,929"
+        }
+      },
+      "Languages": {
+        "text": "French (official), Pular, Maninka, Susu, other native languages",
+        "note": "<strong>note:</strong> about 40 languages are spoken; each ethnic group has its own language"
+      },
+      "Religions": {
+        "text": "Muslim 85.2%, Christian 13.4%, animist 0.2%, none 1.2% (2018 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Fulani (Peuhl) 33.4%, Malinke 29.4%, Susu 21.2%, Guerze 7.8%, Kissi 6.2%, Toma 1.6%, other/foreign 0.4% (2018 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "38.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.64% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "areas of highest density are in the west and south; interior is sparsely populated, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "growing but primarily agrarian West African economy; major mining sector; improving fiscal and debt balances prior to COVID-19; economy increasingly vulnerable to climate change; slow infrastructure improvements; gender wealth and human capital gaps"
+      },
+      "Agricultural products": {
+        "text": "rice, cassava, maize, groundnuts, oil palm fruit, plantains, potatoes, fonio, yams, sweet potatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "bauxite, gold, diamonds, iron ore; light manufacturing, agricultural processing"
+      },
+      "Exports - commodities": {
+        "text": "gold, aluminum ore, cocoa beans, crude petroleum, coconuts/brazil nuts/cashews (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 50%, China 36%, India 8%, Switzerland 1%, Spain 1% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, rice, garments, construction vehicles, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "generally hot and humid; monsoonal-type rainy season (June to November) with southwesterly winds; dry season (December to May) with northeasterly harmattan winds"
+      }
+    }
+  }
+}

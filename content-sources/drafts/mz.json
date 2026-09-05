@@ -1,0 +1,75 @@
+{
+  "iso": "mz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.417Z",
+  "structured": {
+    "code": "mz",
+    "name": "Mozambique",
+    "capital": "Maputo",
+    "continent": "Africa",
+    "areaKm2": 801590,
+    "population": 29668834,
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "Mozambican metical"
+    ],
+    "landBorderNames": [
+      "Malawi",
+      "South Africa",
+      "Eswatini",
+      "Tanzania",
+      "Zambia",
+      "Zimbabwe"
+    ],
+    "landBorderCodes": [
+      "mw",
+      "za",
+      "sz",
+      "tz",
+      "zm",
+      "zw"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, titanium, natural gas, hydropower, tantalum, graphite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Africa, bordering the Mozambique Channel, between South Africa and Tanzania || mostly coastal lowlands, uplands in center, high plateaus in northwest, mountains in west || the Zambezi River flows through the north-central and most fertile part of the country || Resources: coal, titanium, natural gas, hydropower, tantalum, graphite || Exports: coal, natural gas, aluminum, gold, precious stones (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly coastal lowlands, uplands in center, high plateaus in northwest, mountains in west || Southeastern Africa, bordering the Mozambique Channel, between South Africa and Tanzania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical to subtropical || severe droughts; devastating cyclones and floods in central and southern provinces"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income East African economy; subsistence farming dominates labor force; return to growth led by agriculture and extractive industries; Islamist insurgency threatens natural gas projects in north; ongoing foreign debt restructuring and resolution under IMF Highly Indebted Poor Countries (HIPC) initiative || Exports: coal, natural gas, aluminum, gold, precious stones (2023) || Industries: aluminum, petroleum products, chemicals (fertilizer, soap, paints), textiles, cement, glass, asbestos, tobacco, food, beverages"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Makhuwa 26.1%, Portuguese (official) 16.6%, Tsonga 8.6%, Nyanja 8.1, Sena 7.1%, Lomwe 7.1%, Chuwabo 4.7%, Ndau 3.8%, Tswa 3.8%, other Mozambican languages 11.8%, other 0.5%, unspecified 1.8% (2017 est.) || Catholic 27.3%, Islam 19.1%, Pentecostal 16.7%, Saio/Zione 16.3%, no religion 13.5%, other 4.3%, Anglican 1.7%, unknown 1.2% (2017 est.) || African 99% (Makhuwa, Tsonga, Lomwe, Sena, and others), Mestizo 0.8%, other (includes European, Indian, Pakistani, Chinese) 0.2% (2017 est.)"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "iso": "gb",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.390Z",
+  "structured": {
+    "code": "gb",
+    "name": "United Kingdom",
+    "capital": "London",
+    "continent": "Europe",
+    "areaKm2": 242495,
+    "population": 67326569,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "pound sterling"
+    ],
+    "landBorderNames": [
+      "Ireland"
+    ],
+    "landBorderCodes": [
+      "ie"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, petroleum, natural gas, iron ore, lead, zinc, gold, tin, limestone, salt, clay, chalk, gypsum, potash, silica sand, slate, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Europe, islands - including the northern one-sixth of the island of Ireland - between the North Atlantic Ocean and the North Sea; northwest of France || mostly rugged hills and low mountains; level to rolling plains in east and southeast || lies near vital North Atlantic sea lanes; only 35 km (22 mi) from France and linked by tunnel under the English Channel (the Channel Tunnel or Chunnel); because of heavily indented coastline, no location is more than 125 km (78 mi) from tidal waters || Resources: coal, petroleum, natural gas, iron ore, lead, zinc, gold, tin, limestone, salt, clay, chalk, gypsum, potash, silica sand, slate, arable land || Exports: cars, gold, gas turbines, packaged medicine, crude petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged hills and low mountains; level to rolling plains in east and southeast || Western Europe, islands - including the northern one-sixth of the island of Ireland - between the North Atlantic Ocean and the North Sea; northwest of France"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; moderated by prevailing southwest winds over the North Atlantic Current; more than one-half of the days are overcast || winter windstorms; floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, non-EU European economy; global financial center and dominant service sector; sluggish growth from stringent monetary policy, reduced business investment, low productivity and participation rates; fiscal austerity in face of high public debt || Exports: cars, gold, gas turbines, packaged medicine, crude petroleum (2023) || Industries: machine tools, electric power equipment, automation equipment, railroad equipment, shipbuilding, aircraft, motor vehicles and parts, electronics and communications equipment, metals, chemicals, coal, petroleum, paper and paper products, food processing, textiles, clothing, other consumer goods"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English || Christian (includes Anglican, Roman Catholic, Presbyterian, Methodist) 59.5%, Muslim 4.4%, Hindu 1.3%, other 2%, unspecified 7.2%, none 25.7% (2011 est.) || White 87.2%, Black/African/Caribbean/black British 3%, Asian/Asian British: Indian 2.3%, Asian/Asian British: Pakistani 1.9%, mixed 2%, other 3.7% (2011 est.)"
+    }
+  }
+}

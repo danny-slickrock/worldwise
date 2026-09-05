@@ -1,0 +1,35 @@
+{
+  "iso": "ps",
+  "fetchedAt": "2026-09-04T23:56:50.467Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": null
+    }
+  },
+  "wikidata": {
+    "name": "Palestine",
+    "gec": null,
+    "capital": "East Jerusalem",
+    "areaKm2": 6020,
+    "population": 5227193,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "new shekel"
+    ],
+    "sharesBorderWithAnyType": [
+      "eg",
+      "il",
+      "jo"
+    ]
+  },
+  "factbook": null
+}

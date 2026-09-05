@@ -1,0 +1,186 @@
+{
+  "iso": "ke",
+  "fetchedAt": "2026-09-04T23:56:58.583Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ke.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kenya",
+    "gec": "KE",
+    "capital": "Nairobi",
+    "areaKm2": 581309,
+    "population": 48468138,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Kenyan shilling"
+    ],
+    "sharesBorderWithAnyType": [
+      "et",
+      "tz",
+      "ss",
+      "ug",
+      "so",
+      "sd"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ke.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Trade centers such as Mombasa have existed along the Kenyan and Tanzanian coastlines, known as the Land of Zanj, since at least the 2nd century. These centers traded with the outside world, including China, India, Indonesia, the Middle East, North Africa, and Persia. By around the 9th century, the mix of Africans, Arabs, and Persians who lived and traded there became known as Swahili (\"people of the coast\") with a distinct language (KiSwahili) and culture. The Portuguese arrived in the 1490s and, using Mombasa as a base, sought to monopolize trade in the Indian Ocean. The Portuguese were pushed out in the late 1600s by the combined forces of Oman and Pate, an island off the coast. In 1890, Germany and the UK divided up the region, with the UK taking the north and the Germans the south, including present-day Tanzania, Burundi, and Rwanda. In 1895, the British established the East Africa Protectorate, which in 1920 was converted into a colony, and named Kenya after its highest mountain. Numerous political disputes between the colony and the UK led to the violent Mau Mau Uprising, which began in 1952, and the eventual declaration of independence in 1963.</p> Jomo KENYATTA, the founding president and an icon of the liberation struggle, led Kenya from independence in 1963 until his death in 1978, when Vice President Daniel Arap MOI took power in a constitutional succession. The country was a de facto one-party state from 1969 until 1982, after which time the ruling Kenya African National Union (KANU) changed the constitution to make itself the sole legal political party. MOI gave in to internal and external pressure for political liberalization in 1991, but the ethnically fractured opposition failed to dislodge KANU from power in elections in 1992 and 1997, which were marred by violence and fraud. MOI stepped down in 2002 after fair and peaceful elections. Mwai KIBAKI, running as the candidate of the multiethnic, united opposition group, the National Rainbow Coalition (NARC), defeated KANU candidate Uhuru KENYATTA, the son of the founding president, and assumed the presidency following a campaign centered on an anticorruption platform. <br><br>Opposition candidate Raila ODINGA challenged KIBAKI's reelection in 2007 on the grounds of widespread vote rigging, leading to two months of ethnic violence that caused more than 1,100 deaths and displaced hundreds of thousands. African Union-sponsored mediation resulted in a power-sharing accord that brought ODINGA into the government as prime minister and outlined a reform agenda. In 2010, Kenyans overwhelmingly voted to adopt a new constitution that eliminated the prime minister, introduced additional checks and balances to executive power, and devolved power and resources to 47 newly created counties. Uhuru KENYATTA won the first presidential election under the new constitution in 2013. He won a second and final term in office in 2017 after a contentious repeat election. In 2022, William RUTO won a close presidential election; he assumed the office the following month after the Kenyan Supreme Court upheld the victory."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Africa, bordering the Indian Ocean, between Somalia and Tanzania"
+      },
+      "Area": {
+        "total ": {
+          "text": "580,367 sq km"
+        },
+        "land": {
+          "text": "569,140 sq km"
+        },
+        "water": {
+          "text": "11,227 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,457 km"
+        },
+        "border countries": {
+          "text": "Ethiopia 867 km; Somalia 684 km; South Sudan 317 km; Tanzania 775 km; Uganda 814 km"
+        }
+      },
+      "Coastline": {
+        "text": "536 km"
+      },
+      "Climate": {
+        "text": "varies from tropical along coast to arid in interior"
+      },
+      "Terrain": {
+        "text": "low plains rise to central highlands bisected by Great Rift Valley; fertile plateau in west"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Kenya 5,199 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "762 m"
+        }
+      },
+      "Natural resources": {
+        "text": "limestone, soda ash, salt, gemstones, fluorspar, zinc, diatomite, gypsum, wildlife, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "49.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 36.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "6.5% (2023 est.)"
+        },
+        "other": {
+          "text": "44% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "recurring drought; flooding during rainy seasons <br><br><strong>volcanism:</strong> limited volcanic activity; the Barrier (1,032 m) last erupted in 1921; South Island is the only other historically active volcano"
+      },
+      "Geography - note": {
+        "text": "the Kenyan Highlands comprise one of the most successful agricultural production regions in Africa; glaciers are found on Mount Kenya, Africa's second-highest peak; unique physiography supports abundant and varied wildlife of scientific and economic value; Lake Victoria, the world's largest tropical lake and the second-largest freshwater lake, is shared among three countries: Kenya, Tanzania, and Uganda"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "55,751,717 (2025 est.)"
+        },
+        "male": {
+          "text": "27,857,519"
+        },
+        "female": {
+          "text": "27,894,198"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "English (official), Kiswahili (official), numerous indigenous languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, the indispensable source for basic information. (English)<br><br>The World Factbook, Chanzo cha Lazima Kuhusu Habari ya Msingi. (Kiswahili)"
+        }
+      },
+      "Religions": {
+        "text": "Christian 85.5% (Protestant 33.4%, Catholic 20.6%, Evangelical 20.4%, African Instituted Churches 7%, other Christian 4.1%), Muslim 10.9%, other 1.8%, none 1.6%,&nbsp;don't&nbsp;know/no answer&nbsp;0.2% (2019 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kikuyu 17.1%, Luhya 14.3%, Kalenjin 13.4%, Luo 10.7%, Kamba 9.8%, Somali 5.8%, Kisii 5.7%, Mijikenda 5.2%, Meru 4.2%, Maasai 2.5%, Turkana 2.1%,&nbsp;non-Kenyan 1%, other 8.2% (2019 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "29.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.09% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population heavily concentrated in the west along the shore of Lake Victoria; other areas of high density include the capital of Nairobi, and in the southeast along the Indian Ocean coast, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "fast growing, third largest Sub-Saharan economy; strong agriculture sector with emerging services and tourism industries; IMF program to address current account and debt service challenges; business-friendly policies foster infrastructure investment, digital innovation and public-private partnerships; vulnerable to climate change-induced droughts"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, milk, maize, bananas, tea, potatoes, cassava, cabbages, camel milk, mangoes/guavas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agriculture, transportation, services, manufacturing, construction, telecommunications, tourism, retail"
+      },
+      "Exports - commodities": {
+        "text": "tea, cut flowers, garments, gold, tropical fruits (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Uganda 10%, USA 10%, UAE 8%, Netherlands 8%, Pakistan 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, palm oil, wheat, plastics, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical along coast to arid in interior"
+      }
+    }
+  }
+}

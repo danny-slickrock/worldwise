@@ -1,0 +1,71 @@
+{
+  "iso": "tm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.405Z",
+  "structured": {
+    "code": "tm",
+    "name": "Turkmenistan",
+    "capital": "Ashgabat",
+    "continent": "Asia",
+    "areaKm2": 491210,
+    "population": 6117933,
+    "officialLanguages": [
+      "Turkmen"
+    ],
+    "currencies": [
+      "Turkmenistan new manat"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "Iran",
+      "Kazakhstan",
+      "Uzbekistan"
+    ],
+    "landBorderCodes": [
+      "af",
+      "ir",
+      "kz",
+      "uz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, sulfur, salt",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Asia, bordering the Caspian Sea, between Iran and Kazakhstan || flat-to-rolling sandy desert with dunes rising to mountains in the south; low mountains along border with Iran; borders Caspian Sea in west || landlocked; the western and central low-lying desolate portions of the country make up the great Garagum (Kara-Kum) desert, which occupies over 80% of the country; eastern part is plateau || Resources: petroleum, natural gas, sulfur, salt || Exports: natural gas, refined petroleum, fertilizers, crude petroleum, electricity (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat-to-rolling sandy desert with dunes rising to mountains in the south; low mountains along border with Iran; borders Caspian Sea in west || Central Asia, bordering the Caspian Sea, between Iran and Kazakhstan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "subtropical desert || earthquakes; mudslides; droughts; dust storms; floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income Central Asian economy; houses fourth-largest natural gas reserves and rich in natural resources; authoritarian and dominated by state-owned enterprises; challenges include overvalued currency, high inflation risks, lack of economic diversification due to heavy state control and bureaucracy || Exports: natural gas, refined petroleum, fertilizers, crude petroleum, electricity (2023) || Industries: natural gas, oil, petroleum products, textiles, food processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 93%, Christian 6.4%, Buddhist &lt;1%, folk religion &lt;1%, Jewish &lt;1%, other &lt;1%, unspecified &lt;1% (2020 est.) || Turkmen 85%, Uzbek 5%, Russian 4%, other 6% (2003 est.)"
+    }
+  }
+}

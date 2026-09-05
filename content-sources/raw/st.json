@@ -1,0 +1,172 @@
+{
+  "iso": "st",
+  "fetchedAt": "2026-09-04T23:57:01.511Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/tp.json"
+    }
+  },
+  "wikidata": {
+    "name": "São Tomé and Príncipe",
+    "gec": "TP",
+    "capital": "São Tomé",
+    "areaKm2": 1001,
+    "population": 204327,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "São Tomé and Príncipe dobra"
+    ],
+    "sharesBorderWithAnyType": [
+      "gq",
+      "ga",
+      "ng"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/tp.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Portugal discovered and colonized the uninhabited Sao Tome and Principe islands in the late 15th century, setting up a sugar-based economy that gave way to coffee and cocoa in the 19th century -- all grown with African slave labor, a form of which lingered into the 20th century. While independence was achieved in 1975, democratic reforms were not instituted until the late 1980s. <br><br>The country held its first free elections in 1991, but frequent internal wrangling among the various political parties precipitated repeated changes in leadership and failed, non-violent coup attempts in 1995, 1998, 2003, and 2009. In 2012, three opposition parties combined in a no-confidence vote to bring down the majority government of former Prime Minister Patrice TROVOADA, but legislative elections returned him to the office two years later. President Evaristo CARVALHO, of the same political party as TROVOADA, was elected in 2016, marking a rare instance in which the same party held the positions of president and prime minister. TROVOADA resigned in 2018 and was replaced by Jorge BOM JESUS. Carlos Vila NOVA was elected president in 2021. TROVOADA began his fourth stint as prime minister in 2022, after his party's victory in legislative elections. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, islands in the Gulf of Guinea, just north of the Equator, west of Gabon"
+      },
+      "Area": {
+        "total ": {
+          "text": "964 sq km"
+        },
+        "land": {
+          "text": "964 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "209 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; one rainy season (October to May)"
+      },
+      "Terrain": {
+        "text": "volcanic, mountainous"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico de Sao Tome 2,024 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "44.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 4.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 39.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 1% (2023 est.)"
+        },
+        "forest": {
+          "text": "57.5% (2023 est.)"
+        },
+        "other": {
+          "text": "0% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding"
+      },
+      "Geography - note": {
+        "text": "the second-smallest African country (after the Seychelles); the two main islands form part of a chain of extinct volcanoes, and both are mountainous"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "223,561 (2024 est.)"
+        },
+        "male": {
+          "text": "111,553"
+        },
+        "female": {
+          "text": "112,008"
+        }
+      },
+      "Languages": {
+        "text": "Portuguese 98.4% (official), Forro 36.2%, Cabo Verdian 8.5%, French 6.8%, Angolar 6.6%, English 4.9%, Lunguie 1%, other (including sign language) 2.4%; other Portuguese-based Creoles are also spoken (2012 est.)",
+        "note": "<strong>note:</strong> shares of language sum to more than 100% because some respondents gave more than one answer on the census"
+      },
+      "Religions": {
+        "text": "Catholic 55.7%, Adventist 4.1%, Assembly of God 3.4%, New Apostolic 2.9%, Mana 2.3%, Universal Kingdom of God 2%, Jehovah's Witness 1.2%, other 6.2%, none 21.2%, unspecified 1% (2012 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestico, Angolares (descendants of Angolan slaves), Forros (descendants of freed slaves), Servicais (contract laborers from Angola, Mozambique, and Cabo Verde), Tongas (children of servicais born on the islands), Europeans (primarily Portuguese), Asians (mostly Chinese)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "76.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.96% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "Sao Tome, the capital city, has roughly a quarter of the nation's population; Santo Antonio is the largest town on Principe; the northern areas of both islands have the highest population densities, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower middle-income Central African island economy; falling cocoa production due to drought and mismanagement; joint oil venture with Nigeria; government owns 90% of land; high debt, partly from fuel subsidies; tourism gutted by COVID-19"
+      },
+      "Agricultural products": {
+        "text": "plantains, oil palm fruit, taro, bananas, fruits, cocoa beans, yams, coconuts, cassava, vegetables (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "light construction, textiles, soap, beer, fish processing, timber"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, cocoa beans, vehicle parts/accessories, palm oil, aircraft parts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Pakistan 54%, Germany 11%, Netherlands 7%, France 5%, UAE 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, refined petroleum, rice, electric generating sets, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; one rainy season (October to May)"
+      }
+    }
+  }
+}

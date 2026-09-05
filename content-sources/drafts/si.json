@@ -1,0 +1,69 @@
+{
+  "iso": "si",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.388Z",
+  "structured": {
+    "code": "si",
+    "name": "Slovenia",
+    "capital": "Ljubljana",
+    "continent": "Europe",
+    "areaKm2": 20271,
+    "population": 2066880,
+    "officialLanguages": [
+      "Slovene"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Austria",
+      "Croatia",
+      "Hungary",
+      "Italy"
+    ],
+    "landBorderCodes": [
+      "at",
+      "hr",
+      "hu",
+      "it"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "lignite, lead, zinc, building stone, hydropower, forests",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "south Central Europe, Julian Alps between Austria and Croatia || a short southwestern coastal strip of Karst topography on the Adriatic; an alpine mountain region lies adjacent to Italy and Austria in the north; mixed mountains and valleys with numerous rivers to the east || despite its small size, this eastern Alpine country controls some of Europe's major transit routes || Resources: lignite, lead, zinc, building stone, hydropower, forests || Exports: packaged medicine, cars, refined petroleum, vehicle parts/accessories, plastic products (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "a short southwestern coastal strip of Karst topography on the Adriatic; an alpine mountain region lies adjacent to Italy and Austria in the north; mixed mountains and valleys with numerous rivers to the east || south Central Europe, Julian Alps between Austria and Croatia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean climate on the coast, continental climate with mild to hot summers and cold winters in the plateaus and valleys to the east || flooding; earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone economy; high per-capita income and low inequality; key exports in automotive and pharmaceuticals; tight labor market with low unemployment; growth supported by private consumption and public investment, with risks from tight labor market and trade conditions; narrowing fiscal deficit and declining public debt || Exports: packaged medicine, cars, refined petroleum, vehicle parts/accessories, plastic products (2023) || Industries: ferrous metallurgy and aluminum products, lead and zinc smelting; electronics (including military electronics), trucks, automobiles, electric power equipment, wood products, textiles, chemicals, machine tools"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 69%, Orthodox 4%, Muslim 3%, Christian 1%, other 3%, atheist 14%, non-believer/agnostic 4%, refused to answer 2% (2019 est.) || Slovene 83.1%, Serb 2%, Croat 1.8%, Bosniak 1.1%, other or unspecified 12% (2002 est.)"
+    }
+  }
+}

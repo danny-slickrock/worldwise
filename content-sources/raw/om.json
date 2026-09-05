@@ -1,0 +1,184 @@
+{
+  "iso": "om",
+  "fetchedAt": "2026-09-04T23:56:50.185Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/mu.json"
+    }
+  },
+  "wikidata": {
+    "name": "Oman",
+    "gec": "MU",
+    "capital": "Muscat",
+    "areaKm2": 309500,
+    "population": 4829480,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Omani rial"
+    ],
+    "sharesBorderWithAnyType": [
+      "ir",
+      "ye",
+      "sa",
+      "ae"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/mu.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The inhabitants of the area of present-day Oman have long prospered from Indian Ocean trade. In the late 18th century, the nascent sultanate in Muscat signed the first in a series of friendship treaties with Britain. Over time, Oman's dependence on British political and military advisors increased, although the sultanate never became a British colony. In 1970, QABOOS bin Said Al Said overthrew his father and ruled as sultan for the next five decades. His extensive modernization program opened the country to the outside world. He prioritized strategic ties to the UK and US, and his moderate, independent foreign policy allowed Oman to maintain good relations with its neighbors and avoid external entanglements.<br><br>In 2011, the popular uprisings that swept the Middle East and North Africa inspired demonstrations in Oman that called for more jobs and economic benefits and an end to corruption. In response, QABOOS implemented economic and political reforms such as granting Oman’s legislative body more power and authorizing direct elections for its lower house. Additionally, the sultan increased unemployment benefits and issued a royal directive mandating a national public- and private-sector job creation plan. As part of the government's efforts to decentralize authority and allow greater citizen participation in local governance, Oman successfully conducted its first municipal council elections in 2012. QABOOS, Oman's longest reigning monarch, died in 2020. His cousin, HAYTHAM bin Tariq Al Said, former Minister of Heritage and Culture, was sworn in as Oman's new sultan the same day.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Arabian Sea, Gulf of Oman, and Persian Gulf, between Yemen and the UAE"
+      },
+      "Area": {
+        "total ": {
+          "text": "309,500 sq km"
+        },
+        "land": {
+          "text": "309,500 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,561 km"
+        },
+        "border countries": {
+          "text": "Saudi Arabia 658 km; UAE 609 km; Yemen 294 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,092 km"
+      },
+      "Climate": {
+        "text": "dry desert; hot, humid along coast; hot, dry interior; strong southwest summer monsoon (May to September) in far south"
+      },
+      "Terrain": {
+        "text": "central desert plain, rugged mountains in north and south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jabal Shams 3,004 m"
+        },
+        "lowest point": {
+          "text": "Arabian Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "310 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, copper, asbestos, some marble, limestone, chromium, gypsum, natural gas"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "4.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "0% (2023 est.)"
+        },
+        "other": {
+          "text": "95.2% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "summer winds often raise large sandstorms and dust storms in interior; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "consists of Oman proper and two northern exclaves, Musandam and Al Madhah; the former is a peninsula that occupies a strategic location adjacent to the Strait of Hormuz"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "3,969,824 (2025 est.)"
+        },
+        "male": {
+          "text": "2,130,080"
+        },
+        "female": {
+          "text": "1,839,744"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English, Baluchi, Swahili, Urdu, Indian dialects"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 85.9%, Christian 6.4%, Hindu 5.7%, other and unaffiliated 2% (2020 est.)",
+        "note": "<strong>note:</strong> Omani citizens represent approximately 56.4% of the population and are overwhelming Muslim (Ibadhi and Sunni sects each constitute about 45% and Shia about 5%); Christians, Hindus, and Buddhists account for roughly 5% of Omani citizens"
+      },
+      "Ethnic groups": {
+        "text": "Arab, Baluchi, South Asian (Indian, Pakistani, Sri Lankan, Bangladeshi), African"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "88.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.32% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of the population is located in and around the Al Hagar Mountains in the north; another smaller cluster is found around the city of Salalah in the far south; most of the country remains sparsely populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income, oil-based economy; large welfare system; growing government debt; citizenship-based labor force growth policy; US free trade agreement; diversifying portfolio; high female labor force participation"
+      },
+      "Agricultural products": {
+        "text": "vegetables, dates, milk, tomatoes, sorghum, chillies/peppers, goat milk, cucumbers/gherkins, cantaloupes/melons, cabbages (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "crude oil production and refining, natural and liquefied natural gas production; construction, cement, copper, steel, chemicals, optic fiber"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined petroleum, natural gas, semi-finished iron, fertilizers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 43%, India 6%, Saudi Arabia 5%, UAE 5%, South Africa 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, crude petroleum, iron ore, iron pipes (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "dry desert; hot, humid along coast; hot, dry interior; strong southwest summer monsoon (May to September) in far south"
+      }
+    }
+  }
+}

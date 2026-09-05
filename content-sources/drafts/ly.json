@@ -1,0 +1,75 @@
+{
+  "iso": "ly",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.414Z",
+  "structured": {
+    "code": "ly",
+    "name": "Libya",
+    "capital": "Tripoli",
+    "continent": "Africa",
+    "areaKm2": 1759541,
+    "population": 7381023,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Libyan dinar"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Chad",
+      "Egypt",
+      "Niger",
+      "Sudan",
+      "Tunisia"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "td",
+      "eg",
+      "ne",
+      "sd",
+      "tn"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, gypsum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the Mediterranean Sea, between Egypt, Tunisia, and Algeria || mostly barren, flat to undulating plains, plateaus, depressions || more than 90% of the country is desert or semidesert the volcano Waw an Namus lies in south central Libya in the middle of the Sahara; the caldera is an oasis -- the name means \"oasis of mosquitoes\" -- containing several small lakes that host many species of insects and birds || Resources: petroleum, natural gas, gypsum || Exports: crude petroleum, natural gas, refined petroleum, gold, scrap iron (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly barren, flat to undulating plains, plateaus, depressions || Northern Africa, bordering the Mediterranean Sea, between Egypt, Tunisia, and Algeria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Mediterranean along coast; dry, extreme desert interior || hot, dry, dust-laden ghibli is a southern wind lasting one to four days in spring and fall; dust storms, sandstorms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income, fossil fuel-based North African economy; 31% economic contraction due to COVID-19 and 2020 oil blockade; reduced government spending; central bank had to devalue currency; public wages are over 60% of expenditures || Exports: crude petroleum, natural gas, refined petroleum, gold, scrap iron (2023) || Industries: petroleum, petrochemicals, aluminum, iron and steel, food processing, textiles, handicrafts, cement"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official; virtually all Sunni) 96.6%, Christian 2.7%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, folk religion &lt;1%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || Amazigh and Arab 97%, other 3% (includes Egyptian, Greek, Indian, Italian, Maltese, Pakistani, Tunisian, and Turkish)"
+    }
+  }
+}

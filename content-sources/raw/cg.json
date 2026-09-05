@@ -1,0 +1,184 @@
+{
+  "iso": "cg",
+  "fetchedAt": "2026-09-04T23:56:56.148Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/cf.json"
+    }
+  },
+  "wikidata": {
+    "name": "Republic of the Congo",
+    "gec": "CF",
+    "capital": "Brazzaville",
+    "areaKm2": 342000,
+    "population": 6142180,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ao",
+      "cf",
+      "cd",
+      "ga",
+      "cm"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/cf.json",
+    "Introduction": {
+      "Background": {
+        "text": "Upon independence in 1960, the former French region of Middle Congo became the Republic of the Congo. From 1968 to 1992, the country was named the People&rsquo;s Republic of the Congo.&nbsp; A quarter-century of experimentation with Marxism was abandoned in 1990, and a democratically elected government took office in 1992, at which time the country reverted to \"the Republic of the Congo\" name. &nbsp;A two-year civil war that ended in 1999 restored to power former President Denis SASSOU-Nguesso, who had ruled from 1979 to 1992. A new constitution adopted three years later provided for a multi-party system and a seven-year presidential term, and the next elections retained SASSOU-Nguesso. After a year of renewed fighting, SASSOU-Nguesso and southern-based rebel groups agreed to a final peace accord in 2003. SASSOU-Nguesso was reelected in 2009 and, after passing a constitutional referendum allowing him to run for additional terms, was reelected again in 2016 and 2021. The Republic of the Congo is one of Africa's largest petroleum producers."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, bordering the South Atlantic Ocean, between Angola and Gabon"
+      },
+      "Area": {
+        "total ": {
+          "text": "342,000 sq km"
+        },
+        "land": {
+          "text": "341,500 sq km"
+        },
+        "water": {
+          "text": "500 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,554 km"
+        },
+        "border countries": {
+          "text": "Angola 231 km; Cameroon 494 km; Central African Republic 487 km; Democratic Republic of the Congo 1,775 km; Gabon 2,567 km"
+        }
+      },
+      "Coastline": {
+        "text": "169 km"
+      },
+      "Climate": {
+        "text": "tropical; rainy season (March to June); dry season (June to October); persistent high temperatures and humidity; particularly enervating climate astride the Equator"
+      },
+      "Terrain": {
+        "text": "coastal plain, southern basin, central plateau, northern basin"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Nabeba 1,020 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "430 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, timber, potash, lead, zinc, uranium, copper, phosphates, gold, magnesium, natural gas, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "31.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 29.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "63.9% (2023 est.)"
+        },
+        "other": {
+          "text": "4.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "seasonal flooding"
+      },
+      "Geography - note": {
+        "text": "about 70% of the population lives in Brazzaville, Pointe-Noire, or along the railroad between them"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,097,665 (2024 est.)"
+        },
+        "male": {
+          "text": "3,045,973"
+        },
+        "female": {
+          "text": "3,051,692"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), French Lingala and Monokutuba (trade languages), many local languages and dialects (of which Kikongo is the most widespread)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Buku oyo ya bosembo ya Mokili Mobimba Ezali na Makanisi ya Liboso Mpenza. (Lingala)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 33.1%, Awakening Churches/Christian Revival 22.3%, Protestant 19.9%, Salutiste 2.2%, Muslim 1.6%, Kimbanguist 1.5%, other 8.1%, none 11.3% (2007 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kongo (Bakongo) 40.5%, Teke 16.9%, Mbochi 13.1%, foreigner 8.2%, Sangha 5.6%, Mbere/Mbeti/Kele 4.4%, Punu 4.3%, Pygmy 1.6%, Oubanguiens 1.6%, Duma 1.5%, Makaa 1.3%, other and unspecified 1% (2014-15 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "69.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.19% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the population is primarily located in the south, in and around the capital of Brazzaville, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "primarily an oil- and natural resources-based economy; recovery from mid-2010s oil devaluation has been slow and curtailed by COVID-19; extreme poverty increasing, particularly in southern rural regions; attempting to implement recommended CEMAC reforms; increasing likelihood of debt default"
+      },
+      "Agricultural products": {
+        "text": "cassava, sugarcane, oil palm fruit, bananas, plantains, root vegetables, game meat, vegetables, mangoes/guavas, fruits (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum extraction, cement, lumber, brewing, sugar, palm oil, soap, flour, cigarettes"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, refined copper, gold, wood, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 46%, UAE 23%, India 6%, Saudi Arabia 5%, Portugal 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, poultry, garments, iron pipes, refined petroleum (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; rainy season (March to June); dry season (June to October); persistent high temperatures and humidity; particularly enervating climate astride the Equator"
+      }
+    }
+  }
+}

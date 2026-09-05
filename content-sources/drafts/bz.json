@@ -1,0 +1,67 @@
+{
+  "iso": "bz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.424Z",
+  "structured": {
+    "code": "bz",
+    "name": "Belize",
+    "capital": "Belmopan",
+    "continent": "North America",
+    "areaKm2": 22966,
+    "population": 411106,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Belize dollar"
+    ],
+    "landBorderNames": [
+      "Guatemala",
+      "Mexico"
+    ],
+    "landBorderCodes": [
+      "gt",
+      "mx"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "arable land potential, timber, fish, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering the Caribbean Sea, between Guatemala and Mexico || flat, swampy coastal plain; low mountains in south || only country in Central America without a coastline on the North Pacific Ocean || Resources: arable land potential, timber, fish, hydropower || Exports: raw sugar, bananas, fish, shellfish, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat, swampy coastal plain; low mountains in south || Central America, bordering the Caribbean Sea, between Guatemala and Mexico"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; very hot and humid; rainy season (May to November); dry season (February to May) || frequent, devastating hurricanes (June to November) and coastal flooding (especially in south)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "tourism- and agriculture-driven economy; strong post-pandemic rebound; innovative and ecological bond restructuring that significantly lowered public debt and expanded marine protections; central bank offering USD-denominated treasury notes; high mobility across borders || Exports: raw sugar, bananas, fish, shellfish, refined petroleum (2023) || Industries: garment production, food processing, tourism, construction, oil"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 40.1%, Protestant 31.5% (includes Pentecostal 8.4%, Seventh Day Adventist 5.4%, Anglican 4.7%, Mennonite 3.7%, Baptist 3.6%, Methodist 2.9%, Nazarene 2.8%), Jehovah's Witness 1.7%, other 10.5% (includes Baha'i, Buddhist, Hindu, Church of Jesus Christ, Muslim, Rastafarian, Salvation Army), unspecified 0.6%, none 15.5% (2010 est.) || Mestizo 52.9%, Creole 25.9%, Maya 11.3%, Garifuna 6.1%, East Indian 3.9%, Mennonite 3.6%, White 1.2%, Asian 1%, other 1.2%, unknown 0.3% (2010 est.)"
+    }
+  }
+}

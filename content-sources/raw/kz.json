@@ -1,0 +1,187 @@
+{
+  "iso": "kz",
+  "fetchedAt": "2026-09-04T23:56:46.411Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/kz.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kazakhstan",
+    "gec": "KZ",
+    "capital": "Astana",
+    "areaKm2": 2724900,
+    "population": 20139914,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Russian",
+      "Kazakh"
+    ],
+    "currencies": [
+      "Kazakhstani tenge"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "ru",
+      "uz",
+      "kg",
+      "tm"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/kz.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Ethnic Kazakhs derive from a mix of Turkic nomadic tribes that migrated to the region in the 15th century. The Russian Empire conquered the Kazakh steppe in the 18th and 19th centuries, and Kazakhstan became a Soviet Republic in 1925. Forced agricultural collectivization led to repression and starvation, resulting in more than a million deaths in the early 1930s. During the 1950s and 1960s, the agricultural \"Virgin Lands\" program generated an influx of settlers -- mostly ethnic Russians, but also other nationalities -- and by the time of Kazakhstan’s independence in 1991, ethnic Kazakhs were a minority. However, non-Muslim ethnic minorities departed Kazakhstan in large numbers from the mid-1990s through the mid-2000s, and a national program has repatriated about a million ethnic Kazakhs (from Uzbekistan, Tajikistan, Mongolia, and the Xinjiang region of China) to Kazakhstan. As a result of this shift, the ethnic Kazakh share of the population now exceeds two-thirds.<br><br>Kazakhstan's economy is the largest in Central Asia, mainly due to the country's vast natural resources. Current issues include diversifying the economy, attracting foreign direct investment, enhancing Kazakhstan's economic competitiveness, and strengthening economic relations with neighboring states and foreign powers.</p> <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Asia, northwest of China; a small portion west of the Ural (Oral) River in easternmost Europe"
+      },
+      "Area": {
+        "total ": {
+          "text": "2,724,900 sq km"
+        },
+        "land": {
+          "text": "2,699,700 sq km"
+        },
+        "water": {
+          "text": "25,200 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "13,364 km"
+        },
+        "border countries": {
+          "text": "China 1,765 km; Kyrgyzstan 1,212 km; Russia 7,644 km; Turkmenistan 413 km; Uzbekistan 2,330 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)",
+        "note": "<strong>note:</strong> Kazakhstan borders the Aral Sea, now split into two bodies of water (1,070 km), and the Caspian Sea (1,894 km)"
+      },
+      "Climate": {
+        "text": "continental, cold winters and hot summers, arid and semiarid"
+      },
+      "Terrain": {
+        "text": "vast flat steppe extending from the Volga in the west to the Altai Mountains in the east and from the plains of western Siberia in the north to oases and deserts of Central Asia in the south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pik Khan-Tengri 7,010 m<br>note - the northern most 7,000 meter peak in the World"
+        },
+        "lowest point": {
+          "text": "Qauyndy Oyysy -132 m"
+        },
+        "mean elevation": {
+          "text": "387 m"
+        }
+      },
+      "Natural resources": {
+        "text": "major deposits of petroleum, natural gas, coal, iron ore, manganese, chrome ore, nickel, cobalt, copper, molybdenum, lead, zinc, bauxite, gold, uranium"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "79.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 68.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "1.3% (2023 est.)"
+        },
+        "other": {
+          "text": "19.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "earthquakes in the south; mudslides around Almaty"
+      },
+      "Geography - note": {
+        "text": "world's largest landlocked country and one of only two landlocked countries in the world that extends into two continents (the other is Azerbaijan); Russia leases approximately 6,000 sq km (2,317 sq mi) of territory enclosing the Baikonur Cosmodrome&nbsp;"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "20,432,662 (2025 est.)"
+        },
+        "male": {
+          "text": "9,902,303"
+        },
+        "female": {
+          "text": "10,530,359"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Kazakh (official, Qazaq) 80.1%, Russian 83.7%, English 35.1% (2021 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Әлемдік деректер кітабы, негізгі ақпараттың таптырмайтын көзі. (Kazakh)<br><br>Книга фактов о мире – незаменимый источник базовой информации. (Russian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:  </strong>percentages are based on population that understands the spoken language"
+      },
+      "Religions": {
+        "text": "Muslim 69.3%, Christian 17.2% (Orthodox 17%, other 0.2%), Buddhism 0.1%, other 0.1%, non-believers 2.3%, unspecified 11% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kazakh 71%, Russian 14.9%, Uzbek 3.3%, Ukrainian 1.9%, Uyghurs 1.5%, German 1.1%, Tatar 1.1%, other 4.9%, unspecified 0.3% (2023 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "58.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.19% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the country displays a low population density, particularly the interior; population clusters appear in urban agglomerations in the far northern and southern portions of the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income Central Asian economy; robust growth due to rising oil production, expansion in manufacturing and services, rising domestic demand, and infrastructure investments; however, rapid growth contributing to high inflation rate; declining unemployment and poverty rates</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, milk, barley, potatoes, watermelons, cantaloupes/melons, sunflower seeds, maize, onions, tomatoes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "oil, coal, iron ore, manganese, chromite, lead, zinc, copper, titanium, bauxite, gold, silver, phosphates, sulfur, uranium, iron and steel; tractors and other agricultural machinery, electric motors, construction materials"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, gold, radioactive chemicals, refined copper, copper ore (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 16%, UK 15%, Russia 10%, Turkey 6%, Italy 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "garments, cars, broadcasting equipment, vehicle bodies, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "continental, cold winters and hot summers, arid and semiarid"
+      }
+    }
+  }
+}

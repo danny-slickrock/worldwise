@@ -1,0 +1,198 @@
+{
+  "iso": "cn",
+  "fetchedAt": "2026-09-04T23:56:45.026Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/ch.json"
+    }
+  },
+  "wikidata": {
+    "name": "People's Republic of China",
+    "gec": "CH",
+    "capital": "Beijing",
+    "areaKm2": 9596961,
+    "population": 1404890000,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Putonghua"
+    ],
+    "currencies": [
+      "renminbi"
+    ],
+    "sharesBorderWithAnyType": [
+      "jp",
+      "ru",
+      "kz",
+      "kp",
+      "in",
+      "mn",
+      "kg",
+      "la",
+      "mm",
+      "np",
+      "pk",
+      "tj",
+      "vn",
+      "kr",
+      "af",
+      "bt"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/ch.json",
+    "Introduction": {
+      "Background": {
+        "text": "China's historical civilization dates to at least the 13th century B.C., first under the Shang (to 1046 B.C.) and then the Zhou (1046-221 B.C.) dynasties. The imperial era of China began in 221 B.C. under the Qin Dynasty and lasted until the fall of the Qing Dynasty in 1912. During this period, China alternated between periods of unity and disunity under a succession of imperial dynasties. In the 19th century, the Qing Dynasty suffered heavily from overextension by territorial conquest, insolvency, civil war, imperialism, military defeats, and foreign expropriation of ports and infrastructure. It collapsed following the Revolution of 1911, and China became a republic under SUN Yat-sen of the Kuomintang (KMT or Nationalist) Party. However, the republic was beset by division, warlordism, and continued foreign intervention. In the late 1920s, a civil war erupted between the ruling KMT-controlled government, led by CHIANG Kai-shek, and the Chinese Communist Party (CCP). Japan occupied much of northeastern China in the early 1930s, and then launched a full-scale invasion of the country in 1937. The resulting eight years of warfare devastated the country and cost up to 20 million Chinese lives by the time of Japan’s defeat in 1945. The Nationalist-Communist civil war continued with renewed intensity after the end of World War II and culminated with a CCP victory in 1949, under the leadership of MAO Zedong.<br><br>MAO and the CCP established an autocratic socialist system that, while ensuring the PRC's sovereignty, imposed strict controls over everyday life and launched agricultural, economic, political, and social policies -- such as the Great Leap Forward (1958-1962) and the Cultural Revolution (1966-1976) -- that cost the lives of millions of people. MAO died in 1976. Beginning in 1978, leaders DENG Xiaoping, JIANG Zemin, and HU Jintao focused on market-oriented economic development and opening up the country to foreign trade, while maintaining the rule of the CCP. Since the change, China has been among the world’s fastest growing economies, with real gross domestic product averaging over 9% growth annually through 2021, lifting an estimated 800 million people out of poverty and dramatically improving overall living standards. By 2011, the PRC’s economy was the second largest in the world. Current leader XI Jinping has continued these policies but has also maintained tight political controls. Over the past decade, China has increased its global outreach, including military deployments, participation in international organizations, and a global connectivity plan in 2013 called the \"Belt and Road Initiative\" (BRI). Many nations have signed on to BRI agreements to attract PRC investment, but others have expressed concerns about such issues as the opaque nature of the projects, financing, and potentially unsustainable debt obligations. XI Jinping assumed the positions of General Secretary of the Chinese Communist Party and Chairman of the Central Military Commission in 2012 and President in 2013. In 2018, the PRC’s National People’s Congress passed an amendment abolishing presidential term limits, which allowed XI to gain a third five-year term in 2023.  <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Asia, bordering the East China Sea, Korea Bay, Yellow Sea, and South China Sea, between North Korea and Vietnam"
+      },
+      "Area": {
+        "total ": {
+          "text": "9,596,960 sq km"
+        },
+        "land": {
+          "text": "9,326,410 sq km"
+        },
+        "water": {
+          "text": "270,550 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "22,457 km"
+        },
+        "border countries": {
+          "text": "Afghanistan 91 km; Bhutan 477 km; Burma 2,129 km; India 2,659 km; Kazakhstan 1,765 km; North Korea 1,352 km; Kyrgyzstan 1,063 km; Laos 475 km; Mongolia 4,630 km; Nepal 1,389 km; Pakistan 438 km; Russia (northeast) 4,133 km and Russia (northwest) 46 km; Tajikistan 477 km; Vietnam 1,297 km"
+        }
+      },
+      "Coastline": {
+        "text": "14,500 km"
+      },
+      "Climate": {
+        "text": "extremely diverse; tropical in south to subarctic in north"
+      },
+      "Terrain": {
+        "text": "mostly mountains, high plateaus, deserts in west; plains, deltas, and hills in east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Everest (highest peak in Asia and highest point on earth above sea level) 8,849 m"
+        },
+        "lowest point": {
+          "text": "Turpan Pendi (Turfan Depression) -154 m"
+        },
+        "mean elevation": {
+          "text": "1,840 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, iron ore, helium, petroleum, natural gas, arsenic, bismuth, cobalt, cadmium, ferrosilicon, gallium, germanium, hafnium, indium, lithium, mercury, tantalum, tellurium, tin, titanium, tungsten, antimony, manganese, magnesium, molybdenum, selenium, strontium, vanadium, magnetite, aluminum, lead, zinc, rare earth elements, uranium, hydropower potential (world's largest), arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "55.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 11.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 41.7% (2023 est.)"
+        },
+        "forest": {
+          "text": "23.8% (2023 est.)"
+        },
+        "other": {
+          "text": "20.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "frequent typhoons (about five per year along southern and eastern coasts); damaging floods; tsunamis; earthquakes; droughts; land subsidence <br><br><strong>volcanism:</strong> China contains some historically active volcanoes including Changbaishan (also known as Baitoushan, Baegdu, or P'aektu-san), Hainan Dao, and Kunlun although most have been relatively inactive in recent centuries"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> world's fourth largest country (after Russia, Canada, and the US) and largest country situated entirely in Asia; Mount Everest, on the border with Nepal, is the world's tallest peak above sea level<br><br><strong>note 2:</strong> the largest cave chamber in the world is the Miao Room, in the Gebihe cave system at China's Ziyun Getu He Chuandong National Park, which encloses about 10.78 million cu m (380.7 million cu ft); the world's largest sinkhole is the Xiaoxhai Tiankeng sinkhole in Chongqing Municipality, which is 660 m deep, with a volume of 130 million cu m"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,407,181,209 (2025 est.)"
+        },
+        "male": {
+          "text": "716,908,592"
+        },
+        "female": {
+          "text": "690,272,617"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Standard Chinese or Mandarin (official; Putonghua, based on the Beijing dialect), Yue (Cantonese), Wu (Shanghainese), Minbei (Fuzhou), Minnan (Hokkien-Taiwanese), Xiang, Gan, Hakka dialects, minority languages; note - Zhuang is official in Guangxi Zhuang, Yue is official in Guangdong, Mongolian is official in Nei Mongol, Uyghur is official in Xinjiang Uygur, Kyrgyz is official in Xinjiang Uyghur, and Tibetan is official in Xizang (Tibet)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>世界概況  –  不可缺少的基本消息來源 (Standard Chinese)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "folk religion 21.9%, Buddhist 18.2%, Christian 5.1%, Muslim 1.8%, Hindu &lt; 0.1%, Jewish &lt; 0.1%, other 0.7% (includes Daoist (Taoist)), unaffiliated 52.1% (2021 est.)",
+        "note": "<strong>note:</strong> officially atheist"
+      },
+      "Ethnic groups": {
+        "text": "Han Chinese 91.1%, ethnic minorities 8.9% (includes Zhang, Hui, Manchu, Uighur, Miao, Yi, Tujia, Tibetan, Mongol, Dong, Buyei, Yao, Bai, Korean, Hani, Li, Kazakh, Dai, and other nationalities) (2021 est.)",
+        "note": "<strong>note:</strong> the PRC officially recognizes 56 ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "64.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.78% annual rate of change (2020-25 est.)"
+        },
+        "note": "<strong>note:</strong> data do not include Hong Kong and Macau"
+      },
+      "Population distribution": {
+        "text": "overwhelming majority of the population is found in the eastern half of the country; the west, with its vast mountainous and desert areas, remains sparsely populated; though ranked first in the world in total population, overall density is less than that of many Asian and European countries; high population density is found along the Yangtze and Yellow River valleys, the Xi Jiang River delta, the Sichuan Basin (around Chengdu), in and around Beijing, and the industrial area around Shenyang"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>world’s second-largest economy by nominal GDP; global leader in exports and manufacturing; historically strong growth slowing; challenges of aging workforce, weak productivity, rising youth unemployment, struggling property sector, and public debt; state-sponsored economic controls and infrastructure investments</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, rice, vegetables, wheat, sugarcane, potatoes, cucumbers/gherkins, tomatoes, watermelons, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "world leader in gross value of industrial output; mining and ore processing, iron, steel, aluminum, and other metals, coal; machine building; armaments; textiles and apparel; petroleum; cement; chemicals; fertilizer; consumer products (including footwear, toys, and electronics); food processing; transportation equipment, including automobiles, railcars and locomotives, ships, aircraft; telecommunications equipment, commercial space launch vehicles, satellites"
+      },
+      "Exports - commodities": {
+        "text": "broadcasting equipment, computers, integrated circuits, garments, machine parts (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 13%, Hong Kong 8%, Japan 5%, Germany 5%, S. Korea 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, integrated circuits, iron ore, gold, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "extremely diverse; tropical in south to subarctic in north"
+      }
+    }
+  }
+}

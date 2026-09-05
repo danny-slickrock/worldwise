@@ -1,0 +1,183 @@
+{
+  "iso": "gr",
+  "fetchedAt": "2026-09-04T23:56:38.102Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/gr.json"
+    }
+  },
+  "wikidata": {
+    "name": "Greece",
+    "gec": "GR",
+    "capital": "Athens",
+    "areaKm2": 131957,
+    "population": 10482487,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Greek"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "bg",
+      "mk",
+      "al"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/gr.json",
+    "Introduction": {
+      "Background": {
+        "text": "Greece won independence from the Ottoman Empire in 1830 and became a kingdom. During the second half of the 19th century and the first half of the 20th century, it gradually added neighboring islands and territories, most with Greek-speaking populations. In World War II, Greece was first invaded by Italy (1940) and subsequently occupied by Germany (1941-44); fighting endured in a protracted civil war between supporters of the king and other anti-communist and communist rebels. The communists were defeated in 1949, and Greece joined NATO in 1952. In 1967, a military coup forced the king to flee the country. The ensuing military dictatorship collapsed in 1974, and Greece abolished the monarchy to become a parliamentary republic. <br><br>In 1981, Greece joined the EC (now the EU); it became the 12th member of the European Economic and Monetary Union in 2001. From 2009 until 2019, Greece suffered a severe economic crisis due to nearly a decade of chronic overspending and structural rigidities. Beginning in 2010, Greece entered three bailout agreements -- the first two with the European Commission, the European Central Bank, and the IMF; and the third in 2015 with the European Stability Mechanism -- worth in total about $300 billion. The Greek Government formally exited the third bailout in 2018, and Greece's economy has since improved significantly. In 2022, the country finalized its early repayment to the IMF and graduated on schedule from the EU's enhanced surveillance framework."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Europe, bordering the Aegean Sea, Ionian Sea, and the Mediterranean Sea, between Albania and Turkey"
+      },
+      "Area": {
+        "total ": {
+          "text": "131,957 sq km"
+        },
+        "land": {
+          "text": "130,647 sq km"
+        },
+        "water": {
+          "text": "1,310 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,110 km"
+        },
+        "border countries": {
+          "text": "Albania 212 km; Bulgaria 472 km; North Macedonia 234 km; Turkey 192 km"
+        }
+      },
+      "Coastline": {
+        "text": "13,676 km"
+      },
+      "Climate": {
+        "text": "temperate; mild, wet winters; hot, dry summers"
+      },
+      "Terrain": {
+        "text": "mountainous with ranges extending into the sea as peninsulas or chains of islands"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Olympus 2,917"
+        },
+        "lowest point": {
+          "text": "Mediterranean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "498 m"
+        },
+        "note": "<strong>note:</strong> Mount Olympus actually has 52 peaks but its highest point, Mytikas (meaning \"nose\"), rises to 2,917 meters; in Greek mythology, Olympus' Mytikas peak was the home of the Greek gods"
+      },
+      "Natural resources": {
+        "text": "lignite, petroleum, iron ore, bauxite, lead, zinc, nickel, magnesite, marble, salt, hydropower potential"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "41.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 14.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 19.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "36.9% (2023 est.)"
+        },
+        "other": {
+          "text": "21.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "severe earthquakes <br><br><strong>volcanism:</strong> Santorini (367 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Methana and Nisyros in the Aegean are also classified as historically active"
+      },
+      "Geography - note": {
+        "text": "strategic location dominating the Aegean Sea and southern approach to Turkish Straits; a peninsular country, with an archipelago of about 2,000 islands"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,424,536 (2025 est.)"
+        },
+        "male": {
+          "text": "5,105,879"
+        },
+        "female": {
+          "text": "5,318,657"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Greek (official) 99%, other (includes English and French) 1%"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Το Παγκόσμιο Βιβλίο Δεδομένων, η απαραίτητη πηγή βασικών πληροφοριών. (Greek)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Greek Orthodox 81-90%, Muslim 2%, other 3%, none 4-15%, unspecified 1% (2015 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Greek 91.6%, Albanian 4.4%, other 4% (2011 est.)",
+        "note": "<strong>note:</strong> data represent citizenship; Greece does not collect data on ethnicity"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "80.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.11% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "one third of the population lives in and around metropolitan Athens; the remainder of the country has moderate population density mixed with sizeable urban clusters"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone economy; growth above euro average, supported by private consumption and EU fund investments; structural reforms strengthening public finances and enhancing resilience within banking system; declining unemployment but low labor productivity and skill shortages</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, wheat, sheep milk, oranges, tomatoes, milk, peaches/nectarines, grapes, watermelons, barley (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, food and tobacco processing, textiles, chemicals, metal products; mining, petroleum"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, packaged medicine, aluminum, olive oil, tobacco (2023)",
+        "note": "<strong>note:</strong> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 12%, Germany 6%, Cyprus 6%, Bulgaria 4%, USA 4% (2023)",
+        "note": "<strong>note:</strong> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, refined petroleum, natural gas, cars, packaged medicine (2023)",
+        "note": "<strong>note:</strong> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; mild, wet winters; hot, dry summers"
+      }
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "iso": "qa",
+  "fetchedAt": "2026-09-04T23:56:50.872Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/qa.json"
+    }
+  },
+  "wikidata": {
+    "name": "Qatar",
+    "gec": "QA",
+    "capital": "Doha",
+    "areaKm2": 11437,
+    "population": 2639211,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Qatari riyal"
+    ],
+    "sharesBorderWithAnyType": [
+      "ir",
+      "sa"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/qa.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Ruled by the Al Thani family since the mid-1800s, Qatar within the last 60 years transformed itself from a poor British protectorate noted mainly for pearling into an independent state with significant hydrocarbon revenues. Former Amir HAMAD bin Khalifa Al Thani, who overthrew his father in a bloodless coup in 1995, ushered in wide-sweeping political and media reforms, unprecedented economic investment, and a growing Qatari regional leadership role, in part through the creation of the pan-Arab satellite news network Al-Jazeera and Qatar's mediation of some regional conflicts. In the 2000s, Qatar resolved its longstanding border disputes with both Bahrain and Saudi Arabia, and by 2007, Doha had attained the highest per capita income in the world. Qatar did not experience domestic unrest or violence like that seen in other Near Eastern and North African countries in 2011, due in part to its immense wealth and patronage network. In mid-2013, HAMAD peacefully abdicated, transferring power to his son, the current Amir TAMIM bin Hamad. TAMIM is popular with the Qatari public for his role in shepherding the country through an economic embargo from some other regional countries, for his efforts to improve the country's healthcare and education systems, and for his expansion of the country's infrastructure in anticipation of hosting international sporting events. Qatar became the first country in the Arab world to host the FIFA Men’s World Cup in 2022.</p> Following the outbreak of regional unrest in 2011, Doha prided itself on its support for many popular revolutions, particularly in Libya and Syria. This stance was to the detriment of Qatar’s relations with Bahrain, Egypt, Saudi Arabia, and the United Arab Emirates (UAE), which temporarily recalled their respective ambassadors from Doha in 2014. TAMIM later oversaw a warming of Qatar’s relations with Bahrain, Egypt, Saudi Arabia, and the UAE in November 2014 following Kuwaiti mediation and signing of the Riyadh Agreement. This reconciliation, however, was short-lived. In 2017, Bahrain, Egypt, Saudi Arabia, and the UAE (the \"Quartet\") cut diplomatic and economic ties with Qatar in response to alleged violations of the agreement, among other complaints. They restored ties in 2021 after signing a declaration at the Gulf Cooperation Council Summit in Al Ula, Saudi Arabia. In 2022, the United States designated Qatar as a major non-NATO ally. <p> </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, peninsula bordering the Persian Gulf and Saudi Arabia"
+      },
+      "Area": {
+        "total ": {
+          "text": "11,586 sq km"
+        },
+        "land": {
+          "text": "11,586 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "87 km"
+        },
+        "border countries": {
+          "text": "Saudi Arabia 87 km"
+        }
+      },
+      "Coastline": {
+        "text": "563 km"
+      },
+      "Climate": {
+        "text": "arid; mild, pleasant winters; very hot, humid summers"
+      },
+      "Terrain": {
+        "text": "mostly flat and barren desert"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Tuwayyir al Hamir 103 m"
+        },
+        "lowest point": {
+          "text": "Persian Gulf 0 m"
+        },
+        "mean elevation": {
+          "text": "28 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, fish, natural gas"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "6.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "0.1% (2023 est.)"
+        },
+        "other": {
+          "text": "93.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "haze, dust storms, sandstorms common"
+      },
+      "Geography - note": {
+        "text": "the peninsula occupies a strategic location in the central Persian Gulf near major petroleum deposits"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,568,426 (2025 est.)"
+        },
+        "male": {
+          "text": "1,970,605"
+        },
+        "female": {
+          "text": "597,821"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Arabic (official), English commonly used as a second language"
+        },
+        "major-language sample(s)": {
+          "text": "<br>كتاب حقائق العالم، المصدر الذي لا يمكن الاستغناء عنه للمعلومات الأساسية (Arabic)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 65.2%, Christian 13.7%, Hindu 15.9%, Buddhist 3.8%, folk religion &lt;0.1%, Jewish &lt;0.1%, other &lt;1%, unaffiliated &lt;1% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "non-Qatari 88.4%, Qatari 11.6% (2015 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "99.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.66% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is clustered in or around the capital of Doha on the eastern side of the peninsula"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, oil-and-gas-based Middle Eastern economy; implementing “National Vision 2030” government strategy for economic development, diversification, and favorable business conditions to boost investment and employment; expansion of LNG sector expected to boost growth; Islamic finance leader</p>"
+      },
+      "Agricultural products": {
+        "text": "dates, chicken, tomatoes, camel milk, vegetables, cucumbers/gherkins, pumpkins/squash, eggs, sheep milk, eggplants (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "liquefied natural gas, crude oil production and refining, ammonia, fertilizer, petrochemicals, steel reinforcing bars, cement, commercial ship repair"
+      },
+      "Exports - commodities": {
+        "text": "natural gas, crude petroleum, refined petroleum, plastics, fertilizers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 18%, India 11%, S. Korea 10%, Japan 7%, Pakistan 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "gas turbines, cars, aircraft, iron pipes, ships (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "arid; mild, pleasant winters; very hot, humid summers"
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "iso": "vn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.406Z",
+  "structured": {
+    "code": "vn",
+    "name": "Vietnam",
+    "capital": "Hanoi",
+    "continent": "Asia",
+    "areaKm2": 331690,
+    "population": 96208984,
+    "officialLanguages": [
+      "Vietnamese"
+    ],
+    "currencies": [
+      "Vietnamese đồng"
+    ],
+    "landBorderNames": [
+      "Cambodia",
+      "China",
+      "Laos"
+    ],
+    "landBorderCodes": [
+      "kh",
+      "cn",
+      "la"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "antimony, phosphates, coal, manganese, rare earth elements, bauxite, chromate, offshore oil and gas deposits, timber, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, bordering the Gulf of Thailand, Gulf of Tonkin, and South China Sea, as well as China, Laos, and Cambodia || low, flat delta in south and north; central highlands; hilly, mountainous in far north and northwest || extending 1,650 km (1,025 mi) north to south, the country is only 50 km (31 mi) across at its narrowest point Son Doong in Phong Nha-Ke Bang National Park is the world's largest cave (greatest cross-sectional area) and is the largest known cave passage in the world by volume at 38.5 million cu m (about 1.35 billion cu ft); it connects to Thoong cave, but not yet officially -- when recognized, it will add an additional 1.6 million cu m; it is so massive that it contains its own jungle, underground river, and localized weather system, with clouds forming inside the cave and spewing from its exits || Resources: antimony, phosphates, coal, manganese, rare earth elements, bauxite, chromate, offshore oil and gas deposits, timber, hydropower, arable land || Exports: broadcasting equipment, garments, integrated circuits, machine parts, footwear (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "low, flat delta in south and north; central highlands; hilly, mountainous in far north and northwest || Southeastern Asia, bordering the Gulf of Thailand, Gulf of Tonkin, and South China Sea, as well as China, Laos, and Cambodia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical in south; monsoonal in north with hot, rainy season (May to September) and warm, dry season (October to March) || occasional typhoons (May to January) with extensive flooding, especially in the Mekong River delta"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income socialist East Asian economy; rapid economic growth since Đổi Mới reforms; strong investment and productivity growth; tourism and manufacturing hub; TPP signatory; declining poverty aside from ethnic minorities; systemic corruption || Exports: broadcasting equipment, garments, integrated circuits, machine parts, footwear (2023) || Industries: food processing, garments, shoes, machine-building; mining, coal, steel; cement, chemical fertilizer, glass, tires, oil, mobile phones"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 6.1%, Buddhist 5.8%, Protestant 1%, other 0.8%, none 86.3% (2019 est.) || Kinh (Viet) 85.3%, Tay 1.9%, Thai 1.9%, Muong 1.5%, Khmer 1.4%, Mong 1.4%, Nung 1.1%, other 5.5% (2019 est.)"
+    }
+  }
+}

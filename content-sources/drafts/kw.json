@@ -1,0 +1,67 @@
+{
+  "iso": "kw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.397Z",
+  "structured": {
+    "code": "kw",
+    "name": "Kuwait",
+    "capital": "Kuwait City",
+    "continent": "Asia",
+    "areaKm2": 17818,
+    "population": 4464000,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Kuwaiti dinar"
+    ],
+    "landBorderNames": [
+      "Iraq",
+      "Saudi Arabia"
+    ],
+    "landBorderCodes": [
+      "iq",
+      "sa"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, fish, shrimp, natural gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Persian Gulf, between Iraq and Saudi Arabia || flat to slightly undulating desert plain || strategic location at head of Persian Gulf || Resources: petroleum, fish, shrimp, natural gas || Exports: crude petroleum, refined petroleum, natural gas, hydrocarbons, plastics (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat to slightly undulating desert plain || Middle East, bordering the Persian Gulf, between Iraq and Saudi Arabia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "dry desert; intensely hot summers; short, cool winters || sudden cloudbursts are common from October to April and bring heavy rain, which can damage roads and houses; sandstorms and dust storms occur throughout the year but are most common between March and August"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "small, high-income, oil-based Middle East economy; renewable energy proponent; regional finance and investment leader; maintains oldest sovereign wealth fund; emerging space and tourism industries; mid-way through 25-year development program || Exports: crude petroleum, refined petroleum, natural gas, hydrocarbons, plastics (2023) || Industries: petroleum, petrochemicals, cement, shipbuilding and repair, water desalination, food processing, construction materials"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official) 74.6%, Christian 18.2%, other and unspecified 7.2% (2013 est.) || Kuwaiti 30.4%, other Arab 27.4%, Asian 40.3%, African 1%, other 0.9% (includes European, North American, South American, and Australian) (2018 est.)"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "iso": "gh",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.413Z",
+  "structured": {
+    "code": "gh",
+    "name": "Ghana",
+    "capital": "Accra",
+    "continent": "Africa",
+    "areaKm2": 238535,
+    "population": 32833031,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Ghana cedi"
+    ],
+    "landBorderNames": [
+      "Burkina Faso",
+      "Cote d'Ivoire",
+      "Togo"
+    ],
+    "landBorderCodes": [
+      "bf",
+      "ci",
+      "tg"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, timber, industrial diamonds, bauxite, manganese, fish, rubber, hydropower, petroleum, silver, salt, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the Gulf of Guinea, between Cote d'Ivoire and Togo || mostly low plains with dissected plateau in south-central area || Lake Volta is the world's largest artificial lake (manmade reservoir) by surface area (8,482 sq km; 3,275 sq mi); the lake was created after the Akosombo Dam was completed in 1965 || Resources: gold, timber, industrial diamonds, bauxite, manganese, fish, rubber, hydropower, petroleum, silver, salt, limestone || Exports: gold, crude petroleum, cocoa beans, manganese ore, cocoa paste (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low plains with dissected plateau in south-central area || Western Africa, bordering the Gulf of Guinea, between Cote d'Ivoire and Togo"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; warm and comparatively dry along southeast coast; hot and humid in southwest; hot and dry in north || dry, dusty, northeastern harmattan winds from January to March; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "West African lower-middle income economy; major gold, oil and cocoa exporter; macroeconomic challenges following nearly four decades of sustained growth; recent progress in debt restructuring, fiscal reforms, financial stability, and curbing runaway inflation under 2023-26 IMF credit facility program || Exports: gold, crude petroleum, cocoa beans, manganese ore, cocoa paste (2023) || Industries: mining, lumbering, light manufacturing, aluminum smelting, food processing, cement, small commercial ship building, petroleum"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Asante 16%, Ewe 14%, Fante 11.6%, Boron (Brong) 4.9%, Dagomba 4.4%, Dangme 4.2%, Dagarte (Dagaba) 3.9%, Kokomba 3.5%, Akyem 3.2%, Ga 3.1%, other 31.2% (2010 est.) || Christian 71.3% (Pentecostal/Charismatic 31.6%, Protestant 17.4%, Catholic 10%, other 12.3%), Muslim 19.9%, traditionalist 3.2%, other 4.5%, none 1.1% (2021 est.) || Akan 45.7%, Mole-Dagbani 18.5%, Ewe 12.8%, Ga-Dangme 7.1%, Gurma 6.4%, Guan 3.2%, Grusi 2.7%, Mande 2%, other 1.6% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "iso": "bh",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.392Z",
+  "structured": {
+    "code": "bh",
+    "name": "Bahrain",
+    "capital": "Manama",
+    "continent": "Asia",
+    "areaKm2": 786.5,
+    "population": 1569666,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Bahraini dinar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "oil, associated and nonassociated natural gas, fish, pearls",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, archipelago in the Persian Gulf, east of Saudi Arabia || mostly low desert plain rising gently to low central escarpment || close to primary Middle Eastern petroleum sources; strategic location in Persian Gulf, through which much of the Western world's petroleum must transit to reach open ocean || Resources: oil, associated and nonassociated natural gas, fish, pearls || Exports: refined petroleum, aluminum, iron ore, aluminum wire, jewelry (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low desert plain rising gently to low central escarpment || Middle East, archipelago in the Persian Gulf, east of Saudi Arabia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "arid; mild, pleasant winters; very hot, humid summers || periodic droughts; dust storms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, growing Middle Eastern island economy; oil and aluminum exporter with diversification led by services, construction and manufacturing; regional finance and tourism hub; high public debt linked to oil revenue dependence and limited tax base; vulnerable to water reservoir depletion || Exports: refined petroleum, aluminum, iron ore, aluminum wire, jewelry (2023) || Industries: petroleum processing and refining, aluminum smelting, iron pelletization, fertilizers, Islamic and offshore banking, insurance, ship repairing, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 74.2%, other 25.9% (2020 est) || Bahraini 47.4%, Asian 43.4%, other Arab 4.9%, African 1.4%, North American 1.1%, Gulf Co-operative countries 0.9%, European 0.8%, other 0.1% (2020 est.)"
+    }
+  }
+}

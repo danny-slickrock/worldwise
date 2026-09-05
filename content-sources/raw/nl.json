@@ -1,0 +1,181 @@
+{
+  "iso": "nl",
+  "fetchedAt": "2026-09-04T23:56:40.027Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/nl.json"
+    }
+  },
+  "wikidata": {
+    "name": "Netherlands",
+    "gec": "NL",
+    "capital": "Amsterdam",
+    "areaKm2": 37378,
+    "population": 17942942,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Dutch"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "de",
+      "be"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/nl.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Dutch United Provinces declared their independence from Spain in 1581; during the 17th century, they became a leading seafaring and commercial power, with settlements and colonies around the world. After 18 years of French domination, the Netherlands regained its independence in 1813. In 1830, Belgium seceded and formed a separate kingdom. The Netherlands remained neutral in World War I but suffered German invasion and occupation in World War II. A modern, industrialized nation, the Netherlands is also a large exporter of agricultural products. The country was a founding member of NATO and the EEC (now the EU) and participated in the introduction of the euro in 1999. In 2010, the former Netherlands Antilles was dissolved and the three smallest islands -- Bonaire, Sint Eustatius, and Saba -- became special municipalities in the Netherlands administrative structure. The larger islands of Sint Maarten and Curacao joined the Netherlands and Aruba as constituent countries forming the Kingdom of the Netherlands.</p> <p>In 2018, the Sint Eustatius island council (governing body) was dissolved and replaced by a government commissioner to restore the integrity of public administration. According to the Dutch Government, the intervention will be as \"short as possible and as long as needed.\"</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Europe, bordering the North Sea, between Belgium and Germany"
+      },
+      "Area": {
+        "total ": {
+          "text": "41,543 sq km"
+        },
+        "land": {
+          "text": "33,893 sq km"
+        },
+        "water": {
+          "text": "7,650 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,053 km"
+        },
+        "border countries": {
+          "text": "Belgium 478 km; Germany 575 km"
+        }
+      },
+      "Coastline": {
+        "text": "451 km"
+      },
+      "Climate": {
+        "text": "temperate; marine; cool summers and mild winters"
+      },
+      "Terrain": {
+        "text": "mostly coastal lowland and reclaimed land (polders); some hills in southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Scenery (on the island of Saba in the Caribbean, now considered an integral part of the Netherlands following the dissolution of the Netherlands Antilles) 862 m"
+        },
+        "lowest point": {
+          "text": "Zuidplaspolder -7 m"
+        },
+        "mean elevation": {
+          "text": "30 m"
+        },
+        "note": "<strong>note:</strong> the highest point on continental Netherlands is Vaalserberg at 322 m"
+      },
+      "Natural resources": {
+        "text": "natural gas, petroleum, peat, limestone, salt, sand and gravel, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "53.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 30% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 22.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "10.9% (2023 est.)"
+        },
+        "other": {
+          "text": "35.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding <br><br><strong>volcanism:</strong> Mount Scenery (887 m), located on the island of Saba in the Caribbean, last erupted in 1640; Round Hill (601 m), a dormant volcano also known as \"The Quill,\" is located on the island of St. Eustatius in the Caribbean; these islands are at the northern end of the volcanic island arc of the Lesser Antilles that extends south to Grenada"
+      },
+      "Geography - note": {
+        "text": "located at mouths of three major European rivers (Rhine (Rijn), Meuse (Maas), and Scheldt (Schelde)); about a quarter of the country lies below sea level and only about half of the land exceeds one meter above sea level"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "17,833,885 (2025 est.)"
+        },
+        "male": {
+          "text": "8,874,366"
+        },
+        "female": {
+          "text": "8,959,519"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Dutch (official), Frisian (official in Fryslan province)"
+        },
+        "major-language sample(s)": {
+          "text": "Het Wereld Feitenboek, een onmisbare bron van informatie. (Dutch)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note: </strong>Frisian, Low Saxon, Limburgish, Romani, and Yiddish have protected status; Dutch is the official language of the three special municipalities of the Caribbean Netherlands; English is a recognized regional language on Sint Eustatius and Saba; Papiamento is a recognized regional language on Bonaire"
+      },
+      "Religions": {
+        "text": "Roman Catholic 20.1%, Protestant 14.8% (includes Dutch Reformed, Protestant Church of The Netherlands, Calvinist), Muslim 5%, other 5.9% (includes Hindu, Buddhist, Jewish), none 54.1% (2019 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Dutch 75.4%, EU (excluding Dutch) 6.4%, Turkish 2.4%, Moroccan 2.4%, Surinamese 2.1%, Indonesian 2%, other 9.3% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "93.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.59% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "an area known as the Randstad, anchored by the cities of Amsterdam, Rotterdam, the Hague, and Utrecht, is the most densely populated region; the north tends to be less dense, but sizeable communities can be found throughout the entire country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, core EU- and eurozone-member economy; strong services, logistics, and tech sectors; strongly trade-oriented with heightened risks from global tensions; declining inflation aided by easing energy prices and wage growth; rising but manageable deficits and public debt; strong ratings for innovation, competitiveness, and business climate</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, sugar beets, potatoes, onions, pork, wheat, chicken, tomatoes, carrots/turnips, beef (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agroindustries, metal and engineering products, electrical machinery and equipment, chemicals, petroleum, construction, microelectronics, fishing"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, vaccines, machinery, crude petroleum, broadcasting equipment (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 16%, Belgium 15%, France 11%, Italy 6%, USA 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, refined petroleum, broadcasting equipment, cars, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; marine; cool summers and mild winters"
+      }
+    }
+  }
+}

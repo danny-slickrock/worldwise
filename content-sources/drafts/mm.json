@@ -1,0 +1,73 @@
+{
+  "iso": "mm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.399Z",
+  "structured": {
+    "code": "mm",
+    "name": "Myanmar",
+    "capital": "Naypyidaw",
+    "continent": "Asia",
+    "areaKm2": 676577.2,
+    "population": 53370609,
+    "officialLanguages": [
+      "Burmese"
+    ],
+    "currencies": [
+      "kyat"
+    ],
+    "landBorderNames": [
+      "Bangladesh",
+      "China",
+      "India",
+      "Laos",
+      "Thailand"
+    ],
+    "landBorderCodes": [
+      "bd",
+      "cn",
+      "in",
+      "la",
+      "th"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, timber, tin, antimony, zinc, copper, tungsten, lead, coal, marble, limestone, precious stones, natural gas, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Asia, bordering the Andaman Sea and the Bay of Bengal, between Bangladesh and Thailand || central lowlands ringed by steep, rugged highlands || strategic location near major Indian Ocean shipping lanes; the north-south flowing Irrawaddy River is the country's largest and most important commercial waterway || Resources: petroleum, timber, tin, antimony, zinc, copper, tungsten, lead, coal, marble, limestone, precious stones, natural gas, hydropower, arable land || Exports: garments, natural gas, dried legumes, rare-earth metal compounds, precious stones (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "central lowlands ringed by steep, rugged highlands || Southeastern Asia, bordering the Andaman Sea and the Bay of Bengal, between Bangladesh and Thailand"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical monsoon; cloudy, rainy, hot, humid summers (southwest monsoon, June to September); less cloudy, scant rainfall, mild temperatures, lower humidity during winter (northeast monsoon, December to April) || destructive earthquakes and cyclones; flooding and landslides common during rainy season (June to September); periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "slowly recovering Southeast Asian economy; household incomes weaken domestic consumption; growing trade deficit; declining employment; high inflation and reduced currency power; agriculture sector remains most stable || Exports: garments, natural gas, dried legumes, rare-earth metal compounds, precious stones (2023) || Industries: agricultural processing; wood and wood products; copper, tin, tungsten, iron; cement, construction materials; pharmaceuticals; fertilizer; oil and natural gas; garments; jade and gems"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Buddhist 87.9%, Christian 6.2%, Muslim 4.3%, Animist 0.8%, Hindu 0.5%, other 0.2%, none 0.1% (2014 est.) || Burman (Bamar) 68%, Shan 9%, Karen 7%, Rakhine 4%, Chinese 3%, Indian 2%, Mon 2%, other 5%"
+    }
+  }
+}

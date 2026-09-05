@@ -1,0 +1,70 @@
+{
+  "iso": "dj",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.411Z",
+  "structured": {
+    "code": "dj",
+    "name": "Djibouti",
+    "capital": "Djibouti",
+    "continent": "Africa",
+    "areaKm2": 23200,
+    "population": 1152944,
+    "officialLanguages": [
+      "French",
+      "Arabic"
+    ],
+    "currencies": [
+      "Djiboutian franc"
+    ],
+    "landBorderNames": [
+      "Eritrea",
+      "Ethiopia",
+      "Somalia"
+    ],
+    "landBorderCodes": [
+      "er",
+      "et",
+      "so"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "potential geothermal power, gold, clay, granite, limestone, marble, salt, diatomite, gypsum, pumice, petroleum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, bordering the Gulf of Aden and the Red Sea, between Eritrea and Somalia || coastal plain and plateau separated by central mountains || strategic location near world's busiest shipping lanes and close to Arabian oilfields; Lac Assal (Lake Assal) is the lowest point in Africa and the saltiest lake in the world || Resources: potential geothermal power, gold, clay, granite, limestone, marble, salt, diatomite, gypsum, pumice, petroleum || Exports: raw sugar, seed oils, cars, palm oil, rice (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "coastal plain and plateau separated by central mountains || Eastern Africa, bordering the Gulf of Aden and the Red Sea, between Eritrea and Somalia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "desert; torrid, dry || earthquakes; droughts; occasional cyclonic disturbances from the Indian Ocean bring heavy rains and flash floods volcanism: experiences limited volcanic activity; Ardoukoba (298 m) last erupted in 1978; Manda-Inakir, located along the Ethiopian border, is also historically active"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "food import-dependent Horn of Africa economy driven by various national military bases and port-based trade; fairly resilient from COVID-19 disruptions; major re-exporter; increasing Ethiopian and Chinese trade relations; investing in infrastructure || Exports: raw sugar, seed oils, cars, palm oil, rice (2023) || Industries: construction, agricultural processing, shipping"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official), Arabic (official), Somali, Afar || Sunni Muslim 94% (nearly all Djiboutians), other 6% (mainly foreign-born residents - Shia Muslim, Christian, Hindu, Jewish, Baha'i, and atheist) || Somali 60%, Afar 35%, other 5% (mostly Yemeni Arab, also French, Ethiopian, and Italian)"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "iso": "km",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.409Z",
+  "structured": {
+    "code": "km",
+    "name": "Comoros",
+    "capital": "Moroni",
+    "continent": "Africa",
+    "areaKm2": 2034,
+    "population": 902348,
+    "officialLanguages": [
+      "French",
+      "Arabic",
+      "Comorian"
+    ],
+    "currencies": [
+      "Comorian franc"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, group of islands at the northern mouth of the Mozambique Channel, about two-thirds of the way between northern Madagascar and northern Mozambique || volcanic islands, interiors vary from steep mountains to low hills || important location at northern end of Mozambique Channel; the only Arab League country that lies entirely in the Southern Hemisphere || Resources: fish || Exports: cloves, ships, essential oils, vanilla, scrap iron (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "volcanic islands, interiors vary from steep mountains to low hills || Southern Africa, group of islands at the northern mouth of the Mozambique Channel, about two-thirds of the way between northern Madagascar and northern Mozambique"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical marine; rainy season (November to May) || cyclones possible during rainy season (December to April); volcanic activity on Grand Comore volcanism: Karthala (2,361 m) on Grand Comore Island last erupted in 2007; a 2005 eruption forced thousands of people to be evacuated and produced a large ash cloud"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "small trade-based island economy; declining remittances; new structural and fiscal reforms; adverse cyclone and COVID-19 impacts; manageable debts; fragile liquidity environment; large foreign direct investment; state-owned enterprises suffering || Exports: cloves, ships, essential oils, vanilla, scrap iron (2023) || Industries: fishing, tourism, perfume distillation"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Arabic (official), French (official), Shikomoro (official; similar to Swahili), Comorian || Muslim 98.1% (overwhelmingly Sunni Muslim, small Shia Muslim and Ahmadiyya Muslim populations), ethnic religionist 1.1%, Christian 0.6%, other 0.3% (2020 est.) || Antalote, Cafre, Makoa, Oimatsaha, Sakalava"
+    }
+  }
+}

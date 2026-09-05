@@ -1,0 +1,63 @@
+{
+  "iso": "nz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.436Z",
+  "structured": {
+    "code": "nz",
+    "name": "New Zealand",
+    "capital": "Wellington",
+    "continent": "Oceania",
+    "areaKm2": 268021,
+    "population": 5307800,
+    "officialLanguages": [
+      "English",
+      "New Zealand Sign Language",
+      "Māori"
+    ],
+    "currencies": [
+      "New Zealand dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, iron ore, sand, coal, timber, hydropower, gold, limestone",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, islands in the South Pacific Ocean, southeast of Australia || predominately mountainous with large coastal plains || consists of two main islands and a number of smaller islands; South Island, the larger main island, is the 12th-largest island in the world and is divided along its length by the Southern Alps; North Island is the 14th-largest island in the world and is not as mountainous, but it is marked by volcanism New Zealand lies along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes almost 90% of the population lives in cities and over three-quarters on North Island; Wellington is the southernmost national capital in the world || Resources: natural gas, iron ore, sand, coal, timber, hydropower, gold, limestone || Exports: milk, wood, beef, butter, sheep and goat meat (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "predominately mountainous with large coastal plains || Oceania, islands in the South Pacific Ocean, southeast of Australia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate with sharp regional contrasts || earthquakes are common, though usually not severe; volcanic activity volcanism: significant volcanism on North Island; Ruapehu (2,797 m) has a history of large eruptions in the past century; Taranaki has the potential to produce dangerous avalanches and lahars; other historically active volcanoes include Okataina, Raoul Island, Tongariro, and White Island; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, globally integrated Pacific island economy; strong agriculture, manufacturing, and tourism sectors; reliant on Chinese market for exports; recovery trajectory following deep post-pandemic recession; challenges of fiscal deficits, below-average productivity, cost of living, and drop in net migration || Exports: milk, wood, beef, butter, sheep and goat meat (2023) || Industries: agriculture, forestry, fishing, logs and wood articles, manufacturing, mining, construction, financial services, real estate services, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (de facto official) 95.4%, Maori (de jure official) 4%, Samoan 2.2%, Northern Chinese 2%, Hindi 1.5%, French 1.2%, Yue 1.1%, New Zealand Sign Language (de jure official) 0.5%, other or not stated 17.2% (2018 est.) || Christian 37.3% (Catholic 10.1%, Anglican 6.8%, Presbyterian and Congregational 5.2%, Pentecostal 1.8%, Methodist 1.6%, Church of Jesus Christ 1.2%, other 10.7%), Hindu 2.7%, Maori 1.3%, Muslim, 1.3%, Buddhist 1.1%, other religion 1.6% (includes Judaism, Spiritualism and New Age religions, Baha'i, Asian religions other than Buddhism), no religion 48.6%, objected to answering 6.7% (2018 est.) || European 64.1%, Maori 16.5%, Chinese 4.9%, Indian 4.7%, Samoan 3.9%, Tongan 1.8%, Cook Islands Maori 1.7%, English 1.5%, Filipino 1.5%, New Zealander 1%, other 13.7% (2018 est.)"
+    }
+  }
+}

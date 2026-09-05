@@ -15,12 +15,20 @@
     "currencies": [
       "naira"
     ],
-    "landBorders": [
+    "landBorderNames": [
       "Benin",
       "Cameroon",
       "Chad",
       "Niger"
     ],
+    "landBorderCodes": [
+      "bj",
+      "cm",
+      "td",
+      "ne"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
     "naturalResources": "natural gas, petroleum, tin, iron ore, coal, limestone, niobium, lead, zinc, arable land",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },

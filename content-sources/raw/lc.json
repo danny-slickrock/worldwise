@@ -1,0 +1,169 @@
+{
+  "iso": "lc",
+  "fetchedAt": "2026-09-04T23:57:09.099Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/st.json"
+    }
+  },
+  "wikidata": {
+    "name": "Saint Lucia",
+    "gec": "ST",
+    "capital": "Castries",
+    "areaKm2": 617.012867,
+    "population": 167591,
+    "continent": "North America",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "ve"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/st.json",
+    "Introduction": {
+      "Background": {
+        "text": "England and France contested Saint Lucia -- with its fine natural harbor at Castries and burgeoning sugar industry -- throughout the 17th and early 18th centuries, with possession changing 14 times; it was finally ceded to the UK in 1814 and became part of the British Windward Islands colony. Even after the abolition of slavery on its plantations in 1834, Saint Lucia remained an agricultural island, dedicated to producing tropical commodity crops. In the mid-20th century, Saint Lucia joined the West Indies Federation (1958&ndash;1962) and in 1967 became one of the six members of the West Indies Associated States, with internal self-government. In 1979, Saint Lucia gained full independence."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago"
+      },
+      "Area": {
+        "total ": {
+          "text": "616 sq km"
+        },
+        "land": {
+          "text": "606 sq km"
+        },
+        "water": {
+          "text": "10 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "158 km"
+      },
+      "Climate": {
+        "text": "tropical, moderated by northeast trade winds; dry season January to April, rainy season May to August"
+      },
+      "Terrain": {
+        "text": "volcanic and mountainous with broad, fertile valleys"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Gimie 948 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "forests, sandy beaches, minerals (pumice), mineral springs, geothermal potential"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "16.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 4.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "53.7% (2023 est.)"
+        },
+        "other": {
+          "text": "30% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hurricanes <br><br><strong>volcanism:</strong> Mount Gimie (948 m), also known as Qualibou, is a caldera on the west of the island; the iconic twin pyramidal peaks of Gros Piton (771 m) and Petit Piton (743 m) are lava-dome remnants associated with the Soufrière volcano; there have been no historical magmatic eruptions, but a minor steam eruption in 1766 spread a thin layer of ash over a wide area; Saint Lucia is part of the volcanic-island arc of the Lesser Antilles that extends from Saba in the north to Grenada in the south"
+      },
+      "Geography - note": {
+        "text": "the twin Pitons (Gros Piton and Petit Piton), striking cone-shaped peaks south of Soufri&egrave;re, are one of the scenic natural highlights of the Caribbean"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "168,462 (2025 est.)"
+        },
+        "male": {
+          "text": "81,678"
+        },
+        "female": {
+          "text": "86,784"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Saint Lucian Creole"
+      },
+      "Religions": {
+        "text": "Roman Catholic 61.5%, Protestant 25.5% (includes Seventh Day Adventist 10.4%, Pentecostal 8.9%, Baptist 2.2%, Anglican 1.6%, Church of God 1.5%, other Protestant 0.9%), other Christian 3.4% (includes Evangelical 2.3% and Jehovah's Witness 1.1%), Rastafarian 1.9%, other 0.4%, none 5.9%, unspecified 1.4% (2010 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Black/African descent 85.3%, mixed 10.9%, East Indian 2.2%, other 1.6%, unspecified 0.1% (2010 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "19.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.98% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is found on the periphery of the island, with a larger concentration in the north around the capital of Castries"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income, tourism-based Caribbean island economy; environmentally fragile; energy import-dependent; major banana producer; well-educated labor force; key infrastructure, IT, and communications investments"
+      },
+      "Agricultural products": {
+        "text": "coconuts, bananas, tropical fruits, fruits, root vegetables, plantains, vegetables, cassava, chicken, milk (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism; clothing, assembly of electronic components, beverages, corrugated cardboard boxes, lime processing, coconut processing"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, gravel and crushed stone, beer, liquor, paper containers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Guyana 20%, Suriname 15%, USA 11%, Barbados 8%, Dominica 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, cars, poultry, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical, moderated by northeast trade winds; dry season January to April, rainy season May to August"
+      }
+    }
+  }
+}

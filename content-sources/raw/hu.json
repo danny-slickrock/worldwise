@@ -1,0 +1,185 @@
+{
+  "iso": "hu",
+  "fetchedAt": "2026-09-04T23:56:38.227Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/hu.json"
+    }
+  },
+  "wikidata": {
+    "name": "Hungary",
+    "gec": "HU",
+    "capital": "Budapest",
+    "areaKm2": 93011.4,
+    "population": 9603634,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Hungarian"
+    ],
+    "currencies": [
+      "forint"
+    ],
+    "sharesBorderWithAnyType": [
+      "at",
+      "ua",
+      "sk",
+      "si",
+      "ro",
+      "hr",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/hu.json",
+    "Introduction": {
+      "Background": {
+        "text": "Hungary became a Christian kingdom in A.D. 1000 and for many centuries served as a bulwark against Ottoman Turkish expansion in Europe. The kingdom eventually became part of the Austro-Hungarian Empire, which collapsed during World War I. The country fell under communist rule after World War II. In 1956, Moscow responded to a Hungarian revolt and announcement of its withdrawal from the Warsaw Pact with a massive military intervention. Under the leadership of Janos KADAR in 1968, Hungary began liberalizing its economy, introducing so-called \"Goulash Communism.\" Hungary held its first multiparty elections in 1990 and initiated a free market economy. It joined NATO in 1999 and the EU five years later."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Europe, northwest of Romania"
+      },
+      "Area": {
+        "total ": {
+          "text": "93,028 sq km"
+        },
+        "land": {
+          "text": "89,608 sq km"
+        },
+        "water": {
+          "text": "3,420 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,106 km"
+        },
+        "border countries": {
+          "text": "Austria 321 km; Croatia 348 km; Romania 424 km; Serbia 164 km; Slovakia 627 km; Slovenia 94 km; Ukraine 128 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "temperate; cold, cloudy, humid winters; warm summers"
+      },
+      "Terrain": {
+        "text": "mostly flat to rolling plains; hills and low mountains on the Slovakian border"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kekes 1,014 m"
+        },
+        "lowest point": {
+          "text": "Tisza River 78 m"
+        },
+        "mean elevation": {
+          "text": "143 m"
+        }
+      },
+      "Natural resources": {
+        "text": "bauxite, coal, natural gas, fertile soils, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "55.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 45.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 8.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "22.7% (2023 est.)"
+        },
+        "other": {
+          "text": "20.9% (2023 est.)"
+        }
+      },
+      "Geography - note": {
+        "text": "landlocked; strategic location on main land routes between Western Europe and Balkan Peninsula, as well as between Ukraine and the Mediterranean basin; the Duna (Danube) and Tisza Rivers divide the country into three large regions"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "9,855,745 (2024 est.)"
+        },
+        "male": {
+          "text": "4,812,668"
+        },
+        "female": {
+          "text": "5,043,077"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Hungarian (official) 98.8%, English 25.3%, German 12.6%, Russian 2.1%, French 1.5%, Romanian 1.4%, other 5.1% (2022 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>A World Factbook nélkülözhetetlen forrása az alapvető információnak.  (Hungarian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> percentages add up to more than 100% because respondents were able to identify more than one spoken language"
+      },
+      "Religions": {
+        "text": "Catholic 30.1% (Roman Catholic 27.5%, Greek Catholic 1.7%, other Catholic 0.9%), Calvinist 9.8%, Lutheran 1.8%, other Christian (includes Orthodox) 1.6%, other 0.4%, none 16.1%, no answer 40.1% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Hungarian 84.3%, Romani 2.1%, German 1%, other 1.2%, unspecified 13.7% (2022 est.)",
+        "note": "<strong>note:</strong> percentages add up to more than 100% because respondents were able to identify more than one ethnic group; Romani populations are usually underestimated in official statistics and may represent 5–10% of Hungary's population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "72.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.05% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, with urban areas attracting larger and denser populations"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and OECD economy; modest recovery from 2024 recession driven by private consumption and moderated inflation; challenges include high fiscal deficits, frozen access to EU funds, and risks from export reliance; implementing tax exemptions, price controls, and mortgage interest caps ahead of 2026 elections</p>"
+      },
+      "Agricultural products": {
+        "text": "maize, wheat, barley, milk, sunflower seeds, sugar beets, rapeseed, apples, pork, grapes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining, metallurgy, construction materials, processed foods, textiles, chemicals (especially pharmaceuticals), motor vehicles"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, electric batteries, packaged medicine, computers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 25%, Italy 6%, Romania 6%, USA 5%, Slovakia 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "vehicle parts/accessories, natural gas, integrated circuits, broadcasting equipment, industrial acids/oils/alcohols (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; cold, cloudy, humid winters; warm summers"
+      }
+    }
+  }
+}

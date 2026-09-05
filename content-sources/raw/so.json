@@ -1,0 +1,183 @@
+{
+  "iso": "so",
+  "fetchedAt": "2026-09-04T23:57:02.315Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/so.json"
+    }
+  },
+  "wikidata": {
+    "name": "Somalia",
+    "gec": "SO",
+    "capital": "Mogadishu",
+    "areaKm2": 637657,
+    "population": 11031386,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Somali",
+      "Arabic"
+    ],
+    "currencies": [
+      "Somali shilling"
+    ],
+    "sharesBorderWithAnyType": [
+      "ke",
+      "et",
+      "dj"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/so.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Between A.D. 800 and 1100, immigrant Muslim Arabs and Persians set up coastal trading posts along the Gulf of Aden and the Indian Ocean, solidifying present-day Somalia’s close trading relationship with the Arab Peninsula. In the late 19th century, Britain, France, and Italy established colonies in the Somali Peninsula that lasted until 1960, when British Somaliland gained independence and joined with Italian Somaliland to form the Republic of Somalia. <br><br>The country functioned as a parliamentary democracy until 1969, when General Mohamed SIAD Barre took control in a coup, beginning a 22-year socialist dictatorship. In an effort to centralize power, SIAD called for the eradication of the clan, the key cultural and social organizing principle in Somali society. Resistance to SIAD’s socialist leadership, which was causing a rapid deterioration of the country, prompted allied clan militias to overthrow SIAD in 1991, resulting in state collapse. Subsequent fighting between rival clans for resources and territory overwhelmed the country, causing a manmade famine and prompting international intervention. Beginning in 1993, the UN spearheaded an international humanitarian mission, but the international community largely withdrew by 1995 after an incident that became known as Black Hawk Down, in which two US military helicopters were shot down in Mogadishu. The fighting and subsequent siege and rescue resulted in 21 deaths and 82 wounded among the international forces.<br><br>International peace conferences in the 2000s resulted in a number of transitional governments that operated outside Somalia. Left largely to themselves, Somalis in the country established alternative governance structures; some areas formed their own administrations, such as Somaliland and Puntland, while others developed localized institutions. Many local populations turned to sharia courts, an Islamic judicial system that implements religious law. Several of these courts came together in 2006 to form the Islamic Courts Union (ICU). The ICU established order in many areas of central and southern Somalia, including Mogadishu, but was forced out when Ethiopia intervened militarily in 2006 on behalf of the Somali Transitional Federal Government (TFG). As the TFG settled in the capital, the ICU fled to rural areas or left Somalia altogether, but the organization reemerged less than a year later as the Islamic insurgent and terrorist movement al-Shabaab, which is still active today. <br><br>In 2007, the African Union (AU) established a peacekeeping force, took over security responsibility for the country, and gave the TFG space to develop Somalia’s new government. By 2012, Somali powerbrokers agreed on a provisional constitution with a loose federal structure and established a central government in Mogadishu called the Somali Federal Government (SFG). Since then, the country has seen several interim regional administrations and three presidential elections, but significant governance and security problems remain because al-Shabaab still controls large portions of the country.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Africa, bordering the Gulf of Aden and the Indian Ocean, east of Ethiopia"
+      },
+      "Area": {
+        "total ": {
+          "text": "637,657 sq km"
+        },
+        "land": {
+          "text": "627,337 sq km"
+        },
+        "water": {
+          "text": "10,320 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,385 km"
+        },
+        "border countries": {
+          "text": "Djibouti 61 km; Ethiopia 1,640 km; Kenya 684 km"
+        }
+      },
+      "Coastline": {
+        "text": "3,025 km"
+      },
+      "Climate": {
+        "text": "principally desert; northeast monsoon (December to February), moderate temperatures in north and hot in south; southwest monsoon (May to October), torrid in the north and hot in the south, irregular rainfall, hot and humid periods (tangambili) between monsoons"
+      },
+      "Terrain": {
+        "text": "mostly flat to undulating plateau rising to hills in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Shimbiris 2,460 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "410 m"
+        }
+      },
+      "Natural resources": {
+        "text": "uranium and largely unexploited reserves of iron ore, tin, gypsum, bauxite, copper, salt, natural gas, likely oil reserves"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "70.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 68.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "7.9% (2023 est.)"
+        },
+        "other": {
+          "text": "21.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "recurring droughts; frequent dust storms over eastern plains in summer; floods during rainy season"
+      },
+      "Geography - note": {
+        "text": "strategic location on Horn of Africa along southern approaches to Bab el Mandeb and route through Red Sea and Suez Canal"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "20,324,160 (2025 est.)"
+        },
+        "male": {
+          "text": "10,170,863"
+        },
+        "female": {
+          "text": "10,153,297"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Somali (official), Arabic (official), Italian, English"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Buugga Xaqiiqda Aduunka, waa laga maarmaanka macluumaadka assasiga. (Somali)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 99.9% (Sunni Muslim 98.1%, Shia Muslim 1.2%, Islamic schismatic 0.6%), ethnic religionist 0.1% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "predominantly Somali with lesser numbers of Arabs, Bantus, and others"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "47.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.2% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "distribution varies greatly throughout the country; least densely populated areas are in the northeast and central regions, as well as areas along the Kenyan border; most populated areas are in and around the cities of Mogadishu, Marka, Boorama, Hargeysa, and Baidoa, as shown on this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income African Horn economy; 30 years of war and instability crippled economic potential; high remittances for basic survival; new fiscal federalism approach; cleared some unsustainable debt; environmentally fragile; digitally driven urbanization efforts"
+      },
+      "Agricultural products": {
+        "text": "camel milk, milk, goat milk, sheep milk, sugarcane, fruits, sorghum, cassava, vegetables, maize (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "light industries, including sugar refining, textiles, wireless communication"
+      },
+      "Exports - commodities": {
+        "text": "sheep and goats, gold, postage stamps/documents, other animals, cattle (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 35%, Saudi Arabia 27%, Oman 18%, Djibouti 8%, India 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "raw sugar, tobacco, broadcasting equipment, rice, milk (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "principally desert; northeast monsoon (December to February), moderate temperatures in north and hot in south; southwest monsoon (May to October), torrid in the north and hot in the south, irregular rainfall, hot and humid periods (tangambili) between monsoons"
+      }
+    }
+  }
+}

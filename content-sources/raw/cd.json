@@ -1,0 +1,191 @@
+{
+  "iso": "cd",
+  "fetchedAt": "2026-09-04T23:56:56.277Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/cg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Democratic Republic of the Congo",
+    "gec": "CG",
+    "capital": "Kinshasa",
+    "areaKm2": 2344858,
+    "population": 105789731,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "Congolese franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "ao",
+      "tz",
+      "cf",
+      "zm",
+      "ss",
+      "bi",
+      "cg",
+      "cm",
+      "ug",
+      "rw",
+      "sd"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/cg.json",
+    "Introduction": {
+      "Background": {
+        "text": "Bantu, Sudanic, and other migrants from West and Northeastern Africa arrived in the Congo River Basin between 2000 B.C. and A.D. 500. The territory that is now the Democratic Republic of the Congo has more than 200 ethnic groups that trace their histories to many communal organizations and kingdoms. The Kingdom of Kongo, for example, ruled the area around the mouth of the Congo River from the 14th to 19th centuries. Meanwhile, the Kingdoms of Luba and Lunda, located to the south and east, were also notable political groupings in the territory and ruled from the 16th and 17th centuries to the 19th century. European prospectors in the Congo Basin invaded and splintered these kingdoms in the late 1800’s, sponsored by King LEOPOLD II of Belgium, and the kingdoms were eventually forced to grant Leopold the rights to the Congo territory as his private property. During this period, known as the Congo Free State, the king's private colonial military forced the local population to produce rubber. From 1885 to 1908, millions of Congolese people died as a result of disease and inhumane treatment. International condemnation finally forced LEOPOLD to cede the land to the state of Belgium, creating the Belgian Congo.<br><br>The Republic of the Congo gained its independence from Belgium in 1960, but its early years were marred by instability. Col. Joseph MOBUTU seized power and declared himself president in a 1965 coup. He subsequently changed his name to MOBUTU Sese Seko and the country's name to Zaire. MOBUTU retained his position for 32 years, using sham elections and brute force. In 1994, a massive inflow of refugees from conflict in neighboring Rwanda and Burundi sparked ethnic strife and civil war. A rebellion backed by Rwanda and Uganda and fronted by Laurent KABILA toppled the MOBUTU regime in 1997. KABILA renamed the country the Democratic Republic of the Congo (DRC). In 1998, another insurrection -- again backed by Rwanda and Uganda -- challenged the KABILA regime, but troops from Angola, Chad, Namibia, Sudan, and Zimbabwe helped quell the uprising. <br><br>In 2001, KABILA was assassinated, and his son, Joseph KABILA, was named head of state. In 2002, the new president negotiated the withdrawal of Rwandan forces occupying the eastern DRC; the remaining warring parties subsequently signed the Pretoria Accord to end the fighting and establish a government of national unity. KABILA was elected as president in 2006 and 2011. The DRC constitution barred him from running for a third term, so in 2016, the DRC Government delayed national elections for two years. This fueled significant civil and political unrest, with sporadic street protests and exacerbation of tensions in the eastern DRC regions.  <br><br>The results of the 2018 elections were disputed, but opposition candidate Felix TSHISEKEDI, son of long-time opposition leader Etienne TSHISEKEDI, was announced as the election winner. This was the first transfer of power to an opposition candidate without significant violence or a coup since 1960. In 2023, the DRC held its fourth electoral cycle since independence; TSHISEKEDI was proclaimed the winner despite some allegations of fraud, with his Sacred Union alliance retaining a large parliamentary majority.  <br><br>The DRC continues to experience violence -- particularly in the East -- perpetrated by more than 100 armed groups active in the region, including the March 23 (M23) rebel group, the ISIS-affiliated Allied Democratic Forces (ADF, or ISIS-DRC), the Democratic Forces for the Liberation of Rwanda (FDLR), and assorted local militias known as Mai Mai militias. The UN Organization Stabilization Mission in the DRC (MONUSCO) has operated in the region since 1999 and is the largest and most expensive UN peacekeeping mission in the world."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, northeast of Angola"
+      },
+      "Area": {
+        "total ": {
+          "text": "2,344,858 sq km"
+        },
+        "land": {
+          "text": "2,267,048 sq km"
+        },
+        "water": {
+          "text": "77,810 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "11,027 km"
+        },
+        "border countries": {
+          "text": "Angola 2,646 km (of which 225 km is the boundary of Angola's discontiguous Cabinda Province); Burundi 236 km; Central African Republic 1,747 km; Republic of the Congo 1,775 km; Rwanda 221 km; South Sudan 714 km; Tanzania 479 km; Uganda 877 km; Zambia 2,332 km"
+        }
+      },
+      "Coastline": {
+        "text": "37 km"
+      },
+      "Climate": {
+        "text": "tropical; hot and humid in equatorial river basin; cooler and drier in southern highlands; cooler and wetter in eastern highlands; north of Equator - wet season (April to October), dry season (December to February); south of Equator - wet season (November to March), dry season (April to October)"
+      },
+      "Terrain": {
+        "text": "vast central basin is a low-lying plateau; mountains in east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pic Marguerite on Mont Ngaliema (Mount Stanley) 5,110 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "726 m"
+        }
+      },
+      "Natural resources": {
+        "text": "cobalt, copper, niobium, tantalum, petroleum, industrial and gem diamonds, gold, silver, zinc, manganese, tin, uranium, coal, hydropower, timber",
+        "note": "<strong>note 1:</strong> coltan, the industrial name for a columbite–tantalite mineral from which niobium and tantalum are extracted, is mainly artisanal and small-scale; tantalum, tin, tungsten, and gold extracted from central Africa are considered \"conflict minerals\" and as such are subject to international monitoring<br><br><strong>note 2:</strong> the DROC is the World's leading producer of cobalt, accounting for as much as 70% of the World's supply; between 20-30% of this cobalt is produced in artisanal and small-scale mining operations"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "15.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 6.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 8% (2023 est.)"
+        },
+        "forest": {
+          "text": "61.6% (2023 est.)"
+        },
+        "other": {
+          "text": "22.9% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts in south; Congo River floods (seasonal); active volcanoes in the east along the Great Rift Valley <br><br><strong>volcanism:</strong> the active volcano Nyiragongo (3,470 m) poses a major threat to the city of Goma, home to a quarter of a million people; it produces unusually fast-moving lava, known to travel up to 100 km/hr; Nyiragongo has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; its neighbor Nyamuragira is Africa's most active volcano; Visoke is the only other historically active volcano"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> second-largest country in Africa (after Algeria) and largest country in sub-Saharan Africa; straddles the equator; dense tropical rainforest in central river basin and eastern highlands; the narrow strip of land that controls the lower Congo River is the DRC's only outlet to the South Atlantic Ocean <br><br><strong>note 2:</strong> the Congo River, most of which flows through the DRC, has never been accurately measured along much of its length because of its speed, cataracts, rapids, and turbulence; nonetheless, it is conceded to be the deepest river in the world, with estimates of the point of greatest depth varying between 220 and 250 meters"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "119,038,825 (2025 est.)"
+        },
+        "male": {
+          "text": "59,509,076"
+        },
+        "female": {
+          "text": "59,529,749"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), Lingala (a trade language), Kingwana (a dialect of Kiswahili or Swahili), Kikongo, Tshiluba"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Buku oyo ya bosembo ya Mokili Mobimba Ezali na Makanisi ya Liboso Mpenza. (Lingala)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "&nbsp;Christian 93/1% (Roman Catholic 29.9%, Protestant 26.7%, other Christian 36.5%), Kimbanguist 2.8%, Muslim 1.3%, other (includes syncretic sects and indigenous beliefs) 1.2%, none 1.3%, unspecified 0.2% (2014 est.)"
+      },
+      "Ethnic groups": {
+        "text": "more than 200 African ethnic groups of which the majority are Bantu; the four largest groups - Mongo, Luba, Kongo (all Bantu), and the Mangbetu-Azande (Hamitic) - make up about 45% of the population"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "47.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.33% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "urban clusters are spread throughout the country, particularly in the northeast along the border with Uganda, Rwanda, and Burundi; the largest city is the capital, Kinshasha, located in the west along the Congo River; the south is least densely populated, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "very poor, large, natural resource-rich sub-Saharan country; possesses the world&rsquo;s second largest rainforest; increasing Chinese extractive sector trade; massive decrease in government investments; increasing current account deficit and public debts"
+      },
+      "Agricultural products": {
+        "text": "cassava, plantains, sugarcane, maize, oil palm fruit, rice, root vegetables, bananas, sweet potatoes, groundnuts (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "mining (copper, cobalt, gold, diamonds, coltan, zinc, tin, tungsten), mineral processing, consumer products (textiles, plastics, footwear, cigarettes), metal products, processed foods and beverages, timber, cement, commercial ship repair"
+      },
+      "Exports - commodities": {
+        "text": "refined copper, cobalt, copper ore, raw copper, crude petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 69%, UAE 7%, India 3%, Spain 3%, Egypt 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "trucks, refined petroleum, stone processing machines, plastic products, sulphur (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot and humid in equatorial river basin; cooler and drier in southern highlands; cooler and wetter in eastern highlands; north of Equator - wet season (April to October), dry season (December to February); south of Equator - wet season (November to March), dry season (April to October)"
+      }
+    }
+  }
+}

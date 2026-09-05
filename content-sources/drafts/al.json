@@ -1,0 +1,71 @@
+{
+  "iso": "al",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.372Z",
+  "structured": {
+    "code": "al",
+    "name": "Albania",
+    "capital": "Tirana",
+    "continent": "Europe",
+    "areaKm2": 28748,
+    "population": 2811655,
+    "officialLanguages": [
+      "Albanian"
+    ],
+    "currencies": [
+      "Albanian lek"
+    ],
+    "landBorderNames": [
+      "Greece",
+      "North Macedonia",
+      "Montenegro"
+    ],
+    "landBorderCodes": [
+      "gr",
+      "mk",
+      "me"
+    ],
+    "landBorderTerritories": [
+      "Kosovo"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, coal, bauxite, chromite, copper, iron ore, nickel, salt, timber, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, bordering the Adriatic Sea and Ionian Sea, between Greece to the south and Montenegro and Kosovo to the north || mostly mountains and hills; small plains along coast || strategic location along Strait of Otranto (links Adriatic Sea to Ionian Sea and Mediterranean Sea) || Resources: petroleum, natural gas, coal, bauxite, chromite, copper, iron ore, nickel, salt, timber, hydropower, arable land || Exports: garments, footwear, electricity, crude petroleum, iron alloys (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains and hills; small plains along coast || Southeastern Europe, bordering the Adriatic Sea and Ionian Sea, between Greece to the south and Montenegro and Kosovo to the north"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mild temperate; cool, cloudy, wet winters; hot, clear, dry summers; interior is cooler and wetter || destructive earthquakes; tsunamis occur along southwestern coast; floods; drought"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income Balkan economy; EU accession candidate; growth bolstered by tourism, agriculture, mining, construction, and private consumption; fiscal consolidation through revenue collection and tax compliance enhancements to address public debt; challenges include weak governance, corruption, and high emigration rates || Exports: garments, footwear, electricity, crude petroleum, iron alloys (2023) || Industries: food; footwear, apparel and clothing; lumber, oil, cement, chemicals, mining, basic metals, hydropower"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 56.7%, Roman Catholic 10%, Orthodox 6.8%, atheist 2.5%, Bektashi (a Sufi order) 2.1%, other 5.7%, unspecified 16.2% (2011 est.) || Albanian 82.6%, Greek 0.9%, other 1% (including Vlach, Romani, Macedonian, Montenegrin, and Egyptian), unspecified 15.5% (2011 est.)"
+    }
+  }
+}

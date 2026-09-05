@@ -1,0 +1,67 @@
+{
+  "iso": "ye",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.406Z",
+  "structured": {
+    "code": "ye",
+    "name": "Yemen",
+    "capital": "Aden",
+    "continent": "Asia",
+    "areaKm2": 455503,
+    "population": 28250420,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Yemeni Rial"
+    ],
+    "landBorderNames": [
+      "Oman",
+      "Saudi Arabia"
+    ],
+    "landBorderCodes": [
+      "om",
+      "sa"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, fish, rock salt, marble; small deposits of coal, gold, lead, nickel, and copper; fertile soil in west",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Arabian Sea, Gulf of Aden, and Red Sea, between Oman and Saudi Arabia || narrow coastal plain backed by flat-topped hills and rugged mountains; dissected upland desert plains in center slope into the desert interior of the Arabian Peninsula || strategic location on Bab el Mandeb, the strait linking the Red Sea and the Gulf of Aden and one of world's most active shipping lanes || Resources: petroleum, fish, rock salt, marble; small deposits of coal, gold, lead, nickel, and copper; fertile soil in west || Exports: gold, fish, scrap iron, shellfish, industrial acids/oils/alcohols (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "narrow coastal plain backed by flat-topped hills and rugged mountains; dissected upland desert plains in center slope into the desert interior of the Arabian Peninsula || Middle East, bordering the Arabian Sea, Gulf of Aden, and Red Sea, between Oman and Saudi Arabia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly desert; hot and humid along west coast; temperate in western mountains affected by seasonal monsoon; extraordinarily hot, dry, harsh desert in east || sandstorms and dust storms in summer volcanism: limited volcanic activity; Jebel at Tair (Jabal al-Tair, Jebel Teir, Jabal al-Tayr, Jazirat at-Tair) (244 m), which forms an island in the Red Sea, became active in 2007; other historically active volcanoes include Harra of Arhab, Harras of Dhamar, Harra es-Sawad, and Jebel Zubair, although many of these have not erupted in over a century"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Middle Eastern economy; infrastructure, trade, and economic institutions devastated by civil war; oil/gas-dependent but decreasing reserves; massive poverty, food insecurity, and unemployment; high inflation || Exports: gold, fish, scrap iron, shellfish, industrial acids/oils/alcohols (2023) || Industries: crude oil production and petroleum refining; small-scale production of cotton textiles, leather goods; food processing; handicrafts; aluminum products; cement; commercial ship repair; natural gas production"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 99.1% (official; virtually all are citizens, an estimated 65% are Sunni and 35% are Shia), other 0.9% (includes Jewish, Baha'i, Hindu, and Christian; many are refugees or temporary foreign residents) (2020 est.) || predominantly Arab; but also Afro-Arab, South Asian, European"
+    }
+  }
+}

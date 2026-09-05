@@ -1,0 +1,79 @@
+{
+  "iso": "zm",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.422Z",
+  "structured": {
+    "code": "zm",
+    "name": "Zambia",
+    "capital": "Lusaka",
+    "continent": "Africa",
+    "areaKm2": 752618,
+    "population": 19610769,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Zambian Kwacha"
+    ],
+    "landBorderNames": [
+      "Angola",
+      "Botswana",
+      "Democratic Republic of the Congo",
+      "Malawi",
+      "Mozambique",
+      "Namibia",
+      "Tanzania",
+      "Zimbabwe"
+    ],
+    "landBorderCodes": [
+      "ao",
+      "bw",
+      "cd",
+      "mw",
+      "mz",
+      "na",
+      "tz",
+      "zw"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "copper, cobalt, zinc, lead, coal, emeralds, gold, silver, uranium, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, east of Angola, south of the Democratic Republic of the Congo || mostly high plateau with some hills and mountains || landlocked; the Zambezi forms a natural river boundary with Zimbabwe; Lake Kariba on the Zambia-Zimbabwe border forms the world's largest reservoir by volume (180 cu km; 43 cu mi) || Resources: copper, cobalt, zinc, lead, coal, emeralds, gold, silver, uranium, hydropower || Exports: raw copper, refined copper, gold, precious stones, electricity (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly high plateau with some hills and mountains || Southern Africa, east of Angola, south of the Democratic Republic of the Congo"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; modified by altitude; rainy season (October to April) || periodic drought; tropical storms (November to April)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower-middle-income sub-Saharan economy; regional hydroelectricity producer; trade ties and infrastructure investments from China; IMF assistance to restructure debt burden; one of youngest and fastest-growing labor forces; systemic corruption; extreme rural poverty || Exports: raw copper, refined copper, gold, precious stones, electricity (2023) || Industries: copper mining and processing, emerald mining, construction, foodstuffs, beverages, chemicals, textiles, fertilizer, horticulture"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Bemba 33.4%, Nyanja 14.7%, Tonga 11.4%, Lozi 5.5%, Chewa 4.5%, Nsenga 2.9%, Tumbuka 2.5%, Lunda (North Western) 1.9%, Kaonde 1.8%, Lala 1.8%, Lamba 1.8%, English (official) 1.7%, Luvale 1.5%, Mambwe 1.3%, Namwanga 1.2%, Lenje 1.1%, Bisa 1%, other 9.7%, unspecified 0.2% (2010 est.) || Protestant 75.3%, Roman Catholic 20.2%, other 2.7% (includes Muslim, Buddhist, Hindu, and Baha'i), none 1.8% (2010 est.) || Bemba 21%, Tonga 13.6%, Chewa 7.4%, Lozi 5.7%, Nsenga 5.3%, Tumbuka 4.4%, Ngoni 4%, Lala 3.1%, Kaonde 2.9%, Namwanga 2.8%, Lunda (north Western) 2.6%, Mambwe 2.5%, Luvale 2.2%, Lamba 2.1%, Ushi 1.9%, Lenje 1.6%, Bisa 1.6%, Mbunda 1.2%, other 13.8%, unspecified 0.4% (2010 est.)"
+    }
+  }
+}

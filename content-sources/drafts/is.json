@@ -15,7 +15,10 @@
     "currencies": [
       "Icelandic króna"
     ],
-    "landBorders": [],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
     "naturalResources": "fish, hydropower, geothermal power, diatomite",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },

@@ -1,0 +1,71 @@
+{
+  "iso": "gt",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.428Z",
+  "structured": {
+    "code": "gt",
+    "name": "Guatemala",
+    "capital": "Guatemala City",
+    "continent": "North America",
+    "areaKm2": 108889,
+    "population": 17263239,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "quetzal"
+    ],
+    "landBorderNames": [
+      "Belize",
+      "El Salvador",
+      "Honduras",
+      "Mexico"
+    ],
+    "landBorderCodes": [
+      "bz",
+      "sv",
+      "hn",
+      "mx"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, nickel, rare woods, fish, chicle, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering the North Pacific Ocean, between El Salvador and Mexico, and bordering the Gulf of Honduras (Caribbean Sea) between Honduras and Belize || two east-west trending mountain chains divide the country into three regions: the mountainous highlands, the Pacific coast south of mountains, and the vast northern Peten lowlands || despite having both eastern and western coastlines (Caribbean Sea and Pacific Ocean), there are no natural harbors on the west coast Guatemala is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes || Resources: petroleum, nickel, rare woods, fish, chicle, hydropower || Exports: garments, bananas, coffee, palm oil, raw sugar (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "two east-west trending mountain chains divide the country into three regions: the mountainous highlands, the Pacific coast south of mountains, and the vast northern Peten lowlands || Central America, bordering the North Pacific Ocean, between El Salvador and Mexico, and bordering the Gulf of Honduras (Caribbean Sea) between Honduras and Belize"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid in lowlands; cooler in highlands || numerous volcanoes in mountains, with occasional violent earthquakes; Caribbean coast extremely susceptible to hurricanes and other tropical storms volcanism: significant volcanic activity in the Sierra Madre range; Santa Maria (3,772 m) has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Pacaya (2,552 m) is one of the country's most active volcanoes, with frequent eruptions since 1965; other historically active volcanoes include Acatenango, Almolonga, Atitlan, Fuego, and Tacana; see note 2 under \"Geography - note\""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "developing Central American economy; steady economic growth fueled by remittances; high poverty and income inequality; limited government services, lack of employment opportunities, and frequent natural disasters impede human development efforts and drive emigration || Exports: garments, bananas, coffee, palm oil, raw sugar (2023) || Industries: sugar, textiles and clothing, furniture, chemicals, petroleum, metals, rubber, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Evangelical 45.7%, Roman Catholic 42.4%, none 11%, unspecified 0.9% (2023 est.) || Mestizo (mixed Indigenous-Spanish - in local Spanish called Ladino) 56%, Maya 41.7%, Xinca (Indigenous, non-Maya) 1.8%, African descent 0.2%, Garifuna (mixed West and Central African, Island Carib, and Arawak) 0.1%, foreign 0.2% (2018 est.)"
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "iso": "tg",
+  "fetchedAt": "2026-09-04T23:57:03.285Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/to.json"
+    }
+  },
+  "wikidata": {
+    "name": "Togo",
+    "gec": "TO",
+    "capital": "Lomé",
+    "areaKm2": 56785,
+    "population": 7797694,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "gh",
+      "bj",
+      "bf"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/to.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>From the 11th to the 16th centuries, various ethnic groups settled the Togo region. From the 16th to the 18th centuries, the coastal region became a major trading center for enslaved people, and the surrounding region took on the name of \"The Slave Coast.\" In 1884, Germany declared the area a protectorate called Togoland, which included present-day Togo. After World War I, colonial rule over Togo was transferred to France. French Togoland became Togo upon independence in 1960. <br><br>Gen. Gnassingbe EYADEMA, installed as military ruler in 1967, ruled Togo with a heavy hand for almost four decades. Despite the facade of multi-party elections instituted in the early 1990s, EYADEMA largely dominated the government. His Rally of the Togolese People (RPT) party has been in power almost continually since 1967, with its successor, the Union for the Republic, maintaining a majority of seats in today's legislature. Upon EYADEMA's death in 2005, the military installed his son, Faure GNASSINGBE, as president and then engineered his formal election two months later. Togo held its first relatively free and fair legislative elections in 2007. Since then, GNASSINGBE has started the country along a gradual path to democratic reform. Togo has held multiple presidential and legislative elections, and in 2019, the country held its first local elections in 32 years. <br><br>Despite those positive moves, political reconciliation has moved slowly, and the country experiences periodic outbursts of protests from frustrated citizens, leading to violence between security forces and protesters. Constitutional changes in 2019 to institute a runoff system in presidential elections and to establish term limits have done little to reduce the resentment many Togolese feel after more than 50 years of one-family rule. GNASSINGBE became eligible for his current fourth term and one additional fifth term under the new rules. The next presidential election is set for 2025. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the Bight of Benin, between Benin and Ghana"
+      },
+      "Area": {
+        "total ": {
+          "text": "56,785 sq km"
+        },
+        "land": {
+          "text": "54,385 sq km"
+        },
+        "water": {
+          "text": "2,400 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,880 km"
+        },
+        "border countries": {
+          "text": "Benin 651 km; Burkina Faso 131 km; Ghana 1,098 km"
+        }
+      },
+      "Coastline": {
+        "text": "56 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid in south; semiarid in north"
+      },
+      "Terrain": {
+        "text": "gently rolling savanna in north; central hills; southern plateau; low coastal plain with extensive lagoons and marshes"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Agou 986 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "236 m"
+        }
+      },
+      "Natural resources": {
+        "text": "phosphates, limestone, marble, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "70.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 48.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 18.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "22.4% (2023 est.)"
+        },
+        "other": {
+          "text": "7.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry harmattan wind can reduce visibility in north during winter; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "stretches through six distinct geographic regions; climate varies from tropical to savanna"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "9,143,439 (2025 est.)"
+        },
+        "male": {
+          "text": "4,488,825"
+        },
+        "female": {
+          "text": "4,654,614"
+        }
+      },
+      "Languages": {
+        "text": "French (official, language of commerce), Ewe and Mina (in the south), Kabye (sometimes spelled Kabiye) and Dagomba (in the north)"
+      },
+      "Religions": {
+        "text": "Christian 42.3%, folk religion 36.9%, Muslim 14%, Hindu &lt;1%, Buddhist &lt;1%, Jewish &lt;1%, other &lt;1%, none 6.2% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Adja-Ewe/Mina 42.4%, Kabye/Tem 25.9%, Para-Gourma/Akan 17.1%, Akposso/Akebu 4.1%, Ana-Ife 3.2%, other Togolese 1.7%, foreigners 5.2%, no response 0.4% (2013-14 est.)",
+        "note": "<strong>note:</strong> Togo has an estimated 37 ethnic groups"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "44.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.6% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "one of the more densely populated African nations, with most of the population residing in rural communities; density is highest in the south on or near the Atlantic coast, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income West African economy; primarily agrarian economy; has a deep-water port; growing international shipping locale; improving privatization and public budgeting transparency; key phosphate mining industry; extremely high rural poverty"
+      },
+      "Agricultural products": {
+        "text": "cassava, maize, yams, sorghum, soybeans, beans, rice, vegetables, oil palm fruit, cotton (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "phosphate mining, agricultural processing, cement, handicrafts, textiles, beverages"
+      },
+      "Exports - commodities": {
+        "text": "gold, refined petroleum, soybeans, phosphates, coconuts/brazil nuts/cashews (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 40%, India 13%, Angola 13%, Burkina Faso 4%, Cote d'Ivoire 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, garments, rice, palm oil, motorcycles and cycles (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid in south; semiarid in north"
+      }
+    }
+  }
+}

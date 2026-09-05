@@ -1,0 +1,71 @@
+{
+  "iso": "mw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.415Z",
+  "structured": {
+    "code": "mw",
+    "name": "Malawi",
+    "capital": "Lilongwe",
+    "continent": "Africa",
+    "areaKm2": 118484,
+    "population": 17563749,
+    "officialLanguages": [
+      "English",
+      "Chewa",
+      "Tumbuka"
+    ],
+    "currencies": [
+      "Malawian kwacha"
+    ],
+    "landBorderNames": [
+      "Mozambique",
+      "Tanzania",
+      "Zambia"
+    ],
+    "landBorderCodes": [
+      "mz",
+      "tz",
+      "zm"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "limestone, arable land, hydropower, unexploited deposits of uranium, coal, and bauxite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, east of Zambia, west and north of Mozambique || narrow elongated plateau with rolling plains, rounded hills, some mountains || landlocked; Lake Nyasa, about 580 km (360 mi) long, is the country's most prominent physical feature; it contains more fish species than any other lake on earth || Resources: limestone, arable land, hydropower, unexploited deposits of uranium, coal, and bauxite || Exports: tobacco, tea, dried legumes, soybean meal, raw sugar (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "narrow elongated plateau with rolling plains, rounded hills, some mountains || Southern Africa, east of Zambia, west and north of Mozambique"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "sub-tropical; rainy season (November to May); dry season (May to November) || flooding; droughts; earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income East African economy; primarily agrarian; investing in human capital; urban poverty increasing due to COVID-19; high public debt; endemic corruption and poor property rights; poor hydroelectric grid; localized pharmaceutical industry || Exports: tobacco, tea, dried legumes, soybean meal, raw sugar (2023) || Industries: tobacco, tea, sugar, sawmill products, cement, consumer goods"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Chewa (dominant), Lambya, Lomwe, Ngoni, Nkhonde, Nyakyusa, Nyanja, Sena, Tonga, Tumbuka, Yao || Protestant 33.5% (includes Church of Central Africa Presbyterian 14.2%, Seventh Day Adventist/Baptist 9.4%, Pentecostal 7.6%, Anglican 2.3%), Roman Catholic 17.2%, other Christian 26.6%, Muslim 13.8%, traditionalist 1.1%, other 5.6%, none 2.1% (2018 est.) || Chewa 34.3%, Lomwe 18.8%, Yao 13.2%, Ngoni 10.4%, Tumbuka 9.2%, Sena 3.8%, Mang'anja 3.2%, Tonga 1.8%, Nyanja 1.8%, Nkhonde 1%, other 2.2%, foreign 0.3% (2018 est.)"
+    }
+  }
+}

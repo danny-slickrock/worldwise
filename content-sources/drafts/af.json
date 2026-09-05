@@ -1,0 +1,83 @@
+{
+  "iso": "af",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.390Z",
+  "structured": {
+    "code": "af",
+    "name": "Afghanistan",
+    "capital": "Kabul",
+    "continent": "Asia",
+    "areaKm2": 652230,
+    "population": 41454761,
+    "officialLanguages": [
+      "Balochi",
+      "Pashayi",
+      "Nuristani",
+      "Pashto",
+      "Dari",
+      "Pamir",
+      "Uzbek",
+      "Turkmen",
+      "Arabic"
+    ],
+    "currencies": [
+      "afghani"
+    ],
+    "landBorderNames": [
+      "China",
+      "Iran",
+      "Pakistan",
+      "Tajikistan",
+      "Turkmenistan",
+      "Uzbekistan"
+    ],
+    "landBorderCodes": [
+      "cn",
+      "ir",
+      "pk",
+      "tj",
+      "tm",
+      "uz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, petroleum, coal, copper, chromite, talc, barites, sulfur, lead, zinc, iron ore, salt, precious and semiprecious stones, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, north and west of Pakistan, east of Iran || mostly rugged mountains; plains in north and southwest || landlocked; the Hindu Kush mountains that run northeast to southwest divide the northern provinces from the rest of the country; the highest peaks are in the northern Vakhan (Wakhan Corridor) || Resources: natural gas, petroleum, coal, copper, chromite, talc, barites, sulfur, lead, zinc, iron ore, salt, precious and semiprecious stones, arable land || Exports: coal, grapes, tropical fruits, gum resins, other nuts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged mountains; plains in north and southwest || Southern Asia, north and west of Pakistan, east of Iran"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "arid to semiarid; cold winters and hot summers || damaging earthquakes occur in Hindu Kush mountains; flooding; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income South Asian economy; economy stable after major contraction due to Taliban takeover, but recovery remains fragile; widespread poverty and obstacles to human development; import-reliant for food, fuel, and machinery; ongoing sanctions, suspended development aid, and frozen reserve assets || Exports: coal, grapes, tropical fruits, gum resins, other nuts (2023) || Industries: small-scale production of bricks, textiles, soap, furniture, shoes, fertilizer, apparel, food products, non-alcoholic beverages, mineral water, cement; handwoven carpets; natural gas, coal, copper"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 99.7% (Sunni 84.7 - 89.7%, Shia 10 - 15%), other &lt;0.3% (2009 est.) || current, reliable statistical data on ethnicity in Afghanistan are not available; Afghanistan's 2004 Constitution cited Pashtun, Tajik, Hazara, Uzbek, Turkman, Baluch, Pashaie, Nuristani, Aymaq, Arab, Qirghiz, Qizilbash, Gujur, and Brahwui ethnicities; Afghanistan has dozens of other small ethnic groups"
+    }
+  }
+}

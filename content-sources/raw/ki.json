@@ -1,0 +1,176 @@
+{
+  "iso": "ki",
+  "fetchedAt": "2026-09-04T23:57:10.918Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/kr.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kiribati",
+    "gec": "KR",
+    "capital": "South Tarawa",
+    "areaKm2": 811,
+    "population": 134518,
+    "continent": "Insular Oceania",
+    "officialLanguages": [
+      "English",
+      "Gilbertese"
+    ],
+    "currencies": [
+      "Kiribati dollar",
+      "Australian dollar"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "fr"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/kr.json",
+    "Introduction": {
+      "Background": {
+        "text": "Kiribati is made up of three distinct island groups -- the Gilbert Islands, the Line Islands, and the Phoenix Islands. The first Austronesian voyagers arrived in the Gilbert Islands as early as 3000 B.C., but these islands were not widely settled until about A.D. 200 by Micronesians. Around 1300, Samoans and Tongans invaded the southern Gilbert Islands, then known as Tungaru, bringing Polynesian cultural elements with them. Later arrivals of Fijians brought Melanesian elements to the Gilbert Islands, and extensive intermarriage between the Micronesian, Polynesian, and Melanesian people led to the creation of what would become Gilbertese cultural traditions by the time Europeans spotted the islands in the 1600s. The Phoenix Islands and Line Islands were both visited by various Melanesian and Polynesian peoples, but their isolation and lack of natural resources meant that long-term settlements were not possible. Both island groups were uninhabited by the time of European contact.<br> <br>Kiribati experienced sustained European contact by the 1760s; all three island groups were named and charted by 1826. American whaling ships frequently passed through the islands, and the UK declared a protectorate over the Gilbert and nearby Ellice Islands in 1892, in an attempt to block growing US influence. Phosphate-rich Banaba Island was annexed to the protectorate in 1900. In 1916, the protectorate became a colony, and some Line Islands were added in 1916 and 1919, with the final ones added in 1972. The Phoenix Islands were added to the colony in 1937, and the UK agreed to share jurisdiction of some with the US because of their strategic location for aviation. During World War II, the islands were occupied by Japanese forces but were ejected by US amphibious assaults. The Ellice Islands became its own colony in 1974 and was renamed Tuvalu for “eight standing together” in 1975. The Gilbert Islands became fully self-governing in 1977 and independent in 1979 under the new name of Kiribati, the Gilbertese spelling of Gilberts. The US relinquished all claims to the sparsely inhabited Phoenix and Line Islands in a 1979 treaty of friendship.<br><br>In 2012, Kiribati purchased a 22 sq km (8.5 sq mi) plot of land in Fiji for potential eventual resettlement of its population because of climate change, and in 2014 Fijian Prime Minister Voreqe BAINIMARAMA said residents of Kiribati would be welcome to relocate to Fiji if their country is swamped by rising sea levels."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, group of 32 coral atolls and one raised coral island in the Pacific Ocean, straddling the Equator; the capital Tarawa is about halfway between Hawaii and Australia"
+      },
+      "Area": {
+        "total ": {
+          "text": "811 sq km"
+        },
+        "land": {
+          "text": "811 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        },
+        "note": "<strong>note:</strong> includes three island groups -- Gilbert Islands, Line Islands, and Phoenix Islands -- dispersed over about 3.5 million sq km (1.35 million sq mi)"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,143 km"
+      },
+      "Climate": {
+        "text": "tropical; marine, hot and humid, moderated by trade winds"
+      },
+      "Terrain": {
+        "text": "mostly low-lying coral atolls surrounded by extensive reefs"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "unnamed elevation on Banaba 81 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "2 m"
+        }
+      },
+      "Natural resources": {
+        "text": "phosphate (production discontinued in 1979), coconuts (copra), fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "42% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 2.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 39.5% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2022 est.)"
+        },
+        "forest": {
+          "text": "1.3% (2023 est.)"
+        },
+        "other": {
+          "text": "56.7% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "typhoons can occur any time, but usually November to March; occasional tornadoes; low level of some of the islands make them sensitive to changes in sea level"
+      },
+      "Geography - note": {
+        "text": "21 of the 33 islands are inhabited; Banaba (Ocean Island) in Kiribati is one of the three great phosphate rock islands in the Pacific Ocean -- the others are Makatea in French Polynesia, and Nauru; Kiribati is the only country in the world to fall into all four hemispheres (northern, southern, eastern, and western)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "116,545 (2024 est.)"
+        },
+        "male": {
+          "text": "56,364"
+        },
+        "female": {
+          "text": "60,181"
+        }
+      },
+      "Languages": {
+        "text": "Gilbertese, English (official)"
+      },
+      "Religions": {
+        "text": "Roman Catholic 58.9%, Kiribati Uniting Church 21.2%, Kiribati Protestant Church 8.4%, Church of Jesus Christ 5.6%, Seventh Day Adventist 2.1%, Baha'i 2.1%, other 1.7% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "I-Kiribati 95.78%, I-Kiribati/mixed 3.8%, Tuvaluan 0.2%, other 1.7% (2020 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "57.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.77% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "consists of three archipelagos spread out over an area roughly the size of India; the eastern Line Islands and central Phoenix Islands are sparsely populated, but the western Gilbert Islands are some of the most densely settled places on earth, with the main island of South Tarawa boasting a population density similar to Tokyo or Hong Kong"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "lower-middle income, Pacific island economy; environmentally fragile; sizable remittances; key phosphate mining fund; tourism and fishing industries; public sector-dominated economy; recent withdrawal from Pacific Islands Forum; ongoing constitutional crisis"
+      },
+      "Agricultural products": {
+        "text": "coconuts, bananas, vegetables, taro, tropical fruits, pork, chicken, nuts, eggs, pork offal (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "fishing, handicrafts"
+      },
+      "Exports - commodities": {
+        "text": "fish, coconut oil (2023)",
+        "note": "<strong>note:</strong> top export commodities based on value in dollars over $500,000"
+      },
+      "Exports - partners": {
+        "text": "Thailand 85%, Japan 6%, Philippines 3%, UAE 2%, Fiji 1% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "ships, centrifuges, refined petroleum, rice, raw sugar (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; marine, hot and humid, moderated by trade winds"
+      }
+    }
+  }
+}

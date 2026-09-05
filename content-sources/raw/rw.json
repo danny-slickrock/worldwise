@@ -1,0 +1,186 @@
+{
+  "iso": "rw",
+  "fetchedAt": "2026-09-04T23:57:01.244Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/rw.json"
+    }
+  },
+  "wikidata": {
+    "name": "Rwanda",
+    "gec": "RW",
+    "capital": "Kigali",
+    "areaKm2": 26338,
+    "population": 14569341,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "English",
+      "Swahili",
+      "Kinyarwanda"
+    ],
+    "currencies": [
+      "Rwandan franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "tz",
+      "bi",
+      "cd",
+      "ug"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/rw.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Rwanda -- a small and centralized country dominated by rugged hills and fertile volcanic soil -- has exerted disproportionate influence over the African Great Lakes region for centuries. A Rwandan kingdom increasingly dominated the region from the mid-18th century onward, with the Tutsi monarchs gradually extending the power of the royal court into peripheral areas and expanding their borders through military conquest. While the current ethnic labels Hutu and Tutsi predate colonial rule, their flexibility and importance have varied significantly over time and often manifested more as a hierarchical class distinction than an ethnic or cultural distinction. The majority Hutu and minority Tutsi have long shared a common language and culture, and intermarriage was frequent. <br><br>The Rwandan royal court centered on the Tutsi king (<em>mwami</em>), who relied on an extensive network of political, cultural, and economic relationships. Social categories became more rigid during the reign of RWABUGIRI (1860-1895), who focused on aggressive expansion and solidifying Rwanda’s bureaucratic structures. German colonial conquest began in the late 1890s, but the territory was ceded to Belgian forces in 1916 during World War I. Both European nations quickly realized the benefits of ruling through the already centralized Rwandan Tutsi kingdom. Colonial rule reinforced existing trends toward autocratic and exclusionary rule, leading to the elimination of traditional positions of authority for Hutus. Belgian administrators significantly increased requirements for communal labor and instituted harsh taxes, which fed the population's frustration. Changing political attitudes in Belgium contributed to colonial and Catholic officials shifting their support from Tutsi to Hutu leaders in the years leading up to independence.</p> <p>Simmering resentment of minority rule exploded in 1959, three years before independence from Belgium, when Hutus overthrew the Tutsi king. Thousands of Tutsis were killed over the next several years, and some 150,000 were driven into exile in neighboring countries. Army Chief of Staff Juvenal HABYARIMANA seized power in a coup in 1973 and ruled Rwanda as a single-party state for two decades. HABYARIMANA increasingly discriminated against Tutsis, and extremist Hutu factions gained prominence after multiple parties were introduced in the early 1990s. The children of Tutsi exiles later formed a rebel group, the Rwandan Patriotic Front (RPF) and began a civil war in 1990. The civil war exacerbated ethnic tensions and culminated in the shooting down of HABYARIMANA’s private jet in 1994. The event sparked a state-orchestrated genocide in which Rwandans killed more than 800,000 of their fellow citizens, including approximately three-quarters of the Tutsi population. The genocide ended later the same year when the predominantly Tutsi RPF, operating out of Uganda and northern Rwanda, defeated the national army and Hutu militias and established an RPF-led government of national unity. Rwanda held its first local elections in 1999 and its first post-genocide presidential and legislative elections in 2003, formalizing President Paul KAGAME’s de facto role as head of government. KAGAME was formally elected in 2010, and again in 2017 after changing the constitution to allow him to run for a third term.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, east of the Democratic Republic of the Congo, north of Burundi"
+      },
+      "Area": {
+        "total ": {
+          "text": "26,338 sq km"
+        },
+        "land": {
+          "text": "24,668 sq km"
+        },
+        "water": {
+          "text": "1,670 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "930 km"
+        },
+        "border countries": {
+          "text": "Burundi 315 km; Democratic Republic of the Congo 221 km; Tanzania 222 km; Uganda 172 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "temperate; two rainy seasons (February to April, November to January); mild in mountains with frost and snow possible"
+      },
+      "Terrain": {
+        "text": "mostly grassy uplands and hills; relief is mountainous with altitude declining from west to east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Volcan Karisimbi 4,519 m"
+        },
+        "lowest point": {
+          "text": "Rusizi River 950 m"
+        },
+        "mean elevation": {
+          "text": "1,598 m"
+        }
+      },
+      "Natural resources": {
+        "text": "gold, cassiterite (tin ore), wolframite (tungsten ore), methane, hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "76.3% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 47% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 13.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 15.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "24.5% (2023 est.)"
+        },
+        "other": {
+          "text": "0% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts; the volcanic Virunga Mountains are in the northwest along the border with Democratic Republic of the Congo <br><br><strong>volcanism:</strong> Visoke (3,711 m), on the border with the Democratic Republic of the Congo, is the country's only historically active volcano"
+      },
+      "Geography - note": {
+        "text": "landlocked; most of the country is intensively cultivated and rugged, with the population predominantly rural"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "13,623,302 (2024 est.)"
+        },
+        "male": {
+          "text": "6,684,655"
+        },
+        "female": {
+          "text": "6,938,647"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Kinyarwanda (official, universal Bantu vernacular) 93.2%, French (official) &lt;0.1%, English (official) &lt;0.1%, Swahili/Kiswahili (official, used in commercial centers) &lt;0.1%, more than one language, other 6.3%, unspecified 0.3% (2002 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Inkoranya nzimbuzi y'isi, isoko fatizo y'amakuru y'ibanze. (Kinyarwanda)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Catholic 39.9%, Pentecostal 21.3%, Protestant 14.6%, Adventist 12.2%, other Christians 4.2%, no religion 3.0%, Muslim 2.0%, other religions 2.0%; less than 1%: Jehovah Witness, not specified, Animist&nbsp; (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Hutu, Tutsi, Twa"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "17.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.07% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "one of Africa's most densely populated countries; large concentrations tend to be in the central regions and along the shore of Lake Kivu in the west, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>low-income Sub-Saharan economy; services, industry, and agriculture sectors driving growth; increased government spending on human capital, energy, and healthcare; major infrastructure projects including the Bugesera Airport intended to support long-term growth; challenges include lack of economic diversification, high inflation, and wide current account deficit</p>"
+      },
+      "Agricultural products": {
+        "text": "bananas, cassava, sweet potatoes, plantains, potatoes, maize, beans, pumpkins/squash, taro, sorghum (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "cement, agricultural products, small-scale beverages, soap, furniture, shoes, plastic goods, textiles, cigarettes"
+      },
+      "Exports - commodities": {
+        "text": "gold, rare earth ores, coffee, tea, tin ores (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "UAE 66%, China 10%, USA 3%, Kenya 3%, Thailand 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "broadcasting equipment, fish, corn, packaged medicine, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; two rainy seasons (February to April, November to January); mild in mountains with frost and snow possible"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "iso": "iq",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.395Z",
+  "structured": {
+    "code": "iq",
+    "name": "Iraq",
+    "capital": "Baghdad",
+    "continent": "Asia",
+    "areaKm2": 437072,
+    "population": 38274618,
+    "officialLanguages": [
+      "Arabic",
+      "Kurdish"
+    ],
+    "currencies": [
+      "Iraqi dinar"
+    ],
+    "landBorderNames": [
+      "Iran",
+      "Jordan",
+      "Kuwait",
+      "Saudi Arabia",
+      "Syria",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "ir",
+      "jo",
+      "kw",
+      "sa",
+      "sy",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, phosphates, sulfur",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Persian Gulf, between Iran and Kuwait || mostly broad plains; reedy marshes along Iranian border in south with large flooded areas; mountains along borders with Iran and Turkey || strategic location on Shatt al Arab waterway and at the head of the Persian Gulf || Resources: petroleum, natural gas, phosphates, sulfur || Exports: crude petroleum, refined petroleum, petroleum coke, gold, natural gas (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly broad plains; reedy marshes along Iranian border in south with large flooded areas; mountains along borders with Iran and Turkey || Middle East, bordering the Persian Gulf, between Iran and Kuwait"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly desert; mild to cool winters with dry, hot, cloudless summers; northern mountainous regions along Iranian and Turkish borders experience cold winters with occasionally heavy snows that melt in early spring, sometimes causing extensive flooding in central and southern Iraq || dust storms; sandstorms; floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "highly oil-dependent Middle Eastern economy; fiscal sustainability subject to fluctuation in oil prices; rising public confidence in economic conditions; import-dependent for most sectors; persistent challenges of corruption, informal markets, banking access, and political fragility || Exports: crude petroleum, refined petroleum, petroleum coke, gold, natural gas (2023) || Industries: petroleum, chemicals, textiles, leather, construction materials, food processing, fertilizer, metal fabrication/processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim (official) 95-98% (Shia 61-64%, Sunni 29-34%), Christian 1% (includes Catholic, Orthodox, Protestant, Assyrian Church of the East), other 1-4% (2015 est.) || Arab 75-80%, Kurdish 15-20%, other 5% (includes Turkmen, Yezidi, Shabak, Kaka'i, Bedouin, Romani, Assyrian, Circassian, Sabaean-Mandaean, Persian)"
+    }
+  }
+}

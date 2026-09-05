@@ -1,0 +1,180 @@
+{
+  "iso": "uy",
+  "fetchedAt": "2026-09-04T23:57:10.018Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/uy.json"
+    }
+  },
+  "wikidata": {
+    "name": "Uruguay",
+    "gec": "UY",
+    "capital": "Montevideo",
+    "areaKm2": 176215,
+    "population": 3444263,
+    "continent": "South America",
+    "officialLanguages": [],
+    "currencies": [
+      "Uruguayan peso"
+    ],
+    "sharesBorderWithAnyType": [
+      "br",
+      "ar"
+    ]
+  },
+  "factbook": {
+    "_path": "south-america/uy.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Spanish founded the city of Montevideo in modern-day Uruguay in 1726 as a military stronghold, and it soon became an important commercial center due to its natural harbor. Argentina initially claimed Uruguay, but Brazil annexed the country in 1821. Uruguay declared its independence in 1825 and secured its freedom in 1828 after a three-year struggle. The administrations of President Jose BATLLE in the early 20th century launched widespread political, social, and economic reforms that established a statist tradition. A violent Marxist urban guerrilla movement named the Tupamaros (or Movimiento de Liberación Nacional-Tupamaros) launched in the late 1960s and pushed Uruguay's president to cede control of the government to the military in 1973. By year-end, the rebels had been crushed, but the military continued to expand its hold over the government. Civilian rule was restored in 1985. In 2004, the left-of-center Frente Amplio (FA) Coalition won national elections that effectively ended 170 years of political control by the Colorado and National (Blanco) parties. The left-of-center coalition retained the presidency and control of both chambers of congress until 2019. Uruguay's political and labor conditions are among the freest on the South American continent.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern South America, bordering the South Atlantic Ocean, between Argentina and Brazil"
+      },
+      "Area": {
+        "total ": {
+          "text": "176,215 sq km"
+        },
+        "land": {
+          "text": "175,015 sq km"
+        },
+        "water": {
+          "text": "1,200 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,591 km"
+        },
+        "border countries": {
+          "text": "Argentina 541 km; Brazil 1,050 km"
+        }
+      },
+      "Coastline": {
+        "text": "660 km"
+      },
+      "Climate": {
+        "text": "warm temperate; freezing temperatures almost unknown"
+      },
+      "Terrain": {
+        "text": "mostly rolling plains and low hills; fertile coastal lowland"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro Catedral 514 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "109 m"
+        }
+      },
+      "Natural resources": {
+        "text": "arable land, hydropower, minor minerals, fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "81.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 12.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 68.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "11.4% (2023 est.)"
+        },
+        "other": {
+          "text": "7.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "seasonally high winds (the pampero is a chilly and occasional violent wind that blows north from the Argentine pampas), droughts, floods; because of the absence of mountains, which act as weather barriers, all locations are particularly vulnerable to rapid changes from weather fronts"
+      },
+      "Geography - note": {
+        "text": "second-smallest South American country (after Suriname); most of the low-lying landscape (three-quarters of the country) is grassland, ideal for cattle and sheep"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "3,449,444 (2025 est.)"
+        },
+        "male": {
+          "text": "1,678,419"
+        },
+        "female": {
+          "text": "1,771,025"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official, Rioplatense is the most widely spoken dialect)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 36.5%, Protestant 5% (Evangelical (non-specific) 4.6%, Adventist 0.2%, Protestant (non-specific) 0.3%), African American Cults/Umbanda 2.8%, Jehovah's Witness 0.6%, Church of Jesus Christ 0.2%, other 1%, Believer (not belonging to the church) 1.8%, agnostic 0.3%, atheist 1.3%, none 47.3%, unspecified 3.4%<br><br>Roman Catholic 42%, Protestant 15%, other 6%, agnostic 3%, atheist 10%, unspecified 24% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "White 87.7%, Black 4.6%, Indigenous 2.4%, other 0.3%, none or unspecified 5% (2011 est.)",
+        "note": "<strong>note:</strong> data represent primary ethnic identity"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "95.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.4% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the country's population resides in the southern half of the country; approximately 80% of the populace is urban; nearly half of the population lives in and around the capital of Montevideo"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income, export-oriented South American economy; South America&rsquo;s largest middle class; low socioeconomic inequality; growing homicide rates; growing Chinese and EU relations; 2019 Argentine recession hurt; key milk, beef, rice, and wool exporter"
+      },
+      "Agricultural products": {
+        "text": "milk, rice, wheat, barley, soybeans, beef, rapeseed, sugarcane, maize, beef offal (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food processing, electrical machinery, transportation equipment, petroleum products, textiles, chemicals, beverages"
+      },
+      "Exports - commodities": {
+        "text": "wood pulp, beef, milk, rice, wood (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 21%, Brazil 17%, USA 8%, Argentina 5%, Netherlands 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, refined petroleum, cars, trucks, fertilizers (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "warm temperate; freezing temperatures almost unknown"
+      }
+    }
+  }
+}

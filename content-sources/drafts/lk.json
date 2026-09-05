@@ -1,0 +1,62 @@
+{
+  "iso": "lk",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.403Z",
+  "structured": {
+    "code": "lk",
+    "name": "Sri Lanka",
+    "capital": "Sri Jayawardenepura Kotte",
+    "continent": "Asia",
+    "areaKm2": 65610,
+    "population": 21444000,
+    "officialLanguages": [
+      "Tamil",
+      "Sinhala"
+    ],
+    "currencies": [
+      "Sri Lankan rupee"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "limestone, graphite, mineral sands, gems, phosphates, clay, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Asia, island in the Indian Ocean, south of India || mostly low, flat to rolling plain; mountains in south-central interior || strategic location near major Indian Ocean sea lanes; Adam's Bridge is a chain of limestone shoals between the southeastern coast of India and the northwestern coast of Sri Lanka; geological evidence suggests that this 50-km (31-mi) bridge once connected India and Sri Lanka; ancient records seem to indicate that a foot passage was possible between the two land masses until the 15th century, when the land bridge broke up in a cyclone || Resources: limestone, graphite, mineral sands, gems, phosphates, clay, hydropower, arable land || Exports: garments, tea, precious stones, used rubber tires, rubber products (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low, flat to rolling plain; mountains in south-central interior || Southern Asia, island in the Indian Ocean, south of India"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical monsoon; northeast monsoon (December to March); southwest monsoon (June to October) || occasional cyclones and tornadoes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "economic contraction in 2022-23 marked by increased poverty and significant inflation; IMF two-year debt relief program following 2022 sovereign default; structural challenges from non-diversified economy and rigid labor laws; heavy dependence on tourism receipts and remittances || Exports: garments, tea, precious stones, used rubber tires, rubber products (2023) || Industries: processing of rubber, tea, coconuts, tobacco and other agricultural commodities; tourism; clothing and textiles; mining"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Sinhala (official) 87%, Tamil (official) 28.5%, English 23.8% (2012 est.) || Buddhist (official) 70.2%, Hindu 12.6%, Muslim 9.7%, Roman Catholic 6.1%, other Christian 1.3%, other 0.05% (2012 est.) || Sinhalese 74.9%, Sri Lankan Tamil 11.2%, Sri Lankan Moors 9.2%, Indian Tamil 4.2%, other 0.5% (2012 est.)"
+    }
+  }
+}

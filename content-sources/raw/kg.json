@@ -1,0 +1,183 @@
+{
+  "iso": "kg",
+  "fetchedAt": "2026-09-04T23:56:46.662Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/kg.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kyrgyzstan",
+    "gec": "KG",
+    "capital": "Bishkek",
+    "areaKm2": 199951,
+    "population": 7281800,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Kyrgyz"
+    ],
+    "currencies": [
+      "Kyrgyz som"
+    ],
+    "sharesBorderWithAnyType": [
+      "cn",
+      "kz",
+      "uz",
+      "tj"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/kg.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Kyrgyzstan is a Central Asian country of incredible natural beauty and proud nomadic traditions. The Russian Empire annexed most of the territory of present-day Kyrgyzstan in 1876. The Kyrgyz staged a major revolt against the Tsarist Empire in 1916, during which almost one-sixth of the Kyrgyz population was killed. Kyrgyzstan became a Soviet republic in 1926 and achieved independence in 1991 when the USSR dissolved. Nationwide demonstrations in 2005 and 2010 resulted in the ouster of the country’s first two presidents, Askar AKAEV and Kurmanbek BAKIEV. Almazbek ATAMBAEV was sworn in as president in 2011. In 2017, ATAMBAEV became the first Kyrgyzstani president to serve a full term and respect constitutional term limits, voluntarily stepping down at the end of his mandate. Former prime minister and ruling Social-Democratic Party of Kyrgyzstan member Sooronbay JEENBEKOV replaced him after winning the 2017 presidential election, which was the most competitive in the country’s history despite reported cases of vote buying and abuse of public resources. <br><br>In 2020, protests against parliamentary election results spread across Kyrgyzstan, leading to JEENBEKOV’s resignation and catapulting previously imprisoned Sadyr JAPAROV to acting president. In 2021, Kyrgyzstanis formally elected JAPAROV as president and approved a referendum to move Kyrgyzstan from a parliamentary to a presidential system. In 2021, Kyrgyzstanis voted in favor of constitutional changes that consolidated power in the presidency. Pro-government parties won a majority in the 2021 legislative elections. Continuing concerns for Kyrgyzstan include the trajectory of democratization, endemic corruption, tense regional relations, vulnerabilities due to climate change, border security vulnerabilities, and potential terrorist threats.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Asia, west of China, south of Kazakhstan"
+      },
+      "Area": {
+        "total ": {
+          "text": "199,951 sq km"
+        },
+        "land": {
+          "text": "191,801 sq km"
+        },
+        "water": {
+          "text": "8,150 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,573 km"
+        },
+        "border countries": {
+          "text": "China 1,063 km; Kazakhstan 1,212 km; Tajikistan 984 km; Uzbekistan 1,314 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "dry continental to polar in high Tien Shan Mountains; subtropical in southwest (Fergana Valley); temperate in northern foothill zone"
+      },
+      "Terrain": {
+        "text": "peaks of the Tien Shan mountain range and associated valleys and basins encompass the entire country"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Jengish Chokusu (Pik Pobedy) 7,439 m"
+        },
+        "lowest point": {
+          "text": "Kara-Daryya (Karadar'ya) 132 m"
+        },
+        "mean elevation": {
+          "text": "2,988 m"
+        }
+      },
+      "Natural resources": {
+        "text": "abundant hydropower; gold, rare earth metals; locally exploitable coal, oil, and natural gas; other deposits of nepheline, mercury, bismuth, lead, and zinc"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "54% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 6.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.4% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 46.9% (2023 est.)"
+        },
+        "forest": {
+          "text": "6.5% (2023 est.)"
+        },
+        "other": {
+          "text": "39.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "major flooding during snow melt; prone to earthquakes"
+      },
+      "Geography - note": {
+        "text": "landlocked; entirely mountainous, dominated by the Tien Shan range; 94% of the country is 1,000 m above sea level with an average elevation of 2,750 m; many tall peaks, glaciers, and high-altitude lakes"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "6,219,751 (2025 est.)"
+        },
+        "male": {
+          "text": "3,043,940"
+        },
+        "female": {
+          "text": "3,175,811"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Kyrgyz (state language) 71.4%, Uzbek 14.4%, Russian (official language) 9%, other 5.2% (2009 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Дүйнөлүк фактылар китеби, негизги маалыматтын маанилүү булагы. (Kyrgyz)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 90% (majority Sunni), Christian 7% (Russian Orthodox 3%), other 3% (includes Jewish, Buddhist, Baha'i) (2017 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kyrgyz 73.8%, Uzbek 14.8%, Russian 5.1%, Dungan 1.1%, other 5.2% (includes Uyghur, Tajik, Turk, Kazakh, Tatar, Ukrainian, Korean, German) (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "37.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "2.05% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the vast majority of Kyrgyzstanis live in rural areas; densest population settlement is to the north in and around the capital, Bishkek, followed by Osh in the west; the least densely populated area is the east, in the Tien Shan mountains"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "landlocked, lower-middle-income Central Asian economy; natural resource rich; growing hydroelectricity and tourism; high remittances; corruption limits investment; COVID-19 and political turmoil hurt GDP, limited public revenues, and increased spending"
+      },
+      "Agricultural products": {
+        "text": "milk, potatoes, maize, sugar beets, wheat, barley, tomatoes, onions, watermelons, carrots/turnips (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "small machinery, textiles, food processing, cement, shoes, lumber, refrigerators, furniture, electric motors, gold, rare earth metals"
+      },
+      "Exports - commodities": {
+        "text": "gold, coal, precious metal ore, refined petroleum, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 30%, Russia 19%, Kazakhstan 14%, UAE 10%, Turkey 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, garments, refined petroleum, fabric, footwear (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "dry continental to polar in high Tien Shan Mountains; subtropical in southwest (Fergana Valley); temperate in northern foothill zone"
+      }
+    }
+  }
+}

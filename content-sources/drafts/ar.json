@@ -1,0 +1,73 @@
+{
+  "iso": "ar",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.423Z",
+  "structured": {
+    "code": "ar",
+    "name": "Argentina",
+    "capital": "Buenos Aires",
+    "continent": "South America",
+    "areaKm2": 2780400,
+    "population": 47327407,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Argentine convertible peso"
+    ],
+    "landBorderNames": [
+      "Bolivia",
+      "Brazil",
+      "Chile",
+      "Paraguay",
+      "Uruguay"
+    ],
+    "landBorderCodes": [
+      "bo",
+      "br",
+      "cl",
+      "py",
+      "uy"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fertile plains of the pampas, lead, zinc, tin, copper, iron ore, manganese, petroleum, uranium, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern South America, bordering the South Atlantic Ocean, between Chile and Uruguay || rich plains of the Pampas in northern half, flat to rolling plateau of Patagonia in south, rugged Andes along western border || second-largest country in South America (after Brazil); strategic location relative to sea lanes between the South Atlantic and the South Pacific Oceans (Strait of Magellan, Beagle Channel, Drake Passage); diverse geophysical landscapes range from tropical climates in the north to tundra in the far south; Cerro Aconcagua is the Western Hemisphere's tallest mountain, while Laguna del Carbón is the lowest point in the Western Hemisphere; shares Iguazú Falls, the world's largest waterfalls system, with Brazil || Resources: fertile plains of the pampas, lead, zinc, tin, copper, iron ore, manganese, petroleum, uranium, arable land || Exports: soybean meal, corn, trucks, soybean oil, crude petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rich plains of the Pampas in northern half, flat to rolling plateau of Patagonia in south, rugged Andes along western border || Southern South America, bordering the South Atlantic Ocean, between Chile and Uruguay"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly temperate; arid in southeast; subantarctic in southwest || San Miguel de Tucumán and Mendoza areas in the Andes subject to earthquakes; pamperos are violent windstorms that can strike the pampas and northeast; heavy flooding in some areas volcanism: volcanic activity in the Andes Mountains along the Chilean border; Copahue (2,997 m) last erupted in 2000; other historically active volcanoes include Llullaillaco, Maipo, Planchón-Peteroa, San José, Tromen, Tupungatito, and Viedma"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "large diversified economy; financial risks from debt obligations, rapid inflation, and reduced investor appetites; resource-rich, export-led growth model; increasing trade relations with China; G20 and OAS leader; tendency to nationalize businesses and under-report inflation || Exports: soybean meal, corn, trucks, soybean oil, crude petroleum (2023) || Industries: food processing, motor vehicles, consumer durables, textiles, chemicals and petrochemicals, printing, metallurgy, steel"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 62.9%, Evangelical 15.3% (Pentecostal 13%, other Evangelical 2.3%), Jehovah's Witness and Church of Jesus Christ 1.4%, other 1.2% (includes Muslim, Jewish), none 18.9% (includes agnostic and atheist), unspecified 0.3% (2019 est.) || European (mostly Spanish and Italian descent) and Mestizo (mixed European and Indigenous ancestry) 97.2%, Indigenous 2.4%, African descent 0.4% (2010 est.)"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "iso": "uz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.406Z",
+  "structured": {
+    "code": "uz",
+    "name": "Uzbekistan",
+    "capital": "Tashkent",
+    "continent": "Asia",
+    "areaKm2": 448978,
+    "population": 34915100,
+    "officialLanguages": [
+      "Uzbek"
+    ],
+    "currencies": [
+      "Uzbek som"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "Kazakhstan",
+      "Kyrgyzstan",
+      "Tajikistan",
+      "Turkmenistan"
+    ],
+    "landBorderCodes": [
+      "af",
+      "kz",
+      "kg",
+      "tj",
+      "tm"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "natural gas, petroleum, coal, gold, uranium, silver, copper, lead and zinc, tungsten, molybdenum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Asia, north of Turkmenistan, south of Kazakhstan || mostly flat-to-rolling sandy desert with dunes; broad, flat intensely irrigated river valleys along course of Amu Darya, Syr Darya (Sirdaryo), and Zaravshan; Fergana Valley in east surrounded by mountainous Tajikistan and Kyrgyzstan; shrinking Aral Sea in west || along with Liechtenstein, one of the only two doubly landlocked countries in the world || Resources: natural gas, petroleum, coal, gold, uranium, silver, copper, lead and zinc, tungsten, molybdenum || Exports: gold, cotton yarn, garments, fertilizers, fabric (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat-to-rolling sandy desert with dunes; broad, flat intensely irrigated river valleys along course of Amu Darya, Syr Darya (Sirdaryo), and Zaravshan; Fergana Valley in east surrounded by mountainous Tajikistan and Kyrgyzstan; shrinking Aral Sea in west || Central Asia, north of Turkmenistan, south of Kazakhstan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly mid-latitude desert, long, hot summers, mild winters; semiarid grassland in east || earthquakes; floods; landslides or mudslides; avalanches; droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower-middle income Central Asian economy; key exporter of natural gas, cotton, and gold; ongoing reform efforts to reduce state-owned sector dominance, attract foreign investment, and improve sustainability of cotton production || Exports: gold, cotton yarn, garments, fertilizers, fabric (2023) || Industries: textiles, food processing, machine building, metallurgy, mining, hydrocarbon extraction, chemicals"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 88% (mostly Sunni), Eastern Orthodox 9%, other 3% || Uzbek 83.8%, Tajik 4.8%, Kazakh 2.5%, Russian 2.3%, Karakalpak 2.2%, Tatar 1.5%, other 2.9% (2017 est.)"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "iso": "et",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.412Z",
+  "structured": {
+    "code": "et",
+    "name": "Ethiopia",
+    "capital": "Addis Ababa",
+    "continent": "Africa",
+    "areaKm2": 1104300,
+    "population": 128691692,
+    "officialLanguages": [
+      "Amharic"
+    ],
+    "currencies": [
+      "bir"
+    ],
+    "landBorderNames": [
+      "Djibouti",
+      "Eritrea",
+      "Kenya",
+      "Somalia",
+      "South Sudan",
+      "Sudan"
+    ],
+    "landBorderCodes": [
+      "dj",
+      "er",
+      "ke",
+      "so",
+      "ss",
+      "sd"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "small reserves of gold, platinum, copper, potash, natural gas, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, west of Somalia || high plateau with central mountain range divided by Great Rift Valley || the most populous landlocked country in the world; the Blue Nile, the chief headstream of the Nile by water volume, rises in T'ana Hayk (Lake Tana) in northwest Ethiopia || Resources: small reserves of gold, platinum, copper, potash, natural gas, hydropower || Exports: coffee, garments, dried legumes, cut flowers, oil seeds (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "high plateau with central mountain range divided by Great Rift Valley || Eastern Africa, west of Somalia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical monsoon with wide topographic-induced variation || geologically active Great Rift Valley susceptible to earthquakes, volcanic eruptions; frequent droughts volcanism: volcanic activity in the Great Rift Valley; Erta Ale (613 m) is the country's most active volcano; Dabbahu became active in 2005, forcing evacuations; other historically active volcanoes include Alayta, Dalaffilla, Dallol, Dama Ali, Fentale, Kone, Manda Hararo, and Manda-Inakir"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income, fast-growing Horn of Africa economy; widespread poverty and food insecurity worsened by conflict and environmental factors; landlocked with tensions over seaport access; development aid supporting reforms to boost private-sector growth and financial stability; challenge of creating jobs for growing labor force || Exports: coffee, garments, dried legumes, cut flowers, oil seeds (2023) || Industries: food processing, beverages, textiles, leather, garments, chemicals, metals processing, cement"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Ethiopian Orthodox 43.8%, Muslim 31.3%, Protestant 22.8%, Catholic 0.7%, traditional 0.6%, other 0.8% (2016 est.) || Oromo 35.8%, Amhara 24.1%, Somali 7.2%, Tigray 5.7%, Sidama 4.1%, Guragie 2.6%, Welaita 2.3%, Afar 2.2%, Silte 1.3%, Kefficho 1.2%, other 13.5% (2022 est.)"
+    }
+  }
+}

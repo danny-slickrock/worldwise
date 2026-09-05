@@ -1,0 +1,69 @@
+{
+  "iso": "lt",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.382Z",
+  "structured": {
+    "code": "lt",
+    "name": "Lithuania",
+    "capital": "Vilnius",
+    "continent": "Europe",
+    "areaKm2": 65300,
+    "population": 2860002,
+    "officialLanguages": [
+      "Lithuanian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Belarus",
+      "Latvia",
+      "Poland",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "by",
+      "lv",
+      "pl",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "peat, arable land, amber",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Europe, bordering the Baltic Sea, between Latvia and Russia, west of Belarus || lowland, many scattered small lakes, fertile soil || fertile central plains are separated by hilly uplands that are ancient glacial deposits || Resources: peat, arable land, amber || Exports: refined petroleum, furniture, plastic products, wheat, cars (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "lowland, many scattered small lakes, fertile soil || Eastern Europe, bordering the Baltic Sea, between Latvia and Russia, west of Belarus"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "transitional, between maritime and continental; wet, moderate winters and summers || occasional floods, droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone member, largest Baltic economy; recovery supported by private consumption and EU fund-driven investments; structural challenges include pension reform, aging workforce, and high energy-import costs || Exports: refined petroleum, furniture, plastic products, wheat, cars (2023) || Industries: metal-cutting machine tools, electric motors, televisions, refrigerators and freezers, petroleum refining, shipbuilding (small ships), furniture, textiles, food processing, fertilizer, agricultural machinery, optical equipment, lasers, electronic components, computers, amber jewelry, information technology, video game development, app/software development, biotechnology"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 74.2%, Russian Orthodox 3.7%, Old Believer 0.6%, Evangelical Lutheran 0.6%, Evangelical Reformist 0.2%, other (including Sunni Muslim, Jewish, Greek Catholic, and Karaite) 0.9%, none 6.1%, unspecified 13.7% (2021 est.) || Lithuanian 84.6%, Polish 6.5%, Russian 5%, Belarusian 1%, other 1.1%, unspecified 1.8% (2021 est.)"
+    }
+  }
+}

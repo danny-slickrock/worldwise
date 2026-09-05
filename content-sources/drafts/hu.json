@@ -1,0 +1,77 @@
+{
+  "iso": "hu",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.380Z",
+  "structured": {
+    "code": "hu",
+    "name": "Hungary",
+    "capital": "Budapest",
+    "continent": "Europe",
+    "areaKm2": 93011.4,
+    "population": 9603634,
+    "officialLanguages": [
+      "Hungarian"
+    ],
+    "currencies": [
+      "forint"
+    ],
+    "landBorderNames": [
+      "Austria",
+      "Croatia",
+      "Romania",
+      "Serbia",
+      "Slovakia",
+      "Slovenia",
+      "Ukraine"
+    ],
+    "landBorderCodes": [
+      "at",
+      "hr",
+      "ro",
+      "rs",
+      "sk",
+      "si",
+      "ua"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, coal, natural gas, fertile soils, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Europe, northwest of Romania || mostly flat to rolling plains; hills and low mountains on the Slovakian border || landlocked; strategic location on main land routes between Western Europe and Balkan Peninsula, as well as between Ukraine and the Mediterranean basin; the Duna (Danube) and Tisza Rivers divide the country into three large regions || Resources: bauxite, coal, natural gas, fertile soils, arable land || Exports: cars, vehicle parts/accessories, electric batteries, packaged medicine, computers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat to rolling plains; hills and low mountains on the Slovakian border || Central Europe, northwest of Romania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; cold, cloudy, humid winters; warm summers"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and OECD economy; modest recovery from 2024 recession driven by private consumption and moderated inflation; challenges include high fiscal deficits, frozen access to EU funds, and risks from export reliance; implementing tax exemptions, price controls, and mortgage interest caps ahead of 2026 elections || Exports: cars, vehicle parts/accessories, electric batteries, packaged medicine, computers (2023) || Industries: mining, metallurgy, construction materials, processed foods, textiles, chemicals (especially pharmaceuticals), motor vehicles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 30.1% (Roman Catholic 27.5%, Greek Catholic 1.7%, other Catholic 0.9%), Calvinist 9.8%, Lutheran 1.8%, other Christian (includes Orthodox) 1.6%, other 0.4%, none 16.1%, no answer 40.1% (2022 est.) || Hungarian 84.3%, Romani 2.1%, German 1%, other 1.2%, unspecified 13.7% (2022 est.)"
+    }
+  }
+}

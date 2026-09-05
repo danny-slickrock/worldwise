@@ -1,0 +1,66 @@
+{
+  "iso": "ht",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.429Z",
+  "structured": {
+    "code": "ht",
+    "name": "Haiti",
+    "capital": "Port-au-Prince",
+    "continent": "North America",
+    "areaKm2": 27750,
+    "population": 10981229,
+    "officialLanguages": [
+      "French",
+      "Haitian Creole"
+    ],
+    "currencies": [
+      "gourde"
+    ],
+    "landBorderNames": [
+      "Dominican Republic"
+    ],
+    "landBorderCodes": [
+      "do"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "bauxite, copper, calcium carbonate, gold, marble, hydropower, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, western one-third of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, west of the Dominican Republic || mostly rough and mountainous || shares island of Hispaniola with Dominican Republic (western one-third is Haiti, eastern two-thirds is the Dominican Republic); it is the most mountainous nation in the Caribbean || Resources: bauxite, copper, calcium carbonate, gold, marble, hydropower, arable land || Exports: garments, essential oils, scrap iron, industrial acids/oils/alcohols, bedding (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rough and mountainous || Caribbean, western one-third of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, west of the Dominican Republic"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; semiarid where mountains in east cut off trade winds || lies in the middle of the hurricane belt and subject to severe storms from June to October; occasional flooding and earthquakes; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "small Caribbean island economy and OECS-member state; extreme poverty and inflation; enormous income inequality; ongoing civil unrest due to recent presidential assassination; US preferential market access; very open to foreign direct investment || Exports: garments, essential oils, scrap iron, industrial acids/oils/alcohols, bedding (2023) || Industries: textiles, sugar refining, flour milling, cement, light assembly using imported parts"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catholic 55%, Protestant 29%, Vodou 2.1%, other 4.6%, none 10% (2018 est.) || Black 95%, mixed and White 5%"
+    }
+  }
+}

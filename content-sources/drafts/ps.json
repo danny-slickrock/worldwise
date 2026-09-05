@@ -1,0 +1,61 @@
+{
+  "iso": "ps",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.401Z",
+  "structured": {
+    "code": "ps",
+    "name": "Palestine",
+    "capital": "East Jerusalem",
+    "continent": "Asia",
+    "areaKm2": 6020,
+    "population": 5227193,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "new shekel"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": null,
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": ""
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": ""
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": ""
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": ""
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": ""
+    }
+  }
+}

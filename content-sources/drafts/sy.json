@@ -1,0 +1,73 @@
+{
+  "iso": "sy",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.403Z",
+  "structured": {
+    "code": "sy",
+    "name": "Syria",
+    "capital": "Damascus",
+    "continent": "Asia",
+    "areaKm2": 185180,
+    "population": 23865423,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Syrian pound"
+    ],
+    "landBorderNames": [
+      "Iraq",
+      "Israel",
+      "Jordan",
+      "Lebanon",
+      "Turkey"
+    ],
+    "landBorderCodes": [
+      "iq",
+      "il",
+      "jo",
+      "lb",
+      "tr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, phosphates, chrome and manganese ores, asphalt, iron ore, rock salt, marble, gypsum, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Middle East, bordering the Mediterranean Sea, between Lebanon and Turkey || primarily semiarid and desert plateau; narrow coastal plain; mountains in west || the capital of Damascus is located at an oasis fed by the Barada River and is thought to be one of the world's oldest continuously inhabited cities; there are Israeli settlements and civilian land-use sites in the Israeli-controlled Golan Heights (2017) || Resources: petroleum, phosphates, chrome and manganese ores, asphalt, iron ore, rock salt, marble, gypsum, hydropower || Exports: olive oil, phosphates, spice seeds, cotton, tomatoes (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "primarily semiarid and desert plateau; narrow coastal plain; mountains in west || Middle East, bordering the Mediterranean Sea, between Lebanon and Turkey"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mostly desert; hot, dry, sunny summers (June to August) and mild, rainy winters (December to February) along coast; cold weather with snow or sleet periodically in Damascus || dust storms, sandstorms volcanism: Syria's two historically active volcanoes, Es Safa and an unnamed volcano near the Turkish border, have not erupted in centuries"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Middle Eastern economy; prior infrastructure and economy devastated by 11-year civil war; ongoing US sanctions; sporadic trans-migration during conflict; currently being supported by World Bank trust fund; ongoing hyperinflation || Exports: olive oil, phosphates, spice seeds, cotton, tomatoes (2023) || Industries: petroleum, textiles, food processing, beverages, tobacco, phosphate rock mining, cement, oil seeds crushing, automobile assembly"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 87% (official; includes Sunni 74% and Alawi, Ismaili, and Shia 13%), Christian 10% (includes Orthodox, Uniate, and Nestorian), Druze 3% || Arab ~50%, Alawite ~15%, Kurd ~10%, Levantine ~10%, other ~15% (includes Druze, Ismaili, Imami, Nusairi, Assyrian, Turkoman, Armenian)"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "iso": "sb",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.437Z",
+  "structured": {
+    "code": "sb",
+    "name": "Solomon Islands",
+    "capital": "Honiara",
+    "continent": "Insular Oceania",
+    "areaKm2": 28400,
+    "population": 611343,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Solomon Islands dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, forests, gold, bauxite, phosphates, lead, zinc, nickel",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, group of islands in the South Pacific Ocean, east of Papua New Guinea || mostly rugged mountains with some low coral atolls || strategic location on sea routes between the South Pacific Ocean, the Solomon Sea, and the Coral Sea; Rennell Island, the southernmost in the Solomon Islands chain, is one of the world&rsquo;s largest raised coral atolls; the island&rsquo;s Lake Tegano, formerly a lagoon on the atoll, is the largest lake in the insular Pacific (15,500 hectares; 38,300 acres) || Resources: fish, forests, gold, bauxite, phosphates, lead, zinc, nickel || Exports: wood, fish, gold, precious metal ore, palm oil (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rugged mountains with some low coral atolls || Oceania, group of islands in the South Pacific Ocean, east of Papua New Guinea"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical monsoon; few temperature and weather extremes || tropical cyclones, but rarely destructive; geologically active region with frequent earthquakes, tremors, and volcanic activity; tsunamis volcanism: Tinakula (851 m) has frequent eruption activity, and an eruption of Savo (485 m) could affect the capital Honiara on nearby Guadalcanal"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income Pacific island economy; natural resource rich but environmentally fragile; key agrarian sector; growing Chinese economic relationship; infrastructure damage due to social unrest; metal mining operations || Exports: wood, fish, gold, precious metal ore, palm oil (2023) || Industries: fish (tuna), mining, timber"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Melanesian pidgin (lingua franca in much of the country), English (official but spoken by only 1%-2% of the population), 120 indigenous languages || Protestant 73.4% (Church of Melanesia 31.9%, South Sea Evangelical 17.1%, Seventh Day Adventist 11.7%, United Church 10.1%, Christian Fellowship Church 2.5%), Roman Catholic 19.6%, other Christian 2.9%, other 4%, unspecified 0.1% (2009 est.) || Melanesian 95.3%, Polynesian 3.1%, Micronesian 1.2%, other 0.3% (2009 est.)"
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "iso": "se",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.389Z",
+  "structured": {
+    "code": "se",
+    "name": "Sweden",
+    "capital": "Stockholm",
+    "continent": "Europe",
+    "areaKm2": 447425.16,
+    "population": 10609460,
+    "officialLanguages": [
+      "Swedish"
+    ],
+    "currencies": [
+      "Swedish krona"
+    ],
+    "landBorderNames": [
+      "Finland",
+      "Norway"
+    ],
+    "landBorderCodes": [
+      "fi",
+      "no"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "iron ore, copper, lead, zinc, gold, silver, tungsten, uranium, arsenic, feldspar, timber, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, Kattegat, and Skagerrak, between Finland and Norway || mostly flat or gently rolling lowlands; mountains in west || strategic location along Danish Straits linking Baltic and North Seas; Sweden has almost 100,000 lakes, the largest of which, Vanern, is the third-largest in Europe || Resources: iron ore, copper, lead, zinc, gold, silver, tungsten, uranium, arsenic, feldspar, timber, hydropower || Exports: cars, refined petroleum, packaged medicine, paper, vehicle parts/accessories (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat or gently rolling lowlands; mountains in west || Northern Europe, bordering the Baltic Sea, Gulf of Bothnia, Kattegat, and Skagerrak, between Finland and Norway"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate in south with cold, cloudy winters and cool, partly cloudy summers; subarctic in north || ice floes in the surrounding waters, especially in the Gulf of Bothnia, can interfere with maritime traffic"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, largest Nordic economy; EU member but does not use the euro; export-oriented, led by automotive, electronics, machinery, and pharmaceuticals; highly ranked for competitiveness, R&D investments and governance; recovery, with falling inflation and real wage growth balanced by risks from trade uncertainty || Exports: cars, refined petroleum, packaged medicine, paper, vehicle parts/accessories (2023) || Industries: iron and steel, precision equipment (bearings, radio and telephone parts, armaments), wood pulp and paper products, processed foods, motor vehicles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Church of Sweden (Lutheran) 53.9%, other (includes Roman Catholic, Orthodox, Baptist, Muslim, Jewish, and Buddhist) 8.9%, none or unspecified 37.2% (2021 est.) || Swedish 79.6%, Syrian 1.9%, Iraqi 1.4%, Finnish 1.3%, other 15.8% (2022 est.)"
+    }
+  }
+}

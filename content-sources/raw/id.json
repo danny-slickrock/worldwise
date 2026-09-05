@@ -1,0 +1,190 @@
+{
+  "iso": "id",
+  "fetchedAt": "2026-09-04T23:56:45.433Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "east-n-southeast-asia/id.json"
+    }
+  },
+  "wikidata": {
+    "name": "Indonesia",
+    "gec": "ID",
+    "capital": "Jakarta",
+    "areaKm2": 1904570,
+    "population": 275439000,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Indonesian"
+    ],
+    "currencies": [
+      "rupiah"
+    ],
+    "sharesBorderWithAnyType": [
+      "sg",
+      "au",
+      "tl",
+      "in",
+      "pg",
+      "pw",
+      "my",
+      "th",
+      "vn",
+      "ph"
+    ]
+  },
+  "factbook": {
+    "_path": "east-n-southeast-asia/id.json",
+    "Introduction": {
+      "Background": {
+        "text": "The archipelago was once largely under the control of Buddhist and Hindu rulers. By around the 7th century, a Buddhist kingdom arose on Sumatra and expanded into Java and the Malay Peninsula until it was conquered in the late 13th century by the Hindu Majapahit Empire from Java. Majapahit (1290-1527) united most of modern-day Indonesia and Malaysia. Traders introduced Islam around the 11th century, and the religion gradually expanded over the next 500 years. The Portuguese conquered parts of Indonesia in the 16th century, but the Dutch ousted them (except in East Timor) and began colonizing the islands in the early 17th century. It would be the early 20th century before Dutch colonial rule was established across the entirety of what would become the boundaries of the modern Indonesian state.<br><br>Japan occupied the islands from 1942 to 1945. Indonesia declared its independence shortly before Japan's surrender, but it required four years of sometimes brutal fighting, intermittent negotiations, and UN mediation before the Netherlands agreed to transfer sovereignty in 1949. A period of sometimes unruly parliamentary democracy ended in 1957 when President SOEKARNO declared martial law and instituted \"Guided Democracy.\" After an abortive coup in 1965 by alleged communist sympathizers, SOEKARNO was gradually eased from power. From 1967 until 1998, President SUHARTO ruled Indonesia with his \"New Order\" government. After street protests toppled SUHARTO in 1998, free and fair legislative elections took place in 1999 while the country's first direct presidential election occurred in 2004. Indonesia has since become a robust democracy, holding four direct presidential elections, each considered by international observers to have been largely free and fair. <br><br>Indonesia is now the world's third-most-populous  democracy and the world's largest Muslim-majority nation. It has had strong economic growth since overcoming the Asian financial crisis of the late 1990s. By the 2020s, it had the largest economy in Southeast Asia, and its economy ranked in the world's top 10 in terms of purchasing power parity. It has also made considerable gains in reducing poverty. Although relations amongst its diverse population--there are more than 300 ethnic groups--have been harmonious in the 2000s, there have been areas of sectarian discontent and violence, as well as instances of religious extremism and terrorism. A political settlement to an armed separatist conflict in Aceh was achieved in 2005, but a separatist group in Papua continued to conduct a low-intensity conflict as of 2024."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Asia, archipelago between the Indian Ocean and the Pacific Ocean"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,904,569 sq km"
+        },
+        "land": {
+          "text": "1,811,569 sq km"
+        },
+        "water": {
+          "text": "93,000 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,958 km"
+        },
+        "border countries": {
+          "text": "Malaysia 1,881 km; Papua New Guinea 824 km; Timor-Leste 253 km"
+        }
+      },
+      "Coastline": {
+        "text": "54,716 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, humid; more moderate in highlands"
+      },
+      "Terrain": {
+        "text": "mostly coastal lowlands; larger islands have interior mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Puncak Jaya 4,884 m"
+        },
+        "lowest point": {
+          "text": "Indian/Pacific Oceans 0 m"
+        },
+        "mean elevation": {
+          "text": "367 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, tin, natural gas, nickel, timber, bauxite, copper, fertile soils, coal, gold, silver",
+        "note": "<strong>note:</strong> Indonesia is the World's leading producer of nickel with an output of 1.6 million mt in 2022"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "29.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 9.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 13.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "50.6% (2023 est.)"
+        },
+        "other": {
+          "text": "20.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasional floods; severe droughts; tsunamis; earthquakes; volcanoes; forest fires <br><br><strong>volcanism:</strong> Indonesia contains the most volcanoes of any country in the world, with over 75 historically active; significant volcanic activity occurs on Java, Sumatra, the Sunda Islands, Halmahera Island, Sulawesi Island, Sangihe Island, and in the Banda Sea; Merapi (2,968 m), Indonesia's most active volcano, has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; in 2018, a large explosion and flank collapse destroyed most of the island of Anak Krakatau (Child of Krakatau) and generated a deadly tsunami that left more than 400 dead; other notable historically active volcanoes include Agung, Awu, Karangetang, Krakatau (Krakatoa), Makian, Raung, Sinabung, and Tambora; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<p><strong>note 1:</strong> 13,466 islands are in the archipelago, of which 922 are permanently inhabited; Indonesia is the world's largest country composed solely of islands; the country straddles the equator and occupies a strategic location along major sea lanes from the Indian Ocean to the Pacific Ocean</p> <p><strong>note 2:</strong> Indonesia is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes, up to 90% of the world's earthquakes, and 80% of tsunamis<br><br><strong>note 3:</strong> despite having the fourth largest population in the world, Indonesia is the most heavily forested region on earth after the Amazon</p>"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "283,587,097 (2025 est.)"
+        },
+        "male": {
+          "text": "141,778,977"
+        },
+        "female": {
+          "text": "141,808,120"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Bahasa Indonesia (official, modified form of Malay), English, Dutch, local dialects (of which the most widely spoken is Javanese); note -&nbsp;more than 700 languages are used in Indonesia"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Fakta Dunia, sumber informasi dasar yang sangat diperlukan. (Indonesian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 87.4%, Protestant 7.5%, Roman Catholic 3.1%, Hindu 1.7%, other 0.8% (includes Buddhist and Confucian) (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Javanese 40.1%, Sundanese 15.5%, Malay 3.7%, Batak 3.6%, Madurese 3%, Betawi 2.9%, Minangkabau 2.7%, Buginese 2.7%, Bantenese 2%, Banjarese 1.7%, Balinese 1.7%, Acehnese 1.4%, Dayak 1.4%, Sasak 1.3%, Chinese 1.2%, other 15% (2010 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "58.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "major concentration on the island of Java, which is considered one of the most densely populated places on earth; of the outer islands, Sumatra contains some of the most significant clusters, particularly in the south near the Selat Sunda and along the northeastern coast near Medan; the cities of Makasar (Sulawesi), Banjarmasin (Kalimantan) are also heavily populated"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income, largest and growing Southeast Asian economy; higher lending rates to moderate inflation; ongoing relocation of capital fueling infrastructure projects; major tourism sector prompting green economy goals"
+      },
+      "Agricultural products": {
+        "text": "oil palm fruit, rice, sugarcane, maize, coconuts, cassava, bananas, eggs, chicken, mangoes/guavas (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum and natural gas, textiles, automotive, electrical appliances, apparel, footwear, mining, cement, medical instruments and appliances, handicrafts, chemical fertilizers, plywood, rubber, processed food, jewelry, and tourism"
+      },
+      "Exports - commodities": {
+        "text": "coal, palm oil, iron alloys, lignite, garments (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 24%, USA 9%, India 8%, Japan 8%, Singapore 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, crude petroleum, plastics, vehicle parts/accessories, integrated circuits (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, humid; more moderate in highlands"
+      }
+    }
+  }
+}

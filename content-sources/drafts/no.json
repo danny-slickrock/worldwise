@@ -1,0 +1,72 @@
+{
+  "iso": "no",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.385Z",
+  "structured": {
+    "code": "no",
+    "name": "Norway",
+    "capital": "Oslo",
+    "continent": "Europe",
+    "areaKm2": 385207,
+    "population": 5627400,
+    "officialLanguages": [
+      "Norwegian",
+      "Nynorsk",
+      "Bokmål",
+      "Sámi"
+    ],
+    "currencies": [
+      "Norwegian krone"
+    ],
+    "landBorderNames": [
+      "Finland",
+      "Sweden",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "fi",
+      "se",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "petroleum, natural gas, iron ore, copper, lead, zinc, titanium, pyrites, nickel, fish, timber, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Europe, bordering the North Sea and the North Atlantic Ocean, west of Sweden || glaciated; mostly high plateaus and rugged mountains broken by fertile valleys; small, scattered plains; coastline deeply indented by fjords; arctic tundra in north || about two-thirds mountains; some 50,000 islands off its much-indented coastline; strategic location adjacent to sea lanes and air routes in North Atlantic; one of the most rugged and longest coastlines in the world || Resources: petroleum, natural gas, iron ore, copper, lead, zinc, titanium, pyrites, nickel, fish, timber, hydropower || Exports: natural gas, crude petroleum, fish, refined petroleum, aluminum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "glaciated; mostly high plateaus and rugged mountains broken by fertile valleys; small, scattered plains; coastline deeply indented by fjords; arctic tundra in north || Northern Europe, bordering the North Sea and the North Atlantic Ocean, west of Sweden"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate along coast, modified by North Atlantic Current; colder interior with increased precipitation and colder summers; rainy year-round on west coast || rockslides, avalanches volcanism: Beerenberg (2,227 m) on Jan Mayen Island in the Norwegian Sea is the country's only active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, non-EU economy with trade links via European Economic Area (EEA); key role in European energy security as leader in oil, gas, and electricity exports; major fishing, forestry, and oil(?) extraction industries; oil sovereign fund supports generous welfare system; low unemployment; inflation moderating but remains above target level || Exports: natural gas, crude petroleum, fish, refined petroleum, aluminum (2023) || Industries: petroleum and gas, shipping, fishing, aquaculture, food processing, shipbuilding, pulp and paper products, metals, chemicals, timber, mining, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Church of Norway (Evangelical Lutheran - official) 67.5%, Muslim 3.1%, Roman Catholic 3.1%, other Christian 3.8%, other 2.6%, unspecified 19.9% (2021 est.) || Norwegian 81.5% (includes about 60,000 Sami), other European 8.9%, other 9.6% (2021 est.)"
+    }
+  }
+}

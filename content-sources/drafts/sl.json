@@ -1,0 +1,68 @@
+{
+  "iso": "sl",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.419Z",
+  "structured": {
+    "code": "sl",
+    "name": "Sierra Leone",
+    "capital": "Freetown",
+    "continent": "Africa",
+    "areaKm2": 71740,
+    "population": 7557212,
+    "officialLanguages": [
+      "English",
+      "Krio"
+    ],
+    "currencies": [
+      "leone"
+    ],
+    "landBorderNames": [
+      "Guinea",
+      "Liberia"
+    ],
+    "landBorderCodes": [
+      "gn",
+      "lr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "diamonds, titanium ore, bauxite, iron ore, gold, chromite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Guinea and Liberia || coastal belt of mangrove swamps, wooded hill country, upland plateau, mountains in east || rainfall along the coast can reach 495 cm (195 in) a year, making it one of the wettest places along coastal western Africa || Resources: diamonds, titanium ore, bauxite, iron ore, gold, chromite || Exports: iron ore, titanium ore, diamonds, aluminum ore, cocoa beans (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "coastal belt of mangrove swamps, wooded hill country, upland plateau, mountains in east || Western Africa, bordering the North Atlantic Ocean, between Guinea and Liberia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; summer rainy season (May to December); winter dry season (December to April) || dry, sand-laden harmattan winds blow from the Sahara (December to February); sandstorms, dust storms"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income West African economy; primarily subsistent agriculture; key iron and diamond mining activities suspended; slow recovery from 1990s civil war; systemic corruption; high-risk debt; high youth unemployment; natural resource rich || Exports: iron ore, titanium ore, diamonds, aluminum ore, cocoa beans (2023) || Industries: diamond mining; iron ore, rutile and bauxite mining; small-scale manufacturing (beverages, textiles, footwear)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official, regular use limited to literate minority), Mende (principal vernacular in the south), Temne (principal vernacular in the north), Krio (English-based Creole, spoken by the descendants of freed Jamaican slaves; a first language for 10% of the population but understood by 95%) || Muslim 77.1%, Christian 22.9% (2019 est.) || Temne 35.4%, Mende 30.8%, Limba 8.8%, Kono 4.3%, Korankoh 4%, Fullah 3.8%, Mandingo 2.8%, Loko 2%, Sherbro 1.9%, Creole 1.2% (descendants of freed Jamaican slaves who were settled in the Freetown area in the late-18th century; also known as Krio), other 5% (2019 est.)"
+    }
+  }
+}

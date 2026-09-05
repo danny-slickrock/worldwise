@@ -1,0 +1,181 @@
+{
+  "iso": "si",
+  "fetchedAt": "2026-09-04T23:56:42.339Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/si.json"
+    }
+  },
+  "wikidata": {
+    "name": "Slovenia",
+    "gec": "SI",
+    "capital": "Ljubljana",
+    "areaKm2": 20271,
+    "population": 2066880,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Slovene"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "hu",
+      "it",
+      "at",
+      "hr"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/si.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Slovene lands were part of the Austro-Hungarian Empire until the latter's dissolution at the end of World War I. In 1918, Slovenia became part of the Kingdom of Serbs, Croats, and Slovenes, which was renamed Yugoslavia in 1929. After World War II, Slovenia joined Bosnia and Herzegovina, Croatia, Macedonia, Montenegro, and Serbia as one of the constituent republics in the new Socialist Federal Republic of Yugoslavia (SFRY). In 1990, Slovenia held its first multiparty elections, as well as a referendum on independence. Serbia responded with an economic blockade and military action, but after a short 10-day war, Slovenia declared independence in 1991. Slovenia acceded to both NATO and the EU in the spring of 2004; it joined the euro zone and the Schengen Area in 2007."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "south Central Europe, Julian Alps between Austria and Croatia"
+      },
+      "Area": {
+        "total ": {
+          "text": "20,273 sq km"
+        },
+        "land": {
+          "text": "20,151 sq km"
+        },
+        "water": {
+          "text": "122 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,211 km"
+        },
+        "border countries": {
+          "text": "Austria 299 km; Croatia 600 km; Hungary 94 km; Italy 218 km"
+        }
+      },
+      "Coastline": {
+        "text": "46.6 km"
+      },
+      "Climate": {
+        "text": "Mediterranean climate on the coast, continental climate with mild to hot summers and cold winters in the plateaus and valleys to the east"
+      },
+      "Terrain": {
+        "text": "a short southwestern coastal strip of Karst topography on the Adriatic; an alpine mountain region lies adjacent to Italy and Austria in the north; mixed mountains and valleys with numerous rivers to the east"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Triglav 2,864 m"
+        },
+        "lowest point": {
+          "text": "Adriatic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "492 m"
+        }
+      },
+      "Natural resources": {
+        "text": "lignite, lead, zinc, building stone, hydropower, forests"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "30.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 8.9% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 18.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "61.8% (2023 est.)"
+        },
+        "other": {
+          "text": "10.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding; earthquakes"
+      },
+      "Geography - note": {
+        "text": "despite its small size, this eastern Alpine country controls some of Europe's major transit routes"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,097,893 (2024 est.)"
+        },
+        "male": {
+          "text": "1,051,044"
+        },
+        "female": {
+          "text": "1,046,849"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Slovene (official) 87.7%, Croatian 2.8%, Serbo-Croatian 1.8%, Bosnian 1.6%, Serbian 1.6%, Hungarian 0.4% (official, only in municipalities where Hungarian nationals reside), Italian 0.2% (official, only in municipalities where Italian nationals reside), other or unspecified 3.9% (2002 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Svetovni informativni zvezek - neobhoden vir osnovnih informacij. (Slovene)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Catholic 69%, Orthodox 4%, Muslim 3%, Christian 1%, other 3%, atheist 14%, non-believer/agnostic 4%, refused to answer 2% (2019 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Slovene 83.1%, Serb 2%, Croat 1.8%, Bosniak 1.1%, other or unspecified 12% (2002 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "56.1% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.54% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution throughout most of the country, with urban areas attracting larger and denser populations; pockets in the mountainous northwest are less dense&nbsp;"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income EU and eurozone economy; high per-capita income and low inequality; key exports in automotive and pharmaceuticals; tight labor market with low unemployment; growth supported by private consumption and public investment, with risks from tight labor market and trade conditions; narrowing fiscal deficit and declining public debt</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, maize, wheat, barley, grapes, chicken, potatoes, beef, apples, pork (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "ferrous metallurgy and aluminum products, lead and zinc smelting; electronics (including military electronics), trucks, automobiles, electric power equipment, wood products, textiles, chemicals, machine tools"
+      },
+      "Exports - commodities": {
+        "text": "packaged medicine, cars, refined petroleum, vehicle parts/accessories, plastic products (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Switzerland 22%, Germany 12%, Italy 10%, Croatia 8%, Austria 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "nitrogen compounds, packaged medicine, refined petroleum, cars, vaccines (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "Mediterranean climate on the coast, continental climate with mild to hot summers and cold winters in the plateaus and valleys to the east"
+      }
+    }
+  }
+}

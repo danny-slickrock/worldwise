@@ -1,0 +1,74 @@
+{
+  "iso": "ke",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.414Z",
+  "structured": {
+    "code": "ke",
+    "name": "Kenya",
+    "capital": "Nairobi",
+    "continent": "Africa",
+    "areaKm2": 581309,
+    "population": 48468138,
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Kenyan shilling"
+    ],
+    "landBorderNames": [
+      "Ethiopia",
+      "Somalia",
+      "South Sudan",
+      "Tanzania",
+      "Uganda"
+    ],
+    "landBorderCodes": [
+      "et",
+      "so",
+      "ss",
+      "tz",
+      "ug"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "limestone, soda ash, salt, gemstones, fluorspar, zinc, diatomite, gypsum, wildlife, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, bordering the Indian Ocean, between Somalia and Tanzania || low plains rise to central highlands bisected by Great Rift Valley; fertile plateau in west || the Kenyan Highlands comprise one of the most successful agricultural production regions in Africa; glaciers are found on Mount Kenya, Africa's second-highest peak; unique physiography supports abundant and varied wildlife of scientific and economic value; Lake Victoria, the world's largest tropical lake and the second-largest freshwater lake, is shared among three countries: Kenya, Tanzania, and Uganda || Resources: limestone, soda ash, salt, gemstones, fluorspar, zinc, diatomite, gypsum, wildlife, hydropower || Exports: tea, cut flowers, garments, gold, tropical fruits (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "low plains rise to central highlands bisected by Great Rift Valley; fertile plateau in west || Eastern Africa, bordering the Indian Ocean, between Somalia and Tanzania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical along coast to arid in interior || recurring drought; flooding during rainy seasons volcanism: limited volcanic activity; the Barrier (1,032 m) last erupted in 1921; South Island is the only other historically active volcano"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "fast growing, third largest Sub-Saharan economy; strong agriculture sector with emerging services and tourism industries; IMF program to address current account and debt service challenges; business-friendly policies foster infrastructure investment, digital innovation and public-private partnerships; vulnerable to climate change-induced droughts || Exports: tea, cut flowers, garments, gold, tropical fruits (2023) || Industries: agriculture, transportation, services, manufacturing, construction, telecommunications, tourism, retail"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 85.5% (Protestant 33.4%, Catholic 20.6%, Evangelical 20.4%, African Instituted Churches 7%, other Christian 4.1%), Muslim 10.9%, other 1.8%, none 1.6%, don't know/no answer 0.2% (2019 est.) || Kikuyu 17.1%, Luhya 14.3%, Kalenjin 13.4%, Luo 10.7%, Kamba 9.8%, Somali 5.8%, Kisii 5.7%, Mijikenda 5.2%, Meru 4.2%, Maasai 2.5%, Turkana 2.1%, non-Kenyan 1%, other 8.2% (2019 est.)"
+    }
+  }
+}

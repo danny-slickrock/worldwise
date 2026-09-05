@@ -1,0 +1,65 @@
+{
+  "iso": "ad",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.373Z",
+  "structured": {
+    "code": "ad",
+    "name": "Andorra",
+    "capital": "Andorra la Vella",
+    "continent": "Europe",
+    "areaKm2": 468,
+    "population": 89752,
+    "officialLanguages": [
+      "Catalan"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "France",
+      "Spain"
+    ],
+    "landBorderCodes": [
+      "fr",
+      "es"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, mineral water, timber, iron ore, lead",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southwestern Europe, Pyrenees mountains, on the border between France and Spain || rugged mountains dissected by narrow valleys || landlocked; straddles a number of important crossroads in the Pyrenees || Resources: hydropower, mineral water, timber, iron ore, lead || Exports: paintings, integrated circuits, cars, orthopedic appliances, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rugged mountains dissected by narrow valleys || Southwestern Europe, Pyrenees mountains, on the border between France and Spain"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; snowy, cold winters and warm, dry summers || avalanches"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high GDP; low unemployment; non-EU Euro user; co-principality duty-free area between Spain and France; tourist hub but hit hard by COVID-19; modern, non-tax haven financial sector; looking for big tech investments; new member of SEPA and IMF || Exports: paintings, integrated circuits, cars, orthopedic appliances, garments (2023) || Industries: tourism (particularly skiing), banking, timber, furniture"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Catalan (official) 44.1%, Castilian 40.3%, Portuguese 13.5%, French 10%, English 3%, other 6.8% (2022 est.) || Christian (predominantly Roman Catholic) 89.5, other 8.8%, unaffiliated 1.7% (2020 est.) || Spanish 34.3%, Andorran 32.1%, Portuguese 10%, French 5.6%, other 18% (2024 est.)"
+    }
+  }
+}

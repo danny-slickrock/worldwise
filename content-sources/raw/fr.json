@@ -1,0 +1,204 @@
+{
+  "iso": "fr",
+  "fetchedAt": "2026-09-04T23:56:37.834Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/fr.json"
+    }
+  },
+  "wikidata": {
+    "name": "France",
+    "gec": "FR",
+    "capital": "Paris",
+    "areaKm2": 643801,
+    "population": 68605616,
+    "continent": "Europe",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "CFP Franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "es",
+      "be",
+      "lu",
+      "it",
+      "ch",
+      "br",
+      "de",
+      "ad",
+      "mc",
+      "sr",
+      "nl"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/fr.json",
+    "Introduction": {
+      "Background": {
+        "text": "France today is one of the most modern countries in the world and is a leader among European nations. It plays an influential global role as a permanent member of the United Nations Security Council, NATO, the G-7, the G-20, the EU, and other multilateral organizations. France rejoined NATO's integrated military command structure in 2009, reversing then President Charles DE GAULLE's 1966 decision to withdraw French forces from NATO. Since 1958, it has constructed a hybrid presidential-parliamentary governing system resistant to the instabilities experienced in earlier, more purely parliamentary administrations. In recent decades, its reconciliation and cooperation with Germany have proved central to the economic integration of Europe, including the introduction of a common currency, the euro, in January 1999. In the early 21st century, five French overseas entities -- French Guiana, Guadeloupe, Martinique, Mayotte, and Reunion -- became French regions and were made part of France proper."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "<strong>metropolitan France:</strong> Western Europe, bordering the Bay of Biscay and English Channel, between Belgium and Spain, southeast of the UK; bordering the Mediterranean Sea, between Italy and Spain<br><br><strong>French Guiana:</strong> Northern South America, bordering the North Atlantic Ocean, between Brazil and Suriname<br><br><strong>Guadeloupe:</strong> Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, southeast of Puerto Rico<br><br><strong>Martinique:</strong> Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago<br><br><strong>Mayotte:</strong> Southern Indian Ocean, island in the Mozambique Channel, about halfway between northern Madagascar and northern Mozambique<br><br><strong>Reunion:</strong> Southern Africa, island in the Indian Ocean, east of Madagascar"
+      },
+      "Area": {
+        "total ": {
+          "text": "643,801 sq km ; 551,500 sq km (metropolitan France)"
+        },
+        "land": {
+          "text": "640,427 sq km ; 549,970 sq km (metropolitan France)"
+        },
+        "water": {
+          "text": "3,374 sq km ; 1,530 sq km (metropolitan France)"
+        },
+        "note": "<strong>note:</strong> the first numbers include the overseas regions of French Guiana, Guadeloupe, Martinique, Mayotte, and Reunion"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "3,956 km"
+        },
+        "border countries": {
+          "text": "Andorra 55 km; Belgium 556 km; Germany 418 km; Italy 476 km; Luxembourg 69 km; Monaco 6 km; Spain 646 km; Switzerland 525 km"
+        },
+        "metropolitan France - total": {
+          "text": "2751 km"
+        },
+        "French Guiana - total": {
+          "text": "1205 km"
+        }
+      },
+      "Coastline": {
+        "text": "4,853 km",
+        "note": "<strong>metropolitan France: </strong>3,427 km"
+      },
+      "Climate": {
+        "text": "<strong>metropolitan France:</strong> generally cool winters and mild summers, but mild winters and hot summers along the Mediterranean; occasional strong, cold, dry, north-to-northwesterly wind known as the mistral<br>",
+        "note": "<strong>French Guiana:</strong> tropical; hot, humid; little seasonal temperature variation <br><br><strong>Guadeloupe and Martinique:</strong> subtropical tempered by trade winds; moderately high humidity; rainy season (June to October); vulnerable to devastating cyclones (hurricanes) every eight years on average <br><br><strong>Mayotte:</strong> tropical; marine; hot, humid, rainy season during northeastern monsoon (November to May); dry season is cooler (May to November) <br><br><strong>Reunion:</strong> tropical, but temperature moderates with elevation; cool and dry (May to November), hot and rainy (November to April)"
+      },
+      "Terrain": {
+        "text": "<strong>metropolitan France:</strong> mostly flat plains or gently rolling hills in north and west; remainder is mountainous, especially Pyrenees in south, Alps in east<br><br><strong>French Guiana:</strong> low-lying coastal plains rising to hills and small mountains<br><br><strong>Guadeloupe:</strong> Basse-Terre is volcanic in origin with interior mountains; Grande-Terre is low limestone formation; most of the seven other islands are volcanic in origin<br><br><strong>Martinique:</strong> mountainous with indented coastline; dormant volcano<br><br><strong>Mayotte:</strong> generally undulating, with deep ravines and ancient volcanic peaks<br><br><strong>Reunion:</strong> mostly rugged and mountainous; fertile lowlands along coast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Blanc 4,810"
+        },
+        "lowest point": {
+          "text": "Rhone River delta -2 m"
+        },
+        "mean elevation": {
+          "text": "375 m"
+        },
+        "note": "<strong>note:</strong> to assess the possible effects of climate change on the ice and snow cap of Mont Blanc, its surface and peak have been extensively measured in recent years; these new peak measurements have exceeded the traditional height of 4,807 m and have varied between 4,808 m and 4,811 m; the actual rock summit is 4,792 m and is 40 m away from the ice-covered summit"
+      },
+      "Natural resources": {
+        "text": "<em>metropolitan France:</em> coal, iron ore, bauxite, zinc, uranium, antimony, arsenic, potash, feldspar, fluorspar, gypsum, timber, arable land, fish; <em>French Guiana</em><em>:</em> gold deposits, petroleum, kaolin, niobium, tantalum, clay"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "52.5% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 31.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.9% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 19.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "32.7% (2023 est.)"
+        },
+        "other": {
+          "text": "15% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "<strong>metropolitan France:</strong> flooding; avalanches; midwinter windstorms; drought; forest fires in south<br><br><strong>overseas departments:</strong> hurricanes (cyclones); flooding<br><br><strong>volcanism:</strong> Montagne Pelée (1,394 m) on the island of Martinique in the Caribbean is the most active volcano of the Lesser Antilles arc, although it last erupted in 1932; a catastrophic eruption in 1902 destroyed the city of St. Pierre, killing an estimated 30,000 people; La Soufrière (1,467 m) on the island of Guadeloupe has also had explosive eruptions in recent years"
+      },
+      "Geography - note": {
+        "text": "largest Western European nation; most major French rivers -- the Meuse, Seine, Loire, Charente, Dordogne, and Garonne -- flow northward or westward into the Atlantic Ocean, only the Rhone flows southward into the Mediterranean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "68,512,806 (2025 est.)"
+        },
+        "male": {
+          "text": "33,627,639"
+        },
+        "female": {
+          "text": "34,885,167"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official) 100%, declining regional dialects and languages (Proven&ccedil;al, Breton, Alsatian, Corsican, Catalan, Basque, Flemish, Occitan, Picard)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> overseas departments - French, Creole patois, Mahorian (a Swahili dialect)"
+      },
+      "Religions": {
+        "text": "Roman Catholic 47%, Muslim 4%, Protestant 2%, Buddhist 2%, Orthodox 1%, Jewish 1%, other 1%, none 33%, unspecified 9% (2021 est.)",
+        "note": "<strong>note:</strong> France maintains a tradition of secularism and has not officially collected data on religious affiliation since the 1872 national census, which complicates assessments of France's religious composition; an 1872 law prohibiting state authorities from collecting data on individuals' ethnicity or religious beliefs was reaffirmed by a 1978 law emphasizing the prohibition of the collection or exploitation of personal data revealing an individual's race, ethnicity, or political, philosophical, or religious opinions; a 1905 law codified France's separation of church and state"
+      },
+      "Ethnic groups": {
+        "text": "Celtic and Latin with Teutonic, Slavic, North African (Algerian, Moroccan, Tunisian), Indochinese, Basque minorities",
+        "note": "<strong>note:</strong> overseas departments: Black, White, Mulatto, East Indian, Chinese, Indigenous"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "81.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.67% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "much of the population is concentrated in the north and southeast; although there are many urban agglomerations throughout the country, Paris is by far the largest city, with Lyon ranked a distant second"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, advanced EU economy and eurozone member; strong tourism, aircraft manufacturing, pharmaceuticals, and industrial sectors; high public debt; ongoing pension reform efforts; transitioning to a green economy via \"France 2030\" strategy</p>"
+      },
+      "Agricultural products": {
+        "text": "wheat, sugar beets, milk, maize, barley, potatoes, grapes, rapeseed, pork, sunflower seeds (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "machinery, chemicals, automobiles, metallurgy, aircraft, electronics, textiles, food processing, tourism"
+      },
+      "Exports - commodities": {
+        "text": "aircraft, cars, packaged medicine, gas turbines, vehicle parts/accessories (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 11%, Italy 9%, USA 8%, Belgium 8%, Spain 7% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, natural gas, crude petroleum, refined petroleum, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "<strong>metropolitan France:</strong> generally cool winters and mild summers, but mild winters and hot summers along the Mediterranean; occasional strong, cold, dry, north-to-northwesterly wind known as the mistral<br>",
+        "note": "<strong>French Guiana:</strong> tropical; hot, humid; little seasonal temperature variation <br><br><strong>Guadeloupe and Martinique:</strong> subtropical tempered by trade winds; moderately high humidity; rainy season (June to October); vulnerable to devastating cyclones (hurricanes) every eight years on average <br><br><strong>Mayotte:</strong> tropical; marine; hot, humid, rainy season during northeastern monsoon (November to May); dry season is cooler (May to November) <br><br><strong>Reunion:</strong> tropical, but temperature moderates with elevation; cool and dry (May to November), hot and rainy (November to April)"
+      }
+    }
+  }
+}

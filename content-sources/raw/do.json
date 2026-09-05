@@ -1,0 +1,184 @@
+{
+  "iso": "do",
+  "fetchedAt": "2026-09-04T23:57:06.816Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/dr.json"
+    }
+  },
+  "wikidata": {
+    "name": "Dominican Republic",
+    "gec": "DR",
+    "capital": "Santo Domingo",
+    "areaKm2": 48670.82,
+    "population": 10760028,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Dominican peso"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "ve",
+      "ht",
+      "tc"
+    ]
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/dr.json",
+    "Introduction": {
+      "Background": {
+        "text": "The Taino -- indigenous inhabitants of Hispaniola prior to the arrival of Europeans -- divided the island now known as the Dominican Republic and Haiti into five chiefdoms and territories. Christopher COLUMBUS explored and claimed the island on his first voyage in 1492; it became a springboard for Spanish conquest of the Caribbean and the American mainland. In 1697, Spain recognized French dominion over the western third of the island, which in 1804 became Haiti. The remainder of the island, by then known as Santo Domingo, sought to gain its own independence in 1821, but the Haitians conquered and ruled it for 22 years; it finally attained independence as the Dominican Republic in 1844. In 1861, the Dominicans voluntarily returned to the Spanish Empire, but two years later, they launched a war that restored independence in 1865. <br><br>A legacy of unsettled and mostly non-representative rule followed, capped by the dictatorship of Rafael Leonidas TRUJILLO from 1930 to 1961. Juan BOSCH was elected president in 1962 but was deposed in a military coup in 1963. In 1965, the US led an intervention in the midst of a civil war sparked by an uprising to restore BOSCH. In 1966, Joaquin BALAGUER defeated BOSCH in the presidential election. BALAGUER maintained a tight grip on power for most of the next 30 years, until international reaction to flawed elections forced him to curtail his term in 1996. Since then, regular competitive elections have been held. "
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, eastern two-thirds of the island of Hispaniola, between the Caribbean Sea and the North Atlantic Ocean, east of Haiti"
+      },
+      "Area": {
+        "total ": {
+          "text": "48,670 sq km"
+        },
+        "land": {
+          "text": "48,320 sq km"
+        },
+        "water": {
+          "text": "350 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "376 km"
+        },
+        "border countries": {
+          "text": "Haiti 376 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,288 km"
+      },
+      "Climate": {
+        "text": "tropical maritime; little seasonal temperature variation; seasonal variation in rainfall"
+      },
+      "Terrain": {
+        "text": "rugged highlands and mountains interspersed with fertile valleys"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Pico Duarte 3,098 m"
+        },
+        "lowest point": {
+          "text": "Lago Enriquillo -46 m"
+        },
+        "mean elevation": {
+          "text": "424 m"
+        }
+      },
+      "Natural resources": {
+        "text": "nickel, bauxite, gold, silver, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "55.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 20.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 23.8% (2023 est.)"
+        },
+        "forest": {
+          "text": "46.6% (2023 est.)"
+        },
+        "other": {
+          "text": "0% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "lies in the middle of the hurricane belt and subject to severe storms from June to October; occasional flooding; periodic droughts"
+      },
+      "Geography - note": {
+        "text": "shares island of Hispaniola with Haiti (eastern two-thirds makes up the Dominican Republic, western one-third is Haiti); the second largest country in the Antilles (after Cuba); geographically diverse with the Caribbean's tallest mountain, Pico Duarte, and lowest elevation and largest lake, Lago Enriquillo"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "10,899,292 (2025 est.)"
+        },
+        "male": {
+          "text": "5,506,679"
+        },
+        "female": {
+          "text": "5,392,613"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish (official)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Evangelical 50.2%, Roman Catholic 30.1%, none 18.5%, unspecified 1.2% (2023 est.)"
+      },
+      "Ethnic groups": {
+        "text": "mixed 70.4% (Mestizo/Indio 58%, Mulatto 12.4%), Black 15.8%, White 13.5%, other 0.3% (2014 est.)",
+        "note": "<strong>note:</strong> respondents self-identified their race; the term \"indio\" in the Dominican Republic is not associated with people of indigenous ancestry but people of mixed ancestry or skin color between light and dark"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "84.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.64% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "coastal development is significant, especially in the southern coastal plains and the Cibao Valley, where population density is highest; smaller population clusters exist in the interior mountains (Cordillera Central)"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "surging middle-income tourism, construction, mining, and telecommunications OECS economy; major foreign US direct investment and free-trade zones; developing local financial markets; improving debt management; declining poverty"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, bananas, papayas, plantains, avocados, rice, milk, watermelons, vegetables, pineapples (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, sugar processing, gold mining, textiles, cement, tobacco, electrical components, medical devices"
+      },
+      "Exports - commodities": {
+        "text": "medical instruments, tobacco, gold, garments, power equipment (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 52%, Switzerland 7%, Haiti 6%, China 5%, India 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, natural gas, plastic products, crude petroleum (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical maritime; little seasonal temperature variation; seasonal variation in rainfall"
+      }
+    }
+  }
+}

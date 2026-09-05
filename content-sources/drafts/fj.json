@@ -1,0 +1,63 @@
+{
+  "iso": "fj",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.435Z",
+  "structured": {
+    "code": "fj",
+    "name": "Fiji",
+    "capital": "Suva",
+    "continent": "Insular Oceania",
+    "areaKm2": 18274,
+    "population": 926276,
+    "officialLanguages": [
+      "English",
+      "Fijian",
+      "Fiji Hindi"
+    ],
+    "currencies": [
+      "Fijian dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, fish, gold, copper, offshore oil potential, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, island group in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand || mostly mountains of volcanic origin || consists of 332 islands, approximately 110 of which are inhabited, and more than 500 islets || Resources: timber, fish, gold, copper, offshore oil potential, hydropower || Exports: water, fish, raw sugar, refined petroleum, garments (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains of volcanic origin || Oceania, island group in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical marine; only slight seasonal temperature variation || cyclonic storms can occur from November to January"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle income, tourism-based Pacific island economy; susceptible to ocean rises; key energy and infrastructure investments; post-pandemic tourism resurgence; improved debt standing; limited workforce || Exports: water, fish, raw sugar, refined petroleum, garments (2023) || Industries: tourism, sugar processing, clothing, copra, gold, silver, lumber"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), iTaukei (official), Fiji Hindi (official) || Protestant 45% (Methodist 34.6%, Assembly of God 5.7%, Seventh Day Adventist 3.9%, and Anglican 0.8%), Hindu 27.9%, other Christian 10.4%, Roman Catholic 9.1%, Muslim 6.3%, Sikh 0.3%, other 0.3%, none 0.8% (2007 est.) || iTaukei 56.8% (predominantly Melanesian with a Polynesian admixture), Indo-Fijian 37.5%, Rotuman 1.2%, other 4.5% (European, part European, other Pacific Islanders, Chinese) (2007 est.)"
+    }
+  }
+}

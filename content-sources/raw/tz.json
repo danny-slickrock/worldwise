@@ -1,0 +1,191 @@
+{
+  "iso": "tz",
+  "fetchedAt": "2026-09-04T23:57:02.984Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/tz.json"
+    }
+  },
+  "wikidata": {
+    "name": "Tanzania",
+    "gec": "TZ",
+    "capital": "Dodoma",
+    "areaKm2": 947303,
+    "population": 57310019,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Tanzanian shilling"
+    ],
+    "sharesBorderWithAnyType": [
+      "ke",
+      "zm",
+      "bi",
+      "cd",
+      "mw",
+      "mz",
+      "ug",
+      "rw",
+      "sc"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/tz.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Tanzania contains some of Africa’s most iconic national parks and famous paleoanthropological sites, and its diverse cultural heritage reflects the multiple ethnolinguistic groups that live in the country. Its long history of integration into trade networks spanning the Indian Ocean and the African interior led to the development of Swahili as a common language in much of east Africa and the introduction of Islam into the region. A number of independent coastal and island trading posts in what is now Tanzania came under Portuguese control after 1498 when they began to take control of much of the coast and Indian Ocean trade. By 1700, the Sultanate of Oman had become the dominant power in the region after ousting the Portuguese, who were also facing a series of local uprisings. During the next hundred years, Zanzibar -- an archipelago off the coast that is now part of Tanzania -- became a hub of Indian Ocean trade, with Arab and Indian traders establishing and consolidating trade routes with communities in mainland Tanzania that contributed to the expansion of the slave trade. Zanzibar briefly became the capital of the Sultanate of Oman before it split into separate Omani and Zanzibar Sultanates in 1856. Beginning in the mid-1800s, European explorers, traders, and Christian missionaries became more active in the region. The Germans eventually established control over mainland Tanzania -- which they called Tanganyika -- and the British established control over Zanzibar. Tanganyika came under British administration after the German defeat in World War I.</p> <p>Tanganyika gained independence from Great Britain in 1961, and Zanzibar followed in 1963 as a constitutional monarchy. In Tanganyika, Julius NYERERE, a charismatic and idealistic socialist, established a one-party political system that centralized power and encouraged national self-reliance and rural development. In 1964, a popular uprising overthrew the Sultan in Zanzibar and either killed or expelled many of the Arabs and Indians who had dominated the isles for more than 200 years. Later that year, Tanganyika and Zanzibar combined to form the United Republic of Tanzania, but Zanzibar retained considerable autonomy. Their two ruling parties combined to form the Chama Cha Mapinduzi (CCM) party in 1977, which has since won every presidential election. Tanzania held its first multi-party elections in 1995, but CCM candidates have continued to dominate politics. The ruling party has claimed victory in four contentious elections since 1995, despite international observers' claims of voting irregularities. In 2001, 35 people died in Zanzibar when soldiers fired on protestors. John MAGUFULI won the 2015 and 2020 presidential elections, and the CCM won over two-thirds of the seats in Parliament in both elections. MAGUFULI died in 2021 while in office and was succeeded by his vice president, Samia Suluhu HASSAN.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Eastern Africa, bordering the Indian Ocean, between Kenya and Mozambique"
+      },
+      "Area": {
+        "total ": {
+          "text": "947,300 sq km"
+        },
+        "land": {
+          "text": "885,800 sq km"
+        },
+        "water": {
+          "text": "61,500 sq km"
+        },
+        "note": "<strong>note:</strong> includes the islands of Mafia, Pemba, and Zanzibar"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,161 km"
+        },
+        "border countries": {
+          "text": "Burundi 589 km; Democratic Republic of the Congo 479 km; Kenya 775 km; Malawi 512 km; Mozambique 840 km; Rwanda 222 km; Uganda 391 km; Zambia 353 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,424 km"
+      },
+      "Climate": {
+        "text": "varies from tropical along coast to temperate in highlands"
+      },
+      "Terrain": {
+        "text": "plains along coast; central plateau; highlands in north, south"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kilimanjaro (highest point in Africa) 5,895 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "1,018 m"
+        }
+      },
+      "Natural resources": {
+        "text": "hydropower, tin, phosphates, iron ore, coal, diamonds, gemstones (including tanzanite, found only in Tanzania), gold, natural gas, nickel"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "44.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 15.2% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 27.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "50.1% (2023 est.)"
+        },
+        "other": {
+          "text": "5.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding on the central plateau during the rainy season; drought <br><br><strong>volcanism:</strong> limited volcanic activity; Ol Doinyo Lengai (2,962 m) has emitted lava in recent years; other historically active volcanoes include Kieyo and Meru"
+      },
+      "Geography - note": {
+        "text": "Kilimanjaro is the highest point in Africa and one of only three mountain ranges on the continent that has glaciers (the others are Mount Kenya in Kenya and the Ruwenzori Mountains on the Uganda-Democratic Republic of the Congo border); Tanzania is bordered by three of the largest lakes on the continent: Lake Victoria (the world's second-largest freshwater lake) in the north, Lake Tanganyika (the world's second-deepest) in the west, and Lake Nyasa (Lake Malawi) in the southwest"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "69,145,464 (2025 est.)"
+        },
+        "male": {
+          "text": "34,597,449"
+        },
+        "female": {
+          "text": "34,548,015"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Kiswahili or Swahili (official), Kiunguja (name for Swahili in Zanzibar), English (official, primary language of commerce, administration, and higher education), Arabic, many local languages"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, Chanzo cha Lazima Kuhusu Habari ya Msingi. (Kiswahili)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Christian 63.1%, Muslim 34.1%, folk religion 1.1%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, other &lt;1%, unspecified 1.6% (2020 est.)",
+        "note": "<strong>note:</strong> Zanzibar is almost entirely Muslim"
+      },
+      "Ethnic groups": {
+        "text": "mainland - African 99% (of which 95% are Bantu consisting of more than 130 tribes), other 1% (consisting of Asian, European, and Arab); Zanzibar - Arab, African, mixed Arab and African"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "37.4% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.89% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "the largest and most populous East African country; population distribution is extremely uneven, but greater population clusters occur in the northern half of country and along the east coast, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "emerging lower middle-income East African economy; resource-rich and growing tourism; strong post-pandemic recovery from hospitality, electricity, mining, and transit sectors; declining poverty; stable inflation; gender-based violence economic and labor force disruptions"
+      },
+      "Agricultural products": {
+        "text": "maize, cassava, sweet potatoes, bananas, milk, sugarcane, rice, vegetables, beans, sunflower seeds (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "agricultural processing (sugar, beer, cigarettes, sisal twine); mining (diamonds, gold, and iron), salt, soda ash; cement, oil refining, shoes, apparel, wood products, fertilizer"
+      },
+      "Exports - commodities": {
+        "text": "gold, refined petroleum, dried legumes, refined copper, coal (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "India 15%, UAE 14%, Uganda 12%, South Africa 10%, China 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, plastics, garments, fertilizers, wheat (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical along coast to temperate in highlands"
+      }
+    }
+  }
+}

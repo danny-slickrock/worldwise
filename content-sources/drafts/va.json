@@ -1,0 +1,64 @@
+{
+  "iso": "va",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.390Z",
+  "structured": {
+    "code": "va",
+    "name": "Vatican City",
+    "capital": "Vatican City",
+    "continent": "Europe",
+    "areaKm2": 0.49,
+    "population": 882,
+    "officialLanguages": [
+      "Italian",
+      "Latin"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Italy"
+    ],
+    "landBorderCodes": [
+      "it"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "none",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Europe, an enclave of Rome (Italy) || urban; low hill || landlocked; an enclave in Rome, Italy; world's smallest state || Resources: none"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "urban; low hill || Southern Europe, an enclave of Rome (Italy)"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "temperate; mild, rainy winters (September to May) with hot, dry summers (May to September) || occasional earthquakes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "limited, tourism-based economy; euro user with own minted coins; produces commemorative stamps, coins, and publications to support museums and religious needs; residents pay no direct taxes; &ldquo;zero deficit&rdquo; plan to address budget shortfall || Industries: printing; production of coins, medals, postage stamps; mosaics, staff uniforms; worldwide banking and financial activities"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic || Italian, Swiss, Argentinian, and other nationalities from around the world (2017)"
+    }
+  }
+}

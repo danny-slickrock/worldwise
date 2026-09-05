@@ -1,0 +1,175 @@
+{
+  "iso": "gm",
+  "fetchedAt": "2026-09-04T23:56:57.927Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ga.json"
+    }
+  },
+  "wikidata": {
+    "name": "The Gambia",
+    "gec": "GA",
+    "capital": "Banjul",
+    "areaKm2": 11300,
+    "population": 2639916,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "dalasi"
+    ],
+    "sharesBorderWithAnyType": [
+      "sn"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ga.json",
+    "Introduction": {
+      "Background": {
+        "text": "In the 10th century, Muslim merchants established some of The Gambia’s earliest large settlements as trans-Saharan trade hubs. These settlements eventually grew into major export centers sending slaves, gold, and ivory across the Sahara. Between the 16th and 17th centuries, European colonial powers began establishing trade with The Gambia. In 1664, the United Kingdom established a colony in The Gambia focused on exporting enslaved people across the Atlantic. During the roughly 300 years of the trans-Atlantic slave trade, the UK and other European powers may have exported as many as 3 million people from The Gambia. <br><br>The Gambia gained its independence from the UK in 1965. Geographically surrounded by Senegal, it formed the short-lived confederation of Senegambia between 1982 and 1989. In 1994, Yahya JAMMEH led a military coup overthrowing the president and banning political activity. He subsequently won every presidential election until 2016, when he lost to Adama BARROW, who headed an opposition coalition during free and fair elections. BARROW won reelection in 2021. The Gambia is the only member of the Economic Community of West African States that does not have presidential term limits. Since the 2016 election, The Gambia and the US have enjoyed improved relations. US assistance to the country has supported democracy-strengthening activities, capacity building, economic development, and security sector education and training programs."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Africa, bordering the North Atlantic Ocean and Senegal"
+      },
+      "Area": {
+        "total ": {
+          "text": "11,300 sq km"
+        },
+        "land": {
+          "text": "10,120 sq km"
+        },
+        "water": {
+          "text": "1,180 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "749 km"
+        },
+        "border countries": {
+          "text": "Senegal 749 km"
+        }
+      },
+      "Coastline": {
+        "text": "80 km"
+      },
+      "Climate": {
+        "text": "tropical; hot, rainy season (June to November); cooler, dry season (November to May)"
+      },
+      "Terrain": {
+        "text": "flood plain of the Gambia River flanked by some low hills"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "unnamed elevation 63 m; 3 km southeast of the town of Sabi"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "34 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, clay, silica sand, titanium (rutile and ilmenite), tin, zircon"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "62.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 43.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 18.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "22% (2023 est.)"
+        },
+        "other": {
+          "text": "15.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts"
+      },
+      "Geography - note": {
+        "text": "almost an enclave of Senegal; smallest country on the African mainland"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,523,327 (2024 est.)"
+        },
+        "male": {
+          "text": "1,250,490"
+        },
+        "female": {
+          "text": "1,272,837"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Mandinka, Wolof, Fula, other indigenous vernaculars"
+      },
+      "Religions": {
+        "text": "Muslim 96.4%, Christian 3.5%, other or none 0.1% (2019-20 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mandinka/Jahanka 33.3%, Fulani/Tukulur/Lorobo 18.2%, Wolof 12.9%, Jola/Karoninka 11%, Serahuleh 7.2%, Serer 3.5%, other 4%, non-Gambian 9.9% (2019-20 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "64.5% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.75% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "settlements are found scattered along the Gambia River; the largest communities, including the capital of Banjul and the country's largest city, Serekunda, are found at the mouth of the Gambia River along the Atlantic coast, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income West African economy; agriculture-dominant; high poverty rate; heightened inflation; dependent on foreign assistance and remittances; structural reforms conditioned by IMF Extended Credit Facility program"
+      },
+      "Agricultural products": {
+        "text": "rice, groundnuts, milk, millet, oil palm fruit, maize, vegetables, cassava, fruits, sorghum (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "peanuts, fish, hides, tourism, beverages, agricultural machinery assembly, woodworking, metalworking, clothing"
+      },
+      "Exports - commodities": {
+        "text": "packaged medicine, cars, harvesting machinery, refined petroleum, trailers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Kazakhstan 92%, Guinea-Bissau 2%, China 1%, India 1%, Greece 1% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "crude petroleum, refined petroleum, cotton fabric, iron alloys, rice (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; hot, rainy season (June to November); cooler, dry season (November to May)"
+      }
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "iso": "ug",
+  "fetchedAt": "2026-09-04T23:57:03.729Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/ug.json"
+    }
+  },
+  "wikidata": {
+    "name": "Uganda",
+    "gec": "UG",
+    "capital": "Kampala",
+    "areaKm2": 241038,
+    "population": 47123531,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Swahili"
+    ],
+    "currencies": [
+      "Ugandan shilling"
+    ],
+    "sharesBorderWithAnyType": [
+      "ke",
+      "tz",
+      "ss",
+      "cd",
+      "rw",
+      "sd"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/ug.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>An ancient crossroads for various migrations, Uganda has as many as 65 ethnic groups that speak languages from three of Africa’s four major linguistic families. As early as 1200, fertile soils and regular rainfall in the south fostered the formation of several large, centralized kingdoms, including Buganda, from which the country derives its name. Muslim traders from Egypt reached northern Uganda in the 1820s, and Swahili merchants from the Indian Ocean coast arrived in the south by the 1840s. The area attracted the attention of British explorers seeking the source of the Nile River in the 1860s, and this influence expanded in subsequent decades with the arrival of Christian missionaries and trade agreements; Uganda was declared a British protectorate in 1894. Buganda and other southern kingdoms negotiated agreements with Britain to secure privileges and a level of autonomy that were rare during the colonial period in Africa. Uganda's colonial boundaries grouped together a wide range of ethnic groups with different political systems and cultures, and the disparities between how Britain governed southern and northern areas compounded these differences, complicating efforts to establish a cohesive independent country.<br><br>Uganda gained independence in 1962 with one of the more developed economies and one of the strongest education systems in Sub-Saharan Africa, but it descended within a few years into political turmoil and internal conflict that lasted more than two decades. In 1966, Prime Minister Milton OBOTE suspended the constitution and violently deposed President Edward MUTESA, who was also the king of Buganda. Idi AMIN seized power in 1971 through a military coup and led the country into economic ruin and rampant mass atrocities that killed as many as 500,000 civilians. AMIN’s annexation of Tanzanian territory in 1979 provoked Tanzania to invade Uganda, depose AMIN, and install a coalition government. In the aftermath, Uganda continued to experience atrocities, looting, and political instability and had four different heads of state between 1979 and 1980. OBOTE regained the presidency in 1980 through a controversial election that sparked renewed guerrilla warfare, killing as an estimated 300,000 civilians. Gen. Tito OKELLO seized power in a coup in 1985, but his rule was short-lived, with Yoweri MUSEVENI becoming president in 1986 after his insurgency captured the capital. MUSEVENI is widely credited with restoring relative stability and economic growth to Uganda but has resisted calls to leave office. In 2017, parliament removed presidential age limits, making it possible for MUSEVENI to remain in office for life. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "East-Central Africa, west of Kenya, east of the Democratic Republic of the Congo"
+      },
+      "Area": {
+        "total ": {
+          "text": "241,038 sq km"
+        },
+        "land": {
+          "text": "197,100 sq km"
+        },
+        "water": {
+          "text": "43,938 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,729 km"
+        },
+        "border countries": {
+          "text": "Democratic Republic of the Congo 877 km; Kenya 814 km; Rwanda 172 km; South Sudan 475 km; Tanzania 391 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "tropical; generally rainy with two dry seasons (December to February, June to August); semiarid in northeast"
+      },
+      "Terrain": {
+        "text": "mostly plateau with rim of mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Margherita Peak on Mount Stanley 5,110 m"
+        },
+        "lowest point": {
+          "text": "Albert Nile 614 m"
+        }
+      },
+      "Natural resources": {
+        "text": "copper, cobalt, hydropower, limestone, salt, arable land, gold"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "71.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 34.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 11% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 26.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "12.1% (2023 est.)"
+        },
+        "other": {
+          "text": "16% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "droughts; floods; earthquakes; landslides; hailstorms"
+      },
+      "Geography - note": {
+        "text": "landlocked; fertile, well-watered country with many lakes and rivers; Lake Victoria, the world's largest tropical lake and second-largest freshwater lake, is shared among three countries: Kenya, Tanzania, and Uganda"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "50,863,850 (2025 est.)"
+        },
+        "male": {
+          "text": "24,835,513"
+        },
+        "female": {
+          "text": "26,028,337"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Ganda or Luganda (most widely used of the Niger-Congo languages and the language used most often in the capital), other Niger-Congo languages, Nilo-Saharan languages, Swahili (official), Arabic"
+      },
+      "Religions": {
+        "text": "Protestant 45.1% (Anglican 32.0%, Pentecostal/Born Again/Evangelical 11.1%, Seventh Day Adventist 1.7%, Baptist .3%), Roman Catholic 39.3%, Muslim 13.7%, other 1.6%, none 0.2% (2014 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Baganda 16.5%, Banyankole 9.6%, Basoga 8.8%, Bakiga 7.1%, Iteso 7%, Langi 6.3%, Bagisu 4.9%, Acholi 4.4%, Lugbara 3.3%, other 32.1% (2014 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "26.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "5.41% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population density is relatively high in comparison to other African nations; most of the population is concentrated in the central and southern parts of the country, particularly along the shores of Lake Victoria and Lake Albert; the northeast is least populated, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income, primarily agrarian East African economy; COVID-19 hurt economic growth and poverty reduction; lower oil prices threaten prior sector investments; endemic corruption; natural resource rich; high female labor force participation but undervalued"
+      },
+      "Agricultural products": {
+        "text": "plantains, sugarcane, milk, maize, cassava, sweet potatoes, vegetables, beans, potatoes, tea (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "sugar processing, brewing, tobacco, cotton textiles; cement, steel production"
+      },
+      "Exports - commodities": {
+        "text": "gold, coffee, fish, refined petroleum, tobacco (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "India 21%, UAE 16%, Hong Kong 10%, South Sudan 8%, Kenya 6% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, gold, plastics, packaged medicine, palm oil (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; generally rainy with two dry seasons (December to February, June to August); semiarid in northeast"
+      }
+    }
+  }
+}

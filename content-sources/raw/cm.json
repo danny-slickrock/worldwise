@@ -1,0 +1,186 @@
+{
+  "iso": "cm",
+  "fetchedAt": "2026-09-04T23:56:55.354Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/cm.json"
+    }
+  },
+  "wikidata": {
+    "name": "Cameroon",
+    "gec": "CM",
+    "capital": "Yaoundé",
+    "areaKm2": 475442,
+    "population": 28372687,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "English"
+    ],
+    "currencies": [
+      "Central African CFA franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "td",
+      "cf",
+      "cg",
+      "gq",
+      "ga",
+      "ng"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/cm.json",
+    "Introduction": {
+      "Background": {
+        "text": "Powerful chiefdoms ruled much of the area of present-day Cameroon before it became a German colony known as Kamerun in 1884. After World War I, the territory was divided between France and the UK as League of Nations mandates. French Cameroon became independent in 1960 as the Republic of Cameroon. The following year, the southern portion of neighboring British Cameroon voted to merge with the new country to form the Federal Republic of Cameroon. In 1972, a new constitution replaced the federation with a unitary state, the United Republic of Cameroon. The country has generally enjoyed stability, which has enabled the development of agriculture, roads, and railways, as well as a petroleum industry. Nonetheless, unrest and violence in the country's two western, English-speaking regions have persisted since 2016. Movement toward democratic reform is slow, and political power remains firmly in the hands of President Paul BIYA."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Central Africa, bordering the Bight of Biafra, between Equatorial Guinea and Nigeria"
+      },
+      "Area": {
+        "total ": {
+          "text": "475,440 sq km"
+        },
+        "land": {
+          "text": "472,710 sq km"
+        },
+        "water": {
+          "text": "2,730 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "5,018 km"
+        },
+        "border countries": {
+          "text": "Central African Republic 901 km; Chad 1,116 km; Republic of the Congo 494 km; Equatorial Guinea 183 km; Gabon 349 km; Nigeria 1975 km"
+        }
+      },
+      "Coastline": {
+        "text": "402 km"
+      },
+      "Climate": {
+        "text": "varies with terrain, from tropical along coast to semiarid and hot in north"
+      },
+      "Terrain": {
+        "text": "diverse, with coastal plain in southwest, dissected plateau in center, mountains in west, plains in north"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Fako on Mont Cameroun 4,045 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "667 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, bauxite, iron ore, timber, hydropower"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "20.9% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 13.1% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.6% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 4.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "41% (2023 est.)"
+        },
+        "other": {
+          "text": "38.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "volcanic activity with periodic releases of poisonous gases from Lake Nyos and Lake Monoun volcanoes <br><br><strong>volcanism:</strong> Mt. Cameroon (4,095 m), which last erupted in 2000, is the most frequently active volcano in West Africa; lakes in the Oku volcanic field sometimes release fatal levels of gas, which killed about 1,700 people in 1986"
+      },
+      "Geography - note": {
+        "text": "sometimes referred to as the hinge of Africa because of its central location on the continent and its position at the west-south juncture of the Gulf of Guinea; areas of thermal springs and indications of current or prior volcanic activity; Mount Cameroon, the highest mountain in Sub-Saharan west Africa, is an active volcano"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "31,518,954 (2025 est.)"
+        },
+        "male": {
+          "text": "15,683,611"
+        },
+        "female": {
+          "text": "15,835,343"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "24 major African language groups, English (official), French (official)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, the indispensable source for basic information. (English)<br><br>The World Factbook, une source indispensable d'informations de base. (French)"
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 33.1%, Muslim 30.6%, Protestant 27.1% other Christian 6.1%, animist 1.3%, other 0.7%, none 1.2% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Bamileke-Bamu 22.2%, Biu-Mandara 16.4%, Arab-Choa/Hausa/Kanuri 13.5%, Beti/Bassa, Mbam 13.1%, Grassfields 9.9%, Adamawa-Ubangi, 9.8%, Cotier/Ngoe/Oroko 4.6%, Southwestern Bantu 4.3%, Kako/Meka 2.3%, foreign/other ethnic group 3.8% (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "59.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "3.43% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population concentrated in the west and north, with the interior of the country sparsely populated, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "largest CEMAC economy with many natural resources; recent political instability and terrorism reducing economic output; systemic corruption; poor property rights enforcement; increasing poverty in northern regions"
+      },
+      "Agricultural products": {
+        "text": "cassava, plantains, oil palm fruit, maize, taro, tomatoes, sorghum, sugarcane, bananas, vegetables (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "petroleum production and refining, aluminum production, food processing, light consumer goods, textiles, lumber, ship repair"
+      },
+      "Exports - commodities": {
+        "text": "crude petroleum, natural gas, gold, cocoa beans, wood (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Netherlands 21%, France 14%, UAE 13%, India 9%, China 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "garments, refined petroleum, plastic products, wheat, rice (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies with terrain, from tropical along coast to semiarid and hot in north"
+      }
+    }
+  }
+}

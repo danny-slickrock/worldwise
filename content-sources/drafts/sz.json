@@ -1,0 +1,68 @@
+{
+  "iso": "sz",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.412Z",
+  "structured": {
+    "code": "sz",
+    "name": "Eswatini",
+    "capital": "Lobamba",
+    "continent": "Africa",
+    "areaKm2": 17364,
+    "population": 1230506,
+    "officialLanguages": [
+      "English",
+      "Swazi"
+    ],
+    "currencies": [
+      "lilangeni"
+    ],
+    "landBorderNames": [
+      "Mozambique",
+      "South Africa"
+    ],
+    "landBorderCodes": [
+      "mz",
+      "za"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "asbestos, coal, clay, cassiterite, hydropower, forests, small gold and diamond deposits, quarry stone, and talc",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern Africa, between Mozambique and South Africa || mostly mountains and hills; some moderately sloping plains || landlocked; almost completely surrounded by South Africa || Resources: asbestos, coal, clay, cassiterite, hydropower, forests, small gold and diamond deposits, quarry stone, and talc || Exports: scented mixtures, raw sugar, industrial acids/oils/alcohols, garments, wood (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains and hills; some moderately sloping plains || Southern Africa, between Mozambique and South Africa"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "varies from tropical to near temperate || drought"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "landlocked southern African economy; South African trade dependent and currency pegging; CMA and SACU member state; COVID-19 economic slowdown; growing utilities inflation; persistent poverty and unemployment; HIV/AIDS labor force disruptions || Exports: scented mixtures, raw sugar, industrial acids/oils/alcohols, garments, wood (2023) || Industries: soft drink concentrates, coal, forestry, sugar processing, textiles, and apparel"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official, used for government business), siSwati (official) || Christian 90% (Zionist - a blend of Christianity and traditional African religions - 40%, Roman Catholic 20%, other Christian 30% - includes Anglican, Methodist, Church of Jesus Christ, Jehovah's Witness), Muslim 2%, other 8% (includes Baha'i, Buddhist, Hindu, indigenous, Jewish) (2015 est.) || predominantly Swazi; smaller populations of other African ethnic groups, including the Zulu, as well as people of European ancestry"
+    }
+  }
+}

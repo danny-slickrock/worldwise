@@ -1,0 +1,62 @@
+{
+  "iso": "ag",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.423Z",
+  "structured": {
+    "code": "ag",
+    "name": "Antigua and Barbuda",
+    "capital": null,
+    "continent": "North America",
+    "areaKm2": 440.29,
+    "population": 101489,
+    "officialLanguages": [
+      "Spanish",
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "NEGL; pleasant climate fosters tourism",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, east-southeast of Puerto Rico || mostly low-lying limestone and coral islands, with some higher volcanic areas || Antigua has a deeply indented shoreline with many natural harbors and beaches; Barbuda has a large western harbor || Resources: NEGL; pleasant climate fosters tourism || Exports: refined petroleum, ships, soybean meal, shellfish, paintings (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low-lying limestone and coral islands, with some higher volcanic areas || Caribbean, islands between the Caribbean Sea and the North Atlantic Ocean, east-southeast of Puerto Rico"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical maritime; little seasonal temperature variation || hurricanes and tropical storms (July to October); periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "dual island-tourism and construction-driven economy; emerging &ldquo;blue economy&rdquo;; limited water supply and susceptibility to hurricanes limit activity; improving road infrastructure; friendly to foreign direct investment; looking at financial innovation in cryptocurrency and blockchain technologies || Exports: refined petroleum, ships, soybean meal, shellfish, paintings (2023) || Industries: tourism, construction, light manufacturing (clothing, alcohol, household appliances)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Antiguan Creole (an English-based creole) || Protestant 68.3% (Anglican 17.6%, Seventh Day Adventist 12.4%, Pentecostal 12.2%, Moravian 8.3%, Methodist 5.6%, Wesleyan Holiness 4.5%, Church of God 4.1%, Baptist 3.6%), Roman Catholic 8.2%, other 12.2%, unspecified 5.5%, none 5.9% (2011 est.) || African descent 87.3%, mixed 4.7%, Hispanic 2.7%, White 1.6%, other 2.7%, unspecified 0.9% (2011 est.)"
+    }
+  }
+}

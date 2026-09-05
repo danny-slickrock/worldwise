@@ -1,0 +1,183 @@
+{
+  "iso": "be",
+  "fetchedAt": "2026-09-04T23:56:36.006Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/be.json"
+    }
+  },
+  "wikidata": {
+    "name": "Belgium",
+    "gec": "BE",
+    "capital": "Brussels",
+    "areaKm2": 30688,
+    "population": 11825551,
+    "continent": "Europe",
+    "officialLanguages": [
+      "French",
+      "German",
+      "Dutch"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "lu",
+      "nl",
+      "fr",
+      "de"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/be.json",
+    "Introduction": {
+      "Background": {
+        "text": "Belgium became independent from the Netherlands in 1830; it was occupied by Germany during World Wars I and II. The country prospered as a modern, technologically advanced European state and member of NATO and the EU. In recent years, longstanding tensions between the Dutch-speaking Flemish of the north and the French-speaking Walloons of the south have led to constitutional amendments granting these regions formal recognition and autonomy. The capital city of Brussels is home to numerous international organizations, including the EU and NATO."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Western Europe, bordering the North Sea, between France and the Netherlands"
+      },
+      "Area": {
+        "total ": {
+          "text": "30,528 sq km"
+        },
+        "land": {
+          "text": "30,278 sq km"
+        },
+        "water": {
+          "text": "250 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,297 km"
+        },
+        "border countries": {
+          "text": "France 556 km; Germany 133 km; Luxembourg 130 km; Netherlands 478 km"
+        }
+      },
+      "Coastline": {
+        "text": "66.5 km"
+      },
+      "Climate": {
+        "text": "temperate; mild winters, cool summers; rainy, humid, cloudy"
+      },
+      "Terrain": {
+        "text": "flat coastal plains in northwest, central rolling hills, rugged mountains of Ardennes Forest in southeast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Botrange 694 m"
+        },
+        "lowest point": {
+          "text": "North Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "181 m"
+        }
+      },
+      "Natural resources": {
+        "text": "construction materials, silica sand, carbonates, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "44.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 28.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 15.3% (2023 est.)"
+        },
+        "forest": {
+          "text": "22% (2023 est.)"
+        },
+        "other": {
+          "text": "33.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding is a threat along rivers and in areas of reclaimed coastal land, protected from the sea by concrete dikes"
+      },
+      "Geography - note": {
+        "text": "crossroads of Western Europe; most West European capitals are within 1,000 km of Brussels, the seat of both the EU and NATO"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "11,960,170 (2025 est.)"
+        },
+        "male": {
+          "text": "5,907,498"
+        },
+        "female": {
+          "text": "6,052,672"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Dutch (official) 60%, French (official) 40%, German (official) less than 1%"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Het Wereld Feitenboek, een onmisbare bron van informatie. (Dutch)<br><br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 57.1%, Protestant 2.3%, other Christian, 2.8%, Muslim 6.8%, other 1.7%, atheist 9.1%, nonbeliever/agnostic 20.2% (2018 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Belgian 75.2%, Italian 4.1%, Moroccan 3.7%, French 2.4%, Turkish 2%, Dutch 2%, other 10.6% (2012 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "98.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.38% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is concentrated in the northern two thirds of the country; the southeast is more thinly populated; considered to have one of the highest population densities in the world, with approximately 97% living in urban areas"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>high-income, core EU and eurozone economy; slow growth with weakened domestic consumption and export demand; high public debt and structural deficits linked to social spending; aging workforce with weak productivity growth and participation rates</p>"
+      },
+      "Agricultural products": {
+        "text": "sugar beets, milk, potatoes, wheat, pork, lettuce, maize, chicken, barley, pears (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "engineering and metal products, motor vehicle assembly, transportation equipment, scientific instruments, processed food and beverages, chemicals, pharmaceuticals, base metals, textiles, glass, petroleum"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, natural gas, vaccines, cars, packaged medicine (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "France 20%, Netherlands 15%, Germany 14%, Italy 6%, USA 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, natural gas, vaccines, packaged medicine, crude petroleum (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; mild winters, cool summers; rainy, humid, cloudy"
+      }
+    }
+  }
+}

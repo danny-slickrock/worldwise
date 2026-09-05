@@ -1,0 +1,186 @@
+{
+  "iso": "al",
+  "fetchedAt": "2026-09-04T23:56:35.469Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/al.json"
+    }
+  },
+  "wikidata": {
+    "name": "Albania",
+    "gec": "AL",
+    "capital": "Tirana",
+    "areaKm2": 28748,
+    "population": 2811655,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Albanian"
+    ],
+    "currencies": [
+      "Albanian lek"
+    ],
+    "sharesBorderWithAnyType": [
+      "gr",
+      "mk",
+      "me",
+      "rs",
+      "xk"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/al.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>After declaring independence from the Ottoman Empire in 1912, Albania experienced a period of political upheaval that led to a short-lived monarchy, which ended in 1939 when Italy conquered the country. Germany then occupied Albania in 1943, and communist partisans took over the country in 1944. Albania allied itself first with the USSR (until 1960) and then with China (until 1978). In the early 1990s, Albania ended communist rule and established a multiparty democracy. </p> <p>Government-endorsed pyramid schemes in 1997 led to economic collapse and civil disorder, which only ended when UN peacekeeping troops intervened. In 1999, some 450,000 ethnic Albanians fled from Kosovo to Albania to escape the war with the Serbs. Albania joined NATO in 2009 and became an official candidate for EU membership in 2014. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, bordering the Adriatic Sea and Ionian Sea, between Greece to the south and Montenegro and Kosovo to the north"
+      },
+      "Area": {
+        "total ": {
+          "text": "28,748 sq km"
+        },
+        "land": {
+          "text": "27,398 sq km"
+        },
+        "water": {
+          "text": "1,350 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "691 km"
+        },
+        "border countries": {
+          "text": "Greece 212 km; Kosovo 112 km; North Macedonia 181 km; Montenegro 186 km"
+        }
+      },
+      "Coastline": {
+        "text": "362 km"
+      },
+      "Climate": {
+        "text": "mild temperate; cool, cloudy, wet winters; hot, clear, dry summers; interior is cooler and wetter"
+      },
+      "Terrain": {
+        "text": "mostly mountains and hills; small plains along coast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Maja e Korabit (Golem Korab) 2,764 m"
+        },
+        "lowest point": {
+          "text": "Adriatic Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "708 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, natural gas, coal, bauxite, chromite, copper, iron ore, nickel, salt, timber, hydropower, arable land"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "38.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 21.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 13.4% (2023 est.)"
+        },
+        "forest": {
+          "text": "34.3% (2023 est.)"
+        },
+        "other": {
+          "text": "27.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "destructive earthquakes; tsunamis occur along southwestern coast; floods; drought"
+      },
+      "Geography - note": {
+        "text": "strategic location along Strait of Otranto (links Adriatic Sea to Ionian Sea and Mediterranean Sea)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,551,837 (2025 est.)"
+        },
+        "male": {
+          "text": "1,229,151"
+        },
+        "female": {
+          "text": "1,322,686"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Albanian 98.8% (official - derived from Tosk dialect), Greek 0.5%, other 0.6% (including Macedonian, Romani, Vlach, Turkish, Italian, and Serbo-Croatian), unspecified 0.1% (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Libri i fakteve boterore, burimi i pazevendesueshem per informacione elementare (Albanian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Muslim 56.7%, Roman Catholic 10%, Orthodox 6.8%, atheist 2.5%, Bektashi (a Sufi order) 2.1%, other 5.7%, unspecified 16.2% (2011 est.)",
+        "note": "<strong>note:</strong> all mosques and churches were closed in 1967 and religious observances prohibited; in November 1990, Albania began allowing private religious practice"
+      },
+      "Ethnic groups": {
+        "text": "Albanian 82.6%, Greek 0.9%, other 1% (including Vlach, Romani, Macedonian, Montenegrin, and Egyptian), unspecified 15.5% (2011 est.)",
+        "note": "<strong>note:</strong> data represent population by ethnic and cultural affiliation"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "64.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.29% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a fairly even distribution, with somewhat higher concentrations of people in the western and central parts of the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income Balkan economy; EU accession candidate; growth bolstered by tourism, agriculture, mining, construction, and private consumption; fiscal consolidation through revenue collection and tax compliance enhancements to address public debt; challenges include weak governance, corruption, and high emigration rates</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, maize, tomatoes, watermelons, potatoes, wheat, grapes, onions, cucumbers/gherkins, olives (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food; footwear, apparel and clothing; lumber, oil, cement, chemicals, mining, basic metals, hydropower"
+      },
+      "Exports - commodities": {
+        "text": "garments, footwear, electricity, crude petroleum, iron alloys (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 41%, Greece 10%, Germany 5%, Spain 5%, Serbia 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, refined petroleum, garments, packaged medicine, iron bars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "mild temperate; cool, cloudy, wet winters; hot, clear, dry summers; interior is cooler and wetter"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "iso": "sn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.419Z",
+  "structured": {
+    "code": "sn",
+    "name": "Senegal",
+    "capital": "Dakar",
+    "continent": "Africa",
+    "areaKm2": 196722,
+    "population": 16876720,
+    "officialLanguages": [
+      "Badyara",
+      "French",
+      "Wolof",
+      "Balanta"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "The Gambia",
+      "Guinea",
+      "Guinea-Bissau",
+      "Mali",
+      "Mauritania"
+    ],
+    "landBorderCodes": [
+      "gm",
+      "gn",
+      "gw",
+      "ml",
+      "mr"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, phosphates, iron ore",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Mauritania || generally low, rolling, plains rising to foothills in southeast || westernmost country on the African continent; The Gambia is almost an enclave within Senegal || Resources: fish, phosphates, iron ore || Exports: gold, refined petroleum, phosphoric acid, fish, cement (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "generally low, rolling, plains rising to foothills in southeast || Western Africa, bordering the North Atlantic Ocean, between Guinea-Bissau and Mauritania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; rainy season (May to November) has strong southeast winds; dry season (December to April) dominated by hot, dry, harmattan wind || lowlands seasonally flooded; periodic droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income, services-driven West African economy; key mining, construction, agriculture, and fishing industries; tourism and exports hit hard by COVID-19; large informal economy; developing offshore oil and gas fields; systemic corruption || Exports: gold, refined petroleum, phosphoric acid, fish, cement (2023) || Industries: agricultural and fish processing, phosphate mining, fertilizer production, petroleum refining, zircon, and gold mining, construction materials, ship construction and repair"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "French (official), Wolof, Pulaar, Jola, Mandinka, Serer, Soninke || Muslim 97.2% (most adhere to one of the four main Sufi brotherhoods), Christian 2.7% (mostly Roman Catholic) (2019 est.) || Wolof 39.7%, Pulaar 27.5%, Sereer 16%, Mandinka 4.9%, Jola 4.2%, Soninke 2.4%, other 5.4% (includes Europeans and persons of Lebanese descent) (2019 est.)"
+    }
+  }
+}

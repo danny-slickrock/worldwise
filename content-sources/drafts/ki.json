@@ -1,0 +1,63 @@
+{
+  "iso": "ki",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.435Z",
+  "structured": {
+    "code": "ki",
+    "name": "Kiribati",
+    "capital": "South Tarawa",
+    "continent": "Insular Oceania",
+    "areaKm2": 811,
+    "population": 134518,
+    "officialLanguages": [
+      "English",
+      "Gilbertese"
+    ],
+    "currencies": [
+      "Kiribati dollar",
+      "Australian dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "phosphate (production discontinued in 1979), coconuts (copra), fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, group of 32 coral atolls and one raised coral island in the Pacific Ocean, straddling the Equator; the capital Tarawa is about halfway between Hawaii and Australia || mostly low-lying coral atolls surrounded by extensive reefs || 21 of the 33 islands are inhabited; Banaba (Ocean Island) in Kiribati is one of the three great phosphate rock islands in the Pacific Ocean -- the others are Makatea in French Polynesia, and Nauru; Kiribati is the only country in the world to fall into all four hemispheres (northern, southern, eastern, and western) || Resources: phosphate (production discontinued in 1979), coconuts (copra), fish || Exports: fish, coconut oil (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low-lying coral atolls surrounded by extensive reefs || Oceania, group of 32 coral atolls and one raised coral island in the Pacific Ocean, straddling the Equator; the capital Tarawa is about halfway between Hawaii and Australia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; marine, hot and humid, moderated by trade winds || typhoons can occur any time, but usually November to March; occasional tornadoes; low level of some of the islands make them sensitive to changes in sea level"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower-middle income, Pacific island economy; environmentally fragile; sizable remittances; key phosphate mining fund; tourism and fishing industries; public sector-dominated economy; recent withdrawal from Pacific Islands Forum; ongoing constitutional crisis || Exports: fish, coconut oil (2023) || Industries: fishing, handicrafts"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Gilbertese, English (official) || Roman Catholic 58.9%, Kiribati Uniting Church 21.2%, Kiribati Protestant Church 8.4%, Church of Jesus Christ 5.6%, Seventh Day Adventist 2.1%, Baha'i 2.1%, other 1.7% (2020 est.) || I-Kiribati 95.78%, I-Kiribati/mixed 3.8%, Tuvaluan 0.2%, other 1.7% (2020 est.)"
+    }
+  }
+}

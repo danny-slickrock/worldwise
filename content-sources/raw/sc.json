@@ -1,0 +1,175 @@
+{
+  "iso": "sc",
+  "fetchedAt": "2026-09-04T23:57:01.940Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/se.json"
+    }
+  },
+  "wikidata": {
+    "name": "Seychelles",
+    "gec": "SE",
+    "capital": "Victoria",
+    "areaKm2": 459,
+    "population": 119773,
+    "continent": "Africa",
+    "officialLanguages": [
+      "French",
+      "English",
+      "Seychellois Creole"
+    ],
+    "currencies": [
+      "Seychellois rupee"
+    ],
+    "sharesBorderWithAnyType": [
+      "fr",
+      "tz",
+      "km",
+      "mg",
+      "mu"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/se.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Seychelles was uninhabited before Europeans discovered the islands early in the 16th century. After a lengthy struggle, France eventually ceded control of the islands to Great Britain in 1814. During colonial rule, a plantation-based economy developed that relied on imported labor, primarily from European colonies in Africa. Seychelles gained independence in 1976 through negotiations with Great Britain. In 1977, Prime Minister France-Albert RENE launched a coup against the country’s first president, and Seychelles became a socialist one-party state until adopting a new constitution and holding elections in 1993. RENE continued to lead Seychelles through two election cycles until he stepped down in 2004. Vice President James Alix MICHEL took over the presidency and in 2006 was elected to a new five-year term; he was reelected in 2011 and again in 2015. In 2016, James MICHEL resigned and handed over the presidency to his vice-president, Danny FAURE. In 2020, Wavel RAMKALAWAN was elected president, the first time an opposition candidate has won the presidency.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "archipelago in the Indian Ocean, northeast of Madagascar"
+      },
+      "Area": {
+        "total ": {
+          "text": "455 sq km"
+        },
+        "land": {
+          "text": "455 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "491 km"
+      },
+      "Climate": {
+        "text": "tropical marine; humid; cooler season during southeast monsoon (late May to September); warmer season during northwest monsoon (March to May)"
+      },
+      "Terrain": {
+        "text": "Mahe Group is volcanic with a narrow coastal strip and rocky, hilly interior; others are relatively flat coral atolls, or elevated reefs; sits atop the submarine Mascarene Plateau"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Morne Seychellois 905 m"
+        },
+        "lowest point": {
+          "text": "Indian Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, coconuts (copra), cinnamon trees"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "3.4% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0% (2022 est.)"
+        },
+        "forest": {
+          "text": "58.6% (2023 est.)"
+        },
+        "other": {
+          "text": "38% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "lies outside the cyclone belt, so severe storms are rare; occasional short droughts"
+      },
+      "Geography - note": {
+        "text": "the smallest African country in terms of both area and population; the constitution of the Republic of Seychelles lists 155 islands, including 42 granitic and 113 coralline; the largest island by far is Mahe, which is home to about 90% of the population and is the site of the capital city of Victoria"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "98,187 (2024 est.)"
+        },
+        "male": {
+          "text": "50,973"
+        },
+        "female": {
+          "text": "47,214"
+        }
+      },
+      "Languages": {
+        "text": "Seychellois Creole (official) 89.1%, English (official) 5.1%, French (official) 0.7%, other 3.8%, unspecified 1.4% (2010 est.)"
+      },
+      "Religions": {
+        "text": "Roman Catholic 76.2%, Protestant 10.5% (Anglican 6.1%, Pentecostal Assembly 1.5%, Seventh Day Adventist 1.2%, other Protestant 1.7%), other Christian 2.4%, Hindu 2.4%, Muslim 1.6%, other non-Christian 1.1%, unspecified 4.8%, none 0.9% (2010 est.)"
+      },
+      "Ethnic groups": {
+        "text": "predominantly Creole (mainly of East African and Malagasy heritage); also French, Indian, Chinese, and Arab populations"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "58.8% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "more than three quarters of the population lives on the main island of Mahe; Praslin is home to less than 10%, and a smaller percentage is on La Digue and the outer islands, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income Indian Ocean island economy; rapidly growing tourism sector; major tuna exporter; offshore financial hub; environmentally fragile and investing in ocean rise mitigation; recently discovered offshore oil potential; successful anticorruption efforts"
+      },
+      "Agricultural products": {
+        "text": "coconuts, vegetables, bananas, eggs, chicken, pork, fruits, tomatoes, tropical fruits, cassava (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "fishing, tourism, beverages"
+      },
+      "Exports - commodities": {
+        "text": "fish, scrap iron, animal meal, broadcasting equipment, ships (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "France 20%, Mauritius 12%, UK 9%, Japan 8%, Italy 8% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, fish, ships, cars, plastic products (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical marine; humid; cooler season during southeast monsoon (late May to September); warmer season during northwest monsoon (March to May)"
+      }
+    }
+  }
+}

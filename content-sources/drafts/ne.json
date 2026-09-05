@@ -1,0 +1,77 @@
+{
+  "iso": "ne",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.417Z",
+  "structured": {
+    "code": "ne",
+    "name": "Niger",
+    "capital": "Niamey",
+    "continent": "Africa",
+    "areaKm2": 1267000,
+    "population": 21477348,
+    "officialLanguages": [
+      "Hausa"
+    ],
+    "currencies": [
+      "West African CFA franc"
+    ],
+    "landBorderNames": [
+      "Algeria",
+      "Benin",
+      "Burkina Faso",
+      "Chad",
+      "Libya",
+      "Mali",
+      "Nigeria"
+    ],
+    "landBorderCodes": [
+      "dz",
+      "bj",
+      "bf",
+      "td",
+      "ly",
+      "ml",
+      "ng"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "uranium, coal, iron ore, tin, phosphates, gold, molybdenum, gypsum, salt, petroleum",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Western Africa, southeast of Algeria || predominately desert plains and sand dunes; flat to rolling plains in south; hills in north || landlocked; one of the hottest countries in the world; northern four-fifths is desert, southern one-fifth is savanna that is suitable for livestock and limited agriculture || Resources: uranium, coal, iron ore, tin, phosphates, gold, molybdenum, gypsum, salt, petroleum || Exports: gold, oil seeds, uranium and thorium ore, radioactive chemicals, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "predominately desert plains and sand dunes; flat to rolling plains in south; hills in north || Western Africa, southeast of Algeria"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "desert; mostly hot, dry, dusty; tropical in extreme south || recurring droughts"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income Sahel economy; major instability and humanitarian crises limit economic activity; COVID-19 eliminated recent antipoverty gains; economy rebounding since December 2020 Nigerian border reopening and new investments; uranium resource rich || Exports: gold, oil seeds, uranium and thorium ore, radioactive chemicals, refined petroleum (2023) || Industries: uranium mining, petroleum, cement, brick, soap, textiles, food processing, chemicals, slaughterhouses"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Hausa, Zarma, French (official), Fufulde, Tamashek, Kanuri, Gurmancema, Tagdal || Muslim 95.5%, ethnic religionist 4.1%, Christian 0.3%, agnostics and other 0.1% (2020 est.) || Hausa 53.1%, Zarma/Songhai 21.2%, Tuareg 11%, Fulani (Peuhl) 6.5%, Kanuri 5.9%, Gurma 0.8%, Arab 0.4%, Tubu 0.4%, other/unavailable 0.9% (2006 est.)"
+    }
+  }
+}

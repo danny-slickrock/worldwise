@@ -1,0 +1,184 @@
+{
+  "iso": "il",
+  "fetchedAt": "2026-09-04T23:56:45.992Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "middle-east/is.json"
+    }
+  },
+  "wikidata": {
+    "name": "Israel",
+    "gec": "IS",
+    "capital": "Jerusalem",
+    "areaKm2": 20770,
+    "population": 9840000,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Hebrew"
+    ],
+    "currencies": [
+      "new shekel"
+    ],
+    "sharesBorderWithAnyType": [
+      "eg",
+      "jo",
+      "lb",
+      "sy"
+    ]
+  },
+  "factbook": {
+    "_path": "middle-east/is.json",
+    "Introduction": {
+      "Background": {
+        "text": "Israel has become a regional economic and military powerhouse, leveraging its prosperous high-tech sector, large defense industry, and concerns about Iran to foster partnerships around the world. The State of Israel was established in 1948. The UN General Assembly proposed in 1947 partitioning the British Mandate for Palestine into an Arab and Jewish state. The Jews accepted the proposal, but the local Arabs and the Arab states rejected the UN plan and launched a war. The Arabs were subsequently defeated in the 1947-1949 war that followed the UN proposal and the British withdrawal. Israel joined the UN in 1949 and saw rapid population growth, primarily due to Jewish refugee migration from Europe and the Middle East. Israel and its Arab neighbors fought wars in 1956, 1967, and 1973, and Israel signed peace treaties with Egypt in 1979 and Jordan in 1994. Israel took control of the West Bank, the eastern part of Jerusalem, the Gaza Strip, the Sinai Peninsula, and the Golan Heights in the course of the 1967 war. It ceded the Sinai back to Egypt in the 1979-1982 period but has continued to administer the other territories through military authorities. Israel and Palestinian officials signed interim agreements in the 1990s that created a period of Palestinian self-rule in parts of the West Bank and Gaza. Israel withdrew from Gaza in 2005. The most recent formal efforts between Israel and the Palestinian Authority to negotiate final status issues occurred in 2013 and 2014, and the US continues its efforts to advance peace. Israel signed the US-brokered normalization agreements (the Abraham Accords) with Bahrain, the UAE, and Morocco in 2020 and reached an agreement with Sudan in 2021. Immigration to Israel continues, with more than 44,000 estimated new immigrants, mostly Jewish, in the first 11 months of 2023.<br><br>Former Prime Minister Benjamin NETANYAHU returned to office in 2022, continuing his dominance of Israel's political landscape at the head of Israel's most rightwing and religious government. NETANYAHU previously served as premier from 1996 to 1999 and from 2009 to 2021, becoming Israel's longest serving prime minister.<br><br>On 7 October 2023, HAMAS militants launched a combined unguided rocket and ground terrorist attack from Gaza into southern Israel. The same day Israel’s Air Force launched air strikes inside Gaza and initiated a sustained air campaign against HAMAS targets across the Gaza Strip. The following day, NETANYAHU formally declared war on HAMAS, and on 28 October, the Israel Defense Forces launched a large-scale ground assault inside Gaza.<br><br>The Israeli economy has undergone a dramatic transformation in the last 30 years, led by cutting-edge high-tech sectors. Offshore gas discoveries in the Mediterranean place Israel at the center of a potential regional natural gas market. In 2022, a US-brokered agreement between Israel and Lebanon established their maritime boundary, allowing Israel to begin production on additional gas fields in the Mediterranean. However, Israel's economic development has been uneven. Structural issues such as low labor-force participation among religious and minority populations, low workforce productivity, high costs for housing and consumer staples, and high income inequality concern both economists and the general population. The current war with Hamas disrupted Israel’s solid economic fundamentals, but it is not likely to have long-term structural implications for the economy. <br>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, bordering the Mediterranean Sea, between Egypt and Lebanon"
+      },
+      "Area": {
+        "total ": {
+          "text": "21,937 sq km"
+        },
+        "land": {
+          "text": "21,497 sq km"
+        },
+        "water": {
+          "text": "440 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,068 km"
+        },
+        "border countries": {
+          "text": "Egypt 208 km; Gaza Strip 59 km; Jordan 327 km (20 km are within the Dead Sea); Lebanon 81 km; Syria 83 km; West Bank 330 km"
+        }
+      },
+      "Coastline": {
+        "text": "273 km"
+      },
+      "Climate": {
+        "text": "temperate; hot and dry in southern and eastern desert areas"
+      },
+      "Terrain": {
+        "text": "Negev desert in the south; low coastal plain; central mountains; Jordan Rift Valley"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mitspe Shlagim 2,224 m; note - this is the highest named point, the actual highest point is an unnamed dome slightly to the west of Mitspe Shlagim at 2,236 m; both points are on the northeastern border of Israel, along the southern end of the Anti-Lebanon mountain range"
+        },
+        "lowest point": {
+          "text": "Dead Sea -431 m"
+        },
+        "mean elevation": {
+          "text": "508 m"
+        }
+      },
+      "Natural resources": {
+        "text": "timber, potash, copper ore, natural gas, phosphate rock, magnesium bromide, clays, sand"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "24.8% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 12.5% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 4.7% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 7.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "6.7% (2023 est.)"
+        },
+        "other": {
+          "text": "68.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "sandstorms may occur during spring and summer; droughts; periodic earthquakes"
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> Lake Tiberias (Sea of Galilee) is an important freshwater source; the Dead Sea is the second saltiest body of water in the world (after Lake Assal in Djibouti)<br><br><strong>note 2: </strong>the Malham Cave in Mount Sodom is the world's longest salt cave at 10 km (6 mi); Mount Sodom is a hill about 220 m (722 ft) high that is 80% salt, with multiple salt layers covered by a veneer of rock"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "9,402,617 (2024 est.)"
+        },
+        "male": {
+          "text": "4,731,275"
+        },
+        "female": {
+          "text": "4,671,342"
+        },
+        "note": "<strong>note:</strong> approximately 236,600 Israeli settlers live in East Jerusalem (2021); following the March 2019 US recognition of the Golan Heights as being part of Israel, <em>The World Factbook</em> no longer includes Israeli settler population of the Golan Heights (estimated at 23,400 in 2019) in its overall Israeli settler total"
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Hebrew (official), Arabic (special status under Israeli law), English (most commonly used foreign language)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>ספר עובדות העולם, המקור החיוני למידע בסיסי (Hebrew)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Jewish 73.5%, Muslim 18.1%, Christian 1.9%, Druze 1.6%, other 4.9% (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Jewish 73.5% (of which Israel-born 79.7%, Europe/America/Oceania-born 14.3%, Africa-born 3.9%, Asia-born 2.1%), Arab 21.1%, other 5.4% (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "92.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.51% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population concentrated in and around Tel-Aviv, as well as around the Sea of Galilee; the south remains sparsely populated, with the exception of the shore of the Gulf of Aqaba"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income, technology- and industrial-based economy; economic contraction and fiscal deficits resulting from war in Gaza; labor force stabilizing following military reservist mobilization; high-tech industry remains resilient while construction and tourism among hardest-hit sectors"
+      },
+      "Agricultural products": {
+        "text": "milk, chicken, potatoes, tomatoes, tangerines/mandarins, bananas, eggs, avocados, beef, carrots/turnips (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "high-technology products (including aviation, communications, computer-aided design and manufactures, medical electronics, fiber optics), wood and paper products, potash and phosphates, food, beverages, and tobacco, caustic soda, cement, pharmaceuticals, construction, metal products, chemical products, plastics, cut diamonds, textiles, footwear"
+      },
+      "Exports - commodities": {
+        "text": "integrated circuits, diamonds, broadcasting equipment, medical instruments, refined petroleum (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 29%, China 10%, Ireland 6%, Germany 4%, Hong Kong 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, diamonds, crude petroleum, broadcasting equipment, garments (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; hot and dry in southern and eastern desert areas"
+      }
+    }
+  }
+}

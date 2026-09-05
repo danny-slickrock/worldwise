@@ -1,0 +1,71 @@
+{
+  "iso": "er",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.411Z",
+  "structured": {
+    "code": "er",
+    "name": "Eritrea",
+    "capital": "Asmara",
+    "continent": "Africa",
+    "areaKm2": 117600,
+    "population": 3497000,
+    "officialLanguages": [
+      "English",
+      "Arabic",
+      "Tigrinya"
+    ],
+    "currencies": [
+      "nakfa"
+    ],
+    "landBorderNames": [
+      "Djibouti",
+      "Ethiopia",
+      "Sudan"
+    ],
+    "landBorderCodes": [
+      "dj",
+      "et",
+      "sd"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "gold, potash, zinc, copper, salt, possibly oil and natural gas, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Africa, bordering the Red Sea, between Djibouti and Sudan || dominated by extension of Ethiopian north-south trending highlands, descending on the east to a coastal desert plain, on the northwest to hilly terrain and on the southwest to flat-to-rolling plains || strategic geopolitical position along world's busiest shipping lanes || Resources: gold, potash, zinc, copper, salt, possibly oil and natural gas, fish || Exports: copper ore, zinc ore, gold, garments, liquor (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "dominated by extension of Ethiopian north-south trending highlands, descending on the east to a coastal desert plain, on the northwest to hilly terrain and on the southwest to flat-to-rolling plains || Eastern Africa, bordering the Red Sea, between Djibouti and Sudan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "hot, dry desert strip along Red Sea coast; cooler and wetter in the central highlands (up to 61 cm of rainfall annually, heaviest June to September); semiarid in western hills and lowlands || frequent droughts, rare earthquakes and volcanoes; locust swarms volcanism: Dubbi (1,625 m), which last erupted in 1861, was the country's only historically active volcano until Nabro (2,218 m) came to life in 2011"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "largely agrarian economy with a significant mining sector; substantial fiscal surplus due to tight controls; high and vulnerable debts; increased Ethiopian trade and shared port usage decreasing prices; financial and economic data integrity challenges || Exports: copper ore, zinc ore, gold, garments, liquor (2023) || Industries: food processing, beverages, clothing and textiles, light manufacturing, salt, cement"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Tigrinya (official), Arabic (official), English (official), Tigre, Kunama, Afar, other Cushitic languages || Eritrean Orthodox, Roman Catholic, Evangelical Lutheran, Sunni Muslim || Tigrinya 50%, Tigre 30%, Saho 4%, Afar 4%, Kunama 4%, Bilen 3%, Hedareb/Beja 2%, Nara 2%, Rashaida 1% (2021 est.)"
+    }
+  }
+}

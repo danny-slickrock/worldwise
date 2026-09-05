@@ -1,0 +1,69 @@
+{
+  "iso": "hn",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.429Z",
+  "structured": {
+    "code": "hn",
+    "name": "Honduras",
+    "capital": "Tegucigalpa",
+    "continent": "North America",
+    "areaKm2": 112492,
+    "population": 8303771,
+    "officialLanguages": [
+      "Spanish"
+    ],
+    "currencies": [
+      "Honduran lempira"
+    ],
+    "landBorderNames": [
+      "Guatemala",
+      "El Salvador",
+      "Nicaragua"
+    ],
+    "landBorderCodes": [
+      "gt",
+      "sv",
+      "ni"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, gold, silver, copper, lead, zinc, iron ore, antimony, coal, fish, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central America, bordering the Caribbean Sea, between Guatemala and Nicaragua and bordering the Gulf of Fonseca (North Pacific Ocean), between El Salvador and Nicaragua || mostly mountains in interior, narrow coastal plains || has only a short Pacific coast but a long Caribbean shoreline, including the virtually uninhabited eastern Mosquito Coast || Resources: timber, gold, silver, copper, lead, zinc, iron ore, antimony, coal, fish, hydropower || Exports: garments, coffee, insulated wire, palm oil, shellfish (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains in interior, narrow coastal plains || Central America, bordering the Caribbean Sea, between Guatemala and Nicaragua and bordering the Gulf of Fonseca (North Pacific Ocean), between El Salvador and Nicaragua"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "subtropical in lowlands, temperate in mountains || frequent, but generally mild, earthquakes; extremely susceptible to damaging hurricanes and floods along the Caribbean coast"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "second-fastest-growing Central American economy; COVID-19 and two hurricanes crippled activity; high poverty and inequality; declining-but-still-high violent crime disruption; systemic corruption; coffee and banana exporter; enormous remittances || Exports: garments, coffee, insulated wire, palm oil, shellfish (2023) || Industries: sugar processing, coffee, woven and knit apparel, wood products, cigars"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.) || Mestizo (mixed Indigenous and European) 90%, Indigenous 7%, African descent 2%, White 1%"
+    }
+  }
+}

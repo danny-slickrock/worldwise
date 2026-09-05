@@ -1,0 +1,171 @@
+{
+  "iso": "to",
+  "fetchedAt": "2026-09-04T23:57:12.541Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/tn.json"
+    }
+  },
+  "wikidata": {
+    "name": "Tonga",
+    "gec": "TN",
+    "capital": "Nukuʻalofa",
+    "areaKm2": 748.506563,
+    "population": 108020,
+    "continent": "Oceania",
+    "officialLanguages": [
+      "English",
+      "Tongan"
+    ],
+    "currencies": [
+      "Tongan paʻanga"
+    ],
+    "sharesBorderWithAnyType": [
+      "us"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/tn.json",
+    "Introduction": {
+      "Background": {
+        "text": "The first humans arrived in Tonga around 1000 B.C. The islands’ politics were highly centralized under the Tu’i Tonga, or Tongan king, by A.D. 950, and by 1200, the Tu’i Tonga had expanded his influence throughout Polynesia and into Melanesia and Micronesia. The Tongan Empire began to decline in the 1300s, with civil wars, a military defeat to Samoa, and internal political strife. By the mid-1500s, some Tu’i Tongans were ethnic Samoan, and day-to-day administration of Tonga was transferred to a new position occupied by ethnic Tongans.<br><br>Dutch navigators explored the islands in the 1600s, followed by the British in the 1770s, who named them the Friendly Islands. Between 1799 and 1852 Tonga went through a period of war and disorder. In the 1830s, a low-ranking chief from Ha’apai began to consolidate control over the islands and was crowned King George TUPOU I in 1845, establishing the only still-extant Polynesian monarchy. During TUPOU's reign (1845–93), Tonga became a unified and independent country with a modern constitution (1875), legal code, and administrative structure. In separate treaties, Germany (1876), Great Britain (1879), and the US (1888) recognized Tonga’s independence. His son and successor, King George TUPOU II, agreed to enter a protectorate agreement with the UK in 1900 after rival Tongan chiefs tried to overthrow him. As a protectorate, Tonga never completely lost its indigenous governance, but it did become more isolated and the social hierarchy became more stratified between a group of nobles and a large class of commoners. Today, about one third of parliamentary seats are reserved for nobles.<br><br>Tonga regained full control of domestic and foreign affairs and became a fully independent nation within the Commonwealth in 1970. A pro-democracy movement gained steam in the early 2000s, led by ‘Akilisi POHIVA, and in 2006, riots broke out in Nuku’alofa to protest the lack of progress on reform. To appease the activists, in 2008, King George TUPOU V announced he was relinquishing most of his powers leading up to parliamentary elections in 2010 and henceforth most of the monarch’s governmental decisions, except those relating to the judiciary, were to be made in consultation with the prime minister. The 2010 Legislative Assembly was called Tonga’s first democratically elected Parliament. King George TUPOU V died in 2012 and was succeeded by his brother Crown Prince Tupouto‘a Lavaka who ruled as George TUPOU VI. In 2015, ‘Akalisi POHIVA became Tonga’s first non-noble prime minister."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, archipelago in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand"
+      },
+      "Area": {
+        "total ": {
+          "text": "747 sq km"
+        },
+        "land": {
+          "text": "717 sq km"
+        },
+        "water": {
+          "text": "30 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "419 km"
+      },
+      "Climate": {
+        "text": "tropical; modified by trade winds; warm season (December to May), cool season (May to December)"
+      },
+      "Terrain": {
+        "text": "mostly flat islands with limestone bedrock formed from uplifted coral formation; others have limestone overlying volcanic rock"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Kao Volcano on Kao Island 1,046 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "arable land, fish"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "48.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 27.8% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 15.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 5.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "12.1% (2023 est.)"
+        },
+        "other": {
+          "text": "39.3% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "cyclones (October to April); earthquakes and volcanic activity on Fonuafo'ou <br><br><strong>volcanism:</strong> moderate volcanic activity; Fonualei (180 m) has had frequent activity in recent years, and Niuafo'ou (260 m) has forced evacuations; other historically active volcanoes include Late and Tofua"
+      },
+      "Geography - note": {
+        "text": "the western islands (making up the Tongan Volcanic Arch) are all of volcanic origin; the eastern islands are nonvolcanic and are composed of coral limestone and sand"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "104,519 (2025 est.)"
+        },
+        "male": {
+          "text": "52,421"
+        },
+        "female": {
+          "text": "52,098"
+        }
+      },
+      "Languages": {
+        "text": "Tongan only 85%, Tongan and other language 13.9%, Tongan not used at home 1.1% (2021 est.)",
+        "note": "<strong>note:</strong> data represent language use at home of persons aged 5 and older"
+      },
+      "Religions": {
+        "text": "Protestant 63.9% (Free Wesleyan Church 34.2%, Free Church of Tonga 11.3%, Church of Tonga 6.8%, Seventh Day Adventist 2.5%, Assembly of God 2.5%, Tokaikolo/Maamafo'ou 1.5%, Constitutional Church of Tonga 1.2%, other Protestant 4%), Church of Jesus Christ 19.7%, Roman Catholic 13.7%, other 2.1%, none 0.6%, no answer 0.1% (2021 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Tongan 96.5%, other (European, Fijian, Samoan, Indian, Chinese, other Pacific Islander, other Asian, other) 3.5% (2021 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "23.2% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.99% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "over two thirds of the population lives on the island of Tongatapu; only 45 of the nation's 171 islands are occupied"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper middle-income Pacific island economy; enormous diaspora and remittance reliance; key tourism and agricultural sectors; major fish exporter; rapidly growing Chinese infrastructure investments; rising methamphetamine hub"
+      },
+      "Agricultural products": {
+        "text": "coconuts, pumpkins/squash, cassava, sweet potatoes, vegetables, yams, taro, root vegetables, plantains, lemons/limes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, construction, fishing"
+      },
+      "Exports - commodities": {
+        "text": "refined petroleum, gold, processed fruits and nuts, cassava, fish (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Guyana 17%, USA 17%, NZ 15%, Australia 15%, UAE 12% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, plastic products, poultry, cars, sheep and goat meat (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; modified by trade winds; warm season (December to May), cool season (May to December)"
+      }
+    }
+  }
+}

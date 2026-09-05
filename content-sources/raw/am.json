@@ -1,0 +1,183 @@
+{
+  "iso": "am",
+  "fetchedAt": "2026-09-04T23:56:43.973Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-asia/am.json"
+    }
+  },
+  "wikidata": {
+    "name": "Armenia",
+    "gec": "AM",
+    "capital": "Yerevan",
+    "areaKm2": 29743.423459,
+    "population": 2930450,
+    "continent": "Asia",
+    "officialLanguages": [
+      "Armenian"
+    ],
+    "currencies": [
+      "Armenian dram"
+    ],
+    "sharesBorderWithAnyType": [
+      "tr",
+      "az",
+      "ge",
+      "ir"
+    ]
+  },
+  "factbook": {
+    "_path": "central-asia/am.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Armenia prides itself on being the first state to formally adopt Christianity (early 4th century). Armenia has existed as a political entity for centuries, but for much of its history it was under the sway of various empires, including the Roman, Byzantine, Arab, Persian, Ottoman, and Russian. During World War I, the Ottoman Empire instituted a policy of forced resettlement that, coupled with other harsh practices targeting its Armenian subjects, resulted in at least 1 million deaths; these actions have been widely recognized as constituting genocide. During the early 19th century, significant Armenian populations fell under Russian rule. Armenia declared its independence in 1918 in the wake of the Bolshevik Revolution in Russia, but it was conquered by the Soviet Red Army in 1920. Armenia, along with Azerbaijan and Georgia, was initially incorporated into the USSR as part of the Transcaucasian Federated Soviet Socialist Republic; in 1936, the republic was separated into its three constituent entities, which were maintained until the dissolution of the Soviet Union in 1991.</p> <p>For over three decades, Armenia had a longstanding conflict with neighboring Azerbaijan about the status of the Nagorno-Karabakh region, which historically had a mixed Armenian and Azerbaijani population, although ethnic Armenians have constituted the majority since the late 19th century. In 1921, Moscow placed Nagorno-Karabakh within Soviet Azerbaijan as an autonomous oblast. In the late Soviet period, a separatist movement developed that sought to end Azerbaijani control over the region. Fighting over Nagorno-Karabakh began in 1988 and escalated after Armenia and Azerbaijan declared independence from the Soviet Union in 1991. By the time a cease-fire took effect in 1994, separatists with Armenian support controlled Nagorno‑Karabakh and seven surrounding Azerbaijani territories. Armenia and Azerbaijan engaged in a second military conflict over Nagorno-Karabakh in 2020; Armenia lost control over much of the territory it had previously captured, returning the southern part of Nagorno-Karabakh and the territories around it to Azerbaijan. In September 2023, Azerbaijan took military action to regain control over Nagorno-Karabakh; after an armed conflict that lasted only one day, nearly the entire ethnic Armenian population of Nagorno-Karabakh fled to Armenia.</p> <p>Turkey closed its border with Armenia in 1993 in support of Azerbaijan during the first period of conflict with Armenia and has since maintained a closed border, leaving Armenia with closed borders both in the west (with Turkey) and east (with Azerbaijan). Armenia and Turkey engaged in intensive diplomacy to normalize relations and open the border in 2009, but the signed agreement was not ratified in either country. In 2015, Armenia joined the Eurasian Economic Union alongside Russia, Belarus, Kazakhstan, and Kyrgyzstan. In 2017, Armenia signed a Comprehensive and Enhanced Partnership Agreement (CEPA) with the EU.</p> <p>In 2018, former President of Armenia (2008-18) Serzh SARGSIAN of the Republican Party of Armenia (RPA) tried to extend his time in power, prompting protests that became known as the “Velvet Revolution.” After SARGSIAN resigned, the National Assembly elected the leader of the protests, Civil Contract party chief Nikol PASHINYAN, as the new prime minister. PASHINYAN’s party has prevailed in subsequent legislative elections, most recently in 2021. </p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southwestern Asia, between Turkey (to the west) and Azerbaijan; note - Armenia views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
+      },
+      "Area": {
+        "total ": {
+          "text": "29,743 sq km"
+        },
+        "land": {
+          "text": "28,203 sq km"
+        },
+        "water": {
+          "text": "1,540 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "1,570 km"
+        },
+        "border countries": {
+          "text": "Azerbaijan 996 km; Georgia 219 km; Iran 44 km; Turkey 311 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "highland continental, hot summers, cold winters"
+      },
+      "Terrain": {
+        "text": "Armenian Highland with mountains; little forest land; fast flowing rivers; good soil in Aras River valley"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Aragats Lerrnagagat' 4,090 m"
+        },
+        "lowest point": {
+          "text": "Debed River 400 m"
+        },
+        "mean elevation": {
+          "text": "1,792 m"
+        }
+      },
+      "Natural resources": {
+        "text": "small deposits of gold, copper, molybdenum, zinc, bauxite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "58.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 15.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 41.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "11.8% (2023 est.)"
+        },
+        "other": {
+          "text": "13.5% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "occasionally severe earthquakes; droughts"
+      },
+      "Geography - note": {
+        "text": "landlocked in the Lesser Caucasus Mountains; Sevana Lich (Lake Sevan) is the largest lake in this mountain range"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,963,837 (2025 est.)"
+        },
+        "male": {
+          "text": "1,451,842"
+        },
+        "female": {
+          "text": "1,511,995"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Armenian 97.2%, Russian 1.4%, Ezidian 1.0%; less than 1%: other, unknown (2022)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Աշխարհի Փաստագիրք, Անփոխարինելի Աղբյւր Հիմնական Տեղեկատվւթյան. (Armenian)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Armenian Apostolic 95.2%, not stated 1.7%; less than 1%: Catholic, no religion, Evangelical, Shar-fadinian, other, Armenian Orthodox, Jehovah's Witness, Pagan, Molokan (2022 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Armenian 98.1%, Yezidi 1.1%; less than 1%: Russian, other, Assyrian, Kurd, Ukrainian, Greek (2022 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "63.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.23% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is located in the northern half of the country; the capital of Yerevan is home to more than five times as many people as Gyumri, the second-largest city in the country"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle income, fast-growing Caucasus economy; stable fiscal and monetary regime but vulnerable to geopolitical shocks; economic and energy ties to Russia but seeking more EU and US trade; key copper and gold exporter; business-friendly and anti-corruption reforms; persistent unemployment; influx of migrants from Ukraine war easing</p>"
+      },
+      "Agricultural products": {
+        "text": "milk, potatoes, grapes, vegetables, wheat, tomatoes, watermelons, apricots, apples, barley (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "brandy, mining, diamond processing, metal-cutting machine tools, forging and pressing machines, electric motors, knitted wear, hosiery, shoes, silk fabric, chemicals, trucks, instruments, microelectronics, jewelry, software, food processing"
+      },
+      "Exports - commodities": {
+        "text": "gold, diamonds, copper ore, broadcasting equipment, jewelry (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Russia 37%, UAE 25%, Hong Kong 7%, China 5%, Georgia 4% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "cars, gold, diamonds, broadcasting equipment, natural gas (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "highland continental, hot summers, cold winters"
+      }
+    }
+  }
+}

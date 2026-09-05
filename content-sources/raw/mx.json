@@ -1,0 +1,185 @@
+{
+  "iso": "mx",
+  "fetchedAt": "2026-09-04T23:57:08.255Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "north-america/mx.json"
+    }
+  },
+  "wikidata": {
+    "name": "Mexico",
+    "gec": "MX",
+    "capital": "Mexico City",
+    "areaKm2": 1964375,
+    "population": 132274416,
+    "continent": "North America",
+    "officialLanguages": [
+      "Nahuatl",
+      "Spanish",
+      "Yucatec Maya"
+    ],
+    "currencies": [
+      "peso"
+    ],
+    "sharesBorderWithAnyType": [
+      "us",
+      "bz",
+      "gt"
+    ]
+  },
+  "factbook": {
+    "_path": "north-america/mx.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Mexico was the site of several advanced Amerindian civilizations -- including the Olmec, Toltec, Teotihuacan, Zapotec, Maya, and Aztec -- until Spain conquered and colonized the area in the early 16th century. Administered as the Viceroyalty of New Spain for three centuries, it achieved independence early in the 19th century. Elections held in 2000 marked the first time since Mexican Revolution in 1910 that an opposition candidate -- Vicente FOX of the National Action Party (PAN) -- defeated the party in government, the Institutional Revolutionary Party (PRI). He was succeeded in 2006 by another PAN candidate Felipe CALDERON, but Enrique PEÑA NIETO regained the presidency for the PRI in 2012. Left-leaning anti-establishment politician and former mayor of Mexico City (2000-05) Andrés Manuel LÓPEZ OBRADOR, from the National Regeneration Movement (MORENA), became president in 2018.</p> <p>The US-Mexico-Canada Agreement (USMCA, or T-MEC by its Spanish acronym) entered into force in 2020 and replaced its predecessor, the North American Free Trade Agreement (NAFTA). Mexico amended its constitution in 2019 to facilitate the implementation of the labor components of USMCA.</p> <p>Mexico is currently the US's second-largest goods trading partner, after Canada. Ongoing economic and social concerns include low real wages, high underemployment, inequitable income distribution, and few advancement opportunities, particularly for the largely indigenous population in the impoverished southern states. Since 2007, Mexico's powerful transnational criminal organizations have engaged in a struggle to control criminal markets, resulting in tens of thousands of drug-related homicides and forced disappearances.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "North America, bordering the Caribbean Sea and the Gulf of America, between Belize and the United States and bordering the North Pacific Ocean, between Guatemala and the United States"
+      },
+      "Area": {
+        "total ": {
+          "text": "1,964,375 sq km"
+        },
+        "land": {
+          "text": "1,943,945 sq km"
+        },
+        "water": {
+          "text": "20,430 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "4,389 km"
+        },
+        "border countries": {
+          "text": "Belize 276 km; Guatemala 958 km; US 3,155 km"
+        }
+      },
+      "Coastline": {
+        "text": "9,330 km"
+      },
+      "Climate": {
+        "text": "varies from tropical to desert"
+      },
+      "Terrain": {
+        "text": "high, rugged mountains; low coastal plains; high plateaus; desert"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Volcan Pico de Orizaba 5,636 m"
+        },
+        "lowest point": {
+          "text": "Laguna Salada -10 m"
+        },
+        "mean elevation": {
+          "text": "1,111 m"
+        }
+      },
+      "Natural resources": {
+        "text": "petroleum, silver, antimony, copper, gold, lead, zinc, natural gas, timber"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "50.7% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 10.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.3% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 38.1% (2023 est.)"
+        },
+        "forest": {
+          "text": "34.2% (2023 est.)"
+        },
+        "other": {
+          "text": "15.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "tsunamis along the Pacific coast; volcanoes and destructive earthquakes in the center and south; hurricanes on the Pacific, Gulf of America, and Caribbean coasts <br><br><strong>volcanism:</strong> volcanic activity in the central-southern part of the country; the volcanoes in Baja California are mostly dormant; Colima (3,850 m) is Mexico's most active volcano and is responsible for periodic evacuations of nearby villagers; it has been deemed a Decade Volcano by the International Association of Volcanology and Chemistry of the Earth's Interior, worthy of study due to its explosive history and close proximity to human populations; Popocatepetl (5,426 m) poses a threat to Mexico City; other historically active volcanoes include Barcena, Ceboruco, El Chichon, Michoacan-Guanajuato, Pico de Orizaba, San Martin, Socorro, and Tacana; see note 2 under \"Geography - note\""
+      },
+      "Geography - note": {
+        "text": "<strong>note 1:</strong> strategic location on southern border of the US; Mexico is one of the countries along the Ring of Fire, which is a belt bordering the Pacific Ocean that contains about 75% of the world's volcanoes and up to 90% of the world's earthquakes<br><br><strong>note 2: </strong>the Sac Actun cave system at 348 km (216 mi) is the longest underwater cave in the world and the second longest cave worldwide, after Mammoth Cave in the United States (see \"Geography - note\" under United States)<br><br><strong>note 3:</strong> the prominent Yucatán Peninsula that divides the Gulf of America from the Caribbean Sea is shared by Mexico, Guatemala, and Belize; on the northern coast of Yucatan near the town of Chicxulub lie the remnants of a massive asteroid or comet crater about 150 km (93 mi) in diameter and extending into the Gulf of America; the impact is believed to have initiated a worldwide climate disruption that caused a mass extinction of 75% of the earth's plant and animal species, including the non-avian dinosaurs"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "130,739,927 (2024 est.)"
+        },
+        "male": {
+          "text": "63,899,138"
+        },
+        "female": {
+          "text": "66,840,789"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish only 93.8%, Spanish and indigenous languages (including Mayan, Nahuatl, and others) 5.4%, indigenous only 0.6%, unspecified 0.2% (2020 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Catholic 77.7%, no religion 10.6%, other Evangelical Churches 7.5%, Jehovah Witness 1.2%; less than 1 percent: Pentecostal, Seventh Day Adventist, Historics, not specified, Latter Day Saints, other religions&nbsp; (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Mestizo (Indigenous-Spanish) 62%, predominantly Indigenous 21%, Indigenous 7%, other 10% (mostly European) (2012 est.)",
+        "note": "<strong>note:</strong> Mexico does not collect census data on ethnicity"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "81.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.4% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population is found in the middle of the country between the states of Jalisco and Veracruz; approximately a quarter of the population lives in and around Mexico City"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "<p>upper-middle-income economy; highly integrated with US via trade and nearshore manufacturing; weak domestic demand, fiscal consolidation, and trade uncertainty contributing to sluggish growth; low unemployment; challenges from income inequality, corruption, and cartel-based violence</p>"
+      },
+      "Agricultural products": {
+        "text": "sugarcane, maize, milk, oranges, sorghum, tomatoes, chicken, chillies/peppers, wheat, lemons/limes (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "food and beverages, tobacco, chemicals, iron and steel, petroleum, mining, textiles, clothing, motor vehicles, consumer durables, tourism"
+      },
+      "Exports - commodities": {
+        "text": "cars, vehicle parts/accessories, crude petroleum, trucks, computers (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "USA 76%, Canada 5%, China 2%, Germany 2%, Spain 1% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "vehicle parts/accessories, refined petroleum, integrated circuits, broadcasting equipment, cars (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "varies from tropical to desert"
+      }
+    }
+  }
+}

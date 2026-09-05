@@ -1,0 +1,75 @@
+{
+  "iso": "ss",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.420Z",
+  "structured": {
+    "code": "ss",
+    "name": "South Sudan",
+    "capital": "Juba",
+    "continent": "Africa",
+    "areaKm2": 644329,
+    "population": 12575714,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "South Sudanese pound"
+    ],
+    "landBorderNames": [
+      "Central African Republic",
+      "Democratic Republic of the Congo",
+      "Ethiopia",
+      "Kenya",
+      "Sudan",
+      "Uganda"
+    ],
+    "landBorderCodes": [
+      "cf",
+      "cd",
+      "et",
+      "ke",
+      "sd",
+      "ug"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, fertile agricultural land, gold, diamonds, petroleum, hardwoods, limestone, iron ore, copper, chromium ore, zinc, tungsten, mica, silver",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "East-Central Africa; south of Sudan, north of Uganda and Kenya, west of Ethiopia || plains in the north and center rise to southern highlands along the border with Uganda and Kenya; the White Nile, flowing north out of the uplands of Central Africa, is the major geographic feature of the country; The Sudd (a name derived from floating vegetation that hinders navigation) is a large swampy area of more than 100,000 sq km fed by the waters of the White Nile that dominates the center of the country || landlocked; The Sudd is a vast swamp in the north central region of South Sudan, formed by the White Nile; its size is variable but can reach some 15% of the country's total area during the rainy season; it is one of the world's largest wetlands || Resources: hydropower, fertile agricultural land, gold, diamonds, petroleum, hardwoods, limestone, iron ore, copper, chromium ore, zinc, tungsten, mica, silver || Exports: crude petroleum, refined petroleum, forage crops, gold, scrap iron (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "plains in the north and center rise to southern highlands along the border with Uganda and Kenya; the White Nile, flowing north out of the uplands of Central Africa, is the major geographic feature of the country; The Sudd (a name derived from floating vegetation that hinders navigation) is a large swampy area of more than 100,000 sq km fed by the waters of the White Nile that dominates the center of the country || East-Central Africa; south of Sudan, north of Uganda and Kenya, west of Ethiopia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "hot with seasonal rainfall influenced by the annual shift of the Inter-Tropical Convergence Zone; rainfall heaviest in upland areas of the south and diminishes to the north"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "low-income, oil-based Sahelian economy; extreme poverty and food insecurity; COVID-19 and ongoing violence threaten socioeconomic potential; environmentally fragile; ongoing land and property rights issues; natural resource rich but lacks infrastructure || Exports: crude petroleum, refined petroleum, forage crops, gold, scrap iron (2023)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 60.5%, folk religion 32.9%, Muslim 6.2%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || Dinka (Jieng) approximately 35-40%, Nuer (Naath) approximately 15%, Shilluk (Chollo), Azande, Bari, Kakwa, Kuku, Murle, Mandari, Didinga, Ndogo, Bviri, Lndi, Anuak, Bongo, Lango, Dungotona, Acholi, Baka, Fertit (2011 est.)"
+    }
+  }
+}

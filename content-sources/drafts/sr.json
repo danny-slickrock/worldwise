@@ -1,0 +1,69 @@
+{
+  "iso": "sr",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.433Z",
+  "structured": {
+    "code": "sr",
+    "name": "Suriname",
+    "capital": "Paramaribo",
+    "continent": "South America",
+    "areaKm2": 163270,
+    "population": 563402,
+    "officialLanguages": [
+      "Dutch"
+    ],
+    "currencies": [
+      "Surinamese dollar"
+    ],
+    "landBorderNames": [
+      "Brazil",
+      "Guyana"
+    ],
+    "landBorderCodes": [
+      "br",
+      "gy"
+    ],
+    "landBorderTerritories": [
+      "French Guiana"
+    ],
+    "landBorderUnresolved": [],
+    "naturalResources": "timber, hydropower, fish, kaolin, shrimp, bauxite, gold, and small amounts of nickel, copper, platinum, iron ore",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern South America, bordering the North Atlantic Ocean, between French Guiana and Guyana || mostly rolling hills; narrow coastal plain with swamps || smallest independent country on the South American continent; mostly tropical rainforest; great diversity of flora and fauna; relatively small population, mostly along the coast || Resources: timber, hydropower, fish, kaolin, shrimp, bauxite, gold, and small amounts of nickel, copper, platinum, iron ore || Exports: gold, fish, refined petroleum, wood, tobacco (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly rolling hills; narrow coastal plain with swamps || Northern South America, bordering the North Atlantic Ocean, between French Guiana and Guyana"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; moderated by trade winds || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income South American economy; new floating currency regime; key aluminum goods, gold, and hydrocarbon exporter; new IMF plan for economic recovery and fiscal sustainability; controversial hardwood industry || Exports: gold, fish, refined petroleum, wood, tobacco (2023) || Industries: gold mining, oil, lumber, food processing, fishing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Protestant 23.6% (includes Evangelical 11.2%, Moravian 11.2%, Reformed 0.7%, Lutheran 0.5%), Hindu 22.3%, Roman Catholic 21.6%, Muslim 13.8%, other Christian 3.2%, Winti 1.8%, Jehovah's Witness 1.2%, other 1.7%, none 7.5%, unspecified 3.2% (2012 est.) || Hindustani (also known locally as \"East Indians\"; their ancestors emigrated from northern India in the latter part of the 19th century) 27.4%, Maroon (their African ancestors were brought to the country in the 17th and 18th centuries as slaves and escaped to the interior) 21.7%, Creole (mixed White and Black) 15.7%, Javanese 13.7%, mixed 13.4%, other 7.6%, unspecified 0.6% (2012 est.)"
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "iso": "tj",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.404Z",
+  "structured": {
+    "code": "tj",
+    "name": "Tajikistan",
+    "capital": "Dushanbe",
+    "continent": "Asia",
+    "areaKm2": 143100,
+    "population": 9504000,
+    "officialLanguages": [
+      "Tajik"
+    ],
+    "currencies": [
+      "Tajikistani somoni"
+    ],
+    "landBorderNames": [
+      "Afghanistan",
+      "China",
+      "Kyrgyzstan",
+      "Uzbekistan"
+    ],
+    "landBorderCodes": [
+      "af",
+      "cn",
+      "kg",
+      "uz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "hydropower, some petroleum, uranium, mercury, brown coal, lead, zinc, antimony, tungsten, silver, gold",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Asia, west of China, south of Kyrgyzstan || mountainous region dominated by the Alay Mountains in the north and the Pamirs in the southeast; western Fergana Valley in north, Kofirnihon and Vakhsh Valleys in southwest || landlocked; highest point, Qullai Ismoili Somoni (formerly Communism Peak), was the tallest mountain in the former USSR || Resources: hydropower, some petroleum, uranium, mercury, brown coal, lead, zinc, antimony, tungsten, silver, gold || Exports: gold, precious metal ore, aluminum, lead ore, antimony (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mountainous region dominated by the Alay Mountains in the north and the Pamirs in the southeast; western Fergana Valley in north, Kofirnihon and Vakhsh Valleys in southwest || Central Asia, west of China, south of Kyrgyzstan"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "mid-latitude continental, hot summers, mild winters; semiarid to polar in Pamir Mountains || earthquakes; floods"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower-middle-income Central Asian economy; large infrastructure projects, including Rogun Dam, and a push towards green development and digitalization driving growth; strong metal mining, electricity, and manufacturing industries; challenges include land scarcity, climate vulnerability, and complex bureaucratic processes for investors || Exports: gold, precious metal ore, aluminum, lead ore, antimony (2023) || Industries: aluminum, cement, coal, gold, silver, antimony, textile, vegetable oil"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 98% (Sunni 95%, Shia 3%) other 2% (2014 est.) || Tajik 84.3% (includes Pamiri and Yagnobi), Uzbek 13.8%, other 2% (includes Kyrgyz, Russian, Turkmen, Tatar, Arab) (2014 est.)"
+    }
+  }
+}

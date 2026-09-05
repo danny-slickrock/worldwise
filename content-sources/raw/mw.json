@@ -1,0 +1,180 @@
+{
+  "iso": "mw",
+  "fetchedAt": "2026-09-04T23:56:59.696Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/mi.json"
+    }
+  },
+  "wikidata": {
+    "name": "Malawi",
+    "gec": "MI",
+    "capital": "Lilongwe",
+    "areaKm2": 118484,
+    "population": 17563749,
+    "continent": "Africa",
+    "officialLanguages": [
+      "English",
+      "Chewa",
+      "Tumbuka"
+    ],
+    "currencies": [
+      "Malawian kwacha"
+    ],
+    "sharesBorderWithAnyType": [
+      "tz",
+      "zm",
+      "mz"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/mi.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>Malawi shares its name with the Chewa word for flames and is linked to the Maravi people from whom the Chewa language originated. The Maravi settled in what is now Malawi around 1400, during one of the later waves of Bantu migration across central and southern Africa. A powerful Maravi kingdom established around 1500 reached its zenith around 1700, when it controlled what is now southern and central Malawi and portions of neighboring Mozambique and Zambia. The kingdom eventually declined because of destabilization from the escalating global trade in enslaved people. In the early 1800s, widespread conflict in southern Africa displaced various ethnic Ngoni groups, some of which moved into Malawi and further undermined the Maravi. Members of the Yao ethnic group -- which had long traded with Malawi from Mozambique -- introduced Islam and began to settle in Malawi in significant numbers in the mid-1800s, followed by members of the Lomwe ethnic group. British missionary and trading activity increased in the area around Lake Nyasa in the mid-1800s, and in 1891, Britain declared a protectorate called British Central Africa over what is now Malawi. The British renamed the territory Nyasaland in 1907, and it was part of the colonial Federation of Rhodesia and Nyasaland -- including present-day Zambia and Zimbabwe -- from 1953 to 1963 before gaining independence as Malawi in 1964.</p> <p>Hastings Kamuzu BANDA served as prime minister at independence and then as president when the country became a republic in 1966. He later instituted one-party rule under his Malawi Congress Party (MCP) and was declared president for life. After three decades of one-party rule, the country held multiparty presidential and parliamentary elections in 1994 under a provisional constitution that came into full effect the following year. Bakili MULUZI of the United Democratic Front party became the first freely elected president of Malawi when he defeated BANDA at the polls in 1994; he won reelection in 1999. President Bingu wa MUTHARIKA was elected in 2004 and reelected to a second term in 2009. He died abruptly in 2012 and was succeeded by Vice President Joyce BANDA. MUTHARIKA's brother, Peter MUTHARIKA, defeated BANDA in the election in 2014. Peter MUTHARIKA was reelected in a disputed election in 2019 that resulted in countrywide protests. The courts ordered a new election, and in 2020, Lazarus CHAKWERA of the MCP was elected president. Population growth, increasing pressure on agricultural lands, corruption, and HIV/AIDS pose major problems for Malawi.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern Africa, east of Zambia, west and north of Mozambique"
+      },
+      "Area": {
+        "total ": {
+          "text": "118,484 sq km"
+        },
+        "land": {
+          "text": "94,080 sq km"
+        },
+        "water": {
+          "text": "24,404 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,857 km"
+        },
+        "border countries": {
+          "text": "Mozambique 1,498 km; Tanzania 512 km; Zambia 847 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "sub-tropical; rainy season (November to May); dry season (May to November)"
+      },
+      "Terrain": {
+        "text": "narrow elongated plateau with rolling plains, rounded hills, some mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Sapitwa (Mount Mlanje) 3,002 m"
+        },
+        "lowest point": {
+          "text": "junction of the Shire River and international boundary with Mozambique 37 m"
+        },
+        "mean elevation": {
+          "text": "779 m"
+        }
+      },
+      "Natural resources": {
+        "text": "limestone, arable land, hydropower, unexploited deposits of uranium, coal, and bauxite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "64.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 42.4% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 2.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 19.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "22.4% (2023 est.)"
+        },
+        "other": {
+          "text": "13.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "flooding; droughts; earthquakes"
+      },
+      "Geography - note": {
+        "text": "landlocked; Lake Nyasa, about 580 km (360 mi) long, is the country's most prominent physical feature; it contains more fish species than any other lake on earth"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "21,763,309 (2024 est.)"
+        },
+        "male": {
+          "text": "10,674,594"
+        },
+        "female": {
+          "text": "11,088,715"
+        }
+      },
+      "Languages": {
+        "text": "English (official), Chewa (dominant), Lambya, Lomwe, Ngoni, Nkhonde, Nyakyusa, Nyanja, Sena, Tonga, Tumbuka, Yao",
+        "note": "<strong>note</strong>: Chewa and Nyanja are mutually intelligible dialects; Nkhonde and Nyakyusa are mutually intelligible dialects"
+      },
+      "Religions": {
+        "text": "Protestant 33.5% (includes Church of Central Africa Presbyterian 14.2%, Seventh Day Adventist/Baptist 9.4%, Pentecostal 7.6%, Anglican 2.3%), Roman Catholic 17.2%, other Christian 26.6%, Muslim 13.8%, traditionalist 1.1%, other 5.6%, none 2.1% (2018 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Chewa 34.3%, Lomwe 18.8%, Yao 13.2%, Ngoni 10.4%, Tumbuka 9.2%, Sena 3.8%, Mang'anja 3.2%, Tonga 1.8%, Nyanja 1.8%, Nkhonde 1%, other 2.2%, foreign 0.3% (2018 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "18.3% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "4.41% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population density is highest south of Lake Nyasa, as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "low-income East African economy; primarily agrarian; investing in human capital; urban poverty increasing due to COVID-19; high public debt; endemic corruption and poor property rights; poor hydroelectric grid; localized pharmaceutical industry"
+      },
+      "Agricultural products": {
+        "text": "sweet potatoes, cassava, maize, sugarcane, mangoes/guavas, potatoes, tomatoes, pigeon peas, pumpkins/squash, plantains (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tobacco, tea, sugar, sawmill products, cement, consumer goods"
+      },
+      "Exports - commodities": {
+        "text": "tobacco, tea, dried legumes, soybean meal, raw sugar (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Germany 11%, India 7%, Zimbabwe 6%, South Africa 5%, USA 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, fertilizers, plastics, garments, postage stamps/documents (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "sub-tropical; rainy season (November to May); dry season (May to November)"
+      }
+    }
+  }
+}

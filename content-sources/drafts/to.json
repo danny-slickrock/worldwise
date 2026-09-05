@@ -1,0 +1,62 @@
+{
+  "iso": "to",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.438Z",
+  "structured": {
+    "code": "to",
+    "name": "Tonga",
+    "capital": "Nukuʻalofa",
+    "continent": "Oceania",
+    "areaKm2": 748.506563,
+    "population": 108020,
+    "officialLanguages": [
+      "English",
+      "Tongan"
+    ],
+    "currencies": [
+      "Tongan paʻanga"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "arable land, fish",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, archipelago in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand || mostly flat islands with limestone bedrock formed from uplifted coral formation; others have limestone overlying volcanic rock || the western islands (making up the Tongan Volcanic Arch) are all of volcanic origin; the eastern islands are nonvolcanic and are composed of coral limestone and sand || Resources: arable land, fish || Exports: refined petroleum, gold, processed fruits and nuts, cassava, fish (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly flat islands with limestone bedrock formed from uplifted coral formation; others have limestone overlying volcanic rock || Oceania, archipelago in the South Pacific Ocean, about two-thirds of the way from Hawaii to New Zealand"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; modified by trade winds; warm season (December to May), cool season (May to December) || cyclones (October to April); earthquakes and volcanic activity on Fonuafo'ou volcanism: moderate volcanic activity; Fonualei (180 m) has had frequent activity in recent years, and Niuafo'ou (260 m) has forced evacuations; other historically active volcanoes include Late and Tofua"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income Pacific island economy; enormous diaspora and remittance reliance; key tourism and agricultural sectors; major fish exporter; rapidly growing Chinese infrastructure investments; rising methamphetamine hub || Exports: refined petroleum, gold, processed fruits and nuts, cassava, fish (2023) || Industries: tourism, construction, fishing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Tongan only 85%, Tongan and other language 13.9%, Tongan not used at home 1.1% (2021 est.) || Protestant 63.9% (Free Wesleyan Church 34.2%, Free Church of Tonga 11.3%, Church of Tonga 6.8%, Seventh Day Adventist 2.5%, Assembly of God 2.5%, Tokaikolo/Maamafo'ou 1.5%, Constitutional Church of Tonga 1.2%, other Protestant 4%), Church of Jesus Christ 19.7%, Roman Catholic 13.7%, other 2.1%, none 0.6%, no answer 0.1% (2021 est.) || Tongan 96.5%, other (European, Fijian, Samoan, Indian, Chinese, other Pacific Islander, other Asian, other) 3.5% (2021 est.)"
+    }
+  }
+}

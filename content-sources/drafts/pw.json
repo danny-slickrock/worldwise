@@ -1,0 +1,63 @@
+{
+  "iso": "pw",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.436Z",
+  "structured": {
+    "code": "pw",
+    "name": "Palau",
+    "capital": "Ngerulmud",
+    "continent": "Insular Oceania",
+    "areaKm2": 465.550362,
+    "population": 21729,
+    "officialLanguages": [
+      "English",
+      "Japanese",
+      "Palauan"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "forests, minerals (especially gold), marine products, deep-seabed minerals",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, group of islands in the North Pacific Ocean, southeast of the Philippines || varying topography from the high, mountainous main island of Babelthuap to low, coral islands usually fringed by large barrier reefs || westernmost archipelago in the Caroline chain, consists of six island groups totaling more than 300 islands; includes world-famous Rock Islands || Resources: forests, minerals (especially gold), marine products, deep-seabed minerals || Exports: ships, refined petroleum (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "varying topography from the high, mountainous main island of Babelthuap to low, coral islands usually fringed by large barrier reefs || Oceania, group of islands in the North Pacific Ocean, southeast of the Philippines"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot and humid; wet season May to November || typhoons (June to December)"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income Pacific island economy; environmentally fragile; subsistence agriculture and fishing industries; US aid reliance; rebounding post-pandemic tourism industry and services sector; very high living standard and low unemployment || Exports: ships, refined petroleum (2023) || Industries: tourism, fishing, subsistence agriculture"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Palauan (official on most islands) 65.2%, other Micronesian 1.9%, English (official) 19.1%, Filipino 9.9%, Chinese 1.2%, other 2.8% (2015 est.) || Roman Catholic 46.9%, Protestant 30.9% (Evangelical 24.6%, Seventh Day Adventist 5%, other Protestant 1.4%), Modekngei 5.1% (indigenous to Palau), Muslim 4.9%, other 12.3% (2020 est.) || Palauan (Micronesian with Malayan and Melanesian admixtures) 70.6%, Carolinian 1.2%, Asian 26.5%, other 1.7% (2020 est.)"
+    }
+  }
+}

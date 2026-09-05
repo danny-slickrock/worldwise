@@ -1,0 +1,65 @@
+{
+  "iso": "ee",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.378Z",
+  "structured": {
+    "code": "ee",
+    "name": "Estonia",
+    "capital": "Tallinn",
+    "continent": "Europe",
+    "areaKm2": 45335,
+    "population": 1369995,
+    "officialLanguages": [
+      "Estonian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Latvia",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "lv",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "oil shale, peat, rare earth elements, phosphorite, clay, limestone, sand, dolomite, arable land, sea mud",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Europe, bordering the Baltic Sea and Gulf of Finland, between Latvia and Russia || marshy, lowlands; flat in the north, hilly in the south || the mainland terrain is flat, boggy, and partly wooded; over 1,500 islands lie offshore || Resources: oil shale, peat, rare earth elements, phosphorite, clay, limestone, sand, dolomite, arable land, sea mud || Exports: cars, wood, broadcasting equipment, refined petroleum, prefabricated buildings (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "marshy, lowlands; flat in the north, hilly in the south || Eastern Europe, bordering the Baltic Sea and Gulf of Finland, between Latvia and Russia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "maritime; wet, moderate winters, cool summers || sometimes flooding occurs in the spring"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, service-based EU and eurozone economy; rebound in exports playing a role in economic recovery; rising food prices contributing to inflation; decrease in labor force participation and rising unemployment rate; recovery depends on boosting private investment and productivity rates || Exports: cars, wood, broadcasting equipment, refined petroleum, prefabricated buildings (2023) || Industries: food, engineering, electronics, wood and wood products, textiles; information technology, telecommunications"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Estonian (official) 67.2%, Russian 28.5%, other 3.7%, unspecified 0.6% (2021est.) || Orthodox 16.5%, Protestant 9.2% (Lutheran 7.7%, other Protestant 1.5%), other 3% (includes Roman Catholic, Muslim, Jehovah's Witness, Pentecostal, Buddhist, and Taara Believer), none 58.4%, unspecified 12.9% (2021 est.) || Estonian 69.1%, Russian 23.7%, Ukrainian 2.1%, other 4.6%, unspecified 0.5% (2021 est.)"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "iso": "lv",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.381Z",
+  "structured": {
+    "code": "lv",
+    "name": "Latvia",
+    "capital": "Riga",
+    "continent": "Europe",
+    "areaKm2": 64593.77,
+    "population": 1845096,
+    "officialLanguages": [
+      "Latvian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Belarus",
+      "Estonia",
+      "Lithuania",
+      "Russia"
+    ],
+    "landBorderCodes": [
+      "by",
+      "ee",
+      "lt",
+      "ru"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "peat, limestone, dolomite, amber, hydropower, timber, arable land",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Eastern Europe, bordering the Baltic Sea, between Estonia and Lithuania || low plain || most of the country is composed of fertile low-lying plains with some hills in the east || Resources: peat, limestone, dolomite, amber, hydropower, timber, arable land || Exports: wood, wheat, broadcasting equipment, packaged medicine, natural gas (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "low plain || Eastern Europe, bordering the Baltic Sea, between Estonia and Lithuania"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "maritime; wet, moderate winters || large percentage of agricultural fields can become waterlogged and require drainage"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income EU and eurozone member; weak recovery following economic contraction, with slight increase in private consumption and uncertain trade environment; challenges from skilled-labor shortages, capital market access, large informal sector, and green and digital transitions || Exports: wood, wheat, broadcasting equipment, packaged medicine, natural gas (2023) || Industries: processed foods, processed wood products, textiles, processed metals, pharmaceuticals, railroad cars, synthetic fibers, electronics"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Lutheran 36.2%, Roman Catholic 19.5%, Orthodox 19.1%, other Christian 1.6%, other 0.1%, unspecified/none 23.5% (2017 est.) || Latvian 62.7%, Russian 24.5%, Belarusian 3.1%, Ukrainian 2.2%, Polish 2%, Lithuanian 1.1%, other 1.8%, unspecified 2.6% (2021 est.)"
+    }
+  }
+}

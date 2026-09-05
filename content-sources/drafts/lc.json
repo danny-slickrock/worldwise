@@ -1,0 +1,61 @@
+{
+  "iso": "lc",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.432Z",
+  "structured": {
+    "code": "lc",
+    "name": "Saint Lucia",
+    "capital": "Castries",
+    "continent": "North America",
+    "areaKm2": 617.012867,
+    "population": 167591,
+    "officialLanguages": [
+      "English"
+    ],
+    "currencies": [
+      "Eastern Caribbean dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "forests, sandy beaches, minerals (pumice), mineral springs, geothermal potential",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago || volcanic and mountainous with broad, fertile valleys || the twin Pitons (Gros Piton and Petit Piton), striking cone-shaped peaks south of Soufri&egrave;re, are one of the scenic natural highlights of the Caribbean || Resources: forests, sandy beaches, minerals (pumice), mineral springs, geothermal potential || Exports: refined petroleum, gravel and crushed stone, beer, liquor, paper containers (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "volcanic and mountainous with broad, fertile valleys || Caribbean, island between the Caribbean Sea and North Atlantic Ocean, north of Trinidad and Tobago"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical, moderated by northeast trade winds; dry season January to April, rainy season May to August || hurricanes volcanism: Mount Gimie (948 m), also known as Qualibou, is a caldera on the west of the island; the iconic twin pyramidal peaks of Gros Piton (771 m) and Petit Piton (743 m) are lava-dome remnants associated with the Soufrière volcano; there have been no historical magmatic eruptions, but a minor steam eruption in 1766 spread a thin layer of ash over a wide area; Saint Lucia is part of the volcanic-island arc of the Lesser Antilles that extends from Saba in the north to Grenada in the south"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper middle-income, tourism-based Caribbean island economy; environmentally fragile; energy import-dependent; major banana producer; well-educated labor force; key infrastructure, IT, and communications investments || Exports: refined petroleum, gravel and crushed stone, beer, liquor, paper containers (2023) || Industries: tourism; clothing, assembly of electronic components, beverages, corrugated cardboard boxes, lime processing, coconut processing"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English (official), Saint Lucian Creole || Roman Catholic 61.5%, Protestant 25.5% (includes Seventh Day Adventist 10.4%, Pentecostal 8.9%, Baptist 2.2%, Anglican 1.6%, Church of God 1.5%, other Protestant 0.9%), other Christian 3.4% (includes Evangelical 2.3% and Jehovah's Witness 1.1%), Rastafarian 1.9%, other 0.4%, none 5.9%, unspecified 1.4% (2010 est.) || Black/African descent 85.3%, mixed 10.9%, East Indian 2.2%, other 1.6%, unspecified 0.1% (2010 est.)"
+    }
+  }
+}

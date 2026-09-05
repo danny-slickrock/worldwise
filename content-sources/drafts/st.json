@@ -1,0 +1,61 @@
+{
+  "iso": "st",
+  "status": "draft",
+  "scaffoldedAt": "2026-09-05T00:00:32.418Z",
+  "structured": {
+    "code": "st",
+    "name": "São Tomé and Príncipe",
+    "capital": "São Tomé",
+    "continent": "Africa",
+    "areaKm2": 1001,
+    "population": 204327,
+    "officialLanguages": [
+      "Portuguese"
+    ],
+    "currencies": [
+      "São Tomé and Príncipe dobra"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, hydropower",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "",
+    "physicalGeography": "",
+    "climate": "",
+    "economy": "",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Central Africa, islands in the Gulf of Guinea, just north of the Equator, west of Gabon || volcanic, mountainous || the second-smallest African country (after the Seychelles); the two main islands form part of a chain of extinct volcanoes, and both are mountainous || Resources: fish, hydropower || Exports: crude petroleum, cocoa beans, vehicle parts/accessories, palm oil, aircraft parts (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "volcanic, mountainous || Central Africa, islands in the Gulf of Guinea, just north of the Equator, west of Gabon"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; hot, humid; one rainy season (October to May) || flooding"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "lower middle-income Central African island economy; falling cocoa production due to drought and mismanagement; joint oil venture with Nigeria; government owns 90% of land; high debt, partly from fuel subsidies; tourism gutted by COVID-19 || Exports: crude petroleum, cocoa beans, vehicle parts/accessories, palm oil, aircraft parts (2023) || Industries: light construction, textiles, soap, beer, fish processing, timber"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Portuguese 98.4% (official), Forro 36.2%, Cabo Verdian 8.5%, French 6.8%, Angolar 6.6%, English 4.9%, Lunguie 1%, other (including sign language) 2.4%; other Portuguese-based Creoles are also spoken (2012 est.) || Catholic 55.7%, Adventist 4.1%, Assembly of God 3.4%, New Apostolic 2.9%, Mana 2.3%, Universal Kingdom of God 2%, Jehovah's Witness 1.2%, other 6.2%, none 21.2%, unspecified 1% (2012 est.) || Mestico, Angolares (descendants of Angolan slaves), Forros (descendants of freed slaves), Servicais (contract laborers from Angola, Mozambique, and Cabo Verde), Tongas (children of servicais born on the islands), Europeans (primarily Portuguese), Asians (mostly Chinese)"
+    }
+  }
+}
