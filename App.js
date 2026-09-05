@@ -396,11 +396,11 @@ function AppShell() {
           />
         );
 
-      // M2.5 step 2 — navigation seam only, proving the route works end to
-      // end; step 3 turns this into the real hero screen (locked/unlocked
-      // state via achievementPolicy.js, progress bars).
+      // M2.5 step 3 — the hero screen: locked/unlocked state + progress bars
+      // via achievementPolicy.js, fed by local progress (streak) and cloud
+      // round history (rounds/perfect/modes), same as ProfileScreen/HomeScreen.
       case "achievements":
-        return <AchievementsScreen onExit={backHandler} />;
+        return <AchievementsScreen onExit={backHandler} progress={progress} />;
 
       case "profile":
         return (

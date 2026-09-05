@@ -86,11 +86,12 @@ blocked on human-only steps, and M2.4 done, **M2.5 — Achievements,
 collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
 has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
 achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
-game_results signals, no new schema) and step 2 (the navigation seam — an `achievements` route in
-`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js` as a deliberately minimal
-`AchievementsScreen`; reachable today via a temporary preview link on Profile) are done. **Next up
-in M2.5 is step 3** (the hero screen — a real badge grid with progress bars, fed by
-`computeAchievements()` and `fetchRoundResults(user)`). The Phase 1 backlog below gets picked up
+game_results signals, no new schema), step 2 (the navigation seam — an `achievements` route in
+`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js`), and step 3 (the hero
+screen — `AchievementsScreen` now renders real locked/unlocked state and progress bars via
+`computeAchievements()`, fed by local `progress` and `fetchRoundResults(user)`) are done. **Next up
+in M2.5 is step 4** (replace the temporary "Achievements (preview)" link on Profile with a real
+entry point showing an unlocked-count summary). The Phase 1 backlog below gets picked up
 opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1119,10 +1120,19 @@ teaching *how the world works*, not just *where things are*.
        wiring `computeAchievements()` in is step 3's job, not this one's. Reachable today via a
        "Achievements (preview)" link on Profile, explicitly marked TEMPORARY — step 4 replaces it
        with the real entry point. *(Next up: step 3 — the hero screen.)*
-    3. ☐ **Hero screen.** `src/screens/AchievementsScreen.js`: a badge grid (locked/unlocked, a
-       progress bar toward each locked badge's threshold) fed by `computeAchievements()` and
-       `fetchRoundResults(user)` (already built for M2.4's mastery screen — reuse it rather than
-       adding a second per-round fetch). Theme tokens only.
+    3. ✅ **Hero screen.** `src/screens/AchievementsScreen.js` now wires `computeAchievements()`
+       against local `progress` (streak) and `fetchRoundResults(user)` (rounds/perfect/modes) —
+       the same M2.4 built for the learning-path mastery screen, reused rather than adding a
+       second per-round fetch. Each badge row shows locked (muted glyph/label, a progress-track
+       bar toward its threshold, `value/threshold`) or unlocked (brand glyph, an "Unlocked ✓"
+       label instead of a bar); the header summarizes `{unlocked} of {total} unlocked`. Mirrors
+       `LearningPathScreen`'s own hydrate-then-render shape, including its "couldn't load your
+       progress" notice for a signed-in player whose `fetchRoundResults` call fails — local
+       storage keeps no per-round history, so an empty result is otherwise indistinguishable from
+       "no rounds yet" and would mislabel every round-derived badge as un-earned. `App.js` now
+       passes `progress` through to the route. Theme tokens only. *(Next up: step 4 — replace the
+       Profile "Achievements (preview)" link with a real entry point showing an unlocked-count
+       summary.)*
     4. ☐ **Wire entry point.** A "Achievements" row on Profile (mirroring the Interests settings row)
        showing an unlocked-count summary, opening the hero screen.
     5. ☐ **XP levels.** A leveling curve derived from `progress.xp`, surfaced alongside the badges —
