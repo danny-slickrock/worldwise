@@ -1,6 +1,6 @@
 {
   "iso": "dk",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.377Z",
   "structured": {
     "code": "dk",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Denmark occupies the Jutland Peninsula plus more than 400 islands, and its straits control the passage between the Baltic and North Seas. About a quarter of its people live in and around Copenhagen, while its export economy runs on packaged medicine, pharmaceuticals, and fish rather than heavy industry.",
+    "physicalGeography": "The country is built from the Jutland Peninsula, which juts north from Germany, along with a large archipelago that includes the major islands of Sjaelland, Fyn, and Bornholm. The terrain throughout is low and flat to gently rolling plains, with no significant elevation to speak of.",
+    "climate": "Denmark's climate is temperate, humid, and overcast, with mild, windy winters and cool summers. Flooding is a recurring concern in low-lying areas such as parts of Jutland and the southern coast of Lolland, which are held back from the sea by a system of dikes.",
+    "economy": "Denmark runs a high-income, trade-oriented Nordic economy as an EU member, with growth driven by pharmaceuticals, energy, and services, and a notably large share of employment in the public sector. Its currency is pegged to the euro, and the country maintains a strong fiscal position with declining public debt, while a tight labor market is eased by migrant workers and a higher retirement age. Key industries include wind turbines, pharmaceuticals, medical equipment, and shipbuilding, and its top exports are packaged medicine, fish, vaccines, refined petroleum, and pork.",
+    "peopleAndCulture": "The population is overwhelmingly Danish, a category that includes Greenlanders (predominantly Inuit) and Faroese, alongside smaller communities such as Turkish, Polish, Romanian, Syrian, Ukrainian, German, and Iraqi groups. Religiously, most people identify as Evangelical Lutheran, the official faith, with smaller Muslim, Roman Catholic, and other communities making up the rest."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Evangelical Lutheran (official) 71.4%, Muslim 4.3%, other/none/unspecified (denominations include Roman Catholic, Jehovah's Witness, Serbian Orthodox Christian, Jewish, Baptist, Buddhist, Church of Jesus Christ, Pentecostal, and nondenominational Christian) 24.3% (2024 est.) || Danish (includes Greenlandic (who are predominantly Inuit) and Faroese) 84.2%, Turkish 1.1%, other 14.7% (largest groups are Polish, Romanian, Syrian, Ukrainian, German, and Iraqi) (2023 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:34:07.237Z",
+  "draftModel": "claude-sonnet-5"
 }

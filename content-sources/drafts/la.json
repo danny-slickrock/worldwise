@@ -1,6 +1,6 @@
 {
   "iso": "la",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.397Z",
   "structured": {
     "code": "la",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and largely mountainous, Laos is defined by the Mekong River, which forms much of its western border with Thailand. Its terrain of rugged mountains and forest holds substantial timber, hydropower potential, and mineral wealth including tin, gold, and gemstones, while its main exports today are electricity, fertilizers, gold, garments, and paper.",
+    "physicalGeography": "Laos sits in Southeastern Asia, northeast of Thailand and west of Vietnam. The country is mostly rugged mountains, with some plains and plateaus scattered throughout.",
+    "climate": "The climate is tropical monsoon, with a rainy season running from May to November and a dry season from December to April. This pattern leaves the country prone to both floods and droughts.",
+    "economy": "Laos is a lower middle-income, industrial Southeast Asian economy that has recently faced high inflation, driven by a 2022 currency depreciation tied to persistently high debt. A new Laos-China railway and dry port have been built, even as inequities widen and labor shortages persist. Key industries include mining copper, tin, and gold, along with timber, electric power, agricultural processing, rubber, construction, garments, cement, and tourism, with electricity, fertilizers, gold, garments, and paper as the leading exports.",
+    "peopleAndCulture": "The population is predominantly Buddhist, at 64.7 percent, with 31.4 percent identifying with no religion and 1.7 percent Christian. Ethnically, the Lao make up 53.2 percent of the population, followed by the Khmou at 11 percent, Hmong at 9.2 percent, and smaller shares of Phouthay, Tai, Makong, Katong, Lue, Akha, and other groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist 64.7%, Christian 1.7%, none 31.4%, other/not stated 2.1% (2015 est.) || Lao 53.2%, Khmou 11%, Hmong 9.2%, Phouthay 3.4%, Tai 3.1%, Makong 2.5%, Katong 2.2%, Lue 2%, Akha 1.8%, other 11.6% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:42:15.474Z",
+  "draftModel": "claude-sonnet-5"
 }

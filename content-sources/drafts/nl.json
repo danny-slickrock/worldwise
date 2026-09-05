@@ -1,6 +1,6 @@
 {
   "iso": "nl",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.384Z",
   "structured": {
     "code": "nl",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "The Netherlands sits at the mouths of three major European rivers — the Rhine, Meuse, and Scheldt — and roughly a quarter of the country lies below sea level, with only about half rising more than a meter above it. Wedged between Belgium and Germany along the North Sea, its landscape is largely the product of centuries of reclaiming land from the water.",
+    "physicalGeography": "The terrain is mostly coastal lowland and reclaimed land known as polders, with some hills appearing only in the southeast. The country sits at the delta where the Rhine, Meuse, and Scheldt rivers reach the sea, and about a quarter of its land lies below sea level, with only around half exceeding one meter above it.",
+    "climate": "The Netherlands has a temperate, marine climate marked by cool summers and mild winters. Its Caribbean territories, at the northern end of the Lesser Antilles volcanic arc, include the dormant volcanoes Mount Scenery on Saba and Round Hill (The Quill) on St. Eustatius, though neither has erupted in centuries.",
+    "economy": "This is a high-income economy at the core of the EU and eurozone, built on strong services, logistics, and technology sectors, and it remains heavily trade-oriented, which leaves it exposed to global tensions. Inflation has been declining as energy prices ease alongside wage growth, while public deficits and debt are rising but still considered manageable. The country earns strong marks for innovation, competitiveness, and its business climate, with industries spanning agroindustries, metal and engineering products, electrical machinery, chemicals, petroleum, construction, and microelectronics, and leading exports including refined petroleum, vaccines, machinery, crude petroleum, and broadcasting equipment.",
+    "peopleAndCulture": "The population is about three-quarters Dutch, with sizable communities of other EU nationals, Turkish, Moroccan, Surinamese, and Indonesian descent making up much of the rest. Religiously, Roman Catholics and Protestants (including Dutch Reformed and Calvinist traditions) form the largest affiliated groups, with smaller Muslim, Hindu, Buddhist, and Jewish communities, while over half the population reports no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 20.1%, Protestant 14.8% (includes Dutch Reformed, Protestant Church of The Netherlands, Calvinist), Muslim 5%, other 5.9% (includes Hindu, Buddhist, Jewish), none 54.1% (2019 est.) || Dutch 75.4%, EU (excluding Dutch) 6.4%, Turkish 2.4%, Moroccan 2.4%, Surinamese 2.1%, Indonesian 2%, other 9.3% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:46:51.835Z",
+  "draftModel": "claude-sonnet-5"
 }

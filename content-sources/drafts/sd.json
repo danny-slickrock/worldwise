@@ -1,6 +1,6 @@
 {
   "iso": "sd",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.421Z",
   "structured": {
     "code": "sd",
@@ -40,11 +40,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sudan sits in north-eastern Africa along the Red Sea, between Egypt and Eritrea, and shares borders with the Central African Republic, Chad, Egypt, Eritrea, Ethiopia, Libya, and South Sudan. Its defining geographic feature is the confluence of the White Nile and Blue Nile at Khartoum, where they join to form the River Nile before flowing north through Egypt to the Mediterranean. Beneath its flat, desert-dominated terrain lie petroleum reserves and deposits of gold, copper, and iron ore.",
+    "physicalGeography": "Sudan's landscape is a generally flat, featureless plain, with desert dominating the northern reaches of the country. Positioned in north-eastern Africa on the Red Sea coast, it lies between Egypt and Eritrea.",
+    "climate": "The climate is hot and dry, arid desert conditions prevailing across much of the country. A rainy season occurs but its timing varies by region, falling somewhere between April and November, while dust storms and periodic droughts are recurring features.",
+    "economy": "Sudan's economy is a low-income Sahel economy that has been devastated by ongoing civil war, with major impacts on rural income, basic commodity prices, industrial production, agricultural supply chains, communications, and commerce. Hyperinflation and currency depreciation have worsened food access and humanitarian conditions. Despite this, the country exports crude petroleum, gold, oil seeds, sheep and goats, and ground nuts, and maintains industries spanning oil, cotton ginning, textiles, cement, edible oils, sugar, soap distilling, shoes, petroleum refining, pharmaceuticals, armaments, vehicle assembly, and milling.",
+    "peopleAndCulture": "Sudan is home to over 500 ethnic groups, with Sudanese Arabs making up approximately 70% of the population alongside the Fur, Beja, Nuba, Ingessana, Uduk, Fallata, Masalit, Dajo, Gimir, Tunjur, and Berti peoples. Sunni Islam is the dominant religion, with a small Christian minority."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -74,5 +74,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Sunni Muslim, small Christian minority || Sudanese Arab (approximately 70%), Fur, Beja, Nuba, Ingessana, Uduk, Fallata, Masalit, Dajo, Gimir, Tunjur, Berti; there are over 500 ethnic groups"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:04.169Z",
+  "draftModel": "claude-sonnet-5"
 }

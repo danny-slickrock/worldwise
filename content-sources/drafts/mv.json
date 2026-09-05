@@ -1,6 +1,6 @@
 {
   "iso": "mv",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.398Z",
   "structured": {
     "code": "mv",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "The Maldives is the smallest country in Asia, an archipelago of 1,190 coral islands grouped into 26 atolls scattered across the Indian Ocean south-southwest of India. Only about 200 of these islands are inhabited, while another 80 have been given over entirely to tourist resorts, and the whole nation sits along major sea lanes of the Indian Ocean.",
+    "physicalGeography": "The country consists of flat coral atolls with white sandy beaches, resting atop the submarine volcanic Chagos-Laccadive Ridge. It has no land borders with any country, being entirely a scattering of low-lying islands in the Indian Ocean south-southwest of India.",
+    "climate": "The climate is tropical, hot and humid, shaped by two monsoon seasons: a dry northeast monsoon from November to March and a rainy southwest monsoon from June to August. The islands' low elevation makes them sensitive to sea level rise, and the country is also exposed to tsunamis.",
+    "economy": "The Maldives is an upper middle-income island economy built on tourism, fishing, and shipping, alongside industries such as fish processing, boat building, coconut processing, and handicrafts like woven mats and rope. It carries high public debt and has faced systemic corruption, and the economy was crippled by COVID-19, with ongoing deflation and poverty tripling since the pandemic began. Main exports include fish, aircraft, refined petroleum, scrap iron, and natural gas.",
+    "peopleAndCulture": "The population is a homogeneous mixture of Sinhalese, Dravidian, Arab, Australasian, and African origins, a blend resulting from historical shifts in regional control over marine trade routes. Dhivehi, closely related to Sinhala and written in a script derived from Arabic, is the official language, while English is spoken by most government officials. Sunni Islam is the official religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Dhivehi (official, closely related to Sinhala, script derived from Arabic), English (spoken by most government officials) || Sunni Muslim (official) || homogeneous mixture of Sinhalese, Dravidian, Arab, Australasian, and African resulting from historical changes in regional hegemony over marine trade routes"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:38.649Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "uz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.406Z",
   "structured": {
     "code": "uz",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Uzbekistan shares the rare distinction, along with Liechtenstein, of being one of only two doubly landlocked countries on Earth — meaning it is surrounded entirely by other landlocked nations. Its landscape ranges from sandy desert dunes to the intensely irrigated valleys of the Amu Darya, Syr Darya, and Zaravshan rivers, while the Aral Sea in the west continues to shrink. Beneath this terrain lie substantial reserves of natural gas, petroleum, gold, uranium, and other metals, and the country exports gold, cotton yarn, garments, fertilizers, and fabric.",
+    "physicalGeography": "Much of Uzbekistan is flat-to-rolling sandy desert marked by dunes, but broad, flat river valleys along the Amu Darya, Syr Darya, and Zaravshan have been intensely irrigated for agriculture. In the east, the Fergana Valley sits enclosed by the mountainous terrain of neighboring Tajikistan and Kyrgyzstan. To the west lies the shrinking Aral Sea, and the country as a whole is positioned north of Turkmenistan and south of Kazakhstan.",
+    "climate": "The climate is mostly mid-latitude desert, with long, hot summers and mild winters, transitioning to semiarid grassland in the east. The country is subject to earthquakes, floods, landslides or mudslides, avalanches, and droughts.",
+    "economy": "Uzbekistan is a lower-middle income economy built around exports of natural gas, cotton, and gold, alongside goods like cotton yarn, garments, fertilizers, and fabric. Its industrial base includes textiles, food processing, machine building, metallurgy, mining, hydrocarbon extraction, and chemicals. The country is pursuing ongoing reforms aimed at reducing the dominance of state-owned enterprises, attracting foreign investment, and improving the sustainability of its cotton production.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, mostly Sunni, at 88 percent, with an Eastern Orthodox minority of 9 percent and other groups making up the remainder. Ethnically, Uzbeks form the large majority at 83.8 percent, followed by smaller communities of Tajiks, Kazakhs, Russians, Karakalpaks, Tatars, and others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 88% (mostly Sunni), Eastern Orthodox 9%, other 3% || Uzbek 83.8%, Tajik 4.8%, Kazakh 2.5%, Russian 2.3%, Karakalpak 2.2%, Tatar 1.5%, other 2.9% (2017 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:50.111Z",
+  "draftModel": "claude-sonnet-5"
 }

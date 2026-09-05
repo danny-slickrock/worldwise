@@ -1,6 +1,6 @@
 {
   "iso": "pt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.386Z",
   "structured": {
     "code": "pt",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Portugal sits in the far southwest corner of Europe, facing the North Atlantic with only Spain at its back. Its Azores and Madeira archipelagos lie along the western sea approaches to the Strait of Gibraltar and form two of the four island groups making up Macaronesia, alongside Spain's Canary Islands and Cabo Verde. The mainland itself is split by the west-flowing Tagus River, with mountains inland to the north and rolling plains to the south.",
+    "physicalGeography": "The Tagus River runs east to west across Portugal and marks a clear divide in the landscape: north of it the terrain rises into mountains toward the interior, while the south is dominated by rolling plains. The country occupies the southwestern edge of Europe, with the North Atlantic Ocean on its western and southern flank and Spain as its only land neighbor.",
+    "climate": "Portugal has a maritime temperate climate, cool and rainy in the north and warmer and drier in the south. The Azores Islands, out in the Atlantic, are subject to severe earthquakes and limited ongoing volcanism; several of the archipelago's volcanoes have historically been active, including Fayal (Faial), which last erupted in 1958, though most have not erupted in centuries.",
+    "economy": "Portugal is a high-income economy within the EU and eurozone, built around a strong services sector led by tourism and banking. Growth has been driven by private consumption, a trade surplus, and public investment funded through the EU, alongside a tight labor market and declining public debt. Its industrial base spans textiles, footwear, wood and cork, automobiles and auto parts, ceramics, and food and wine production, while leading exports include cars, garments, vehicle parts, medicines, and refined petroleum.",
+    "peopleAndCulture": "Portuguese is the official language, alongside Mirandese, which is official but used only locally. The population is overwhelmingly Portuguese, at 95 percent, with the remaining five percent made up of people from Portugal's former colonies in Africa, Asia, and South America along with other foreign-born residents. Catholicism is the dominant religion at just over two-thirds of the population, while roughly a quarter identify as having no religion, not applicable, or gave no response."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Portuguese (official), Mirandese (official, but locally used) || Catholic 68.1%, not applicable 12.9%, no religion 12.0%, no response 2.2%, Protestant 1.8%, other 1.0%; less than 1%: other Christians, Orthodox, Muslim (2021 est.) || Portuguese 95%; citizens from Portugal&rsquo;s former colonies in Africa, Asia (Han Chinese), and South America (Brazilian) and other foreign born 5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:28.123Z",
+  "draftModel": "claude-sonnet-5"
 }

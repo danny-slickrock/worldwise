@@ -1,6 +1,6 @@
 {
   "iso": "hr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.376Z",
   "structured": {
     "code": "hr",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting between Bosnia and Herzegovina and Slovenia along the Adriatic Sea, Croatia controls most land routes running from Western Europe down to the Aegean Sea and the Turkish Straits. Its coastline is scattered with roughly 1,200 islands, islets, ridges, and rocks, most of the Adriatic's total. The terrain shifts from flat plains near the Hungarian border to low mountains and highlands along the coast and islands.",
+    "physicalGeography": "Croatia's landscape splits into two distinct zones: flat plains stretching along the Hungarian border to the north, and low mountains and highlands running along the Adriatic coastline and its many islands to the south and west.",
+    "climate": "Croatia experiences both Mediterranean and continental climates, with the continental pattern dominant across most of the country, bringing hot summers and cold winters. Along the coast, conditions turn milder in winter and drier in summer. The country is also subject to destructive earthquakes.",
+    "economy": "Croatia is an upper-middle-income economy and the newest user of the euro, having adopted it in 2023. Growth has been supported by EU structural fund investment and tourism, though it has moderated as declining energy prices and restrictive monetary policy ease inflation; unemployment has been historically low, leading to labor shortages in services and manufacturing. Key industries span chemicals and plastics, shipbuilding, metal and machine tools, electronics, aluminum, paper, textiles, petroleum refining, food and beverages, and tourism, with ships, garments, electricity, packaged medicine, and wood among its main exports.",
+    "peopleAndCulture": "Croats make up the large majority of the population at 91.6%, with Serbs at 3.2% and smaller communities including Bosniaks, Romani, Albanians, Italians, and Hungarians. Roman Catholicism is the dominant religion at 79%, alongside smaller Orthodox, Protestant, and Muslim populations, and a share of the population identifying as agnostic or without religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 79%, Orthodox 3.3%, Protestant 0.3%, other Christian 4.8%, Muslim 1.3%, other 1.1%, agnostic 1.7%, none or atheist 4.7%, unspecified 3.9% (2021 est.) || Croat 91.6%, Serb 3.2%, other 3.9% (including Bosniak, Romani, Albanian, Italian, and Hungarian), unspecified 1.3% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:06.044Z",
+  "draftModel": "claude-sonnet-5"
 }

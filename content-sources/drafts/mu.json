@@ -1,6 +1,6 @@
 {
   "iso": "mu",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.416Z",
   "structured": {
     "code": "mu",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Mauritius sits in the Indian Ocean about 800 km east of Madagascar, its main island of volcanic origin ringed almost entirely by coral reefs. It was once home to the dodo, the large flightless bird driven to extinction here. Today the island economy exports fish, garments, raw sugar, fertilizers, and diamonds.",
+    "physicalGeography": "The island has no land borders with any country. A small coastal plain rises to discontinuous mountains that encircle a central plateau, and the main island is of volcanic origin, almost entirely surrounded by coral reefs.",
+    "climate": "The climate is tropical, moderated by southeast trade winds, with a warm, dry winter from May to November and a hot, wet, humid summer from November to May. Cyclones occur between November and April, and the reefs that nearly encircle the island can pose hazards to shipping.",
+    "economy": "Mauritius is an upper middle-income island economy with a diversified portfolio, including investment in maritime security and expansion into information and financial services. Tourism has long been a strong sector but was decimated by COVID-19. Industries include food processing, largely sugar milling, along with textiles, clothing, mining, chemicals, metal products, transport equipment, and nonelectrical machinery, while exports include fish, garments, raw sugar, fertilizers, and diamonds. The economy is described as environmentally fragile.",
+    "peopleAndCulture": "The population is majority Creole-speaking (86.5%), with Bhojpuri and French also spoken; English, though an official language of the National Assembly, is spoken by less than 1% of people. Religiously, the country is nearly half Hindu (48.5%), with Roman Catholic (26.3%), Muslim (17.3%), and other Christian (6.4%) communities as well. Ethnically, Indo-Mauritians make up about two thirds of the population, alongside Creole, Sino-Mauritian, and Franco-Mauritian communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Creole 86.5%, Bhojpuri 5.3%, French 4.1%, two languages 1.4%, other 2.6% (includes English, one of the two official languages of the National Assembly, which is spoken by less than 1% of the population), unspecified 0.1% (2011 est.) || Hindu 48.5%, Roman Catholic 26.3%, Muslim 17.3%, other Christian 6.4%, other 0.6%, none 0.7%, unspecified 0.1% (2011 est.) || Indo-Mauritian (compose approximately two thirds of the total population), Creole, Sino-Mauritian, Franco-Mauritian"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:32.145Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "se",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.389Z",
   "structured": {
     "code": "se",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Finland and Norway along the Baltic Sea, Sweden sits astride the Danish Straits, the strategic link between the Baltic and North Seas. The country is dotted with almost 100,000 lakes, including Vanern, the third-largest lake in Europe.",
+    "physicalGeography": "Sweden borders Finland and Norway and fronts the Baltic Sea, Gulf of Bothnia, Kattegat, and Skagerrak. Its terrain is mostly flat or gently rolling lowland, with mountains rising in the west.",
+    "climate": "The south has a temperate climate with cold, cloudy winters and cool, partly cloudy summers, while the north is subarctic. Ice floes form in surrounding waters, particularly in the Gulf of Bothnia, and can interfere with maritime traffic.",
+    "economy": "Sweden is a high-income country and the largest economy in the Nordic region. It belongs to the European Union but does not use the euro, and its export-oriented economy centers on automotive, electronics, machinery, and pharmaceutical industries, alongside iron and steel, precision equipment, wood pulp and paper, and processed foods. It ranks highly for competitiveness, R&D investment, and governance, and has recently seen falling inflation and real wage growth, though trade uncertainty poses risks.",
+    "peopleAndCulture": "About 79.6% of the population is Swedish, with smaller communities including Syrian, Iraqi, and Finnish residents. Religiously, 53.9% belong to the Church of Sweden (Lutheran), 8.9% follow other faiths including Roman Catholic, Orthodox, Baptist, Muslim, Jewish, and Buddhist traditions, and 37.2% report no religion or did not specify one."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Church of Sweden (Lutheran) 53.9%, other (includes Roman Catholic, Orthodox, Baptist, Muslim, Jewish, and Buddhist) 8.9%, none or unspecified 37.2% (2021 est.) || Swedish 79.6%, Syrian 1.9%, Iraqi 1.4%, Finnish 1.3%, other 15.8% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:13.075Z",
+  "draftModel": "claude-sonnet-5"
 }

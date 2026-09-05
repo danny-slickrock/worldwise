@@ -1,6 +1,6 @@
 {
   "iso": "ws",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.437Z",
   "structured": {
     "code": "ws",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Samoa sits in the South Pacific about halfway between Hawaii and New Zealand, occupying an almost central position within Polynesia. It has no land borders with any country, spread instead across two main islands, Savaii and Upolu, along with several smaller islands and uninhabited islets. Behind narrow coastal plains, the interior rises into rugged, volcanic mountains.",
+    "physicalGeography": "Samoa consists of two main islands, Savaii and Upolu, plus several smaller islands and uninhabited islets scattered across the South Pacific. Each is built on a narrow coastal plain that gives way to rugged, volcanic mountains inland.",
+    "climate": "The climate is tropical, with a rainy season running from November to April and a dry season from May to October. The islands are subject to occasional cyclones, and volcanism remains active, with Savai'i Island's volcano, rising to 1,858 meters, historically active.",
+    "economy": "Samoa is a lower middle-income Pacific island economy built on large fishing and agriculture industries, supplemented by significant remittances and a growing offshore financial sector. It has recently hosted the Pacific Games as part of an effort to drive tourism and infrastructure growth. Its main industries include food processing, building materials, and auto parts, while exports feature refined petroleum, integrated circuits, coconut oil, fish, and insulated wire.",
+    "peopleAndCulture": "The population is overwhelmingly Samoan, a Polynesian people, with Samoan and English both recognized as official languages and most residents speaking Samoan alone or alongside English. Christianity dominates religious life, with Protestant denominations, particularly Congregationalist and Methodist, making up more than half the population, alongside sizable Roman Catholic and Church of Jesus Christ communities. Ethnically, the country is almost entirely Samoan."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Samoan (Polynesian) (official) 91.1%, Samoan/English 6.7%, English (official) 0.5%, other 0.2%, unspecified 1.6% (2006 est.) || Protestant 54.9% (Congregationalist 29%, Methodist 12.4%, Assembly of God 6.8%, Seventh Day Adventist 4.4%, other Protestant 2.3%), Roman Catholic 18.8%, Church of Jesus Christ 16.9%, Worship Centre 2.8%, other Christian 3.6%, other 2.9% (includes Baha'i, Muslim), none 0.2% (2016 est.) || Samoan 96%, Samoan/New Zealander 2%, other 1.9% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:37.268Z",
+  "draftModel": "claude-sonnet-5"
 }

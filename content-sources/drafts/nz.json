@@ -1,6 +1,6 @@
 {
   "iso": "nz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.436Z",
   "structured": {
     "code": "nz",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked in the South Pacific southeast of Australia, New Zealand has no land borders at all — its neighbors are all across water. It sits on the Ring of Fire, the belt encircling the Pacific that holds roughly three-quarters of the world's volcanoes and up to 90% of its earthquakes. The country is built from two main islands: South Island, the larger of the two and the 12th-largest island on Earth, and North Island, the 14th-largest, which carries most of the volcanic activity and most of the people. Wellington, its capital, is the southernmost national capital in the world.",
+    "physicalGeography": "The landscape is predominately mountainous, softened by large coastal plains. South Island is split along its length by the Southern Alps, while North Island is gentler in relief but marked by active volcanism. Almost 90% of New Zealanders live in cities, and over three-quarters of the population is concentrated on North Island.",
+    "climate": "The climate is temperate but shows sharp contrasts from region to region. Earthquakes occur regularly, though they are usually not severe. Volcanic activity is significant on North Island: Ruapehu has produced large eruptions within the past century, Taranaki carries the risk of dangerous avalanches and lahars, and other historically active volcanoes include Okataina, Raoul Island, Tongariro, and White Island.",
+    "economy": "New Zealand runs a high-income, globally integrated economy built on agriculture, manufacturing, and tourism, with milk, wood, beef, butter, and sheep and goat meat as leading exports. It depends heavily on the Chinese market for those exports and is currently on a recovery path after a deep post-pandemic recession. Fiscal deficits, below-average productivity, a rising cost of living, and a drop in net migration are ongoing challenges.",
+    "peopleAndCulture": "English is the de facto official language, spoken by over 95% of the population, alongside the de jure official Maori and New Zealand Sign Language, plus Samoan, Chinese, Hindi, and French among others. Religiously, no religion is now the largest single category at 48.6%, ahead of Christianity in its various denominations, with smaller Hindu, Maori, Muslim, and Buddhist communities. Ethnically the population is majority European at 64.1%, with Maori at 16.5% and smaller Chinese, Indian, Samoan, Tongan, and Cook Islands Maori communities rounding out the mix."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (de facto official) 95.4%, Maori (de jure official) 4%, Samoan 2.2%, Northern Chinese 2%, Hindi 1.5%, French 1.2%, Yue 1.1%, New Zealand Sign Language (de jure official) 0.5%, other or not stated 17.2% (2018 est.) || Christian 37.3% (Catholic 10.1%, Anglican 6.8%, Presbyterian and Congregational 5.2%, Pentecostal 1.8%, Methodist 1.6%, Church of Jesus Christ 1.2%, other 10.7%), Hindu 2.7%, Maori 1.3%, Muslim, 1.3%, Buddhist 1.1%, other religion 1.6% (includes Judaism, Spiritualism and New Age religions, Baha'i, Asian religions other than Buddhism), no religion 48.6%, objected to answering 6.7% (2018 est.) || European 64.1%, Maori 16.5%, Chinese 4.9%, Indian 4.7%, Samoan 3.9%, Tongan 1.8%, Cook Islands Maori 1.7%, English 1.5%, Filipino 1.5%, New Zealander 1%, other 13.7% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:29.031Z",
+  "draftModel": "claude-sonnet-5"
 }

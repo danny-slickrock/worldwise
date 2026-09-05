@@ -1,6 +1,6 @@
 {
   "iso": "sk",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.388Z",
   "structured": {
     "code": "sk",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in Central Europe, south of Poland, Slovakia is a country of rugged mountains and southern lowlands, where the Tatra range in the north is threaded with scenic lakes and valleys. Its automotive-driven economy sits within the EU and eurozone, a notable position for a country of its size.",
+    "physicalGeography": "Slovakia is rugged and mountainous through its central and northern regions, giving way to lowlands in the south. The Tatra Mountains, in the north, are known for their scenic lakes and valleys.",
+    "climate": "The climate is temperate, with cool summers and cold, cloudy, humid winters. Flooding is a recurring hazard.",
+    "economy": "Slovakia is a high-income economy within the EU and eurozone, with manufacturing and exports led by the automotive sector. Growth is supported by private consumption and public investment from EU funds, though tempered by trade risks, while increased taxes and the withdrawal of energy subsidies have contributed to rising but manageable inflation. Strong labor demand and an influx of foreign workers help offset an aging workforce. Key industries include automobiles, metal products, chemicals, machinery, textiles, and pharmaceuticals, with cars, vehicle parts, video displays, and refined petroleum among the leading exports.",
+    "peopleAndCulture": "The population is predominantly Slovak (83.8%), with a Hungarian minority (7.8%) and smaller Romani, Czech, Ruthenian, Ukrainian, Russian, German, and Polish communities. Roman Catholicism is the majority religion at 55.8%, alongside smaller shares of Evangelical, Greek Catholic, and Reformed Christian populations, while nearly a quarter of the population identifies with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 55.8%, Evangelical Church of the Augsburg Confession 5.3%, Greek Catholic 4%, Reformed Christian 1.6%, other 3%, none 23.8%, unspecified 6.5% (2021 est.) || Slovak 83.8%, Hungarian 7.8%, Romani 1.2%, other 1.8% (includes Czech, Ruthenian, Ukrainian, Russian, German, Polish), unspecified 5.4% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:32.026Z",
+  "draftModel": "claude-sonnet-5"
 }

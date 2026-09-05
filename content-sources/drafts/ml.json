@@ -1,6 +1,6 @@
 {
   "iso": "ml",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.415Z",
   "structured": {
     "code": "ml",
@@ -49,11 +49,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in interior West Africa, Mali stretches across three distinct bands of terrain: a cultivated south, a semiarid central Sahel, and an arid Saharan north. Beneath that harsh geography lies real mineral wealth, including gold, phosphates, uranium, and salt, and gold remains one of the country's leading exports today.",
+    "physicalGeography": "Mali's north consists mostly of flat to rolling plains covered by sand, giving way to savanna in the south and rugged hills in the northeast. The country lies in the interior of West Africa, bordered by Algeria to the northeast, Guinea, Cote d'Ivoire, and Burkina Faso to the south, and Niger to the east.",
+    "climate": "Mali is landlocked and split into three natural zones: the cultivated Sudanese south, the semiarid Sahelian center, and the arid Saharan north. The climate ranges from subtropical to arid, with a hot dry season from February to June, a rainy humid season from June to November, and a cool dry season from November to February. The hot, dust-laden harmattan wind is common during dry periods, and the country experiences recurring droughts alongside occasional flooding of the Niger River.",
+    "economy": "Mali is a low-income Saharan economy marked by extreme poverty, high public debt, and environmental fragility. It depends heavily on agriculture and gold mining, exporting gold, cotton, oil seeds, fertilizers, and gum resins, while its main industries include food processing, construction, and phosphate and gold mining. The economy has also suffered from recession linked to COVID-19.",
+    "peopleAndCulture": "Mali's population is predominantly Muslim, at nearly 94 percent, with small Christian and animist minorities. Bambara is the official language, though French and a range of other languages including Fulani, Dogon, Soninke, and Malinke are spoken. Ethnically, the Bambara form the largest group at about a third of the population, followed by the Fulani, Soninke, Senufo, Malinke, Dogon, and Sonrai, among others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -83,5 +83,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Bambara (official), French 17.2%, Peuhl/Foulfoulbe/Fulani 9.4%, Dogon 7.2%, Maraka/Soninke 6.4%, Malinke 5.6%, Sonrhai/Djerma 5.6%, Minianka 4.3%, Tamacheq 3.5%, Senoufo 2.6%, Bobo 2.1%, other 6.3%, unspecified 0.7% (2009 est.) || Muslim 93.9%, Christian 2.8%, animist 0.7%, none 2.5% (2018 est.) || Bambara 33.3%, Fulani (Peuhl) 13.3%, Sarakole/Soninke/Marka 9.8%, Senufo/Manianka 9.6%, Malinke 8.8%, Dogon 8.7%, Sonrai 5.9%, Bobo 2.1%, Tuareg/Bella 1.7%, other Malian 6%, from members of Economic Community of West Africa 0.4%, other 0.3% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:44:47.233Z",
+  "draftModel": "claude-sonnet-5"
 }

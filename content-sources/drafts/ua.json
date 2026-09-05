@@ -1,6 +1,6 @@
 {
   "iso": "ua",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.390Z",
   "structured": {
     "code": "ua",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Ukraine sits at a crossroads between Europe and Asia, bordering the Black Sea and stretching from Poland, Belarus, Romania, and Moldova in the west to Russia in the east. It is the second-largest country in Europe after Russia, built largely on fertile steppe that has made it one of the world's key exporters of corn and wheat. Its ground also holds iron ore, coal, manganese, natural gas, titanium, and other resources that anchor a diverse industrial base.",
+    "physicalGeography": "The country is dominated by fertile plains and plateaus, the steppe landscape that underlies its agricultural strength. Mountains appear only at the margins: the Carpathians in the west and a smaller range at the southern tip of the Crimean Peninsula. Its location, bordering the Black Sea between Poland, Belarus, Romania, and Moldova to the west and Russia to the east, places it squarely between Europe and Asia.",
+    "climate": "Ukraine has a temperate continental climate, with a Mediterranean strip found only along the southern Crimean coast. Precipitation is uneven, heaviest in the west and north and lighter toward the east and southeast. Winters range from cool near the Black Sea to cold further inland, while summers are warm across most of the country and hot in the south; the country is also subject to occasional floods and droughts.",
+    "economy": "Ukraine is a lower-middle-income economy outside the EU and a major exporter of corn and wheat, alongside seed oils, iron ore, and soybeans. Its industrial base spans machinery, ferrous and nonferrous metals, automotive and aircraft components, electronics, chemicals, textiles, mining, and construction. The economy contracted sharply, by 30%, at the start of the war, with damage to infrastructure and agriculture, but has seen a gradual recovery aided by consumer and business resilience in western Ukraine, international aid that has stabilized foreign exchange reserves and allowed a managed currency float, and continued anti-corruption reforms.",
+    "peopleAndCulture": "Ukrainians make up about 77.8% of the population, with Russians forming a significant minority at 17.3%, alongside smaller communities of Belarusians, Moldovans, Crimean Tatars, Bulgarians, Hungarians, Romanians, Poles, and Jews. Religious life is predominantly Orthodox, split among the Orthodox Church of Ukraine, the Ukrainian Autocephalous Orthodox Church, and the Ukrainian Orthodox - Moscow Patriarchate, with smaller populations of Ukrainian Greek Catholics, Roman Catholics, Protestants, Muslims, and Jews."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Orthodox (includes the Orthodox Church of Ukraine (OCU), Ukrainian Autocephalous Orthodox Church (UAOC), and the Ukrainian Orthodox - Moscow Patriarchate (UOC-MP)), Ukrainian Greek Catholic, Roman Catholic, Protestant, Muslim, Jewish (2013 est.) || Ukrainian 77.8%, Russian 17.3%, Belarusian 0.6%, Moldovan 0.5%, Crimean Tatar 0.5%, Bulgarian 0.4%, Hungarian 0.3%, Romanian 0.3%, Polish 0.3%, Jewish 0.2%, other 1.8% (2001 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:11.542Z",
+  "draftModel": "claude-sonnet-5"
 }

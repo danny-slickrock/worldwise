@@ -1,6 +1,6 @@
 {
   "iso": "rs",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.387Z",
   "structured": {
     "code": "rs",
@@ -41,11 +41,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Serbia sits landlocked in southeastern Europe, straddling one of the major land routes connecting Western Europe to Turkey and the Near East. Its terrain shifts dramatically from fertile plains in the north to limestone ranges in the east and ancient mountains in the southeast, and beneath it lies a substantial mix of resources including copper, gold, silver, and coal.",
+    "physicalGeography": "The landscape is extremely varied: rich fertile plains dominate the north, limestone ranges and basins characterize the east, and ancient mountains and hills rise in the southeast. Serbia is landlocked, positioned in southeastern Europe between North Macedonia and Hungary, and borders Bosnia and Herzegovina, Bulgaria, Croatia, Hungary, North Macedonia, Montenegro, and Romania.",
+    "climate": "The north experiences a continental climate with cold winters and hot, humid summers accompanied by well-distributed rainfall throughout the year. Other parts of the country see a mix of continental and Mediterranean influences, bringing relatively cold, snowy winters alongside hot, dry summers and autumns. Destructive earthquakes are also a feature of the region.",
+    "economy": "Serbia is an upper middle-income Balkan economy and current EU accession candidate, one that was hit by COVID-19 but has since pursued green growth development alongside manageable public debt and new anticorruption efforts. Unemployment has been falling, though the country remains dependent on energy imports. Its industries span automobiles, base metals, furniture, food processing, machinery, chemicals, sugar, tires, clothing, and pharmaceuticals, while exports as of 2023 include insulated wire, electricity, copper ore, plastic products, and electric motors.",
+    "peopleAndCulture": "Serbs make up 83.3% of the population, with Hungarians, Romani, and Bosniaks forming smaller minority communities. Religious life is overwhelmingly Serbian Orthodox at 81.1%, with smaller shares practicing Islam, Catholicism, and other faiths, alongside those who identify as atheist or gave no response."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -75,5 +75,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Serbian Orthodox 81.1%, unknown 5.3%, Islam 4.2%, Catholic 3.9%, no response 2.5%, atheist 1.1%; less than 1%: other Christians, Protestant, agnostic (2022) || Serb 83.3%, Hungarian 3.5%, Romani 2.1%, Bosniak 2%, other 5.7%, undeclared or unknown 3.4% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:05.635Z",
+  "draftModel": "claude-sonnet-5"
 }

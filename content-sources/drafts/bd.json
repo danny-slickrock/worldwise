@@ -1,6 +1,6 @@
 {
   "iso": "bd",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.392Z",
   "structured": {
     "code": "bd",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Bangladesh occupies the vast delta where the Ganges, Jamuna, and Meghna rivers converge before emptying into the Bay of Bengal, making it one of the most river-shaped landscapes on earth. Wedged between Burma and India, the country has built one of the fastest-growing emerging economies in the world on the strength of its garment industry.",
+    "physicalGeography": "The country is mostly a flat alluvial plain, with hills rising only in the southeast. Much of the land sits on the deltas of major rivers flowing down from the Himalayas: the Ganges joins the Jamuna, the main channel of the Brahmaputra, and the combined flow later merges with the Meghna before reaching the Bay of Bengal.",
+    "climate": "The climate is tropical, with a mild winter from October to March and a hot, humid summer from March to June, followed by a warm monsoon season from June to October. This monsoon regularly inundates much of the country, and Bangladesh is also prone to droughts and cyclones.",
+    "economy": "Bangladesh has been one of the fastest growing emerging market economies, achieving significant poverty reduction and a strong rebound after COVID-19. Its exports are dominated by the textile industry, with garments, footwear, fabric, and textiles leading the list, alongside industries such as cotton, jute, tea, paper, cement, fertilizer, sugar, and light engineering. More recently, weakened exports and remittances have led to declining foreign exchange reserves and a 2022 request for an IMF loan.",
+    "peopleAndCulture": "The population is overwhelmingly Bengali, making up at least 99 percent of the country, with other indigenous ethnic groups accounting for the remainder. Religiously, the country is about 91 percent Muslim and 8 percent Hindu, with other faiths making up the rest."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 91%, Hindu 8%, other 1% (2022 est.) || Bengali at least 99%, other indigenous ethnic groups 1% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:42.205Z",
+  "draftModel": "claude-sonnet-5"
 }

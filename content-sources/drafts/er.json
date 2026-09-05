@@ -1,6 +1,6 @@
 {
   "iso": "er",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.411Z",
   "structured": {
     "code": "er",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Eritrea sits on the Red Sea between Djibouti and Sudan, holding a stretch of one of the world's busiest shipping lanes. Its territory runs from a coastal desert plain up into highlands that continue the Ethiopian ranges, with hilly ground to the northwest and flatter plains to the southwest. Beneath this varied terrain lie deposits of gold, potash, zinc, and copper, alongside possible oil and natural gas.",
+    "physicalGeography": "The country is essentially an extension of Ethiopia's north-south highlands, which descend eastward into a coastal desert plain along the Red Sea. To the northwest the land turns hilly, while the southwest flattens into rolling plains. This gives Eritrea a compressed range of terrain from sea-level desert to elevated highland within a relatively narrow east-to-west span.",
+    "climate": "Along the Red Sea coast the climate is hot and dry desert, while the central highlands are cooler and wetter, receiving up to 61 centimeters of rainfall a year, concentrated between June and September. The western hills and lowlands are semiarid. Eritrea is prone to frequent droughts and locust swarms, and while earthquakes and volcanic activity are rare, the volcano Dubbi erupted in 1861 and Nabro became active in 2011.",
+    "economy": "Eritrea runs a largely agrarian economy alongside a significant mining sector, and tight fiscal controls have produced a substantial surplus even as debt levels remain high and vulnerable. Growing trade with Ethiopia and shared use of Eritrean ports have helped push prices down, though the integrity of the country's financial and economic data is questionable. Exports center on copper ore, zinc ore, gold, garments, and liquor, while industries include food processing, beverages, clothing and textiles, light manufacturing, salt, and cement.",
+    "peopleAndCulture": "Eritrea's population is ethnically diverse, led by the Tigrinya at about half the population, followed by the Tigre at roughly 30 percent, with smaller communities including the Saho, Afar, Kunama, Bilen, Hedareb/Beja, Nara, and Rashaida. Tigrinya, Arabic, and English serve as official languages alongside Tigre, Kunama, Afar, and other Cushitic languages. Religious life is similarly mixed, encompassing Eritrean Orthodox Christianity, Roman Catholicism, Evangelical Lutheranism, and Sunni Islam."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Tigrinya (official), Arabic (official), English (official), Tigre, Kunama, Afar, other Cushitic languages || Eritrean Orthodox, Roman Catholic, Evangelical Lutheran, Sunni Muslim || Tigrinya 50%, Tigre 30%, Saho 4%, Afar 4%, Kunama 4%, Bilen 3%, Hedareb/Beja 2%, Nara 2%, Rashaida 1% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:11.855Z",
+  "draftModel": "claude-sonnet-5"
 }

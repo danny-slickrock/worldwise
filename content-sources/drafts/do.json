@@ -1,6 +1,6 @@
 {
   "iso": "do",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.427Z",
   "structured": {
     "code": "do",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "The Dominican Republic occupies the eastern two-thirds of Hispaniola, sharing the island with Haiti to its west, and ranks as the second largest country in the Antilles after Cuba. It packs remarkable geographic contrast into that space: the Caribbean's tallest mountain, Pico Duarte, along with the region's lowest elevation and largest lake, Lago Enriquillo. The country also holds resources of nickel, bauxite, gold, and silver alongside fertile arable land.",
+    "physicalGeography": "The terrain is dominated by rugged highlands and mountains interspersed with fertile valleys, occupying the eastern two-thirds of Hispaniola between the Caribbean Sea and the North Atlantic. It lies east of Haiti, which holds the island's western third.",
+    "climate": "The climate is tropical maritime, with little variation in temperature through the year but a distinct seasonal pattern in rainfall. The country sits within the hurricane belt and faces severe storms from June to October, along with occasional flooding and periodic droughts.",
+    "economy": "The economy has been surging on the strength of middle-income tourism, construction, mining, and telecommunications, supported by significant foreign direct investment from the United States and a network of free-trade zones. Local financial markets are developing, debt management is improving, and poverty has been declining. Key industries include tourism, sugar processing, gold mining, textiles, cement, tobacco, electrical components, and medical devices, with exports led by medical instruments, tobacco, gold, garments, and power equipment.",
+    "peopleAndCulture": "The population is predominantly mixed, at 70.4 percent (split between Mestizo/Indio and Mulatto backgrounds), with Black and White populations each making up a smaller share. Religiously, Evangelical Christianity is the largest affiliation at just over half the population, followed by Roman Catholicism, while nearly a fifth report no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Evangelical 50.2%, Roman Catholic 30.1%, none 18.5%, unspecified 1.2% (2023 est.) || mixed 70.4% (Mestizo/Indio 58%, Mulatto 12.4%), Black 15.8%, White 13.5%, other 0.3% (2014 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:34:25.361Z",
+  "draftModel": "claude-sonnet-5"
 }

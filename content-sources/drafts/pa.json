@@ -1,6 +1,6 @@
 {
   "iso": "pa",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.430Z",
   "structured": {
     "code": "pa",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Panama sits at the eastern end of the Central American isthmus, the land bridge connecting North and South America, bordering both the Caribbean Sea and the North Pacific Ocean between Colombia and Costa Rica. Its defining feature is the Panama Canal, which links the Atlantic and Pacific via the Caribbean, making the country a controller of one of the world's key shipping routes.",
+    "physicalGeography": "The interior is mostly steep, rugged mountains with dissected upland plains, while coastal plains with rolling hills line the shores. The country stretches across the isthmus between the Caribbean Sea and the North Pacific Ocean, positioned between Colombia and Costa Rica.",
+    "climate": "Panama has a tropical maritime climate that is hot, humid, and cloudy, with a prolonged rainy season running from May to January and a short dry season from January to May. The Darien region experiences occasional severe storms and forest fires.",
+    "economy": "Panama is an upper middle-income economy that uses the US dollar and has seen increasing trade with China. Canal expansion has fueled broader infrastructure investment, and the services sector dominates the economy, though the country has also had a history as a money-laundering and illegal drug hub. Key exports include copper ore, ships, refined petroleum, bananas, and fish, while major industries include construction, brewing, cement and other construction materials, and sugar milling.",
+    "peopleAndCulture": "Panama's population is mostly Mestizo, of mixed Indigenous and White descent, at 65%, with Indigenous peoples making up 12.3%, including the Ngabe, Kuna, Embera, and Bugle. Black or African descent, Mulatto, and White populations make up smaller shares. Religiously, Evangelical Christians form the largest group at 55%, followed by Roman Catholics at 33.4%, with 10.1% identifying with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.) || Mestizo (mixed Indigenous and White) 65%, Indigenous 12.3% (Ngabe 7.6%, Kuna 2.4%, Embera 0.9%, Bugle 0.8%, other 0.4%, unspecified 0.2%), Black or African descent 9.2%, Mulatto 6.8%, White 6.7% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:43.469Z",
+  "draftModel": "claude-sonnet-5"
 }

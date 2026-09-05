@@ -1,6 +1,6 @@
 {
   "iso": "tj",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.404Z",
   "structured": {
     "code": "tj",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked into Central Asia west of China and south of Kyrgyzstan, this landlocked country is almost entirely mountainous, and its highest peak, Qullai Ismoili Somoni, formerly called Communism Peak, was the tallest mountain in the whole Soviet Union. Beneath those peaks lies a striking mix of resources, from hydropower and gold to uranium, mercury, and tungsten.",
+    "physicalGeography": "The terrain is dominated by the Alay Mountains in the north and the Pamirs in the southeast, a rugged, landlocked landscape broken up by lowland pockets like the western Fergana Valley in the north and the Kofirnihon and Vakhsh Valleys in the southwest. This concentration of high mountains includes the country's tallest point, once the highest summit in the former USSR.",
+    "climate": "The climate is mid-latitude continental, with hot summers and mild winters across most of the country, shifting to semiarid and even polar conditions up in the Pamir Mountains. Earthquakes and floods are recurring hazards here.",
+    "economy": "Tajikistan is a lower-middle-income economy built on metal mining, electricity generation, and manufacturing, with industries spanning aluminum, cement, coal, gold, silver, antimony, textiles, and vegetable oil. Growth is being pushed along by large infrastructure projects such as the Rogun Dam alongside efforts toward green development and digitalization, though land scarcity, climate vulnerability, and complicated bureaucracy for investors remain obstacles. Its main exports are gold, precious metal ore, aluminum, lead ore, and antimony.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 98 percent, split between a Sunni majority and a Shia minority. Ethnically, Tajiks make up 84.3 percent of the population, a category that includes the Pamiri and Yagnobi peoples, while Uzbeks account for 13.8 percent, with smaller communities of Kyrgyz, Russian, Turkmen, Tatar, and Arab descent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 98% (Sunni 95%, Shia 3%) other 2% (2014 est.) || Tajik 84.3% (includes Pamiri and Yagnobi), Uzbek 13.8%, other 2% (includes Kyrgyz, Russian, Turkmen, Tatar, Arab) (2014 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:37.983Z",
+  "draftModel": "claude-sonnet-5"
 }

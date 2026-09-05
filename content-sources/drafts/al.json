@@ -1,6 +1,6 @@
 {
   "iso": "al",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.372Z",
   "structured": {
     "code": "al",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked along the Adriatic and Ionian coasts, Albania sits on the Strait of Otranto, the narrow passage linking the Adriatic Sea to the Ionian and Mediterranean beyond — a strategic position for a country whose interior is dominated by mountains and hills. It borders Greece, North Macedonia, and Montenegro, and its resources run from petroleum, natural gas, and coal to bauxite, chromite, copper, and hydropower.",
+    "physicalGeography": "Albania's terrain is mostly mountains and hills, with only small plains running along the coast. It lies in southeastern Europe, bordering the Adriatic Sea and Ionian Sea, positioned between Greece to the south and Montenegro to the north.",
+    "climate": "The climate is mild temperate, with cool, cloudy, wet winters and hot, clear, dry summers, though the interior runs cooler and wetter than the coast. The country is exposed to destructive earthquakes, and tsunamis can occur along the southwestern coast, alongside occasional floods and drought.",
+    "economy": "Albania is an upper-middle-income Balkan economy and a candidate for EU accession, with growth driven by tourism, agriculture, mining, construction, and private consumption. Fiscal consolidation efforts have focused on revenue collection and tax compliance to address public debt, though weak governance, corruption, and high emigration remain challenges. Its industries include food, footwear and apparel, lumber, oil, cement, chemicals, mining, basic metals, and hydropower, and its exports feature garments, footwear, electricity, crude petroleum, and iron alloys.",
+    "peopleAndCulture": "The population is overwhelmingly Albanian (82.6%), with small Greek, Vlach, Romani, Macedonian, Montenegrin, and Egyptian minorities. Religiously, Muslims make up 56.7%, with smaller Roman Catholic, Orthodox, atheist, and Bektashi (a Sufi order) communities, alongside a large unspecified share."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 56.7%, Roman Catholic 10%, Orthodox 6.8%, atheist 2.5%, Bektashi (a Sufi order) 2.1%, other 5.7%, unspecified 16.2% (2011 est.) || Albanian 82.6%, Greek 0.9%, other 1% (including Vlach, Romani, Macedonian, Montenegrin, and Egyptian), unspecified 15.5% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:28:24.094Z",
+  "draftModel": "claude-sonnet-5"
 }

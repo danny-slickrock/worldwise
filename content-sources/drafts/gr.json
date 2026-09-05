@@ -1,6 +1,6 @@
 {
   "iso": "gr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.379Z",
   "structured": {
     "code": "gr",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Greece is a peninsular nation fringed by an archipelago of roughly 2,000 islands, its mountain ranges continuing out to sea as chains of peninsulas and islands rather than stopping at the coastline. It sits at a strategic position dominating the Aegean Sea and the southern approach to the Turkish Straits, bordered by Albania, Bulgaria, North Macedonia, and Turkey. Beneath the scenery lies a resource base of lignite, petroleum, bauxite, and marble, while today's exports run more toward refined petroleum, olive oil, and packaged medicine.",
+    "physicalGeography": "The country is defined by mountains that don't stop at the shoreline: ranges extend directly into the sea, reappearing as peninsulas and as the chains of islands scattered across the Aegean and Ionian waters. This gives Greece its fragmented, peninsular character within southern Europe, positioned between Albania and Turkey.",
+    "climate": "Greece has a temperate climate with mild, wet winters and hot, dry summers. It also sits in an active volcanic and seismic zone, subject to severe earthquakes; Santorini has been designated a Decade Volcano for study due to its explosive eruptive history combined with its proximity to dense human settlement, and Methana and Nisyros in the Aegean are likewise classified as historically active.",
+    "economy": "Greece is a high-income economy within the EU and eurozone, currently growing faster than the euro-area average on the strength of private consumption and EU fund investment. Structural reforms have been strengthening public finances and the banking system's resilience, and unemployment has been declining, though low labor productivity and skill shortages remain issues. Its industrial base spans tourism, food and tobacco processing, textiles, chemicals, metal products, mining, and petroleum, with exports led by refined petroleum, packaged medicine, aluminum, olive oil, and tobacco.",
+    "peopleAndCulture": "Greek Orthodoxy is the dominant faith, claimed by an estimated 81 to 90 percent of the population, with a small Muslim minority and a notable share reporting no religious affiliation. Ethnically the population is overwhelmingly Greek, at about 91.6 percent, alongside an Albanian minority of 4.4 percent and other smaller groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Greek Orthodox 81-90%, Muslim 2%, other 3%, none 4-15%, unspecified 1% (2015 est.) || Greek 91.6%, Albanian 4.4%, other 4% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:28.227Z",
+  "draftModel": "claude-sonnet-5"
 }

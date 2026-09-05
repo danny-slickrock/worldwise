@@ -1,6 +1,6 @@
 {
   "iso": "gd",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.428Z",
   "structured": {
     "code": "gd",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "This volcanic island in the Caribbean Sea sits north of Trinidad and Tobago, with no land borders to speak of. Its mountainous interior and rich soil have made it one of the world's notable spice producers, exporting nutmeg and cardamom alongside fish and frozen fruit.",
+    "physicalGeography": "Grenada is volcanic in origin, with a central spine of mountains running through the island. It lies in the Caribbean Sea, positioned between that sea and the Atlantic Ocean, just north of Trinidad and Tobago.",
+    "climate": "The climate is tropical, moderated by the northeast trade winds, though the island sits on the edge of the hurricane belt, with hurricane season running from June to November. Grenada is also volcanically active: Mount Saint Catherine rises 840 meters on the main island, and Kick 'em Jenny, a submarine volcano on the seafloor, lies about 8 km to the north. Both form the southern end of the volcanic island arc of the Lesser Antilles, which extends north to Saba.",
+    "economy": "Grenada runs a small, service-based economy typical of the OECS, with tourism, construction, transportation, and education as major sectors. It remains a significant spice exporter, shipping nutmeg and cardamom along with fish, wheat flours, frozen fruits and nuts, and aqueous paints. Public debt remains high though shrinking, and the economy is vulnerable to hurricanes, while newer blue economy incentives are emerging alongside established industries like food and beverages, textiles, light assembly, and call-center operations.",
+    "peopleAndCulture": "English is the official language, alongside French patois. The population is predominantly of African descent (82.4%), with mixed (13.3%) and East Indian (2.2%) communities as well. Religion is largely Protestant (49.2%, spanning Pentecostal, Seventh Day Adventist, Anglican, Baptist, and other denominations), with Roman Catholics making up 36% and smaller communities of Jehovah's Witnesses and Rastafarians."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), French patois || Protestant 49.2% (includes Pentecostal 17.2%, Seventh Day Adventist 13.2%, Anglican 8.5%, Baptist 3.2%, Church of God 2.4%, Evangelical 1.9%, Methodist 1.6%, other 1.2%), Roman Catholic 36%, Jehovah's Witness 1.2%, Rastafarian 1.2%, other 5.5%, none 5.7%, unspecified 1.3% (2011 est.) || African descent 82.4%, mixed 13.3%, East Indian 2.2%, other 1.3%, unspecified 0.9% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:37:34.760Z",
+  "draftModel": "claude-sonnet-5"
 }

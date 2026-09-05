@@ -1,6 +1,6 @@
 {
   "iso": "bz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.424Z",
   "structured": {
     "code": "bz",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Guatemala and Mexico on the Caribbean coast, Belize is the only country in Central America without a Pacific shoreline. Its flat, swampy coastal plain gives way to low mountains in the south, and its economy still leans on exports like sugar, bananas, and fish and shellfish alongside refined petroleum.",
+    "physicalGeography": "Belize sits on the Caribbean Sea between Guatemala and Mexico, its terrain dominated by a flat, swampy coastal plain. Low mountains rise in the south, offering the only significant relief in an otherwise low-lying landscape.",
+    "climate": "The climate is tropical, very hot and humid, with a rainy season running from May to November and a dry season from February to May. Hurricanes are frequent and can be devastating between June and November, bringing coastal flooding that is especially severe in the south.",
+    "economy": "Tourism and agriculture drive the economy, which saw a strong rebound after the pandemic. Belize carried out an innovative ecological bond restructuring that significantly lowered public debt while expanding marine protections, and its central bank offers USD-denominated treasury notes. Key industries include garment production, food processing, tourism, construction, and oil, with exports of raw sugar, bananas, fish, shellfish, and refined petroleum.",
+    "peopleAndCulture": "Belize's population is Mestizo (52.9%), Creole (25.9%), Maya (11.3%), Garifuna (6.1%), East Indian (3.9%), Mennonite (3.6%), White (1.2%), and Asian (1%), among smaller groups. Religiously, it is predominantly Roman Catholic (40.1%) and Protestant (31.5%), the latter including Pentecostal, Seventh Day Adventist, Anglican, Mennonite, Baptist, Methodist, and Nazarene communities, with 15.5% claiming no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 40.1%, Protestant 31.5% (includes Pentecostal 8.4%, Seventh Day Adventist 5.4%, Anglican 4.7%, Mennonite 3.7%, Baptist 3.6%, Methodist 2.9%, Nazarene 2.8%), Jehovah's Witness 1.7%, other 10.5% (includes Baha'i, Buddhist, Hindu, Church of Jesus Christ, Muslim, Rastafarian, Salvation Army), unspecified 0.6%, none 15.5% (2010 est.) || Mestizo 52.9%, Creole 25.9%, Maya 11.3%, Garifuna 6.1%, East Indian 3.9%, Mennonite 3.6%, White 1.2%, Asian 1%, other 1.2%, unknown 0.3% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:31:33.292Z",
+  "draftModel": "claude-sonnet-5"
 }

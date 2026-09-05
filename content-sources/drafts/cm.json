@@ -1,6 +1,6 @@
 {
   "iso": "cm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.409Z",
   "structured": {
     "code": "cm",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Cameroon sits at the west-south juncture of the Gulf of Guinea, a position that has earned it the nickname the hinge of Africa. Its terrain includes areas of thermal springs and volcanic activity, and Mount Cameroon, an active volcano, is the highest mountain in Sub-Saharan west Africa. The country's resources span petroleum, bauxite, iron ore, timber, and hydropower.",
+    "physicalGeography": "Cameroon's landscape is notably varied for a single country: a coastal plain in the southwest gives way to a dissected plateau in the center, mountains rise in the west, and plains stretch across the north. It lies in Central Africa along the Bight of Biafra, between Equatorial Guinea and Nigeria.",
+    "climate": "Climate shifts with the terrain, running from tropical along the coast to semiarid and hot in the north. The country experiences ongoing volcanic activity, including periodic releases of poisonous gases from Lake Nyos and Lake Monoun. Mount Cameroon, at 4,095 meters and last erupting in 2000, is the most frequently active volcano in West Africa, and gas releases from lakes in the Oku volcanic field have proven fatal, killing about 1,700 people in 1986.",
+    "economy": "Cameroon is the largest economy within CEMAC and holds substantial natural resources, though systemic corruption and poor enforcement of property rights weigh on its performance, and poverty has been increasing in northern regions. Its exports include crude petroleum, natural gas, gold, cocoa beans, and wood, while its industries range from petroleum production and refining to aluminum production, food processing, textiles, lumber, and ship repair.",
+    "peopleAndCulture": "Religious affiliation is mixed, with Roman Catholics at 33.1%, Muslims at 30.6%, Protestants at 27.1%, other Christians at 6.1%, and smaller shares practicing animism or no religion. The population is ethnically diverse, with the Bamileke-Bamu the largest group at 22.2%, followed by the Biu-Mandara, Arab-Choa/Hausa/Kanuri, Beti/Bassa/Mbam, Grassfields, and several other groups each making up smaller shares."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 33.1%, Muslim 30.6%, Protestant 27.1% other Christian 6.1%, animist 1.3%, other 0.7%, none 1.2% (2022 est.) || Bamileke-Bamu 22.2%, Biu-Mandara 16.4%, Arab-Choa/Hausa/Kanuri 13.5%, Beti/Bassa, Mbam 13.1%, Grassfields 9.9%, Adamawa-Ubangi, 9.8%, Cotier/Ngoe/Oroko 4.6%, Southwestern Bantu 4.3%, Kako/Meka 2.3%, foreign/other ethnic group 3.8% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:32:52.695Z",
+  "draftModel": "claude-sonnet-5"
 }

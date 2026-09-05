@@ -1,6 +1,6 @@
 {
   "iso": "pe",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.431Z",
   "structured": {
     "code": "pe",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Peru packs coastal desert, the high Andes, and Amazon jungle into one country, and sits on the Ring of Fire, the Pacific belt that holds most of the world's volcanoes and earthquakes. In 1600, Mount Huaynaputina erupted in the largest volcanic explosion in South America's recorded history, throwing so much ash into the atmosphere that it disrupted weather worldwide and contributed to famines and deaths across the globe for over two years. Peru also shares Lago Titicaca, the world's highest navigable lake, with Bolivia, and a remote slope on Nevado Mismi marks the source of the Amazon River.",
+    "physicalGeography": "Peru's territory divides into three distinct bands: a coastal plain called the costa along the Pacific, the high and rugged Andes forming the sierra through the center, and the lowland Amazon jungle, the selva, to the east. The country lies in western South America on the South Pacific Ocean, between Chile and Ecuador.",
+    "climate": "Climate shifts sharply with geography, running tropical in the east, dry desert along the west, and temperate to frigid in the Andes. The country faces earthquakes, tsunamis, flooding, and landslides, along with mild volcanic activity centered on the Andes; Ubinas, at 5,672 meters, is Peru's most active volcano, alongside other historically active peaks like El Misti, Huaynaputina, Sabancaya, and Yucamane.",
+    "economy": "Peru is an upper-middle-income economy that saw a strong rebound after COVID, though political uncertainty and climate risks temper its outlook. Exports are led by copper ore, gold, refined copper, refined petroleum, and grapes, reflecting an economy built heavily on mineral extraction and agriculture. Industries also include steel and metal fabrication, petroleum and natural gas processing, fishing, cement, textiles, and food and beverage production. Despite a stable fiscal position and financial sector, a large informal sector and uneven access to public services persist.",
+    "peopleAndCulture": "Peru's population is majority Mestizo, at 60.2%, with Indigenous people making up 25.8%, alongside smaller White, African descent, and other communities including those of Chinese and Japanese descent. Religiously, the country is predominantly Catholic at 76%, with a growing Evangelical Christian population of 15.7%, and smaller shares reporting no religion or other faiths."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 76%, Evangelical Christian 15.7%, no religion 5.1%, other religions 3.2% (2017 est.) || Mestizo (mixed Indigenous and White) 60.2%, Indigenous 25.8%, White 5.9%, African descent 3.6%, other (includes Chinese and Japanese descent) 1.2%, unspecified 3.3% (2017 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:26:09.839Z",
+  "draftModel": "claude-sonnet-5"
 }

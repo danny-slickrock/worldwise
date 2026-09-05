@@ -1,6 +1,6 @@
 {
   "iso": "fi",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.378Z",
   "structured": {
     "code": "fi",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Finland sits between Sweden and Russia along the Baltic Sea, Gulf of Bothnia, and Gulf of Finland, sharing a long boundary with Russia. Helsinki holds the distinction of being the northernmost national capital on the European continent, and most Finns live concentrated on the small southwestern coastal plain rather than spread across the country.",
+    "physicalGeography": "The Finnish landscape is mostly low, flat to rolling plains broken up by lakes and low hills. The country borders the Baltic Sea, the Gulf of Bothnia, and the Gulf of Finland, positioned between Sweden and Russia.",
+    "climate": "Finland's climate is cold temperate, and would be subarctic if not for the moderating influence of the North Atlantic Current, the Baltic Sea, and more than 60,000 lakes scattered across the country. Winters turn severe in the north.",
+    "economy": "Finland runs a high-income, export-based economy within the EU and eurozone, built on timber, metals, engineering, telecom, and electronics industries. Its industrial base spans metals and metal products, electronics, machinery and scientific instruments, shipbuilding, pulp and paper, foodstuffs, chemicals, and textiles, with exports centered on paper, refined petroleum, steel, wood pulp, and ships. The economy has been emerging from a recession driven by inflation, weak consumer and export demand, and lower private investment, prompting a labor market reform plan aimed at structural rigidities.",
+    "peopleAndCulture": "Finland's population is predominantly Lutheran, at 66.6 percent, with a Greek Orthodox minority of 1.1 percent and 30.6 percent identifying with no religion. Alongside Finnish and Swedish, the country is also home to Russian, Estonian, Romani, and Sami speakers."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Lutheran 66.6%, Greek Orthodox 1.1%, other 1.7%, none 30.6% (2022 est.) || Finnish, Swedish, Russian, Estonian, Romani, Sami"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:35.800Z",
+  "draftModel": "claude-sonnet-5"
 }

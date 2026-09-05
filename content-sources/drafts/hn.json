@@ -1,6 +1,6 @@
 {
   "iso": "hn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.429Z",
   "structured": {
     "code": "hn",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Honduras sits in Central America between Guatemala and Nicaragua, with a long Caribbean coastline that includes the largely uninhabited Mosquito Coast, and only a brief stretch of Pacific shore along the Gulf of Fonseca. The interior is mostly mountainous, and the country draws on resources like gold, silver, copper, and hydropower alongside exports of coffee, garments, and palm oil.",
+    "physicalGeography": "The interior of Honduras is dominated by mountains, with only narrow plains along the coasts. Its Caribbean shoreline is extensive and includes the remote Mosquito Coast, while its Pacific access is limited to a short stretch on the Gulf of Fonseca, wedged between El Salvador and Nicaragua.",
+    "climate": "Lowland areas are subtropical while the mountains are temperate. Earthquakes are frequent but generally mild, and the Caribbean coast is highly vulnerable to damaging hurricanes and flooding.",
+    "economy": "Honduras has been the second-fastest-growing economy in Central America, though COVID-19 and two hurricanes badly disrupted activity. The country contends with high poverty and inequality, declining but still significant violent crime, and systemic corruption, while relying heavily on coffee and banana exports and enormous remittance flows. Key industries include sugar processing, coffee, woven and knit apparel, wood products, and cigars, with garments, coffee, insulated wire, palm oil, and shellfish among its main exports.",
+    "peopleAndCulture": "The population is overwhelmingly Mestizo, a mix of Indigenous and European heritage, at 90 percent, with Indigenous, African-descended, and White minorities making up the rest. Religiously, Evangelical Christians form the largest group at 55 percent, followed by Roman Catholics at just over a third, with a small share reporting no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Evangelical 55%, Roman Catholic 33.4%, none 10.1%, unspecified 1.5% (2023 est.) || Mestizo (mixed Indigenous and European) 90%, Indigenous 7%, African descent 2%, White 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:58.977Z",
+  "draftModel": "claude-sonnet-5"
 }

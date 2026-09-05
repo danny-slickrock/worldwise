@@ -1,6 +1,6 @@
 {
   "iso": "id",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.394Z",
   "structured": {
     "code": "id",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Spread across 13,466 islands between the Indian and Pacific Oceans, Indonesia is the largest country on Earth composed solely of islands, only 922 of which are permanently inhabited. It sits on the Ring of Fire, the Pacific belt holding roughly 75% of the world's volcanoes, and despite having the fourth largest population on the planet, it remains the most heavily forested region after the Amazon.",
+    "physicalGeography": "Indonesia's terrain is dominated by coastal lowlands, with the larger islands rising into mountainous interiors. The archipelago straddles the equator along major sea lanes connecting the Indian and Pacific Oceans, a position that has shaped its role as a maritime crossroads.",
+    "climate": "The climate is tropical, hot and humid, moderating somewhat in the highlands. Indonesia holds more historically active volcanoes than any other country, over 75 of them, concentrated on Java, Sumatra, the Sunda Islands, and several other islands and seas. Merapi, its most active volcano at 2,968 meters, has been singled out for study because of its explosive history and proximity to dense populations, while in 2018 a collapse of Anak Krakatau triggered a tsunami that killed more than 400 people. The country is also prone to floods, severe droughts, and forest fires.",
+    "economy": "Indonesia is an upper middle-income country and the largest, fastest-growing economy in Southeast Asia, currently relocating its capital in a push that is fueling major infrastructure projects. Higher lending rates are being used to keep inflation in check, while a substantial tourism sector has pushed green economy goals onto the agenda. Its industries range from petroleum, natural gas, and mining to textiles, automotive manufacturing, footwear, and handicrafts, and its exports include coal, palm oil, iron alloys, lignite, and garments.",
+    "peopleAndCulture": "The population is predominantly Muslim, at 87.4%, with smaller Protestant, Roman Catholic, Hindu, and other communities. Ethnically it is anchored by the Javanese, at 40.1%, and Sundanese, at 15.5%, alongside dozens of other groups including Malay, Batak, Madurese, Betawi, Minangkabau, Buginese, and Balinese, among many others, reflecting the diversity spread across its thousands of inhabited islands."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 87.4%, Protestant 7.5%, Roman Catholic 3.1%, Hindu 1.7%, other 0.8% (includes Buddhist and Confucian) (2022 est.) || Javanese 40.1%, Sundanese 15.5%, Malay 3.7%, Batak 3.6%, Madurese 3%, Betawi 2.9%, Minangkabau 2.7%, Buginese 2.7%, Bantenese 2%, Banjarese 1.7%, Balinese 1.7%, Acehnese 1.4%, Dayak 1.4%, Sasak 1.3%, Chinese 1.2%, other 15% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:33.130Z",
+  "draftModel": "claude-sonnet-5"
 }

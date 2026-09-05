@@ -1,6 +1,6 @@
 {
   "iso": "tr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.405Z",
   "structured": {
     "code": "tr",
@@ -41,11 +41,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Turkey straddles two continents, with Istanbul the only metropolis in the world sitting astride Europe and Asia along the Bosporus. Just 3% of the country's territory, known as Eastern Thrace, lies in Europe, while the remaining 97%, Anatolia, is in Asia. The country controls the Turkish Straits, the narrow waterway linking the Black Sea and the Aegean, and Mount Ararat in its far east is reputed to be the landing place of Noah's ark.",
+    "physicalGeography": "The country is dominated by a high central plateau, Anatolia, bordered by a narrow coastal plain and several mountain ranges. It borders the Black Sea between Bulgaria and Georgia, and the Aegean and Mediterranean Seas between Greece and Syria, with the Bosporus marking the divide between its European and Asian portions.",
+    "climate": "Turkey has a temperate climate with hot, dry summers and mild, wet winters near the coasts, turning harsher in the interior. Severe earthquakes strike especially in the north, along an arc running from the Sea of Marmara to Lake Van, and the country also faces landslides and flooding. Three historically active volcanoes, Ararat, Nemrut Dagi, and Tendurek Dagi, have not erupted since the 19th century or earlier.",
+    "economy": "Turkey has an upper-middle-income, diversified economy that combines industrialization with a large agricultural base, alongside key energy, tourism, and construction sectors. High inflation, interest rates, and foreign debt pose risks to its financial stability. Its industries span textiles, food processing, automobiles, electronics, mining, steel, petroleum, construction, and lumber and paper, and its exports include garments, cars, gold, refined petroleum, and vehicle parts.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, mostly Sunni, at 99.8%, with a small remainder of mostly Christians and Jews. Ethnic Turks make up 70-75% of the population, with Kurds at about 19% and other minorities accounting for the rest."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -75,5 +75,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 99.8% (mostly Sunni), other 0.2% (mostly Christians and Jews) || Turkish 70-75%, Kurdish 19%, other minorities 6-11% (2016 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:53:24.705Z",
+  "draftModel": "claude-sonnet-5"
 }

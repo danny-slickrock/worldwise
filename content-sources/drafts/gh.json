@@ -1,6 +1,6 @@
 {
   "iso": "gh",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.413Z",
   "structured": {
     "code": "gh",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Ghana sits on the Gulf of Guinea between Cote d'Ivoire and Togo, and holds Lake Volta, the world's largest artificial lake by surface area at 8,482 square kilometers, created when the Akosombo Dam was completed in 1965. Gold, cocoa, and crude petroleum make it a major exporter of all three, alongside manganese ore and timber.",
+    "physicalGeography": "Ghana's terrain is mostly low plains, with a dissected plateau across the south-central area of the country. It lies in Western Africa along the Gulf of Guinea, bordering Cote d'Ivoire and Togo.",
+    "climate": "The climate is tropical throughout, though conditions vary by region: warm and comparatively dry along the southeast coast, hot and humid in the southwest, and hot and dry in the north. Between January and March, the harmattan brings dry, dusty northeastern winds, and the country experiences droughts.",
+    "economy": "Ghana is a West African lower-middle income economy and a major exporter of gold, oil, and cocoa. After nearly four decades of sustained growth, it has faced macroeconomic challenges, though it has made recent progress on debt restructuring, fiscal reforms, financial stability, and curbing inflation under a 2023-26 IMF credit facility program. Its industries include mining, lumbering, light manufacturing, aluminum smelting, food processing, cement, small commercial shipbuilding, and petroleum.",
+    "peopleAndCulture": "Ghana's population is ethnically diverse, with the Asante the largest single group at 16%, followed by the Ewe, Fante, and numerous other groups including the Boron, Dagomba, Dangme, Dagarte, Kokomba, Akyem, and Ga. By broader ethnic grouping, the Akan make up 45.7% of the population, followed by the Mole-Dagbani, Ewe, and Ga-Dangme. Christianity is the majority religion at 71.3%, split among Pentecostal/Charismatic, Protestant, and Catholic adherents, with Islam practiced by 19.9% and traditionalist beliefs by 3.2%."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Asante 16%, Ewe 14%, Fante 11.6%, Boron (Brong) 4.9%, Dagomba 4.4%, Dangme 4.2%, Dagarte (Dagaba) 3.9%, Kokomba 3.5%, Akyem 3.2%, Ga 3.1%, other 31.2% (2010 est.) || Christian 71.3% (Pentecostal/Charismatic 31.6%, Protestant 17.4%, Catholic 10%, other 12.3%), Muslim 19.9%, traditionalist 3.2%, other 4.5%, none 1.1% (2021 est.) || Akan 45.7%, Mole-Dagbani 18.5%, Ewe 12.8%, Ga-Dangme 7.1%, Gurma 6.4%, Guan 3.2%, Grusi 2.7%, Mande 2%, other 1.6% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:37:51.098Z",
+  "draftModel": "claude-sonnet-5"
 }

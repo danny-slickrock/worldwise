@@ -1,6 +1,6 @@
 {
   "iso": "ro",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.386Z",
   "structured": {
     "code": "ro",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Romania sits in southeastern Europe on the Black Sea, between Bulgaria and Ukraine, and it controls the most easily traversable land route between the Balkans, Moldova, and Ukraine. The Carpathian Mountains dominate the country's center, and the Danube River forms much of its southern boundary with Serbia and Bulgaria.",
+    "physicalGeography": "The central Transylvanian Basin is walled off from the Moldavian Plateau to the east by the Eastern Carpathian Mountains, and from the Walachian Plain to the south by the Transylvanian Alps. This mountain-and-basin structure, combined with the country's position on the Black Sea between Bulgaria and Ukraine, gives Romania a distinctly compartmentalized landscape.",
+    "climate": "The climate is temperate, with cold, cloudy winters bringing frequent snow and fog, and sunny summers punctuated by showers and thunderstorms. Earthquakes occur, most severely in the south and southwest, and the country's geologic structure and climate together make it prone to landslides.",
+    "economy": "Romania is a high-income, EU-member economy, though it has not yet adopted the euro due to unresolved macroeconomic indicators. Persistent inflation is a challenge, but consumption and EU-funded investments are driving recovery, even as high public debt, a budget deficit, and a skilled labor shortage weigh on fiscal sustainability. Its industries span electric machinery, auto assembly, textiles, metallurgy, chemicals, food processing, petroleum refining, and mining, with cars, vehicle parts, insulated wire, garments, and wheat among its main exports.",
+    "peopleAndCulture": "Romanians make up about 89% of the population, with Hungarian and Romani minorities forming the largest remaining groups. Romanian Orthodox Christianity dominates religious life at over 85%, with smaller Roman Catholic, Reformed, and Pentecostal communities rounding out the picture."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Romanian Orthodox 85.3%, Roman Catholic 4.5%, Reformed 3%, Pentecostal 2.5%, other 4.7% (2021 est.) || Romanian 89.3%, Hungarian 6%, Romani 3.4%, Ukrainian 0.3%, German 0.1%, other 0.9% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:58.331Z",
+  "draftModel": "claude-sonnet-5"
 }

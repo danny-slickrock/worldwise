@@ -1,6 +1,6 @@
 {
   "iso": "dm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.427Z",
   "structured": {
     "code": "dm",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Known as \"The Nature Island of the Caribbean,\" Dominica sits between the Caribbean Sea and the North Atlantic, roughly halfway between Puerto Rico and Trinidad and Tobago. It has no land borders with any country. Its lush, varied flora and fauna are protected by an extensive natural park system, and its rugged volcanic peaks include Boiling Lake, the second-largest thermally active lake in the world.",
+    "physicalGeography": "Dominica is an island of rugged mountains built from volcanic origin, lying between the Caribbean Sea and the North Atlantic Ocean, about halfway between Puerto Rico and Trinidad and Tobago.",
+    "climate": "The climate is tropical, moderated by northeast trade winds, with heavy rainfall; flash floods are a constant threat, and destructive hurricanes can be expected in late summer. Dominica sits within the volcanic-island arc of the Lesser Antilles stretching from Saba to Grenada, and of the arc's 16 volcanoes, five are on Dominica—more than any other Caribbean island. These include Morne aux Diables, Morne Diablotins, Morne Trois Pitons, Watt Mountain (last erupted in 1997), and Morne Plat Pays. The Valley of Desolation and the Boiling Lake thermal areas, both on the flanks of Watt Mountain, are popular tourist destinations.",
+    "economy": "Dominica has a highly agrarian economy and belongs to the Organisation of Eastern Caribbean States and the Eastern Caribbean Currency Union; it is a large banana exporter. It has improved oversight of its citizenship-by-investment program and is developing ecotourism, information and communications, and education industries. Key exports include iron blocks, medical instruments, excavation machinery, power equipment, and soap, while its industries range from soap, coconut oil, and copra production to tourism, furniture, cement blocks, and shoes.",
+    "peopleAndCulture": "English is the official language, alongside French patois. The population is predominantly Roman Catholic (52.7%), with a significant Protestant minority including Seventh Day Adventist, Pentecostal, Baptist, and other denominations, plus small communities of Jehovah's Witnesses and Rastafarians. Most residents are of African descent (84.5%), with mixed, Indigenous, and other groups making up the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), French patois || Roman Catholic 52.7%, Protestant 29.7% (includes Seventh Day Adventist 6.7%, Pentecostal 6.1%, Baptist 5.2%, Christian Union Church 3.9%, Methodist 2.6%, Gospel Mission 2.1%, other Protestant 3.1%), Jehovah's Witness 1.3%, Rastafarian 1.1%, other 4.3%, none 9.4%, unspecified 1.4% (2011 est.) || African descent 84.5%, mixed 9%, Indigenous 3.8%, other 2.1%, unspecified 0.6% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:34:14.203Z",
+  "draftModel": "claude-sonnet-5"
 }

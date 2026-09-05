@@ -1,6 +1,6 @@
 {
   "iso": "et",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.412Z",
   "structured": {
     "code": "et",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "This is the most populous landlocked country in the world, a high plateau split by the Great Rift Valley. The Blue Nile, the chief headstream of the Nile by water volume, rises here at Lake Tana in the northwest.",
+    "physicalGeography": "The terrain is dominated by a high plateau cut through by a central mountain range, itself divided by the Great Rift Valley. The country sits in Eastern Africa, west of Somalia.",
+    "climate": "The climate is tropical monsoon, with wide variation driven by the country's topography. The Great Rift Valley is geologically active, making the region susceptible to earthquakes and volcanic eruptions, and droughts are frequent. Erta Ale, at 613 meters, is the country's most active volcano, and Dabbahu's 2005 activity forced evacuations; other historically active volcanoes include Alayta, Dalaffilla, Dallol, Dama Ali, Fentale, Kone, Manda Hararo, and Manda-Inakir.",
+    "economy": "This is a low-income but fast-growing Horn of Africa economy, though widespread poverty and food insecurity have been worsened by conflict and environmental factors. Being landlocked brings tensions over seaport access, and development aid is supporting reforms meant to boost private-sector growth and financial stability, alongside the challenge of creating jobs for a growing labor force. Industries include food processing, beverages, textiles, leather, garments, chemicals, metals processing, and cement, while exports feature coffee, garments, dried legumes, cut flowers, and oil seeds. Small reserves of gold, platinum, copper, potash, natural gas, and hydropower add further resources.",
+    "peopleAndCulture": "The population is religiously mixed, with Ethiopian Orthodox Christians the largest group at 43.8%, followed by Muslims at 31.3%, Protestants at 22.8%, and smaller Catholic and traditional communities. Ethnically, the Oromo are the largest group at 35.8%, followed by the Amhara at 24.1%, with Somali, Tigray, Sidama, Guragie, Welaita, Afar, Silte, Kefficho, and other groups making up the rest."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Ethiopian Orthodox 43.8%, Muslim 31.3%, Protestant 22.8%, Catholic 0.7%, traditional 0.6%, other 0.8% (2016 est.) || Oromo 35.8%, Amhara 24.1%, Somali 7.2%, Tigray 5.7%, Sidama 4.1%, Guragie 2.6%, Welaita 2.3%, Afar 2.2%, Silte 1.3%, Kefficho 1.2%, other 13.5% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:27.738Z",
+  "draftModel": "claude-sonnet-5"
 }

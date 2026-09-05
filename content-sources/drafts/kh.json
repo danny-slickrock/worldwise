@@ -1,6 +1,6 @@
 {
   "iso": "kh",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.393Z",
   "structured": {
     "code": "kh",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Thailand, Vietnam, and Laos along the Gulf of Thailand, Cambodia is a land of paddies and forests dominated by the Mekong River and the Tonle Sap, Southeast Asia's largest freshwater lake. Its resources include oil and gas, timber, gemstones, iron ore, and hydropower potential, while its exports today run to garments, semiconductors, footwear, and gold.",
+    "physicalGeography": "The country is mostly low, flat plains, with mountains rising in the southwest and the north. This terrain is shaped around the Mekong River and the Tonle Sap, giving Cambodia its character as a land of paddies and forests.",
+    "climate": "The climate is tropical, with a rainy monsoon season running from May to November and a dry season from December to April. Seasonal temperature variation is minimal, though the monsoonal rains bring both flooding and, at times, drought.",
+    "economy": "Cambodia is one of the fastest growing economies in Southeast Asia, driven by rebounding tourism and clothing exports alongside substantial manufacturing and construction sectors. New trade agreements are expanding agricultural markets, and the country is investing in new ports and roads, even as it carries significant public debt. Key industries include tourism, garment production, construction, rice milling, fishing, wood products, rubber, cement, gem mining, and textiles, with exports led by garments, semiconductors, trunks and cases, footwear, and gold.",
+    "peopleAndCulture": "The population is overwhelmingly Khmer, at 95.4%, with smaller Cham, Chinese, and other minority communities. Buddhism is the official religion and is practiced by 97.1% of the population, with small minorities of Muslims, Christians, and others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist (official) 97.1%, Muslim 2%, Christian 0.3%, other 0.5% (2019 est.) || Khmer 95.4%, Cham 2.4%, Chinese 1.5%, other 0.7% (2019-20 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:00.972Z",
+  "draftModel": "claude-sonnet-5"
 }

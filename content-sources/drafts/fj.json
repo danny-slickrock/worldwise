@@ -1,6 +1,6 @@
 {
   "iso": "fj",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.435Z",
   "structured": {
     "code": "fj",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Fiji is an island group in the South Pacific, roughly two-thirds of the way from Hawaii to New Zealand, made up of 332 islands and more than 500 islets, though only about 110 of the islands are inhabited. It has no land borders with any country, being surrounded entirely by ocean.",
+    "physicalGeography": "The islands are mostly mountainous and of volcanic origin, scattered across the South Pacific Ocean on the long stretch between Hawaii and New Zealand.",
+    "climate": "Fiji has a tropical marine climate with only slight seasonal temperature variation. Cyclonic storms can occur between November and January.",
+    "economy": "Fiji is an upper-middle income, tourism-based Pacific island economy that has seen a resurgence in tourism after the pandemic along with improved debt standing, though it operates with a limited workforce and remains susceptible to ocean rises. Key industries include tourism, sugar processing, clothing manufacture, copra, gold, silver, and lumber, while resources include timber, fish, gold, copper, offshore oil potential, and hydropower. Its main exports are water, fish, raw sugar, refined petroleum, and garments.",
+    "peopleAndCulture": "Fiji has three official languages: English, iTaukei, and Fiji Hindi. The population is predominantly iTaukei, a group of mainly Melanesian ancestry with some Polynesian admixture, alongside a substantial Indo-Fijian community along with smaller numbers of Rotuman and other groups. Religiously, Protestant Christians form the largest share, with sizable Hindu and Roman Catholic populations along with smaller Muslim and Sikh communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), iTaukei (official), Fiji Hindi (official) || Protestant 45% (Methodist 34.6%, Assembly of God 5.7%, Seventh Day Adventist 3.9%, and Anglican 0.8%), Hindu 27.9%, other Christian 10.4%, Roman Catholic 9.1%, Muslim 6.3%, Sikh 0.3%, other 0.3%, none 0.8% (2007 est.) || iTaukei 56.8% (predominantly Melanesian with a Polynesian admixture), Indo-Fijian 37.5%, Rotuman 1.2%, other 4.5% (European, part European, other Pacific Islanders, Chinese) (2007 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:41.857Z",
+  "draftModel": "claude-sonnet-5"
 }

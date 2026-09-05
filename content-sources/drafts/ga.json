@@ -1,6 +1,6 @@
 {
   "iso": "ga",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.412Z",
   "structured": {
     "code": "ga",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Straddling the Equator on Central Africa's Atlantic coast, Gabon has kept most of its rain forest intact, giving it exceptional biodiversity alongside a wealth of underground resources: petroleum, natural gas, manganese, uranium, gold, and iron ore. Timber and hydropower add to a resource base that anchors nearly everything the country exports.",
+    "physicalGeography": "Gabon's terrain rises from a narrow coastal plain along the Atlantic into a hilly interior, with savanna spreading across the east and south. Sitting on the Equator between the Republic of the Congo and Equatorial Guinea, it has preserved extensive tracts of pristine rain forest.",
+    "climate": "The climate is tropical, hot and humid year-round.",
+    "economy": "Gabon is a natural-resource-rich, upper-middle-income economy built heavily on oil and mineral exports, with crude petroleum, refined petroleum, manganese ore, and wood among its top exports alongside ship exports. Its population is highly urbanized, and industries range from petroleum extraction and refining to manganese and gold mining, chemicals, ship repair, food and beverages, textiles, plywood production, and cement. Despite its resource wealth, the country faces significant poverty and unemployment.",
+    "peopleAndCulture": "French is the official language, alongside Fang, Myene, Nzebi, Bapounou/Eschira, and Bandjabi. The Fang are the largest ethnic group at roughly a quarter of the population, followed by Shira-Punu'Vii, Nzabi-Duma, Mbede-Teke, Myene, Kota-Kele, and Okande-Tsogho, with foreigners making up a notable share of residents. Religiously, Protestants form the largest group, followed by Roman Catholics, with smaller Muslim, other Christian, and traditional/animist communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official), Fang, Myene, Nzebi, Bapounou/Eschira, Bandjabi || Protestant 46.4% (Revival Church 37%, other Protestant 9.4%), Roman Catholic 29.8%, other Christian 4%, Muslim 10.8%, traditional/animist 1.1%, other 0.9%, none 7% (2019-21 est.) || Fang 23.5%, Shira-Punu'Vii 20.6%, Nzabi-Duma 11.2%, Mbede-Teke 5.6%, Myene 4.4%, Kota-Kele 4.3%, Okande-Tsogho 1.6%, other 12.6%, foreigner 16.2% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:37:18.420Z",
+  "draftModel": "claude-sonnet-5"
 }

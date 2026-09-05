@@ -1,6 +1,6 @@
 {
   "iso": "dz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.407Z",
   "structured": {
     "code": "dz",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Algeria is the largest country in Africa, though roughly 80% of it is desert. In the far south, the canyons and caves of the Hoggar Mountains and the Tassili n'Ajjer contain rock paintings and carvings of elephants, giraffes, and cattle dating back 5,000 to 11,000 years, from a period when the now-barren region was fully vegetated. Its economy rests heavily on petroleum, natural gas, iron ore, phosphates, uranium, lead, and zinc.",
+    "physicalGeography": "Algeria sits in northern Africa along the Mediterranean coast, between Morocco and Tunisia. Most of the country is high plateau and desert, with the Atlas Mountains rising in the far north and the Hoggar Mountains in the south. A narrow, discontinuous coastal plain runs along the Mediterranean.",
+    "climate": "The climate ranges from arid to semiarid. Along the coast, winters are mild and wet while summers are hot and dry; the high plateau inland is drier still, with cold winters and hot summers. The sirocco, a hot wind laden with dust and sand, is especially common in summer. Mountainous areas face severe earthquakes, and the rainy season can bring mudslides and floods, alongside periodic droughts.",
+    "economy": "Algeria's economy centers on oil and gas but has struggled with a lack of diversification across sectors and markets, poor access to credit, and weakened business confidence. COVID-19 era austerity policies and delayed socio-economic reforms have added further strain. Key exports include natural gas, crude and refined petroleum, fertilizers, and iron bars, while industries span petroleum, natural gas, light manufacturing, mining, electrical goods, petrochemicals, and food processing.",
+    "peopleAndCulture": "The population is overwhelmingly Arab-Amazigh, at about 99%, with Europeans making up less than 1%. Islam is the official religion and is practiced by roughly 99% of the population, predominantly Sunni, with small communities of Christians, Jews, Ahmadi Muslims, Shia Muslims, and Ibadi Muslims."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official; predominantly Sunni) 99%, other (includes Christian, Jewish, Ahmadi Muslim, Shia Muslim, Ibadi Muslim) &lt;1% (2012 est.) || Arab-Amazigh 99%, European less than 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:34:35.577Z",
+  "draftModel": "claude-sonnet-5"
 }

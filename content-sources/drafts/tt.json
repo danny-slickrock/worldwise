@@ -1,6 +1,6 @@
 {
   "iso": "tt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.433Z",
   "structured": {
     "code": "tt",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Lying in the Caribbean just northeast of Venezuela, this twin-island nation has no land borders with any country. Trinidad's southwestern coast holds Pitch Lake, the world's largest natural reservoir of asphalt, and the islands' wealth of petroleum, natural gas, and asphalt has shaped an economy built on hydrocarbons rather than the sugar and tourism that define much of the Caribbean.",
+    "physicalGeography": "Trinidad and Tobago sits between the Caribbean Sea and the North Atlantic Ocean, northeast of Venezuela. The terrain is mostly plains, with some hills and low mountains.",
+    "climate": "The climate is tropical, with a rainy season running from June to December. Unlike much of the Caribbean, the islands lie outside the usual path of hurricanes and other tropical storms.",
+    "economy": "Trinidad and Tobago is a high-income Caribbean economy and a major hydrocarbon exporter, with petroleum, liquefied natural gas, methanol, ammonia, and urea among its key industries. Tourism and finance are also significant sectors. The country holds large foreign reserves and a sovereign wealth fund, though it has faced high inflation, growing public debt, and long delays in foreign currency access. Its main exports include natural gas, alcohols, ammonia, crude petroleum, and iron reductions.",
+    "peopleAndCulture": "The population reflects a mix of East Indian (35.4%) and African (34.2%) descent, along with smaller shares of mixed heritage. English is the official language, alongside Trinidadian and Tobagonian Creole English, Caribbean Hindustani, Trinidadian Creole French, Spanish, and Chinese. Religious life is similarly varied, with Protestant denominations making up about a third of the population, Roman Catholics just over a fifth, and Hindus and Muslims also represented in meaningful numbers."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), Trinidadian Creole English, Tobagonian Creole English, Caribbean Hindustani (a dialect of Hindi), Trinidadian Creole French, Spanish, Chinese || Protestant 32.1% (Pentecostal/Evangelical/Full Gospel 12%, Baptist 6.9%, Anglican 5.7%, Seventh Day Adventist 4.1%, Presbyterian/Congregational 2.5%, other Protestant 0.9%), Roman Catholic 21.6%, Hindu 18.2%, Muslim 5%, Jehovah's Witness 1.5%, other 8.4%, none 2.2%, unspecified 11.1% (2011 est.) || East Indian 35.4%, African descent 34.2%, mixed - other 15.3%, mixed - African/East Indian 7.7%, other 1.3%, unspecified 6.2% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:53:31.417Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "py",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.431Z",
   "structured": {
     "code": "py",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Paraguay is landlocked, wedged between Argentina, Bolivia, and Brazil, and split down the middle by the Rio Paraguay into two starkly different landscapes. Most people live in the eastern and southern part of the country, while the river also feeds a hydropower resource base that makes Paraguay a global leader in hydroelectricity. Its exports, led by soybeans, beef, and electricity, reflect an economy built on the land itself.",
+    "physicalGeography": "East of the Rio Paraguay lies a landscape of grassy plains and wooded hills. West of the river spans the Gran Chaco, mostly low and marshy near the water but turning into dry forest and thorny scrub farther out. The country sits in central South America, northeast of Argentina and southwest of Brazil.",
+    "climate": "The climate ranges from subtropical to temperate, with substantial rainfall in the east giving way to semiarid conditions in the far west. The southeast is prone to local flooding from early September to June, and poorly drained plains in the same period can turn boggy.",
+    "economy": "Paraguay is an upper middle-income economy that was still recovering from a 2019 recession driven by conditions in Argentina when COVID-19 hit. It is highly agrarian and stands as a global leader in hydroelectricity, though it also contends with significant corruption, money laundering, and income inequality. Its 2023 exports were led by soybeans, beef, electricity, corn, and soybean meal, alongside industries in sugar processing, cement, textiles, beverages, wood products, steel, base metals, and electric power.",
+    "peopleAndCulture": "About 95% of Paraguayans are Mestizo, of mixed Spanish and Indigenous ancestry, with the remaining 5% from other backgrounds. Roman Catholicism dominates religious life at over 80%, with smaller Protestant and Evangelical communities and a notable share who describe themselves as believers not belonging to any church."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 80.4%, Protestant 7% (Evangelical (non-specific) 6.7%, Evangelical Pentecostal &lt;0.1%, Adventist &lt;0.1%, Protestant (non-specific) &lt;0.1%), Believer (not belonging to the church) 5.7%, other 0.6%, agnostic &lt;0.1%, none 0.2%, unspecified 6.2% (2023 est.) || Mestizo (mixed Spanish and Indigenous ancestry) 95%, other 5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:45.531Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "ht",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.429Z",
   "structured": {
     "code": "ht",
@@ -28,11 +28,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Haiti occupies the western third of the island of Hispaniola, sharing it with the Dominican Republic to the east, and it is the most mountainous nation in the Caribbean. Its resources include bauxite, copper, gold, marble, and hydropower potential, while its exports today lean toward garments, essential oils, and scrap iron.",
+    "physicalGeography": "The terrain is mostly rough and mountainous, occupying the western one-third of Hispaniola between the Caribbean Sea and the North Atlantic. It lies west of the Dominican Republic, which holds the eastern two-thirds of the same island.",
+    "climate": "The climate is tropical, though it turns semiarid in the east where mountains block the trade winds. Haiti sits in the middle of the hurricane belt and faces severe storms from June to October, along with occasional flooding, earthquakes, and periodic droughts.",
+    "economy": "Haiti's economy is small and marked by extreme poverty, high inflation, and enormous income inequality. It benefits from preferential market access to the United States and is very open to foreign direct investment. Industries include textiles, sugar refining, flour milling, cement, and light assembly using imported parts, while exports center on garments, essential oils, scrap iron, industrial acids, oils and alcohols, and bedding.",
+    "peopleAndCulture": "The population is about 95% Black, with the remainder mixed or White. Religion is predominantly Catholic (55%) and Protestant (29%), alongside a smaller Vodou-identifying population (2.1%) and about 10% who claim no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -62,5 +62,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 55%, Protestant 29%, Vodou 2.1%, other 4.6%, none 10% (2018 est.) || Black 95%, mixed and White 5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:16.284Z",
+  "draftModel": "claude-sonnet-5"
 }

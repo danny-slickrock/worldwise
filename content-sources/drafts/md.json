@@ -1,6 +1,6 @@
 {
   "iso": "md",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.383Z",
   "structured": {
     "code": "md",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and tucked into Eastern Europe northeast of Romania, this rolling steppe country sits on a bed of sedimentary rock and minerals — sand, gravel, gypsum, limestone — that underpin an economy built as much on the soil as on what lies beneath it. Its exports read like a snapshot of a small, diversified producer: insulated wire, garments, refined petroleum, seed oils, and wheat.",
+    "physicalGeography": "Moldova is landlocked, positioned in Eastern Europe just northeast of Romania. Its terrain is rolling steppe that slopes gradually southward toward the Black Sea, though the country itself does not reach the coast.",
+    "climate": "Moldova has moderate winters and warm summers. Landslides occur in the country.",
+    "economy": "Moldova is an upper middle-income economy that saw sustained growth reversed by COVID-19. It relies significantly on remittances from citizens working abroad, and depends on Russian energy along with broader regional economic ties. As an agricultural exporter, its outbound trade includes insulated wire, garments, refined petroleum, seed oils, and wheat, alongside industries such as sugar processing, vegetable oil and food processing, agricultural machinery, foundry equipment, refrigerators and freezers, washing machines, hosiery, shoes, and textiles. The workforce is declining, driven by emigration and low fertility.",
+    "peopleAndCulture": "The population is predominantly Moldovan (75.1%), with smaller Romanian, Ukrainian, Gagauz, Russian, and Bulgarian communities. Religious life is overwhelmingly Orthodox Christian, at 90.1%, with a small share of other Christians and a notable portion of the population unspecified."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Orthodox 90.1%, other Christian 2.6%, other 0.1%, agnostic &lt;0.1%, atheist 0.2%, unspecified 6.9% (2014 est.) || Moldovan 75.1%, Romanian 7%, Ukrainian 6.6%, Gagauz 4.6%, Russian 4.1%, Bulgarian 1.9%, other 0.8% (2014 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:44:04.337Z",
+  "draftModel": "claude-sonnet-5"
 }

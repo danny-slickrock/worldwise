@@ -1,6 +1,6 @@
 {
   "iso": "au",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.434Z",
   "structured": {
     "code": "au",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Australia is the world's smallest continent but its sixth-largest country, the largest nation in Oceania, the largest entirely in the Southern Hemisphere, and the largest without land borders of any kind. It is also the only continent without glaciers and the driest inhabited one on Earth, yet it holds 10% of the world's biodiversity, much of it found nowhere else. The Great Dividing Range along the east coast is the continent's longest mountain range and the third-longest land-based range in the world, forming a watershed that sends rivers flowing in every direction.",
+    "physicalGeography": "The Australian landmass is mostly low plateau covered in desert, with a fertile plain in the southeast. It sits as its own continent between the Indian Ocean and the South Pacific.",
+    "climate": "Conditions range from arid to semiarid across most of the interior, turning temperate in the south and east and tropical in the north. Coastal areas face cyclones, and the country is prone to severe droughts and forest fires. There is also volcanic activity on Heard and McDonald Islands.",
+    "economy": "Australia has a high-income, globally integrated economy built on strong mining, manufacturing, and service sectors, producing slow but steady growth. It is a net exporter, with commodity trade centered on East Asian partners, though weak productivity and an aging population are straining labor force participation. Key exports include iron ore, coal, natural gas, gold, and other minerals, alongside industries in industrial and transportation equipment, food processing, chemicals, and steel.",
+    "peopleAndCulture": "English is the dominant language at 72%, with Mandarin, Arabic, Vietnamese, and Cantonese also spoken by smaller shares of the population. Religious affiliation is diverse and includes Roman Catholic and various Protestant denominations, alongside Muslim, Hindu, Buddhist, and Orthodox communities, while over a third of the population reports no religion. Ancestry reflects a mix dominated by English, Australian, Irish, and Scottish roots, with smaller but notable Chinese, Italian, German, Indian, and Australian Aboriginal populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English 72%, Mandarin 2.7%, Arabic 1.4%, Vietnamese 1.3%, Cantonese 1.2%, other 15.7%, unspecified 5.7% (2021 est.) || Roman Catholic 20%, Protestant 18.1% (Anglican 9.8%, Uniting Church 2.6%, Presbyterian and Reformed 1.6%, Baptist 1.4%, Pentecostal 1%, other Protestant 1.7%), other Christian 3.5%, Muslim 3.2%, Hindu 2.7%, Buddhist 2.4%, Orthodox 2.3% (Eastern Orthodox 2.1%, Oriental Orthodox 0.2%), other 2.1%, none 38.4%, unspecified 7.3% (2021 est.) || English 33%, Australian 29.9%, Irish 9.5%, Scottish 8.6%, Chinese 5.5%, Italian 4.4%, German 4%, Indian 3.1%, Australian Aboriginal 2.9%, Greek 1.7%, unspecified 4.7% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:10.130Z",
+  "draftModel": "claude-sonnet-5"
 }

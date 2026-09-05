@@ -1,6 +1,6 @@
 {
   "iso": "pk",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.400Z",
   "structured": {
     "code": "pk",
@@ -34,11 +34,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Pakistan sits between India, Iran, Afghanistan and China, straddling the Khyber and Bolan Passes, the traditional invasion routes linking Central Asia and the Indian subcontinent. Its landscape ranges from the Balochistan Plateau to the Indus River plain to the northern highlands, and its resources include arable land, extensive natural gas, and deposits of iron ore, copper, salt and limestone.",
+    "physicalGeography": "The country divides into three major zones: the northern highlands, the Indus River plain running through the center and east, and the Balochistan Plateau covering the south and west. It lies in Southern Asia along the Arabian Sea, bordered by India to the east, Iran and Afghanistan to the west, and China to the north.",
+    "climate": "Conditions vary sharply by region, from hot, dry desert across most of the country to temperate in the northwest and arctic in the north. Earthquakes occur frequently and can be severe, particularly in the north and west, while heavy rains in July and August often bring flooding along the Indus River.",
+    "economy": "Pakistan is a lower middle-income South Asian economy carrying extremely high debt, with endemic corruption and regional disputes with India and Afghanistan discouraging investment. Falling inflation, IMF relief programs, and strong agricultural output are slowly contributing to recovery. Key industries include textiles and apparel, food processing, pharmaceuticals, surgical instruments, construction materials, paper products, fertilizer and shrimp, with garments, fabric, refined petroleum, rice and cotton fabric as leading exports.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim at 96.4%, with Hindu (1.6%) and Christian (1.4%) minorities, alongside smaller communities including scheduled castes, Qadiani/Ahmadi, and Sikh groups. Ethnically, Punjabis form the largest group at 44.7%, followed by Pashtuns (Pathans) at 15.4%, Sindhis at 14.1%, Saraikis at 8.4%, Muhajirs at 7.6%, and Baloch at 3.6%."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -68,5 +68,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 96.4%, Hindu 1.6%, Christian 1.4%; less than 1%: scheduled castes, Qadiani/Ahmadi, other, Sikh. (2020 est.) || Punjabi 44.7%, Pashtun (Pathan) 15.4%, Sindhi 14.1%, Saraiki 8.4%, Muhajirs 7.6%, Baloch 3.6%, other 6.3%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:09.712Z",
+  "draftModel": "claude-sonnet-5"
 }

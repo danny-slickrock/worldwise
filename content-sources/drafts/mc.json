@@ -1,6 +1,6 @@
 {
   "iso": "mc",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.384Z",
   "structured": {
     "code": "mc",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Monaco is the second-smallest independent state in the world after the Holy See, and the smallest country with a coastline. Tucked onto the Mediterranean coast of southern France near the Italian border, it is almost entirely urban, with no undeveloped land to speak of.",
+    "physicalGeography": "The terrain is hilly, rugged, and rocky, occupying a narrow strip on the southern coast of France near the border with Italy. Its small size and steep landscape leave little room for anything beyond dense urban development.",
+    "climate": "Monaco has a Mediterranean climate, with mild, wet winters and hot, dry summers. The country has no natural resources.",
+    "economy": "Monaco is a high-income economy that uses the euro despite not being an EU member, and it is considered a tax haven. Tourism and banking are its largest sectors, though both were negatively affected by COVID-19; the country is also known for a major oceanographic museum and is among the most expensive places in the world for real estate, with several major state-owned enterprises. Its main exports are jewelry, perfumes, watches, packaged medicines, and cars, and its industries include banking, insurance, tourism, construction, and small-scale industrial and consumer products.",
+    "peopleAndCulture": "About 90% of Monaco's population is Roman Catholic, the country's official religion. Ethnically, Monegasques make up only about a third of residents, with large communities of French, Italian, British, Belgian, Swiss, German, Russian, American, Dutch, and Moroccan nationals, reflecting the country's international, urban character."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 90% (official), other 10% || Monegasque 32.1%, French 19.9%, Italian 15.3%, British 5%, Belgian 2.3%, Swiss 2%, German 1.9%, Russian 1.8%, American 1.1%, Dutch 1.1%, Moroccan 1%, other 16.6% (2016 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:56.145Z",
+  "draftModel": "claude-sonnet-5"
 }

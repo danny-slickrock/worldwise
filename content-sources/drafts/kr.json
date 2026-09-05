@@ -1,6 +1,6 @@
 {
   "iso": "kr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.402Z",
   "structured": {
     "code": "kr",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Occupying the southern half of the Korean Peninsula, the country sits along the Sea of Japan and the Yellow Sea, with roughly 3,000 mostly small and uninhabited islands scattered off its western and southern coasts. Its position on the Korea Strait gives it a strategic maritime location, and it has grown into a major exporter of integrated circuits, cars, and refined petroleum.",
+    "physicalGeography": "The terrain is mostly hills and mountains, with wide coastal plains spreading along the west and south. It occupies the southern half of the Korean Peninsula and borders only North Korea by land, while its coasts face the Sea of Japan and the Yellow Sea.",
+    "climate": "The climate is temperate, with summer rainfall notably heavier than in winter and cold winters typical of the peninsula. Typhoons occasionally bring high winds and flooding, and low-level seismic activity is common in the southwest. Mount Halla, rising 1,950 meters, is considered historically active but has not erupted in many centuries.",
+    "economy": "This is a high-income, export- and technology-oriented economy, with manufacturing led by the semiconductor and automotive industries alongside electronics, telecommunications, chemicals, shipbuilding, and steel production. Growth has slowed amid declining construction investment, export risks, recent political instability, and an aging workforce, prompting greater fiscal restraint alongside continued industry support. Leading exports include integrated circuits, cars, refined petroleum, plastics, and machine parts.",
+    "peopleAndCulture": "Korean is the national language. Religious affiliation is mixed: about 17 percent Protestant, 16 percent Buddhist, and 6 percent Catholic, while roughly 60 percent of the population identifies with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Protestant 17%, Buddhist 16%, Catholic 6%, none 60% (2021 est.) || Korean"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:49.679Z",
+  "draftModel": "claude-sonnet-5"
 }

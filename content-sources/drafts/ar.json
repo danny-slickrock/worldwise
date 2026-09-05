@@ -1,6 +1,6 @@
 {
   "iso": "ar",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.423Z",
   "structured": {
     "code": "ar",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Argentina is the second-largest country in South America, stretching from subtropical lowlands in the north to tundra in the far south. It holds both the tallest mountain in the Western Hemisphere, Cerro Aconcagua, and the hemisphere's lowest point, Laguna del Carbón, and it shares the Iguazú Falls, the world's largest waterfall system, with Brazil. Its location also gives it a strategic hold on the sea lanes linking the South Atlantic and South Pacific through the Strait of Magellan, the Beagle Channel, and the Drake Passage.",
+    "physicalGeography": "The country's northern half is dominated by the fertile plains of the Pampas, giving way south to the flat-to-rolling plateau of Patagonia. Along the western border runs the rugged spine of the Andes. It sits in southern South America along the South Atlantic Ocean, between Chile and Uruguay.",
+    "climate": "Argentina's climate is mostly temperate, turning arid in the southeast and subantarctic in the southwest. The Andean regions around San Miguel de Tucumán and Mendoza are earthquake-prone, while the Pampas and northeast can be struck by pamperos, violent windstorms, along with heavy flooding in some areas. Volcanic activity persists along the Chilean border in the Andes, including Copahue, which last erupted in 2000, alongside other historically active volcanoes such as Llullaillaco, Maipo, and Tupungatito.",
+    "economy": "Argentina has a large, diversified, resource-rich economy built on an export-led growth model, with soybean meal, corn, trucks, soybean oil, and crude petroleum among its top exports. Its industrial base spans food processing, motor vehicles, consumer durables, textiles, chemicals and petrochemicals, printing, metallurgy, and steel. The country faces financial risks from debt obligations, rapid inflation, and reduced investor appetite, and has a tendency to nationalize businesses and under-report inflation, while also deepening trade ties with China as a G20 and OAS leader.",
+    "peopleAndCulture": "The population is overwhelmingly of European descent, mostly Spanish and Italian, combined with Mestizo people of mixed European and Indigenous ancestry, together making up over 97% of the population, with smaller Indigenous and African-descended communities. Roman Catholicism is the majority religion, followed by a substantial Evangelical population, while nearly a fifth of Argentines identify with no religion, including agnostics and atheists."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 62.9%, Evangelical 15.3% (Pentecostal 13%, other Evangelical 2.3%), Jehovah's Witness and Church of Jesus Christ 1.4%, other 1.2% (includes Muslim, Jewish), none 18.9% (includes agnostic and atheist), unspecified 0.3% (2019 est.) || European (mostly Spanish and Italian descent) and Mestizo (mixed European and Indigenous ancestry) 97.2%, Indigenous 2.4%, African descent 0.4% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:28:53.298Z",
+  "draftModel": "claude-sonnet-5"
 }

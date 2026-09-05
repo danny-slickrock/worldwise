@@ -1,6 +1,6 @@
 {
   "iso": "ug",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.422Z",
   "structured": {
     "code": "ug",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in East-Central Africa, Uganda is a fertile, well-watered country threaded with lakes and rivers, including a share of Lake Victoria — the world's largest tropical lake and second-largest freshwater lake, split among Kenya, Tanzania, and Uganda. Beneath its plateau lie copper, cobalt, gold, limestone, and salt, alongside strong hydropower potential.",
+    "physicalGeography": "Uganda sits west of Kenya and east of the Democratic Republic of the Congo, landlocked at the heart of East-Central Africa. Its terrain is mostly plateau, ringed by a rim of mountains, and shaped by an abundance of lakes and rivers, most notably its share of Lake Victoria.",
+    "climate": "The climate is tropical, generally rainy, with two dry seasons running December to February and June to August; the northeast is semiarid by contrast. Uganda faces droughts, floods, earthquakes, landslides, and hailstorms.",
+    "economy": "Uganda runs a low-income, primarily agrarian economy that is nonetheless resource rich, with copper, cobalt, gold, limestone, and salt among its natural assets. COVID-19 set back growth and poverty reduction, and falling oil prices now threaten investments made in that sector, while endemic corruption remains a drag on the economy. Female labor force participation is high but undervalued. Key exports include gold, coffee, fish, refined petroleum, and tobacco, and industries range from sugar processing, brewing, and cotton textiles to cement and steel production.",
+    "peopleAndCulture": "Uganda's official languages are English and Swahili, but Ganda (Luganda) is the most widely used Niger-Congo language and dominates in the capital, alongside other Niger-Congo and Nilo-Saharan languages and Arabic. Religiously, the population is predominantly Protestant (45.1%, split among Anglican, Pentecostal, Seventh Day Adventist, and Baptist communities) and Roman Catholic (39.3%), with a Muslim minority of 13.7%. Ethnically, the Baganda are the largest group at 16.5%, followed by the Banyankole, Basoga, Bakiga, Iteso, Langi, Bagisu, Acholi, and Lugbara, among many others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), Ganda or Luganda (most widely used of the Niger-Congo languages and the language used most often in the capital), other Niger-Congo languages, Nilo-Saharan languages, Swahili (official), Arabic || Protestant 45.1% (Anglican 32.0%, Pentecostal/Born Again/Evangelical 11.1%, Seventh Day Adventist 1.7%, Baptist .3%), Roman Catholic 39.3%, Muslim 13.7%, other 1.6%, none 0.2% (2014 est.) || Baganda 16.5%, Banyankole 9.6%, Basoga 8.8%, Bakiga 7.1%, Iteso 7%, Langi 6.3%, Bagisu 4.9%, Acholi 4.4%, Lugbara 3.3%, other 32.1% (2014 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:19.341Z",
+  "draftModel": "claude-sonnet-5"
 }

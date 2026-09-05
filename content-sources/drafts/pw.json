@@ -1,6 +1,6 @@
 {
   "iso": "pw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.436Z",
   "structured": {
     "code": "pw",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Palau is a scatter of more than 300 islands in the North Pacific, southeast of the Philippines, the westernmost archipelago in the Caroline chain. Its terrain ranges from the high, mountainous main island of Babelthuap to low coral islands ringed by barrier reefs, including the famed Rock Islands. It has no land borders with any country.",
+    "physicalGeography": "Palau's islands vary sharply in form, from the high, mountainous main island of Babelthuap to low-lying coral islands typically fringed by large barrier reefs. The archipelago sits in the North Pacific Ocean, southeast of the Philippines.",
+    "climate": "The climate is tropical, hot and humid, with a wet season running from May to November. Typhoons are a recurring hazard between June and December.",
+    "economy": "Palau is a high-income Pacific island economy but an environmentally fragile one, resting on subsistence agriculture, fishing, tourism, and services, alongside reliance on US aid. Tourism has been rebounding post-pandemic, and the country enjoys a very high standard of living with low unemployment. Its exports include ships and refined petroleum.",
+    "peopleAndCulture": "Palauan is the official language on most islands, spoken by about 65% of the population, alongside official English and communities speaking Filipino, Chinese, and other Micronesian languages. Ethnically, most residents are Palauan, a Micronesian people with Malayan and Melanesian admixtures, alongside a substantial Asian population and smaller Carolinian community. Religion is predominantly Roman Catholic and Protestant, with smaller shares practicing Modekngei, an indigenous Palauan faith, and Islam."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Palauan (official on most islands) 65.2%, other Micronesian 1.9%, English (official) 19.1%, Filipino 9.9%, Chinese 1.2%, other 2.8% (2015 est.) || Roman Catholic 46.9%, Protestant 30.9% (Evangelical 24.6%, Seventh Day Adventist 5%, other Protestant 1.4%), Modekngei 5.1% (indigenous to Palau), Muslim 4.9%, other 12.3% (2020 est.) || Palauan (Micronesian with Malayan and Melanesian admixtures) 70.6%, Carolinian 1.2%, Asian 26.5%, other 1.7% (2020 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:33.643Z",
+  "draftModel": "claude-sonnet-5"
 }

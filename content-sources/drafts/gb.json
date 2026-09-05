@@ -1,6 +1,6 @@
 {
   "iso": "gb",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.390Z",
   "structured": {
     "code": "gb",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "The United Kingdom occupies a cluster of islands, including the northern one-sixth of the island of Ireland, sitting between the North Atlantic and the North Sea. It lies just 35 km from France, close enough to be linked by a tunnel under the English Channel, and its coastline is so heavily indented that nowhere in the country is more than 125 km from tidal waters. Its position near vital North Atlantic sea lanes has long shaped its role as a maritime and trading nation.",
+    "physicalGeography": "The landscape is mostly rugged hills and low mountains, giving way to level to rolling plains in the east and southeast.",
+    "climate": "The climate is temperate, moderated by prevailing southwest winds blowing over the North Atlantic Current, and more than half the days of the year are overcast. Winter windstorms and floods are recurring natural hazards.",
+    "economy": "The UK runs a high-income, non-EU European economy built around a dominant service sector and its role as a global financial center. Growth has been sluggish, weighed down by stringent monetary policy, reduced business investment, low productivity and participation rates, and fiscal austerity in the face of high public debt. Its industrial base spans machine tools, electric power equipment, automation and railroad equipment, shipbuilding, aircraft and motor vehicles, electronics, metals, chemicals, and food processing, and it exports cars, gold, gas turbines, packaged medicine, and crude petroleum.",
+    "peopleAndCulture": "English is the language of a population that is predominantly White, with smaller Black/African/Caribbean/Black British and Asian/Asian British communities, including significant Indian and Pakistani populations, plus a mixed-race minority. Religiously, the country is majority Christian, encompassing Anglican, Roman Catholic, Presbyterian, and Methodist traditions, alongside Muslim and Hindu minorities, while roughly a quarter of the population identifies with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English || Christian (includes Anglican, Roman Catholic, Presbyterian, Methodist) 59.5%, Muslim 4.4%, Hindu 1.3%, other 2%, unspecified 7.2%, none 25.7% (2011 est.) || White 87.2%, Black/African/Caribbean/black British 3%, Asian/Asian British: Indian 2.3%, Asian/Asian British: Pakistani 1.9%, mixed 2%, other 3.7% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:37:28.009Z",
+  "draftModel": "claude-sonnet-5"
 }

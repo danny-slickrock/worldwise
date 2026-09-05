@@ -1,6 +1,6 @@
 {
   "iso": "kp",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.400Z",
   "structured": {
     "code": "kp",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "North Korea occupies the northern half of the Korean Peninsula, wedged between China and South Korea and bordering Russia as well, with coastlines on the Korea Bay and the Sea of Japan. Its mountainous interior is isolated and sparsely populated, but it holds substantial mineral resources — coal, iron ore, limestone, magnesite, graphite, copper, zinc, lead, and precious metals — alongside hydropower. Oddly, its recorded exports include fake hair, iron alloys, tungsten ore, electricity, and cars.",
+    "physicalGeography": "The country is mostly hills and mountains cut by deep, narrow valleys. Wide coastal plains run along the west, while the eastern coast has only discontinuous stretches of lowland. It sits in Eastern Asia on the northern half of the Korean Peninsula, bordering the Korea Bay and the Sea of Japan between China and South Korea.",
+    "climate": "The climate is temperate, with rainfall concentrated in summer and long, bitter winters. Late spring droughts are often followed by severe flooding, and the early fall can bring occasional typhoons. Paektu-san, a 2,744-meter volcano on the Chinese border, is considered historically active.",
+    "economy": "North Korea runs one of the last centrally planned economies in the world, and it has been hit hard by COVID-19, crop failures, international sanctions, and isolationist policies, leaving growth and trade in decline and the economy heavily reliant on China. Exchange rate stability is poor and the integrity of its economic data is questionable. Its industries include military production, machine building, electric power, chemicals, mining and metallurgy, textiles, food processing, and tourism, and recent exports have included fake hair, iron alloys, tungsten ore, electricity, and cars.",
+    "peopleAndCulture": "The population is racially homogeneous, with only a small Chinese community and a few ethnic Japanese. Religious tradition draws on Buddhism and Confucianism, alongside a smaller Christian presence and the syncretic faith of Chondogyo, the Religion of the Heavenly Way."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "traditionally Buddhist and Confucian, some Christian and syncretic Chondogyo (Religion of the Heavenly Way) || racially homogeneous; there is a small Chinese community and a few ethnic Japanese"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:36.063Z",
+  "draftModel": "claude-sonnet-5"
 }

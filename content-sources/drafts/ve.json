@@ -1,6 +1,6 @@
 {
   "iso": "ve",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.434Z",
   "structured": {
     "code": "ve",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Venezuela sits on major sea and air routes linking North and South America, but its real claim to fame is geological: the tepuis of the Guiana Highlands are massive table-top mountains, isolated enough to have evolved their own unique plants and animals. Their sheer cliffs produce Angel Falls, the world's highest waterfall at 979 meters, dropping straight off the Auyan Tepui. The country also holds substantial reserves of petroleum, natural gas, iron ore, gold, bauxite, and diamonds.",
+    "physicalGeography": "The landscape splits into three bands: the Andes Mountains and Maracaibo Lowlands in the northwest, open central plains known as the llanos, and the Guiana Highlands in the southeast. That highland region is home to the tepuis, isolated flat-topped mountains whose sheer cliffsides shelter species found nowhere else and give rise to spectacular waterfalls, including Angel Falls tumbling off the Auyan Tepui.",
+    "climate": "The climate is tropical, hot and humid, growing more moderate at higher elevations. The country is exposed to floods, rockslides, and mudslides, alongside periodic droughts.",
+    "economy": "Venezuela's economy centers on oil exports, with crude petroleum, petroleum coke, scrap iron, alcohols, and fertilizers making up its main exports as of 2023. It has experienced ongoing hyperinflation since the mid-2010s and has gone into debt default. Alongside oil, its industrial base includes agricultural products, livestock, machinery, transport equipment, construction materials, pharmaceuticals, and iron and steel products, and the country also draws on hydropower.",
+    "peopleAndCulture": "Religious life is predominantly Christian: Roman Catholics make up about 48% of the population and Protestants, mostly Evangelical, around 32%, with smaller communities of Jehovah's Witnesses and Afro-Venezuelan umbanda practitioners; roughly 14% claim no religious affiliation. The population's ancestry reflects a mix of Spanish, Italian, Portuguese, Arab, German, African, and Indigenous heritage."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 48.1%, Protestant 31.6% (Evangelical 31.4%, Adventist 0.2%), Jehovah's Witness 1.4%, African American/umbanda 0.7%, other 0.1%, believer 3.5%, agnostic 0.1%, atheist, 0.4%, none 13.6%, unspecified 0.6% (2023 est.) || unspecified Spanish, Italian, Portuguese, Arab, German, African, Indigenous"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:15.866Z",
+  "draftModel": "claude-sonnet-5"
 }

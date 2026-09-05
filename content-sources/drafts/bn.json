@@ -1,6 +1,6 @@
 {
   "iso": "bn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.393Z",
   "structured": {
     "code": "bn",
@@ -28,11 +28,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Perched on the northern coast of Borneo, this small nation sits astride vital sea lanes linking the Indian and Pacific Oceans through the South China Sea. Its territory is split into two parts by Malaysia, with the eastern Temburong district cut off as an exclave that is almost entirely surrounded by its neighbor. Wealth here flows almost entirely from petroleum and natural gas.",
+    "physicalGeography": "The country occupies part of Borneo's northern coast, bordering the South China Sea and Malaysia. A flat coastal plain gives way to mountains in the east, while the west is characterized by hilly lowland.",
+    "climate": "The climate is tropical, hot, humid, and rainy. Typhoons, earthquakes, and severe flooding are all rare here.",
+    "economy": "This is a high income country whose economy runs almost exclusively on oil and gas, backed by petroleum refining and liquefied natural gas production alongside construction, agriculture, aquaculture, and transportation industries. An expansive and robust welfare system supports the population, and the majority of workers are employed by the government. The country is also promulgating a nationalized halal brand and considering establishing a bond market and stock exchange.",
+    "peopleAndCulture": "The population is predominantly Malay (67.4%), with a significant Chinese minority (9.6%) and other groups making up the remainder. Islam is the official religion, practiced by 82.1% of the population, alongside Christian (6.7%) and Buddhist (6.3%) minorities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -62,5 +62,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official) 82.1%, Christian 6.7%, Buddhist 6.3%, other 4.9% (2021 est.) || Malay 67.4%, Chinese 9.6%, other 23% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:30:38.124Z",
+  "draftModel": "claude-sonnet-5"
 }

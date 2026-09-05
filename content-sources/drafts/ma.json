@@ -1,6 +1,6 @@
 {
   "iso": "ma",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.416Z",
   "structured": {
     "code": "ma",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Morocco is the only African nation with coastlines on both the Atlantic Ocean and the Mediterranean Sea, sitting along the strategic Strait of Gibraltar. Its rich Atlantic fishing waters, phosphate deposits, and dramatic terrain—from the Rif and Atlas mountains to Saharan desert in the south—make for an unusually varied geography packed into one country.",
+    "physicalGeography": "The north is defined by mountain ranges, the Rif along the coast and the Atlas further inland, bordered by large plateaus with intermontane valleys and fertile coastal plains. The south is a different world entirely: low, flat desert with vast stretches of rocky or sandy surface. The country sits in Northern Africa between Algeria and Mauritania, facing both the North Atlantic Ocean and the Mediterranean Sea.",
+    "climate": "Morocco's climate is Mediterranean in the north but grows more extreme moving into the interior, while the south is hot, dry desert where rain is rare. Cold offshore air currents along the coast produce fog and heavy dew. The northern mountains are geologically unstable and earthquake-prone, and the country deals with periodic droughts, windstorms, flash floods, and landslides, while the south can see a hot, dust-laden sirocco wind in winter and spring along with harmattan haze that often severely limits visibility.",
+    "economy": "Morocco is a lower middle-income economy that has been recovering from a recent drought and earthquake, with tourism, manufacturing, and raw materials processing driving the rebound. It maintains significant trade and investment ties with the EU and has pursued reforms including fiscal rebalancing, state enterprise governance, and private sector investment. Its industries span automotive parts, phosphate mining and processing, aerospace, food processing, leather goods, textiles, construction, energy, and tourism, while exports include fertilizers, cars, garments, insulated wire, and tomatoes.",
+    "peopleAndCulture": "Morocco's population is overwhelmingly Arab-Amazigh, making up 99% of the total. Islam is the official religion and is practiced by 99% of the population, virtually all Sunni, with a small Shia minority; the remainder includes Christian, Jewish, and Baha'i communities, with the Jewish population numbering around 3,000 to 3,500."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 99% (official; virtually all Sunni, &lt;0.1% Shia), other 1% (includes Christian, Jewish, and Baha'i); note - Jewish about 3,000-3,500 (2020 est.) || Arab-Amazigh 99%, other 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:48.567Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "tw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.403Z",
   "structured": {
     "code": "tw",
@@ -44,11 +44,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "An island group off the southeastern coast of China, positioned along the strategic Taiwan Strait and Luzon Strait, Taiwan has built one of the world's most advanced computer microchip manufacturing industries on a landscape dominated by rugged mountains.",
+    "physicalGeography": "The eastern two-thirds of Taiwan is mostly rugged mountains, with flat to gently rolling plains confined to the west. The islands sit in Eastern Asia, bordering the East China Sea, Philippine Sea, South China Sea, and Taiwan Strait, north of the Philippines and off the southeastern coast of China. Taiwan has no land borders with any country.",
+    "climate": "The climate is tropical and marine, with a rainy season during the southwest monsoon from June to August and persistent, extensive cloudiness throughout the year. Taiwan is prone to earthquakes and typhoons. Kueishantao Island, at 401 meters, is the only historically active volcano, though it has not erupted in centuries.",
+    "economy": "Taiwan is a high-income East Asian economy known for the world's most technologically advanced computer microchip manufacturing. Increasing Chinese interference threatens its market capabilities, while minimum wages have been rising alongside longstanding regional socioeconomic inequality. Key industries include electronics, communications and information technology products, petroleum refining, chemicals, textiles, iron and steel, machinery, cement, food processing, vehicles, consumer products, and pharmaceuticals, with exports led by integrated circuits, machine parts, broadcasting equipment, computers, and plastics.",
+    "peopleAndCulture": "More than 95% of Taiwan's population is Han Chinese, including the Holo, who make up roughly 70% of the population, as well as Hakka and other groups originating in mainland China. Indigenous Malayo-Polynesian peoples make up about 2.3% of the population. Religiously, Buddhism accounts for 35.3% and Taoism 33.2%, with Christian, folk religion including Confucian practices, and unspecified or no religion making up the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -78,5 +78,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist 35.3%, Taoist 33.2%, Christian 3.9%, folk religion (includes Confucian) approximately 10%, none or unspecified 18.2% (2005 est.) || Han Chinese (including Holo, who compose approximately 70% of Taiwan's population, Hakka, and other groups originating in mainland China) more than 95%, indigenous Malayo-Polynesian peoples 2.3%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:53:47.290Z",
+  "draftModel": "claude-sonnet-5"
 }

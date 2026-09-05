@@ -1,6 +1,6 @@
 {
   "iso": "sz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.412Z",
   "structured": {
     "code": "sz",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and almost completely surrounded by South Africa, with only a short border to Mozambique on the other side, this is a country defined by mountains, hills, and a heavy economic reliance on its giant neighbor. Its resources run from asbestos and coal to small deposits of gold and diamonds, while its export list today leans on scented mixtures, raw sugar, and garments.",
+    "physicalGeography": "The terrain is mostly mountains and hills, with some moderately sloping plains breaking up the landscape. Positioned in Southern Africa, the country sits wedged between Mozambique and South Africa, with no coastline of its own.",
+    "climate": "Conditions range from tropical to near temperate, a spread tied to the country's varied terrain of highlands and plains. Drought is a recurring feature of the climate.",
+    "economy": "As a landlocked economy, the country is closely tied to South Africa through trade and currency arrangements, and it belongs to both the Common Monetary Area and the Southern African Customs Union. It has faced a COVID-19-related slowdown, rising utility costs, and persistent poverty and unemployment, compounded by HIV/AIDS-related disruptions to the labor force. Key industries include soft drink concentrates, coal, forestry, sugar processing, textiles, and apparel, and recent exports feature scented mixtures, raw sugar, industrial acids, oils, and alcohols, garments, and wood.",
+    "peopleAndCulture": "English and siSwati are both official languages, with English used for government business. The population is predominantly Swazi, with smaller communities of other African ethnic groups, including the Zulu, and people of European ancestry. Christianity dominates religious life at about 90%, including a large Zionist population blending Christian and traditional African beliefs alongside Roman Catholic and other Christian denominations, with smaller Muslim and other minority communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official, used for government business), siSwati (official) || Christian 90% (Zionist - a blend of Christianity and traditional African religions - 40%, Roman Catholic 20%, other Christian 30% - includes Anglican, Methodist, Church of Jesus Christ, Jehovah's Witness), Muslim 2%, other 8% (includes Baha'i, Buddhist, Hindu, indigenous, Jewish) (2015 est.) || predominantly Swazi; smaller populations of other African ethnic groups, including the Zulu, as well as people of European ancestry"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:03.642Z",
+  "draftModel": "claude-sonnet-5"
 }

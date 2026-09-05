@@ -1,6 +1,6 @@
 {
   "iso": "rw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.418Z",
   "structured": {
     "code": "rw",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and mountainous, this Central African country sits east of the Democratic Republic of the Congo and north of Burundi, its terrain a rugged patchwork of grassy uplands and hills that is intensively cultivated by a predominantly rural population. Beneath that farmland lie gold, cassiterite, wolframite, methane, and strong hydropower potential.",
+    "physicalGeography": "The landscape is dominated by grassy uplands and hills, with a mountainous relief that descends in altitude from west to east. It lies in Central Africa, positioned east of the Democratic Republic of the Congo and north of Burundi.",
+    "climate": "The climate is temperate, shaped by two rainy seasons running from February to April and November to January, with mountain areas cool enough for frost and occasional snow. Periodic droughts occur, and the volcanic Virunga Mountains rise along the northwest border with the Democratic Republic of the Congo; Visoke, at 3,711 meters, is the country's only historically active volcano.",
+    "economy": "This is a low-income Sub-Saharan economy driven by services, industry, and agriculture, with government spending increasingly directed toward human capital, energy, and healthcare. Major infrastructure projects, including the Bugesera Airport, are intended to support long-term growth, though the economy still faces a lack of diversification, high inflation, and a wide current account deficit. Exports include gold, rare earth ores, coffee, tea, and tin ores, while industries range from cement and agricultural processing to textiles, footwear, and cigarettes.",
+    "peopleAndCulture": "The population is predominantly Christian, with Catholics making up 39.9%, Pentecostals 21.3%, Protestants 14.6%, and Seventh-Day Adventists 12.2%, alongside smaller shares of other Christians, Muslims, and those with no religion. The population is made up of the Hutu, Tutsi, and Twa peoples."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 39.9%, Pentecostal 21.3%, Protestant 14.6%, Adventist 12.2%, other Christians 4.2%, no religion 3.0%, Muslim 2.0%, other religions 2.0%; less than 1%: Jehovah Witness, not specified, Animist (2022 est.) || Hutu, Tutsi, Twa"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:35.196Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "ba",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.375Z",
   "structured": {
     "code": "ba",
@@ -34,11 +34,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "A country of mountains and valleys in Southeastern Europe, split administratively into a joint Bosniak/Croat Federation covering roughly half the territory and the Bosnian Serb-led Republika Srpska covering the rest. Its southern region, Herzegovina, borders both Croatia and Montenegro, while the country itself also touches the Adriatic Sea. Beneath its terrain lie substantial deposits of coal, iron ore, bauxite, copper, lead, zinc, and other minerals, and its exports today include footwear, electricity, garments, and insulated wire.",
+    "physicalGeography": "The landscape is dominated by mountains and valleys, set within Southeastern Europe. The country borders the Adriatic Sea as well as Croatia, giving it a mix of interior highland terrain and a coastal edge.",
+    "climate": "Summers are hot and winters cold across most of the country, while areas at high elevation experience short, cool summers and long, severe winters. Along the coast the climate turns milder, with rainy winters. The region is also subject to destructive earthquakes.",
+    "economy": "The economy is import-dominated and consumption-heavy, held back by a lack of private sector investment and limited diversification. Unemployment is high, and the tourism industry has been affected by COVID-19. Key industries include steel, coal, iron ore, lead, zinc, manganese, bauxite, aluminum, motor vehicle assembly, textiles, and oil refining, with footwear, electricity, garments, plastic products, and insulated wire among current exports; Chinese investment in energy infrastructure has also played a role in the economy.",
+    "peopleAndCulture": "The population is divided among three main ethnic groups: Bosniaks at just over half, Serbs at roughly three in ten, and Croats at about fifteen percent. Religious affiliation broadly tracks these lines, with Muslims making up about half the population, Orthodox Christians around three in ten, and Roman Catholics about fifteen percent, alongside small shares who are atheist, agnostic, or undeclared."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -68,5 +68,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 50.7%, Orthodox 30.7%, Roman Catholic 15.2%, atheist 0.8%, agnostic 0.3%, other 1.2%, undeclared/no answer 1.1% (2013 est.) || Bosniak 50.1%, Serb 30.8%, Croat 15.4%, other 2.7%, not declared/no answer 1% (2013 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:27.683Z",
+  "draftModel": "claude-sonnet-5"
 }

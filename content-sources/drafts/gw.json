@@ -1,6 +1,6 @@
 {
   "iso": "gw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.413Z",
   "structured": {
     "code": "gw",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Guinea and Senegal on West Africa's Atlantic coast, this small country is defined by a deeply indented, swampy coastline that gives way to savanna inland. Just offshore lies the Arquipelago Dos Bijagos, a scatter of 18 main islands and many smaller islets. Its economy leans heavily on cashews, fish, and other coastal exports, alongside untapped mineral and petroleum resources.",
+    "physicalGeography": "The country is mostly low-lying coastal plain with a deeply indented, estuarine coastline that rises into savanna toward the east. Offshore, the Arquipelago Dos Bijagos comprises 18 main islands plus numerous small islets, adding a distinctive archipelago dimension to an otherwise swampy, flat landscape.",
+    "climate": "The climate is tropical, generally hot and humid, shaped by a monsoonal rainy season running from June to November with southwesterly winds. A dry season follows from December to May, bringing northeasterly harmattan winds that carry dust and haze capable of reducing visibility, along with brush fires.",
+    "economy": "This is an extremely poor West African economy built on an ethnically diverse labor force, with rising government expenditures and slight inflation tied to food supply disruptions. Cashews are a major export alongside coconuts, brazil nuts, fish, fish oil, processed crustaceans, and malt extract. The economy faces systemic banking instabilities, corruption, and vulnerability to oil price shocks, while industries remain limited largely to agricultural processing, beer, and soft drinks.",
+    "peopleAndCulture": "Portuguese-based Creole is widely spoken alongside official Portuguese, which functions mainly as a second or third language, plus Pular and Mandingo. The population is largely divided among the Balanta, Fulani, Manjaco, Mandinga, and Papel ethnic groups, each with distinct shares of the population. Religiously, Muslims form the largest group, followed by adherents of folk religions and Christians, with a small remainder unaffiliated or other."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Portuguese-based Creole, Portuguese (official; largely used as a second or third language), Pular (a Fula language), Mandingo || Muslim 46.1%, folk religions 30.6%, Christian 18.9%, other or unaffiliated 4.4% (2020 est.) || Balanta 30%, Fulani 30%, Manjaco 14%, Mandinga 13%, Papel 7%, unspecified smaller ethnic groups 6% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:43.479Z",
+  "draftModel": "claude-sonnet-5"
 }

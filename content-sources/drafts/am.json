@@ -1,6 +1,6 @@
 {
   "iso": "am",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.391Z",
   "structured": {
     "code": "am",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked between Turkey and Azerbaijan in Southwestern Asia, Armenia sits on the mountainous Armenian Highland in the Lesser Caucasus and views itself as part of Europe, even though geopolitically it can be classified as falling within Europe, the Middle East, or both. Its largest lake, Sevana Lich, is the biggest in this stretch of mountains, and the country holds small deposits of gold, copper, molybdenum, zinc, and bauxite that feed a jewelry and metals export trade.",
+    "physicalGeography": "Armenia's terrain is dominated by the Armenian Highland, a landscape of mountains with little forest cover. Fast-flowing rivers cut through the highland, and the Aras River valley holds the country's good soil. The country lies landlocked in the Lesser Caucasus Mountains.",
+    "climate": "Armenia has a highland continental climate, marked by hot summers and cold winters. The country is also subject to occasionally severe earthquakes and droughts.",
+    "economy": "Armenia is an upper-middle income economy that has grown quickly in the Caucasus region, built on a stable fiscal and monetary regime, though it remains vulnerable to geopolitical shocks. It retains economic and energy ties to Russia while seeking greater trade with the EU and US, and copper and gold exports are a key part of its trade profile alongside diamonds, broadcasting equipment, and jewelry. Business-friendly and anti-corruption reforms have been pursued even as unemployment persists, and an influx of migrants tied to the Ukraine war has been easing. Its industrial base spans brandy, mining, diamond processing, metal-cutting machine tools, electric motors, textiles and shoes, chemicals, trucks, microelectronics, software, and food processing.",
+    "peopleAndCulture": "The population is overwhelmingly Armenian by ethnicity, at 98.1%, with a small Yezidi minority of 1.1% and smaller shares of Russians, Assyrians, Kurds, Ukrainians, and Greeks. Religious life is dominated by the Armenian Apostolic Church, claimed by 95.2% of the population, with small remaining shares practicing Catholicism, Evangelical Christianity, or no religion at all."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Armenian Apostolic 95.2%, not stated 1.7%; less than 1%: Catholic, no religion, Evangelical, Shar-fadinian, other, Armenian Orthodox, Jehovah's Witness, Pagan, Molokan (2022 est.) || Armenian 98.1%, Yezidi 1.1%; less than 1%: Russian, other, Assyrian, Kurd, Ukrainian, Greek (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:28:37.174Z",
+  "draftModel": "claude-sonnet-5"
 }

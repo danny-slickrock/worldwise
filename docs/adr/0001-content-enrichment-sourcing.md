@@ -95,6 +95,19 @@ question it is actually answering.
   made it real. Fixed in `contentChunks.js` (`namedPieces`), which also re-splits
   against a reduced budget so the added prefix cannot push a piece over the cap.
 
+## Do NOT promote Wikidata's `continent`
+
+Wikidata answers a different question than our `region` field. It uses "North
+America" / "South America" where we use "Americas", and "Insular Oceania" for six
+countries; it also places Georgia, Kazakhstan and Turkey in Europe where our
+dataset says Asia.
+
+`content.countries.region` drives region filters and the learning paths, so
+adopting Wikidata's taxonomy would reshuffle those silently. **Keep the existing
+`region` values at promotion.** `continent` stays in the draft as a cross-check
+only — the three disagreements are all transcontinental countries, which is a
+real ambiguity rather than an error in either source.
+
 ## Pipeline
 
 ```

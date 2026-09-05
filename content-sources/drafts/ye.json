@@ -1,6 +1,6 @@
 {
   "iso": "ye",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.406Z",
   "structured": {
     "code": "ye",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Yemen sits at the southern tip of the Arabian Peninsula on the Bab el Mandeb, the strait linking the Red Sea and the Gulf of Aden and one of the world's most active shipping lanes. It borders Oman and Saudi Arabia, with coastline along the Arabian Sea, Gulf of Aden, and Red Sea. Its landscape runs from a narrow coastal plain through rugged mountains to desert plains that fade into the Arabian Peninsula's interior.",
+    "physicalGeography": "A narrow coastal plain gives way to flat-topped hills and rugged mountains, then to dissected upland desert plains in the center that slope down into the desert interior of the Arabian Peninsula. The country's position between the Arabian Sea, Gulf of Aden, and Red Sea, and between Oman and Saudi Arabia, gives it a long and varied coastline alongside its inland terrain.",
+    "climate": "The climate is mostly desert, hot and humid along the west coast, temperate in the western mountains where seasonal monsoons have an effect, and extraordinarily hot, dry, and harsh in the eastern desert. Sandstorms and dust storms occur in summer. There is limited volcanic activity, including Jebel at Tair, an island volcano in the Red Sea that became active in 2007, along with other historically active volcanoes such as Harra of Arhab and Harras of Dhamar, though many have not erupted in over a century.",
+    "economy": "Yemen has a low-income economy whose infrastructure, trade, and economic institutions have been devastated by civil war, leaving massive poverty, food insecurity, high unemployment, and high inflation. It remains dependent on oil and gas even as reserves decrease. Industries include crude oil production and petroleum refining, small-scale cotton textiles and leather goods, food processing, handicrafts, aluminum products, cement, and commercial ship repair, while exports include gold, fish, scrap iron, shellfish, and industrial acids, oils, and alcohols.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 99.1%, split roughly between an estimated 65% Sunni and 35% Shia, with a small remainder including Jewish, Baha'i, Hindu, and Christian minorities, many of whom are refugees or temporary foreign residents. The people are predominantly Arab, with smaller Afro-Arab, South Asian, and European communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 99.1% (official; virtually all are citizens, an estimated 65% are Sunni and 35% are Shia), other 0.9% (includes Jewish, Baha'i, Hindu, and Christian; many are refugees or temporary foreign residents) (2020 est.) || predominantly Arab; but also Afro-Arab, South Asian, European"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:44.760Z",
+  "draftModel": "claude-sonnet-5"
 }

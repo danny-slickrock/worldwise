@@ -1,6 +1,6 @@
 {
   "iso": "jo",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.396Z",
   "structured": {
     "code": "jo",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Jordan sits at the head of the Gulf of Aqaba, sharing the longest border any Arab country has with Israel and the West Bank. The country is almost landlocked, with just a 26 km coastline centered on the single port of Aqaba, yet its western edge holds the Dead Sea, the lowest point in Asia and the second saltiest body of water in the world after Djibouti's Lac Assal. Its economy leans on phosphates, potash, and shale oil, exported largely as fertilizers, phosphoric acid, and phosphates itself.",
+    "physicalGeography": "Jordan is mostly arid desert plateau, but its western edge is cut by a great north-south geological rift, the dominant feature of the country's landscape. That rift contains the Jordan River Valley, the Dead Sea, and the Jordanian Highlands, giving a country otherwise defined by desert a dramatic vertical range concentrated in one narrow strip.",
+    "climate": "The climate is mostly arid desert, with a rainy season confined to the west between November and April. Jordan is also subject to droughts, periodic earthquakes, and flash floods.",
+    "economy": "Jordan is an upper-middle-income economy that is natural-resource-poor and import-reliant, facing high debt and unemployment that hits youth and women especially hard. Global events have periodically triggered trade slumps and cut into tourism revenue, even as manufacturing and agriculture have been growing sectors; the country is also a key recipient of US foreign assistance. Its industries span tourism, information technology, clothing, fertilizer and potash and phosphate mining, pharmaceuticals, petroleum refining, cement, and inorganic chemicals, with fertilizers, garments, phosphates, jewelry, and phosphoric acid as leading exports.",
+    "peopleAndCulture": "Jordan's population is overwhelmingly Muslim, at 97.1 percent and predominantly Sunni, with a Christian minority of 2.1 percent that includes Greek Orthodox alongside smaller Greek and Roman Catholic, Syrian Orthodox, Coptic Orthodox, Armenian Orthodox, and Protestant communities; Buddhists, Hindus, Jews, and followers of folk religions each account for less than half a percent. Ethnically and by national origin, Jordanians make up 69.3 percent of the population, with substantial Syrian (13.3 percent), Palestinian (6.7 percent), and Egyptian (6.7 percent) communities and a smaller Iraqi share."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 97.1% (official; predominantly Sunni), Christian 2.1% (majority Greek Orthodox, but some Greek and Roman Catholics, Syrian Orthodox, Coptic Orthodox, Armenian Orthodox, and Protestant denominations), Buddhist 0.4%, Hindu 0.1%, Jewish &lt;0.1%, folk &lt;0.1%, other &lt;0.1%, unaffiliated &lt;0.1% (2020 est.) || Jordanian 69.3%, Syrian 13.3%, Palestinian 6.7%, Egyptian 6.7%, Iraqi 1.4%, other 2.6% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:40:39.126Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "us",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.433Z",
   "structured": {
     "code": "us",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Bordering only Canada and Mexico, the United States stretches across a continent and beyond, from a vast central plain to western mountains and eastern hills, with rugged Alaska and volcanic Hawaii adding extremes at either edge. It is the world's third-largest country by both size and population, home to Mt. McKinley, North America's highest point, and Death Valley, its lowest. Its Pacific coasts sit on the Ring of Fire, and its territory holds some remarkable natural records: Mammoth Cave, the world's longest known cave system, Kazumura Cave, the longest and deepest lava-tube cave, and Bracken Cave, home to the largest known concentration of mammals on Earth.",
+    "physicalGeography": "The country's interior is a vast central plain, flanked by mountains in the west and hills and low mountains in the east. Alaska adds rugged mountains and broad river valleys, while Hawaii contributes a landscape of rugged, volcanic topography.",
+    "climate": "Climate varies enormously across the country: mostly temperate, but tropical in Hawaii and Florida, arctic in Alaska, semiarid in the Great Plains west of the Mississippi River, and arid in the Great Basin of the southwest. Winters in the northwest are sometimes eased by warm chinook winds descending the eastern slopes of the Rocky Mountains. Volcanic activity concentrates in Hawaii, western Alaska's Aleutian arc, and the Pacific Northwest, with Mauna Loa and Mount Rainier recognized as Decade Volcanoes for their explosive history and proximity to people, while Pavlof's frequent activity poses a particular threat to intercontinental air travel.",
+    "economy": "The United States has the world's largest economy by nominal GDP, and is the largest importer and second-largest exporter globally, anchored by leading financial exchanges and the status of its currency as the world's reserve currency. Public debt is high and growing, and while inflation has moderated, it remains above pre-pandemic levels. Its industrial base is highly diversified and technologically advanced, producing the world's second-largest industrial output across sectors including petroleum, steel, motor vehicles, aerospace, telecommunications, and electronics; leading exports include crude and refined petroleum, natural gas, gas turbines, and cars.",
+    "peopleAndCulture": "English is the official language, spoken by the large majority, alongside significant Spanish-speaking and smaller Chinese-speaking populations. Religious affiliation is predominantly Protestant and Roman Catholic, with smaller Jewish, Muslim, Buddhist, and Hindu communities, and nearly a quarter of the population unaffiliated. The population is majority White, with substantial Black or African American and Asian communities, alongside Indigenous, Native Hawaiian, and multiracial populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English only (official) 78.2%, Spanish 13.4%, Chinese 1.1%, other 7.3% (2017 est.) || Protestant 46.5%, Roman Catholic 20.8%, Jewish 1.9%, Church of Jesus Christ 1.6%, other Christian 0.9%, Muslim 0.9%, Jehovah's Witness 0.8%, Buddhist 0.7%, Hindu 0.7%, other 1.8%, unaffiliated 22.8%, don't know/refused 0.6% (2014 est.) || White 61.6%, Black or African American 12.4%, Asian 6%, Indigenous and Alaska native 1.1%, Native Hawaiian and Other Pacific Islander 0.2%, other 8.4%, two or more races 10.2% (2020 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:29.888Z",
+  "draftModel": "claude-sonnet-5"
 }

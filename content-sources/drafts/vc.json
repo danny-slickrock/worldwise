@@ -1,6 +1,6 @@
 {
   "iso": "vc",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.432Z",
   "structured": {
     "code": "vc",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Scattered across 32 islands and cays between the Caribbean Sea and the North Atlantic, this volcanic, mountainous nation shares its Grenadines island chain with neighboring Grenada, with administration split between the two. It has no land borders with any country.",
+    "physicalGeography": "The islands are volcanic and mountainous, lying in the Caribbean north of Trinidad and Tobago. Saint Vincent and the Grenadines is made up of 32 islands and cays, with the Grenadines group divided administratively between this country and Grenada.",
+    "climate": "The climate is tropical with little seasonal temperature variation and a rainy season running from May to November. Hurricanes are a recurring hazard, and La Soufrière, an active volcano on Saint Vincent rising to 1,234 meters and last erupting in 1979, poses a constant threat. Saint Vincent forms part of the volcanic-island arc of the Lesser Antilles, which stretches from Saba in the north to Grenada in the south.",
+    "economy": "This is an upper middle-income island economy built on agriculture and tourism, though its environment is fragile and the government has been working to diversify into services, science and knowledge, and creative industries. It belongs to CARICOM and benefits from the US Caribbean Basin Initiative. Industries include tourism, food processing, cement, furniture, clothing, and starch, while exports in 2023 included ships, wheat flours, animal food, shellfish, and construction vehicles.",
+    "peopleAndCulture": "English is the official language, alongside Vincentian Creole English and French patois. The population is predominantly Protestant, with Pentecostal, Anglican, Seventh Day Adventist, Baptist, and Methodist congregations among the largest groups, plus a smaller Roman Catholic community and a small Rastafarian presence. Most people are of African descent, with smaller mixed, Indigenous, East Indian, and European populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English, Vincentian Creole English, French patois || Protestant 75% (Pentecostal 27.6%, Anglican 13.9%, Seventh Day Adventist 11.6%, Baptist 8.9%, Methodist 8.7%, Evangelical 3.8%, Salvation Army 0.3%, Presbyterian/Congregational 0.3%), Roman Catholic 6.3%, Rastafarian 1.1%, Jehovah's Witness 0.8%, other 4.7%, none 7.5%, unspecified 4.7% (2012 est.) || African descent 71.2%, mixed 23%, Indigenous 3%, East Indian/Indian 1.1%, European 1.5%, other 0.2% (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:03.476Z",
+  "draftModel": "claude-sonnet-5"
 }

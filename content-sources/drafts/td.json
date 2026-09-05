@@ -1,6 +1,6 @@
 {
   "iso": "td",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.409Z",
   "structured": {
     "code": "td",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Chad is the largest of Africa's sixteen landlocked countries, a fact that belies a landscape that was once green and teeming with life. During the African Humid Period, elephants, giraffes, hippos, and antelope roamed what is now mostly desert and arid plain, and the last visible trace of that lost world survives in the Lakes of Ounianga, eighteen interconnected freshwater, saline, and hypersaline lakes in the north. Lake Chad itself, the most significant body of water in the Sahel, is a shrunken remnant of paleolake Mega-Chad, which before 5000 B.C. covered roughly 400,000 square kilometers, an area comparable to today's Caspian Sea.",
+    "physicalGeography": "The country's terrain runs from broad, arid plains in the center to true desert in the north, with mountains rising in the northwest and lowlands stretching across the south. This range, from desert to lowland, places Chad in Central Africa, south of Libya.",
+    "climate": "Conditions shift sharply from tropical in the south to desert in the north. The north endures hot, dry, dusty harmattan winds, and the country as a whole is subject to periodic droughts and locust plagues.",
+    "economy": "Chad's economy leans heavily on oil, leaving it exposed to market fluctuations, regional instability, refugee inflows, and climate vulnerability, and extreme poverty and food insecurity remain widespread. Recent growth has come from a recovery in oil and agriculture, alongside a debt-restructuring agreement reached under the G20 Common Framework. Its exports include crude petroleum, gold, oil seeds, gum resins, and cotton, while its industries span oil, cotton textiles, brewing, natron, soap, cigarettes, and construction materials.",
+    "peopleAndCulture": "Chad's population is predominantly Muslim, at just over half, with sizable Protestant and Roman Catholic communities and small shares of animist and other Christian believers. Ethnically the country is diverse, led by the Sara peoples at roughly 30% of the population, followed by numerous smaller groups including the Kanembu/Bornu/Buduma, Arab, Wadai/Maba/Masalit/Mimi, and Gorane communities, among many others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 52.1%, Protestant 23.9%, Roman Catholic 20%, animist 0.3%, other Christian 0.2%, none 2.8%, unspecified 0.7% (2014-15 est.) || Sara (Ngambaye/Sara/Madjingaye/Mbaye) 30.5%, Kanembu/Bornu/Buduma 9.8%, Arab 9.7%, Wadai/Maba/Masalit/Mimi 7%, Gorane 5.8%, Masa/Musseye/Musgum 4.9%, Bulala/Medogo/Kuka 3.7%, Marba/Lele/Mesme 3.5%, Mundang 2.7%, Bidiyo/Migaama/Kenga/Dangleat 2.5%, Dadjo/Kibet/Muro 2.4%, Tupuri/Kera 2%, Gabri/Kabalaye/Nanchere/Somrai 2%, Fulani/Fulbe/Bodore 1.8%, Karo/Zime/Peve 1.3%, Baguirmi/Barma 1.2%, Zaghawa/Bideyat/Kobe 1.1%, Tama/Assongori/Mararit 1.1%, Mesmedje/Massalat/Kadjakse 0.8%, other 4.6%, unspecified 1.7% (2014-15 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:12.929Z",
+  "draftModel": "claude-sonnet-5"
 }

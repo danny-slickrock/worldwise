@@ -1,6 +1,6 @@
 {
   "iso": "cn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.393Z",
   "structured": {
     "code": "cn",
@@ -53,11 +53,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "China is the world's fourth largest country and the largest situated entirely in Asia, stretching from mountains and deserts in the west to plains and deltas in the east. Mount Everest, on its border with Nepal, is the world's tallest peak above sea level, and the country holds the largest cave chamber on Earth, the Miao Room, along with the Xiaoxhai Tiankeng sinkhole in Chongqing, 660 meters deep with a volume of 130 million cubic meters. It also sits on the world's largest known hydropower potential and a vast inventory of mineral resources, from rare earth elements to tungsten and lithium.",
+    "physicalGeography": "The western half of the country is dominated by mountains, high plateaus, and deserts, while the east flattens into plains, river deltas, and hills. China borders the East China Sea, Korea Bay, Yellow Sea, and South China Sea, positioned between North Korea and Vietnam along its eastern coast.",
+    "climate": "Climate here spans an extreme range, from tropical conditions in the south to subarctic in the north. The southern and eastern coasts face roughly five typhoons a year along with damaging floods, and the country is also subject to tsunamis, earthquakes, droughts, and land subsidence. Several historically active volcanoes exist within China, including Changbaishan, Hainan Dao, and Kunlun, though most have been relatively quiet in recent centuries.",
+    "economy": "China's economy is the world's second-largest by nominal GDP, and it leads globally in exports and manufacturing, including broadcasting equipment, computers, integrated circuits, garments, and machine parts. Its industrial base is similarly vast, ranking first in the world by gross value of industrial output, spanning steel and metals, machine building, textiles, chemicals, consumer goods, automobiles, ships, aircraft, and commercial space launch vehicles and satellites. Growth that was historically strong has been slowing, and the economy now faces an aging workforce, weak productivity, rising youth unemployment, a struggling property sector, and public debt, alongside continued state-sponsored economic controls and infrastructure investment.",
+    "peopleAndCulture": "The population is overwhelmingly Han Chinese, at 91.1 percent, with the remaining 8.9 percent made up of ethnic minorities including Zhuang, Hui, Manchu, Uighur, Miao, Yi, Tibetan, Mongol, and many other nationalities. Religious affiliation is diverse and largely informal: just over half the population reports no religious affiliation, while folk religion accounts for 21.9 percent, Buddhism 18.2 percent, Christianity 5.1 percent, and Islam 1.8 percent, with smaller shares practicing Daoism and other faiths."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -87,5 +87,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "folk religion 21.9%, Buddhist 18.2%, Christian 5.1%, Muslim 1.8%, Hindu &lt; 0.1%, Jewish &lt; 0.1%, other 0.7% (includes Daoist (Taoist)), unaffiliated 52.1% (2021 est.) || Han Chinese 91.1%, ethnic minorities 8.9% (includes Zhang, Hui, Manchu, Uighur, Miao, Yi, Tujia, Tibetan, Mongol, Dong, Buyei, Yao, Bai, Korean, Hani, Li, Kazakh, Dai, and other nationalities) (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:01.811Z",
+  "draftModel": "claude-sonnet-5"
 }

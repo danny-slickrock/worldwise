@@ -1,6 +1,6 @@
 {
   "iso": "bj",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.407Z",
   "structured": {
     "code": "bj",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Nigeria and Togo on the Bight of Benin, this West African nation has a coastline unusual for its total lack of natural harbors, river mouths, or islands, since sandbanks make the shore difficult to access. Its economy runs on cotton, gold, cashews, and small offshore oil deposits rather than seaborne trade through its own ports.",
+    "physicalGeography": "The country is mostly a flat to undulating plain, broken by some hills and low mountains. Along the coast, sandbanks create a shoreline with no natural harbors, river mouths, or islands, making access from the sea difficult.",
+    "climate": "The climate is tropical, hot and humid in the south and semiarid in the north. From December to March, the hot, dry, dusty harmattan wind can affect the northern part of the country.",
+    "economy": "Growth has been robust, though poverty remains widespread even as it slowly declines. The country has strong trade relations with Nigeria and is a notable cotton exporter, with gold, coconuts, cashews, soybeans, and wood also among its exports; its industries include textiles, food processing, construction materials, and cement. It belongs to the WAEMU currency union with its currency pegged to the euro, and has recently reduced its fiscal deficit and debt, though COVID-19 caused capital outflows and border closures.",
+    "peopleAndCulture": "French is the official language, but the country is home to some 55 languages. In the south, Fon, Yom, and Yoruba are the most important indigenous languages, while the north has half a dozen regionally important ones, including Bariba and Fulfulde. Religious life is mixed, with Muslims, Roman Catholics, Protestants, and practitioners of Vodoun all represented, and the population includes the Fon, Adja, Yoruba, Bariba, Fulani, and other ethnic groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "55 languages; French (official); Fon (a Gbe language), Yom (a Gur language) and Yoruba are the most important indigenous languages in the south; half a dozen regionally important languages in the north, including Bariba and Fulfulde || Muslim 27.7%, Roman Catholic 25.5%, Protestant 13.5% (Celestial 6.7%, Methodist 3.4%, other Protestant 3.4%), Vodoun 11.6%, other Christian 9.5%, other traditional religions 2.6%, other 2.6%, none 5.8% (2013 est.) || Fon and related 38.4%, Adja and related 15.1%, Yoruba and related 12%, Bariba and related 9.6%, Fulani and related 8.6%, Ottamari and related 6.1%, Yoa-Lokpa and related 4.3%, Dendi and related 2.9%, other 0.9%, foreigner 1.9% (2013 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:30:32.635Z",
+  "draftModel": "claude-sonnet-5"
 }

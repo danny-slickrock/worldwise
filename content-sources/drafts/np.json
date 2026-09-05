@@ -1,6 +1,6 @@
 {
   "iso": "np",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.400Z",
   "structured": {
     "code": "np",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between China and India, Nepal is landlocked but hardly modest in scale: it holds eight of the world's ten highest peaks, including Mount Everest and Kanchenjunga, the tallest and third-tallest mountains on Earth. Its terrain runs from the flat Tarai river plain in the south up to the rugged central hills and the Himalayas in the north.",
+    "physicalGeography": "Nepal's landscape rises from the flat Tarai plain of the Ganges in the south through a central hill region into the rugged Himalayas in the north. This range places it squarely between China and India in Southern Asia.",
+    "climate": "Conditions shift sharply with elevation, from cool summers and severe winters in the north to subtropical summers and mild winters in the south. The summer monsoons dominate the country's hazards, bringing severe thunderstorms, flooding, and landslides in some years, and drought or famine in others depending on their timing, intensity, and duration.",
+    "economy": "Nepal is a low-income South Asian economy that has gained some stability from post-conflict fiscal federalism, though COVID-19 damaged trade and tourism and current account deficits have widened. The economy is environmentally fragile, vulnerable to earthquakes, while Chinese relations and investment have been growing. Key industries include tourism, carpets, textiles, rice, jute, sugar and oilseed mills, cigarettes, and cement and brick production, with exports including knotted carpets, garments, flat-rolled iron, synthetic fibers, and palm oil.",
+    "peopleAndCulture": "Nepal's population is predominantly Hindu (81.2%), with Buddhist, Muslim, Kirat, and Christian minorities among others. Ethnically the country is diverse, with Chhettri (16.5%) and Brahman-Hill (11.3%) the largest groups, followed by Magar, Tharu, Tamang, Bishwokarma, Musalman, Newar, Yadav, and many smaller communities, reflecting a fine-grained social mosaic."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Hindu 81.2%, Buddhist 8.2%, Muslim 5.1%, Kirat 3.2%, Christian 1.8%; less than 1%: Prakriti, Bon, Jains, Sikh (2021 est.) || Chhettri 16.5%, Brahman-Hill 11.3%, Magar 6.9%, Tharu 6.2%, Tamang 5.6%, Bishwokarma 5%, Musalman 4.9%, Newar 4.6%, Yadav 4.2%, Rai 2.2%, Pariyar 1.9%, Gurung 1.9%, Thakuri 1.7%, Mijar 1.6%, Teli 1.5%, Yakthung/Limbu 1.4%, Chamar/Harijan/Ram 1.4%, Koiri/Kushwaha 1.2%, other 20% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:08.136Z",
+  "draftModel": "claude-sonnet-5"
 }

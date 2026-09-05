@@ -1,6 +1,6 @@
 {
   "iso": "gn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.413Z",
   "structured": {
     "code": "gn",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting on the Atlantic coast of West Africa between Guinea-Bissau and Sierra Leone, this country holds the source of the Niger River and its tributary the Milo, rising in its own highlands before flowing on to shape much of the region. Its ground is rich with bauxite, iron ore, diamonds, gold, and uranium, resources that anchor an economy built around mining.",
+    "physicalGeography": "The land rises from a generally flat coastal plain along the North Atlantic into a hilly and mountainous interior. It borders Cote d'Ivoire, Guinea-Bissau, Liberia, Mali, Senegal, and Sierra Leone, and its highlands feed the Niger River and its tributary, the Milo.",
+    "climate": "The climate is generally hot and humid, split between a monsoonal rainy season from June to November driven by southwesterly winds and a dry season from December to May marked by the northeasterly harmattan. During the dry season the harmattan brings hot, dusty haze that can reduce visibility.",
+    "economy": "Guinea's economy is primarily agrarian but growing, with a major mining sector built on bauxite, gold, diamonds, and iron ore alongside light manufacturing and agricultural processing. Fiscal and debt balances were improving before COVID-19, but the economy remains increasingly vulnerable to climate change, infrastructure improvements have been slow, and gender gaps persist in wealth and human capital. Key exports include gold, aluminum ore, cocoa beans, crude petroleum, and coconuts, brazil nuts, and cashews.",
+    "peopleAndCulture": "The population is predominantly Muslim, at over 85 percent, with a Christian minority and small animist and unaffiliated groups. Ethnically, the Fulani (Peuhl) form the largest group at about a third of the population, followed by the Malinke and Susu, with smaller communities including the Guerze, Kissi, and Toma. French is the official language, spoken alongside Pular, Maninka, Susu, and other native languages."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official), Pular, Maninka, Susu, other native languages || Muslim 85.2%, Christian 13.4%, animist 0.2%, none 1.2% (2018 est.) || Fulani (Peuhl) 33.4%, Malinke 29.4%, Susu 21.2%, Guerze 7.8%, Kissi 6.2%, Toma 1.6%, other/foreign 0.4% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:07.680Z",
+  "draftModel": "claude-sonnet-5"
 }

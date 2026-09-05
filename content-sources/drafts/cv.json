@@ -1,6 +1,6 @@
 {
   "iso": "cv",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.408Z",
   "structured": {
     "code": "cv",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "An archipelago of steep, rugged, volcanic islands in the North Atlantic off Senegal's coast, this nation has no land borders with any country. It sits about 500 km from West Africa near major north-south sea routes and belongs to Macaronesia, the group of four North Atlantic island clusters that also includes the Azores, Canary Islands, and Madeira.",
+    "physicalGeography": "The islands are steep, rugged, rocky, and volcanic, set in the North Atlantic Ocean west of Senegal. This terrain reflects their origin as a volcanic archipelago rather than a continental landmass.",
+    "climate": "The climate is temperate, with warm, dry summers and rainfall that is meager and erratic. Prolonged droughts occur, and the seasonal harmattan wind brings obscuring dust. The islands are volcanically and seismically active, and Fogo, at 2,829 meters, is the only active volcano, having last erupted in 1995.",
+    "economy": "Cabo Verde has a stable, middle-income, developing island economy that has seen strong GDP growth driven by a recovering tourism sector. Poverty reduction has been sustained through the PEDS II development plan, though the country relies heavily on foreign remittances and aid to finance external debt. Key industries include food and beverages, fish processing, shoes and garments, salt mining, and ship repair, while exports include fish, refined petroleum, railway cargo containers, shellfish, and garments.",
+    "peopleAndCulture": "Portuguese is the official language, alongside Crioulo, a Portuguese-based creole with two main dialects. The population is predominantly Roman Catholic, with smaller Protestant, Christian Rationalist, Muslim, and Jehovah's Witness communities, alongside a notable share reporting no religion. Ethnically, most people identify as Creole (Mulatto), with smaller African and European populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Portuguese (official), Crioulo (a Portuguese-based creole language with two main dialects) || Roman Catholic 72.5%, Protestant 4% (includes Adventist 1.9%, Nazarene 1.8%, Assembly of God 0.2%, God is Love 0.1%), Christian Rationalism 1.7%, Muslim 1.3%, Jehovah's Witness 1.2%, Church of Jesus Christ 1%, other Christian 1.3%, other 1.2%, none 15.6%, no response 0.4% (2021 est.) || Creole (Mulatto) 71%, African 28%, European 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:32.662Z",
+  "draftModel": "claude-sonnet-5"
 }

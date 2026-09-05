@@ -1,6 +1,6 @@
 {
   "iso": "be",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.375Z",
   "structured": {
     "code": "be",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Belgium sits between France and the Netherlands on the North Sea, and its capital Brussels serves as the seat of both the European Union and NATO. Most West European capitals lie within 1,000 kilometers of Brussels, making the country a genuine crossroads of the continent.",
+    "physicalGeography": "The terrain moves from flat coastal plains in the northwest through central rolling hills to the rugged Ardennes Forest and its mountains in the southeast. The country borders the North Sea, positioned between France and the Netherlands.",
+    "climate": "The climate is temperate, with mild winters and cool summers, and conditions are generally rainy, humid, and cloudy. Flooding is a recurring threat along rivers and in areas of reclaimed coastal land, which are protected from the sea by concrete dikes.",
+    "economy": "Belgium is a high-income, core economy of both the EU and the eurozone, though it has faced slow growth driven by weakened domestic consumption and export demand. High public debt and structural deficits are tied to social spending, compounded by an aging workforce with weak productivity growth and low participation rates. Its exports include refined petroleum, natural gas, vaccines, cars, and packaged medicine, while its industrial base spans engineering and metal products, motor vehicle assembly, transportation equipment, scientific instruments, processed food and beverages, chemicals, pharmaceuticals, base metals, textiles, glass, and petroleum.",
+    "peopleAndCulture": "Belgians make up about three-quarters of the population, alongside Italian, Moroccan, French, Turkish, and Dutch communities. Roman Catholicism is the largest religious affiliation at just over half the population, with smaller shares of Protestants, other Christians, and Muslims, while roughly a fifth identify as nonbelievers or agnostic and about a tenth as atheist."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 57.1%, Protestant 2.3%, other Christian, 2.8%, Muslim 6.8%, other 1.7%, atheist 9.1%, nonbeliever/agnostic 20.2% (2018 est.) || Belgian 75.2%, Italian 4.1%, Moroccan 3.7%, French 2.4%, Turkish 2%, Dutch 2%, other 10.6% (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:51.163Z",
+  "draftModel": "claude-sonnet-5"
 }

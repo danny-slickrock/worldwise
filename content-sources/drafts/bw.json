@@ -1,6 +1,6 @@
 {
   "iso": "bw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.407Z",
   "structured": {
     "code": "bw",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and sparsely populated, Botswana is dominated by the Kalahari Desert, which covers about 70% of the country, yet the Okavango Delta in the north creates one of the world's largest inland deltas and a pocket of remarkable biodiversity in the midst of all that dry tableland.",
+    "physicalGeography": "The country sits in Southern Africa, north of South Africa, and consists of predominantly flat to gently rolling tableland. The Kalahari Desert occupies the southwest, shaping much of the national landscape.",
+    "climate": "The climate is semiarid, with warm winters and hot summers, and the country experiences periodic droughts. Seasonal winds in August blow from the west, carrying sand and dust across the country and at times obscuring visibility.",
+    "economy": "Botswana has been noted for good economic governance and financial management, alongside rapid poverty reduction, though its diamond-driven growth model is declining and youth unemployment remains high. The COVID-19 pandemic sharply contracted the economy and recovery has been slow, while public sector wages have added fiscal pressure. Key industries include diamonds, copper, nickel, salt, soda ash, potash, coal, iron ore, and silver, along with beef processing and textiles, and main exports include diamonds, copper ore, insulated wire, carbonates, and cattle.",
+    "peopleAndCulture": "Most of the population is Tswana, with Kalanga and Basarwa communities also present, alongside smaller numbers of other groups including people of European ancestry. Setswana is the most widely spoken language, with English serving as the official language. Christianity is the majority religion, followed by adherents of Badimo and smaller communities practicing other faiths, while a notable share of the population reports no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Setswana 77.3%, Sekalanga 7.4%, Shekgalagadi 3.4%, English (official) 2.8%, Zezuru/Shona 2%, Sesarwa 1.7%, Sembukushu 1.6%, Ndebele 1%, other 2.8% (2011 est.) || Christian 79.1%, Badimo 4.1%, other 1.4% (includes Baha'i, Hindu, Muslim, Rastafarian), none 15.2%, unspecified 0.3% (2011 est.) || Tswana (or Setswana) 79%, Kalanga 11%, Basarwa 3%, other, including Kgalagadi and people of European ancestry 7%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:31:16.330Z",
+  "draftModel": "claude-sonnet-5"
 }

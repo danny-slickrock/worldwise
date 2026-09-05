@@ -1,6 +1,6 @@
 {
   "iso": "na",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.417Z",
   "structured": {
     "code": "na",
@@ -34,11 +34,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Namibia takes its name from the Namib Desert running along its coast, considered the oldest desert in the world, and roughly 14% of the country's land is protected, including virtually the entire Namib coastal strip. It borders the South Atlantic Ocean between Angola and South Africa, and its ground holds diamonds, copper, uranium, gold, and lithium among other resources.",
+    "physicalGeography": "The country is mostly high plateau, framed by the Namib Desert along the coast and the Kalahari Desert to the east. It sits in Southern Africa on the South Atlantic coast, between Angola and South Africa, with Botswana and Zambia also on its borders.",
+    "climate": "Namibia's climate is desert: hot and dry, with rainfall that is sparse and erratic. The country experiences prolonged periods of drought.",
+    "economy": "Namibia is an upper middle-income, export-driven economy built on natural resources, with mining, tourism, fishing, and agriculture as its main industries. Gold, diamonds, radioactive chemicals, fish, and refined petroleum are its leading exports as of 2023. The port of Walvis Bay is being expanded for trade, and the country has high potential for renewable power generation and energy independence, though it faces a shortage of skilled labor.",
+    "peopleAndCulture": "Ovambo people make up half the population, with Kavangos, Herero, Damara, and other groups including those of mixed European and African ancestry, Europeans, Nama, Caprivians, San, Baster, and Tswana communities. Oshiwambo languages are most widely spoken, at nearly half the population, alongside Nama/Damara, Kavango languages, Afrikaans, Herero languages, Zambezi languages, and English, the official language. The overwhelming majority of Namibians are Christian."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -68,5 +68,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Oshiwambo languages 49.7%, Nama/Damara 11%, Kavango languages 10.4%, Afrikaans 9.4%, Herero languages 9.2%, Zambezi languages 4.9%, English (official) 2.3%, other African languages 1.5%, other European languages 0.7%, other 1% (2016 est.) || Christian 97.5%, other 0.6% (includes Muslim, Baha'i, Jewish, Buddhist), unaffiliated 1.9% (2020 est.) || Ovambo 50%, Kavangos 9%, Herero 7%, Damara 7%, mixed European and African ancestry 6.5%, European 6%, Nama 5%, Caprivian 4%, San 3%, Baster 2%, Tswana 0.5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:46:19.916Z",
+  "draftModel": "claude-sonnet-5"
 }

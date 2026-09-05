@@ -1,6 +1,6 @@
 {
   "iso": "by",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.374Z",
   "structured": {
     "code": "by",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Belarus is landlocked, with a flat, marshy terrain shaped by glacial scouring that also left behind some 11,000 lakes. The country sits in Eastern Europe, just east of Poland, and its ground holds deposits of peat, granite, and other minerals alongside stands of timber. Its farms and factories now send fertilizers, rapeseed oil, wood, poultry, and beef abroad.",
+    "physicalGeography": "Belarus is generally flat and covered in extensive marshland, sitting in Eastern Europe just east of Poland.",
+    "climate": "Winters are cold and summers cool and moist, a climate that sits transitionally between continental and maritime patterns. Large tracts of marshy land cover much of the country, reinforcing the damp character of its weather.",
+    "economy": "Belarus faces the end of Russian energy subsidies in 2024, alongside growing public debt and strong currency pressures that have pushed inflation higher. The government has responded with price controls on basic food and drugs and public sector wage increases, though a fragile private sector puts pressure on household income gains and overall economic growth. Its industries include metal-cutting machine tools, tractors, trucks, earthmovers, motorcycles, synthetic fibers, fertilizer, textiles, and household appliances like refrigerators and washing machines, while exports center on fertilizers, rapeseed oil, wood, poultry, and beef.",
+    "peopleAndCulture": "Belarusians make up 83.7% of the population, with Russians at 8.3%, Poles at 3.1%, and Ukrainians at 1.7%, alongside smaller unspecified groups. Religiously, Orthodox Christians form the largest group at 48.3%, followed by Catholics at 7.1%, while non-believers account for 41.1% of the population."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Orthodox 48.3%, Catholic 7.1%, other 3.5%, non-believers 41.1% (2011 est.) || Belarusian 83.7%, Russian 8.3%, Polish 3.1%, Ukrainian 1.7%, other 2.4%, unspecified 0.9% (2009 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:31:27.287Z",
+  "draftModel": "claude-sonnet-5"
 }

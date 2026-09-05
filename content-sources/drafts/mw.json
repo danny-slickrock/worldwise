@@ -1,6 +1,6 @@
 {
   "iso": "mw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.415Z",
   "structured": {
     "code": "mw",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in southern Africa, Malawi is dominated by Lake Nyasa, a body of water some 580 km long that holds more fish species than any other lake on Earth. The country sits on a narrow elongated plateau bordered by Zambia, Tanzania, and Mozambique, and beneath its arable land lie unexploited deposits of uranium, coal, and bauxite.",
+    "physicalGeography": "Malawi's terrain is a narrow, elongated plateau marked by rolling plains, rounded hills, and some mountains, lying east of Zambia and bordered on the west and north by Mozambique. Lake Nyasa, roughly 580 km (360 mi) long, is the country's most prominent physical feature and is landlocked along with the rest of the nation.",
+    "climate": "Malawi has a sub-tropical climate with a rainy season running from November to May and a dry season from May to November. The country is subject to flooding, droughts, and earthquakes.",
+    "economy": "Malawi is a low-income economy that is primarily agrarian, with the country investing in human capital while contending with high public debt, endemic corruption, poor property rights, and a poor hydroelectric grid. Urban poverty has increased due to COVID-19. Its main exports include tobacco, tea, dried legumes, soybean meal, and raw sugar, and its industries center on tobacco, tea, sugar, sawmill products, cement, and consumer goods.",
+    "peopleAndCulture": "The Chewa are the largest ethnic group at over a third of the population, followed by the Lomwe, Yao, Ngoni, and Tumbuka, among others. English is the official language, with Chewa dominant alongside languages such as Lomwe, Ngoni, Nyanja, Tumbuka, and Yao. Religion is predominantly Christian, with Protestant denominations including the Church of Central Africa Presbyterian, Seventh Day Adventist/Baptist, Pentecostal, and Anglican, plus a significant Roman Catholic population and a Muslim minority of 13.8%."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), Chewa (dominant), Lambya, Lomwe, Ngoni, Nkhonde, Nyakyusa, Nyanja, Sena, Tonga, Tumbuka, Yao || Protestant 33.5% (includes Church of Central Africa Presbyterian 14.2%, Seventh Day Adventist/Baptist 9.4%, Pentecostal 7.6%, Anglican 2.3%), Roman Catholic 17.2%, other Christian 26.6%, Muslim 13.8%, traditionalist 1.1%, other 5.6%, none 2.1% (2018 est.) || Chewa 34.3%, Lomwe 18.8%, Yao 13.2%, Ngoni 10.4%, Tumbuka 9.2%, Sena 3.8%, Mang'anja 3.2%, Tonga 1.8%, Nyanja 1.8%, Nkhonde 1%, other 2.2%, foreign 0.3% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:45.612Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "bo",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.424Z",
   "structured": {
     "code": "bo",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Bolivia is landlocked, bordered by Argentina, Brazil, Chile, Paraguay, and Peru, but it shares control of Lago Titicaca with Peru, the world's highest navigable lake at 3,805 meters. Beneath its rugged Andean terrain lies a wealth of resources — lithium, tin, natural gas, silver, gold, and more — that has made it a country whose fortunes rise and fall with global commodity prices.",
+    "physicalGeography": "Situated in central South America southwest of Brazil, Bolivia's landscape runs from the rugged Andes Mountains and the high Altiplano plateau down through hills into the lowland plains of the Amazon Basin. This range of elevation produces a country of striking physical contrasts within a single, landlocked territory.",
+    "climate": "Climate here shifts dramatically with altitude, from humid tropical conditions to cold, semiarid air higher up. The northeast experiences flooding between March and April, and the Andes along the border with Chile remain volcanically active, home to historic volcanoes including Irruputuncu, which last erupted in 1995, and the Olca-Paruma volcanic complex.",
+    "economy": "Bolivia's resource-rich economy tends to benefit during commodity booms, driven by mining, smelting, petroleum, and food and beverage industries alongside exports like gold, natural gas, zinc ore, and soybean meal. The country has bestowed juridical rights on Mother Earth, a legal move that affects its extraction industries, and it has built increasing trade ties with China around lithium mining. The economy was hit hard by COVID-19, prompting increased fiscal spending as poverty rose, while banking and finance corruption has remained a persistent problem.",
+    "peopleAndCulture": "Bolivia's population is predominantly Mestizo, of mixed White and Indigenous ancestry, alongside significant Indigenous communities — mostly Quechua or Aymara — along with smaller White, Cholo, and African-descended populations. Roman Catholicism is the majority faith, followed by a substantial Protestant population that includes Evangelical, Baptist, Pentecostal, Methodist, and Adventist congregations, alongside smaller numbers of atheists, agnostics, and those with no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 65%, Protestant 19.6% (Evangelical (non-specific) 11.9%, Evangelical Baptist 2.1%, Evangelical Pentecostal 1.8%, Evangelical Methodist 0.7%, Adventist 2.8%, Protestant (non-specific) 0.3%), Believer (not belonging to the church) 0.9%, other 4.8%, atheist 1.7%, agnostic 0.6%, none 6.1%, unspecified 1.3% (2023 est.) || Mestizo (mixed White and Indigenous ancestry) 68%, Indigenous 20%, White 5%, Cholo/Chola 2%, African descent 1%, other 1%, unspecified 3%; 44% other Indigenous group, predominantly Quechua or Aymara (2009 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:30:49.501Z",
+  "draftModel": "claude-sonnet-5"
 }

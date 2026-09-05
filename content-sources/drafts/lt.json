@@ -1,6 +1,6 @@
 {
   "iso": "lt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.382Z",
   "structured": {
     "code": "lt",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked along the Baltic Sea between Latvia and Russia, this lowland country of small lakes and fertile soil has built one of the Baltic region's strongest economies while holding onto deposits of amber pulled from its ancient glacial landscape.",
+    "physicalGeography": "Lithuania is lowland terrain scattered with many small lakes and fertile soil, sitting in Eastern Europe on the Baltic Sea between Latvia and Russia. Fertile central plains are broken up by hilly uplands left behind as ancient glacial deposits.",
+    "climate": "The climate sits in a transitional zone between maritime and continental influences, producing wet, moderate winters and summers. The country experiences occasional floods and droughts.",
+    "economy": "Lithuania is a high-income member of the EU and eurozone and the largest economy among the Baltic states, with recovery driven by private consumption and EU fund-backed investment. Its export base includes refined petroleum, furniture, plastic products, wheat, and cars, while industries range from shipbuilding and petroleum refining to lasers, biotechnology, and video game development. Structural challenges include pension reform, an aging workforce, and high costs from imported energy.",
+    "peopleAndCulture": "The population is predominantly Lithuanian (84.6%), with Polish, Russian, and Belarusian minorities. Roman Catholicism is the dominant religion at 74.2%, alongside smaller communities of Russian Orthodox, Old Believer, Evangelical Lutheran, and Evangelical Reformist adherents, plus small Sunni Muslim, Jewish, Greek Catholic, and Karaite populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 74.2%, Russian Orthodox 3.7%, Old Believer 0.6%, Evangelical Lutheran 0.6%, Evangelical Reformist 0.2%, other (including Sunni Muslim, Jewish, Greek Catholic, and Karaite) 0.9%, none 6.1%, unspecified 13.7% (2021 est.) || Lithuanian 84.6%, Polish 6.5%, Russian 5%, Belarusian 1%, other 1.1%, unspecified 1.8% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:12.695Z",
+  "draftModel": "claude-sonnet-5"
 }

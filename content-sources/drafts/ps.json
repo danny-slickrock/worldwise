@@ -1,6 +1,6 @@
 {
   "iso": "ps",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.401Z",
   "structured": {
     "code": "ps",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": ""
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:59:09.318Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -27,7 +27,23 @@ const DEFERRED_TERMS = [
   "dictator", "junta", "colonial", "colonialism", "colonized", "colonised",
   "independence", "annexed", "annexation", "invasion", "invaded", "occupation",
   "regime", "revolution", "uprising", "rebellion", "massacre", "apartheid",
-  "disputed territory", "separatist",
+  "disputed territory", "separatist", "conflict", "conflicts", "battle",
+  "empire", "treaty", "sanctions",
+];
+
+// Several of these words carry an ordinary economic sense with nothing to do
+// with conflict, and the first full run flagged five countries on exactly that:
+// "monetary regime", "currency regime", "energy independence", and the Khyber
+// and Bolan passes described as historic "invasion routes" — a geographic
+// description straight out of the source. Excluding the phrase keeps the signal
+// worth reading: a warning list that is half false positives gets skimmed,
+// which is how the real one gets missed.
+const SENSE_EXCEPTIONS = [
+  /\b(monetary|currency|exchange[- ]rate|fiscal|floating|tax|regulatory)\s+regime\b/gi,
+  /\benergy independence\b/gi,
+  /\bindependence from (?:russian|imported|foreign)\s+\w+/gi,
+  /\binvasion routes?\b/gi,
+  /\bwar\s*(?:on|against)\s+(?:poverty|drugs|corruption)\b/gi,
 ];
 
 // Prose must never call a territory a country. This is the pilot review's
@@ -45,7 +61,15 @@ function territoryMiscallPatterns(name) {
 async function main() {
   const files = (await readdir(DRAFT_DIR)).filter((f) => f.endsWith(".json")).sort();
   const report = [];
-  let drafted = 0, undrafted = [];
+  let drafted = 0;
+  // Three distinct states that a naive "has prose?" check conflates, and
+  // conflating them is dangerous in opposite directions:
+  //   hollow      — claims to be drafted but has no prose. Needs a redraft.
+  //   handAuthored— real prose written outside the driver, so it carries no
+  //                 draftedAt stamp. Force-redrafting these DESTROYS reviewed
+  //                 work; absence of a stamp is not absence of content.
+  //   undrafted   — never attempted.
+  const hollow = [], handAuthored = [], undrafted = [];
   let totalChunks = 0, longestChunk = 0;
 
   for (const file of files) {
@@ -55,8 +79,16 @@ async function main() {
     const errors = [], warns = [];
 
     const filled = FIELDS.filter((f) => (d.prose?.[f] ?? "").trim());
-    if (!filled.length) { undrafted.push(iso); continue; }
+    const stamped = Boolean(d.draftedAt);
+    if (!filled.length) {
+      (stamped || d.status === "drafted" ? hollow : undrafted).push(iso);
+      continue;
+    }
+    if (!stamped) handAuthored.push(iso);
     drafted += 1;
+    if (filled.length < FIELDS.length) {
+      warns.push(`only ${filled.length}/${FIELDS.length} prose fields written`);
+    }
 
     // 1. Every prose field has a source excerpt behind it. A field written with
     //    no source is by definition ungrounded, whatever it says.
@@ -70,7 +102,10 @@ async function main() {
     // 2. Deferred-scope leakage. History and conflict belong to a later pass.
     for (const f of FIELDS) {
       const text = (d.prose?.[f] ?? "").toLowerCase();
-      const hits = DEFERRED_TERMS.filter((t) => new RegExp(`\\b${t}\\b`).test(text));
+      // Blank the ordinary-sense phrases first, so "monetary regime" does not
+      // read as a political regime.
+      const scanned = SENSE_EXCEPTIONS.reduce((s, re) => s.replace(re, " "), text);
+      const hits = DEFERRED_TERMS.filter((t) => new RegExp(`\\b${t}\\b`).test(scanned));
       if (hits.length) warns.push(`${f}: deferred-scope terms [${[...new Set(hits)].join(", ")}]`);
     }
 
@@ -158,8 +193,19 @@ async function main() {
   const withErrors = report.filter((r) => r.errors.length);
   const withWarns = report.filter((r) => !r.errors.length && r.warns.length);
 
-  console.log(`Validated ${drafted} drafted countries (${undrafted.length} not yet drafted).`);
+  console.log(`Validated ${drafted} countries with prose.`);
   console.log(`Chunks: ${totalChunks} total, longest ${longestChunk} / ${MAX_CHUNK_CHARS} cap.`);
+  if (hollow.length) {
+    console.log(`\nHOLLOW — claim to be drafted but have NO prose (${hollow.length}): ${hollow.join(" ")}`);
+    console.log(`  Redraft with:  ONLY=${hollow.join(",")} FORCE=1 npm run content:generate`);
+  }
+  if (handAuthored.length) {
+    console.log(`\nHand-authored — real prose, no driver stamp (${handAuthored.length}): ${handAuthored.join(" ")}`);
+    console.log(`  These are complete. Do NOT force-redraft them: it would overwrite reviewed text.`);
+  }
+  if (undrafted.length) {
+    console.log(`\nNever drafted (${undrafted.length}): ${undrafted.join(" ")}`);
+  }
   console.log(`\n  ERRORS in ${withErrors.length} countries · warnings in ${withWarns.length}\n`);
 
   for (const r of withErrors) {
@@ -171,10 +217,7 @@ async function main() {
     console.log(`warn   ${r.iso} ${r.name}`);
     for (const w of r.warns) console.log(`         ${w}`);
   }
-  if (undrafted.length) {
-    console.log(`\nNot yet drafted (${undrafted.length}): ${undrafted.slice(0, 30).join(" ")}${undrafted.length > 30 ? " ..." : ""}`);
-  }
-  process.exit(withErrors.length ? 1 : 0);
+  process.exit(withErrors.length || hollow.length ? 1 : 0);
 
 }
 

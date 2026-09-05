@@ -1,6 +1,6 @@
 {
   "iso": "th",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.404Z",
   "structured": {
     "code": "th",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Thailand sits southeast of Burma along the Andaman Sea and the Gulf of Thailand, and its geography gives it control of the only land route connecting mainland Asia to Malaysia and Singapore. It exports machine parts, integrated circuits, trucks, cars, and broadcasting equipment, backed by resources ranging from tin and natural gas to rubber and timber.",
+    "physicalGeography": "The country is built around a central plain, with the Khorat Plateau rising in the east and mountains covering much of the rest of the terrain. It lies in Southeastern Asia, bordering both the Andaman Sea and the Gulf of Thailand, southeast of Burma.",
+    "climate": "Thailand's climate is tropical, shaped by a rainy, warm, cloudy southwest monsoon from mid-May to September and a dry, cool northeast monsoon from November to mid-March, while the southern isthmus stays hot and humid year-round. The Bangkok area faces land subsidence caused by depletion of the water table, alongside periodic droughts.",
+    "economy": "Thailand is an upper middle-income Southeast Asian economy with substantial infrastructure and a currency used globally, and it maintains extremely low unemployment while pursuing an ongoing development push known as Thailand 4.0. It is a major exporter of electronics, food, and automobile parts, with industries spanning tourism, textiles, automotive parts, petrochemicals, and rice and cassava production, and it ranks as the world's second-largest tungsten producer and third-largest tin producer.",
+    "peopleAndCulture": "The population is overwhelmingly Buddhist, at 92.5 percent, with smaller Muslim, Christian, and other religious communities including animist, Confucian, Hindu, Jewish, Sikh, and Taoist minorities. Ethnically, Thai people make up 97.5 percent of the population, alongside a smaller Burmese community and other groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist 92.5%, Muslim 5.4%, Christian 1.2%, other 0.9% (includes animist, Confucian, Hindu, Jewish, Sikh, and Taoist) (2021 est.) || Thai 97.5%, Burmese 1.3%, other 1.1%, unspecified &lt;0.1% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:28.340Z",
+  "draftModel": "claude-sonnet-5"
 }

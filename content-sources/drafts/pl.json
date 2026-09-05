@@ -1,6 +1,6 @@
 {
   "iso": "pl",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.385Z",
   "structured": {
     "code": "pl",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Poland sits on the North European Plain east of Germany, a stretch of mostly flat terrain with mountains only along its southern border. That lack of natural barriers has historically made the region an area of conflict, since flat land offers little to stop movement across it.",
+    "physicalGeography": "The country is dominated by flat plain, with mountains rising along its southern border. It lies in Central Europe, directly east of Germany.",
+    "climate": "Poland has a temperate climate with cold, cloudy, moderately severe winters marked by frequent precipitation, and mild summers with frequent showers and thundershowers. Flooding is a recurring hazard.",
+    "economy": "Poland is a high-income, diversified economy and EU member that has seen significant growth in GDP, trade, and investment since joining the EU in 2004, driven by private consumption and EU-funded public investment. Increased social spending, flood recovery costs, and defense spending have added to public debt. Key industries include machine building, iron and steel, coal mining, chemicals, shipbuilding, food processing, glass, beverages, and textiles, while major exports include vehicle parts and accessories, electric batteries, plastic products, cars, and seats.",
+    "peopleAndCulture": "The population is overwhelmingly Polish by ethnicity, at 96.9 percent, with small Silesian, German, and Ukrainian minorities. Roman Catholicism dominates religious life at 70.7 percent, though a notable 20.9 percent declined to answer and 6.9 percent report no religion, with numerous smaller Christian and other faiths each accounting for less than one percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 70.7%, refused to answer 20.9%, no religion 6.9%; less than 1 percent: Orthodox, Jehovah Witness, Evangelic of Augsburg, Greek Catholic, Pentecostal, other Protestant, not stated, old Catholic Mariavite Church, other Christians, Islam, Buddhist, Polish Catholic Church, other, Baptist Union of Poland, Pagan, Seventh Day Adventist, Hindu, other Catholic (2021 est.) || Polish 96.9%, Silesian 1.1%, German 0.2%, Ukrainian 0.1%, other and unspecified 1.7% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:16.717Z",
+  "draftModel": "claude-sonnet-5"
 }

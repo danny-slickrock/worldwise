@@ -1,6 +1,6 @@
 {
   "iso": "ee",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.378Z",
   "structured": {
     "code": "ee",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Latvia and Russia on the Baltic Sea and Gulf of Finland, Estonia pairs a flat, boggy mainland with more than 1,500 offshore islands. Its economy runs on cars, wood, broadcasting equipment and refined petroleum, an unusual export mix for a country this size.",
+    "physicalGeography": "Estonia sits in Eastern Europe along the Baltic Sea and Gulf of Finland, between Latvia and Russia. The terrain is marshy and low-lying, flat in the north and hilly in the south, with the mainland itself boggy and partly wooded and more than 1,500 islands scattered offshore.",
+    "climate": "The climate is maritime, bringing wet winters that are moderate rather than harsh and summers that stay cool. Spring flooding occurs at times.",
+    "economy": "Estonia has a high-income, service-based economy tied into the EU and eurozone, with industries spanning food, engineering, electronics, wood products, textiles, information technology and telecommunications. Its export lineup includes cars, wood, broadcasting equipment, refined petroleum and prefabricated buildings, and a rebound in exports has helped drive economic recovery, even as rising food prices push inflation up and unemployment climbs alongside falling labor force participation. Further recovery depends on boosting private investment and productivity.",
+    "peopleAndCulture": "Ethnic Estonians make up about 69% of the population, with Russians around 24% and smaller Ukrainian and other minorities; Estonian is the official language, spoken by roughly two-thirds of residents, while Russian is widely spoken as well. Religious affiliation is notably low: nearly 58% report no religion, while the remainder split mainly between Orthodox Christianity and Protestantism, chiefly Lutheran, with small communities of Roman Catholics, Muslims and others, including a distinct native Taara Believer faith."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Estonian (official) 67.2%, Russian 28.5%, other 3.7%, unspecified 0.6% (2021est.) || Orthodox 16.5%, Protestant 9.2% (Lutheran 7.7%, other Protestant 1.5%), other 3% (includes Roman Catholic, Muslim, Jehovah's Witness, Pentecostal, Buddhist, and Taara Believer), none 58.4%, unspecified 12.9% (2021 est.) || Estonian 69.1%, Russian 23.7%, Ukrainian 2.1%, other 4.6%, unspecified 0.5% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:34:50.860Z",
+  "draftModel": "claude-sonnet-5"
 }

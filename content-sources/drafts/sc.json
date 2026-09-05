@@ -1,6 +1,6 @@
 {
   "iso": "sc",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.419Z",
   "structured": {
     "code": "sc",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Scattered across the Indian Ocean northeast of Madagascar, Seychelles is the smallest African country by both area and population, yet its constitution lists 155 islands, split between 42 granitic and 113 coralline formations. Nearly all of that population lives on a single island, Mahe, which also holds the capital, Victoria. With no land borders at all, this is a country defined entirely by sea, reef, and rock.",
+    "physicalGeography": "The Mahe Group is volcanic, with a narrow coastal strip giving way to a rocky, hilly interior, while the rest of the archipelago consists of relatively flat coral atolls or elevated reefs. The whole island chain sits atop the submarine Mascarene Plateau, a shared undersea foundation linking these otherwise scattered landforms.",
+    "climate": "The climate is tropical marine and humid year-round, shaped by two monsoon seasons: a cooler stretch during the southeast monsoon from late May to September, and a warmer period during the northwest monsoon from March to May. Seychelles lies outside the cyclone belt, so severe storms are rare, though short droughts do occur.",
+    "economy": "Seychelles has a high-income economy built on tourism, which is growing rapidly, and a major tuna export industry, alongside an offshore financial sector. Its exports include fish, scrap iron, animal meal, broadcasting equipment, and ships, while core industries are fishing, tourism, and beverages. The country has recently identified offshore oil potential, has pursued successful anticorruption efforts, and, given its environmental fragility, is investing in mitigating ocean rise.",
+    "peopleAndCulture": "The population is predominantly Creole, mainly of East African and Malagasy heritage, alongside French, Indian, Chinese, and Arab communities. Seychellois Creole is the majority language at 89.1%, with English and French also holding official status. Roman Catholicism is the dominant religion at over three-quarters of the population, followed by various Protestant denominations, with smaller Hindu and Muslim minorities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Seychellois Creole (official) 89.1%, English (official) 5.1%, French (official) 0.7%, other 3.8%, unspecified 1.4% (2010 est.) || Roman Catholic 76.2%, Protestant 10.5% (Anglican 6.1%, Pentecostal Assembly 1.5%, Seventh Day Adventist 1.2%, other Protestant 1.7%), other Christian 2.4%, Hindu 2.4%, Muslim 1.6%, other non-Christian 1.1%, unspecified 4.8%, none 0.9% (2010 est.) || predominantly Creole (mainly of East African and Malagasy heritage); also French, Indian, Chinese, and Arab populations"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:57.423Z",
+  "draftModel": "claude-sonnet-5"
 }

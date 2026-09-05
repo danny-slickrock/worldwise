@@ -1,6 +1,6 @@
 {
   "iso": "ci",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.410Z",
   "structured": {
     "code": "ci",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Most of Ivory Coast's people live along its sandy Atlantic coastline, while the forested interior stays sparsely populated outside the capital area. The country is rich underground and in its fields alike — petroleum, natural gas, diamonds, gold, and cocoa beans all feature among its resources — and its 2023 exports were led by gold, cocoa beans, rubber, and refined petroleum.",
+    "physicalGeography": "Ivory Coast sits in West Africa on the North Atlantic coast, between Ghana and Liberia, and also shares land borders with Burkina Faso, Guinea, and Mali. The terrain is mostly flat to undulating plains, with mountains rising in the northwest.",
+    "climate": "The climate is tropical along the coast and semiarid in the far north, moving through three seasons: warm and dry from November to March, hot and dry from March to May, and hot and wet from June to October. The coast itself has heavy surf and no natural harbors, and the rainy season can bring torrential flooding.",
+    "economy": "Ivory Coast is described as one of West Africa's most influential, stable, and rapidly developing economies, though poverty trends diverge — declining in urban areas while rising in rural ones. It has a strong construction sector, an increasingly diverse economic base, and manageable though increasing public debt, alongside a large agricultural workforce. Its 2023 exports were led by gold, cocoa beans, rubber, and refined petroleum, while its industries span foodstuffs and beverages, wood products, oil refining, gold mining, textiles, and building materials.",
+    "peopleAndCulture": "Religion in Ivory Coast is varied: about 43% of people are Muslim, 17% Catholic, and 12% Evangelical, with smaller communities of Methodists, other Christians, and animists, and roughly a fifth identifying with no religion. Ethnically, the Akan are the largest group at 38%, followed by the Voltaique or Gur and Northern Mande peoples at 22% each, with Kru and Southern Mande communities making up most of the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 42.9%, Catholic 17.2%, Evangelical 11.8%, Methodist 1.7%, other Christian 3.2%, animist 3.6%, other religion 0.5%, none 19.1% (2014 est.) || Akan 38%, Voltaique or Gur 22%, Northern Mande 22%, Kru 9.1%, Southern Mande 8.6%, other 0.3% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:32:43.184Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "fr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.379Z",
   "structured": {
     "code": "fr",
@@ -41,11 +41,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Stretching from the English Channel to the Mediterranean, this is the largest nation in Western Europe, sharing land borders with eight countries: Andorra, Belgium, Germany, Italy, Luxembourg, Monaco, Spain, and Switzerland. Beyond the mainland, its territories reach into the Caribbean, South America, and the Indian Ocean. Nearly all its major rivers, the Seine, Loire, Garonne, and others, drain northward or westward into the Atlantic; only the Rhone runs south to the Mediterranean.",
+    "physicalGeography": "The mainland is mostly flat plains or gently rolling hills across the north and west, giving way to mountains at the edges: the Pyrenees along the southern border and the Alps in the east. Its overseas territories look nothing alike: French Guiana has low coastal plains rising into hills, Martinique is mountainous with a dormant volcano, Mayotte is undulating with deep ravines and ancient volcanic peaks, and Reunion is rugged and mountainous with fertile lowlands along its coast. Guadeloupe itself is split between volcanic terrain on Basse-Terre and a low limestone plain on Grande-Terre.",
+    "climate": "Metropolitan France has cool winters and mild summers, except along the Mediterranean coast where winters are mild and summers hot; the region is periodically swept by the mistral, a strong, cold, dry wind blowing from the north. Natural hazards on the mainland include flooding, avalanches, windstorms, drought, and forest fires in the south, while the overseas departments face hurricanes and flooding. Martinique's Montagne Pelée, the most active volcano in the Lesser Antilles arc, produced a catastrophic 1902 eruption that destroyed the city of St. Pierre and killed an estimated 30,000 people; Guadeloupe's La Soufrière has also had explosive eruptions in recent years.",
+    "economy": "This is a high-income, advanced economy within the EU and eurozone, built on strong tourism, aircraft manufacturing, pharmaceuticals, and a broad industrial base spanning machinery, chemicals, automobiles, metallurgy, and electronics. Its top exports include aircraft, cars, packaged medicine, gas turbines, and vehicle parts. The country carries high public debt and is pursuing a shift toward a green economy through its \"France 2030\" strategy.",
+    "peopleAndCulture": "The population traces its roots to Celtic and Latin ancestry with Teutonic and Slavic influences, alongside minorities including North African communities from Algeria, Morocco, and Tunisia, as well as Indochinese and Basque populations. Religiously, the country is nominally Roman Catholic at 47 percent, with smaller communities of Muslims, Protestants, Buddhists, Orthodox Christians, and Jews, while 33 percent identify with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -75,5 +75,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 47%, Muslim 4%, Protestant 2%, Buddhist 2%, Orthodox 1%, Jewish 1%, other 1%, none 33%, unspecified 9% (2021 est.) || Celtic and Latin with Teutonic, Slavic, North African (Algerian, Moroccan, Tunisian), Indochinese, Basque minorities"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:59:07.861Z",
+  "draftModel": "claude-sonnet-5"
 }

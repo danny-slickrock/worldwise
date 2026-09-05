@@ -1,6 +1,6 @@
 {
   "iso": "om",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.400Z",
   "structured": {
     "code": "om",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Oman sits on the Arabian Peninsula between Yemen and the UAE, its territory split into Oman proper and two northern exclaves, Musandam and Al Madhah. Musandam occupies a strategic position right on the Strait of Hormuz, overlooking one of the world's key shipping chokepoints.",
+    "physicalGeography": "The country's interior is dominated by a central desert plain, flanked by rugged mountains in the north and south. It borders the Arabian Sea, Gulf of Oman, and Persian Gulf.",
+    "climate": "Oman is dry desert overall, but conditions vary sharply by region: hot and humid along the coast, hot and dry in the interior. The far south catches a strong southwest monsoon between May and September, while summer winds elsewhere can whip up large sandstorms and dust storms, and the country experiences periodic droughts.",
+    "economy": "Oman runs a high-income, oil-based economy supported by a large welfare system, though government debt has been growing. Policy has focused on favoring citizens in labor force growth and on diversifying the economy beyond oil, alongside a free trade agreement with the US and notably high female labor force participation. Its exports center on crude and refined petroleum, natural gas, semi-finished iron, and fertilizers, with industries spanning oil and gas production, construction, cement, copper, steel, chemicals, and optic fiber.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim (85.9%), with smaller Christian (6.4%) and Hindu (5.7%) communities. Ethnically, Omanis include Arab and Baluchi populations alongside South Asian communities from India, Pakistan, Sri Lanka, and Bangladesh, as well as people of African descent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 85.9%, Christian 6.4%, Hindu 5.7%, other and unaffiliated 2% (2020 est.) || Arab, Baluchi, South Asian (Indian, Pakistani, Sri Lankan, Bangladeshi), African"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:35.693Z",
+  "draftModel": "claude-sonnet-5"
 }

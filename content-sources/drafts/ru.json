@@ -1,6 +1,6 @@
 {
   "iso": "ru",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.387Z",
   "structured": {
     "code": "ru",
@@ -53,11 +53,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Russia is the largest country in the world by area, stretching from Eastern Europe across the Ural Mountains into North Asia and on to the Pacific. Its far east, especially the Kamchatka Peninsula, sits on the Ring of Fire, the belt encircling the Pacific that holds roughly three-quarters of the planet's volcanoes and up to 90 percent of its earthquakes. Mount El'brus is Europe's tallest peak, and Lake Baikal, the deepest lake on Earth, is thought to hold a fifth of the world's fresh surface water. Despite its enormous size, much of the country is too cold or too dry to support agriculture.",
+    "physicalGeography": "West of the Urals lies a broad plain with low hills, giving way further east to the vast coniferous forest and tundra of Siberia. Uplands and mountains run along the southern border regions. The country's territory spans an immense range, from the European plain to the North Pacific coast.",
+    "climate": "Climate ranges from steppe in the south through humid continental conditions across much of European Russia, to subarctic in Siberia and tundra in the polar north, with winters swinging from cool along the Black Sea coast to frigid in Siberia and summers from warm on the steppes to cool along the Arctic coast. Permafrost across much of Siberia is a major obstacle to development, and the region is prone to spring floods and summer or autumn forest fires. The Kamchatka Peninsula alone has 29 historically active volcanoes, with dozens more in the Kuril Islands; Kliuchevskoi, rising to 4,835 meters, is Kamchatka's most active. Avachinsky and Koryaksky, near the city of Petropavlovsk-Kamchatsky, are classified as Decade Volcanoes for study given their explosive history and proximity to people.",
+    "economy": "Russia's economy is built on a rich natural-resource base, including major deposits of oil, natural gas, coal, strategic minerals, bauxite, rare earth elements, and timber, and it has been a leading energy exporter to Europe and Asia while reducing its reliance on oil exports. Endemic corruption and a lack of green infrastructure limit investment in the economy. Its export lineup centers on crude and refined petroleum, natural gas, coal, and fertilizers. Industry spans the full range of mining and extraction, machine building from rolling mills to aircraft and spacecraft, defense production, shipbuilding, transportation and communications equipment, agricultural and construction machinery, power generation equipment, and consumer goods.",
+    "peopleAndCulture": "Ethnic Russians make up about 77.7 percent of the population, with Tatars, Ukrainians, Bashkirs, Chuvash, Chechens, and other groups accounting for the rest. Religiously, Russian Orthodox believers make up 15 to 20 percent of the population and Muslims 10 to 15 percent, with other Christians at about 2 percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -87,5 +87,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Russian Orthodox 15-20%, Muslim 10-15%, other Christian 2% (2006 est.) || Russian 77.7%, Tatar 3.7%, Ukrainian 1.4%, Bashkir 1.1%, Chuvash 1%, Chechen 1%, other 10.2%, unspecified 3.9% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:24.270Z",
+  "draftModel": "claude-sonnet-5"
 }

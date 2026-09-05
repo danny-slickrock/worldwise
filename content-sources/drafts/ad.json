@@ -1,6 +1,6 @@
 {
   "iso": "ad",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.373Z",
   "structured": {
     "code": "ad",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked into the Pyrenees between France and Spain, this landlocked microstate sits astride crossroads that have long mattered for crossing the mountains. Its rugged terrain hasn't stopped it from becoming a tourist hub and duty-free trading point between two much larger neighbors.",
+    "physicalGeography": "Andorra is a landlocked pocket of Southwestern Europe wedged into the Pyrenees mountains on the border between France and Spain. Its landscape is rugged, made up of mountains cut through by narrow valleys.",
+    "climate": "The climate is temperate, with snowy, cold winters and warm, dry summers. Avalanches are a recognized hazard given the mountainous terrain.",
+    "economy": "Andorra has a high GDP and low unemployment, and although not an EU member it uses the euro. It functions as a duty-free area between Spain and France and has built its economy around tourism, especially skiing, along with banking, timber, and furniture; its financial sector has moved away from a tax-haven model toward a modern banking system, and it has recently joined SEPA and the IMF. Tourism was hit hard by COVID-19, and the country is now seeking bigger investments in technology. Its exports include paintings, integrated circuits, cars, orthopedic appliances, and garments.",
+    "peopleAndCulture": "Andorra's population is linguistically mixed: Catalan is the official language, spoken by 44.1%, alongside Castilian (40.3%), Portuguese (13.5%), French (10%), and English (3%). The population is predominantly Christian, mostly Roman Catholic, at 89.5%. By nationality, Spaniards make up the largest group at 34.3%, followed by Andorrans at 32.1%, Portuguese at 10%, and French at 5.6%."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catalan (official) 44.1%, Castilian 40.3%, Portuguese 13.5%, French 10%, English 3%, other 6.8% (2022 est.) || Christian (predominantly Roman Catholic) 89.5, other 8.8%, unaffiliated 1.7% (2020 est.) || Spanish 34.3%, Andorran 32.1%, Portuguese 10%, French 5.6%, other 18% (2024 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:27:55.328Z",
+  "draftModel": "claude-sonnet-5"
 }

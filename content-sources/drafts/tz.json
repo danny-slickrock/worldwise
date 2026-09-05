@@ -1,6 +1,6 @@
 {
   "iso": "tz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.421Z",
   "structured": {
     "code": "tz",
@@ -42,11 +42,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Home to Kilimanjaro, the highest point in Africa and one of only three spots on the continent where glaciers survive, this is a country defined by extremes of elevation and water. It is also ringed by three of Africa's largest lakes—Victoria, Tanganyika, and Nyasa—and holds the world's only known source of tanzanite.",
+    "physicalGeography": "The landscape runs from coastal plains along the Indian Ocean through a broad central plateau to highlands in the north and south. Kilimanjaro rises above it all as the highest point in Africa, one of only three African mountain ranges carrying glaciers, alongside Mount Kenya and the Ruwenzori range on the Uganda-DRC border. The country is bordered by Lake Victoria, the world's second-largest freshwater lake, Lake Tanganyika, the world's second-deepest, and Lake Nyasa. On land it borders eight countries: Burundi, the Democratic Republic of the Congo, Kenya, Malawi, Mozambique, Rwanda, Uganda, and Zambia.",
+    "climate": "Conditions shift from tropical along the coast to temperate in the highlands. The rainy season can bring flooding to the central plateau, while drought is also a recurring risk. Volcanic activity is limited but not absent: Ol Doinyo Lengai, at 2,962 meters, has emitted lava in recent years, and Kieyo and Meru have been active historically.",
+    "economy": "Tanzania is an emerging lower middle-income economy in East Africa, resource-rich and increasingly reliant on tourism. A strong post-pandemic recovery has been driven by hospitality, electricity, mining, and transit sectors, alongside declining poverty and stable inflation. Key industries include agricultural processing such as sugar, beer, cigarettes, and sisal twine, along with mining of diamonds, gold, and iron, plus cement, oil refining, shoes, apparel, wood products, and fertilizer production; leading exports include gold, refined petroleum, dried legumes, refined copper, and coal.",
+    "peopleAndCulture": "The population is majority Christian at 63.1%, with Muslims making up 34.1% and smaller shares following folk religions or other faiths. On the mainland, African people make up about 99% of the population, the large majority of them Bantu, encompassing more than 130 distinct tribes, with a small remainder of Asian, European, and Arab descent. Zanzibar's population is distinct, made up of Arab, African, and mixed Arab-African communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -76,5 +76,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 63.1%, Muslim 34.1%, folk religion 1.1%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, other &lt;1%, unspecified 1.6% (2020 est.) || mainland - African 99% (of which 95% are Bantu consisting of more than 130 tribes), other 1% (consisting of Asian, European, and Arab); Zanzibar - Arab, African, mixed Arab and African"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:00.509Z",
+  "draftModel": "claude-sonnet-5"
 }

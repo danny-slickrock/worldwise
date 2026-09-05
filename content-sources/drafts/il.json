@@ -1,6 +1,6 @@
 {
   "iso": "il",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.395Z",
   "structured": {
     "code": "il",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between the Mediterranean and the Jordan Rift Valley, Israel packs a striking range of terrain into a small area, from the Negev desert in the south to the Dead Sea, the second saltiest body of water on Earth. Nearby Mount Sodom, a hill that is 80% salt, contains the Malham Cave, the world's longest salt cave at 10 km. The country's economy runs on high-tech exports like integrated circuits and medical instruments alongside diamonds and refined petroleum.",
+    "physicalGeography": "The landscape moves from the Negev desert in the south through a low coastal plain along the Mediterranean to central mountains and the Jordan Rift Valley. This mix of desert, coastline, highland, and rift valley gives the country unusually varied terrain for its size.",
+    "climate": "The climate is temperate overall, turning hot and dry in the southern and eastern desert regions. Sandstorms can occur in spring and summer, and the country also experiences periodic droughts and earthquakes.",
+    "economy": "Israel has a high-income economy built on technology and industry. Its industrial base spans high-technology fields such as aviation, communications, computer-aided design, medical electronics, and fiber optics, alongside wood and paper products, potash and phosphates, food and beverages, pharmaceuticals, construction, chemicals, plastics, cut diamonds, and textiles. Its main exports include integrated circuits, diamonds, broadcasting equipment, medical instruments, and refined petroleum.",
+    "peopleAndCulture": "The population is 73.5% Jewish, with the remainder including Muslim, Christian, Druze, and other communities; by ethnicity, about 21.1% of residents are Arab. Among the Jewish population, most are Israel-born, with smaller shares born in Europe, the Americas, Oceania, Africa, and Asia, reflecting a history of immigration from diverse regions."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Jewish 73.5%, Muslim 18.1%, Christian 1.9%, Druze 1.6%, other 4.9% (2022 est.) || Jewish 73.5% (of which Israel-born 79.7%, Europe/America/Oceania-born 14.3%, Africa-born 3.9%, Asia-born 2.1%), Arab 21.1%, other 5.4% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:50.997Z",
+  "draftModel": "claude-sonnet-5"
 }

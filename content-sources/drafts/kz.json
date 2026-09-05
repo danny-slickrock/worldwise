@@ -1,6 +1,6 @@
 {
   "iso": "kz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.396Z",
   "structured": {
     "code": "kz",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "This is the world's largest landlocked country, and one of only two landlocked nations on Earth that stretch across two continents (the other is Azerbaijan). Its territory runs as flat steppe from the Volga in the west to the Altai Mountains in the east, sitting atop major deposits of petroleum, gold, uranium, and a long list of other minerals. Russia leases roughly 6,000 square kilometers here to operate the Baikonur Cosmodrome.",
+    "physicalGeography": "The country is defined by vast, flat steppe that extends from the Volga River in the west to the Altai Mountains in the east, and from the plains of western Siberia in the north down to the oases and deserts of Central Asia in the south. Most of the territory lies in Central Asia northwest of China, though a small portion west of the Ural River falls within easternmost Europe, giving the country a foothold on two continents.",
+    "climate": "The climate is continental, with cold winters and hot summers, and conditions range from arid to semiarid across much of the territory. The south is prone to earthquakes, and the area around Almaty experiences mudslides.",
+    "economy": "Kazakhstan is an upper-middle-income economy that has seen robust growth driven by rising oil production, expansion in manufacturing and services, growing domestic demand, and infrastructure investment. That growth has come with a high inflation rate, though unemployment and poverty rates have been declining. Its industrial base spans oil, coal, and a wide range of metal ores including iron, manganese, chromite, lead, zinc, copper, and uranium, alongside manufacturing of tractors, agricultural machinery, and electric motors; its main exports are crude petroleum, gold, radioactive chemicals, refined copper, and copper ore.",
+    "peopleAndCulture": "Kazakhs make up 71% of the population, with Russians the largest minority at 14.9%, followed by smaller communities of Uzbeks, Ukrainians, Uyghurs, Germans, and Tatars. Islam is the majority religion at 69.3%, with Christians, largely Orthodox, accounting for 17.2% of the population."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 69.3%, Christian 17.2% (Orthodox 17%, other 0.2%), Buddhism 0.1%, other 0.1%, non-believers 2.3%, unspecified 11% (2021 est.) || Kazakh 71%, Russian 14.9%, Uzbek 3.3%, Ukrainian 1.9%, Uyghurs 1.5%, German 1.1%, Tatar 1.1%, other 4.9%, unspecified 0.3% (2023 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:42:04.498Z",
+  "draftModel": "claude-sonnet-5"
 }

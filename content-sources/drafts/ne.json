@@ -1,6 +1,6 @@
 {
   "iso": "ne",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.417Z",
   "structured": {
     "code": "ne",
@@ -39,11 +39,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Niger is landlocked and ranks among the hottest countries on Earth, with a northern four-fifths given over to desert and only a southern strip of savanna suitable for livestock and limited farming. Beneath that harsh terrain lies a wealth of uranium, along with coal, iron ore, tin, gold, and petroleum.",
+    "physicalGeography": "Niger sits in Western Africa, southeast of Algeria, and is dominated by desert plains and sand dunes. The south flattens into rolling plains, while hills rise in the north.",
+    "climate": "The climate is desert: mostly hot, dry, and dusty, with a tropical zone confined to the extreme south. Recurring droughts are a persistent feature.",
+    "economy": "Niger is a low-income Sahel economy where instability and humanitarian crises constrain economic activity, and COVID-19 wiped out recent gains against poverty. The economy has been rebounding since Nigeria reopened its border in December 2020 and new investments arrived, with uranium a key resource. Exports include gold, oil seeds, uranium and thorium ore, radioactive chemicals, and refined petroleum, while industries range from uranium mining and petroleum to cement, brick, soap, textiles, food processing, and chemicals.",
+    "peopleAndCulture": "Hausa make up just over half the population, followed by Zarma/Songhai, Tuareg, Fulani (Peuhl), Kanuri, and smaller groups including Gurma, Arab, and Tubu. French is the official language alongside Hausa, Zarma, Fufulde, Tamashek, Kanuri, Gurmancema, and Tagdal. The population is overwhelmingly Muslim, at 95.5%, with small minorities following ethnic religions or Christianity."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -73,5 +73,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Hausa, Zarma, French (official), Fufulde, Tamashek, Kanuri, Gurmancema, Tagdal || Muslim 95.5%, ethnic religionist 4.1%, Christian 0.3%, agnostics and other 0.1% (2020 est.) || Hausa 53.1%, Zarma/Songhai 21.2%, Tuareg 11%, Fulani (Peuhl) 6.5%, Kanuri 5.9%, Gurma 0.8%, Arab 0.4%, Tubu 0.4%, other/unavailable 0.9% (2006 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:46:28.601Z",
+  "draftModel": "claude-sonnet-5"
 }

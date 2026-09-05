@@ -1,6 +1,6 @@
 {
   "iso": "ni",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.430Z",
   "structured": {
     "code": "ni",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Nicaragua is the largest country in Central America, sitting between Costa Rica and Honduras with coastlines on both the Caribbean Sea and the North Pacific Ocean. It holds Lago de Nicaragua, the largest freshwater body in Central America, and its landscape is punctuated by active volcanoes that shape both its terrain and its risks.",
+    "physicalGeography": "The country's Atlantic side consists of extensive coastal plains that rise gradually into central interior mountains, while the Pacific side has only a narrow coastal plain, one broken up by a chain of volcanoes.",
+    "climate": "Nicaragua is tropical in its lowlands and cooler in the highlands, but its natural hazards are what stand out: destructive earthquakes, landslides, and extreme susceptibility to hurricanes, combined with significant volcanic activity. Cerro Negro, at 728 meters, is one of the country's most active volcanoes, with lava flows and ash that have damaged farmland and buildings; other historically active volcanoes include Concepcion, Cosiguina, Las Pilas, Masaya, Momotombo, San Cristobal, and Telica.",
+    "economy": "Nicaragua has a low-income economy that saw nearly 20 years of sustained GDP growth until 2018, since interrupted by COVID-19, political instability, hurricanes, and sanctions that limit investment. Poverty and food scarcity have been increasing since 2005, and remittances play a significant role in the economy. Its exports include garments, gold, insulated wire, coffee, and beef, supported by industries such as food processing, chemicals, machinery and metal products, apparel manufacturing, petroleum refining, beverages, footwear, wood products, and mining.",
+    "peopleAndCulture": "Nicaragua's population is predominantly Mestizo, of mixed Indigenous and White descent, at 69%, with White people making up 17%, Black people 9%, and Indigenous people 5%. Religiously, the country is largely Christian: Roman Catholics account for 44.9% and Protestants 38.7%, the latter mostly Evangelical, with smaller shares identifying as believers without church affiliation, agnostic or atheist, or unaffiliated."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 44.9%, Protestant 38.7% (Evangelical 38.2, Adventist 0.5%), other 1.2%, (includes Jehovah's Witness and Church of Jesus Christ), believer but not belonging to a church 1%, agnostic or atheist 0.4%, none 13.7%, unspecified 0.2% (2020 est.) || Mestizo (mixed Indigenous and White) 69%, White 17%, Black 9%, Indigenous 5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:46:37.948Z",
+  "draftModel": "claude-sonnet-5"
 }

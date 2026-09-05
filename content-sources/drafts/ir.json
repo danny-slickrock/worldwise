@@ -1,6 +1,6 @@
 {
   "iso": "ir",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.395Z",
   "structured": {
     "code": "ir",
@@ -39,11 +39,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Iran sits at a strategic crossroads between Iraq and Pakistan, its coastline touching the Gulf of Oman, the Persian Gulf, and the Caspian Sea, with the Strait of Hormuz just offshore. Behind the coast rises a rugged mountainous rim enclosing a high central basin of deserts and mountains. The country holds substantial reserves of petroleum, natural gas, coal, and metals including chromium, copper, iron ore, and zinc.",
+    "physicalGeography": "The landscape is dominated by a rugged, mountainous rim that encircles a high central basin filled with deserts and mountains. Along both coasts, the terrain gives way to small, discontinuous plains rather than continuous lowlands. This basin-and-rim structure defines most of the country's terrain, bordered by the Gulf of Oman, the Persian Gulf, and the Caspian Sea.",
+    "climate": "Most of Iran is arid or semiarid, though the Caspian coast has a subtropical climate. The country experiences periodic droughts and floods, along with dust storms and sandstorms, and is subject to earthquakes.",
+    "economy": "Iran's economy has traditionally been state-controlled, though state-owned financial entities are undergoing reform. Oil and gas, agriculture, and services form strong sectors, but the economy has recently suffered massive inflation tied to exchange rate depreciation, international sanctions, and investor uncertainty, with poverty on the rise. Industries include petroleum, petrochemicals, gas, fertilizer, textiles, cement and construction materials, food processing such as sugar refining and vegetable oil production, and metal fabrication, while exports include plastics, iron ore, alcohols, natural gas, and refined copper.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 98.5 percent, with small minorities of Christians, Baha'is, agnostics, and others including Zoroastrians, Jews, and Hindus. Ethnically, the country is home to Persians, Azeris, Kurds, Lurs, Baloch, Arabs, Turkmen, and various Turkic tribes."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -73,5 +73,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official) 98.5%, Christian 0.7%, Baha'i 0.3%, agnostic 0.3%, other (includes Zoroastrian, Jewish, Hindu) 0.2% (2020 est.) || Persian, Azeri, Kurd, Lur, Baloch, Arab, Turkmen, and Turkic tribes"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:40:08.619Z",
+  "draftModel": "claude-sonnet-5"
 }

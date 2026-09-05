@@ -1,6 +1,6 @@
 {
   "iso": "no",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.385Z",
   "structured": {
     "code": "no",
@@ -34,11 +34,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Norway's coastline is one of the longest and most rugged in the world, deeply cut by fjords and fringed by some 50,000 islands, with about two-thirds of the country covered in mountains. It sits along key North Atlantic sea lanes and air routes, and its wealth of petroleum, natural gas, fish, and hydropower has made it a major exporter of energy and seafood.",
+    "physicalGeography": "Norway lies in Northern Europe along the North Sea and North Atlantic Ocean, west of Sweden. The landscape is glaciated, dominated by high plateaus and rugged mountains broken up by fertile valleys, with only small, scattered plains. Its coastline is deeply indented by fjords, and the far north gives way to arctic tundra.",
+    "climate": "The coast has a temperate climate moderated by the North Atlantic Current, with rain falling year-round on the west coast, while the interior is colder with more precipitation and colder summers. Natural hazards include rockslides and avalanches, and the country has one active volcano, Beerenberg, which rises 2,227 meters on Jan Mayen Island in the Norwegian Sea.",
+    "economy": "Norway has a high-income economy that trades with the European Union through the European Economic Area despite not being a member itself. It plays a major role in European energy security as a leading exporter of oil, gas, and electricity, alongside significant fishing, forestry, and extraction industries; other industries include shipping, aquaculture, shipbuilding, pulp and paper, metals, and chemicals. Its oil sovereign fund helps sustain a generous welfare system, and unemployment is low, though inflation remains above target.",
+    "peopleAndCulture": "About 81.5% of the population is Norwegian, a group that includes roughly 60,000 Sami, with other Europeans and other groups making up the remainder. The Church of Norway, an Evangelical Lutheran denomination, is the official religion and claims 67.5% of the population, with smaller Muslim, Roman Catholic, and other Christian communities alongside a substantial unspecified group."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -68,5 +68,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Church of Norway (Evangelical Lutheran - official) 67.5%, Muslim 3.1%, Roman Catholic 3.1%, other Christian 3.8%, other 2.6%, unspecified 19.9% (2021 est.) || Norwegian 81.5% (includes about 60,000 Sami), other European 8.9%, other 9.6% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:01.310Z",
+  "draftModel": "claude-sonnet-5"
 }

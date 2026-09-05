@@ -1,6 +1,6 @@
 {
   "iso": "mz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.417Z",
   "structured": {
     "code": "mz",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Mozambique stretches along the Mozambique Channel in southeastern Africa, wedged between South Africa and Tanzania, with a landscape that runs from coastal lowlands through central uplands to mountains in the west. The Zambezi River cuts through the north-central part of the country, watering its most fertile land, while the ground beneath holds coal, titanium, natural gas, hydropower potential, tantalum, and graphite. Those resources now anchor the export economy, with coal, natural gas, aluminum, gold, and precious stones leading the list.",
+    "physicalGeography": "The terrain is mostly coastal lowlands, rising to uplands in the center and high plateaus in the northwest, with mountains marking the western edge. The country sits in southeastern Africa along the Mozambique Channel, positioned between South Africa and Tanzania.",
+    "climate": "The climate ranges from tropical to subtropical. Central and southern provinces are vulnerable to severe droughts as well as devastating cyclones and floods.",
+    "economy": "Mozambique is a low-income economy in which subsistence farming still dominates the labor force, though growth has returned on the strength of agriculture and extractive industries. Exports are led by coal, natural gas, aluminum, gold, and precious stones, while industry produces aluminum, petroleum products, chemicals such as fertilizer, soap, and paints, textiles, cement, glass, asbestos, tobacco, food, and beverages. The country is working through a foreign debt restructuring under the IMF's Highly Indebted Poor Countries initiative.",
+    "peopleAndCulture": "Makhuwa is the largest first language at 26.1%, followed by Portuguese, the official language, at 16.6%, with Tsonga, Nyanja, Sena, Lomwe, Chuwabo, Ndau, and Tswa also spoken. Religious life is similarly varied: Catholics make up 27.3% of the population, Muslims 19.1%, Pentecostals 16.7%, and followers of Saio/Zione churches 16.3%, alongside a substantial share, 13.5%, with no religion. Ethnically the population is 99% African, drawn from groups including the Makhuwa, Tsonga, Lomwe, and Sena, with small Mestizo and other minorities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Makhuwa 26.1%, Portuguese (official) 16.6%, Tsonga 8.6%, Nyanja 8.1, Sena 7.1%, Lomwe 7.1%, Chuwabo 4.7%, Ndau 3.8%, Tswa 3.8%, other Mozambican languages 11.8%, other 0.5%, unspecified 1.8% (2017 est.) || Catholic 27.3%, Islam 19.1%, Pentecostal 16.7%, Saio/Zione 16.3%, no religion 13.5%, other 4.3%, Anglican 1.7%, unknown 1.2% (2017 est.) || African 99% (Makhuwa, Tsonga, Lomwe, Sena, and others), Mestizo 0.8%, other (includes European, Indian, Pakistani, Chinese) 0.2% (2017 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:46:13.979Z",
+  "draftModel": "claude-sonnet-5"
 }

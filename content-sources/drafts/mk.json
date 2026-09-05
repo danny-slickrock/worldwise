@@ -1,6 +1,6 @@
 {
   "iso": "mk",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.385Z",
   "structured": {
     "code": "mk",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in Southeastern Europe just north of Greece, this country's terrain is dominated by mountains, deep basins, and valleys, with the Vardar River cutting the country in two. Three large lakes lie along its borders, each shared with a neighboring country. Despite having no coastline, it sits on a major transportation corridor linking Western and Central Europe to the Aegean Sea.",
+    "physicalGeography": "The landscape is mountainous, broken by deep basins and valleys, and the Vardar River bisects the country from north to south. Three large lakes lie along its frontiers, each divided by a border line with a neighboring state. The country sits in Southeastern Europe, just north of Greece.",
+    "climate": "Summers and autumns are warm and dry, while winters are relatively cold with heavy snowfall. The region also carries high seismic risk.",
+    "economy": "This is an upper-middle-income European economy, with growth driven by private consumption, public infrastructure investment, and rising wages. Progress toward EU accession has stalled, and public debt is climbing due to high pension and wage costs along with interest payments. Structural challenges include emigration, weak productivity growth, and governance issues. Key industries include food processing, beverages, textiles, chemicals, iron and steel, cement, energy, pharmaceuticals, and automotive parts, with exports led by reaction and catalytic products, insulated wire, electricity, garments, and seats.",
+    "peopleAndCulture": "The population is majority Macedonian (58.4%), with a substantial Albanian minority (24.3%) and smaller communities of Turkish, Romani, and Serb people. Religiously, Orthodox Christians make up about 46% of the population and Muslims about 32%, alongside smaller Christian and other groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Orthodox 46.1%, Islam 32.2%, Christian 13.2%, Other 7.2%; less than 1%: atheist, Catholic, other religions, not specified, Protestant (2021 est.) || Macedonian 58.4%, Albanian 24.3%, Turkish 3.9%, Romani 2.5%, Serb 1.3%, other 2.3%, no ethnic affiliation data available 7.2% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:44:39.627Z",
+  "draftModel": "claude-sonnet-5"
 }

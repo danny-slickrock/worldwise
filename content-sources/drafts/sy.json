@@ -1,6 +1,6 @@
 {
   "iso": "sy",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.403Z",
   "structured": {
     "code": "sy",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Syria's capital, Damascus, sits at an oasis fed by the Barada River and is considered one of the world's oldest continuously inhabited cities. The country stretches from a narrow Mediterranean coastal plain through western mountains into a broad semiarid and desert plateau, lying between Lebanon and Turkey. Its natural resources include petroleum, phosphates, chrome and manganese ores, and marble.",
+    "physicalGeography": "Syria is primarily a semiarid and desert plateau, with a narrow coastal plain along the Mediterranean and mountains rising in the west. It lies in the Middle East between Lebanon and Turkey, bordering the sea to the west.",
+    "climate": "Most of Syria has a desert climate, with hot, dry, sunny summers from June to August and mild, rainy winters from December to February along the coast. Damascus can see cold weather with snow or sleet at times. Dust storms and sandstorms occur, and the country has two historically active volcanoes, Es Safa and one near the Turkish border, though neither has erupted in centuries.",
+    "economy": "Syria has a low-income economy, with infrastructure and output badly damaged over eleven years of civil war and further strained by ongoing US sanctions and hyperinflation. A World Bank trust fund currently provides support. Its industries include petroleum, textiles, food processing, tobacco, phosphate rock mining, cement, and automobile assembly, while exports feature olive oil, phosphates, spice seeds, cotton, and tomatoes.",
+    "peopleAndCulture": "Syria's population is about 87% Muslim, mostly Sunni with Alawi, Ismaili, and Shia minorities, alongside a Christian community of around 10 percent (Orthodox, Uniate, and Nestorian) and a Druze minority of about 3 percent. Ethnically, Arabs make up roughly half the population, with Alawites, Kurds, and other Levantine and minority groups—including Druze, Assyrians, Turkomans, and Armenians—making up the rest."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 87% (official; includes Sunni 74% and Alawi, Ismaili, and Shia 13%), Christian 10% (includes Orthodox, Uniate, and Nestorian), Druze 3% || Arab ~50%, Alawite ~15%, Kurd ~10%, Levantine ~10%, other ~15% (includes Druze, Ismaili, Imami, Nusairi, Assyrian, Turkoman, Armenian)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:56.952Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "es",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.389Z",
   "structured": {
     "code": "es",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Spain occupies most of the Iberian Peninsula in southwestern Europe, its coastline shaped by the Mediterranean Sea, the North Atlantic, and the Bay of Biscay, with the Pyrenees forming a natural wall along the French border. Its strategic position along the approaches to the Strait of Gibraltar is reinforced by Spanish-controlled territories on Morocco's coast, including the enclaves of Ceuta and Melilla and several small islands. The Canary Islands, meanwhile, form part of Macaronesia, a set of North Atlantic archipelagos shared with Portugal and Cabo Verde.",
+    "physicalGeography": "The Spanish mainland is dominated by a large plateau, flat in places and elsewhere cut into by rugged hills, with the Pyrenees Mountains rising along the northern border with France. This plateau geography gives the interior a markedly different character from the coastal fringes.",
+    "climate": "Spain's climate is temperate overall but varies sharply between interior and coast: the interior sees clear, hot summers and cloudy, cold winters, while coastal areas are more moderate and cloudy in summer and partly cloudy and cool in winter. The country experiences periodic droughts and occasional flooding. The Canary Islands are volcanically active; Teide, at 3,715 meters, is classified as a Decade Volcano due to its explosive history and proximity to populated areas, while La Palma is the most active of the archipelago's volcanoes and Lanzarote is the only other one with a history of activity.",
+    "economy": "Spain has a high-income, core-EU and eurozone economy driven by strong growth in public consumption, tourism, and other service exports. Unemployment remains high but has been declining, supported by job growth and immigration, even as the labor market stays tight and the government works to narrow persistent fiscal deficits through tax and spending measures. Key industries include textiles and apparel, food and beverages, metals, chemicals, shipbuilding, automobiles, machine tools, tourism, and pharmaceuticals, with cars, packaged medicine, refined petroleum, vehicle parts, and garments among its top exports.",
+    "peopleAndCulture": "The population is predominantly Spanish (84.8%), with smaller Moroccan and Romanian communities among others. Religiously, Spain is majority Roman Catholic at 58.2%, alongside significant shares who identify as atheist, agnostic, or non-believer."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 58.2%, atheist 16.2%, agnostic 10.8%, other 2.7%, non-believer 10.5%, unspecified 1.7% (2021 est.) || Spanish 84.8%, Moroccan 1.7%, Romanian 1.2%, other 12.3% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:20.967Z",
+  "draftModel": "claude-sonnet-5"
 }

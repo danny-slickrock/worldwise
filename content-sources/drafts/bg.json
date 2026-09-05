@@ -1,6 +1,6 @@
 {
   "iso": "bg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.375Z",
   "structured": {
     "code": "bg",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Bulgaria sits in southeastern Europe on the Black Sea, wedged between Romania and Turkey, a position that has long put it astride key land routes linking Europe to the Middle East and Asia and close to the strategically important Turkish Straits.",
+    "physicalGeography": "The country is dominated by mountainous terrain, with lowlands confined mainly to the north and southeast. Its Black Sea coastline anchors its position between Romania and Turkey.",
+    "climate": "Bulgaria has a temperate climate marked by cold, damp winters and hot, dry summers. The country is also subject to earthquakes and landslides.",
+    "economy": "Bulgaria is an upper-middle-income economy within the EU, with its currency pegged to the euro while eurozone accession remains pending. Declining energy prices have helped lower inflation, and EU structural funds are supporting a recovery in investment, though the labor force faces shortages of skilled workers due to emigration and an aging population. Its industries span electricity, gas, and water; food, beverages, and tobacco; and machinery, automotive parts, metals, chemicals, coke, refined petroleum, and nuclear fuel, alongside outsourcing centers, while its main exports are refined petroleum, garments, refined copper, wheat, and natural gas.",
+    "peopleAndCulture": "Bulgarians make up 78.5% of the population, with Turkish (7.8%) and Roma (4.1%) minorities alongside smaller other groups. Religiously, most identify as Christian (64.7%), with a Muslim minority of 9.8%, while roughly a fifth of the population leaves religious affiliation unspecified."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 64.7%, Muslim 9.8%, other 0.1%, none 4.7%, unspecified 20.7% (2021 est.) || Bulgarian 78.5%, Turkish 7.8%, Roma 4.1%, other 1.2%, unspecified 9.4% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:30:04.679Z",
+  "draftModel": "claude-sonnet-5"
 }

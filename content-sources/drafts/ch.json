@@ -1,6 +1,6 @@
 {
   "iso": "ch",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.389Z",
   "structured": {
     "code": "ch",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked at the crossroads of northern and southern Europe, Switzerland is dominated by the Alps, which give it some of the highest elevations on the continent. Its economy runs on precision and value: watches, pharmaceuticals, vaccines, and gold rank among its top exports, alongside a renowned banking sector.",
+    "physicalGeography": "The country sits in Central Europe, east of France and north of Italy, and is mostly mountainous, with the Alps rising in the south and the Jura range in the northwest. Between them lies a central plateau of rolling hills, plains, and large lakes.",
+    "climate": "The climate is temperate but shifts with altitude, bringing cold, cloudy, rainy or snowy winters and cool to warm, humid summers with occasional showers. The mountainous terrain also makes the country prone to avalanches, landslides, and flash floods.",
+    "economy": "Switzerland is a high-income economy outside the EU, ranking among the top ten countries in GDP per capita, with low unemployment and inflation despite slower GDP growth since the pandemic. It is a renowned banking and financial hub and a leader in innovation and competitiveness, built on a highly skilled though aging workforce. Its industries span machinery, chemicals, watches, textiles, precision instruments, tourism, banking, insurance, and pharmaceuticals, with gold, packaged medicine, vaccines, nitrogen compounds, and watches among its top exports.",
+    "peopleAndCulture": "About 69% of the population identifies as Swiss, with smaller communities of German, Italian, Portuguese, French, Kosovan, and Turkish origin. Religiously, Roman Catholics make up the largest group at 34.4%, followed by Protestants at 22.5% and other Christians, while nearly 30% report no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 34.4%, Protestant 22.5%, other Christian 5.7%, Muslim 5.4%, other 1.5%, none 29.4%, unspecified 1.1% (2020 est.) || Swiss 69.2%, German 4.2%, Italian 3.2%, Portuguese 2.5%, French 2.1%, Kosovan 1.1%, Turkish 1%, other 16.7% (2020 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:32:23.608Z",
+  "draftModel": "claude-sonnet-5"
 }

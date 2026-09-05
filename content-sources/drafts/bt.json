@@ -1,6 +1,6 @@
 {
   "iso": "bt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.392Z",
   "structured": {
     "code": "bt",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked between China and India, Bhutan occupies a strategic position controlling several key Himalayan mountain passes. Its terrain is mostly mountainous, broken by fertile valleys and stretches of savanna, and its economy runs on resources like timber, hydropower, gypsum, and calcium carbonate.",
+    "physicalGeography": "Bhutan sits in Southern Asia between China and India, its landscape dominated by mountains interspersed with fertile valleys and savanna.",
+    "climate": "Conditions shift dramatically with elevation: tropical in the southern plains, cool winters and hot summers in the central valleys, and severe winters with cool summers in the Himalayas. The country's name translates as Land of the Thunder Dragon, a reference to the violent storms that roll down from the Himalayas, and the rainy season brings frequent landslides.",
+    "economy": "Hydropower investment has driven much of Bhutan's economic development, within a framework the country calls a Gross National Happiness economy. Poverty has fallen sharply alongside low inflation, stable currency, and strong monetary and fiscal policies, and the country weathered COVID-19 with fairly resilient economic performance, though climate vulnerabilities and close economic ties to India remain central factors. Key industries include cement, wood products, processed fruits, alcoholic beverages, calcium carbide, and tourism, while exports (as of 2023) include iron alloys, aircraft, dolomite, semi-finished iron, and cement.",
+    "peopleAndCulture": "Bhutan's population is ethnically diverse: Ngalop, also known as Bhote, make up about half, ethnic Nepalis (predominantly Lhotshampas) around 35 percent, and indigenous or migrant tribes the remaining 15 percent. Languages reflect this mix, with Sharchopkha spoken by 28 percent, the official Dzongkha by 24 percent, and Lhotshamkha by 22 percent. Religiously, Lamaistic Buddhism predominates at over 75 percent, with Indian- and Nepali-influenced Hinduism practiced by about 22 percent of the population."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Sharchopkha 28%, Dzongkha (official) 24%, Lhotshamkha 22%, other 26% (includes foreign languages) (2005 est.) || Lamaistic Buddhist 75.3%, Indian- and Nepali-influenced Hinduism 22.1%, other 2.6% (2005 est.) || Ngalop (also known as Bhote) 50%, ethnic Nepali 35% (predominantly Lhotshampas), indigenous or migrant tribes 15%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:31:09.859Z",
+  "draftModel": "claude-sonnet-5"
 }

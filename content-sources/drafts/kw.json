@@ -1,6 +1,6 @@
 {
   "iso": "kw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.397Z",
   "structured": {
     "code": "kw",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting at the head of the Persian Gulf between Iraq and Saudi Arabia, Kuwait occupies a strategic position built on a flat to slightly undulating desert plain. Its wealth rests on petroleum, natural gas, fish and shrimp, and its exports are dominated by crude and refined petroleum, natural gas, hydrocarbons and plastics.",
+    "physicalGeography": "Kuwait is a flat to slightly undulating desert plain, positioned in the Middle East along the Persian Gulf between Iraq and Saudi Arabia.",
+    "climate": "The climate is dry desert, with intensely hot summers and short, cool winters. Sudden cloudbursts occur between October and April and can bring heavy rain severe enough to damage roads and houses, while sandstorms and dust storms occur year-round but peak between March and August.",
+    "economy": "Kuwait runs a small, high-income, oil-based economy and positions itself as a proponent of renewable energy as well as a regional leader in finance and investment. It holds the oldest sovereign wealth fund, is developing space and tourism industries, and is mid-way through a 25-year development program. Its industries include petroleum, petrochemicals, cement, shipbuilding and repair, water desalination, food processing and construction materials, and its main exports are crude and refined petroleum, natural gas, hydrocarbons and plastics.",
+    "peopleAndCulture": "Kuwait's population is majority Muslim (74.6%), with a Christian minority (18.2%) and a smaller share other or unspecified. Ethnically, Kuwaiti citizens make up about 30.4% of residents, with other Arabs at 27.4%, Asians forming the largest single group at 40.3%, and smaller African and other populations, including European, North American, South American and Australian residents."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official) 74.6%, Christian 18.2%, other and unspecified 7.2% (2013 est.) || Kuwaiti 30.4%, other Arab 27.4%, Asian 40.3%, African 1%, other 0.9% (includes European, North American, South American, and Australian) (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:57.257Z",
+  "draftModel": "claude-sonnet-5"
 }

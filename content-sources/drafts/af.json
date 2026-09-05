@@ -1,6 +1,6 @@
 {
   "iso": "af",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.390Z",
   "structured": {
     "code": "af",
@@ -45,11 +45,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in Southern Asia between Pakistan and Iran, Afghanistan is split by the Hindu Kush mountains, which run northeast to southwest and separate the northern provinces from the rest of the country; its highest peaks rise in the Wakhan Corridor. The land holds natural gas, petroleum, coal, copper, and precious stones, yet its actual exports today are far humbler: coal, grapes, tropical fruits, gum resins, and other nuts.",
+    "physicalGeography": "The terrain is mostly rugged mountains, with plains confined to the north and southwest. Afghanistan sits in Southern Asia, north and west of Pakistan and east of Iran, entirely landlocked and cut through by the Hindu Kush range.",
+    "climate": "The climate is arid to semiarid, with cold winters and hot summers. The Hindu Kush mountains are prone to damaging earthquakes, and the country also faces flooding and droughts.",
+    "economy": "Afghanistan has a low-income economy that stabilized after a major contraction following the Taliban takeover, though recovery remains fragile. Poverty is widespread and human development faces significant obstacles, compounded by ongoing sanctions, suspended development aid, and frozen reserve assets; the country relies on imports for food, fuel, and machinery. Its industries are largely small-scale, producing bricks, textiles, soap, furniture, shoes, fertilizer, apparel, food products, and handwoven carpets, alongside natural gas, coal, and copper extraction; exports include coal, grapes, tropical fruits, gum resins, and nuts.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 99.7%, split between a Sunni majority (84.7-89.7%) and a Shia minority (10-15%). Reliable current data on ethnicity are not available, but Afghanistan's 2004 Constitution named Pashtun, Tajik, Hazara, Uzbek, Turkman, Baluch, Pashaie, Nuristani, Aymaq, Arab, Qirghiz, Qizilbash, Gujur, and Brahwui among its peoples, alongside dozens of smaller ethnic groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -79,5 +79,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 99.7% (Sunni 84.7 - 89.7%, Shia 10 - 15%), other &lt;0.3% (2009 est.) || current, reliable statistical data on ethnicity in Afghanistan are not available; Afghanistan's 2004 Constitution cited Pashtun, Tajik, Hazara, Uzbek, Turkman, Baluch, Pashaie, Nuristani, Aymaq, Arab, Qirghiz, Qizilbash, Gujur, and Brahwui ethnicities; Afghanistan has dozens of other small ethnic groups"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:28:10.676Z",
+  "draftModel": "claude-sonnet-5"
 }

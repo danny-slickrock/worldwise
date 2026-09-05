@@ -1,6 +1,6 @@
 {
   "iso": "ly",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.414Z",
   "structured": {
     "code": "ly",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Libya sits along the Mediterranean coast of Northern Africa, wedged between Egypt, Tunisia, and Algeria, and more than 90% of its territory is desert or semidesert. Deep in the Sahara, the volcano Waw an Namus forms a caldera oasis whose name translates as 'oasis of mosquitoes,' home to small lakes teeming with insects and birds. Beneath all that sand lies the country's real wealth: petroleum, natural gas, and gypsum.",
+    "physicalGeography": "Libya's land borders reach Algeria, Chad, Egypt, Niger, Sudan, and Tunisia, but the defining feature of the country is its terrain: mostly barren, flat to undulating plains, plateaus, and depressions stretching across the Sahara. Over 90% of the land is desert or semidesert, broken occasionally by features like the Waw an Namus volcanic caldera in the south-central interior.",
+    "climate": "The coast has a Mediterranean climate, while the interior is dry, extreme desert. A notable weather phenomenon is the ghibli, a hot, dry, dust-laden southern wind that blows for one to four days in spring and fall, bringing dust storms and sandstorms with it.",
+    "economy": "Libya is an upper middle-income economy built on fossil fuels, with industries spanning petroleum, petrochemicals, aluminum, iron and steel, food processing, textiles, handicrafts, and cement. Crude petroleum, natural gas, refined petroleum, gold, and scrap iron make up its exports. The economy contracted by 31% due to COVID-19 and a 2020 oil blockade, forcing reduced government spending and a currency devaluation by the central bank, while public wages now account for over 60% of government expenditures.",
+    "peopleAndCulture": "Libya's population is overwhelmingly Amazigh and Arab, at 97%, with the remaining 3% including Egyptian, Greek, Indian, Italian, Maltese, Pakistani, Tunisian, and Turkish communities. Religiously, the country is almost entirely Muslim, with Sunni Islam as the official faith practiced by 96.6% of the population, alongside small minorities of Christians and other faiths."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official; virtually all Sunni) 96.6%, Christian 2.7%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, folk religion &lt;1%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || Amazigh and Arab 97%, other 3% (includes Egyptian, Greek, Indian, Italian, Maltese, Pakistani, Tunisian, and Turkish)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:40.665Z",
+  "draftModel": "claude-sonnet-5"
 }

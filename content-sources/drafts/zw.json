@@ -1,6 +1,6 @@
 {
   "iso": "zw",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.422Z",
   "structured": {
     "code": "zw",
@@ -56,11 +56,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked between South Africa and Zambia, Zimbabwe shares the Zambezi River as a natural boundary with its northern neighbor, and when the river floods between February and April it produces Victoria Falls, the world's largest curtain of falling water. The Zambia-Zimbabwe border also holds Lake Kariba, the world's largest reservoir by volume. Beneath the high plateau lie substantial deposits of gold, chromium, nickel, copper, platinum group metals, and lithium.",
+    "physicalGeography": "Zimbabwe consists mostly of a high plateau, with an even higher central plateau known as the high veld, and mountains rising along its eastern edge. It sits in Southern Africa, bordered by South Africa to the south and Zambia to the north.",
+    "climate": "The climate is tropical but moderated by the country's altitude, with a rainy season running from November to March. Droughts recur, though floods and severe storms are rare.",
+    "economy": "Zimbabwe is a low-income Sub-Saharan economy that has struggled with ongoing hyperinflation, most recently addressed through the introduction of a new currency, the Zimbabwe Gold (ZiG). The economy relies on natural resource extraction, agriculture, and remittances, with gold, tobacco, nickel, minerals, and diamonds as leading exports. Industries include mining of coal, gold, platinum, copper, nickel, tin, and diamonds, alongside steel, wood products, cement, chemicals, fertilizer, clothing, footwear, and beverages.",
+    "peopleAndCulture": "Shona is by far the most widely spoken language, used by over 80% of the population, followed by Ndebele; English serves the traditional role of official business language, and thirteen other minority languages hold official status. Religiously, the Apostolic Sect is the largest group at over 40%, followed by Pentecostal and other Protestant Christians, with smaller shares practicing Roman Catholicism or African traditional religions. The population is overwhelmingly African, predominantly Shona with Ndebele as the second-largest ethnic group."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -90,5 +90,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Shona (official, most widely spoken) 80.9%, Ndebele (official, second most widely spoken) 11.5%, English (official, traditionally used for official business) 0.3%, 13 minority languages (official; includes Chewa, Chibarwe, Kalanga, Koisan, Nambya, Ndau, Shangani, sign language, Sotho, Tonga, Tswana, Venda, and Xhosa) 7%, other 0.3% (2022 est.) || Apostolic Sect 40.3%, Pentecostal 17%, Protestant 13.8%, other Christian 7.8%, Roman Catholic 6.4%, African traditionalist 5%, other 1.5% (includes Muslim, Jewish, Hindu), none 8.3% (2022 est.) || African 99.6% (predominantly Shona; Ndebele is the second largest ethnic group), other (includes Caucasian, Asiatic, mixed race) 0.4% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:56:11.572Z",
+  "draftModel": "claude-sonnet-5"
 }

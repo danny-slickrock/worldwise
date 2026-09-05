@@ -1,6 +1,6 @@
 {
   "iso": "fm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.436Z",
   "structured": {
     "code": "fm",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Scattered across the North Pacific about three-quarters of the way from Hawaii to Indonesia, this is an island nation with no land borders at all — its 607 islands range from high volcanic peaks to low coral atolls, grouped into four major island clusters. Pohnpei, Kosrae, and Chuuk carry visible volcanic outcroppings, a reminder of the different geological origins packed into one small nation.",
+    "physicalGeography": "The islands vary sharply in form, from high, mountainous terrain to low coral atolls barely above sea level. Volcanic outcroppings mark Pohnpei, Kosrae, and Chuuk, distinguishing them from the flatter reef islands elsewhere in the group.",
+    "climate": "The climate is tropical, with heavy rainfall year-round that is especially pronounced in the eastern islands. Sitting on the southern edge of the typhoon belt, the islands face occasionally severe storm damage during the typhoon season, which runs from June to December.",
+    "economy": "This is a lower middle-income economy that has relied heavily on US aid, a relationship set to sunset in 2024. Entrepreneurship is low, the economy runs mostly on fishing and farming, and the country uses the US dollar and has no patent laws; tourism remains underdeveloped despite the potential, and corruption is a significant issue. Main exports are fish, diamonds, and garments, while industries include tourism, construction, aquaculture, and craft items made from shell and wood.",
+    "peopleAndCulture": "English serves as the official and common language alongside Chuukese, Kosrean, Pohnpeian, Yapese, Ulithian, Woleaian, Nukuoro, and Kapingamarangi. The population is predominantly Christian, split between Roman Catholic (54.7%) and various Protestant denominations, with Congregational churches the largest Protestant group. Ethnically, Chuukese/Mortlockese people form the largest group at 49.3%, followed by Pohnpeians, Kosraeans, and Yapese, with smaller Polynesian and Asian communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official and common language), Chuukese, Kosrean, Pohnpeian, Yapese, Ulithian, Woleaian, Nukuoro, Kapingamarangi || Roman Catholic 54.7%, Protestant 41.1% (includes Congregational 38.5%, Baptist 1.1%, Seventh Day Adventist 0.8%, Assembly of God 0.7%), Church of Jesus Christ 1.5%, other 1.9%, none 0.7%, unspecified 0.1% (2010 est.) || Chuukese/Mortlockese 49.3%, Pohnpeian 29.8%, Kosraean 6.3%, Yapese 5.7%, Yap outer islanders 5.1%, Polynesian 1.6%, Asian 1.4%, other 0.8% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:51.584Z",
+  "draftModel": "claude-sonnet-5"
 }

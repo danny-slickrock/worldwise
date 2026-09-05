@@ -1,6 +1,6 @@
 {
   "iso": "st",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.418Z",
   "structured": {
     "code": "st",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Off the coast of Central Africa, in the Gulf of Guinea just north of the Equator and west of Gabon, this island nation is the second-smallest country in Africa after the Seychelles. Its two main islands are part of a chain of extinct volcanoes, both mountainous, and as islands the country has no land borders with any other nation. Fish and hydropower are its natural resources.",
+    "physicalGeography": "The country consists of volcanic, mountainous islands in the Gulf of Guinea, positioned just north of the Equator and west of Gabon. Having no land borders, it is defined entirely by its island terrain, shaped by the extinct volcanoes that form its main landmasses.",
+    "climate": "The climate is tropical, hot and humid, with a single rainy season running from October to May. Flooding occurs in the country.",
+    "economy": "This is a lower middle-income island economy that has seen falling cocoa production due to drought and mismanagement. It runs a joint oil venture with Nigeria, and the government owns 90% of the land. High debt, partly stemming from fuel subsidies, weighs on the economy, and tourism was gutted by COVID-19. Exports include crude petroleum, cocoa beans, vehicle parts and accessories, palm oil, and aircraft parts, while industries center on light construction, textiles, soap, beer, fish processing, and timber.",
+    "peopleAndCulture": "Portuguese is the official language, alongside Forro, Cabo Verdian, French, Angolar, English, Lunguie, and other Portuguese-based Creoles. Catholicism is the majority religion, followed by smaller communities of Adventists, Assembly of God, New Apostolic, and other faiths, with about a fifth of the population reporting no religion. The population includes Mestico, Angolares descended from Angolan slaves, Forros descended from freed slaves, Servicais who came as contract laborers from Angola, Mozambique, and Cabo Verde, Tongas born on the islands to servicais parents, Europeans mainly of Portuguese origin, and Asians who are mostly Chinese."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Portuguese 98.4% (official), Forro 36.2%, Cabo Verdian 8.5%, French 6.8%, Angolar 6.6%, English 4.9%, Lunguie 1%, other (including sign language) 2.4%; other Portuguese-based Creoles are also spoken (2012 est.) || Catholic 55.7%, Adventist 4.1%, Assembly of God 3.4%, New Apostolic 2.9%, Mana 2.3%, Universal Kingdom of God 2%, Jehovah's Witness 1.2%, other 6.2%, none 21.2%, unspecified 1% (2012 est.) || Mestico, Angolares (descendants of Angolan slaves), Forros (descendants of freed slaves), Servicais (contract laborers from Angola, Mozambique, and Cabo Verde), Tongas (children of servicais born on the islands), Europeans (primarily Portuguese), Asians (mostly Chinese)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:36.522Z",
+  "draftModel": "claude-sonnet-5"
 }

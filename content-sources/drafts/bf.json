@@ -1,6 +1,6 @@
 {
   "iso": "bf",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.408Z",
   "structured": {
     "code": "bf",
@@ -39,11 +39,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "A landlocked country in West Africa, north of Ghana, Burkina Faso sits on an extensive plateau where grassy savanna in the north gradually gives way to sparse forests in the south. Three rivers, the Black, Red, and White Voltas, cut across the plains, and the ground beneath holds gold, manganese, zinc, and other minerals. Gold and cotton now anchor an economy built on a mostly flat, undulating landscape.",
+    "physicalGeography": "The terrain is mostly flat to dissected, undulating plains, with hills rising in the west and southeast. The country occupies an extensive plateau, and its savanna vegetation shifts from grassy in the north to sparse forest in the south.",
+    "climate": "Burkina Faso spans three climate zones: a hot tropical savanna with a short rainy season across the southern half, a hot semi-arid Sahelian steppe climate across the northern half, and a small stretch of hot desert in the far north bordering the Sahara. Recurring droughts are a feature of the country's climate.",
+    "economy": "Burkina Faso has a highly agrarian, low-income economy constrained by limited natural resources and widespread poverty. Gold exports have been improving the trade balance, alongside cotton, oil seeds, and cashews, while industries include cotton lint processing, beverages, agricultural processing, soap, cigarettes, textiles, and gold. The economy has moved from prior deflation into inflation, and public debt is growing but remains manageable.",
+    "peopleAndCulture": "The population is predominantly Mossi, making up more than half the country, alongside sizeable Fulani, Gurunsi, Bissa, Gurma, and other communities, with French as the official language. Islam is the majority religion, practiced by roughly two-thirds of the population, followed by Roman Catholicism, animist traditions, and Protestantism."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -73,5 +73,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Mossi 52.9%, Fula 7.8%, Gourmantche 6.8%, Dyula 5.7%, Bissa 3.3%, Gurunsi 3.2%, French (official) 2.2%, Bwamu 2%, Dagara 2%, San 1.7%, Marka 1.6%, Bobo 1.5%, Senufo 1.5%, Lobi 1.2%, other 6.6% (2019 est.) || Muslim 63.8%, Roman Catholic 20.1%, Animiste 9%, Protestant 6.2%, other 0.2%, none 0.7% (2019 est.) || Mossi 53.7%, Fulani (Peuhl) 6.8%, Gurunsi 5.9%, Bissa 5.4%, Gurma 5.2%, Bobo 3.4%, Senufo 2.2%, Bissa 1.5%, Lobi 1.5%, Tuareg/Bella 0.1%, other 12.8%, foreign 0.7% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:58.415Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "vn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.406Z",
   "structured": {
     "code": "vn",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Stretching 1,650 km from north to south but narrowing to just 50 km at its tightest point, Vietnam runs the length of the South China Sea coast between China, Laos, and Cambodia. Beneath its central highlands sits Son Doong, the world's largest cave by cross-sectional area and volume, a cavity so vast it holds its own jungle, an underground river, and clouds that form inside and drift out through its exits.",
+    "physicalGeography": "The country is a long, narrow strip of Southeast Asia, bordering the Gulf of Thailand, Gulf of Tonkin, and South China Sea alongside its land borders with China, Laos, and Cambodia. Its terrain shifts from low, flat river deltas in the north and south to central highlands, with hilly, mountainous ground concentrated in the far north and northwest.",
+    "climate": "Vietnam's south is tropical, while the north follows a monsoonal pattern with a hot, rainy season from May to September and a warm, dry season from October to March. Typhoons strike between May and January and can bring extensive flooding, especially in the Mekong River delta.",
+    "economy": "Vietnam is a lower middle-income socialist economy that has grown rapidly since the Đổi Mới reforms, driven by strong investment and productivity gains. It has become a hub for tourism and manufacturing, exporting broadcasting equipment, garments, integrated circuits, machine parts, and footwear, alongside industries like food processing, shoe and garment production, machine-building, mining, steel, and mobile phone manufacturing. Poverty has declined overall, though this progress has been uneven for ethnic minorities, and systemic corruption remains a challenge.",
+    "peopleAndCulture": "The population is overwhelmingly Kinh (Viet), at 85.3%, with smaller communities including Tay, Thai, Muong, Khmer, Mong, and Nung, among others. Religiously, the large majority report no religion (86.3%), with Catholic, Buddhist, and Protestant minorities making up most of the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 6.1%, Buddhist 5.8%, Protestant 1%, other 0.8%, none 86.3% (2019 est.) || Kinh (Viet) 85.3%, Tay 1.9%, Thai 1.9%, Muong 1.5%, Khmer 1.4%, Mong 1.4%, Nung 1.1%, other 5.5% (2019 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:23.138Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "co",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.426Z",
   "structured": {
     "code": "co",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Colombia sits in the northern corner of South America, with coastline on both the Caribbean Sea and the North Pacific Ocean — the only South American country with shores on both. Its landscape runs from flat coastal lowlands through central highlands and the high Andes to the eastern plains of the Llanos. Beneath that variety lies a wealth of resources: petroleum, natural gas, coal, iron ore, nickel, gold, copper, emeralds, and hydropower.",
+    "physicalGeography": "The country's terrain moves through four broad zones: flat coastal lowlands, central highlands, the high Andes Mountains, and the eastern lowland plains known as the Llanos. This span from coast to mountains to plains reflects its position in northern South America, where it fronts both the Caribbean Sea and the North Pacific Ocean.",
+    "climate": "The climate is tropical along the coast and eastern plains, turning cooler in the highlands. Those highlands are also volcanically active and prone to earthquakes and periodic droughts. Galeras, one of the country's most active volcanoes, has been designated a Decade Volcano for study given its explosive history and proximity to people; Nevado del Ruiz erupted in 1985 with lahars that killed 23,000 people and erupted again in 1991; Nevado del Huila reawakened in 2007 after 500 years of dormancy and has erupted frequently since, alongside other historically active volcanoes such as Cumbal, Dona Juana, Nevado del Tolima, and Purace.",
+    "economy": "Before COVID-19, Colombia was one of the more consistently growing economies in the region, with declining poverty and sound management of inflation and exchange rates. A large stimulus package cushioned the pandemic's economic impact but delayed key infrastructure investment, and the domestic economy still suffers from limited trade integration and infrastructure gaps. Its industries include textiles, food processing, oil, clothing and footwear, beverages, chemicals, and cement, alongside gold, coal, and emerald mining, and its leading exports are crude petroleum, coal, gold, coffee, and refined petroleum.",
+    "peopleAndCulture": "Colombians are predominantly Mestizo and White (87.6%), with Afro-Colombian communities — including Mulatto, Raizal, and Palenquero populations — making up 6.8% and Indigenous people 4.3%. Religion is heavily Roman Catholic (63.6%), with a substantial Protestant minority (17.2%, mostly Evangelical), alongside smaller numbers of Jehovah's Witnesses, Church of Jesus Christ members, and a combined 16% or so who identify as agnostic, atheist, or without religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 63.6%, Protestant 17.2% (Evangelical 16.7%, Adventist 0.3%, other Protestant 0.2%), Jehovah's Witness 0.6%, Church of Jesus Christ 0.1%, other 0.3%, believer, 0.2%. agnostic 1%, atheist 1%, none 14.2%, unspecified 1.8% (2023 est.) || Mestizo and White 87.6%, Afro-Colombian (includes Mulatto, Raizal, and Palenquero) 6.8%, Indigenous 4.3%, unspecified 1.4% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:11.224Z",
+  "draftModel": "claude-sonnet-5"
 }

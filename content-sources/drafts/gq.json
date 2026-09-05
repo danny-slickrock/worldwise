@@ -1,6 +1,6 @@
 {
   "iso": "gq",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.411Z",
   "structured": {
     "code": "gq",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Equatorial Guinea's name is a bit of a misnomer: despite the label, no part of the equator actually crosses the country, whose mainland sits just north of it. The nation is split between a continental territory wedged between Cameroon and Gabon and volcanic islands well offshore, and beneath its ground and waters lie petroleum, natural gas, gold, bauxite, diamonds and tantalum that now drive its exports.",
+    "physicalGeography": "The country's territory is unusually divided, with insular and continental regions widely separated from one another. On the mainland, coastal plains give way to interior hills, while the island portions are volcanic in origin.",
+    "climate": "The climate is tropical, consistently hot and humid, punctuated by violent windstorms and flash floods. Bioko Island was built by three volcanoes, two now dormant and one, Santa Isabel, standing 3,007 meters high as the country's only historically active volcano, last erupting in 1923.",
+    "economy": "Equatorial Guinea has a growing economy within the CEMAC bloc and is a newer OPEC member, built on large oil and gas reserves alongside timber and sawmilling industries. The government is working toward economic diversification and poverty reduction while still recovering from a regional CEMAC crisis and the hard hit dealt by COVID-19, and persistent poverty remains a challenge even as public financial management improves.",
+    "peopleAndCulture": "The population is overwhelmingly Roman Catholic, at 88 percent, with smaller Protestant and Muslim minorities and a small remainder following other faiths including animist, Baha'i, and Jewish traditions. Ethnically, the Fang make up about 78 percent of the population, followed by the Bubi, Ndowe, Nanguedambo, and Bisio, alongside a foreign-born community making up roughly 5 percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 88%, Protestant 5%, Muslim 2%, other 5% (animist, Baha'i, Jewish) (2015 est.) || Fang 78.1%, Bubi 9.4%, Ndowe 2.8%, Nanguedambo 2.7%, Bisio 0.9%, foreigner 5.3%, other 0.7%, unspecified 0.2% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:17.171Z",
+  "draftModel": "claude-sonnet-5"
 }

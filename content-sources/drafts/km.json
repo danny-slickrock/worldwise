@@ -1,6 +1,6 @@
 {
   "iso": "km",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.409Z",
   "structured": {
     "code": "km",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Comoros is a cluster of volcanic islands in the Mozambique Channel, roughly two-thirds of the way between northern Madagascar and northern Mozambique, and it holds the distinction of being the only Arab League country lying entirely in the Southern Hemisphere. Its position near the northern mouth of the channel gives it outsized strategic importance for a nation this small.",
+    "physicalGeography": "Comoros has no land borders with any country, sitting as an island group at the northern end of the Mozambique Channel. The islands are volcanic in origin, with terrain ranging from steep mountains down to low hills.",
+    "climate": "The climate is tropical marine, with a rainy season running from November to May. Cyclones are possible during the wettest months, from December to April, and volcanic activity remains an active hazard: Karthala, a 2,361-meter volcano on Grand Comore Island, last erupted in 2007, and a 2005 eruption forced thousands of people to evacuate and sent up a large ash cloud.",
+    "economy": "Comoros runs a small, trade-based island economy that has been squeezed by declining remittances, adverse cyclone and COVID-19 impacts, and struggling state-owned enterprises, though its debts remain manageable and it has attracted large foreign direct investment. New structural and fiscal reforms are underway even as the country navigates a fragile liquidity environment. Fishing, tourism, and perfume distillation are key industries, and its exports include cloves, ships, essential oils, vanilla, and scrap iron.",
+    "peopleAndCulture": "Comorians speak Arabic, French, and Shikomoro (all official), the latter closely related to Swahili. The population is overwhelmingly Muslim, at 98.1 percent and predominantly Sunni with small Shia and Ahmadiyya communities, alongside small minorities practicing ethnic religions or Christianity. Ethnic groups include the Antalote, Cafre, Makoa, Oimatsaha, and Sakalava."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Arabic (official), French (official), Shikomoro (official; similar to Swahili), Comorian || Muslim 98.1% (overwhelmingly Sunni Muslim, small Shia Muslim and Ahmadiyya Muslim populations), ethnic religionist 1.1%, Christian 0.6%, other 0.3% (2020 est.) || Antalote, Cafre, Makoa, Oimatsaha, Sakalava"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:19.574Z",
+  "draftModel": "claude-sonnet-5"
 }

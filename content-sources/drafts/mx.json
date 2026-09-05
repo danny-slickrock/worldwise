@@ -1,6 +1,6 @@
 {
   "iso": "mx",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.430Z",
   "structured": {
     "code": "mx",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Mexico sits between the United States and Guatemala and Belize, bordering both the Gulf of America and the Caribbean Sea on one coast and the Pacific on the other. It lies along the Ring of Fire, the Pacific belt that holds most of the world's volcanoes and earthquakes, and its Yucatán Peninsula holds both the Sac Actun cave system, the longest underwater cave in the world, and the Chicxulub crater, the scar of an asteroid impact linked to a mass extinction that wiped out three-quarters of the planet's species, including the non-avian dinosaurs.",
+    "physicalGeography": "The country's terrain runs from high, rugged mountains to low coastal plains, with high plateaus and desert filling out the interior. It stretches between the Caribbean Sea and the Gulf of America on one side and the North Pacific Ocean on the other, bordered by Belize and the United States along different coasts.",
+    "climate": "Conditions range from tropical to desert. The country faces tsunamis along its Pacific coast, hurricanes on the Pacific, Gulf, and Caribbean coasts, and volcanic activity and destructive earthquakes across its central and southern regions; Colima, its most active volcano, periodically forces evacuations of nearby villages, while Popocatepetl poses a threat to Mexico City.",
+    "economy": "Mexico is an upper-middle-income economy closely tied to the United States through trade and nearshore manufacturing, though weak domestic demand, fiscal consolidation, and trade uncertainty have slowed growth even as unemployment stays low. Its industries span food and beverages, chemicals, iron and steel, petroleum, mining, textiles, motor vehicles, and tourism, and its leading exports include cars, vehicle parts, crude petroleum, trucks, and computers.",
+    "peopleAndCulture": "Most Mexicans identify as Mestizo, a mix of Indigenous and Spanish heritage, making up about 62% of the population, with predominantly Indigenous and fully Indigenous groups together accounting for roughly a quarter more. The population is overwhelmingly Catholic, at nearly 78%, with smaller shares reporting no religion or belonging to Evangelical and other churches."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 77.7%, no religion 10.6%, other Evangelical Churches 7.5%, Jehovah Witness 1.2%; less than 1 percent: Pentecostal, Seventh Day Adventist, Historics, not specified, Latter Day Saints, other religions (2020 est.) || Mestizo (Indigenous-Spanish) 62%, predominantly Indigenous 21%, Indigenous 7%, other 10% (mostly European) (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:55.402Z",
+  "draftModel": "claude-sonnet-5"
 }

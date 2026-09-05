@@ -1,6 +1,6 @@
 {
   "iso": "to",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.438Z",
   "structured": {
     "code": "to",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tonga is a South Pacific archipelago lying roughly two-thirds of the way from Hawaii to New Zealand, with no land borders since it is entirely surrounded by ocean. Its islands split neatly into two origins: a volcanic western arc and a nonvolcanic eastern chain of coral limestone and sand, a division that shapes everything from terrain to eruption risk.",
+    "physicalGeography": "Most of Tonga's islands are flat, built on limestone bedrock formed from uplifted coral, though some have limestone layered over volcanic rock. The western islands, known as the Tongan Volcanic Arch, are entirely volcanic in origin, while the eastern islands are nonvolcanic, composed instead of coral limestone and sand.",
+    "climate": "The climate is tropical and moderated by trade winds, with a warm season running December to May and a cooler one from May to December. Cyclones strike between October and April, and the country also faces earthquakes and volcanic activity: Fonualei has erupted frequently in recent years, Niuafo'ou has forced evacuations, and Late and Tofua are among the other historically active volcanoes.",
+    "economy": "Tonga is an upper middle-income Pacific island economy that depends heavily on its large diaspora and the remittances they send home, alongside tourism, agriculture, and fishing. It is a major fish exporter, and its exports also include refined petroleum, gold, processed fruits and nuts, and cassava, while Chinese infrastructure investment has been growing rapidly. Its main industries are tourism, construction, and fishing.",
+    "peopleAndCulture": "Tonga's population is overwhelmingly Tongan, both ethnically (96.5%) and linguistically, with 85% speaking only Tongan at home. Christianity dominates religious life: Protestants make up nearly two-thirds of the population, led by the Free Wesleyan Church, alongside significant communities of the Church of Jesus Christ and Roman Catholics."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Tongan only 85%, Tongan and other language 13.9%, Tongan not used at home 1.1% (2021 est.) || Protestant 63.9% (Free Wesleyan Church 34.2%, Free Church of Tonga 11.3%, Church of Tonga 6.8%, Seventh Day Adventist 2.5%, Assembly of God 2.5%, Tokaikolo/Maamafo'ou 1.5%, Constitutional Church of Tonga 1.2%, other Protestant 4%), Church of Jesus Christ 19.7%, Roman Catholic 13.7%, other 2.1%, none 0.6%, no answer 0.1% (2021 est.) || Tongan 96.5%, other (European, Fijian, Samoan, Indian, Chinese, other Pacific Islander, other Asian, other) 3.5% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:53:17.517Z",
+  "draftModel": "claude-sonnet-5"
 }

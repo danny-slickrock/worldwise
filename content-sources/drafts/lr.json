@@ -1,6 +1,6 @@
 {
   "iso": "lr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.414Z",
   "structured": {
     "code": "lr",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Liberia sits on the Atlantic coast of West Africa between Cote d'Ivoire and Sierra Leone, its shoreline a mix of lagoons, mangrove swamps, and sandbars built up by river deposits. Inland, a grassy plateau supports limited farming, while the ground below holds iron ore, gold, and diamonds. Among its exports are gold, ships, iron ore, rubber, and refined petroleum.",
+    "physicalGeography": "The terrain runs mostly flat to rolling along the coastal plains, then rises into a rolling plateau and low mountains toward the northeast. The Atlantic coastline itself is shaped by lagoons, mangrove swamps, and sandbars deposited by rivers, while the inland grassy plateau offers ground for limited agriculture.",
+    "climate": "The climate is tropical, hot and humid year-round. Winters are dry with hot days and cool to cold nights, while summers bring wet, cloudy conditions with frequent heavy showers. Between December and March, dust-laden harmattan winds blow down from the Sahara.",
+    "economy": "Liberia is a low-income economy marked by food scarcity, particularly in rural areas, alongside high poverty and inflation. A severe recession tied to the Ebola crisis struck before COVID-19 added further strain, and government debt has been growing even as a large informal economy persists. The country is home to the longest continuously operated rubber plantation, and its industries center on mining iron ore, gold, and diamonds, along with rubber and palm oil processing; exports include gold, ships, iron ore, rubber, and refined petroleum.",
+    "peopleAndCulture": "Liberia's population is ethnically diverse, with the Kpelle, Bassa, and Grebo among the largest groups, alongside many smaller communities including the Gio, Mano, Kru, and others. English is the official language, spoken alongside 27 indigenous languages, including distinct varieties of Liberian English. Christianity is the majority religion, followed by a significant Muslim population and smaller numbers practicing traditional or other faiths."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English 20% (official) and 27 indigenous languages, including Liberian English variants || Christian 84.9%, Muslim 12%, Traditional 0.5%, other 0.1%, none 2.6% (2022 est.) || Kpelle 20.2%, Bassa 13.6%, Grebo 9.9%, Gio 7.9%, Mano 7.2%, Kru 5.5%, Lorma 4.8%, Krahn 4.5%, Kissi, 4.3%, Mandingo 4.2%, Vai 3.8%, Gola 3.8%, Gbandi 2.9%, Mende 1.7%, Sapo 1%, Belle 0.7%, Dey 0.3%, other Liberian ethnic group 0.4%, other African 3%, non-African 0.2% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:42:59.008Z",
+  "draftModel": "claude-sonnet-5"
 }

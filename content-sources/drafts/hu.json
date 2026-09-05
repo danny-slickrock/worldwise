@@ -1,6 +1,6 @@
 {
   "iso": "hu",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.380Z",
   "structured": {
     "code": "hu",
@@ -39,11 +39,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and sitting on major land routes that connect Western Europe to the Balkans and Ukraine to the Mediterranean, Hungary occupies a strategic crossroads position in Central Europe. The Danube and Tisza rivers split the country into three large regions, running through mostly flat to rolling plains. Its resources include bauxite, coal, natural gas, and fertile arable soils, and it exports cars, vehicle parts, electric batteries, packaged medicine, and computers.",
+    "physicalGeography": "Hungary sits in Central Europe, northwest of Romania. The terrain is mostly flat to rolling plains, with hills and low mountains rising along the Slovakian border.",
+    "climate": "The climate is temperate, with cold, cloudy, humid winters and warm summers.",
+    "economy": "Hungary is a high-income economy and member of the EU and OECD, currently seeing a modest recovery from a 2024 recession driven by private consumption and moderated inflation. It faces high fiscal deficits, frozen access to EU funds, and risks tied to its reliance on exports, and is implementing tax exemptions, price controls, and mortgage interest caps ahead of 2026 elections. Key industries include mining, metallurgy, construction materials, processed foods, textiles, chemicals (especially pharmaceuticals), and motor vehicles, with cars, vehicle parts, electric batteries, packaged medicine, and computers among its leading exports.",
+    "peopleAndCulture": "Hungarians make up 84.3% of the population, with Romani (2.1%) and German (1%) minorities and a notable 13.7% unspecified. Religiously, Catholics account for about 30.1% of the population (mostly Roman Catholic, with smaller Greek Catholic and other Catholic groups), Calvinists 9.8%, Lutherans 1.8%, and other Christians 1.6%, while 16.1% claim no religion and a large share, 40.1%, gave no answer."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -73,5 +73,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 30.1% (Roman Catholic 27.5%, Greek Catholic 1.7%, other Catholic 0.9%), Calvinist 9.8%, Lutheran 1.8%, other Christian (includes Orthodox) 1.6%, other 0.4%, none 16.1%, no answer 40.1% (2022 est.) || Hungarian 84.3%, Romani 2.1%, German 1%, other 1.2%, unspecified 13.7% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:24.578Z",
+  "draftModel": "claude-sonnet-5"
 }

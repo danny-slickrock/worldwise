@@ -1,6 +1,6 @@
 {
   "iso": "lb",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.398Z",
   "structured": {
     "code": "lb",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between Israel and Syria on the Mediterranean coast, Lebanon is the smallest country in continental Asia, yet its narrow coastal plain gives way to the Bekaa Valley, which separates the Lebanon Mountains from the Anti-Lebanon range. It holds the Nahr el Litani, the only major river in the Near East that doesn't cross an international boundary, and is unusual in the region as a water-surplus state surrounded by water-deficit neighbors. Its resources include limestone, iron ore, salt, and arable land, while jewelry, cars, diamonds, scrap iron, and gold rank among its exports.",
+    "physicalGeography": "Lebanon sits on the Mediterranean Sea between Israel and Syria, with a narrow coastal plain running along the shore. Inland, the Bekaa Valley forms a distinct lowland corridor separating the Lebanon Mountains from the Anti-Lebanon Mountains.",
+    "climate": "The climate is Mediterranean, with mild, wet winters and hot, dry summers, though the Lebanon Mountains see heavy snowfall in winter. The country is also subject to earthquakes as well as dust storms and sandstorms.",
+    "economy": "Lebanon has a lower middle-income economy that has experienced hyperinflation and a sharp rise in poverty, with banks halting lending and consumer demand falling amid damaged infrastructure and economic contraction. Its industries span banking, tourism, real estate and construction, food processing, wine, jewelry, cement, textiles, mineral and chemical products, wood and furniture products, oil refining, and metal fabricating, and its exports include jewelry, cars, diamonds, scrap iron, and gold.",
+    "peopleAndCulture": "The population is predominantly Muslim (67.8%, split between Sunni and Shia with smaller Alawite and Ismaili communities) and Christian (32.4%, with Maronite Catholics the largest Christian group), alongside a Druze community of 4.5% and very small numbers of Jews, Baha'is, Buddhists, and Hindus. Ethnically, the population is 95% Arab and 4% Armenian, with the remainder classified as other."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 67.8% (31.9% Sunni, 31.2% Shia, smaller percentages of Alawites and Ismailis), Christian 32.4% (Maronite Catholics are the largest Christian group), Druze 4.5%, very small numbers of Jews, Baha'is, Buddhists, and Hindus (2020 est.) || Arab 95%, Armenian 4%, other 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:42:29.105Z",
+  "draftModel": "claude-sonnet-5"
 }

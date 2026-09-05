@@ -1,6 +1,6 @@
 {
   "iso": "it",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.381Z",
   "structured": {
     "code": "it",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Italy juts into the central Mediterranean as a mountainous peninsula, a shape that has long given it a strategic grip on the sea lanes and air approaches into Western Europe. Its ground yields an unusual mix of resources, from coal, mercury and zinc to marble, natural gas and crude oil, while today its factories export packaged medicine, cars and refined petroleum around the world.",
+    "physicalGeography": "The country is mostly rugged and mountainous, with plains and coastal lowlands filling in the gaps, and it forms a long peninsula extending southeast into the central Mediterranean toward Tunisia. On land it borders Austria, France, San Marino, Slovenia, and Switzerland, along with the Holy See, whose territory sits entirely within Rome.",
+    "climate": "Italy's climate is predominantly Mediterranean, turning alpine in the far north and hot and dry in the south. The peninsula faces a wide range of natural hazards, including landslides, mudflows, avalanches, earthquakes, flooding, and land subsidence in Venice, alongside significant volcanic activity. Etna, at 3,330 meters, is Europe's most active volcano and threatens nearby Sicilian villages with its flank eruptions, while Etna and Vesuvius are both classified as Decade Volcanoes for their explosive histories and proximity to dense populations; Stromboli remains continuously active as well, and Campi Flegrei, Ischia, and Vulcano are among other historically active sites.",
+    "economy": "Italy runs a high-income, core EU economy built on strong services, manufacturing, and tourism sectors, with modest growth supported by net exports, low inflation, and public investment channeled through EU funds. Its industries span machinery, iron and steel, chemicals, food processing, textiles, motor vehicles, and footwear, and its top exports include packaged medicine, garments, cars, refined petroleum, and vehicle parts. The labor market is tight, with an aging workforce and shortages in specialized skills, and the country carries high levels of public debt.",
+    "peopleAndCulture": "The population is overwhelmingly Christian, at 80.8 percent and predominantly Roman Catholic, with small Muslim and unaffiliated populations rounding out the rest. Italian identity includes regional clusters shaped by history, from German-, French-, and Slovene-Italians in the north to Albanian-, Croat-, and Greek-Italian communities in the south."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 80.8% (overwhelmingly Roman Catholic with very small groups of Jehovah's Witnesses and Protestants), Muslim 4.9%, unaffiliated 13.4%, other 0.9% (2020 est.) || Italian (includes small clusters of German-, French-, and Slovene-Italians in the north, Albanian-Italians, Croat-Italians, and Greek-Italians in the south)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:40:22.024Z",
+  "draftModel": "claude-sonnet-5"
 }

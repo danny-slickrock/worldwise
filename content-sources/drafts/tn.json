@@ -1,6 +1,6 @@
 {
   "iso": "tn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.422Z",
   "structured": {
     "code": "tn",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Algeria and Libya on the central Mediterranean coast, this small North African nation packs mountains, a hot dry central plain, and a semiarid south that fades into the Sahara into a compact strategic footprint. Its ground holds petroleum, phosphates, iron ore, lead, zinc, and salt, and its factories ship out garments, insulated wire, olive oil, and refined and crude petroleum.",
+    "physicalGeography": "Mountains rise in the north, giving way to a hot, dry central plain, while the semiarid south gradually merges into the Sahara. The country sits on the Mediterranean coast of Northern Africa, wedged between Algeria and Libya.",
+    "climate": "The north has a temperate climate with mild, rainy winters and hot, dry summers, while the south turns to desert. The country is exposed to flooding, earthquakes, and droughts.",
+    "economy": "This is a lower middle-income North African economy currently drafting reforms for foreign lenders, and it serves as a key trade partner for the EU. It faces high unemployment, particularly among youth and women, and was hit hard by COVID-19, compounding existing pressures from high public sector wages, heavy public debt, and protectionist austerity measures. Its industries span petroleum, mining (especially phosphate and iron ore), tourism, textiles, footwear, agribusiness, and beverages, with exports led by garments, insulated wire, olive oil, and refined and crude petroleum.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, with Sunni Islam as the official faith at 99 percent, alongside a small remainder that includes Christian, Jewish, Shia Muslim, and Baha'i communities. Ethnically, Arabs make up 98 percent of the population, with Europeans at 1 percent and Jewish and other groups making up the final 1 percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official; Sunni) 99%, other (includes Christian, Jewish, Shia Muslim, and Baha'i) &lt;1% || Arab 98%, European 1%, Jewish and other 1%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:53:03.907Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "qa",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.401Z",
   "structured": {
     "code": "qa",
@@ -27,11 +27,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Qatar occupies a small peninsula jutting into the Persian Gulf, its only land border shared with Saudi Arabia, sitting near major petroleum deposits in a strategic stretch of the Gulf. Beneath its flat, barren desert lies the wealth that has made it a high-income economy built on natural gas and oil.",
+    "physicalGeography": "Qatar is a peninsula in the Middle East bordering the Persian Gulf and Saudi Arabia. The terrain is mostly flat and barren desert.",
+    "climate": "The climate is arid, with mild, pleasant winters and very hot, humid summers. Haze, dust storms, and sandstorms are common.",
+    "economy": "Qatar has a high-income economy based on oil and gas, and is a leader in Islamic finance. It is implementing its 'National Vision 2030' strategy to diversify the economy and create favorable conditions for investment and employment, with expansion of its LNG sector expected to boost growth further. Key industries include liquefied natural gas, crude oil production and refining, ammonia, fertilizer, petrochemicals, steel reinforcing bars, cement, and commercial ship repair, and its main exports are natural gas, crude and refined petroleum, plastics, and fertilizers.",
+    "peopleAndCulture": "Qatar's population is overwhelmingly foreign-born, with non-Qataris making up 88.4% of residents compared to just 11.6% who are Qatari nationals. Religiously, the population is 65.2% Muslim, alongside significant Hindu (15.9%) and Christian (13.7%) minorities, with smaller Buddhist, Jewish, and other communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -61,5 +61,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 65.2%, Christian 13.7%, Hindu 15.9%, Buddhist 3.8%, folk religion &lt;0.1%, Jewish &lt;0.1%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || non-Qatari 88.4%, Qatari 11.6% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:48:51.472Z",
+  "draftModel": "claude-sonnet-5"
 }

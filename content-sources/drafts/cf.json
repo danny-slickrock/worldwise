@@ -1,6 +1,6 @@
 {
   "iso": "cf",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.409Z",
   "structured": {
     "code": "cf",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting almost exactly at the geographic center of Africa, this landlocked nation is a vast, flat-to-rolling plateau broken only by scattered hills in the northeast and southwest. Beneath that plain lies an outsized share of wealth for such a poor country: diamonds, gold, uranium, timber and oil.",
+    "physicalGeography": "The country is a vast, flat to rolling plateau, with hills rising only in the northeast and southwest corners. It sits in Central Africa, just north of the Democratic Republic of the Congo, and has no coastline.",
+    "climate": "The climate is tropical, with hot, dry winters and milder to hot, wet summers. In the north, the dry, dusty harmattan wind is a seasonal feature, while floods are common elsewhere in the country.",
+    "economy": "Despite enormous natural resources, the country faces extreme poverty alongside weak public institutions and infrastructure. Its economy leans on mining gold and diamonds, along with logging, brewing and sugar refining, and it exports gold, wood, diamonds, vehicle parts and cotton. Strong agricultural performance has helped offset economic downturns such as the one caused by COVID-19.",
+    "peopleAndCulture": "French is the official language, while Sango serves as the lingua franca and national language alongside numerous tribal languages. The population is largely Christian, split between Roman Catholic, Protestant, and other Christian denominations, with a Muslim minority and smaller communities of ethnic religionists and Baha'i. Ethnically, the Baya and Banda are the largest groups, followed by the Mandjia, Sara, M'Baka-Bantu, Arab-Fulani, Mbum, Ngbanki and Zande-Nzakara, among others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official), Sangho (lingua franca and national language), tribal languages || Roman Catholic 34.6%, Protestant 15.7%, other Christian 22.9%, Muslim 13.8%, ethnic religionist 12%, Baha'i 0.2%, agnostic/atheist 0.7% (2020 est.) || Baya 28.8%, Banda 22.9%, Mandjia 9.9%, Sara 7.9%, M'Baka-Bantu 7.9%, Arab-Fulani (Peuhl) 6%, Mbum 6%, Ngbanki 5.5%, Zande-Nzakara 3%, other Central African Republic ethnic groups 2%, non-Central African Republic ethnic groups .1% (2003 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:32:08.212Z",
+  "draftModel": "claude-sonnet-5"
 }

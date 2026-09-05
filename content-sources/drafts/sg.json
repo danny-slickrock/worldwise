@@ -1,6 +1,6 @@
 {
   "iso": "sg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.402Z",
   "structured": {
     "code": "sg",
@@ -26,11 +26,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "An island city-state with no land borders, Singapore sits at a focal point for Southeast Asian sea routes between Malaysia and Indonesia. It is made up of about 60 islands, the largest by far being Pulau Ujong, and land reclamation has erased some former islands while creating new ones. Despite limited natural resources, it has built itself into a hub for integrated circuits, refined petroleum, machinery, vaccines, and gold exports.",
+    "physicalGeography": "Singapore's terrain is a low-lying, gently undulating central plateau, part of a cluster of islands situated between Malaysia and Indonesia. Land reclamation has substantially reshaped its coastline over time, removing some smaller islands while adding new land elsewhere.",
+    "climate": "The climate is tropical, hot, humid, and rainy, shaped by two distinct monsoon seasons: the northeastern monsoon from December to March and the southwestern monsoon from June to September. Between these, an inter-monsoon period brings frequent afternoon and early evening thunderstorms, and flash floods can occur.",
+    "economy": "Singapore runs a high-income, service-based economy and functions as a global financial hub with business-friendly policies open to investment and trade. Its industrial base spans electronics, chemicals, financial services, petroleum refining, biomedical products, and entrepot trade, alongside exports like integrated circuits and refined petroleum. Inflation in services has been persistent even as it eases elsewhere, and the government has invested in education, healthcare, and infrastructure to sustain strong human capital, a challenge complicated by an aging population.",
+    "peopleAndCulture": "The population is predominantly Chinese (74.2%), with significant Malay (13.7%) and Indian (8.9%) communities. Religious life reflects this diversity: Buddhism is the largest faith at 31.1%, followed by Christianity, Islam, Taoism, and Hinduism, while about a fifth of the population reports no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -60,5 +60,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist 31.1%, Christian 18.9%, Muslim 15.6%, Taoist 8.8%, Hindu 5%, other 0.6%, none 20% (2020 est.) || Chinese 74.2%, Malay 13.7%, Indian 8.9%, other 3.2% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:19.722Z",
+  "draftModel": "claude-sonnet-5"
 }

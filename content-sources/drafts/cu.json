@@ -1,6 +1,6 @@
 {
   "iso": "cu",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.427Z",
   "structured": {
     "code": "cu",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Cuba is the largest country in the Caribbean and the westernmost island of the Greater Antilles, lying just 150 km south of Key West, Florida. It has no land borders with any country. Its resources range from nickel and cobalt to petroleum and arable land, and its exports still include the tobacco it has long been known for.",
+    "physicalGeography": "Cuba is an island set between the Caribbean Sea and the North Atlantic Ocean, most of it made up of flat to rolling plains. Rugged hills and mountains rise in the southeast, breaking up the otherwise gentle terrain.",
+    "climate": "The climate is tropical and moderated by trade winds, with a dry season from November to April and a rainy season from May to October. The east coast lies in the path of hurricanes between August and November, with the country averaging about one every other year, and droughts are also common.",
+    "economy": "Cuba's economy remains largely state-run, though privatization has been increasing under the new constitution, and recent years have brought a rise in foreign investment alongside widespread protests over shortages of basic necessities and electricity. It is a known tobacco exporter, and its exports also include nickel, liquor, zinc ore, and precious metal ore. Industries span petroleum, nickel, cobalt, pharmaceuticals, tobacco, construction, steel, cement, agricultural machinery, and sugar, and the country has maintained a distinctive oil-for-doctors arrangement with Venezuela.",
+    "peopleAndCulture": "Cubans are predominantly White (64.1%), with Mulatto or mixed people making up 26.6% and Black Cubans 9.3%. Christianity is the majority religion at 58.9%, followed by folk religion at 17.6%, while nearly a quarter of the population identifies with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 58.9%, folk religion 17.6%, Buddhist &lt;1%, Hindu &lt;1%, Jewish &lt;1%, Muslim &lt;1%, other &lt;1%, none 23.2% (2020 est.) || White 64.1%, Mulatto or mixed 26.6%, Black 9.3% (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:26.378Z",
+  "draftModel": "claude-sonnet-5"
 }

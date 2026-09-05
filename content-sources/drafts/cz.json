@@ -1,6 +1,6 @@
 {
   "iso": "cz",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.377Z",
   "structured": {
     "code": "cz",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked at the crossroads of central Europe, this country sits astride some of the continent's oldest and most significant land routes, including the Moravian Gate, a traditional military corridor linking the North European Plain to the Danube. Beneath its surface lies the Hranice Abyss, the world's deepest surveyed freshwater cave at 519 meters, though incomplete surveys suggest it could run as deep as 800 to 1,200 meters.",
+    "physicalGeography": "The country splits into two distinct landscapes: Bohemia in the west, made up of rolling plains, hills, and plateaus ringed by low mountains, and Moravia in the east, which is very hilly. It is landlocked, bordered by Germany, Poland, Slovakia, and Austria.",
+    "climate": "The climate is temperate, with cool summers and cold, cloudy, humid winters. Flooding is a recurring concern.",
+    "economy": "This is a high-income, diversified EU economy built around manufacturing, with the automotive industry leading its export sector alongside vehicle parts, broadcasting equipment, computers, and plastic products. Growth has been moderate, driven mainly by household consumption and investment even as net exports have dragged on the total, and the labor market remains tight with low unemployment. In April 2025 the country achieved energy independence from Russian oil. Beyond cars, key industries include metallurgy, machinery and equipment, glass, and armaments.",
+    "peopleAndCulture": "Ethnic Czechs make up 57.3% of the population, with Moravians at 3.4% and nearly a third of people not specifying an ethnicity. Religious affiliation is similarly loose: almost half report no religion, roughly 30% leave it unspecified, and only about 7% identify as Roman Catholic, with smaller numbers belonging to groups like the Evangelical United Brethren Church and the Czechoslovak Hussite Church."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 7%, other believers belonging to a church or religious society 6% (includes Evangelical United Brethren Church and Czechoslovak Hussite Church), believers unaffiliated with a religious society 9.1%, none 47.8%, unspecified 30.1% (2021 est.) || Czech 57.3%, Moravian 3.4%, other 7.7%, unspecified 31.6% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:43.408Z",
+  "draftModel": "claude-sonnet-5"
 }

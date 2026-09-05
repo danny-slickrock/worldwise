@@ -1,6 +1,6 @@
 {
   "iso": "tl",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.404Z",
   "structured": {
     "code": "tl",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Timor-Leste occupies the eastern half of the island of Timor at the far end of the Indonesian archipelago, plus the Oecussi exclave on the island's northwest coast and the islands of Atauro and Jaco. It is the only country in Asia located entirely in the Southern Hemisphere, and its Oecussi district is cut off from the rest of the country by Indonesian territory. The land holds gold, petroleum, natural gas, manganese and marble, and crude petroleum, natural gas, and coffee are among its main exports.",
+    "physicalGeography": "The country is mountainous throughout, occupying the eastern portion of Timor, the largest and easternmost of the Lesser Sunda Islands within the Malay Archipelago. Its territory is split across the main island, the separate Oecussi exclave on Timor's northwest coast, and the smaller islands of Atauro and Jaco.",
+    "climate": "The climate is tropical, hot and humid, with distinct rainy and dry seasons. Floods, landslides, earthquakes, tsunamis and tropical cyclones are all recurring hazards.",
+    "economy": "Timor-Leste is a lower middle-income economy in Southeast Asia, with government spending funded largely by drawdowns from its oil fund. Endemic corruption undermines growth, the country is dependent on foreign aid, and poverty, unemployment, and illiteracy remain widespread. Exports include crude petroleum, natural gas, coffee, scrap iron, and telephones, while local industries include printing, soap manufacturing, handicrafts, and woven cloth.",
+    "peopleAndCulture": "The population is made up of numerous ethnic groups, the largest being Tetun Prasa, Mambai, Makasai, and Tetun Terik, alongside many smaller groups such as Baikenu, Kemak, Bunak, and Fataluku. These trace to two broader lineages, Austronesian (Malayo-Polynesian) peoples like the Tetun, Mambai, and Kemak, and Melanesian-Papuan peoples like the Bunak and Fataluku, with a small Chinese minority also present. The overwhelming majority of people are Catholic, with small Protestant Evangelical, Muslim, Buddhist, and Hindu minorities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Tetun Prasa 30.6%, Mambai 16.6%, Makasai 10.5%, Tetun Terik 6.1%, Baikenu 5.9%, Kemak 5.8%, Bunak 5.5%, Tokodede 4%, Fataluku 3.5%, Waima'a 1.8%, Galoli 1.4%, Naueti 1.4%, Idate 1.2%, Midiki 1.2%, other 4.5% (2015 est.) || Catholic 90.7%, other 7.1%, Protestant Evangelical 1.9%; less than 1%: Islam, Buddhist, Hindu (2022 est.) || Austronesian (Malayo-Polynesian) (includes Tetun, Mambai, Tokodede, Galoli, Kemak, Baikeno), Melanesian-Papuan (includes Bunak, Fataluku, Bakasai), small Chinese minority"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:45.439Z",
+  "draftModel": "claude-sonnet-5"
 }

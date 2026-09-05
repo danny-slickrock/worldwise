@@ -1,6 +1,6 @@
 {
   "iso": "ie",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.381Z",
   "structured": {
     "code": "ie",
@@ -26,11 +26,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Ireland occupies five-sixths of the island it shares with the United Kingdom, sitting in the North Atlantic just west of Great Britain on major air and sea routes linking North America to northern Europe. More than 40% of the population lives within 100 km of Dublin, making the country far more concentrated around its capital than its landmass suggests.",
+    "physicalGeography": "The interior is mostly a flat to rolling plain, ringed by rugged hills and low mountains near the coasts. The west coast in particular is marked by dramatic sea cliffs, a contrast to the gentler farmland further inland.",
+    "climate": "The climate is temperate and maritime, moderated by the North Atlantic Current, which keeps winters mild and summers cool. It is consistently humid and overcast roughly half the time, though extreme weather events are rare.",
+    "economy": "Ireland runs a high-income, export-oriented economy within the EU, built around a large multinational business sector that drives growth and tax revenue but also brings volatility. Living standards are high and the labor market is strong, though it faces skill shortages and an aging workforce. Key industries include pharmaceuticals, chemicals, computer hardware and software, medical devices, and food and beverage production, with exports led by vaccines, packaged medicine, nitrogen compounds, integrated circuits, and hormones.",
+    "peopleAndCulture": "English is the official language most commonly used, while Irish (Gaeilge) is also official and spoken by about 37.7% of the population. Roman Catholicism is the majority religion at 69.2%, alongside smaller Protestant, Orthodox, and Muslim communities, and a notable 14.5% who identify as having no religion. Ethnically, the population is predominantly Irish at 76.6%, with smaller shares of Irish Travellers, other White, Asian, and Black residents."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -60,5 +60,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official, the language generally used), Irish (Gaelic or Gaeilge) (official, spoken by approximately 37.7% of the population) || Roman Catholic 69.2% (includes lapsed), Protestant 3.7% (Church of Ireland/England/Anglican/Episcopalian 2.5%, other Protestant 1.2%), Orthodox 2%, other Christian 0.9%, Muslim 1.6%, other 1.4%, agnostic/atheist 0.1%, none 14.5%, unspecified 6.7% (2022 est.) || Irish 76.6%, Irish travelers 0.6%, other White 9.9%, Asian 3.3%, Black 1.5%, other (includes Arab, Roma, and persons of mixed backgrounds) 2%, unspecified 2.6% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:41.474Z",
+  "draftModel": "claude-sonnet-5"
 }

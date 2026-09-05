@@ -1,6 +1,6 @@
 {
   "iso": "dj",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.411Z",
   "structured": {
     "code": "dj",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Djibouti sits in the Horn of Africa along the Gulf of Aden and the Red Sea, wedged between Eritrea and Somalia at one of the world's busiest shipping crossroads near the Arabian oilfields. Its interior holds Lac Assal, the lowest point in Africa and the saltiest lake on Earth.",
+    "physicalGeography": "The country consists of a coastal plain and a plateau divided by a band of central mountains. It lies in Eastern Africa along the Gulf of Aden and the Red Sea, situated between Eritrea and Somalia.",
+    "climate": "The climate is desert: torrid and dry year-round. The country is prone to earthquakes and droughts, and occasional cyclonic disturbances from the Indian Ocean can bring heavy rains and flash floods. Volcanic activity is limited but present, with Ardoukoba, which last erupted in 1978, and the historically active Manda-Inakir along the Ethiopian border.",
+    "economy": "Djibouti's economy depends on food imports and is driven largely by national military bases and port-based trade, having proven fairly resilient to COVID-19 disruptions. It functions as a major re-exporter, with growing trade ties to Ethiopia and China alongside ongoing infrastructure investment. Its main exports are raw sugar, seed oils, cars, palm oil, and rice, and its key industries include construction, agricultural processing, and shipping.",
+    "peopleAndCulture": "French and Arabic are the official languages, alongside Somali and Afar. The population is overwhelmingly Sunni Muslim at 94 percent, with the remaining 6 percent, mostly foreign-born residents, including Shia Muslims, Christians, Hindus, Jews, Baha'is, and atheists. Ethnically, Somalis make up 60 percent of the population and Afars 35 percent, with the remainder mainly Yemeni Arab, French, Ethiopian, and Italian."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official), Arabic (official), Somali, Afar || Sunni Muslim 94% (nearly all Djiboutians), other 6% (mainly foreign-born residents - Shia Muslim, Christian, Hindu, Jewish, Baha'i, and atheist) || Somali 60%, Afar 35%, other 5% (mostly Yemeni Arab, also French, Ethiopian, and Italian)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:59.147Z",
+  "draftModel": "claude-sonnet-5"
 }

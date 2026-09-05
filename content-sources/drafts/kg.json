@@ -1,6 +1,6 @@
 {
   "iso": "kg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.397Z",
   "structured": {
     "code": "kg",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked and entirely mountainous, Kyrgyzstan is dominated by the peaks of the Tien Shan range, with 94% of the country sitting above 1,000 meters and an average elevation of 2,750 meters. Glaciers and high-altitude lakes are scattered throughout its valleys and basins. Beneath those mountains lie substantial gold and rare earth metal deposits, alongside coal, oil, and natural gas.",
+    "physicalGeography": "Kyrgyzstan lies in Central Asia, west of China and south of Kazakhstan, bordering China, Kazakhstan, Tajikistan, and Uzbekistan. The peaks of the Tien Shan mountain range, along with their associated valleys and basins, encompass the entire country, leaving it landlocked and almost entirely mountainous. Tall peaks, glaciers, and high-altitude lakes define the terrain.",
+    "climate": "Climate varies sharply with elevation and region: dry continental to polar conditions prevail in the high Tien Shan Mountains, subtropical conditions occur in the southwest Fergana Valley, and a temperate climate marks the northern foothill zone. The country experiences major flooding during snow melt and is prone to earthquakes.",
+    "economy": "Kyrgyzstan is a landlocked, lower-middle-income economy that is rich in natural resources, with growing hydroelectricity and tourism sectors and high levels of remittances. Corruption limits investment, and the combined effects of COVID-19 and political turmoil have hurt GDP, limited public revenues, and increased spending. Its industries include small machinery, textiles, food processing, cement, shoes, lumber, refrigerators, furniture, electric motors, gold, and rare earth metals, while exports center on gold, coal, precious metal ore, refined petroleum, and garments.",
+    "peopleAndCulture": "The population is predominantly Kyrgyz (73.8%), with significant Uzbek (14.8%) and Russian (5.1%) minorities, along with smaller Dungan, Uyghur, Tajik, Turk, Kazakh, Tatar, Ukrainian, Korean, and German communities. Religiously, about 90% of the population is Muslim, mostly Sunni, while 7% is Christian, including a Russian Orthodox minority, and the remaining 3% includes Jewish, Buddhist, and Baha'i adherents."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 90% (majority Sunni), Christian 7% (Russian Orthodox 3%), other 3% (includes Jewish, Buddhist, Baha'i) (2017 est.) || Kyrgyz 73.8%, Uzbek 14.8%, Russian 5.1%, Dungan 1.1%, other 5.2% (includes Uyghur, Tajik, Turk, Kazakh, Tatar, Ukrainian, Korean, German) (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:40:52.415Z",
+  "draftModel": "claude-sonnet-5"
 }

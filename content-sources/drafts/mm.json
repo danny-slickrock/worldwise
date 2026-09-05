@@ -1,6 +1,6 @@
 {
   "iso": "mm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.399Z",
   "structured": {
     "code": "mm",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between Bangladesh and Thailand along the Andaman Sea and Bay of Bengal, this is a land of central lowlands ringed by steep, rugged highlands, with the Irrawaddy River serving as its largest and most important commercial waterway. Its position near major Indian Ocean shipping lanes and its wealth of resources — petroleum, timber, tin, precious stones, natural gas, and hydropower among them — shape its economic role in the region.",
+    "physicalGeography": "The terrain consists of central lowlands ringed by steep, rugged highlands. It sits in Southeastern Asia, bordering the Andaman Sea and the Bay of Bengal, between Bangladesh and Thailand.",
+    "climate": "The climate is tropical monsoon, with cloudy, rainy, hot, humid summers driven by the southwest monsoon from June to September, followed by a drier, milder, less humid winter under the northeast monsoon from December to April. The country is prone to destructive earthquakes and cyclones, with flooding and landslides common during the rainy season and periodic droughts also occurring.",
+    "economy": "The economy is slowly recovering, weighed down by weak household incomes, a growing trade deficit, declining employment, high inflation, and a weakened currency, though agriculture remains the most stable sector. Key exports include garments, natural gas, dried legumes, rare-earth metal compounds, and precious stones, while industries span agricultural processing, wood products, metals like copper, tin, tungsten and iron, cement and construction materials, pharmaceuticals, fertilizer, oil and gas, garments, and jade and gems.",
+    "peopleAndCulture": "The population is predominantly Buddhist (87.9%), with Christian, Muslim, Animist, and Hindu minorities. Ethnically, the Burman (Bamar) make up 68% of the population, followed by the Shan, Karen, Rakhine, Chinese, Indian, Mon, and other groups."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Buddhist 87.9%, Christian 6.2%, Muslim 4.3%, Animist 0.8%, Hindu 0.5%, other 0.2%, none 0.1% (2014 est.) || Burman (Bamar) 68%, Shan 9%, Karen 7%, Rakhine 4%, Chinese 3%, Indian 2%, Mon 2%, other 5%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:44:53.897Z",
+  "draftModel": "claude-sonnet-5"
 }

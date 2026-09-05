@@ -1,6 +1,6 @@
 {
   "iso": "ae",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.405Z",
   "structured": {
     "code": "ae",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between Oman and Saudi Arabia along the Gulf of Oman and the Persian Gulf, the UAE sits on the southern approaches to the Strait of Hormuz, a major transit point for crude oil. Two emirates, Abu Dhabi and Dubai, together cover over 90% of the country's area and hold two-thirds of its population.",
+    "physicalGeography": "The landscape is a flat, barren coastal plain that gives way to rolling sand dunes across a vast desert interior, with mountains rising in the east. The country lies in the Middle East, bordering the Gulf of Oman and the Persian Gulf, between Oman and Saudi Arabia.",
+    "climate": "The climate is desert, though somewhat cooler in the eastern mountains. Frequent sand and dust storms sweep the region.",
+    "economy": "The UAE runs a high-income, oil-driven economy that has posted the fastest GDP growth among the Gulf states. Growth has come alongside diversification into tourism, construction, and services, backed by a strong orientation toward foreign direct investment and ongoing government investment and business-friendly reforms. Key industries include petroleum and petrochemicals, fishing, aluminum, cement, fertilizer, commercial ship repair, construction materials, handicrafts, and textiles, while leading exports include crude and refined petroleum, gold, broadcasting equipment, and natural gas.",
+    "peopleAndCulture": "Emiratis make up only 11.6% of the population; South Asians form the largest share at 59.4%, including large Indian, Bangladeshi, and Pakistani communities, alongside Egyptian and Filipino populations. Islam is the official religion, followed by 74.5% of residents (mostly Sunni, with a Shia minority), while Christians, Hindus, Buddhists, and others make up the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 74.5% (official) (Sunni 63.3%, Shia 6.7%, other 4.4%), Christian 12.9%, Hindu 6.2%, Buddhist 3.2%, agnostic 1.3%, other 1.9% (2020 est.) || Emirati 11.6%, South Asian 59.4% (includes Indian 38.2%, Bangladeshi 9.5%, Pakistani 9.4%, other 2.3%), Egyptian 10.2%, Filipino 6.1%, other 12.8% (2015 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:28:01.604Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "si",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.388Z",
   "structured": {
     "code": "si",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked into the eastern Alps between Austria and Croatia, this small country nonetheless sits astride some of Europe's major transit routes. Its territory ranges from a brief Karst coastline on the Adriatic to alpine peaks in the north and a patchwork of mountains, valleys, and rivers to the east.",
+    "physicalGeography": "Slovenia's landscape divides into three distinct zones: a short southwestern strip of Karst topography along the Adriatic coast, an alpine mountain region bordering Italy and Austria in the north, and a mixed terrain of mountains, valleys, and numerous rivers to the east. The country lies in south Central Europe, with the Julian Alps positioned between Austria and Croatia.",
+    "climate": "The coast enjoys a Mediterranean climate, while the plateaus and valleys to the east experience a continental pattern of mild to hot summers and cold winters. The country is subject to flooding and earthquakes.",
+    "economy": "Slovenia is a high-income economy within the EU and eurozone, marked by high per-capita income and low inequality alongside a tight labor market and low unemployment. Growth is driven by private consumption and public investment, with a narrowing fiscal deficit and declining public debt, though trade conditions and labor tightness pose risks. Key exports include packaged medicine, cars, refined petroleum, vehicle parts, and plastic products, supported by industries such as ferrous metallurgy, aluminum products, lead and zinc smelting, electronics, automobiles, and chemicals. Natural resources include lignite, lead, zinc, building stone, hydropower, and forests.",
+    "peopleAndCulture": "Slovenes make up the large majority of the population at 83.1%, with smaller communities of Serbs, Croats, and Bosniaks. Catholicism is the dominant religion at 69%, alongside smaller Orthodox and Muslim populations, while a notable share identify as atheist or non-believer."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Catholic 69%, Orthodox 4%, Muslim 3%, Christian 1%, other 3%, atheist 14%, non-believer/agnostic 4%, refused to answer 2% (2019 est.) || Slovene 83.1%, Serb 2%, Croat 1.8%, Bosniak 1.1%, other or unspecified 12% (2002 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:26.019Z",
+  "draftModel": "claude-sonnet-5"
 }

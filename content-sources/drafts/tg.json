@@ -1,6 +1,6 @@
 {
   "iso": "tg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.421Z",
   "structured": {
     "code": "tg",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between Benin and Ghana on the Bight of Benin, Togo packs six distinct geographic regions and a climate spanning tropical to savanna into a narrow strip of West Africa. Its resource base of phosphates, limestone, marble, and arable land underpins an economy that also exports gold, refined petroleum, and soybeans.",
+    "physicalGeography": "Togo's terrain runs from gently rolling savanna in the north through central hills to a southern plateau, ending in a low coastal plain marked by extensive lagoons and marshes. The country sits in Western Africa along the Bight of Benin, positioned between Benin and Ghana.",
+    "climate": "The climate is tropical, with hot, humid conditions in the south and semiarid conditions in the north. During winter, a hot, dry harmattan wind can reduce visibility in the north, and the country experiences periodic droughts.",
+    "economy": "Togo has a low-income, primarily agrarian economy, though it also operates a deep-water port and is a growing hub for international shipping. Key industries include phosphate mining, agricultural processing, cement, handicrafts, textiles, and beverages, and the country has been working to improve privatization and public budgeting transparency, even as rural poverty remains extremely high. Its main exports are gold, refined petroleum, soybeans, phosphates, and coconuts, brazil nuts, and cashews.",
+    "peopleAndCulture": "French is the official language and the language of commerce, alongside Ewe and Mina in the south and Kabye and Dagomba in the north. The population is mostly Christian (42.3%) or follows folk religion (36.9%), with a Muslim minority of 14%. Ethnically, the Adja-Ewe/Mina group makes up the largest share at 42.4%, followed by Kabye/Tem at 25.9% and Para-Gourma/Akan at 17.1%, with smaller groups and foreign residents rounding out the population."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official, language of commerce), Ewe and Mina (in the south), Kabye (sometimes spelled Kabiye) and Dagomba (in the north) || Christian 42.3%, folk religion 36.9%, Muslim 14%, Hindu &lt;1%, Buddhist &lt;1%, Jewish &lt;1%, other &lt;1%, none 6.2% (2020 est.) || Adja-Ewe/Mina 42.4%, Kabye/Tem 25.9%, Para-Gourma/Akan 17.1%, Akposso/Akebu 4.1%, Ana-Ife 3.2%, other Togolese 1.7%, foreigners 5.2%, no response 0.4% (2013-14 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:19.595Z",
+  "draftModel": "claude-sonnet-5"
 }

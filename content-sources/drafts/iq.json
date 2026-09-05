@@ -1,6 +1,6 @@
 {
   "iso": "iq",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.395Z",
   "structured": {
     "code": "iq",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Iraq sits at the head of the Persian Gulf between Iran and Kuwait, its position along the Shatt al Arab waterway giving it a strategic chokepoint on Middle Eastern shipping. The country's landscape ranges from broad plains and flooded southern marshes to mountains along the Iranian and Turkish borders, and its economy runs almost entirely on oil.",
+    "physicalGeography": "Much of Iraq consists of broad plains, with reedy marshes and large flooded areas along the Iranian border in the south. Mountains rise along the borders with Iran and Turkey. The country borders the Persian Gulf and lies between Iran and Kuwait.",
+    "climate": "Most of Iraq is desert, with mild to cool winters and dry, hot, cloudless summers. The northern mountainous regions along the Iranian and Turkish borders get cold winters with occasionally heavy snow, which melts in early spring and can cause extensive flooding across central and southern Iraq. Dust storms, sandstorms, and floods are recurring hazards.",
+    "economy": "Iraq's economy is highly dependent on oil, with fiscal health tied closely to fluctuations in oil prices; crude and refined petroleum, along with petroleum coke, gold, and natural gas, dominate exports. Industries include petroleum, chemicals, textiles, leather, construction materials, food processing, fertilizer, and metal fabrication. The country is import-dependent for most sectors, and faces persistent challenges around corruption, informal markets, and limited banking access, even as public confidence in economic conditions has been rising.",
+    "peopleAndCulture": "Iraq's population is overwhelmingly Muslim, split between a Shia majority of roughly 61-64% and a Sunni population of 29-34%, with small Christian communities including Catholic, Orthodox, Protestant, and Assyrian Church of the East traditions. Ethnically, Arabs make up 75-80% of the population and Kurds 15-20%, with the remainder including Turkmen, Yezidi, Shabak, Kaka'i, Bedouin, Romani, Assyrian, Circassian, Sabaean-Mandaean, and Persian communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official) 95-98% (Shia 61-64%, Sunni 29-34%), Christian 1% (includes Catholic, Orthodox, Protestant, Assyrian Church of the East), other 1-4% (2015 est.) || Arab 75-80%, Kurdish 15-20%, other 5% (includes Turkmen, Yezidi, Shabak, Kaka'i, Bedouin, Romani, Assyrian, Circassian, Sabaean-Mandaean, Persian)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:39:57.859Z",
+  "draftModel": "claude-sonnet-5"
 }

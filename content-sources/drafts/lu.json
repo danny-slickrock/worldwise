@@ -1,6 +1,6 @@
 {
   "iso": "lu",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.382Z",
   "structured": {
     "code": "lu",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between France and Germany (and Belgium), this small landlocked country has built one of the world's highest GDP-per-capita economies on a global, highly capitalized banking sector. Its landscape shifts from gently rolling uplands in the north to a steep drop into the Moselle flood plain in the southeast.",
+    "physicalGeography": "Luxembourg sits in Western Europe between France and Germany, and is landlocked. The terrain is mostly gently rolling uplands with broad, shallow valleys, becoming more upland to slightly mountainous in the north, before sloping steeply down into the Moselle flood plain in the southeast.",
+    "climate": "The climate is modified continental, with mild winters and cool summers. Occasional flooding occurs.",
+    "economy": "Luxembourg is a high-income EU and eurozone economy built around a global, highly capitalized banking sector, and it ranks among the countries with the highest GDP per capita. Growth has been supported by strengthened domestic demand and lower interest rates, though pension-system sustainability, labor-market dynamics, and energy price volatility remain challenges. Beyond banking and financial services, industries include construction, real estate, iron, metals and steel, information technology, telecommunications, logistics, chemicals, engineering, tires, glass, aluminum, tourism, and biotechnology, with exports such as iron blocks, gas turbines, plastic products, rubber tires, and plastics.",
+    "peopleAndCulture": "Luxembourgish, French, and German all serve as official languages, though Luxembourgish is spoken as a first language by under half the population, alongside sizable Portuguese-, French-, Italian-, and English-speaking communities. Roman Catholicism predominates religiously, at around seven in ten people, with over a quarter unaffiliated. Ethnically, Luxembourgers make up just over half the population, with substantial Portuguese, French, Italian, Belgian, German, and Spanish communities reflecting the country's diversity."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Luxembourgish (official administrative, judicial, and national language) 48.9%, Portuguese 15.4%, French (official administrative, judicial, and legislative language) 14.9%, Italian 3.6%, English 3.6%, German (official administrative and judicial language) 2.9%, other 10.8% (2021 est.) || Christian (predominantly Roman Catholic) 70.6%, Muslim 2.3%, other (includes Buddhist, folk religions, Hindu, Jewish) 0.4%, unaffiliated 26.7% (2020 est.) || Luxembourger 52.9%, Portuguese 14.5%, French 7.6%, Italian 3.7%, Belgian 3%, German 2%, Spanish 1.3%, Romania 1%, other 14% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:19.640Z",
+  "draftModel": "claude-sonnet-5"
 }

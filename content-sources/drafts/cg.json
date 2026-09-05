@@ -1,6 +1,6 @@
 {
   "iso": "cg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.410Z",
   "structured": {
     "code": "cg",
@@ -35,11 +35,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Straddling the Equator on Central Africa's Atlantic coast, this country packs most of its people into a narrow corridor: about 70% live in Brazzaville, Pointe-Noire, or along the railroad connecting them. Beneath its coastal plains and plateaus lie petroleum, gold, copper, potash, and uranium, and crude oil dominates what the country sells to the world.",
+    "physicalGeography": "The terrain runs from a coastal plain along the South Atlantic inland through a southern basin, a central plateau, and a northern basin. The country sits between Angola and Gabon in Central Africa, with the ocean forming its western edge.",
+    "climate": "Lying astride the Equator, the country experiences a tropical climate marked by persistent high temperatures and humidity that make conditions particularly enervating. A rainy season runs from March to June, followed by a dry season from June to October, and seasonal flooding occurs.",
+    "economy": "The economy runs primarily on oil and natural resources, and recovery from the mid-2010s oil price collapse has been slow, worsened further by COVID-19. Extreme poverty is increasing, especially in southern rural regions, and the country faces a growing likelihood of debt default while attempting to implement CEMAC-recommended reforms. Industries include petroleum extraction, cement, lumber, brewing, sugar, palm oil, soap, flour, and cigarettes, with crude petroleum, refined copper, gold, and wood among the main exports.",
+    "peopleAndCulture": "The Kongo (Bakongo) form the largest ethnic group at 40.5%, followed by the Teke and Mbochi, alongside smaller communities including the Sangha, Punu, and Pygmy peoples, plus a notable foreigner population. Religiously, Roman Catholics make up the largest share at 33.1%, followed by Awakening Churches/Christian Revival adherents and Protestants, with smaller numbers of Muslims, Kimbanguists, and those professing no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -69,5 +69,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 33.1%, Awakening Churches/Christian Revival 22.3%, Protestant 19.9%, Salutiste 2.2%, Muslim 1.6%, Kimbanguist 1.5%, other 8.1%, none 11.3% (2007 est.) || Kongo (Bakongo) 40.5%, Teke 16.9%, Mbochi 13.1%, foreigner 8.2%, Sangha 5.6%, Mbere/Mbeti/Kele 4.4%, Punu 4.3%, Pygmy 1.6%, Oubanguiens 1.6%, Duma 1.5%, Makaa 1.3%, other and unspecified 1% (2014-15 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:32:15.518Z",
+  "draftModel": "claude-sonnet-5"
 }

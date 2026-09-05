@@ -1,6 +1,6 @@
 {
   "iso": "bh",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.392Z",
   "structured": {
     "code": "bh",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Bahrain is an archipelago in the Persian Gulf, off the coast of Saudi Arabia, with no land borders at all. Its position places it close to major Middle Eastern petroleum sources, sitting along a route through which much of the Western world's oil must pass to reach the open ocean. Beyond oil and gas, its resources include fish and pearls.",
+    "physicalGeography": "The islands consist mostly of low desert plain that rises gently toward a low central escarpment. As an archipelago in the Persian Gulf lying east of Saudi Arabia, Bahrain's terrain is flat and unassuming rather than dramatic.",
+    "climate": "The climate is arid, with mild, pleasant winters giving way to very hot, humid summers. Periodic droughts and dust storms are part of the seasonal pattern.",
+    "economy": "Bahrain is a high-income, growing island economy built on oil and aluminum exports, though it has diversified into services, construction and manufacturing. It functions as a regional hub for finance and tourism, with industries spanning petroleum processing and refining, aluminum smelting, iron pelletization, fertilizers, Islamic and offshore banking, insurance, and ship repairing. The economy carries high public debt tied to its dependence on oil revenue and a limited tax base, and it faces vulnerability from depletion of its water reservoirs.",
+    "peopleAndCulture": "Bahrainis make up under half the population, at 47.4%, with Asians forming the next largest share at 43.4%, followed by other Arabs, Africans, North Americans, Gulf Co-operative country nationals and Europeans in smaller proportions. Religiously, the population is predominantly Muslim at 74.2%, with the remainder identifying as other faiths."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 74.2%, other 25.9% (2020 est) || Bahraini 47.4%, Asian 43.4%, other Arab 4.9%, African 1.4%, North American 1.1%, Gulf Co-operative countries 0.9%, European 0.8%, other 0.1% (2020 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:30:13.455Z",
+  "draftModel": "claude-sonnet-5"
 }

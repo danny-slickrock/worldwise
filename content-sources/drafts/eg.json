@@ -1,6 +1,6 @@
 {
   "iso": "eg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.411Z",
   "structured": {
     "code": "eg",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Egypt occupies the northeastern corner of Africa, straddling the Sinai Peninsula, the only land bridge connecting Africa to the rest of the Eastern Hemisphere. It also controls the Suez Canal, the sea link between the Indian Ocean and the Mediterranean. Beyond its strategic position, the country holds resources including petroleum, natural gas, iron ore, phosphates, and rare earth elements.",
+    "physicalGeography": "Egypt is largely a vast desert plateau, broken by the ribbon of the Nile valley and its delta. It lies between the Mediterranean Sea and the Red Sea, bordering Libya and Israel, and extends into Asia through the Sinai Peninsula.",
+    "climate": "The climate is desert: hot, dry summers give way to moderate winters. Periodic droughts occur alongside frequent earthquakes, flash floods, and landslides. In spring, hot driving windstorms called khamsin sweep through, accompanied by dust and sandstorms.",
+    "economy": "Egypt has Africa's second-largest economy, and its 2030 Vision aims to diversify markets and energy infrastructure while improving fiscal, external, and current accounts. The private sector underperforms and labor force participation is weak, though credit access has expanded. Industries include textiles, food processing, tourism, chemicals, pharmaceuticals, hydrocarbons, construction, cement, metals, and light manufacturing, and exports are led by refined petroleum, natural gas, fertilizers, garments, and crude petroleum.",
+    "peopleAndCulture": "The population is 99.7% Egyptian. Religiously, about 90% are Muslim, predominantly Sunni, while the remaining 10% are Christian, mostly Coptic Orthodox, with smaller communities of Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican Christians."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (predominantly Sunni) 90%, Christian (majority Coptic Orthodox, other Christians include Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican) 10% || Egyptian 99.7%, other 0.3% (2006 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:35:02.416Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "ke",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.414Z",
   "structured": {
     "code": "ke",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Kenya's landscape ranges from Indian Ocean coastline to glaciers on Mount Kenya, Africa's second-highest peak, with the Great Rift Valley cutting through the central highlands. It shares Lake Victoria, the world's largest tropical lake, with Tanzania and Uganda, and its varied terrain supports wildlife of major scientific and economic value.",
+    "physicalGeography": "Kenya sits in Eastern Africa on the Indian Ocean, between Somalia and Tanzania. Low coastal plains rise into central highlands split by the Great Rift Valley, while a fertile plateau lies to the west.",
+    "climate": "Conditions shift from tropical along the coast to arid in the interior, with recurring drought and flooding during rainy seasons. Volcanic activity is limited, with the Barrier, at 1,032 meters, last erupting in 1921, and South Island the only other historically active volcano.",
+    "economy": "Kenya has a fast-growing economy, the third largest in Sub-Saharan Africa, built on a strong agricultural sector alongside emerging services and tourism industries. Industries include agriculture, transportation, manufacturing, construction, telecommunications, and retail, and the country exports tea, cut flowers, garments, gold, and tropical fruits. An IMF program addresses current account and debt service challenges, while business-friendly policies support infrastructure investment, digital innovation, and public-private partnerships; the economy remains vulnerable to climate change-induced droughts.",
+    "peopleAndCulture": "Kenya's population is predominantly Christian, at 85.5 percent, including Protestant, Catholic, Evangelical, and African Instituted Church adherents, with Muslims making up 10.9 percent. Ethnically, the Kikuyu are the largest group at 17.1 percent, followed by the Luhya, Kalenjin, Luo, Kamba, Somali, Kisii, Mijikenda, Meru, Maasai, and Turkana, among others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 85.5% (Protestant 33.4%, Catholic 20.6%, Evangelical 20.4%, African Instituted Churches 7%, other Christian 4.1%), Muslim 10.9%, other 1.8%, none 1.6%, don't know/no answer 0.2% (2019 est.) || Kikuyu 17.1%, Luhya 14.3%, Kalenjin 13.4%, Luo 10.7%, Kamba 9.8%, Somali 5.8%, Kisii 5.7%, Mijikenda 5.2%, Meru 4.2%, Maasai 2.5%, Turkana 2.1%, non-Kenyan 1%, other 8.2% (2019 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:26:00.363Z",
+  "draftModel": "claude-sonnet-5"
 }

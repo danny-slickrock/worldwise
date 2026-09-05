@@ -1,6 +1,6 @@
 {
   "iso": "so",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.419Z",
   "structured": {
     "code": "so",
@@ -32,11 +32,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Somalia occupies the tip of the Horn of Africa, facing the Gulf of Aden and the Indian Ocean along the southern approaches to the Bab el Mandeb strait and the shipping route through the Red Sea and Suez Canal. The landscape is mostly flat to undulating plateau rising into hills in the north, and beneath it lie largely unexploited reserves of uranium, iron ore, tin, gypsum, bauxite, copper, salt, natural gas, and possible oil. Its main exports today are sheep and goats, gold, cattle, and other livestock.",
+    "physicalGeography": "The terrain is mostly flat to undulating plateau, with hills rising in the north. Somalia sits on the Horn of Africa, bordering the Gulf of Aden and the Indian Ocean east of Ethiopia.",
+    "climate": "The climate is principally desert, shaped by two monsoon seasons: the northeast monsoon from December to February brings moderate temperatures in the north and hot conditions in the south, while the southwest monsoon from May to October is torrid in the north and hot in the south, with irregular rainfall. Between the monsoons come hot, humid spells known locally as tangambili. Recurring droughts, frequent dust storms over the eastern plains in summer, and floods during the rainy season are all part of the pattern.",
+    "economy": "Somalia has a low-income economy in which remittances are a major source of basic survival income for households. The country has moved toward a fiscal federalism approach to governance and has cleared some unsustainable debt, while pursuing digitally driven urbanization efforts in an environmentally fragile setting. Light industries include sugar refining, textiles, and wireless communication, and leading exports are sheep and goats, gold, other animals, and cattle.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 99.9 percent, with Sunni Muslims making up 98.1 percent, Shia Muslims 1.2 percent, and Islamic schismatic groups 0.6 percent, alongside a small ethnic-religionist minority. Ethnically, Somalis form the predominant group, with smaller communities of Arabs, Bantus, and others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -66,5 +66,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 99.9% (Sunni Muslim 98.1%, Shia Muslim 1.2%, Islamic schismatic 0.6%), ethnic religionist 0.1% (2020 est.) || predominantly Somali with lesser numbers of Arabs, Bantus, and others"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:05.544Z",
+  "draftModel": "claude-sonnet-5"
 }

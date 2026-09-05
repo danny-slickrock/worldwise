@@ -1,6 +1,6 @@
 {
   "iso": "az",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.391Z",
   "structured": {
     "code": "az",
@@ -36,11 +36,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Azerbaijan sits in southwestern Asia along the Caspian Sea, wedged between Iran and Russia, with a small slice of territory extending north of the Caucasus range into Europe. Despite that Caspian coastline, both the main body of the country and its Naxcivan exclave are landlocked, and the capital, Baku, occupies a peninsula that juts out into the sea.",
+    "physicalGeography": "Much of Azerbaijan is taken up by the flat Kur-Araz Lowland, a good portion of which lies below sea level, flanked by the Great Caucasus Mountains to the north and the Karabakh Upland to the west. Baku, the capital, sits on the Apsheron Peninsula, a spit of land reaching into the Caspian Sea.",
+    "climate": "The climate is dry, semiarid steppe, and the country is subject to droughts.",
+    "economy": "Azerbaijan is an upper-middle income economy built heavily around oil, with minimal diversification and a strong presence of state-owned enterprises. Its industries center on petroleum and petroleum products, natural gas, and oilfield equipment, alongside steel, iron ore, cement, chemicals, petrochemicals, and textiles. Exports as of 2023 include crude petroleum, natural gas, refined petroleum, plastics, and electricity.",
+    "peopleAndCulture": "The population is overwhelmingly Muslim, at 97.3 percent and predominantly Shia, with a small Christian minority of 2.6 percent. Ethnically, Azerbaijanis make up 94.8 percent of the population, with small communities of Talish, Russian, Avar, Sakhur, Tatar, Georgian, Jewish, and Kurdish people making up the remainder."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -70,5 +70,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 97.3% (predominantly Shia), Christian 2.6%, other &lt;0.1, unaffiliated &lt;0.1 (2020 est.) || Azerbaijani 94.8%, other 1.8%; less than 1%: Talish, Russian, Avar, Sakhur, Tartar, Georgian, Jewish, Kurd (2019 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:18.057Z",
+  "draftModel": "claude-sonnet-5"
 }

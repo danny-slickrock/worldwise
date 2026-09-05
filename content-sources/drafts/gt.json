@@ -1,6 +1,6 @@
 {
   "iso": "gt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.428Z",
   "structured": {
     "code": "gt",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Guatemala sits on the Ring of Fire, the Pacific belt that holds most of the world's volcanoes and earthquakes, and it has coastlines on both the Caribbean and the Pacific yet no natural harbors on its western shore. Two mountain chains running east-west cut the country into three distinct regions, from highland peaks to the low, dense Peten in the north.",
+    "physicalGeography": "Two east-west trending mountain chains divide Guatemala into three regions: the mountainous highlands, a Pacific coastal strip south of the mountains, and the vast Peten lowlands in the north. The country borders the North Pacific Ocean between El Salvador and Mexico, and touches the Gulf of Honduras, part of the Caribbean Sea, between Honduras and Belize.",
+    "climate": "The climate is tropical, hot and humid in the lowlands but cooler in the highlands. Numerous volcanoes rise through the mountains, occasional violent earthquakes strike, and the Caribbean coast is highly exposed to hurricanes and tropical storms. Santa Maria, at 3,772 meters, is classified as a Decade Volcano for its explosive history and proximity to people, while Pacaya, at 2,552 meters, has erupted frequently since 1965; other historically active volcanoes include Acatenango, Almolonga, Atitlan, Fuego, and Tacana.",
+    "economy": "Guatemala has a developing Central American economy that has seen steady growth fueled largely by remittances, alongside high poverty and income inequality. Limited government services, few employment opportunities, and frequent natural disasters hold back human development and push emigration. Key industries include sugar, textiles and clothing, furniture, chemicals, petroleum, metals, rubber, and tourism, while exports feature garments, bananas, coffee, palm oil, and raw sugar.",
+    "peopleAndCulture": "Society is majority Mestizo, locally called Ladino, at 56%, with Maya people making up 41.7% of the population, alongside smaller communities of Xinca, Garifuna, and people of African descent. Religion is predominantly Christian, split between Evangelical at 45.7% and Roman Catholic at 42.4%, with 11% identifying with no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Evangelical 45.7%, Roman Catholic 42.4%, none 11%, unspecified 0.9% (2023 est.) || Mestizo (mixed Indigenous-Spanish - in local Spanish called Ladino) 56%, Maya 41.7%, Xinca (Indigenous, non-Maya) 1.8%, African descent 0.2%, Garifuna (mixed West and Central African, Island Carib, and Arawak) 0.1%, foreign 0.2% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:35.836Z",
+  "draftModel": "claude-sonnet-5"
 }

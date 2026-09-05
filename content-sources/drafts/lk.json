@@ -1,6 +1,6 @@
 {
   "iso": "lk",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.403Z",
   "structured": {
     "code": "lk",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "An island nation in the Indian Ocean south of India, Sri Lanka has no land borders with any country. It sits near major Indian Ocean sea lanes, and geological evidence suggests it was once connected to India by a land bridge, Adam's Bridge, a 50-km chain of limestone shoals that broke apart in a 15th-century cyclone.",
+    "physicalGeography": "The island is mostly a low, flat to rolling plain, with mountains rising in the south-central interior. It lies in Southern Asia, in the Indian Ocean, south of India.",
+    "climate": "Sri Lanka has a tropical monsoon climate, shaped by the northeast monsoon from December to March and the southwest monsoon from June to October. The island is occasionally struck by cyclones and tornadoes.",
+    "economy": "Sri Lanka's economy contracted in 2022-23, bringing increased poverty and significant inflation, following a sovereign default that led to a two-year IMF debt relief program. Structural challenges include a non-diversified economy, rigid labor laws, and heavy dependence on tourism receipts and remittances. Key industries include processing of rubber, tea, coconuts, and tobacco, along with tourism, clothing and textiles, and mining, while exports feature garments, tea, precious stones, used rubber tires, and rubber products.",
+    "peopleAndCulture": "The population is predominantly Sinhalese (74.9%), with Sri Lankan Tamil (11.2%), Sri Lankan Moors (9.2%), and Indian Tamil (4.2%) communities. Sinhala and Tamil are both official languages, with English also widely spoken, and the population is mostly Buddhist (70.2%), alongside Hindu, Muslim, and Christian minorities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Sinhala (official) 87%, Tamil (official) 28.5%, English 23.8% (2012 est.) || Buddhist (official) 70.2%, Hindu 12.6%, Muslim 9.7%, Roman Catholic 6.1%, other Christian 1.3%, other 0.05% (2012 est.) || Sinhalese 74.9%, Sri Lankan Tamil 11.2%, Sri Lankan Moors 9.2%, Indian Tamil 4.2%, other 0.5% (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:42:51.838Z",
+  "draftModel": "claude-sonnet-5"
 }

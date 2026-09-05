@@ -1,6 +1,6 @@
 {
   "iso": "sb",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.437Z",
   "structured": {
     "code": "sb",
@@ -23,11 +23,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Scattered across the South Pacific east of Papua New Guinea, this island nation has no land borders with any country and sits on a strategic sea route linking the South Pacific Ocean, the Solomon Sea, and the Coral Sea. Its terrain is mostly rugged mountains, but the southernmost island, Rennell, is one of the world's largest raised coral atolls, and its Lake Tegano — once a lagoon on that atoll — is the largest lake in the insular Pacific.",
+    "physicalGeography": "The islands are mostly rugged mountains, with some low coral atolls breaking up the terrain. The group lies in Oceania, in the South Pacific Ocean east of Papua New Guinea.",
+    "climate": "The climate is tropical monsoon, with few temperature or weather extremes, and tropical cyclones here are rarely destructive. The region is geologically active, with frequent earthquakes, tremors, volcanic activity, and tsunamis; the volcano Tinakula erupts frequently, and an eruption of Savo could affect the capital, Honiara, on nearby Guadalcanal.",
+    "economy": "This is a lower middle-income Pacific island economy, rich in natural resources but environmentally fragile, with agriculture forming a key sector. It has a growing economic relationship with China, along with metal mining operations, though infrastructure has suffered damage from social unrest. Key industries include tuna fishing, mining, and timber, and exports include wood, fish, gold, precious metal ore, and palm oil.",
+    "peopleAndCulture": "Melanesian pidgin serves as the lingua franca across much of the country, alongside 120 indigenous languages; English is official but spoken by only 1-2% of the population. The population is predominantly Melanesian, with smaller Polynesian and Micronesian minorities, and is overwhelmingly Christian, with Protestant denominations — including the Church of Melanesia, South Sea Evangelical, Seventh Day Adventist, United Church, and Christian Fellowship Church — making up the largest share, followed by Roman Catholics."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -57,5 +57,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Melanesian pidgin (lingua franca in much of the country), English (official but spoken by only 1%-2% of the population), 120 indigenous languages || Protestant 73.4% (Church of Melanesia 31.9%, South Sea Evangelical 17.1%, Seventh Day Adventist 11.7%, United Church 10.1%, Christian Fellowship Church 2.5%), Roman Catholic 19.6%, other Christian 2.9%, other 4%, unspecified 0.1% (2009 est.) || Melanesian 95.3%, Polynesian 3.1%, Micronesian 1.2%, other 0.3% (2009 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:50.590Z",
+  "draftModel": "claude-sonnet-5"
 }

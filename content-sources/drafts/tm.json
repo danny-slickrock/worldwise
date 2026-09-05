@@ -1,6 +1,6 @@
 {
   "iso": "tm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.405Z",
   "structured": {
     "code": "tm",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "This Central Asian nation is dominated by one of the world's great sand-sea deserts, the Garagum, which covers more than 80 percent of its territory. Despite being landlocked, it fronts the Caspian Sea in the west, and beneath its desert sands lie the fourth-largest natural gas reserves on the planet. It shares borders with Afghanistan, Iran, Kazakhstan, and Uzbekistan.",
+    "physicalGeography": "The landscape is mostly flat-to-rolling sandy desert, its dunes rising toward mountains in the south, with low mountains running along the border with Iran. The Caspian Sea forms the country's western edge. Though landlocked overall, the low-lying western and central desert, the Garagum, occupies more than 80 percent of the country, while the eastern part of Turkmenistan is plateau.",
+    "climate": "Turkmenistan has a subtropical desert climate. The country is subject to earthquakes, mudslides, droughts, dust storms, and floods.",
+    "economy": "Turkmenistan is an upper-middle-income economy built on abundant natural resources, including petroleum, natural gas, sulfur, and salt, and it holds the world's fourth-largest natural gas reserves. The state dominates economic life through state-owned enterprises, and the country faces an overvalued currency, high inflation risks, and limited economic diversification tied to heavy state control and bureaucracy. Its main exports are natural gas, refined petroleum, fertilizers, crude petroleum, and electricity, while its industries center on natural gas, oil, petroleum products, textiles, and food processing.",
+    "peopleAndCulture": "Ethnic Turkmen make up about 85 percent of the population, with Uzbeks at roughly 5 percent, Russians at 4 percent, and other groups making up the remainder. The population is predominantly Muslim, at about 93 percent, with a Christian minority of around 6.4 percent and much smaller shares of Buddhist, folk religion, Jewish, and other or unspecified affiliations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim 93%, Christian 6.4%, Buddhist &lt;1%, folk religion &lt;1%, Jewish &lt;1%, other &lt;1%, unspecified &lt;1% (2020 est.) || Turkmen 85%, Uzbek 5%, Russian 4%, other 6% (2003 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:52:55.475Z",
+  "draftModel": "claude-sonnet-5"
 }

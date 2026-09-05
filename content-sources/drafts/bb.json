@@ -1,6 +1,6 @@
 {
   "iso": "bb",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.423Z",
   "structured": {
     "code": "bb",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Barbados sits out in the North Atlantic rather than the Caribbean Sea proper, making it the easternmost island in the Caribbean chain, northeast of Venezuela. As an island nation it has no land borders with any country. Its economy runs on tourism, financial services, and exports ranging from rum to refined petroleum.",
+    "physicalGeography": "The island is an outlier of the Caribbean chain, lying in the North Atlantic Ocean northeast of Venezuela. Its terrain is relatively flat, rising gently toward a central highland region rather than featuring the volcanic peaks found on many neighboring islands.",
+    "climate": "The climate is tropical, with a rainy season running from June to October. Hurricanes occur but only infrequently, and periodic landslides are a hazard.",
+    "economy": "Barbados is a high-income economy with a high standard of living relative to other Eastern Caribbean nations, driven by tourism, construction, and financial services. Public debt remains very high despite recent declines, which has prompted IMF support programs, and the economy remains vulnerable to natural disasters and dependent on imports. Its industries include tourism, sugar, light manufacturing, and export component assembly, while exports feature liquor, refined petroleum, packaged medicine, margarine, and baked goods.",
+    "peopleAndCulture": "English is the official language, though Bajan, an English-based creole, is widely spoken in everyday settings. The population is predominantly of African descent, with smaller mixed, White, and East Indian communities. Religion is mostly Protestant, particularly Anglican and Pentecostal, alongside smaller Roman Catholic, Rastafarian, and unaffiliated populations."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), Bajan (English-based creole language, widely spoken in informal settings) || Protestant 66.4% (includes Anglican 23.9%, other Pentecostal 19.5%, Adventist 5.9%, Methodist 4.2%, Wesleyan 3.4%, Nazarene 3.2%, Church of God 2.4%, Baptist 1.8%, Moravian 1.2%, other Protestant 0.9%), Roman Catholic 3.8%, other Christian 5.4% (includes Jehovah's Witness 2.0%, other 3.4%), Rastafarian 1%, other 1.5%, none 20.6%, unspecified 1.2% (2010 est.) || African descent 92.4%, mixed 3.1%, White 2.7%, East Indian 1.3%, other 0.2%, unspecified 0.3% (2010 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:35.055Z",
+  "draftModel": "claude-sonnet-5"
 }

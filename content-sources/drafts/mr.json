@@ -1,6 +1,6 @@
 {
   "iso": "mr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.416Z",
   "structured": {
     "code": "mr",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting where the Maghreb meets the Sahel, this Saharan nation stretches along the North Atlantic coast between Senegal and Western Sahara. Its barren, flat plains hold iron ore, gold, copper, gypsum, phosphate, diamonds, and oil, alongside fishing grounds that make gold, iron ore, and fish its leading exports. Most people live clustered in Nouakchott, Nouadhibou, or along the Senegal River, leaving much of the desert interior sparsely populated.",
+    "physicalGeography": "The landscape is dominated by the Sahara's flat, barren plains, broken only by some central hills. The country stretches along Western Africa's Atlantic coast, situated between Senegal and Western Sahara.",
+    "climate": "The climate is desert: hot, dry, and constantly dusty. A hot, dry, sand-laden wind known as the sirocco blows primarily in March and April, and the country experiences periodic droughts.",
+    "economy": "This is a lower middle-income, primarily agrarian economy undergoing rising urbanization, though it contends with poor property rights, systemic corruption, social and workforce tensions, environmental fragility, and foreign over-fishing of its waters. Fish processing, oil production, and mining of iron ore, gold, and copper are the leading industries. Gold, iron ore, fish, processed crustaceans, and copper ore top the export list.",
+    "peopleAndCulture": "Islam is the official religion, practiced by the entire population. Society is composed of Black Moors (Haratines), Arabic-speaking descendants of African origin who are or were enslaved by White Moors, making up 40 percent; White Moors (Beydane) of Arab-Amazigh descent at 30 percent; and Sub-Saharan Mauritanians, non-Arabic-speaking groups including Halpulaar, Fulani, Soninke, Wolof, and Bambara, largely based in the Senegal River Valley, at 30 percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official) 100% || Black Moors (Haratines - Arabic-speaking descendants of African origin who are or were enslaved by White Moors) 40%, White Moors (of Arab-Amazigh descent, known as Beydane) 30%, Sub-Saharan Mauritanians (non-Arabic speaking, largely resident in or originating from the Senegal River Valley, including Halpulaar, Fulani, Soninke, Wolof, and Bambara ethnic groups) 30%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:20.491Z",
+  "draftModel": "claude-sonnet-5"
 }

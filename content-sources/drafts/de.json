@@ -1,6 +1,6 @@
 {
   "iso": "de",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.379Z",
   "structured": {
     "code": "de",
@@ -41,11 +41,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Sitting at the heart of the North European Plain and along the entrance to the Baltic Sea, Germany shares borders with Austria, Belgium, Czechia, Denmark, France, Luxembourg, the Netherlands, Poland, and Switzerland. Its major rivers—the Rhine, Weser, Oder, and Elbe—flow northward, while the Danube, rising in the Black Forest, runs eastward instead. Beneath its landscape lie coal, lignite, natural gas, iron ore, copper, nickel, uranium, potash, and salt, resources that helped build an economy now known for exporting cars, vehicle parts, and packaged medicine.",
+    "physicalGeography": "Germany's terrain rises in three bands: lowlands across the north, uplands through the center, and the Bavarian Alps along the south. It lies in Central Europe between the Netherlands and Poland, bordering both the Baltic Sea and the North Sea, south of Denmark.",
+    "climate": "The climate is temperate and marine, bringing cool, cloudy, wet conditions in both winter and summer. An occasional warm mountain wind known as the foehn breaks the pattern, and flooding is a recurring hazard.",
+    "economy": "Germany is a leading export-driven economy and a core member of the EU and eurozone, with strength concentrated in automotive, chemical, engineering, finance, and green energy industries. Growth has stalled amid an energy crisis and declining exports, compounded by a tight labor market and a shrinking working-age population; the government has been fiscally rebalancing as energy price supports are phased out. Key industries span iron, steel, coal, cement, chemicals, machinery, vehicles, machine tools, electronics, automobiles, food and beverages, shipbuilding, and textiles, with cars, vehicle parts, packaged medicine, plastic products, and vaccines topping its exports.",
+    "peopleAndCulture": "Germany's population is 85.4% German, with Turkish (1.8%), Ukrainian (1.4%), Syrian (1.1%), Romanian (1%), and Polish (1%) minorities making up much of the rest. Religiously, the country is nearly evenly split between Roman Catholics (24.8%) and Protestants (22.6%), alongside a Muslim population of 3.7%, while 43.8% report no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -75,5 +75,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 24.8%, Protestant 22.6%, Muslim 3.7%, other 5.1%, none 43.8% (2022 est.) || German 85.4%, Turkish 1.8%, Ukrainian 1.4%, Syrian 1.1%, Romanian 1%, Poland 1%, other/stateless/unspecified 8.3% (2022 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:51.207Z",
+  "draftModel": "claude-sonnet-5"
 }

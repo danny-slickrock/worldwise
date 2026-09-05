@@ -1,6 +1,6 @@
 {
   "iso": "lv",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.381Z",
   "structured": {
     "code": "lv",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Latvia sits on the Baltic Sea between Estonia and Lithuania, its landscape dominated by fertile low-lying plains with some hills rising in the east. The country draws on peat, limestone, dolomite, amber, hydropower and timber, and exports wood, wheat, broadcasting equipment, packaged medicine and natural gas.",
+    "physicalGeography": "Latvia is a low plain located in Eastern Europe, bordering the Baltic Sea between Estonia and Lithuania.",
+    "climate": "The climate is maritime, bringing wet, moderate winters. A large share of the country's agricultural fields can become waterlogged and require drainage.",
+    "economy": "Latvia is a high-income member of the EU and eurozone that has seen a weak recovery, with a slight increase in private consumption amid an uncertain trade environment. It faces challenges from skilled-labor shortages, limited capital market access, a large informal sector, and the green and digital transitions. Its industries include processed foods, processed wood products, textiles, processed metals, pharmaceuticals, railroad cars, synthetic fibers and electronics, and it exports wood, wheat, broadcasting equipment, packaged medicine and natural gas.",
+    "peopleAndCulture": "Latvians make up 62.7% of the population, with Russians the largest minority at 24.5%, followed by smaller Belarusian, Ukrainian, Polish and Lithuanian communities. Religiously, Lutherans account for 36.2%, Roman Catholics 19.5% and Orthodox Christians 19.1%, while nearly a quarter of the population is unspecified or has no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Lutheran 36.2%, Roman Catholic 19.5%, Orthodox 19.1%, other Christian 1.6%, other 0.1%, unspecified/none 23.5% (2017 est.) || Latvian 62.7%, Russian 24.5%, Belarusian 3.1%, Ukrainian 2.2%, Polish 2%, Lithuanian 1.1%, other 1.8%, unspecified 2.6% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:43:27.548Z",
+  "draftModel": "claude-sonnet-5"
 }

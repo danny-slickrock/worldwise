@@ -1,6 +1,6 @@
 {
   "iso": "pg",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.437Z",
   "structured": {
     "code": "pg",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Papua New Guinea occupies the eastern half of the island of New Guinea, sharing it with Indonesia, and sits along the Ring of Fire, the Pacific belt that holds roughly three-quarters of the world's volcanoes and up to 90 percent of its earthquakes. The land is rich in gold, copper, silver, natural gas, timber, oil and fisheries, and these resources dominate what the country sells abroad.",
+    "physicalGeography": "The terrain is mostly mountainous, with coastal lowlands and rolling foothills filling in the rest. Highlands run east to west across New Guinea, breaking the island into a patchwork of distinct ecoregions, and one of the world's largest swamps stretches along the southwest coast.",
+    "climate": "The climate is tropical, shaped by a northwest monsoon from December to March and a southeast monsoon from May to October, with only slight seasonal temperature variation. Active volcanism and frequent, sometimes severe earthquakes bring mudslides and tsunamis: Ulawun is classed as a Decade Volcano for its explosive history and closeness to people, Rabaul destroyed the city of the same name in 1937 and again in 1994, Lamington's 1951 eruption killed 3,000 people, and Manam's 2004 eruption forced the whole island to be abandoned.",
+    "economy": "This is a lower-middle-income Pacific economy still largely built on informal agriculture, even as it exports significant volumes of liquified natural gas, gold, copper ore, palm oil and nickel. A collapse in betel nut prices, tighter monetary policy, and better foreign-exchange availability have helped bring inflation down, though lagging infrastructure, agricultural reform, and corruption remain persistent problems. Beyond oil, gas and mining, industry includes palm oil processing, plywood and wood chip production, copra crushing, fishing, livestock and dairy farming, and spice production covering turmeric, vanilla, ginger, cardamom, chili, pepper, citronella, and nutmeg.",
+    "peopleAndCulture": "Papua New Guinea is home to about 839 living indigenous languages, roughly 12 percent of the world's total, alongside the official languages Tok Pisin, English, and Hiri Motu. The population includes Melanesian, Papuan, Negrito, Micronesian, and Polynesian peoples, and Christianity predominates, with Protestant denominations, especially Evangelical Lutheran, Seventh Day Adventist, and Pentecostal churches, making up the largest share alongside a substantial Roman Catholic population."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Tok Pisin (official), English (official), Hiri Motu (official), some 839 living indigenous languages are spoken (about 12% of the world's total) || Protestant 64.3% (Evangelical Lutheran 18.4%, Seventh Day Adventist 12.9%, Pentecostal 10.4%, United Church 10.3%, Evangelical Alliance 5.9%, Anglican 3.2%, Baptist 2.8%, Salvation Army 0.4%), Roman Catholic 26%, other Christian 5.3%, non-Christian 1.4%, unspecified 3.1% (2011 est.) || Melanesian, Papuan, Negrito, Micronesian, Polynesian"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:47:54.022Z",
+  "draftModel": "claude-sonnet-5"
 }

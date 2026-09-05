@@ -1,6 +1,6 @@
 {
   "iso": "sr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.433Z",
   "structured": {
     "code": "sr",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Suriname is the smallest independent country on the South American continent, covered mostly in tropical rainforest with great diversity of flora and fauna, and home to a relatively small population concentrated along the coast. It sits in northern South America, bordering the North Atlantic Ocean, Brazil, and Guyana.",
+    "physicalGeography": "The landscape is mostly rolling hills, giving way to a narrow coastal plain marked by swamps along the Atlantic. This coastal strip is where most of the country's population and activity is concentrated.",
+    "climate": "The climate is tropical and moderated by trade winds, though flooding is a recurring issue.",
+    "economy": "Suriname is classified as an upper middle-income economy built on aluminum goods, gold, and hydrocarbon exports, alongside a controversial hardwood industry. It has recently adopted a new floating currency regime and an IMF plan aimed at economic recovery and fiscal sustainability. Key industries include gold mining, oil, lumber, food processing, and fishing, with gold, fish, refined petroleum, wood, and tobacco among its main exports as of 2023.",
+    "peopleAndCulture": "Suriname's population reflects a mix of migration histories: Hindustani people descend from Indian ancestors who arrived in the late 19th century, Maroons descend from enslaved Africans brought over in the 17th and 18th centuries who escaped into the interior, and Creole, Javanese, and mixed communities make up much of the rest. This diversity carries through to religion, with Protestant, Hindu, Roman Catholic, and Muslim communities all represented in significant numbers, alongside smaller groups such as Winti practitioners and Jehovah's Witnesses."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Protestant 23.6% (includes Evangelical 11.2%, Moravian 11.2%, Reformed 0.7%, Lutheran 0.5%), Hindu 22.3%, Roman Catholic 21.6%, Muslim 13.8%, other Christian 3.2%, Winti 1.8%, Jehovah's Witness 1.2%, other 1.7%, none 7.5%, unspecified 3.2% (2012 est.) || Hindustani (also known locally as \"East Indians\"; their ancestors emigrated from northern India in the latter part of the 19th century) 27.4%, Maroon (their African ancestors were brought to the country in the 17th and 18th centuries as slaves and escaped to the interior) 21.7%, Creole (mixed White and Black) 15.7%, Javanese 13.7%, mixed 13.4%, other 7.6%, unspecified 0.6% (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:17.887Z",
+  "draftModel": "claude-sonnet-5"
 }

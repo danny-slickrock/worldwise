@@ -1,6 +1,6 @@
 {
   "iso": "at",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.374Z",
   "structured": {
     "code": "at",
@@ -40,11 +40,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked at the crossroads of central Europe, Austria is laced with Alpine passes and valleys that have long made it a natural crossing point rather than a barrier. Its mountains hide the Eisriesenwelt, the world's largest and longest ice cave system at 42 km, a bedrock cave near Salzburg that holds year-round ice formations rather than the transient ice found in glacial caves. Most Austrians live in the eastern lowlands, since the steep slopes, poor soils, and colder temperatures elsewhere make settlement harder.",
+    "physicalGeography": "Austria sits in Central Europe, north of Italy and Slovenia, and its terrain splits sharply in two: the west and south are dominated by the Alps, while the eastern and northern margins flatten into gently sloping land. This contrast shapes where people can settle, with the mountainous regions offering far less usable land than the lowlands.",
+    "climate": "The climate is temperate and continental, with cold, cloudy winters bringing rain to the lowlands and snow to the mountains, and moderate summers with occasional showers. The mountainous terrain also exposes the country to landslides, avalanches, and earthquakes.",
+    "economy": "Austria has one of the strongest economies in the EU and eurozone, built on diversified trade relationships and a substantial trading economy. It has relied on Russian energy but is investing in alternatives, and it faces an aging labor force offset by a large refugee population, alongside significant government debt. Key exports include cars, packaged medicine, vaccines, and vehicle parts, and its industries span construction, machinery, vehicle manufacturing, food, metals, chemicals, lumber and paper, electronics, and tourism.",
+    "peopleAndCulture": "The population is predominantly Austrian (80.8%), with smaller communities of Germans, Bosnians and Herzegovinians, Turks, Serbians, and Romanians. Religiously, most people identify as Roman Catholic (55.2%), with Muslim, Orthodox, and Evangelical Christian minorities, while nearly a quarter of the population reports no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -74,5 +74,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 55.2%, Muslim 8.3%, Orthodox 4.9%, Evangelical Christian 3.8%, Jewish 0.1%, other 5.4%, none 22.4% (2021 est.) || Austrian 80.8%, German 2.6%, Bosnian and Herzegovinian 1.9%, Turkish 1.8%, Serbian 1.6%, Romanian 1.3%, other 10% (2018 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:29:02.819Z",
+  "draftModel": "claude-sonnet-5"
 }

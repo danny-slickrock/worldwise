@@ -1,6 +1,6 @@
 {
   "iso": "ki",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.435Z",
   "structured": {
     "code": "ki",
@@ -25,11 +25,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Kiribati is the only country in the world that lies in all four hemispheres at once, its 32 coral atolls and one raised coral island scattered across the Pacific and straddling the Equator. The capital, Tarawa, sits roughly halfway between Hawaii and Australia, and one of its islands, Banaba, was once one of only three great phosphate rock islands in the Pacific, alongside Makatea in French Polynesia and Nauru. As an island nation, it has no land borders with any country.",
+    "physicalGeography": "The country consists of low-lying coral atolls surrounded by extensive reefs, spread across the Pacific Ocean as it straddles the Equator. Of its 33 islands, most are these flat coral formations rather than volcanic landmasses.",
+    "climate": "The climate is tropical, marine, hot and humid, tempered by trade winds. Typhoons can strike at any time of year but are most common from November to March, occasional tornadoes occur, and the low elevation of many islands makes them especially sensitive to changes in sea level.",
+    "economy": "Kiribati is a lower-middle income, environmentally fragile Pacific island economy that depends heavily on remittances and a fund built from past phosphate mining, since phosphate production itself ended in 1979. Fishing and tourism are key industries, the public sector dominates economic activity, and exports center on fish and coconut oil, alongside handicrafts.",
+    "peopleAndCulture": "The population is overwhelmingly I-Kiribati, at nearly 96 percent, with small shares of mixed I-Kiribati heritage and Tuvaluan residents. Gilbertese and English are both spoken, English being the official language, and Roman Catholicism is the largest religious affiliation, followed by the Kiribati Uniting Church, the Kiribati Protestant Church, and smaller communities including Seventh Day Adventists and Baha'i."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -59,5 +59,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Gilbertese, English (official) || Roman Catholic 58.9%, Kiribati Uniting Church 21.2%, Kiribati Protestant Church 8.4%, Church of Jesus Christ 5.6%, Seventh Day Adventist 2.1%, Baha'i 2.1%, other 1.7% (2020 est.) || I-Kiribati 95.78%, I-Kiribati/mixed 3.8%, Tuvaluan 0.2%, other 1.7% (2020 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:41:09.779Z",
+  "draftModel": "claude-sonnet-5"
 }

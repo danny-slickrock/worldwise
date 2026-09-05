@@ -1,6 +1,6 @@
 {
   "iso": "ca",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.425Z",
   "structured": {
     "code": "ca",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Only Russia is larger, and no other country in the Americas comes close to Canada's size. It shares a border with the United States and, through Hans Island, with Denmark, but its defining feature may be water: nearly 9% of its territory is covered by it, and it holds more lakes than all other countries combined. Roughly 90% of Canadians live within 160 km of the US border, leaving the vast northern expanse sparsely populated.",
+    "physicalGeography": "Canada stretches across northern North America, bounded by the North Atlantic to the east, the North Pacific to the west, and the Arctic Ocean to the north, sitting just above the continental United States. The terrain is mostly plains, with mountains rising in the west and lowlands spread across the southeast.",
+    "climate": "Conditions shift from temperate in the south to subarctic and arctic farther north, with continuous permafrost across the north posing a serious obstacle to development. Cyclonic storms form east of the Rocky Mountains where Arctic, Pacific, and interior North American air masses collide, producing most of the country's rain and snow east of the mountains. The Coast Mountains in western Canada hold numerous volcanoes, though the vast majority remain dormant.",
+    "economy": "Canada runs a high-income economy and ranks as the second-largest trading partner of the United States, built substantially on timber, oil, and gas. Its industrial base spans transportation equipment, chemicals, processed minerals, food products, wood and paper goods, fish products, petroleum, and natural gas, with crude petroleum, cars, gold, natural gas, and refined petroleum as leading exports. The economy has faced headwinds from trade uncertainties and weak business investment, alongside high and growing public debt, though inflation has moderated somewhat.",
+    "peopleAndCulture": "Canadians most commonly identify their ancestry as Canadian, English, Scottish, French, or Irish, with substantial German, Chinese, Italian, Indian, and Ukrainian populations as well, alongside First Nations and Metis communities. Religiously, just over half the population identifies as Christian, with smaller Muslim, Hindu, Sikh, Buddhist, and Jewish communities, while more than a third report no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 53.3%, Muslim 4.9%, Hindu 2.3%, Sikh 2.1%, Buddhist 1%, Jewish 0.9%, Traditional (North American Indigenous) 0.2%, other religions and traditional spirituality 0.6%, none 34.6% (2021 est.) || Canadian 15.6%, English 14.7%, Scottish 12.1%, French 11%, Irish 12.1%, German 8.1%, Chinese 4.7%, Italian 4.3%, First Nations 1.7%, Indian 3.7%, Ukrainian 3.5%, Metis 1.5% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:31:46.031Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "jm",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.430Z",
   "structured": {
     "code": "jm",
@@ -24,11 +24,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Jamaica sits in the Caribbean Sea south of Cuba, the third largest island in the Caribbean after Cuba and Hispaniola, positioned along the Cayman Trench and Jamaica Channel, key sea lanes leading to the Panama Canal. Its interior is dominated by mountains, with only a narrow, broken strip of coastal plain, and its economy has long drawn on bauxite, alumina, and other mineral resources alongside tourism.",
+    "physicalGeography": "Jamaica is an island in the Caribbean Sea south of Cuba, built mostly of mountainous terrain. The coastline is fringed by a narrow, discontinuous coastal plain rather than any extensive lowland belt.",
+    "climate": "The climate is tropical, hot, and humid, though the interior is more temperate. Hurricanes are a recurring hazard, especially between July and November.",
+    "economy": "Jamaica has an upper-middle-income economy built around agriculture and tourism, alongside mining, manufacturing, construction, financial and insurance services, and telecommunications. It faces high crime, youth unemployment, and poverty, and remains vulnerable to natural disasters and swings in global commodity prices, though it has made progress reducing public debt and keeping inflation within target range. Its exports include aluminum oxide, refined petroleum, natural gas, liquor, and processed fruits and nuts.",
+    "peopleAndCulture": "English and Jamaican patois are spoken, and the population is predominantly Black, with smaller mixed, East Indian, and other communities. Religious life is heavily Protestant, spanning denominations such as Seventh Day Adventist, Pentecostal, various Church of God branches, Baptist, and Anglican, alongside smaller Roman Catholic, Jehovah's Witness, and Rastafarian communities, and a notable share of the population reporting no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -58,5 +58,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English, Jamaican patois || Protestant 64.8% (includes Seventh Day Adventist 12.0%, Pentecostal 11.0%, Other Church of God 9.2%, New Testament Church of God 7.2%, Baptist 6.7%, Church of God in Jamaica 4.8%, Church of God of Prophecy 4.5%, Anglican 2.8%, United Church 2.1%, Methodist 1.6%, Revived 1.4%, Brethren 0.9%, and Moravian 0.7%), Roman Catholic 2.2%, Jehovah's Witness 1.9%, Rastafarian 1.1%, other 6.5%, none 21.3%, unspecified 2.3% (2011 est.) || Black 92.1%, mixed 6.1%, East Indian 0.8%, other 0.4%, unspecified 0.7% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:40:28.283Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "mt",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.383Z",
   "structured": {
     "code": "mt",
@@ -22,11 +22,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "An archipelago in the Mediterranean south of Sicily, Malta has no land borders — only three of its islands, Malta, Gozo, and Comino, are inhabited. Numerous bays give it good harbors, and its exports run from refined petroleum and integrated circuits to ships and even postage stamps.",
+    "physicalGeography": "Malta consists of low, rocky terrain — mostly flat to dissected plains broken by coastal cliffs. It lies in the Mediterranean Sea south of Sicily, Italy, as an archipelago rather than a single landmass.",
+    "climate": "The climate is Mediterranean: mild, rainy winters and hot, dry summers, with occasional droughts.",
+    "economy": "Malta is a high-income, EU-member economy that uses the euro and runs a diversified portfolio across tourism, trade, and manufacturing. It depends on imports for food and energy, but supports a large welfare system and an educated workforce. Industries range from electronics, shipbuilding and repair, and pharmaceuticals to financial and information technology services, while exports include refined petroleum, integrated circuits, packaged medicine, ships, and postage stamps.",
+    "peopleAndCulture": "Maltese, the official language spoken by the large majority, sits alongside English, also official, in a largely multilingual society. More than 90 percent of the population is Roman Catholic. The Maltese people descend from ancient Carthaginians and Phoenicians, with strong elements of Italian and other Mediterranean stock."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -56,5 +56,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Maltese (official) 90.1%, English (official) 6%, multilingual 3%, other 0.9% (2005 est.) || Roman Catholic (official) more than 90% (2006 est.) || Maltese (descendants of ancient Carthaginians and Phoenicians with strong elements of Italian and other Mediterranean stock)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:45:25.955Z",
+  "draftModel": "claude-sonnet-5"
 }

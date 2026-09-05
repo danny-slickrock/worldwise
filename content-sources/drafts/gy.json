@@ -1,6 +1,6 @@
 {
   "iso": "gy",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.429Z",
   "structured": {
     "code": "gy",
@@ -31,11 +31,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Guyana is the third-smallest country in South America, after Suriname and Uruguay, yet it holds some of the continent's largest unspoiled rainforests. Its economy runs on bauxite, gold, diamonds and, increasingly, crude petroleum, giving a small nation an outsized export profile.",
+    "physicalGeography": "Guyana sits in northern South America on the North Atlantic coast, between Suriname and Venezuela. The terrain is mostly rolling highlands, with a low coastal plain and savanna stretching across the south.",
+    "climate": "The climate is tropical: hot and humid, though tempered by the northeast trade winds. Two rainy seasons, from May to August and again from November to January, bring a recurring flash flood threat.",
+    "economy": "Guyana's economy is small but hydrocarbon-driven, built on exports of crude petroleum alongside gold, rice, railway cargo containers and ships. Bauxite and gold resources remain substantial, and industries include sugar and rice milling, timber, and textiles. The country's extensive forest cover is being leveraged for carbon credit offsets to encourage preservation, while its financial sector is strengthening.",
+    "peopleAndCulture": "The population is ethnically diverse: East Indian descent makes up the largest share at nearly 40 percent, followed by those of African descent, mixed heritage, and Indigenous peoples. English is the official language, alongside Guyanese Creole, Amerindian languages, Indian languages including Caribbean Hindustani, and Chinese. Religious life is similarly varied, with Protestant denominations, Hinduism, Roman Catholicism, Islam, and smaller communities of Jehovah's Witnesses and Rastafarians all represented."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -65,5 +65,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "English (official), Guyanese Creole, Amerindian languages (including Caribbean and Arawak languages), Indian languages (including Caribbean Hindustani, a dialect of Hindi), Chinese (2014 est.) || Protestant 34.8% (Pentecostal 22.8%, Seventh Day Adventist 5.4%, Anglican 5.2%, Methodist 1.4%), Hindu 24.8%, other Christian 20.8%, Roman Catholic 7.1%, Muslim 6.8%, Jehovah's Witness 1.3%, Rastafarian 0.5%, other 0.9%, none 3.1% (2012 est.) || East Indian 39.8%, African descent 29.3%, mixed 19.9%, Indigenous 10.5%, other 0.5% (includes Portuguese, Chinese, White) (2012 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:38:49.868Z",
+  "draftModel": "claude-sonnet-5"
 }

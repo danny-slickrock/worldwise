@@ -1,6 +1,6 @@
 {
   "iso": "sn",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.419Z",
   "structured": {
     "code": "sn",
@@ -38,11 +38,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Senegal occupies the westernmost point of the African continent, and its geography holds an odd feature: The Gambia is almost an enclave within it, a sliver of another territory nearly surrounded by Senegalese land. Fish, phosphates, and iron ore anchor its resource base, while gold, refined petroleum, and phosphoric acid lead its export list.",
+    "physicalGeography": "The terrain is generally low and rolling, made up of plains that rise into foothills toward the southeast. Senegal sits on the North Atlantic coast of West Africa, positioned between Guinea-Bissau and Mauritania.",
+    "climate": "The climate is tropical, hot, and humid, split between a rainy season from May to November driven by strong southeast winds and a dry season from December to April dominated by the hot, dry harmattan wind. Lowlands flood seasonally, and the country experiences periodic droughts.",
+    "economy": "Senegal has a lower middle-income, services-driven economy, with mining, construction, agriculture, and fishing as key industries alongside a large informal sector. Tourism and exports were hit hard by COVID-19, and the country is developing offshore oil and gas fields, though systemic corruption remains a challenge. Leading exports include gold, refined petroleum, phosphoric acid, fish, and cement, and its industrial base spans agricultural and fish processing, phosphate mining, fertilizer production, petroleum refining, zircon and gold mining, construction materials, and ship construction and repair.",
+    "peopleAndCulture": "French is the official language, alongside Wolof, Pulaar, Jola, Mandinka, Serer, and Soninke, reflecting an ethnic makeup led by Wolof, Pulaar, and Sereer populations, with smaller shares of Mandinka, Jola, and Soninke, plus Europeans and people of Lebanese descent. The population is overwhelmingly Muslim, at 97.2 percent, with most adherents belonging to one of the four main Sufi brotherhoods, while Christians, mostly Roman Catholic, make up 2.7 percent."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -72,5 +72,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "French (official), Wolof, Pulaar, Jola, Mandinka, Serer, Soninke || Muslim 97.2% (most adhere to one of the four main Sufi brotherhoods), Christian 2.7% (mostly Roman Catholic) (2019 est.) || Wolof 39.7%, Pulaar 27.5%, Sereer 16%, Mandinka 4.9%, Jola 4.2%, Soninke 2.4%, other 5.4% (includes Europeans and persons of Lebanese descent) (2019 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:50:55.974Z",
+  "draftModel": "claude-sonnet-5"
 }

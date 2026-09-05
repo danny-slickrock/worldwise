@@ -1,6 +1,6 @@
 {
   "iso": "sa",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.402Z",
   "structured": {
     "code": "sa",
@@ -39,11 +39,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Saudi Arabia is the largest country in the world without a river, a landscape of mostly sandy desert stretched between the Persian Gulf and the Red Sea, just north of Yemen. Its long coastlines on both seas allow enormous volumes of shipping, above all crude oil, to pass through the Persian Gulf and the Suez Canal. Beneath that desert lie petroleum, natural gas, iron ore, gold, and copper.",
+    "physicalGeography": "The country sits in the Middle East, bordering the Persian Gulf and the Red Sea, north of Yemen, and consists mostly of sandy desert. It has no river of any kind, an unusual distinction for a country of its size.",
+    "climate": "The climate is harsh, dry desert with extreme temperature swings and frequent sand and dust storms. The landscape holds many volcanic formations, including Harrat Rahat, Harrat Khaybar, Harrat Lunayyir, and Jabal Yar, though there has been little volcanic activity in the past few centuries.",
+    "economy": "Saudi Arabia runs a high-income, oil-based economy and was a founding member of OPEC. Its Vision 2030 strategy pushes economic diversification, greater private-sector involvement, and projects funded through its sovereign wealth fund and foreign investment, backed by a young labor force. Core industries include crude oil production, petroleum refining, petrochemicals, cement, fertilizer, plastics, metals, and ship and aircraft repair, with crude and refined petroleum, plastics, alcohols, and ships among its top exports.",
+    "peopleAndCulture": "Islam is the official religion, and citizens are 85-90% Sunni and 10-12% Shia, alongside smaller communities of Eastern Orthodox, Protestant, Roman Catholic, Jewish, Hindu, Buddhist, and Sikh residents. The population is about 90% Arab and 10% Afro-Asian."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -73,5 +73,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Muslim (official; citizens are 85-90% Sunni and 10-12% Shia), other (includes Eastern Orthodox, Protestant, Roman Catholic, Jewish, Hindu, Buddhist, and Sikh) (2020 est.) || Arab 90%, Afro-Asian 10%"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:49:41.953Z",
+  "draftModel": "claude-sonnet-5"
 }

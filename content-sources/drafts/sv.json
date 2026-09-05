@@ -1,6 +1,6 @@
 {
   "iso": "sv",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.428Z",
   "structured": {
     "code": "sv",
@@ -30,11 +30,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "El Salvador is the smallest country in Central America and the only one without a coastline on the Caribbean Sea, facing only the North Pacific Ocean. Its landscape of mountains and volcanoes has earned it the name Land of Volcanoes, and it made global headlines by adopting Bitcoin as legal tender.",
+    "physicalGeography": "The country lies between Guatemala and Honduras on the North Pacific coast, and its terrain is mostly mountainous, with a narrow coastal belt and a central plateau providing the flatter, more habitable ground.",
+    "climate": "The climate is tropical, with a rainy season from May to October and a dry season from November to April; conditions are tropical along the coast and temperate in the uplands. El Salvador is known as the Land of Volcanoes and experiences frequent, sometimes destructive earthquakes along with significant volcanic activity, plus a high vulnerability to hurricanes. San Salvador volcano, which last erupted in 1917, looms over the capital and could cause major harm given its location just above the city, while San Miguel is one of the country's most active volcanoes; Conchaguita, Ilopango, Izalco, and Santa Ana are other historically active volcanoes.",
+    "economy": "El Salvador has an upper-middle-income, dollarized economy that relies heavily on remittances from the United States. Recent growth has been tied to infrastructure investment, consumption, and reductions in crime, alongside a $1.3 billion IMF loan aimed at addressing fiscal imbalances, though poverty and a large informal sector persist. The country adopted Bitcoin as legal tender, and its industries include food processing, beverages, petroleum, chemicals, fertilizer, textiles, furniture, and light metals, with exports such as garments, plastic products, electrical capacitors, raw sugar, and toilet paper.",
+    "peopleAndCulture": "The population is predominantly Mestizo (86.3%), with White residents making up 12.7%, Indigenous groups including the Lenca, Kakawira, and Nahua-Pipil at 0.2%, and small Black and other populations. Religiously, Roman Catholics form the largest group at 43.9%, followed by Protestants at 39.6%, most of whom are Evangelical, while 16.3% claim no religious affiliation."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -64,5 +64,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 43.9%, Protestant 39.6% (Evangelical - unspecified 38.2%, Evangelical - Methodist 1.3%, Evangelical - Baptist 0.1%), none 16.3%, unspecified 0.2% (2023 est.) || Mestizo 86.3%, White 12.7%, Indigenous 0.2% (includes Lenca, Kakawira, Nahua-Pipil), Black 0.1%, other 0.6% (2007 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:44.466Z",
+  "draftModel": "claude-sonnet-5"
 }

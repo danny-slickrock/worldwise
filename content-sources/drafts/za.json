@@ -1,6 +1,6 @@
 {
   "iso": "za",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.420Z",
   "structured": {
     "code": "za",
@@ -48,11 +48,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "South Africa sits at the very tip of the continent, its interior a vast plateau ringed by rugged hills and a narrow coastal strip. It surrounds Lesotho entirely and Eswatini almost entirely, an unusual arrangement in a country whose true southern extremity is not the famous Cape of Good Hope but Cape Agulhas, where the Atlantic and Indian Oceans meet. The ground beneath holds an extraordinary spread of resources, from gold and platinum to chromium, uranium and gem diamonds.",
+    "physicalGeography": "The country occupies the southern tip of Africa and is built around a vast interior plateau. This high ground is rimmed by rugged hills that drop down to a narrow coastal plain running along the edges of the country.",
+    "climate": "Conditions are mostly semiarid across the country, shifting to subtropical along the east coast, with sunny days and cool nights typical of the climate. Prolonged droughts occur, and the country holds its only active volcano on Marion Island, part of the Prince Edward Islands.",
+    "economy": "South Africa is an upper-middle-income country and the largest economy in southern Africa, though it faces slow growth, fiscal gaps, and structural challenges alongside high income inequality, unemployment, and poverty. Ongoing reforms target electricity generation, transport, and logistics, and the country is a leading producer and exporter of critical minerals. Mining is central to the economy, with South Africa the world's largest producer of platinum, gold, and chromium, alongside industries in automobile assembly, metalworking, machinery, textiles, iron and steel, chemicals, and commercial ship repair; key exports include gold, platinum, coal, cars, and iron ore.",
+    "peopleAndCulture": "The population is predominantly Black African at 80.9%, with Colored, White, and Indian/Asian communities making up smaller shares. Christianity is the dominant religion at 86%, alongside ancestral, tribal, animist, or other traditional African religions, a smaller Muslim population, and a share of people identifying with no particular religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -82,5 +82,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 86%, ancestral, tribal, animist, or other traditional African religions 5.4%, Muslim 1.9%, other 1.5%, nothing in particular 5.2% (2015 est.) || Black African 80.9%, Colored 8.8%, White 7.8%, Indian/Asian 2.6% (2021 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:55:53.971Z",
+  "draftModel": "claude-sonnet-5"
 }

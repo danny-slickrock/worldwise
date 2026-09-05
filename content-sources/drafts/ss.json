@@ -1,6 +1,6 @@
 {
   "iso": "ss",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.420Z",
   "structured": {
     "code": "ss",
@@ -37,11 +37,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Landlocked in East-Central Africa, this country is dominated by the White Nile, which flows north out of the Central African uplands and feeds the Sudd, a swampy expanse of more than 100,000 square kilometers that can swell to cover some 15% of the entire country during the rainy season. Beneath its plains and highlands lie substantial resources, including petroleum, gold, diamonds, iron ore, copper, and hydropower potential.",
+    "physicalGeography": "The terrain consists of plains across the north and center that rise into highlands along the southern border with Uganda and Kenya. The White Nile is the country's defining geographic feature, and its waters feed the Sudd, a vast swampy region that dominates the central part of the country.",
+    "climate": "The climate is hot with seasonal rainfall governed by the annual shift of the Inter-Tropical Convergence Zone. Rainfall is heaviest in the upland areas of the south and grows lighter moving north.",
+    "economy": "This is a low-income, oil-based economy typical of the Sahelian belt, marked by extreme poverty and food insecurity. It is rich in natural resources but lacks the infrastructure to fully develop them, and its environment is fragile alongside unresolved land and property rights issues. Recent exports have centered on crude and refined petroleum, along with forage crops, gold, and scrap iron.",
+    "peopleAndCulture": "The population is predominantly Christian, at roughly 60.5%, with about a third following folk religions and a smaller Muslim minority. Ethnically, the Dinka (Jieng) form the largest group at roughly 35-40%, followed by the Nuer (Naath) at about 15%, alongside numerous other peoples including the Shilluk, Azande, Bari, Murle, Anuak, and Acholi, among others."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -71,5 +71,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Christian 60.5%, folk religion 32.9%, Muslim 6.2%, other &lt;1%, unaffiliated &lt;1% (2020 est.) || Dinka (Jieng) approximately 35-40%, Nuer (Naath) approximately 15%, Shilluk (Chollo), Azande, Bari, Kakwa, Kuku, Murle, Mandari, Didinga, Ndogo, Bviri, Lndi, Anuak, Bongo, Lango, Dungotona, Acholi, Baka, Fertit (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:51:25.709Z",
+  "draftModel": "claude-sonnet-5"
 }

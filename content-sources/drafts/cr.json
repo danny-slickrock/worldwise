@@ -1,6 +1,6 @@
 {
   "iso": "cr",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.427Z",
   "structured": {
     "code": "cr",
@@ -29,11 +29,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked between Nicaragua and Panama with coastlines on both the Caribbean and the Pacific, Costa Rica packs coastal plains, rugged mountains, and over 100 volcanic cones into a small footprint. Several of those volcanoes are still active, and four of them rise near the capital, San Jose, in the heart of the country. Its exports today lean on medical instruments and integrated circuits alongside the more traditional bananas and tropical fruits.",
+    "physicalGeography": "The country's terrain alternates between coastal plains and rugged mountain ranges, with the two coasts, Caribbean and Pacific, framing the landscape on either side. Scattered through the highlands are more than 100 volcanic cones, several of which remain major active volcanoes.",
+    "climate": "Costa Rica's climate is tropical and subtropical, with a dry season from December to April and a rainy season from May to November, moderating into cooler conditions in the highlands. The rainy season's onset often brings flooding to the lowlands and landslides, and the country also experiences occasional earthquakes and hurricanes along the Atlantic coast. Volcanic activity is a recurring feature: Arenal is the most active volcano, its 1968 eruption destroying the town of Tabacon, while Irazu, just east of San Jose, erupted destructively between 1963 and 1965 and still has the potential to spread ash over the capital. Other historically active volcanoes include Miravalles, Poas, Rincon de la Vieja, and Turrialba.",
+    "economy": "Costa Rica runs a trade-based, upper middle-income economy and has positioned itself as a green economy leader, notably reversing earlier deforestation, while also investing in blue economy infrastructure. Poverty had been declining before the hard impacts of COVID-19 set the country back, and lingering inequality combined with growing government debt has since prompted a liquidity crisis. Key industries include medical equipment, food processing, textiles and clothing, construction materials, fertilizer, and plastic products, and leading exports are medical instruments, integrated circuits, orthopedic appliances, bananas, and tropical fruits.",
+    "peopleAndCulture": "The population is predominantly White or Mestizo, at 83.6 percent, with smaller Mulatto, Indigenous, and Black or African descent communities. Religiously, nearly half identify as Roman Catholic, with Evangelical and Pentecostal Christians forming the next largest group and about 27 percent professing no religion."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -63,5 +63,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic 47.5%, Evangelical and Pentecostal 19.8%, Jehovah's Witness 1.4%, other Protestant 1.2%, other 3.1%, none 27% (2021 est.) || White or Mestizo 83.6%, Mulatto 6.7%, Indigenous 2.4%, Black or African descent 1.1%, other 1.1%, none 2.9%, unspecified 2.2% (2011 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:33:19.614Z",
+  "draftModel": "claude-sonnet-5"
 }

@@ -1,6 +1,6 @@
 {
   "iso": "va",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.390Z",
   "structured": {
     "code": "va",
@@ -26,11 +26,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Tucked entirely within the city of Rome, this is the world's smallest state, landlocked and without a single natural resource to its name. Its entire economy runs on faith, tourism, and a mint of its own coins rather than farms or factories.",
+    "physicalGeography": "The terrain amounts to little more than a low hill, and the whole territory is urban, an enclave surrounded on all sides by the city of Rome in Southern Europe.",
+    "climate": "The climate is temperate, with mild, rainy winters running from September to May and hot, dry summers from May to September. Occasional earthquakes occur in the area.",
+    "economy": "The economy is limited and tourism-based. It uses the euro but mints its own coins, and generates income through commemorative stamps, coins, and publications that support its museums and religious activities; residents pay no direct taxes, and a \"zero deficit\" plan has been pursued to address budget shortfalls. Industries include printing, the production of coins, medals, and postage stamps, mosaics, and staff uniforms, alongside worldwide banking and financial activities.",
+    "peopleAndCulture": "The population is Roman Catholic, and as of 2017 includes Italian, Swiss, Argentinian, and other nationalities drawn from around the world."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -60,5 +60,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Roman Catholic || Italian, Swiss, Argentinian, and other nationalities from around the world (2017)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:54:56.512Z",
+  "draftModel": "claude-sonnet-5"
 }

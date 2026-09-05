@@ -1,6 +1,6 @@
 {
   "iso": "ge",
-  "status": "draft",
+  "status": "drafted",
   "scaffoldedAt": "2026-09-05T00:00:32.394Z",
   "structured": {
     "code": "ge",
@@ -33,11 +33,11 @@
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Wedged between the Black Sea and the Caucasus, Georgia borders Armenia, Azerbaijan, Russia, and Turkey and sits at a crossroads that geographers argue over classifying as part of Europe, the Middle East, or both. Its mountains hide the world's four deepest known caves, including Veryovkina Cave at -2,212 meters, the deepest point yet reached on Earth. The country controls much of the Caucasus range and the routes running through it, a position that has long made it strategically valuable.",
+    "physicalGeography": "Georgia is largely mountainous, framed by the Great Caucasus Mountains in the north and the Lesser Caucasus Mountains in the south. The Kolkhida Lowland opens west onto the Black Sea, while the Mtkvari River Basin dominates the east, and fertile soils in the river valley flood plains and Kolkhida foothills support agriculture. A sliver of land north of the Caucasus extends into Europe, and Georgia considers itself part of that continent.",
+    "climate": "The climate is generally warm and pleasant, turning Mediterranean-like along the Black Sea coast. The mountainous terrain also makes the country prone to earthquakes.",
+    "economy": "Georgia is an upper-middle income, fast-growing economy in the South Caucasus, exporting cars, copper ore, electricity, garments, and wine, largely to regional markets. Industries include steel, machine tools, electrical appliances, mining of manganese, copper, and gold, chemicals, wood products, and wine. The economy combines low inflation with persistently high unemployment, and its coastal climate and soils also support tea and citrus growing, backed by resources including timber, hydropower, and iron ore.",
+    "peopleAndCulture": "The population is predominantly ethnic Georgian, at 86.8 percent, with Azeri, Armenian, and smaller minorities including Russian, Ossetian, and Greek communities. Eastern Orthodox Christianity is the official and dominant religion, practiced by about 83 percent of people, alongside a Muslim minority of roughly 11 percent and smaller Armenian Apostolic, Catholic, and other communities."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
@@ -67,5 +67,7 @@
       "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
       "excerpt": "Eastern Orthodox Christian (official) 83.4%, Muslim 10.7%, Armenian Apostolic Christian 2.9%, other 1.2% (includes Roman Catholic Christian, Jehovah's Witness, Yazidi, Protestant Christian, Jewish), none 0.5%, unspecified/no answer 1.2% (2014 est.) || Georgian 86.8%, Azeri 6.3%, Armenian 4.5%, other 2.3% (includes Russian, Ossetian, Yazidi, Ukrainian, Kist, Greek) (2014 est.)"
     }
-  }
+  },
+  "draftedAt": "2026-09-05T00:37:44.840Z",
+  "draftModel": "claude-sonnet-5"
 }
