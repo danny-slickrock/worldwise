@@ -37,7 +37,13 @@ const EMBEDDING_MODEL = "gte-small";
 // generous than the local one, but the loop is correct either way and needs no
 // retuning if that ever changes: pass a bigger `limit` if prod allows it, and
 // the same loop simply finishes in fewer round trips.
-const DEFAULT_LIMIT = 5;
+// Calibrated in CHUNKS, not countries, because that is what actually costs CPU.
+// The runtime tolerates roughly 10-12 chunks per invocation. Before the
+// content-enrichment pass a country was 2 chunks, so 5 countries fit; enriched
+// countries are ~6 chunks each, so the same 5 became ~30 and tripped the CPU
+// limit on the first run afterwards. Two countries is ~12 chunks — the same
+// work per invocation as before, at a third of the countries.
+const DEFAULT_LIMIT = 2;
 const MAX_RUN_MS = 45_000;
 
 type CountryRow = {
@@ -102,18 +108,39 @@ Deno.serve(async (req) => {
 
   const started = Date.now();
 
-  // Ordered by code so `offset` means the same thing across invocations —
-  // an unordered read could revisit or skip countries between resumes.
-  let countries = db.from("countries").select(
-    "code, name, capital, region, summary, population, area_km2, lat, lng, neighbors, facts",
-  ).order("code");
+  // Read ONLY this batch's rows.
+  //
+  // This used to select all 196 countries and slice afterwards, which meant the
+  // batch size controlled how many were embedded but not how many were loaded.
+  // That was survivable while a country was two thin sentences; after the
+  // content-enrichment pass it is ~400 KB of prose sharing an isolate with the
+  // gte-small model, and production answered with WORKER_RESOURCE_LIMIT — a
+  // *memory* ceiling, distinct from the CPU limit the batch size was added for.
+  // Lowering BATCH did nothing, because the expensive part happened before the
+  // slice.
+  //
+  // Ordered by code so `offset` means the same thing across invocations: an
+  // unordered read could revisit or skip countries between resumes.
+  const COLUMNS =
+    "code, name, capital, region, summary, population, area_km2, lat, lng, neighbors, facts";
+
+  // Total first, as a count-only query — no rows cross the wire.
+  let counter = db.from("countries").select("code", { count: "exact", head: true });
+  if (only) counter = counter.eq("code", only);
+  const { count: total, error: countError } = await counter;
+  if (countError) return json({ error: `counting countries: ${countError.message}` }, 500);
+  if (!total) return json({ error: "no countries matched" }, 404);
+
+  let countries = db.from("countries").select(COLUMNS).order("code");
   if (only) countries = countries.eq("code", only);
+  else countries = countries.range(offset, offset + limit - 1);
   const { data: rows, error: readError } = await countries.returns<CountryRow[]>();
   if (readError) return json({ error: `reading countries: ${readError.message}` }, 500);
   if (!rows?.length) return json({ error: "no countries matched" }, 404);
 
   // Neighbour display names, so a borders chunk reads "Argentina and Bolivia"
-  // rather than "ar, bo". One read for the whole run.
+  // rather than "ar, bo". Two columns for every country is a few KB — small
+  // enough to keep whole, unlike the full rows above.
   const { data: allNames } = await db.from("countries").select("code, name")
     .returns<{ code: string; name: string }[]>();
   const neighborNames: Record<string, string> = {};
@@ -134,8 +161,8 @@ Deno.serve(async (req) => {
     nextOffset: null as number | null,
   };
 
-  const queue = rows.slice(offset, offset + limit);
-  const moreAfterBatch = offset + limit < rows.length;
+  const queue = rows;
+  const moreAfterBatch = !only && offset + rows.length < total;
 
   for (const [index, row] of queue.entries()) {
       // Stop cleanly rather than being killed mid-country. Checked before
@@ -200,7 +227,7 @@ Deno.serve(async (req) => {
   if (report.nextOffset === null && moreAfterBatch && !only) {
     report.nextOffset = offset + queue.length;
   }
-  return json({ ...report, total: rows.length, elapsedMs: Date.now() - started });
+  return json({ ...report, total, elapsedMs: Date.now() - started });
 });
 
 function json(body: unknown, status = 200) {

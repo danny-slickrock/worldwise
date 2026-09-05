@@ -103,9 +103,19 @@ for (;;) {
     // WORKER_LIMIT means the batch was too big for the runtime's CPU budget.
     // Say so specifically — "resource limit" alone sends people hunting for a
     // memory leak that isn't there.
+    // Two different ceilings, and they want different responses.
+    // WORKER_LIMIT is CPU: a smaller batch genuinely helps.
+    // WORKER_RESOURCE_LIMIT is memory, and a smaller batch may not help at all
+    // if the function loads more than it processes — which is exactly the bug
+    // that produced it here. Say which one it is rather than offering the same
+    // advice for both.
     if (report?.code === "WORKER_LIMIT") {
       console.error(`\nHit the Edge runtime CPU limit at offset ${offset}.`);
-      console.error(`Retry with a smaller batch:  BATCH=3 SUPABASE_SERVICE_ROLE_KEY=... npm run ingest:embeddings`);
+      console.error(`Retry with a smaller batch:  BATCH=1 SUPABASE_SERVICE_ROLE_KEY=... npm run ingest:embeddings`);
+    } else if (report?.code === "WORKER_RESOURCE_LIMIT") {
+      console.error(`\nHit the Edge runtime MEMORY limit at offset ${offset}.`);
+      console.error(`A smaller batch only helps if the function loads no more than it processes.`);
+      console.error(`If BATCH is already small and this persists, the function is over-fetching.`);
     } else {
       console.error(`\nFailed at offset ${offset} (HTTP ${res.status}): ${report?.error ?? text}`);
     }
