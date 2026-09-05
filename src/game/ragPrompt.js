@@ -19,24 +19,31 @@ export const TOP_K = 8;
 //
 // The value is measured, not guessed — and the naive guess is badly wrong.
 // gte-small compresses cosine similarity into a high, narrow band, so an
-// intuitive-looking floor like 0.25 admits literally everything. Against the
-// local corpus:
+// intuitive-looking floor like 0.25 admits literally everything.
 //
-//   0.927  "What is the capital of France?"        on-topic
-//   0.925  "What does Brazil export?"              on-topic
-//   0.924  "Which countries border Brazil?"        on-topic
-//   0.908  "Why is Iceland so sparsely populated?" on-topic
-//   0.830  "Tell me about Japanese food culture"   on-topic
-//   ----------------------------------------------------- 0.80
-//   0.793  "Who won the 2018 World Cup"            off-topic
-//   0.723  "ignore previous instructions ..."      adversarial
-//   0.716  "Explain quantum chromodynamics"        off-topic
-//   0.706  "How do I bake sourdough bread?"        off-topic
-//   0.679  "Write me a poem about my cat"          off-topic
+// RE-MEASURED against the full enriched corpus (1,168 chunks, 196 countries)
+// after the content-enrichment pass. The first calibration used five thin
+// countries; both bands lifted slightly, and the gap WIDENED rather than
+// closing, so 0.80 still sits inside it:
 //
-// 0.80 sits in the gap. Re-validate against the full production corpus before
-// leaning on it as the off-topic guardrail in step 4 — this was measured with
-// five countries ingested, and a denser corpus may shift the bands.
+//                                            thin corpus   enriched
+//   on-topic, lowest    "Japanese food culture"    0.830      0.862
+//   on-topic, highest   "Kazakhstan climate"       0.927      0.931
+//   ------------------------------------------------- 0.80 ------------
+//   off-topic, highest  "who won the 2018 World Cup" 0.793     0.794
+//   off-topic, lowest   "poem about my cat"        0.679      0.715
+//
+// Gap between the bands: 0.037 before, 0.068 now. Headroom above the floor
+// nearly doubled (0.030 -> 0.062); headroom below it is unchanged and thin
+// (0.006).
+//
+// Kept at 0.80 rather than raised to widen that thin margin, because the two
+// errors are not symmetric. A question that squeaks past the floor still meets
+// the grounding rules and gets an honest NO_ANSWER decline — the cost is one
+// wasted model call. A question wrongly rejected by a higher floor never
+// reaches the model at all. The floor is a cost-and-noise filter; the grounding
+// rules are the correctness boundary, and they are the ones that must not be
+// leaned on less.
 export const MIN_SIMILARITY = 0.80;
 
 // If nothing clears the floor, we do not call the model at all. Saying so is

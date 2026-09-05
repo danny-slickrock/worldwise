@@ -134,11 +134,17 @@ prose** on re-run, so a re-fetch cannot silently overwrite approved text.
 
 ## Consequences
 
-- **The 0.80 similarity floor must be re-measured** once the corpus is denser. It
-  was calibrated against five ingested countries; more content per country will
-  move the bands.
-- Chunk count grows roughly 5-8× (2 chunks/country → ~10-14), so ingestion runtime
-  and the `WORKER_LIMIT` batch size need re-checking at scale.
+- **The 0.80 similarity floor was re-measured** against the full 1,168-chunk
+  corpus and **kept**. Both bands lifted slightly and the gap widened rather than
+  closing (0.037 -> 0.068): on-topic now 0.862-0.931, off-topic 0.715-0.794.
+  Headroom above the floor nearly doubled; headroom below it is unchanged and
+  thin at 0.006 ("who won the 2018 World Cup"). Not raised, because the errors
+  are asymmetric — a question that squeaks past still gets an honest NO_ANSWER
+  decline from the grounding rules, costing one model call, whereas a question
+  wrongly rejected by a higher floor never reaches the model at all.
+- Chunk count grew from 395 to **1,168** (2 → 6 per country). Local ingestion of
+  the full corpus took 66 batches at `BATCH=3`; the default batch size still
+  holds, and the longest chunk is 817 of the 1200-char cap.
 - Two upstreams to re-pull as content ages. Both are stable and free; neither
   requires a key.
 - **Drafting at scale runs through an Edge Function** (`supabase/functions/draft-content`)

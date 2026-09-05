@@ -187,6 +187,11 @@ export function chunkCountry(row, neighborNames = {}) {
   // ordering would make every re-ingestion rewrite every row.
   const facts = row.facts && typeof row.facts === "object" ? row.facts : {};
   for (const key of Object.keys(facts).sort()) {
+    // Underscore-prefixed keys are metadata, not content. `_sources` carries
+    // provenance for citation and licence cleanliness; chunking it would
+    // produce a "[object Object]" chunk and, worse, one that retrieval could
+    // return as if it were a fact about the country.
+    if (key.startsWith("_")) continue;
     const value = String(facts[key] ?? "").trim();
     if (!value) continue;
     const labelled = `${name} — ${titleCase(key)}: ${value}`;

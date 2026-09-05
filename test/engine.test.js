@@ -434,15 +434,65 @@ for (const code of Object.keys(COUNTRY_PAGES)) {
   check(validCodes.has(code), `COUNTRY_PAGES key "${code}" is a real country code`);
 }
 
-// A country with no hand-authored page must still render something reasonable.
-const sparse = getCountryPage("fr");
-check(sparse.hasFullContent === false, "an unauthored country reports hasFullContent: false");
-check(sparse.summary === whyItMatters(COUNTRIES.find((c) => c.code === "fr")), "an unauthored country falls back to its whyItMatters fact");
-check(sparse.population === null && sparse.areaKm2 === null, "an unauthored country has no fabricated facts");
-check(Array.isArray(sparse.neighbors) && sparse.neighbors.length === 0, "an unauthored country has an empty neighbor list, not a guess");
+// A country with no promoted content must still render something reasonable.
+// Cyprus is the real case rather than a hypothetical: it has no single CIA
+// World Factbook entry, so the enrichment pass had nothing to draft from and it
+// was deliberately left structured-only.
+const sparse = getCountryPage("cy");
+check(sparse.hasFullContent === false, "an unpromoted country reports hasFullContent: false");
+check(
+  sparse.summary === whyItMatters(COUNTRIES.find((c) => c.code === "cy")),
+  "an unpromoted country falls back to its whyItMatters fact"
+);
+check(sparse.population === null && sparse.areaKm2 === null, "an unpromoted country has no fabricated facts");
+check(
+  Array.isArray(sparse.neighbors) && sparse.neighbors.length === 0,
+  "an unpromoted country has an empty neighbor list, not a guess"
+);
 check(
   sparse.relatedGameModes.length > 0 && sparse.relatedGameModes.every((m) => validModes.has(m)),
-  "an unauthored country still gets sensible default game-mode suggestions"
+  "an unpromoted country still gets sensible default game-mode suggestions"
+);
+
+// ...and a promoted country carries the enriched content through the same
+// accessor the seed and the offline baseline both read.
+const enriched = getCountryPage("fr");
+check(enriched.hasFullContent === true, "a promoted country reports hasFullContent: true");
+check(enriched.population > 0, "...with a real population");
+check(enriched.neighbors.length > 0, "...and real land borders");
+check(
+  ["physical_geography", "climate", "economy", "people_and_culture"].every((k) => enriched.facts[k]),
+  "...and all four enriched fact sections"
+);
+check(
+  enriched.facts._sources?.prose?.includes("Factbook"),
+  "...carrying its provenance for citation and licence cleanliness"
+);
+
+// region must still come from our own dataset. Wikidata's continent taxonomy
+// disagrees (Americas vs North/South America, and Kazakhstan in Europe), and
+// region drives region filters and learning paths.
+check(
+  getCountryPage("kz").region === COUNTRIES.find((c) => c.code === "kz").region,
+  "region comes from our dataset, never from the promoted content"
+);
+check(
+  getCountryPage("mx").region === "Americas",
+  "...so the Americas stay the Americas"
+);
+
+// Metadata must never become a retrievable "fact".
+const enrichedChunks = chunkCountry(
+  { ...getCountryPage("fr"), code: "fr", area_km2: enriched.areaKm2 },
+  {}
+);
+check(
+  enrichedChunks.every((c) => !c.content.includes("[object Object]")),
+  "the _sources metadata key is never chunked"
+);
+check(
+  enrichedChunks.every((c) => c.source !== "facts._sources"),
+  "...and produces no chunk of its own"
 );
 
 // Step 4 (generalize to all 196): every country in the dataset — not just the

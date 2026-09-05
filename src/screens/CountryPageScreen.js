@@ -25,8 +25,16 @@ function compact(n) {
 }
 
 // Order of the labelled fact rows, so they read consistently across countries.
+// An allowlist, deliberately: facts arrive as a jsonb blob, so rendering
+// whatever keys happen to be present would surface metadata (`_sources`) and
+// any future field the moment it landed. Order here is reading order.
 const FACT_ORDER = [
+  { key: "physical_geography", label: "Landscape" },
   { key: "climate", label: "Climate" },
+  { key: "economy", label: "Economy" },
+  { key: "people_and_culture", label: "People & culture" },
+  // Pre-enrichment keys, kept so an older cached page or a hand-authored
+  // override still renders rather than silently losing sections.
   { key: "trade", label: "Trade" },
   { key: "culture", label: "Culture" },
 ];

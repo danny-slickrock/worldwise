@@ -14,37 +14,26 @@
 // and whyItMatters.js so every country renders a reasonable page today.
 import { COUNTRIES } from "./countries";
 import { whyItMatters } from "./whyItMatters";
+import { COUNTRY_CONTENT } from "./countryContent";
 
 // Game modes worth suggesting from a country page. "daily" is a mixed round,
 // not about one country, so it's excluded here (see MODES in game/questions.js).
 const DEFAULT_RELATED_MODES = ["flag", "capital", "shape", "locator"];
 
-// Hand-authored entries, keyed by ISO code. Brazil is the hero reference for
-// M2.2 — fully fleshed out so the first CountryPage screen has real content to
-// be built against. Fill in more countries opportunistically; getCountryPage()
-// degrades gracefully for anyone missing here.
+// Hand-authored overrides, keyed by ISO code. These win over the generated
+// content in countryContent.js, field by field, so a human correction never
+// needs a re-promotion to take effect.
+//
+// Brazil's entry used to hold a full hand-written page. The enrichment pass
+// supersedes it — including a corrected hook that no longer counts French
+// Guiana, a French territory, as one of Brazil's neighbouring countries — so
+// only the fields the generated set does not carry remain here. Coordinates are
+// the notable one: the Wikidata query does not fetch them yet, so they would be
+// lost on promotion.
 export const COUNTRY_PAGES = {
   br: {
-    summary:
-      "Brazil is the giant of South America — bigger than the contiguous United States minus Alaska, " +
-      "and home to more of the Amazon than any other nation. It borders every country on the continent " +
-      "except Chile and Ecuador, a reach that makes it a hub for trade, culture, and biodiversity all at " +
-      "once. From Rio's Carnival to São Paulo's skyline to the river towns deep in the rainforest, Brazil " +
-      "holds more ecological and cultural range than almost anywhere else on Earth.",
-    population: 216_422_446,
-    areaKm2: 8_515_767,
     lat: -14.235,
     lng: -51.9253,
-    neighbors: ["ar", "bo", "co", "gy", "py", "pe", "sr", "uy", "ve"],
-    relatedGameModes: ["flag", "capital", "shape", "locator"],
-    facts: {
-      climate:
-        "Mostly tropical, but the south dips into subtropical territory with real seasons and occasional frost.",
-      trade:
-        "One of the world's largest exporters of soybeans, coffee, and iron ore — agriculture and mining anchor the economy.",
-      culture:
-        "Portuguese is the only official language, the legacy of colonization, making Brazil the sole Portuguese-speaking giant in a Spanish-speaking continent.",
-    },
   },
 };
 
@@ -55,7 +44,12 @@ export function getCountryPage(code) {
   const country = COUNTRIES.find((c) => c.code === code);
   if (!country) return null;
 
-  const page = COUNTRY_PAGES[code];
+  // Generated content first, hand-authored overrides on top. Spreading in this
+  // order is what makes an override an override; reversing it would let a stale
+  // hand-written field quietly shadow reviewed content.
+  const generated = COUNTRY_CONTENT[code];
+  const overrides = COUNTRY_PAGES[code];
+  const page = generated || overrides ? { ...generated, ...overrides } : null;
   return {
     code: country.code,
     name: country.name,
