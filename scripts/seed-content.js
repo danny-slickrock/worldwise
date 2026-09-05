@@ -31,6 +31,7 @@ import { dirname, join } from "node:path";
 import { COUNTRIES } from "../src/data/countries.js";
 import { getCountryPage } from "../src/data/countryPages.js";
 import { countryRowFromPage } from "../src/game/contentSync.js";
+import { announceTarget } from "./lib/target-banner.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..");
@@ -130,7 +131,8 @@ function buildRows() {
 
 async function main() {
   const rows = buildRows();
-  console.log(`Seeding ${rows.length} countries → content.countries at ${url}`);
+  announceTarget(url);
+  console.log(`Seeding ${rows.length} countries → content.countries`);
 
   let written = 0;
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {

@@ -17,6 +17,8 @@
 // Re-runnable by design: chunks upsert on (country_code, chunk_index) and the
 // function deletes any tail left behind when a country's content shrinks. Run
 // it after every content_version bump.
+import { announceTarget } from "./lib/target-banner.mjs";
+
 const url =
   process.env.SUPABASE_URL ??
   process.env.EXPO_PUBLIC_SUPABASE_URL ??
@@ -32,7 +34,8 @@ if (!key) {
 }
 
 const endpoint = `${url.replace(/\/$/, "")}/functions/v1/ingest-embeddings`;
-console.log(`Ingesting embeddings via ${endpoint}`);
+announceTarget(url);
+console.log("Ingesting embeddings...");
 
 // A full run is ~40 sequential invocations, and the Edge runtime will
 // occasionally answer one with a transient 503 (an isolate recycling, a cold
