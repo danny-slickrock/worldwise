@@ -87,12 +87,13 @@ collections & deeper gamification** is the lowest-numbered milestone with unbloc
 has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
 achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
 game_results signals, no new schema), step 2 (the navigation seam — an `achievements` route in
-`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js`), and step 3 (the hero
+`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js`), step 3 (the hero
 screen — `AchievementsScreen` now renders real locked/unlocked state and progress bars via
-`computeAchievements()`, fed by local `progress` and `fetchRoundResults(user)`) are done. **Next up
-in M2.5 is step 4** (replace the temporary "Achievements (preview)" link on Profile with a real
-entry point showing an unlocked-count summary). The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+`computeAchievements()`, fed by local `progress` and `fetchRoundResults(user)`), and step 4 (the
+real Profile entry point — a "Achievements" row mirroring the Interests settings row, showing an
+"{unlocked} of {total} unlocked" summary, replacing the temporary preview link) are done. **Next up
+in M2.5 is step 5** (an XP leveling curve derived from `progress.xp`, surfaced alongside the
+badges). The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1133,8 +1134,12 @@ teaching *how the world works*, not just *where things are*.
        passes `progress` through to the route. Theme tokens only. *(Next up: step 4 — replace the
        Profile "Achievements (preview)" link with a real entry point showing an unlocked-count
        summary.)*
-    4. ☐ **Wire entry point.** A "Achievements" row on Profile (mirroring the Interests settings row)
-       showing an unlocked-count summary, opening the hero screen.
+    4. ✅ **Wire entry point.** A "Achievements" row on Profile (mirroring the Interests settings row)
+       showing an unlocked-count summary, opening the hero screen. Replaces the TEMPORARY "Achievements
+       (preview)" link from step 2. `ProfileScreen` now fetches `fetchRoundResults(user)` itself
+       (the same call `AchievementsScreen` makes) and runs it through `computeAchievements()` against
+       local `progress`, so the row reads "{unlocked} of {total} unlocked" before the hero screen is
+       even opened. *(Next up: step 5 — XP levels.)*
     5. ☐ **XP levels.** A leveling curve derived from `progress.xp`, surfaced alongside the badges —
        its own step since the curve itself is a game-balance decision worth a dedicated, reviewable
        diff rather than folding into step 1's plumbing.

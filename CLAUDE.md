@@ -151,8 +151,8 @@ src/
   screens/LearningPathScreen.js # M2.4: nav seam (step 3) + mastery states/tapping a node (step 4)
                            #   + a region-pill row generalizing to all five paths (step 5)
                            #   + fade/rise-in + fade/settle-out transitions (step 6.4)
-  screens/AchievementsScreen.js # M2.5 step 2: nav seam — plain badge-catalog list, minimal until
-                           #   step 3 adds locked/unlocked state via achievementPolicy.js
+  screens/AchievementsScreen.js # M2.5 hero screen (step 3): real locked/unlocked state + progress
+                           #   bars via achievementPolicy.js, reached from a Profile row (step 4)
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + embeds country
                            #   content with the built-in gte-small model. ask: retrieval + grounded
@@ -349,14 +349,16 @@ shape `CountryPageScreen` uses, plus staggered `FadeInUp` groups for its header 
 unblocked work. It now has an ordered sub-checklist, and step 1 — the badge catalog + pure policy
 layer (`src/data/achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing
 `progress.js`/`game_results` signals: streak, rounds-played, perfect-round, and mode-variety
-badges, no new schema) and step 2 (the navigation seam — an `achievements` route in
+badges, no new schema), step 2 (the navigation seam — an `achievements` route in
 `src/game/navigation.js`, owned by the Profile tab, reached with `go({ name: "achievements" })`
-and rendered by `App.js`; `src/screens/AchievementsScreen.js` is deliberately minimal, a plain
-list off the badge catalog with no locked/unlocked state yet, reachable today via a temporary
-"Achievements (preview)" link on Profile) are done. XP levels and region collectible sets are
-deliberately their own later steps rather than folded into step 1. Next up in M2.5 is step 3, the
-hero screen — wiring `computeAchievements()` and `fetchRoundResults(user)` into a real badge grid
-with progress bars, replacing this minimal list.
+and rendered by `App.js`), step 3 (the hero screen — `AchievementsScreen` now renders real
+locked/unlocked state and progress bars via `computeAchievements()`, fed by local `progress` and
+`fetchRoundResults(user)`), and step 4 (the real Profile entry point — `ProfileScreen` now runs its
+own `fetchRoundResults(user)` through `computeAchievements()` and shows an "Achievements" row,
+mirroring the Interests settings row, with a live "{unlocked} of {total} unlocked" summary,
+replacing the temporary "Achievements (preview)" link) are done. XP levels and region collectible
+sets are deliberately their own later steps rather than folded into step 1. Next up in M2.5 is
+step 5, an XP leveling curve derived from `progress.xp`, surfaced alongside the badges.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

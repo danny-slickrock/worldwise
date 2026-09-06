@@ -14,10 +14,11 @@ import { colors, spacing, radius, type, elevation } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { useAuth } from "../auth/AuthProvider";
-import { fetchProgress } from "../storage/cloudProgress";
+import { fetchProgress, fetchRoundResults } from "../storage/cloudProgress";
 import { getSyncState, subscribeSyncState } from "../game/syncStore";
 import { describeSyncState } from "../game/syncStatus";
 import { streakStatus, dayKey } from "../game/progress";
+import { computeAchievements } from "../game/achievementPolicy";
 import SignInScreen from "./SignInScreen";
 
 export default function ProfileScreen({ progress, interests, onOpenInterests, onOpenAchievements }) {
@@ -60,6 +61,7 @@ function SignedIn({
   // Sync health is pushed, not polled: a round finished on another screen
   // updates the store, and this row re-renders when the player lands here.
   const [syncState, setSyncState] = useState(getSyncState);
+  const [roundResults, setRoundResults] = useState([]);
 
   useEffect(() => subscribeSyncState(setSyncState), []);
 
@@ -78,7 +80,19 @@ function SignedIn({
     };
   }, [user]);
 
+  useEffect(() => {
+    let active = true;
+    fetchRoundResults(user).then(({ rows }) => {
+      if (active) setRoundResults(rows);
+    });
+    return () => {
+      active = false;
+    };
+  }, [user]);
+
   const streak = streakStatus(stats, dayKey(new Date()));
+  const badges = computeAchievements(localProgress, roundResults);
+  const unlockedCount = badges.filter((b) => b.unlocked).length;
   const name = user.user_metadata?.display_name || user.user_metadata?.full_name;
   const avatar = user.user_metadata?.avatar_url;
   const initial = (name || user.email || "?").trim().charAt(0).toUpperCase();
@@ -139,12 +153,15 @@ function SignedIn({
             </>
           )}
 
-          {/* TEMPORARY — M2.5 step 2 only proves the /achievements route
-              works; step 4 replaces this with a real row mirroring the one
-              above (an unlocked-count summary, not just a bare link). */}
           {onOpenAchievements && (
-            <Pressable onPress={onOpenAchievements} hitSlop={4} style={styles.achievementsLink}>
-              <Text style={styles.achievementsLinkText}>Achievements (preview) ›</Text>
+            <Pressable onPress={onOpenAchievements} style={styles.interestsRow} hitSlop={4}>
+              <View style={styles.interestsBody}>
+                <Text style={styles.interestsLabel}>Achievements</Text>
+                <Text style={styles.interestsValue}>
+                  {unlockedCount} of {badges.length} unlocked
+                </Text>
+              </View>
+              <Text style={styles.interestsChevron}>›</Text>
             </Pressable>
           )}
 
@@ -266,9 +283,6 @@ const styles = StyleSheet.create({
   interestsLabel: { ...type.body, color: colors.brand },
   interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
   interestsChevron: { fontSize: 20, color: colors.accent, marginLeft: spacing(2) },
-
-  achievementsLink: { marginBottom: spacing(7) },
-  achievementsLinkText: { ...type.caption, fontSize: 13, color: colors.accent },
 
   signOutBtn: {
     backgroundColor: colors.surfaceRaised,
