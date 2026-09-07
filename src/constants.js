@@ -80,6 +80,15 @@ export const GLOBE_SMALL_HIT_RADIUS = 6; // viewBox units
 // a rotation covers more visual distance and reads better unhurried.
 export const GLOBE_SPIN_ANIMATION_MS = 520;
 
+// XP levels (M2.5 step 5): the curve is a game-balance call, kept in one place
+// so it can be retuned without touching levelPolicy.js's math. Level 1 starts
+// at 0 XP; LEVEL_XP_BASE is what level 2 costs, and each subsequent level
+// costs LEVEL_XP_GROWTH times the last — a standard escalating RPG curve, not
+// a flat "N XP per level" ladder, so early levels come quickly (a round or
+// two) while later ones ask for sustained play.
+export const LEVEL_XP_BASE = 100;
+export const LEVEL_XP_GROWTH = 1.35;
+
 // Learning paths (M2.4 step 2): a node "demonstrates mastery" once the player
 // has shown sustained accuracy at its difficulty tier — the finest signal
 // game_results tracks today (per-round score/total tagged by mode +

@@ -17,6 +17,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { computeAchievements } from "../game/achievementPolicy";
+import { computeLevel } from "../game/levelPolicy";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
 
@@ -40,6 +41,7 @@ export default function AchievementsScreen({ onExit, progress }) {
 
   const badges = computeAchievements(progress, results);
   const unlockedCount = badges.filter((b) => b.unlocked).length;
+  const level = computeLevel(progress?.xp);
 
   return (
     <View style={styles.wrap}>
@@ -64,8 +66,22 @@ export default function AchievementsScreen({ onExit, progress }) {
           </View>
         </FadeInUp>
 
+        <FadeInUp delay={staggerDelay(1)}>
+          <View style={styles.levelCard}>
+            <View style={styles.levelHeader}>
+              <Text style={styles.levelLabel}>Level {level.level}</Text>
+              <Text style={styles.levelXpText}>
+                {level.xpIntoLevel}/{level.xpForNextLevel} XP
+              </Text>
+            </View>
+            <View style={styles.progressTrack}>
+              <View style={[styles.progressFill, { width: `${level.progress * 100}%` }]} />
+            </View>
+          </View>
+        </FadeInUp>
+
         {badges.map((badge, index) => (
-          <FadeInUp key={badge.slug} delay={staggerDelay(index)}>
+          <FadeInUp key={badge.slug} delay={staggerDelay(index + 2)}>
             <View style={[styles.row, !badge.unlocked && styles.rowLocked]}>
               <Text style={[styles.glyph, !badge.unlocked && styles.glyphLocked]}>
                 {badge.glyph}
@@ -113,6 +129,24 @@ const styles = StyleSheet.create({
   title: { ...type.h1, fontSize: 34 },
   subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
   noticeText: { ...type.caption, fontSize: 13, color: colors.danger, marginTop: spacing(2) },
+
+  levelCard: {
+    ...constrain.content,
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(3.5),
+    paddingHorizontal: spacing(4),
+    marginBottom: spacing(4),
+    ...elevation(1),
+  },
+  levelHeader: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    marginBottom: spacing(2),
+  },
+  levelLabel: { ...type.h3, fontSize: 18, color: colors.brand },
+  levelXpText: { ...type.eyebrow, fontSize: 11, color: colors.textMuted },
 
   row: {
     ...constrain.content,

@@ -91,9 +91,13 @@ game_results signals, no new schema), step 2 (the navigation seam — an `achiev
 screen — `AchievementsScreen` now renders real locked/unlocked state and progress bars via
 `computeAchievements()`, fed by local `progress` and `fetchRoundResults(user)`), and step 4 (the
 real Profile entry point — a "Achievements" row mirroring the Interests settings row, showing an
-"{unlocked} of {total} unlocked" summary, replacing the temporary preview link) are done. **Next up
-in M2.5 is step 5** (an XP leveling curve derived from `progress.xp`, surfaced alongside the
-badges). The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+"{unlocked} of {total} unlocked" summary, replacing the temporary preview link), and step 5 (an
+XP leveling curve — `src/game/levelPolicy.js`'s `computeLevel(xp)`, pure, walking an escalating
+per-level cost from `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card
+above the badge list on `AchievementsScreen`) are done. **Next up in M2.5 is step 6** (collectible
+sets, e.g. "all of South America" — needs a real per-country signal `game_results` doesn't carry
+today, so it needs its own scoped tracking change first). The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1140,9 +1144,15 @@ teaching *how the world works*, not just *where things are*.
        (the same call `AchievementsScreen` makes) and runs it through `computeAchievements()` against
        local `progress`, so the row reads "{unlocked} of {total} unlocked" before the hero screen is
        even opened. *(Next up: step 5 — XP levels.)*
-    5. ☐ **XP levels.** A leveling curve derived from `progress.xp`, surfaced alongside the badges —
-       its own step since the curve itself is a game-balance decision worth a dedicated, reviewable
-       diff rather than folding into step 1's plumbing.
+    5. ✅ **XP levels.** `src/game/levelPolicy.js` (`computeLevel(xp)`, pure) walks an escalating
+       curve — level 2 costs `LEVEL_XP_BASE` (100), each level after costs `LEVEL_XP_GROWTH`×
+       (1.35×) the last, both in `constants.js` per the "gameplay numbers stay out of components"
+       rule — and returns the current level, XP banked toward the next one, that level's full cost,
+       and a 0..1 progress ratio. `AchievementsScreen` renders it as a level card above the badge
+       list (its own `computeLevel(progress?.xp)` call, no new fetch), reusing the badge rows'
+       progress-track/fill styles rather than inventing a second bar treatment. 8 checks in
+       `test/engine.test.js`, including the zero/negative-XP floor and a large-XP sanity check
+       against the loop's safety cap. *(Next up: step 6 — collectible sets.)*
     6. ☐ **Collectible sets** (e.g., "all of South America"). Needs a real per-country signal
        `game_results` doesn't carry today — scope the tracking change (and any migration it implies)
        explicitly in this step rather than retrofitting it into step 1's schema-free design.

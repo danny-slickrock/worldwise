@@ -123,6 +123,9 @@ src/
                            #   mastered per node, mined from game_results' per-round score/difficulty
   game/achievementPolicy.js # PURE M2.5 step 1: computeAchievements(progress, results) — badge
                            #   unlock state + progress ratio, mined from progress.js/game_results
+  game/levelPolicy.js      # PURE M2.5 step 5: computeLevel(xp) — an escalating leveling curve off
+                           #   LEVEL_XP_BASE/LEVEL_XP_GROWTH (constants.js): current level, XP
+                           #   banked toward the next, and a 0..1 progress ratio
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -152,7 +155,8 @@ src/
                            #   + a region-pill row generalizing to all five paths (step 5)
                            #   + fade/rise-in + fade/settle-out transitions (step 6.4)
   screens/AchievementsScreen.js # M2.5 hero screen (step 3): real locked/unlocked state + progress
-                           #   bars via achievementPolicy.js, reached from a Profile row (step 4)
+                           #   bars via achievementPolicy.js, reached from a Profile row (step 4),
+                           #   plus a level card via levelPolicy.js above the badge list (step 5)
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + embeds country
                            #   content with the built-in gte-small model. ask: retrieval + grounded
@@ -356,9 +360,12 @@ locked/unlocked state and progress bars via `computeAchievements()`, fed by loca
 `fetchRoundResults(user)`), and step 4 (the real Profile entry point — `ProfileScreen` now runs its
 own `fetchRoundResults(user)` through `computeAchievements()` and shows an "Achievements" row,
 mirroring the Interests settings row, with a live "{unlocked} of {total} unlocked" summary,
-replacing the temporary "Achievements (preview)" link) are done. XP levels and region collectible
-sets are deliberately their own later steps rather than folded into step 1. Next up in M2.5 is
-step 5, an XP leveling curve derived from `progress.xp`, surfaced alongside the badges.
+replacing the temporary "Achievements (preview)" link), and step 5 (XP levels —
+`src/game/levelPolicy.js`'s `computeLevel(xp)`, pure: an escalating per-level XP cost off
+`LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card above the badge list
+on `AchievementsScreen`) are done. Region collectible sets are deliberately their own later step
+rather than folded into step 1. Next up in M2.5 is step 6, collectible sets (e.g. "all of South
+America"), which needs a real per-country signal `game_results` doesn't carry today.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

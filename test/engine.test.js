@@ -82,6 +82,7 @@ import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/d
 import { computeNodeStates } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
+import { computeLevel } from "../src/game/levelPolicy";
 import {
   colors,
   contrastRatio,
@@ -101,6 +102,8 @@ import {
   STREAK_FREEZE_EARN_EVERY,
   MAP_SMALL_COUNTRY_MAX_SIZE,
   MAP_SMALL_HIT_RADIUS,
+  LEVEL_XP_BASE,
+  LEVEL_XP_GROWTH,
 } from "../src/constants";
 
 import {
@@ -1776,6 +1779,43 @@ const repeatedModeRows = Array.from({ length: 5 }, () => roundRow("flag", 5, 8))
 check(
   computeAchievements(null, repeatedModeRows).find((a) => a.slug === "modes-all").value === 1,
   "modesPlayed counts distinct modes, not total rounds"
+);
+
+console.log("XP levels (M2.5 step 5)");
+check(
+  computeLevel(0).level === 1 && computeLevel(0).xpIntoLevel === 0 && computeLevel(0).progress === 0,
+  "zero XP is level 1 with no progress toward level 2"
+);
+check(
+  computeLevel(-50).level === 1 && computeLevel(-50).xp === 0,
+  "negative or invalid XP is treated as zero, never a negative level"
+);
+check(
+  computeLevel(LEVEL_XP_BASE - 1).level === 1,
+  "one XP short of the level-2 cost is still level 1"
+);
+check(
+  computeLevel(LEVEL_XP_BASE).level === 2 && computeLevel(LEVEL_XP_BASE).xpIntoLevel === 0,
+  "reaching the level-2 cost exactly rolls over to level 2 with zero banked toward level 3"
+);
+const level2NextCost = Math.round(LEVEL_XP_BASE * LEVEL_XP_GROWTH);
+check(
+  computeLevel(LEVEL_XP_BASE).xpForNextLevel === level2NextCost,
+  "each level's cost grows by LEVEL_XP_GROWTH over the last"
+);
+check(
+  computeLevel(LEVEL_XP_BASE + level2NextCost - 1).level === 2 &&
+    computeLevel(LEVEL_XP_BASE + level2NextCost).level === 3,
+  "level 3 is reached only once level 2's own cost is also banked"
+);
+const midLevel = computeLevel(LEVEL_XP_BASE + 10);
+check(
+  Math.abs(midLevel.progress - 10 / level2NextCost) < 1e-9,
+  "progress toward the next level is a 0..1 ratio of XP banked over that level's cost"
+);
+check(
+  computeLevel(1_000_000).level > 1 && Number.isFinite(computeLevel(1_000_000).level),
+  "a very large XP total still resolves to a finite level, never hangs or overflows"
 );
 
 console.log("Navigation stack (nav rework)");
