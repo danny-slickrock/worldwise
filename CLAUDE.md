@@ -119,6 +119,9 @@ src/
   game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs,
                            #   the graticule (lat/lng grid, step 4.2)
   game/globeMotion.js      # PURE M2.3.7: spin/wrap/clamp, antimeridian-safe region centers + framing
+  game/locatorRound.js     # PURE M2.3.7 step 2: Country Locator on the globe — neighbourhood
+                           #   candidate selection, framing so all choices are visible, fill states,
+                           #   and non-overlapping tap geometry
   game/masteryPolicy.js    # PURE M2.4 step 2: computeNodeStates(path, results) — locked/unlocked/
                            #   mastered per node, mined from game_results' per-round score/difficulty
   game/achievementPolicy.js # PURE M2.5 step 1: computeAchievements(progress, results) — badge
@@ -136,7 +139,8 @@ src/
   storage/interests.js     # M2.3.6: AsyncStorage interest-selection cache
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
   components/QuizScreen.js  # One reusable quiz surface powering every mode
-  components/WorldMap.js    # Tappable SVG world map for the Country Locator (candidates/answer state)
+  components/WorldMap.js    # Flat tappable world map. SUPERSEDED by GlobeMap for the Country
+                           #   Locator (M2.3.7 step 2); kept until the globe is checked on a device
   components/ExploreMap.js  # M2.3: flat tappable world map. SUPERSEDED by GlobeMap on the Explore
                            #   screen (M2.3.7); kept as the fallback until the globe is checked on a device
   components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent

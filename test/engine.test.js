@@ -162,6 +162,18 @@ import {
 } from "../src/game/contentChunks";
 import { rerankByInterests, matchesInterests, INTEREST_BOOST } from "../src/game/ragRanking";
 import {
+  nearestCodes,
+  pickCandidateCodes,
+  framingFor,
+  allVisible,
+  locatorView,
+  locatorFillState,
+  nonOverlappingRadius,
+  needsMarker,
+  MAX_CANDIDATE_SPREAD_DEG,
+  LOCATOR_MAX_ZOOM,
+} from "../src/game/locatorRound";
+import {
   parseBorderNames,
   resolveBorderName,
   BORDER_ALIASES,
@@ -2749,6 +2761,134 @@ for (const key of Object.keys(BORDER_ALIASES)) {
   }
 }
 check(true, "no name is both an alias and a declared non-country");
+
+
+console.log("Locator on the globe (M2.3.7 step 2)");
+
+const locatorPool = LOCATOR_COUNTRIES.map((c) => c.code);
+const takeFirst = (arr, n) => arr.slice(0, n);
+
+// Neighbourhood selection. The globe can only frame all four candidates if
+// they are near each other — no orientation shows Paraguay and Japan together.
+const nearPY = nearestCodes("py", COUNTRY_CENTERS, locatorPool, 6);
+check(nearPY.length === 6, "nearestCodes returns the requested number");
+check(!nearPY.includes("py"), "...never the country itself");
+check(
+  ["ar", "bo", "br", "uy"].some((c) => nearPY.includes(c)),
+  "Paraguay's nearest countries are its actual neighbours"
+);
+check(!nearPY.includes("jp"), "...and not the far side of the world");
+check(
+  nearestCodes("nope", COUNTRY_CENTERS, locatorPool).length === 0,
+  "an unknown code yields no neighbours rather than throwing"
+);
+
+const candidates = pickCandidateCodes("py", COUNTRY_CENTERS, locatorPool, 3, takeFirst);
+check(candidates.length === 4, "a round produces the answer plus three distractors");
+check(candidates[0] === "py", "the answer is included");
+check(new Set(candidates).size === 4, "no candidate repeats");
+
+// Framing. This is the product decision made concrete: every choice visible at
+// once, which neither hides the answer nor singles it out.
+const view = locatorView(candidates, COUNTRY_CENTERS);
+check(view.spin && typeof view.spin.lng === "number", "a round gets a framing spin");
+check(view.zoom >= 1 && view.zoom <= LOCATOR_MAX_ZOOM, "zoom stays within the globe's range");
+check(
+  allVisible(candidates, COUNTRY_CENTERS, view.spin),
+  "every candidate is on the near face at the framing orientation"
+);
+
+// The zoom ceiling exists so a cluster of small neighbours does not zoom until
+// the curvature disappears and the sphere reads as a flat map again.
+const tightView = locatorView(["nl", "be", "lu", "de"], COUNTRY_CENTERS);
+check(tightView.zoom <= LOCATOR_MAX_ZOOM, "a tight cluster does not zoom past the ceiling");
+check(
+  allVisible(["nl", "be", "lu", "de"], COUNTRY_CENTERS, tightView.spin),
+  "...and all of them are still visible");
+
+// The hard case the fallback exists for: candidates that cannot share a face.
+const antipodal = ["nz", "es", "jp", "cl"];
+const spread = locatorView(antipodal, COUNTRY_CENTERS);
+check(spread.spin != null, "an unframeable set still returns a usable view");
+check(
+  allVisible(antipodal.slice(0, 1), COUNTRY_CENTERS, spread.spin),
+  "...centred on the answer, so at least the country asked about is on screen"
+);
+check(MAX_CANDIDATE_SPREAD_DEG < 90, "the spread limit is inside a hemisphere");
+
+// Every real locator country must produce a framable round, or some questions
+// would silently open on the wrong side of the world.
+let unframable = 0;
+for (const code of locatorPool) {
+  const set = pickCandidateCodes(code, COUNTRY_CENTERS, locatorPool, 3, takeFirst);
+  const v = locatorView(set, COUNTRY_CENTERS);
+  if (!allVisible(set, COUNTRY_CENTERS, v.spin)) unframable++;
+}
+check(unframable === 0, `every locator country frames all its candidates (${locatorPool.length} checked)`);
+
+// Fill states. Semantic names, never colours — the component maps them.
+const fillRound = { choices: [{ code: "py" }, { code: "bo" }, { code: "ar" }], correctCode: "py" };
+check(locatorFillState("jp", fillRound) === "inert", "a non-candidate is inert scenery");
+check(locatorFillState("bo", fillRound) === "candidate", "an unanswered candidate is highlighted");
+check(
+  locatorFillState("py", { ...fillRound, answered: true, pickedCode: "bo" }) === "correct",
+  "after answering, the answer reads correct"
+);
+check(
+  locatorFillState("bo", { ...fillRound, answered: true, pickedCode: "bo" }) === "wrong",
+  "...the wrong pick reads wrong"
+);
+check(
+  locatorFillState("ar", { ...fillRound, answered: true, pickedCode: "bo" }) === "candidate",
+  "...and an unpicked wrong candidate is NOT marked wrong — only the choice made is"
+);
+check(locatorFillState("py", {}) === "inert", "with no round data nothing is a candidate");
+
+// Tap targets must never overlap. Enlarged hit circles are what make a tiny
+// country tappable, and they become a correctness bug when the candidates are
+// tiny AND adjacent — Austria beside Slovenia and Slovakia. Two overlapping
+// circles mean the player taps the right country and is told they were wrong.
+const far = nonOverlappingRadius([0, 0], [[200, 0], [0, 200]], 29);
+check(far === 29, "an isolated candidate keeps the full tap radius");
+const crowded = nonOverlappingRadius([0, 0], [[20, 0], [0, 200]], 29);
+check(crowded === 10, "a crowded candidate shrinks to half the gap to its nearest neighbour");
+check(
+  nonOverlappingRadius([0, 0], [[20, 0]], 29) * 2 <= 20,
+  "...so two adjacent targets can never overlap"
+);
+check(nonOverlappingRadius([0, 0], [], 29) === 29, "with no neighbours the full radius stands");
+check(nonOverlappingRadius(null, [[1, 1]], 29) === 0, "a country off the near face gets no target");
+check(nonOverlappingRadius([0, 0], [[0.5, 0]], 29) >= 1, "...and a radius never collapses to zero");
+
+// Marker rings are for countries that are still invisible AT THIS ZOOM.
+// Ringing one that has become a visible shape just clutters the cluster.
+check(needsMarker(0.5, 1) === true, "a tiny country needs a ring when zoomed out");
+check(
+  needsMarker(0.5, 4.2) === true,
+  "...and Djibouti-scale still does at full zoom — 0.5 degrees reads as 2 even then"
+);
+check(
+  needsMarker(1.5, 4.2) === false,
+  "a mid-small country loses its ring once zoom makes it a visible shape"
+);
+check(needsMarker(3, 1) === false, "a country already near the size threshold needs none");
+check(LOCATOR_MAX_ZOOM > 3, "the zoom ceiling leaves room to separate a tight cluster");
+
+// The real engine must now produce framable locator rounds too.
+const locatorRound = buildRound("locator");
+check(locatorRound.length > 0, "the engine still builds locator rounds");
+for (const question of locatorRound) {
+  const codes = question.choices.map((c) => c.code);
+  const v = locatorView(codes, COUNTRY_CENTERS);
+  if (!allVisible(codes, COUNTRY_CENTERS, v.spin)) {
+    check(false, `a built round could not be framed: ${codes.join(",")}`);
+  }
+}
+check(true, "every question in a built locator round frames all its candidates");
+check(
+  locatorRound.every((question) => question.choices.some((c) => c.code === question.correct)),
+  "...and every round still contains its own answer"
+);
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

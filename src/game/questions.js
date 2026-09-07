@@ -2,6 +2,8 @@
 import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
 import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
 import { modeAccents } from "../theme";
+import { COUNTRY_CENTERS } from "../data/worldGeo";
+import { pickCandidateCodes } from "./locatorRound";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -90,11 +92,30 @@ function buildOne(type, target) {
     // ask the player to tap the named one. Distractors must also have a map
     // path, so they can be drawn as tappable choices. `correct` is the code;
     // `choices` carries the {code, name} pairs the map needs to render.
-    const distractors = sample(
-      LOCATOR_COUNTRIES.filter((c) => c.code !== target.code),
-      DISTRACTORS
+    // Distractors come from the answer's geographic neighbourhood, not the
+    // whole world. Two reasons, and the second is the one that matters.
+    //
+    // The globe can only frame all four candidates at once if they are near
+    // each other — no orientation of a sphere shows Paraguay and Japan
+    // together, and the answer surface is now a globe (M2.3.7 step 2).
+    //
+    // Independently, it makes the question harder in the way the game is
+    // actually about. Paraguay against Bolivia and Uruguay asks whether you
+    // know where Paraguay is; Paraguay against Norway asks only which
+    // continent, which the prompt has effectively already told you.
+    const locatorPool = LOCATOR_COUNTRIES.map((c) => c.code);
+    const candidateCodes = pickCandidateCodes(
+      target.code,
+      COUNTRY_CENTERS,
+      locatorPool,
+      DISTRACTORS,
+      sample
     );
-    const choices = shuffle([target, ...distractors]).map((c) => ({ code: c.code, name: c.name }));
+    const byCode = new Map(LOCATOR_COUNTRIES.map((c) => [c.code, c]));
+    const choices = shuffle(candidateCodes.map((c) => byCode.get(c)).filter(Boolean)).map((c) => ({
+      code: c.code,
+      name: c.name,
+    }));
     return {
       type,
       country: target,

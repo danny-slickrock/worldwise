@@ -76,6 +76,22 @@ export const GLOBE_BORDER_WIDTH = 0.5;
 // enlarged tap target treatment the flat map gives micro-states.
 export const GLOBE_SMALL_COUNTRY_MAX_DEGREES = 3;
 export const GLOBE_SMALL_HIT_RADIUS = 6; // viewBox units
+
+// Locator mode has a harder job than Explore. On Explore a country too small to
+// tap is a minor annoyance — you can spin, zoom, or tap its neighbour instead.
+// In the game you must tap one specific country to answer, and it may be
+// Djibouti, which projects to about six pixels and is invisible against its
+// neighbours. Worse, the answer reveal says "Djibouti is in green" while
+// pointing at something the player cannot see.
+//
+// So a small candidate gets a drawn marker ring, not just an invisible hit
+// area. The ring is the affordance; the hit circle around it is larger still,
+// the usual pattern of a touch target exceeding its visual. At the 300px-tall
+// box this screen renders into, 14 viewBox units is ~21 CSS px of ring inside a
+// ~44 px target — the minimum the M2.4 a11y pass set.
+export const GLOBE_LOCATOR_MARKER_RADIUS = 14; // viewBox units — the visible ring
+export const GLOBE_LOCATOR_HIT_RADIUS = 29; // viewBox units — the touch target
+export const GLOBE_LOCATOR_MARKER_WIDTH = 2.5;
 // How long a region-pill spin takes. Longer than the flat map's jump because
 // a rotation covers more visual distance and reads better unhurried.
 export const GLOBE_SPIN_ANIMATION_MS = 520;

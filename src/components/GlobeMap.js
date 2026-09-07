@@ -4,7 +4,7 @@ import { Platform } from "react-native";
 import Svg, { Circle, Path, Text as SvgText, Defs, RadialGradient, Stop } from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
-import { map, fonts } from "../theme";
+import { colors, map, fonts } from "../theme";
 import {
   orientation,
   rotate,
@@ -16,12 +16,16 @@ import {
   pointsToPolylinePath,
 } from "../game/globeProjection";
 import { angleBetween } from "../game/globeMotion";
+import { locatorFillState, nonOverlappingRadius, needsMarker } from "../game/locatorRound";
 import {
   GLOBE_VIEW_SIZE,
   GLOBE_BASE_RADIUS,
   GLOBE_BORDER_WIDTH,
   GLOBE_SMALL_COUNTRY_MAX_DEGREES,
   GLOBE_SMALL_HIT_RADIUS,
+  GLOBE_LOCATOR_MARKER_RADIUS,
+  GLOBE_LOCATOR_HIT_RADIUS,
+  GLOBE_LOCATOR_MARKER_WIDTH,
   GLOBE_GRATICULE_STEP_DEG,
   GLOBE_GRATICULE_SAMPLE_DEG,
   GLOBE_GRATICULE_WIDTH,
@@ -68,30 +72,88 @@ const GRATICULE = graticuleLines(GLOBE_GRATICULE_STEP_DEG, GLOBE_GRATICULE_SAMPL
 // not pixels, because a country's pixel size now changes with both zoom and
 // where it sits on the disc (foreshortening squashes everything near the
 // limb), while its angular size never changes.
-const SMALL_COUNTRIES = GLOBE_COUNTRY_CODES.filter((code) => {
+// Kept as a code -> angular-size map rather than a plain list, because locator
+// mode needs the size itself: whether a country still needs a marker ring
+// depends on its apparent size, which is its angular size times the zoom.
+const SMALL_COUNTRY_DEGREES = {};
+for (const code of GLOBE_COUNTRY_CODES) {
   const center = COUNTRY_CENTERS[code];
-  if (!center) return false;
+  if (!center) continue;
   let widest = 0;
+  let tooBig = false;
   for (const ring of COUNTRY_RINGS[code]) {
     for (let i = 0; i < ring.length; i += 3) {
       widest = Math.max(widest, angleBetween(center, [ring[i], ring[i + 1], ring[i + 2]]));
-      if (widest > GLOBE_SMALL_COUNTRY_MAX_DEGREES) return false;
+      if (widest > GLOBE_SMALL_COUNTRY_MAX_DEGREES) { tooBig = true; break; }
     }
+    if (tooBig) break;
   }
-  return true;
-});
+  if (!tooBig) SMALL_COUNTRY_DEGREES[code] = widest;
+}
+const SMALL_COUNTRIES = Object.keys(SMALL_COUNTRY_DEGREES);
 
-export default function GlobeMap({ spin, zoom = 1, onSelect }) {
+// Locator mode's fill per state. The state itself is decided by the pure
+// locatorFillState(); this is only the name -> token mapping, kept here so that
+// module stays theme-free and testable.
+//
+// An unpicked wrong candidate stays `candidate` rather than turning red: only
+// the choice actually made deserves to be marked wrong.
+const LOCATOR_FILLS = {
+  inert: map.land,
+  candidate: map.landActive,
+  correct: colors.success,
+  wrong: colors.danger,
+};
+
+// One surface, two jobs. Passing `locator` turns the globe into the Country
+// Locator's answer surface: candidates are highlighted and tappable, everything
+// else is inert scenery. Without it the globe is the free-roaming Explore map
+// it has always been.
+//
+// Extending rather than forking because everything expensive here — the
+// per-frame reprojection, the horizon clipping, the graticule, the atmosphere,
+// the enlarged hit targets for small countries — is identical in both. A second
+// component would have been a copy of 250 lines to change which fill a path
+// gets.
+export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
   const [hoveredCode, setHoveredCode] = useState(null);
   const [tapped, setTapped] = useState(null);
   const tapTimer = useRef(null);
   useEffect(() => () => clearTimeout(tapTimer.current), []);
 
+  const candidateCodes = useMemo(
+    () => new Set((locator?.choices ?? []).map((c) => c.code ?? c)),
+    [locator]
+  );
+  const isLocator = Boolean(locator);
+  const locked = isLocator && locator.answered;
+
   const handleTap = (code) => {
+    if (locked) return;
+    // In locator mode only a candidate is answerable, and the answer is
+    // reported immediately: the quiz screen paints its own correct/wrong
+    // feedback, so the Explore surface's name-label delay would just sit
+    // between the tap and the result.
+    if (isLocator) {
+      if (!candidateCodes.has(code)) return;
+      onSelect(code);
+      return;
+    }
     setTapped(code);
     clearTimeout(tapTimer.current);
     tapTimer.current = setTimeout(() => onSelect(code), MAP_TAP_LABEL_DELAY_MS);
   };
+
+  // This frame's projected centers for the candidates, so a tap target can be
+  // shrunk to never overlap its neighbour's.
+  const fillFor = (code) => {
+    if (isLocator) return LOCATOR_FILLS[locatorFillState(code, locator)] ?? map.land;
+    return code === hoveredCode || code === tapped ? map.landActive : map.land;
+  };
+
+  // Only an answerable country should look answerable. In locator mode a
+  // non-candidate gets no pointer, no hover, and no handler at all.
+  const interactive = (code) => !locked && (!isLocator || candidateCodes.has(code));
 
   // The whole projection for this frame. Memoized on orientation and zoom
   // alone: hovering or tapping changes only fills, so it must not pay for a
@@ -143,6 +205,15 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
     };
   }, [spin.lng, spin.lat, zoom]);
 
+  const candidateCenters = isLocator
+    ? [...candidateCodes].map((c) => centers[c]).filter(Boolean)
+    : [];
+  const hitRadiusFor = (code) =>
+    isLocator
+      ? nonOverlappingRadius(centers[code], candidateCenters, GLOBE_LOCATOR_HIT_RADIUS)
+      : GLOBE_SMALL_HIT_RADIUS;
+
+
   return (
     <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
       <Defs>
@@ -189,29 +260,55 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
         <Path
           key={code}
           d={d}
-          fill={code === hoveredCode || code === tapped ? map.landActive : map.land}
+          fill={fillFor(code)}
           // Borders in the ocean's own color, so every country reads as its
           // own island and shared land borders are as legible as coastlines.
           stroke={map.border}
           strokeWidth={GLOBE_BORDER_WIDTH}
           strokeLinejoin="round"
-          style={HOVER_HANDLERS_SUPPORTED ? HOVER_STYLE : undefined}
-          {...pickHandler(code, handleTap)}
-          {...(HOVER_HANDLERS_SUPPORTED
+          style={HOVER_HANDLERS_SUPPORTED && interactive(code) ? HOVER_STYLE : undefined}
+          {...(interactive(code) ? pickHandler(code, handleTap) : null)}
+          {...(HOVER_HANDLERS_SUPPORTED && interactive(code)
             ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
             : null)}
         />
       ))}
 
+      {/* Locator mode: a drawn ring around every candidate too small to see.
+          Without it the round can ask for Djibouti — six pixels of coastline —
+          and then reveal the answer by saying it is "in green", pointing at
+          something invisible. The ring is the affordance and carries the same
+          state colour as the country would; the hit circle below it is larger
+          again, so the touch target exceeds its visual. */}
+      {isLocator &&
+        SMALL_COUNTRIES.map((code) =>
+          centers[code] &&
+          candidateCodes.has(code) &&
+          needsMarker(SMALL_COUNTRY_DEGREES[code], zoom) ? (
+            <Circle
+              key={`marker-${code}`}
+              cx={centers[code][0]}
+              cy={centers[code][1]}
+              r={Math.min(GLOBE_LOCATOR_MARKER_RADIUS, hitRadiusFor(code))}
+              fill="none"
+              stroke={LOCATOR_FILLS[locatorFillState(code, locator)] ?? map.landActive}
+              strokeWidth={GLOBE_LOCATOR_MARKER_WIDTH}
+              pointerEvents="none"
+            />
+          ) : null
+        )}
+
       {/* Enlarged invisible tap targets for the countries too small to hit,
-          placed on this frame's projected center and only while they face us. */}
+          placed on this frame's projected center and only while they face us.
+          Locator mode uses a bigger radius: answering is mandatory there, so a
+          missed tap is a wrong answer rather than a shrug. */}
       {SMALL_COUNTRIES.map((code) =>
-        centers[code] ? (
+        centers[code] && interactive(code) ? (
           <Circle
             key={`hit-${code}`}
             cx={centers[code][0]}
             cy={centers[code][1]}
-            r={GLOBE_SMALL_HIT_RADIUS}
+            r={hitRadiusFor(code)}
             fill="transparent"
             {...pickHandler(code, handleTap)}
             {...(HOVER_HANDLERS_SUPPORTED
@@ -239,7 +336,7 @@ export default function GlobeMap({ spin, zoom = 1, onSelect }) {
       {/* Tap confirmation, drawn last so it sits above every shape. Skipped if
           the country has spun out of view mid-delay, which would otherwise
           strand its name over open ocean. */}
-      {tapped && centers[tapped] && (
+      {!isLocator && tapped && centers[tapped] && (
         <SvgText
           x={centers[tapped][0]}
           y={centers[tapped][1]}

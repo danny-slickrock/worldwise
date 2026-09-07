@@ -462,9 +462,33 @@ teaching *how the world works*, not just *where things are*.
     page, and a drag released over a country correctly *not* opening it. 60 checks, including the
     projection's one hard invariant — across all 8,190 points at four orientations, nothing draws
     outside the sphere's silhouette.
-  - ☐ **Step 2 — the Country Locator.** The game still uses the flat map. A globe hides half the
-    world, so this needs a product call first: auto-spin to bring the answer into view, restrict
-    rounds to the visible hemisphere, or make hunting part of the challenge.
+  - ✅ **Step 2 — the Country Locator on the globe.** The product call was made: **frame all the
+    candidates.** The globe opens oriented so every choice is on the near face at once, which does
+    not reveal the answer (all four are visible), keeps the actual skill of telling neighbours
+    apart, and spares a timed round the spin-and-hunt tax a random orientation would add. The player
+    can still spin freely from there.
+    That decision had a prerequisite the flat map never needed: **distractors were sampled from the
+    whole world**, so "Where is Paraguay?" could offer Japan and Norway — which no orientation of a
+    sphere can show together. Candidates now come from the answer's geographic neighbourhood, which
+    makes framing possible and independently makes the question a real test rather than a
+    continent-recognition exercise.
+    `src/game/locatorRound.js` is the pure layer (candidate selection, framing, fill states, tap
+    geometry); `GlobeMap` gained an optional `locator` prop rather than being forked, since the
+    per-frame reprojection, horizon clipping, graticule and atmosphere are identical in both modes.
+    Three bugs this shook out, none of which unit tests alone would have caught:
+    · An exhaustive check over all 167 locator countries found sets no orientation could hold
+      (Australia/NZ/Cambodia/PNG). The spread cap existed as a constant but was never enforced;
+      selection now widens its radius in steps instead of falling through to a global sample.
+    · A hand-rolled lng/lat→vector put latitude on the wrong axis, so the visibility test rejected
+      obviously adjacent sets like Belize with Guatemala. Now imported from `globeProjection`.
+    · **Enlarged tap targets became a correctness bug.** They are what make Djibouti tappable at six
+      pixels, but for a tight cluster — Austria beside Slovenia and Slovakia — two 29-unit circles
+      overlap and whichever draws last captures the tap, so the player picks the right country and
+      is told they were wrong. Radii now shrink to half the distance to the nearest other candidate.
+    Small candidates also get a drawn marker ring, because the answer reveal said "Djibouti is in
+    green" while pointing at something invisible. The ring is zoom-aware — a country that has become
+    a visible shape loses it rather than cluttering the cluster. Verified in a browser: framing,
+    highlighting, a wrong pick turning red with the answer in green, and the context card.
   - ☐ **Step 3 — verify on a device.** Only web is checked. The per-frame reprojection is ~3ms in
     Chromium, but react-native-svg on a phone is a different renderer and an unknown here. Until
     that's done `ExploreMap.js` and the flat-map math (`clampPan`/`dragPan`/`lerpView`,

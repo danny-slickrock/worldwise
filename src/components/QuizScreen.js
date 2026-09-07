@@ -21,7 +21,9 @@ import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "..
 import { correctHaptic, wrongHaptic } from "../haptics";
 import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
-import WorldMap from "./WorldMap";
+import GlobeMap from "./GlobeMap";
+import { locatorView } from "../game/locatorRound";
+import { COUNTRY_CENTERS } from "../data/worldGeo";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
@@ -55,6 +57,18 @@ export default function QuizScreen({
 
   const q = questions[idx];
   const answered = picked !== null;
+
+  // Where the globe sits for a locator question. Recomputed per question, not
+  // per render: the framing is a property of the round, and recomputing it on
+  // every tap would snap the globe back and undo any spinning the player did
+  // while thinking.
+  const locatorFraming = useMemo(
+    () =>
+      q?.type === "locator"
+        ? locatorView(q.choices.map((c) => c.code), COUNTRY_CENTERS)
+        : { spin: { lng: 0, lat: 0 }, zoom: 1 },
+    [q]
+  );
 
   // Animated progress-bar fill, a gentle fade/rise-in per question, and a
   // small pulse on the option the player just tapped.
@@ -296,15 +310,23 @@ export default function QuizScreen({
             </Text>
             <Text style={styles.prompt}>{q.prompt}</Text>
 
-            {/* Country Locator: the map is both prompt media and answer surface. */}
+            {/* Country Locator: the globe is both prompt media and answer
+                surface (M2.3.7 step 2). It opens framed on this question's
+                candidates so every choice is on the near face — which does not
+                give the answer away, since all of them are visible — and the
+                player can still spin freely from there. */}
             {mode === "locator" ? (
               <View style={styles.mapBox}>
-                <WorldMap
-                  choices={q.choices}
-                  correctCode={q.correct}
-                  pickedCode={picked}
-                  answered={answered}
-                  onPick={choose}
+                <GlobeMap
+                  spin={locatorFraming.spin}
+                  zoom={locatorFraming.zoom}
+                  onSelect={choose}
+                  locator={{
+                    choices: q.choices,
+                    correctCode: q.correct,
+                    pickedCode: picked,
+                    answered,
+                  }}
                 />
               </View>
             ) : (
