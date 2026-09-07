@@ -498,6 +498,35 @@ check(
   "...and produces no chunk of its own"
 );
 
+// Belt and braces on the same failure. Two "[object Object]" chunks reached
+// production because an ingestion ran against a build without the underscore
+// check, so the value's type is now checked as well as its key name — a rule
+// nobody has to remember.
+const objectFact = chunkCountry(
+  {
+    code: "br",
+    name: "Brazil",
+    capital: "Brasilia",
+    region: "Americas",
+    summary: "Brazil is the giant of South America.",
+    neighbors: [],
+    facts: { climate: "Brazil is warm.", media: { url: "x" }, count: 3, nothing: null },
+  },
+  {}
+);
+check(
+  objectFact.every((c) => !c.content.includes("[object Object]")),
+  "a non-string fact value never becomes a chunk"
+);
+check(
+  objectFact.some((c) => c.source === "facts.climate"),
+  "...while the real string facts still chunk normally"
+);
+check(
+  objectFact.every((c) => !["facts.media", "facts.count", "facts.nothing"].includes(c.source)),
+  "...and no chunk is produced for any of them"
+);
+
 // Step 4 (generalize to all 196): every country in the dataset — not just the
 // hand-authored ones — must render a usable page, and the hero must know when
 // to fall back (mapsicon has no outline for four codes; see countries.js).

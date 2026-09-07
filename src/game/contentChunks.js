@@ -192,7 +192,18 @@ export function chunkCountry(row, neighborNames = {}) {
     // produce a "[object Object]" chunk and, worse, one that retrieval could
     // return as if it were a fact about the country.
     if (key.startsWith("_")) continue;
-    const value = String(facts[key] ?? "").trim();
+
+    // Belt and braces, and not hypothetical: two chunks reading
+    // "Andorra — Sources: [object Object]" reached production because an
+    // ingestion ran against a build without the check above. The naming
+    // convention is a rule someone has to remember; this is a property of the
+    // value itself. `facts` is jsonb, so any future non-string field — a list
+    // of media, a nested object — would otherwise stringify into the same
+    // garbage and be retrievable and citable as a fact about the country.
+    const raw = facts[key];
+    if (typeof raw !== "string") continue;
+
+    const value = raw.trim();
     if (!value) continue;
     const labelled = `${name} — ${titleCase(key)}: ${value}`;
     for (const piece of namedPieces(name, labelled)) {
