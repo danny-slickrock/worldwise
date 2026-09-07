@@ -15,6 +15,7 @@ import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
+import { streakBonusXp, metricReadout } from "../game/higherLower";
 import { flagUrl } from "../data/countries";
 import { whyItMatters } from "../data/whyItMatters";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
@@ -50,6 +51,18 @@ export default function QuizScreen({
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
+  // The best run reached this round, not the current one. Higher or Lower
+  // scores the chain, and the current streak is zero by the time the round ends
+  // if the last answer was wrong — which would silently pay nothing for a run
+  // of seven.
+  const [bestStreak, setBestStreak] = useState(0);
+
+  // One expression for the round's XP, used by both the value reported to
+  // onFinish and the one the results screen prints. They were separate
+  // computeXp() calls; adding a mode-specific bonus to one and not the other
+  // would have shown the player a different number than the one saved.
+  const roundXp = (finalScore, best) =>
+    computeXp(finalScore) + (mode === "higherLower" ? streakBonusXp(best) : 0);
   const [picked, setPicked] = useState(null); // selected option
   const [done, setDone] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIMED_SECONDS_PER_QUESTION);
@@ -126,7 +139,11 @@ export default function QuizScreen({
     const isRight = opt === q.correct;
     if (isRight) {
       setScore((s) => s + 1);
-      setStreak((s) => s + 1);
+      setStreak((s) => {
+        const next = s + 1;
+        setBestStreak((b) => Math.max(b, next));
+        return next;
+      });
     } else {
       setStreak(0);
     }
@@ -160,7 +177,9 @@ export default function QuizScreen({
     const entry = { question: q, picked, isRight: picked === q.correct };
     const nextHistory = [...history, entry];
     if (idx + 1 >= questions.length) {
-      const xp = computeXp(score);
+      // Higher or Lower alone pays for the chain. Folding this into computeXp()
+      // would change XP for every other mode, which none of them earned.
+      const xp = roundXp(score, bestStreak);
       setHistory(nextHistory);
       setDone(true);
       // Report what the round actually was, not what was requested: the Daily
@@ -183,7 +202,7 @@ export default function QuizScreen({
   }
 
   if (done) {
-    const xp = computeXp(score);
+    const xp = roundXp(score, bestStreak);
     const pct = Math.round((score / questions.length) * 100);
     return (
       <ScrollView
@@ -425,11 +444,16 @@ export default function QuizScreen({
               <Text style={styles.feedbackText}>
                 {picked === TIMEOUT
                   ? "Time's up!"
-                  : picked === q.correct
-                    ? "Nice."
-                    : mode === "locator"
-                      ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
-                      : `Answer: ${q.correct}`}
+                  : q.type === "higherLower"
+                    ? // Both values, right or wrong. Without them the mode is a
+                      // coin flip with no payoff; with them, a miss still
+                      // teaches the comparison.
+                      `${picked === q.correct ? "Nice — " : `It's ${q.correct}. `}${metricReadout(q)}`
+                    : picked === q.correct
+                      ? "Nice."
+                      : mode === "locator"
+                        ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
+                        : `Answer: ${q.correct}`}
               </Text>
 
               {/* The point of the whole thing: the answer is the hook, this is the

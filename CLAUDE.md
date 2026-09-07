@@ -84,6 +84,10 @@ src/
                            #   unit vectors at module load. Derived, never hand-edited
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
   game/scoring.js          # computeXp(score) — single source of truth for XP
+  game/higherLower.js      # PURE Higher or Lower: fair-pair comparison, round building, the
+                           #   superlinear streak bonus, and the value readout
+  data/countryMetrics.js   # Bundled comparable numbers (population, area, land borders) derived
+                           #   from countryContent.js — synchronous, no network
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -197,7 +201,10 @@ piece of cloud/auth logic is split in two: the *decision* is pure and tested (`c
 a module that imports RN can't be tested here at all.
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
-Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `daily` (a deterministic mixed round, seeded by date).
+Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `higherLower`, `daily` (a deterministic mixed round, seeded by date).
+`higherLower` is the one question shape that is a *pair* rather than a target country:
+`{ type, metric, a, b, correct }`, where `correct` is the winning country's name so `QuizScreen`
+compares it against the tapped option directly.
 `locator` also carries `choices[]` ({code, name}) — its answer surface is a tappable world map, not text options.
 
 **Assets are loaded at runtime**, not bundled: flags from flagcdn.com, outlines from the

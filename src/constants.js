@@ -134,3 +134,56 @@ export const GLOBE_ATMOSPHERE_WIDTH = 8;
 export const GLOBE_ATMOSPHERE_PEAK_OPACITY = 0.32;
 export const GLOBE_ATMOSPHERE_RIM_WIDTH = 1.2;
 export const GLOBE_ATMOSPHERE_RIM_OPACITY = 0.4;
+
+// --- Higher or Lower -------------------------------------------------------
+// Two countries, one metric, pick the bigger. The streak is the mode: a single
+// question is a coin flip, a run of eight is knowledge.
+//
+// Metrics are declared as data rather than branched on in code, so adding
+// "coastline" later is a line here rather than a new case in the builder.
+// `field` names the property on the bundled country metrics (see
+// src/data/countryMetrics.js); `unit` is how a value is read back after the
+// answer, which is the part that teaches.
+export const HIGHER_LOWER_METRICS = [
+  {
+    key: "population",
+    field: "population",
+    prompt: "Which has the larger population?",
+    unit: "people",
+  },
+  {
+    key: "area",
+    field: "areaKm2",
+    prompt: "Which is larger by area?",
+    unit: "km²",
+  },
+  {
+    key: "borders",
+    field: "borderCount",
+    prompt: "Which has more land borders?",
+    unit: "land borders",
+  },
+];
+
+// A pair whose values are nearly equal is a coin flip dressed as a question —
+// the player cannot know that Kenya is 1% bigger than Somalia, and being marked
+// wrong for it teaches nothing. Continuous metrics need a clear ratio; border
+// counts are small integers, where any difference at all is a real one.
+export const HIGHER_LOWER_MIN_RATIO = 1.25;
+
+// How hard the builder tries to find a fair pair before giving up on a metric
+// and moving to the next one. Bounded so a degenerate pool cannot spin forever.
+export const HIGHER_LOWER_MAX_ATTEMPTS = 40;
+
+// The streak bonus. Deliberately superlinear: the mode is about chaining, and a
+// reward that scales linearly makes eight singles worth the same as a run of
+// eight, which is exactly the wrong incentive.
+export const HIGHER_LOWER_STREAK = {
+  // No bonus for the first couple — a two-streak is luck often enough.
+  bonusFrom: 3,
+  // XP per streak step at or past `bonusFrom`, multiplied by how far past it
+  // the run reached.
+  xpPerStep: 2,
+  // Ceiling, so a perfect round cannot dwarf every other mode's XP.
+  maxBonus: 40,
+};

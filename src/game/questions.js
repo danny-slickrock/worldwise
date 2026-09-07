@@ -1,9 +1,11 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
-import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY } from "../constants";
+import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY, HIGHER_LOWER_METRICS } from "../constants";
 import { modeAccents } from "../theme";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
 import { pickCandidateCodes } from "./locatorRound";
+import { metricPool } from "../data/countryMetrics";
+import { buildHigherLowerQuestion, METRIC_BY_KEY } from "./higherLower";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -34,6 +36,13 @@ export const MODES = {
   },
   shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "\u25c7", accent: modeAccents.shape },
   locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "\u2316", accent: modeAccents.locator },
+  higherLower: {
+    key: "higherLower",
+    title: "Higher or Lower",
+    blurb: "Which one is bigger?",
+    icon: "\u21c5",
+    accent: modeAccents.higherLower,
+  },
   daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "\u25c9", accent: modeAccents.daily },
 };
 
@@ -142,10 +151,33 @@ function buildOne(type, target) {
 // Build a standard single-mode round. Falls back to the full pool if a tier
 // doesn't have enough countries to fill the round (keeps hard-mode Shape safe).
 export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_LENGTH) {
+  // Higher or Lower does not have a "target" country the way every other mode
+  // does — a question is a PAIR, so it is built from the metric pool rather
+  // than by sampling one country and decorating it.
+  if (mode === "higherLower") return buildHigherLowerRound(count);
+
   const tiered = poolFor(mode, difficulty);
   const pool = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
   const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t));
+}
+
+// A round of pair comparisons, cycling the metrics so one round asks about
+// population, area and borders rather than eight variations of the same thing.
+//
+// A metric that cannot produce a fair pair — too few countries carry the value,
+// or every sampled pair was a tie — is skipped rather than retried forever, and
+// the next metric is tried instead. That keeps a round full-length even if a
+// metric's data thins out later.
+function buildHigherLowerRound(count) {
+  const questions = [];
+  for (let i = 0; questions.length < count && i < count * HIGHER_LOWER_METRICS.length; i++) {
+    const metric = HIGHER_LOWER_METRICS[i % HIGHER_LOWER_METRICS.length];
+    const pool = metricPool(metric.field);
+    const question = buildHigherLowerQuestion(pool, metric, sample);
+    if (question) questions.push(question);
+  }
+  return questions;
 }
 
 // Build the mixed Daily Challenge, deterministic per date.

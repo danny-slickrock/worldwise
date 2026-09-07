@@ -105,6 +105,20 @@ Valuable, but none of it blocks accounts or the platform. Pull from here wheneve
 appetite for polish, or before a public launch:
 
 - ✅ **Polish** — answer animations, haptics on mobile, sound toggle, smoother transitions *(shipped early by the daily build)*
+- ✅ 🎮 **Higher or Lower** — two countries, one metric (population, area, land borders), pick the
+  bigger; correct answers chain into a streak that is the only thing the mode scores. Built on the
+  existing engine and `QuizScreen`: `{ type: "higherLower", metric, a, b, correct }` with the two
+  names as options, so no new answer surface was needed.
+  Three decisions worth keeping. **Metrics come from the bundled `countryContent.js`** via a thin
+  accessor (`data/countryMetrics.js`) — 194 of 196 countries carry population, area and land
+  borders since the enrichment pass, so a round builds synchronously with no network call; Postgres
+  holds the same values, so the two cannot disagree. **A near-tie is not a question**: nobody can
+  know one country is 1% larger, so continuous metrics need a clear ratio before a pair is offered
+  — border counts are exempt, being small integers a player can actually hold. **The streak bonus is
+  superlinear**, because a linear one would make eight scattered singles worth a run of eight, which
+  is the opposite of what the mode is for.
+  The answer reveal reads both values back ("Italy 58.9m people · Tajikistan 9.5m people") — without
+  it the mode is a coin flip with no payoff. Verified in a browser.
 - 🎮 **Landmark / photo guess** mode (image → country)
 - 🎮 **Speed Round** — 60-second mixed sprint with combo multipliers
 - ✨ **Onboarding** — first-run welcome, difficulty pick, "how to play" (do this before public launch)

@@ -2,7 +2,7 @@
 // No React Native imports here, so it runs fast in plain Node via tsx.
 import { COUNTRIES, LOCATOR_COUNTRIES, countryName } from "../src/data/countries";
 import { COUNTRY_PATHS } from "../src/data/worldMap";
-import { buildRound, buildDaily } from "../src/game/questions";
+import { buildRound, buildDaily, MODES } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -173,6 +173,20 @@ import {
   MAX_CANDIDATE_SPREAD_DEG,
   LOCATOR_MAX_ZOOM,
 } from "../src/game/locatorRound";
+import {
+  compareMetric,
+  buildHigherLowerQuestion,
+  streakBonusXp,
+  metricReadout,
+  formatMetric,
+  METRIC_BY_KEY,
+} from "../src/game/higherLower";
+import { COUNTRY_METRICS, metricPool, metricValue } from "../src/data/countryMetrics";
+import {
+  HIGHER_LOWER_METRICS,
+  HIGHER_LOWER_MIN_RATIO,
+  HIGHER_LOWER_STREAK,
+} from "../src/constants";
 import {
   parseBorderNames,
   resolveBorderName,
@@ -2889,6 +2903,133 @@ check(
   locatorRound.every((question) => question.choices.some((c) => c.code === question.correct)),
   "...and every round still contains its own answer"
 );
+
+
+console.log("Higher or Lower");
+
+const popMetric = METRIC_BY_KEY.population;
+const areaMetric = METRIC_BY_KEY.area;
+const borderMetric = METRIC_BY_KEY.borders;
+const firstTwo = (arr, n) => arr.slice(0, n);
+
+// The bundled metric table. Everything must be synchronous: a round builder
+// runs during render and cannot wait on a network call.
+check(Object.keys(COUNTRY_METRICS).length > 150, "the bundled metric table covers most countries");
+check(metricPool("population").length > 150, "...enough countries carry a population");
+check(metricPool("areaKm2").length > 150, "...and an area");
+check(metricPool("borderCount").length > 150, "...and a border count");
+check(metricValue("br", "population") > 2e8, "Brazil's population reads back");
+check(metricValue("br", "borderCount") === 9, "Brazil has nine coded land borders — territories excluded");
+check(metricValue("jp", "borderCount") === 0, "an island nation has zero, not null");
+check(metricValue("nope", "population") === null, "an unknown country has no value");
+check(
+  metricPool("population").every((m) => typeof m.population === "number"),
+  "a country missing a value is excluded, never defaulted to zero"
+);
+
+// Comparison. The two null cases are different failures and both must be caught,
+// or the round asks questions with no correct answer.
+const big = { code: "aa", name: "Big", population: 100e6, areaKm2: 100, borderCount: 8 };
+const small = { code: "bb", name: "Small", population: 10e6, areaKm2: 10, borderCount: 2 };
+const nearly = { code: "cc", name: "Nearly", population: 101e6, areaKm2: 101, borderCount: 7 };
+
+check(compareMetric(big, small, popMetric) === "aa", "the larger country wins");
+check(compareMetric(small, big, popMetric) === "aa", "...whichever side it is passed on");
+check(compareMetric(big, big, popMetric) === null, "a country never competes with itself");
+check(
+  compareMetric(big, { ...small, population: 100e6 }, popMetric) === null,
+  "an exact tie has no correct answer, so it is not a question"
+);
+check(
+  compareMetric(big, nearly, popMetric) === null,
+  "a near-tie is rejected — nobody can know one country is 1% larger"
+);
+check(
+  compareMetric(big, nearly, borderMetric) === "aa",
+  "...but border counts are small integers, so 8 against 7 is a real question"
+);
+check(
+  compareMetric(big, { ...small, population: 0 }, popMetric) === null,
+  "a ratio against zero is meaningless and is rejected"
+);
+check(
+  compareMetric(big, { code: "dd", name: "Missing" }, popMetric) === null,
+  "a country missing the metric is never compared"
+);
+check(HIGHER_LOWER_MIN_RATIO > 1, "the fairness ratio actually excludes something");
+
+// Question building.
+const hlPool = [big, small, nearly];
+const q = buildHigherLowerQuestion([big, small], popMetric, firstTwo);
+check(q.type === "higherLower", "a question carries its type");
+check(q.metric === "population", "...its metric");
+check(q.a && q.b, "...both countries");
+check(q.correct === "Big", "...and the winner as the name QuizScreen compares against");
+check(q.options.length === 2 && q.options.includes("Big") && q.options.includes("Small"),
+  "options are the two country names");
+check(q.country.code === "aa", "the context card is about the winner");
+check(q.prompt.length > 0, "the prompt is the metric's own phrasing");
+check(
+  buildHigherLowerQuestion([big], popMetric, firstTwo) === null,
+  "a pool of one cannot make a pair"
+);
+check(
+  buildHigherLowerQuestion([big, { ...big, code: "zz", name: "Twin" }], popMetric, firstTwo) === null,
+  "a pool where every pair ties gives up rather than looping forever"
+);
+check(hlPool.length === 3, "the mixed pool is intact for the round check below");
+
+// A real round from the real engine.
+const hlRound = buildRound("higherLower");
+check(hlRound.length === ROUND_LENGTH, "a full-length round is built from real data");
+check(hlRound.every((x) => x.type === "higherLower"), "every question is the right type");
+check(
+  hlRound.every((x) => x.options.includes(x.correct)),
+  "the correct answer is always one of the options"
+);
+check(
+  hlRound.every((x) => x.a.code !== x.b.code),
+  "no question compares a country with itself"
+);
+check(
+  hlRound.every((x) => compareMetric(x.a, x.b, METRIC_BY_KEY[x.metric]) !== null),
+  "every built question has a defensible answer"
+);
+check(
+  new Set(hlRound.map((x) => x.metric)).size > 1,
+  "a round mixes metrics rather than asking the same thing eight times"
+);
+check(
+  hlRound.every((x) => x.country && x.country.name === x.correct),
+  "the context card always describes the winning country"
+);
+
+// Streak scoring. The chain is the mode, so the reward has to reflect that.
+check(streakBonusXp(0) === 0, "no streak, no bonus");
+check(streakBonusXp(HIGHER_LOWER_STREAK.bonusFrom - 1) === 0, "a short run earns nothing");
+check(streakBonusXp(HIGHER_LOWER_STREAK.bonusFrom) > 0, "the threshold run earns something");
+check(streakBonusXp(6) > streakBonusXp(5), "a longer chain always pays more");
+check(
+  streakBonusXp(8) > streakBonusXp(4) * 2,
+  "the bonus is superlinear — a run of eight beats two runs of four, which is the whole point"
+);
+check(streakBonusXp(100) === HIGHER_LOWER_STREAK.maxBonus, "the bonus is capped");
+check(streakBonusXp(undefined) === 0, "a missing streak is not a bonus");
+check(streakBonusXp(3.7) === streakBonusXp(3), "a fractional streak floors rather than throwing");
+
+// The readout is the teaching moment: without it the mode is a coin flip.
+const readout = metricReadout(q);
+check(readout.includes("Big") && readout.includes("Small"), "the readout names both countries");
+check(/\d/.test(readout), "...and shows their actual values");
+check(metricReadout({ metric: "nope" }) === null, "an unknown metric reads back nothing");
+check(formatMetric(216422446, popMetric).includes("m"), "millions are abbreviated");
+check(formatMetric(9, borderMetric) === "9", "a border count is printed plainly");
+check(formatMetric(null, popMetric) === "—", "a missing value renders as a dash, not NaN");
+
+// The mode must be reachable and themed like every other one.
+check(MODES.higherLower != null, "the mode is registered");
+check(MODES.higherLower.accent != null, "...with an accent, so Home renders its tile");
+check(HIGHER_LOWER_METRICS.length >= 3, "population, area and borders are all offered");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on
