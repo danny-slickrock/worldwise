@@ -45,7 +45,7 @@ export function progressFromStatsRow(row) {
 // YYYY-MM-DD key; daily_date is set only for the Daily, which is what the
 // partial unique index keys on to enforce one entry per user per day.
 export function resultRowFromRound(userId, round, today) {
-  const { mode, difficulty = "all", timed = false, score, total, xp } = round;
+  const { mode, difficulty = "all", timed = false, score, total, xp, countries = [] } = round;
   return {
     user_id: userId,
     mode,
@@ -55,7 +55,21 @@ export function resultRowFromRound(userId, round, today) {
     total,
     xp_awarded: xp,
     daily_date: mode === "daily" ? (today ?? null) : null,
+    countries,
   };
+}
+
+// Turn QuizScreen's per-question `history` into the { code, correct }[] the
+// countries column stores. Every question type carries a `country` — the
+// target for flag/capital/capitalReverse/shape/locator/daily, the winner for
+// Higher or Lower — so this needs no per-mode branching, same as
+// achievementPolicy's badges. A malformed entry (no country) is skipped
+// rather than logged as a bad code; there is no mode that produces one today.
+export function countriesFromHistory(history) {
+  if (!Array.isArray(history)) return [];
+  return history
+    .filter((entry) => entry?.question?.country?.code)
+    .map((entry) => ({ code: entry.question.country.code, correct: Boolean(entry.isRight) }));
 }
 
 // Reconcile local progress against an existing cloud row on first sign-in.

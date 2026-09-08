@@ -375,8 +375,11 @@ replacing the temporary "Achievements (preview)" link), and step 5 (XP levels �
 `src/game/levelPolicy.js`'s `computeLevel(xp)`, pure: an escalating per-level XP cost off
 `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card above the badge list
 on `AchievementsScreen`) are done. Region collectible sets are deliberately their own later step
-rather than folded into step 1. Next up in M2.5 is step 6, collectible sets (e.g. "all of South
-America"), which needs a real per-country signal `game_results` doesn't carry today.
+rather than folded into step 1. Step 6 (collectible sets, e.g. "all of South America") now has its
+own ordered sub-checklist; sub-step 6.1 — a `countries jsonb` column on `game_results` plus
+`countriesFromHistory()` (`src/game/cloudSync.js`) turning `QuizScreen`'s per-question history into
+`{ code, correct }` pairs — is done, capture-only with nothing reading it yet. **Next up in M2.5 is
+step 6.2**, the pure policy that mines that column into per-region completion.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

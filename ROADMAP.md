@@ -94,9 +94,11 @@ real Profile entry point — a "Achievements" row mirroring the Interests settin
 "{unlocked} of {total} unlocked" summary, replacing the temporary preview link), and step 5 (an
 XP leveling curve — `src/game/levelPolicy.js`'s `computeLevel(xp)`, pure, walking an escalating
 per-level cost from `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card
-above the badge list on `AchievementsScreen`) are done. **Next up in M2.5 is step 6** (collectible
-sets, e.g. "all of South America" — needs a real per-country signal `game_results` doesn't carry
-today, so it needs its own scoped tracking change first). The Phase 1 backlog below gets picked up
+above the badge list on `AchievementsScreen`) are done. Step 6 (collectible sets, e.g. "all of
+South America") now has its own ordered sub-checklist, and its first chunk — 6.1, per-country
+signal capture (a `game_results.countries` column + `countriesFromHistory()`, capture-only, no UI
+yet) — is done. **Next up in M2.5 is step 6.2**, the pure collection policy that mines that column
+into per-region completion. The Phase 1 backlog below gets picked up
 opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1191,9 +1193,40 @@ teaching *how the world works*, not just *where things are*.
        progress-track/fill styles rather than inventing a second bar treatment. 8 checks in
        `test/engine.test.js`, including the zero/negative-XP floor and a large-XP sanity check
        against the loop's safety cap. *(Next up: step 6 — collectible sets.)*
-    6. ☐ **Collectible sets** (e.g., "all of South America"). Needs a real per-country signal
+    6. **Collectible sets** (e.g., "all of South America"). Needs a real per-country signal
        `game_results` doesn't carry today — scope the tracking change (and any migration it implies)
        explicitly in this step rather than retrofitting it into step 1's schema-free design.
+       Broken into its own ordered chunks:
+       1. ✅ **Per-country signal capture (migration + pure mapping, no UI yet).**
+          `supabase/migrations/20260908132137_add_game_results_countries.sql` adds a
+          `countries jsonb not null default '[]'` column to `game_results` — no new table, since
+          every question type already carries a `country` (the target for flag/capital/
+          capitalReverse/shape/locator/daily, the metric's winner for Higher or Lower), so a round
+          can log one `{ code, correct }` per answered question without any per-mode branching, the
+          same "evaluated generically" shape step 1's badges used. No RLS/grant changes needed —
+          adding a column to an existing table doesn't touch either, and the existing "own results"
+          policy + CRUD grant already cover it. `countriesFromHistory(history)` (new, pure, in
+          `src/game/cloudSync.js`) turns `QuizScreen`'s existing per-question `history` into that
+          array; `resultRowFromRound()` now threads a round's `countries` through to the row it
+          builds, defaulting to `[]` for any caller that doesn't pass one. `QuizScreen`'s `onFinish`
+          payload now includes `countries: countriesFromHistory(nextHistory)`, so every finished
+          round's per-country outcomes reach `game_results` for free through the existing
+          `saveRoundResult` write path — no new sink, no change to `App.js`. 8 new checks in
+          `test/engine.test.js`. Deliberately capture-only: nothing reads the column yet.
+          *(Next up: step 6.2 — the pure collection policy, `computeCollections()`, mining
+          `game_results.countries` into per-region completion, plus extending
+          `fetchRoundResults()` to select it.)*
+       2. ☐ **Pure collection policy.** Extend `fetchRoundResults()`
+          (`src/storage/cloudProgress.js`) to also select `countries`, and add a pure
+          `computeCollections(results)` (new module, mirroring `masteryPolicy.js`'s shape) that
+          folds every row's `countries` array into "which country codes has this player ever
+          answered correctly," then groups that against `countryIndex.js`'s regions into a
+          per-region collected/total count.
+       3. ☐ **Navigation seam + hero surface.** A place to see collections — likely a section on
+          `AchievementsScreen` (same screen as badges/levels) or its own route, following whichever
+          of M2.4/M2.5's existing seams fits once the policy layer's shape is known.
+       4. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap
+          targets, offline/error states, transitions).
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
        offline/error states, transitions).
 - **M2.10 — Navigation & user flow 🧭** — ✅ **done (web-verified pending, see below).** Not a

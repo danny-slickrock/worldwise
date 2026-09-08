@@ -19,6 +19,7 @@ import {
   progressFromStatsRow,
   resultRowFromRound,
   mergeProgress,
+  countriesFromHistory,
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
 import { searchCountries, REGIONS } from "../src/game/countryIndex";
@@ -774,6 +775,47 @@ check(
   resultRowFromRound("user-1", { mode: "flag", score: 8, total: 8, xp: 100 }, "2026-03-02")
     .daily_date === null,
   "resultRowFromRound leaves daily_date null for non-daily modes"
+);
+check(
+  JSON.stringify(
+    resultRowFromRound("user-1", { mode: "flag", score: 8, total: 8, xp: 100 }, "2026-03-02").countries
+  ) === "[]",
+  "resultRowFromRound defaults countries to an empty array"
+);
+check(
+  JSON.stringify(
+    resultRowFromRound(
+      "user-1",
+      { mode: "flag", score: 1, total: 1, xp: 10, countries: [{ code: "br", correct: true }] },
+      "2026-03-02"
+    ).countries
+  ) === JSON.stringify([{ code: "br", correct: true }]),
+  "resultRowFromRound carries the round's countries through unchanged"
+);
+
+// countriesFromHistory — QuizScreen's per-question `history` → the countries
+// column. Every question type carries a `country` (the target, or Higher or
+// Lower's winner), so one mapping covers flag/capital/shape/locator/daily and
+// higherLower alike.
+const sampleHistory = [
+  { question: { country: { code: "br" } }, picked: "Brazil", isRight: true },
+  { question: { country: { code: "ar" } }, picked: "Peru", isRight: false },
+];
+check(
+  JSON.stringify(countriesFromHistory(sampleHistory)) ===
+    JSON.stringify([
+      { code: "br", correct: true },
+      { code: "ar", correct: false },
+    ]),
+  "countriesFromHistory maps each answered question to its country code + correctness"
+);
+check(
+  JSON.stringify(countriesFromHistory([{ question: {}, picked: "x", isRight: false }])) === "[]",
+  "countriesFromHistory skips an entry with no country rather than logging a bad code"
+);
+check(
+  JSON.stringify(countriesFromHistory(null)) === "[]" && JSON.stringify(countriesFromHistory(undefined)) === "[]",
+  "countriesFromHistory tolerates a missing history rather than throwing"
 );
 
 // The merge must never cost a returning player progress they already earned.

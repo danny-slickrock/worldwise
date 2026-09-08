@@ -16,6 +16,7 @@ import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
+import { countriesFromHistory } from "../game/cloudSync";
 import { flagUrl } from "../data/countries";
 import { whyItMatters } from "../data/whyItMatters";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
@@ -193,6 +194,7 @@ export default function QuizScreen({
           score,
           total: questions.length,
           xp,
+          countries: countriesFromHistory(nextHistory),
         });
     } else {
       setHistory(nextHistory);
