@@ -1,18 +1,12 @@
 // Profile tab. Signed out it pitches an account; signed in it shows who you are
 // and what the cloud has for you.
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Image,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
+import BrandLoader from "../components/BrandLoader";
+import AnimatedNumber from "../components/AnimatedNumber";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchProgress, fetchRoundResults } from "../storage/cloudProgress";
 import { getSyncState, subscribeSyncState } from "../game/syncStore";
@@ -21,16 +15,19 @@ import { streakStatus, dayKey } from "../game/progress";
 import { computeAchievements } from "../game/achievementPolicy";
 import SignInScreen from "./SignInScreen";
 
-export default function ProfileScreen({ progress, interests, onOpenInterests, onOpenAchievements }) {
+export default function ProfileScreen({
+  progress,
+  interests,
+  onOpenInterests,
+  onOpenAchievements,
+}) {
   const { user, loading, signOut } = useAuth();
 
-  if (loading) {
-    return (
-      <View style={styles.center}>
-        <ActivityIndicator color={colors.accent} />
-      </View>
-    );
-  }
+  // Resolving a session is usually instant off a warm token and slow only when
+  // the network is bad — precisely the shape BrandLoader's delay is for. Under a
+  // second nobody sees anything; past it, they see the compass rather than a
+  // platform spinner borrowed from another product.
+  if (loading) return <BrandLoader label="Finding your place" />;
 
   if (!user) return <SignInScreen />;
 
@@ -125,14 +122,21 @@ function SignedIn({
 
           <Text style={styles.section}>Your record</Text>
           <View style={styles.stats}>
-            <Stat label="XP" value={stats.xp} />
-            <Stat label="Day streak" value={streak.count} />
+            {/* These two are the numbers the cloud can move under you — local
+                paints first, then the fetched totals land. Rolling to the new
+                value shows that something arrived; snapping looks like a
+                glitch. Best round stays plain: it's "7/8", not a quantity. */}
+            <Stat label="XP" value={stats.xp} animated />
+            <Stat label="Day streak" value={streak.count} animated />
             <Stat label="Best round" value={stats.bestScore ? `${stats.bestScore}/8` : "—"} />
           </View>
 
           <View style={styles.syncRow}>
             {syncing ? (
-              <ActivityIndicator color={colors.textMuted} size="small" />
+              // No delay here: the row is already reserved and the mark is
+              // replacing a line of text in place, so there is nothing for a
+              // late spinner to avoid disturbing.
+              <BrandLoader variant="inline" size={18} delay={0} label="Syncing…" />
             ) : (
               <SyncNotice state={syncState} />
             )}
@@ -208,18 +212,22 @@ function SyncNotice({ state }) {
   );
 }
 
-function Stat({ label, value }) {
+function Stat({ label, value, animated = false }) {
   return (
     <View style={styles.stat}>
-      <Text style={styles.statValue}>{value}</Text>
+      {animated ? (
+        <AnimatedNumber value={value} style={styles.statValue} />
+      ) : (
+        <Text style={styles.statValue}>{value}</Text>
+      )}
       <Text style={styles.statLabel}>{label}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.surface },
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
   kicker: { ...type.eyebrow, fontSize: 12, marginBottom: spacing(4) },
 

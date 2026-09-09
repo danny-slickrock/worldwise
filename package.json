@@ -14,6 +14,7 @@
     "media:photos": "tsx scripts/fetch-country-photos.js",
     "media:approve": "tsx scripts/approve-country-media.js",
     "build:globe-texture": "node scripts/build-globe-texture.mjs",
+    "build:brand": "tsx scripts/build-brand-assets.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",

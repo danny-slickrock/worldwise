@@ -353,35 +353,162 @@ export const motion = {
 };
 
 // --- Materials -------------------------------------------------------------
-// The kit's three composite grounds carry the cozy. CSS gradients don't exist
-// in React Native, so these are exposed as ORDERED STOPS for whatever can draw
-// them — react-native-svg gradients on the globe, a future LinearGradient on a
-// hero panel — rather than as strings no platform here can parse.
+// The kit's four composite grounds — "the cozy layer". They are what turns a
+// correct palette into the room the brand describes: pine walls, a walnut desk,
+// lantern light, aged paper.
 //
-// The one rule that survives the translation: light enters from ONE corner.
-// Never two, never centred.
+// CSS gradients don't exist in React Native, so the kit's `background`
+// shorthands can't be pasted in. Each is decomposed here into ORDERED,
+// PLATFORM-NEUTRAL STOPS, and `components/Material.js` draws them with
+// react-native-svg — which has linear gradients, radial gradients AND patterns
+// on web, iOS and Android alike. One definition, three platforms, and the
+// values stay readable next to the kit's own CSS.
+//
+// Rules that survive the translation, and are the whole reason these read as
+// material rather than as noise:
+//
+//   · **Light enters from ONE corner.** Never two, never centred. The dusk
+//     wash lights from the top right; the walnut desk and the lantern from the
+//     lower left. A composition that lights from both has no light source.
+//   · **At most two materials in one composition** — a lit page plus one desk,
+//     or a dusk panel on a paper page.
+//   · **Texture never sits behind body copy.** Materials belong to grounds,
+//     panels and mockup surfaces. `MaterialSurface` takes the ground; the card
+//     laid on it stays flat `surfaceRaised`, which is what lets the weave read
+//     as paper rather than as dirt on the type.
+//   · **Type on a material never carries alpha.** Inside the dusk wash's lit
+//     corner the ground reaches L≈0.12, where a 0.65-alpha parchment label
+//     lands at ~3.3:1. So there are exactly two inks on dark — `onFill` at any
+//     size, `onFillQuiet` at 16px+ over a material (14px+ on flat pine).
+//
+// Grain periods are deliberately co-prime-ish (9/17/29/43/97). Beaten against
+// each other they never line up inside a viewport, so the desk reads as figure
+// rather than as corduroy — a single 9px stripe would visibly tile.
 export const materials = {
   // Dusk wash — brass and ember falling from the top-right over a
   // pine-to-nightwood ramp. The only sanctioned gradient in the system.
   dusk: {
-    ramp: ["#2A4A44", "#21403C", "#16292A"],
+    base: "#21403C",
+    // CSS `linear-gradient(168deg, …)`: 12° off straight down, leaning right.
+    ramp: {
+      angle: 168,
+      stops: [
+        { offset: 0, color: "#2A4A44" },
+        { offset: 0.44, color: "#21403C" },
+        { offset: 1, color: "#16292A" },
+      ],
+    },
     glow: [
-      { color: colors.brass, opacity: 0.3 },
-      { color: colors.ember, opacity: 0.26 },
+      { color: colors.brass, opacity: 0.3, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: colors.ember, opacity: 0.26, cx: 0.86, cy: 0.1, rx: 0.9, ry: 0.7, fade: 0.62 },
     ],
   },
-  // The same wash on a darker ramp, for panels inside an already-lit page.
+  // The same wash on a darker ramp, for a panel inside an already-lit page.
   duskDeep: {
-    ramp: ["#20393A", "#1A2F2C", "#12211F"],
+    base: "#1A2F2C",
+    ramp: {
+      angle: 168,
+      stops: [
+        { offset: 0, color: "#20393A" },
+        { offset: 0.46, color: "#1A2F2C" },
+        { offset: 1, color: "#12211F" },
+      ],
+    },
     glow: [
-      { color: colors.brass, opacity: 0.24 },
-      { color: colors.ember, opacity: 0.22 },
+      { color: colors.brass, opacity: 0.24, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: colors.ember, opacity: 0.22, cx: 0.88, cy: 0.08, rx: 0.9, ry: 0.7, fade: 0.62 },
     ],
   },
-  // Lantern glow from a lower-left corner, for a dark panel that needs warmth
-  // without a full wash.
-  lantern: { color: colors.brass, opacity: 0.16 },
+  // Paper fibre — a 3-4px weave at ~3% ink plus a brass wash from the top edge.
+  // The default page ground, and the quietest material by a wide margin: at 3%
+  // it is felt rather than seen, which is exactly the brief.
+  paper: {
+    base: colors.surface,
+    weave: [
+      { axis: "horizontal", color: "#7A6A58", opacity: 0.032, thickness: 1, period: 3 },
+      { axis: "vertical", color: "#7A6A58", opacity: 0.026, thickness: 1, period: 4 },
+    ],
+    glow: [{ color: colors.brass, opacity: 0.11, cx: 0.5, cy: 0, rx: 1.3, ry: 0.9, fade: 0.72 }],
+  },
+  // Pine grain — the wall. Vertical stripes in nightwood with a brass fleck.
+  // Layer OVER a dark base or over duskDeep.
+  pineGrain: {
+    base: colors.brand,
+    grain: [
+      { axis: "vertical", color: "#0B1614", opacity: 0.2, thickness: 2, period: 9 },
+      { axis: "vertical", color: colors.brass, opacity: 0.045, thickness: 1, period: 17 },
+      { axis: "vertical", color: "#0B1614", opacity: 0.11, thickness: 4, period: 29 },
+    ],
+  },
+  // Walnut desk — horizontal grain from five beaten periods, the last supplying
+  // figure, lit from the upper left. ONLY ever the ground beneath a device, a
+  // card or an artefact. Never behind type.
+  walnut: {
+    base: "#5A3A1F",
+    ramp: {
+      angle: 176,
+      stops: [
+        { offset: 0, color: "#6B4526" },
+        { offset: 1, color: "#482E17" },
+      ],
+    },
+    grain: [
+      { axis: "horizontal", color: "#281509", opacity: 0.15, thickness: 1, period: 9 },
+      { axis: "horizontal", color: "#1E0F06", opacity: 0.11, thickness: 1, period: 17 },
+      { axis: "horizontal", color: colors.brass, opacity: 0.05, thickness: 1, period: 29 },
+      { axis: "horizontal", color: "#281509", opacity: 0.09, thickness: 2, period: 43 },
+      { axis: "horizontal", color: "#1E0F06", opacity: 0.13, thickness: 4, period: 97 },
+    ],
+    glow: [{ color: colors.brass, opacity: 0.15, cx: 0.2, cy: 0, rx: 1.4, ry: 1, fade: 0.64 }],
+  },
+  // Lantern — a warm glow from the lower left, for a dark panel that needs
+  // warmth without a full wash. Composable on top of any of the above.
+  lantern: {
+    glow: [{ color: colors.brass, opacity: 0.16, cx: 0.1, cy: 1, rx: 0.75, ry: 0.65, fade: 0.62 }],
+  },
 };
+
+// A CSS gradient angle → the two endpoints react-native-svg wants, in
+// object-bounding-box units.
+//
+// CSS measures from "to top" and turns clockwise (0 up, 90 right, 180 down);
+// SVG wants a start and an end point. Getting this wrong is silent — the wash
+// still renders, just lit from the wrong corner, which is the one thing the
+// kit says must never happen. So it is a function with a test rather than four
+// numbers typed into a component.
+export function gradientVector(angle) {
+  const rad = ((angle % 360) * Math.PI) / 180;
+  // Screen space: y grows downward, so "to top" is (0, -1) and a clockwise
+  // turn of θ takes it to (sin θ, -cos θ).
+  const dx = Math.sin(rad);
+  const dy = -Math.cos(rad);
+  return {
+    x1: 0.5 - dx / 2,
+    y1: 0.5 - dy / 2,
+    x2: 0.5 + dx / 2,
+    y2: 0.5 + dy / 2,
+  };
+}
+
+export const MATERIALS = Object.keys(materials);
+
+// A material's flat fallback. Every Material draws over this as a plain
+// background colour, so a platform that can't render a pattern degrades to the
+// right brand colour rather than to a hole in the layout.
+export function materialBase(name) {
+  return materials[name]?.base ?? "transparent";
+}
+
+// Which of the two permitted inks a material's ground carries, and the size
+// floor that ink needs. The kit gives lichen three different floors depending
+// on what is under it — 14px on flat pine or nightwood, 16px over a wash or a
+// grain, because the dusk wash's lit corner drops it to 3.4:1. Encoding it here
+// means a component asks rather than remembers.
+export function materialInk(name) {
+  const dark = name === "dusk" || name === "duskDeep" || name === "pineGrain" || name === "walnut";
+  if (!dark) return { primary: colors.text, quiet: colors.textMuted, quietMinSize: 11 };
+  return { primary: colors.onFill, quiet: colors.onFillQuiet, quietMinSize: 16 };
+}
 
 // --- Map -------------------------------------------------------------------
 // Kit §MAP SCREEN, and the one place the app stays dark. Grouped rather than

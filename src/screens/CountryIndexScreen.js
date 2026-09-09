@@ -94,7 +94,8 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   // Every element carries the cap itself: a FlatList has no single content
   // wrapper to hang it on, so the chrome and the rows each center independently
   // and end up sharing one column edge.

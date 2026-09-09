@@ -147,7 +147,31 @@ import {
   layout,
   constrain,
   motion,
+  materials,
+  materialBase,
+  materialInk,
+  gradientVector,
+  MATERIALS,
 } from "../src/theme";
+import {
+  MARK_VIEWBOX,
+  MARK_MIN_SIZE,
+  MARK_SIMPLE_FLOOR,
+  MARK_DETAILED_FLOOR,
+  MARK_DETAILS,
+  MARK_TONES,
+  APP_ICON,
+  RING_RADIUS,
+  markDetail,
+  starPoints,
+  dotRadius,
+  ringWidth,
+  hasRing,
+  hasGraticule,
+  graticuleArcs,
+  markTone,
+  clearSpace,
+} from "../src/game/brandMark";
 import {
   OPTIONS_PER_QUESTION,
   DIFFICULTIES,
@@ -3903,6 +3927,202 @@ for (let i = 3; i < smoothFrame.length; i += 4) {
 }
 check(sameAlpha, "bilinear covers exactly the same disc as nearest-neighbour");
 check(smoothFrame[((SIZE / 2) * SIZE + SIZE / 2) * 4 + 3] === 255, "...and still fills its centre");
+
+
+// ---------------------------------------------------------------------------
+console.log("\nBrand mark");
+
+// The mark is drawn from geometry rather than loaded from a PNG, and TWO things
+// consume that geometry: components/CompassMark.js on screen, and
+// scripts/build-brand-assets.js when it rasterizes the app icon. These checks
+// exist because a drift between them would be invisible — nobody ever sees the
+// home-screen icon and the loading mark side by side.
+
+check(
+  MARK_DETAILS.every((d) => starPoints(d).length === 8),
+  "every level of detail draws a four-point star (8 polygon points)"
+);
+check(
+  MARK_DETAILS.every((d) =>
+    starPoints(d).every(([x, y]) => x >= 0 && x <= MARK_VIEWBOX && y >= 0 && y <= MARK_VIEWBOX)
+  ),
+  "...and none of its points leave the viewBox"
+);
+
+// The star is what makes the mark a compass: N/S/E/W tips, four waists. If a
+// point drifted off-axis the whole thing would read as a shuriken.
+for (const detail of MARK_DETAILS) {
+  const pts = starPoints(detail);
+  const c = MARK_VIEWBOX / 2;
+  const tips = [pts[0], pts[2], pts[4], pts[6]];
+  check(
+    tips.every(([x, y]) => x === c || y === c),
+    `${detail}: the four tips sit on the cardinal axes`
+  );
+}
+
+// Kit §LOGO: "Below 32px use the simplified compass (star + ring + centre dot)."
+// The SIMPLIFIED one keeps the ring — dropping it makes a different mark, not a
+// smaller one, and getting this backwards rendered the desktop rail's 28px
+// lockup as a bare star.
+check(markDetail(MARK_DETAILED_FLOOR) === "detailed", "32px and up gets the full artwork");
+check(markDetail(MARK_DETAILED_FLOOR - 1) === "simple", "below 32px drops to the simplified mark");
+check(hasRing("simple"), "the simplified mark KEEPS its ring — that is what 'simplified' means");
+check(!hasGraticule("simple"), "...and loses only the graticule");
+check(markDetail(MARK_SIMPLE_FLOOR - 1) === "micro", "below 20px is star and pivot only");
+check(!hasRing("micro"), "...with no ring, which is unreadable at that size");
+check(hasGraticule("detailed"), "only the full artwork carries a graticule");
+
+// The smaller the render, the fatter the star and the bigger the pivot. A 7-unit
+// waist at 16px is a third of a pixel; this is why the mark swaps rather than
+// scales.
+check(
+  dotRadius("micro") > dotRadius("simple") && dotRadius("simple") > dotRadius("detailed"),
+  "the pivot dot grows as the artwork shrinks"
+);
+check(
+  starPoints("micro")[1][0] > starPoints("detailed")[1][0],
+  "...and so does the star's waist"
+);
+
+// The ring has to stay inside the box once its stroke is counted, or the
+// rasterizer clips a flat edge onto the circle.
+check(
+  MARK_DETAILS.filter(hasRing).every(
+    (d) => RING_RADIUS + ringWidth(d) / 2 <= MARK_VIEWBOX / 2
+  ),
+  "the ring plus half its stroke fits inside the viewBox"
+);
+
+// The graticule is a real orthographic projection, not decorative squiggles —
+// the same projection the globe uses. Every arc must therefore stay inside the
+// sphere it belongs to.
+const gratArcs = graticuleArcs();
+check(gratArcs.length === 4, "the graticule is two meridians and two parallels");
+check(
+  gratArcs.every((d) => /^M [\d.-]+ [\d.-]+ A [\d.-]+ [\d.-]+ 0 [01] [01] [\d.-]+ [\d.-]+$/.test(d)),
+  "...each a single unrotated elliptical arc, the only form the rasterizer parses"
+);
+check(
+  gratArcs.every((d) => {
+    const n = d.match(/-?\d+(?:\.\d+)?/g).map(Number);
+    const c = MARK_VIEWBOX / 2;
+    // Endpoints, and the semi-axes that govern the bulge between them.
+    return (
+      Math.hypot(n[0] - c, n[1] - c) <= RING_RADIUS + 0.01 &&
+      Math.hypot(n[7] - c, n[8] - c) <= RING_RADIUS + 0.01 &&
+      n[2] <= RING_RADIUS + 0.01 &&
+      n[3] <= RING_RADIUS + 0.01
+    );
+  }),
+  "...and no arc escapes the ring it is drawn inside"
+);
+
+// The tones are held in brandMark.js rather than theme.js because the Node
+// rasterizer cannot import theme.js's neighbours. That duplication is the risk;
+// this is the check that makes it safe.
+check(MARK_TONES.pine.star === colors.brand, "the pine mark's star is the brand pine token");
+check(MARK_TONES.pine.ring === colors.accent, "...its ring is lakewater");
+check(MARK_TONES.pine.dot === colors.ember, "...and its pivot is ember");
+check(MARK_TONES.cream.star === colors.onFill, "the knockout mark's star is parchment");
+check(MARK_TONES.cream.dot === colors.brass, "...and its pivot is brass");
+check(MARK_TONES.brass.dot === colors.brandDeep, "the gilt mark pivots on nightwood");
+check(APP_ICON.ground === colors.brand, "the app icon's ground is pine, per the kit");
+check(APP_ICON.artworkScale === 0.74, "...with the artwork at 74% of the canvas");
+
+// A single colour flattens the whole mark, for the places it has to disappear
+// into surrounding type rather than shout in four brand colours.
+const flatTone = markTone("#123456");
+check(
+  flatTone.star === "#123456" && flatTone.ring === "#123456" && flatTone.dot === "#123456",
+  "a bare colour tints every part of the mark"
+);
+check(markTone("nonsense-tone").star === MARK_TONES.pine.star, "an unknown tone name is not a hole");
+
+// Kit §LOGO: clear space is 0.5x the mark height, so it scales with the lockup.
+check(clearSpace(32) === 16, "clear space is half the mark height");
+check(MARK_MIN_SIZE === 16, "the icon floor is the kit's 16px");
+
+// ---------------------------------------------------------------------------
+console.log("\nMaterials");
+
+// CSS angles measure clockwise from "to top"; SVG wants two points. Getting it
+// wrong is SILENT — the wash still renders, just lit from the wrong corner,
+// which is the one thing the kit says must never happen.
+const downward = gradientVector(180);
+check(
+  Math.abs(downward.y1 - 0) < 1e-9 &&
+    Math.abs(downward.y2 - 1) < 1e-9 &&
+    Math.abs(downward.x1 - 0.5) < 1e-9,
+  "180deg runs top to bottom"
+);
+const rightward = gradientVector(90);
+check(
+  Math.abs(rightward.x1 - 0) < 1e-9 && Math.abs(rightward.x2 - 1) < 1e-9,
+  "90deg runs left to right"
+);
+const duskRamp = gradientVector(materials.dusk.ramp.angle);
+check(
+  duskRamp.y2 > duskRamp.y1 && duskRamp.x2 > duskRamp.x1,
+  "the dusk ramp falls downward and slightly right, as 168deg should"
+);
+
+check(
+  MATERIALS.every((name) => materials[name].glow || materials[name].ramp || materials[name].grain),
+  "every material actually specifies something to draw"
+);
+
+// "Light enters from ONE corner. Never two, never centred." A composition lit
+// from two corners has no light source, and it is the difference between a lit
+// room and a smear.
+for (const name of MATERIALS) {
+  const glow = materials[name].glow ?? [];
+  if (glow.length < 2) continue;
+  const corners = new Set(glow.map((g) => `${Math.round(g.cx)},${Math.round(g.cy)}`));
+  check(corners.size === 1, `${name}: every glow comes from the same corner`);
+}
+
+// The grain periods are beaten against each other so the texture never visibly
+// tiles. Two equal periods would collapse into one stripe and read as corduroy.
+for (const name of MATERIALS) {
+  const stripes = [...(materials[name].weave ?? []), ...(materials[name].grain ?? [])];
+  if (stripes.length < 2) continue;
+  const periods = stripes.map((s) => s.period);
+  check(
+    new Set(periods).size === periods.length,
+    `${name}: no two stripe periods are equal`
+  );
+  check(
+    stripes.every((s) => s.thickness < s.period),
+    `${name}: every stripe is thinner than its own period, so the ground shows through`
+  );
+}
+
+// Texture is decoration; at these opacities it must be felt, not seen. Paper in
+// particular is 3% ink — anything heavier reads as dirt behind the type.
+check(
+  materials.paper.weave.every((w) => w.opacity <= 0.04),
+  "the paper weave stays at or under 4% ink"
+);
+
+// A material that fails to draw must fall back to the right brand colour rather
+// than to a hole in the layout.
+check(
+  MATERIALS.filter((n) => n !== "lantern").every((n) => /^#[0-9A-Fa-f]{6}$/.test(materialBase(n))),
+  "every ground material has an opaque base colour"
+);
+check(materialBase("nonsense") === "transparent", "an unknown material is transparent, not a crash");
+
+// Kit: the two permitted inks on dark, and lichen's 16px floor OVER A MATERIAL
+// (rather than 14px on flat pine) — inside the dusk wash's lit corner the
+// ground reaches L~0.12, where lichen measures 3.4:1.
+for (const name of ["dusk", "duskDeep", "pineGrain", "walnut"]) {
+  const ink = materialInk(name);
+  check(ink.primary === colors.onFill, `${name}: primary ink is parchment`);
+  check(ink.quiet === colors.onFillQuiet, `...and the quiet ink is lichen`);
+  check(ink.quietMinSize >= 16, `...which may not be set below 16px over a material`);
+}
+check(materialInk("paper").primary === colors.text, "paper carries bark ink, being a light ground");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

@@ -32,6 +32,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, Pressable, Linking, StyleSheet, PixelRatio } from "react-native";
 import { colors, spacing, radius, type, elevation } from "../theme";
+import Skeleton from "./Skeleton";
 import { imageVariantUrl, heroImageWidth } from "../game/mediaPolicy";
 
 // A wide, shallow crop — a landscape photograph read as a banner, not a
@@ -77,6 +78,15 @@ export default function CountryPhoto({ hero, name }) {
             and never a loaded image held invisible by a callback that didn't
             fire. Rendering waits only for the measurement that decides which
             variant to request. */}
+        {/* A sweeping skeleton under the frame, not just a flat tone. The
+            aspect ratio was already reserved, so nothing moves when the
+            photograph lands — this only says the gap is a photo on its way
+            rather than a photo that failed. It stays mounted underneath: the
+            kit's own note here is that visibility must never be gated on
+            `onLoad`, which react-native-web does not reliably fire, and the
+            image simply covers this when it paints. */}
+        <Skeleton width="100%" height="100%" radius={0} style={StyleSheet.absoluteFill} />
+
         {boxWidth > 0 && (
           <Image
             // Keyed by URI so switching to the fallback URL remounts rather

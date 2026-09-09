@@ -20,13 +20,39 @@ import React from "react";
 import { View, StyleSheet, useWindowDimensions } from "react-native";
 import TabBar from "./TabBar";
 import NavRail from "./NavRail";
+import Material from "./Material";
+import { colors } from "../theme";
 import { chromeLayout } from "../game/layout";
+
+// The page ground, owned here rather than by each screen.
+//
+// The kit calls paper fibre "the default page ground", and it means every page:
+// a weave that appears on Home and stops at Profile is not a material, it is a
+// decoration on one screen. Screens used to each set `backgroundColor:
+// surface` on their own scroller, which is eight places to keep in step and
+// eight places for one to drift. They are transparent now and this is the
+// single sheet they are all printed on.
+//
+// It sits behind the screen slot and NOT behind the chrome: the tab bar and the
+// rail are cream, and the kit is explicit that chrome sits above the page
+// rather than being part of it.
+//
+// Screens with their own ground still win — the quiz and the globe paint over
+// this, which is correct: those are the dark stage, not the page.
+function Page({ children }) {
+  return (
+    <View style={styles.fill}>
+      <Material name="paper" />
+      {children}
+    </View>
+  );
+}
 
 export default function AppChrome({ tabs, active, onSelect, chrome = true, children }) {
   const { width } = useWindowDimensions();
   const { mode, railWidth, showLabels } = chromeLayout(width);
 
-  if (!chrome) return <View style={styles.fill}>{children}</View>;
+  if (!chrome) return <Page>{children}</Page>;
 
   if (mode === "rail") {
     return (
@@ -38,20 +64,22 @@ export default function AppChrome({ tabs, active, onSelect, chrome = true, child
           width={railWidth}
           showLabels={showLabels}
         />
-        <View style={styles.fill}>{children}</View>
+        <Page>{children}</Page>
       </View>
     );
   }
 
   return (
     <View style={styles.fill}>
-      <View style={styles.fill}>{children}</View>
+      <Page>{children}</Page>
       <TabBar tabs={tabs} active={active} onSelect={onSelect} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  fill: { flex: 1 },
+  // `surface` under the material, so the very first frame — and any platform
+  // that fails to draw the SVG — is still parchment rather than a hole.
+  fill: { flex: 1, backgroundColor: colors.surface },
   row: { flex: 1, flexDirection: "row" },
 });

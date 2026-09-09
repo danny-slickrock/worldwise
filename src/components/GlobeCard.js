@@ -44,6 +44,11 @@ export default function GlobeCard({ onOpenCountry, onOpenExplore, basemap, onCha
 
   return (
     <View style={styles.card}>
+      {/* No material here, deliberately. The kit caps a composition at TWO
+          visible materials, and Home already spends both: paper on the page and
+          the dusk wash on the Daily card. The globe's own stage stays a flat
+          nightwood fill. Its pine-grain wall lives on the Explore screen, where
+          the globe is the only subject and paper is the only other material. */}
       <View style={[styles.stage, { maxHeight: stageHeight }]} {...globe.surfaceProps}>
         <GlobeMap spin={globe.spin} zoom={globe.zoom} onSelect={onOpenCountry} basemap={basemap} />
         <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.toggle} />

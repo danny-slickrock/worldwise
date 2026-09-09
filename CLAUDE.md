@@ -30,6 +30,8 @@ npm test           # pure-logic engine tests (tsx, fast)
 npm run typecheck  # tsc --noEmit parse/JSX check
 npm run lint       # eslint (expo config)
 npm run format     # prettier
+npm run build:brand   # rasterize the app icon / adaptive icon / favicon / splash
+                      #   from src/game/brandMark.js. Only needed if the mark changes
 ```
 
 Backend (Phase 2+, needs Docker for the local stack):
@@ -103,6 +105,11 @@ src/
   game/mediaPolicy.js      # PURE country photos: Wikidata P18 → Commons title, licence extraction,
                            #   Storage key/URL derivation, the credit line, and the transform-URL
                            #   ladder. Imported by BOTH the Node ingest script and the app
+  game/brandMark.js        # PURE geometry for the compass mark: star points, ring, the
+                           #   orthographic graticule, the three tones, and the kit's
+                           #   level-of-detail rule. Shared by the RN component AND the Node
+                           #   rasterizer — one source, so the app icon and the loading mark
+                           #   are provably the same shape
   game/navigation.js       # PURE nav core: per-tab stacks (push/pop/switch/replace), route⇄URL
                            #   serialization, and popstate reconciliation. The single source of
                            #   truth for where you are and what Back means
@@ -181,6 +188,27 @@ assets/globe/earth-relief.jpg # NASA Blue Marble, 2048x1024, PUBLIC DOMAIN. Bund
 scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run build:globe-texture)
   components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
                            #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
+  components/CompassMark.js # The mark, DRAWN (not a PNG): crisp at 1024, legible at 16, and
+                           #   it comes apart — parts="globe" (ring + graticule) vs
+                           #   parts="needle" (star + pivot), which is what SpinningMark needs
+  components/Wordmark.js    # The lockup: mark + the two-tone name. Every brand rule the
+                           #   wordmark has to keep lives here instead of being retyped
+  components/SpinningMark.js # The loading indicator: the needle HUNTS (fast/slow/fast), the
+                           #   globe drifts the other way at 1/20 the rate, a halo breathes on
+                           #   the needle's period, and a finished load SETTLES on north
+  components/BrandLoader.js # A whole-screen or whole-panel wait. Owns the kit's "no spinners
+                           #   under 1s" rule as a `delay`, so a fast load shows nothing at all
+  components/Skeleton.js    # Loading with a KNOWN SHAPE: 10% brand tint + a cream sweep.
+                           #   Reserves the layout, so nothing jumps when content lands
+  components/Material.js    # The kit's four composite grounds, drawn with react-native-svg —
+                           #   base → ramp → grain → glow, in that order. <MaterialSurface>
+                           #   is the ground-with-content-on-it form
+  components/AnimatedNumber.js # A number that counts to its new value. Never animates its
+                           #   FIRST value; `from` is the one exception (a round's XP award)
+  components/ProgressTrack.js  # The kit's 8px pill, animated, reduce-motion aware
+  components/PressableTint.js  # The kit's press/hover vocabulary and nothing else: a 120ms
+                           #   tint on touch, an e2 lift + lakewater border on pointer, and
+                           #   deliberately NO scale bounce
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
                            #   TabBar↔NavRail on layout.js's breakpoint. chrome={false} = focus mode
   components/TabBar.js      # Bottom tabs (mobile) — takes tabs as data, so it's extensible
@@ -205,10 +233,84 @@ supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + 
 scripts/ingest-embeddings.mjs # Drives ingest-embeddings to completion (npm run ingest:embeddings)
 scripts/fetch-country-photos.js # Wikidata P18 → Commons → Storage → a PENDING country_media row
 scripts/approve-country-media.js # The only thing that publishes one (npm run media:approve)
+scripts/build-brand-assets.js # Rasterizes brandMark.js into assets/icon.png, adaptive-icon.png,
+                           #   splash.png and favicon.png. Hand-rolled PNG encoder (zlib is in
+                           #   Node's stdlib) rather than a native image dependency
+assets/brand/              # The kit's supplied PNGs — REFERENCE ONLY, nothing imports them.
+                           #   See assets/brand/README.md for why
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
 ```
+
+**The logo is geometry, not a PNG.** The brand kit ships the mark only as raster art and says so
+itself: *"logo artwork is raster-traced … edges soften above ~150px. Commission or produce a true
+SVG before shipping app icons."* An app icon is 1024px. `src/game/brandMark.js` is that redraw —
+the mark as numbers — and it has **two** consumers, which is the whole reason it is pure:
+`components/CompassMark.js` draws it on screen, and `scripts/build-brand-assets.js` rasterizes it in
+plain Node into `assets/icon.png` and friends. A build script with its own hand-copied path is
+exactly the thing that drifts, and nobody ever sees the home-screen icon and the loading mark side
+by side to notice. The supplied PNGs live in `assets/brand/` as reference and are imported by
+nothing. Four rules, all pinned by tests:
+- **Level of detail SWAPS, it does not scale.** Kit: *"Below 32px use the simplified compass (star +
+  ring + centre dot) — do not downscale the detailed artwork."* The simplified mark **keeps its
+  ring** and loses only the graticule; reading that backwards is what rendered the desktop rail's
+  28px lockup as a bare star. Below 20px the ring goes too, because a 1px circle 14px across fills
+  in to a grey smudge.
+- **The mark comes apart.** `parts="globe"` is the housing, `parts="needle"` is the star and pivot.
+  That split is not decoration — it is what lets `SpinningMark` rotate a needle inside a fixed
+  instrument instead of spinning a whole logo like a throbber.
+- **The graticule is a real orthographic projection**, the same one `game/globeProjection.js` uses.
+  It costs nothing to make the mark a small true Earth rather than an approximate one.
+- **The tones are duplicated in `brandMark.js` rather than imported from `theme.js`**, because the
+  Node rasterizer cannot reach theme.js's neighbours. That duplication is the risk, so a test
+  asserts every value still equals its token.
+
+**Materials are the cozy layer, and they have rules that are easy to break.** `theme.js`'s
+`materials` holds the kit's four composite grounds as platform-neutral stops; `components/Material.js`
+draws them with react-native-svg (which has linear gradients, radial gradients *and* patterns on web,
+iOS and Android alike — `expo-linear-gradient` can express none of what these need). Always in the
+order base → ramp → grain → glow: light falls *across* a surface, not under it.
+- **Light enters from ONE corner.** Never two, never centred. Dusk lights from the top right; the
+  walnut desk and the lantern from the lower left. A test asserts every glow in a material shares a
+  corner — a composition lit from two has no light source.
+- **At most TWO materials in one composition.** `AppChrome` spends one on every screen (paper is
+  "the default page ground"), so a screen gets exactly one more. Home spends it on the Daily card's
+  dusk wash, which is why the globe card there is a flat fill and its pine-grain wall lives on
+  Explore instead.
+- **Texture never sits behind body copy.** Materials are grounds and panels; the card laid on one
+  stays flat `surfaceRaised`. That is what keeps the weave reading as paper rather than as dirt.
+- **Type on a material never carries alpha, and lichen's floor RISES to 16px.** Inside the dusk
+  wash's lit corner the ground reaches L≈0.12, where `onFillQuiet` measures 3.4:1 — so `materialInk()`
+  reports the floor and components ask it instead of remembering. An 11px eyebrow on dark therefore
+  takes **brass**, the kit's own eyebrow-on-dark pattern, not parchment-at-70%.
+- **Grain periods are co-prime-ish (9/17/29/43/97) on purpose.** Beaten against each other they never
+  align inside a viewport, so wood reads as figure rather than corduroy. A test refuses two equal
+  periods.
+- `walnut` is drawn and tested but deliberately **unused in the app**: the kit restricts it to "the
+  ground *beneath* a device, card or artefact, never behind type", and no current surface is that.
+  Reach for it in marketing and mockups, not to fill space.
+
+**Motion has a vocabulary, and "no bounce" is part of it.** Everything animated runs on `theme.js`'s
+`motion` durations and the kit's one easing curve, and every piece of it drops to its resting state
+under reduce-motion — that is an explicit request from someone who may get physically ill, not a
+preference to shorten.
+- **The loading indicator is the mark, and the needle hunts.** `SpinningMark` varies its rate across
+  the turn (via a multi-stop interpolation, not a bezier — an ease-in-out across one revolution has
+  zero velocity at both ends, so a loop visibly *stops* every turn). When loading ends it finishes
+  the revolution and settles on north rather than vanishing mid-spin.
+- **A known shape gets a `Skeleton`, not a spinner**, and `BrandLoader` enforces the kit's "no
+  spinners under 1s" itself so callers cannot forget. There is no `ActivityIndicator` left in the app.
+- **`PressableTint` is the whole press/hover vocabulary**: a 120ms tint on touch, an e2 lift plus a
+  lakewater border on pointer, and **no scale bounce** — the kit forbids it outright, and a card that
+  squashes under the thumb is some other product's house style.
+- **`AnimatedNumber` never animates its first value.** A total that merely happens to be on screen
+  should not roll every time you open Profile. `from={0}` is the single exception, for the round's XP
+  award, where arriving at the number *is* the event.
+- **The nav pill blooms rather than travels.** A pill that slides between tabs has to measure them —
+  an onLayout pass per tab, re-measured on every rotation and font-scale change — to make the chrome
+  lag a frame behind the tap. Each tab owns its own pill instead; they cross-fade, and the tapped tab
+  responds on the same frame.
 
 **Navigation is a real stack, per tab.** `src/game/navigation.js` holds four tabs (Home · Learn ·
 Explore · Profile), each with its own route stack; everything else is pushed onto the active one.

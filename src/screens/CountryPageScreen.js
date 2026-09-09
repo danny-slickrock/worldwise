@@ -304,7 +304,8 @@ function Stat({ value, label }) {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   // Constrained like the content below it, so Back and "View on map" sit at the
   // column's edges on a wide screen rather than drifting out to the viewport's.
   topBar: {

@@ -1,18 +1,12 @@
 // Signed-out half of the Profile tab. Sign-in is a means, not the destination —
 // so the pitch is what an account gets you, not a wall in front of the games.
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  TextInput,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
+import { View, Text, StyleSheet, Pressable, TextInput, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
+import Wordmark from "../components/Wordmark";
+import SpinningMark from "../components/SpinningMark";
 import { useAuth } from "../auth/AuthProvider";
 
 export default function SignInScreen() {
@@ -64,6 +58,9 @@ export default function SignInScreen() {
     >
       <Container>
         <FadeInUp>
+          {/* The one screen a signed-out visitor may see first, so it is the
+              one screen that leads with the lockup rather than with a kicker. */}
+          <Wordmark size={36} style={styles.lockup} />
           <Text style={styles.kicker}>Your profile</Text>
           <Text style={styles.title}>Take your progress with you</Text>
           <Text style={styles.tagline}>
@@ -99,7 +96,10 @@ export default function SignInScreen() {
               style={[styles.primaryBtn, (sending || !email.trim()) && styles.btnDisabled]}
             >
               {sending ? (
-                <ActivityIndicator color={colors.onFill} />
+                // The mark, in parchment, hunting inside the button it
+                // replaced the label of — the same instrument as every other
+                // wait in the app rather than a platform spinner.
+                <SpinningMark size={22} tone="cream" halo={false} />
               ) : (
                 <Text style={styles.primaryBtnText}>Email me a magic link</Text>
               )}
@@ -142,8 +142,10 @@ export default function SignInScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+  lockup: { marginBottom: spacing(5) },
   kicker: { ...type.eyebrow, fontSize: 12 },
   title: { ...type.h1, fontSize: 32, marginTop: spacing(1), lineHeight: 38 },
   tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },

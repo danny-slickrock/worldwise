@@ -20,6 +20,8 @@ import LearningPathScreen from "./src/screens/LearningPathScreen";
 import AchievementsScreen from "./src/screens/AchievementsScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import AppChrome from "./src/components/AppChrome";
+import BrandLoader from "./src/components/BrandLoader";
+import { MaterialSurface } from "./src/components/Material";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
 import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress";
 import { roundSinks } from "./src/game/syncPolicy";
@@ -76,14 +78,24 @@ const FONTS = {
 export default function App() {
   const [fontsLoaded] = useFonts(FONTS);
 
-  // Hold one plain painted frame rather than rendering the whole app in a
-  // fallback face and reflowing it. It's `surface`, so the wait reads as the
-  // page arriving early, not as a flash of a different app.
+  // The launch state. It used to be one flat parchment frame — correct, and
+  // completely mute. Now it is the mark, hunting, on the paper ground: the same
+  // instrument the app uses for every other wait, so the first thing anyone
+  // sees is the brand doing the one thing the brand is about.
+  //
+  // `delay={0}` deliberately overrides the "no spinners under 1s" rule that
+  // BrandLoader normally enforces. That rule is about not flashing an
+  // indicator into a screen that already has content; here there IS no content
+  // — a blank frame is the alternative, and a blank frame is worse.
+  //
+  // No label: the fonts are precisely what has not loaded yet, so any text
+  // would render in a system fallback and then reflow. The mark carries it.
   if (!fontsLoaded) {
     return (
-      <View style={styles.splash}>
+      <MaterialSurface name="paper" style={styles.splash}>
         <StatusBar style="dark" />
-      </View>
+        <BrandLoader delay={0} size={72} />
+      </MaterialSurface>
     );
   }
 
@@ -458,6 +470,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
     paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
   },
-  splash: { flex: 1, backgroundColor: colors.surface },
+  splash: { flex: 1 },
   body: { flex: 1 },
 });

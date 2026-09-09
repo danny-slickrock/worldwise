@@ -10,11 +10,15 @@ import {
   buttonHeight,
   motion,
   onFill,
-  fonts,
 } from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import GlobeCard from "../components/GlobeCard";
+import Wordmark from "../components/Wordmark";
+import CompassMark from "../components/CompassMark";
+import Material from "../components/Material";
+import PressableTint from "../components/PressableTint";
+import AnimatedNumber from "../components/AnimatedNumber";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
@@ -56,6 +60,8 @@ export default function HomeScreen({
   const featured = MODES[FEATURED];
 
   return (
+    // The page ground is AppChrome's now — the kit's paper fibre, under every
+    // screen rather than under this one. See its Page().
     <ScrollView
       style={styles.wrap}
       contentContainerStyle={styles.content}
@@ -68,11 +74,21 @@ export default function HomeScreen({
           <View style={styles.statusRow}>
             <View style={styles.statusPill}>
               <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
-              <Text style={styles.statusValue}>{streak.count}</Text>
+              {/* Both numbers roll rather than snap. Coming back to Home after
+                  a round is the moment the totals change, and a number that
+                  counts to its new value is the whole reward — it costs one
+                  component and it is the difference between a receipt and a
+                  result. AnimatedNumber never animates its FIRST value, so
+                  opening Home cold still just shows the totals. */}
+              <AnimatedNumber value={streak.count} style={styles.statusValue} />
             </View>
             <View style={styles.statusPill}>
-              <Text style={styles.statusGlyph}>✦</Text>
-              <Text style={styles.statusValue}>{progress.xp}</Text>
+              {/* The mark itself, not a ✦ standing in for it. At 15px it is
+                  under the kit's 16px icon floor, so it renders at micro
+                  detail — star and pivot, no ring — which is exactly what that
+                  rule is for. */}
+              <CompassMark size={16} tone={colors.brass} />
+              <AnimatedNumber value={progress.xp} style={styles.statusValue} />
               <Text style={styles.statusUnit}>XP</Text>
             </View>
             {streak.freezes > 0 && (
@@ -88,14 +104,12 @@ export default function HomeScreen({
             its call-back, and splitting them would stagger two lines of text. */}
         <FadeInUp index={1}>
           <View style={styles.brandRow}>
-            {/* Two-tone, and this is a brand rule rather than a preference:
-                "World" in pine, "wise" in lakewater, Newsreader 600, never one
-                flat colour and never another face. Rendered as one <Text> with
-                a nested span so it stays a single line of type that wraps and
-                scales as one word. */}
-            <Text style={styles.wordmark}>
-              World<Text style={styles.wordmarkAccent}>wise</Text>
-            </Text>
+            {/* The real lockup — mark plus two-tone name — rather than the
+                name alone. Every brand rule it has to keep (Newsreader 600,
+                "World" in pine and "wise" in lakewater, tracking, clear space
+                at 0.5x the mark, the 28px floor) now lives in one component
+                instead of being retyped here and in the rail. */}
+            <Wordmark size={34} />
             <Text style={styles.brandTag}>geography</Text>
           </View>
           <Text style={styles.tagline}>Learn the world through curiosity.</Text>
@@ -128,10 +142,33 @@ export default function HomeScreen({
         {/* Today */}
         <FadeInUp index={3}>
           <Text style={styles.section}>Today</Text>
-          <Pressable
+          {/* The kit's dusk wash — brass and ember falling from the top right
+              over a pine-to-nightwood ramp, and "the only sanctioned gradient
+              in the system". The Daily card is the one hero on Home, so it is
+              the one place on this screen that earns it: a lit panel on a paper
+              page is exactly the two-material composition the kit permits.
+
+              The flat pine fill it replaces was correct and inert. This is the
+              same colour with a light source. */}
+          <PressableTint
+            tone="dark"
+            radius={radius.sheet}
             onPress={() => onPlay(FEATURED, difficulty, timed)}
-            style={[styles.heroCard, { backgroundColor: featured.accent }]}
+            style={styles.heroCard}
+            accessibilityRole="button"
+            accessibilityLabel={`Daily challenge — ${featured.title}`}
           >
+            <Material name="dusk" />
+            {/* The instrument, oversized and bleeding off the corner the light
+                comes from. Brass on nightwood, well under the "5% firelight"
+                budget, and the reason the card reads as an artefact rather than
+                as a coloured rectangle. */}
+            <CompassMark size={190} tone="brass" style={styles.heroMark} />
+
+            {/* Brass, not parchment-at-70%. The old kicker carried an alpha,
+                which over a gradient has no knowable contrast ratio at all —
+                the one rule the kit repeats twice. A brass eyebrow on a dark
+                ground is its own sanctioned pattern (kit §DIVE DEEPER CARD). */}
             <Text style={styles.heroKicker}>Daily challenge</Text>
             <Text style={styles.heroTitle}>
               {featured.icon} A mixed round,{"\n"}every day
@@ -139,7 +176,7 @@ export default function HomeScreen({
             <View style={styles.heroCta}>
               <Text style={styles.heroCtaText}>PLAY</Text>
             </View>
-          </Pressable>
+          </PressableTint>
         </FadeInUp>
 
         {/* Games */}
@@ -149,13 +186,23 @@ export default function HomeScreen({
             const m = MODES[key];
             return (
               <FadeInUp key={key} style={styles.tileCell} delay={TILE_BASE_DELAY + staggerDelay(i)}>
-                <Pressable onPress={() => onPlay(key, difficulty, timed)} style={styles.tile}>
+                {/* PressableTint, not Pressable: the kit gives touch a 120ms
+                    pressed tint and pointer devices a hover lift, and forbids a
+                    scale bounce outright. These tiles previously had no press
+                    feedback at all. */}
+                <PressableTint
+                  onPress={() => onPlay(key, difficulty, timed)}
+                  radius={radius.sheet}
+                  style={styles.tile}
+                  accessibilityRole="button"
+                  accessibilityLabel={m.title}
+                >
                   <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
                     <Text style={[styles.tileGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
                   </View>
                   <Text style={styles.tileTitle}>{m.title}</Text>
                   <Text style={styles.tileBlurb}>{m.blurb}</Text>
-                </Pressable>
+                </PressableTint>
               </FadeInUp>
             );
           })}
@@ -205,7 +252,8 @@ export default function HomeScreen({
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
 
   statusRow: { flexDirection: "row", gap: spacing(2), marginBottom: spacing(6) },
@@ -219,16 +267,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing(3),
     ...elevation(1),
   },
-  statusGlyph: { fontSize: 15, color: colors.brass },
+  statusGlyph: { fontSize: 15 },
   statusValue: { ...type.h3, fontSize: 16 },
   statusUnit: { ...type.label, fontSize: 10, color: colors.textMuted, letterSpacing: 1 },
 
   brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
-  // The wordmark is the single place Newsreader 600 is used at headline size:
-  // "a logotype needs presence the headline scale does not". Tracking is the
-  // kit's -0.01em and must never tighten past -0.012em — the serif wants air.
-  wordmark: { ...type.h1, fontFamily: fonts.displayBold, fontSize: 38, letterSpacing: -0.38 },
-  wordmarkAccent: { color: colors.accent },
   // emberInk, not lakewater: this sits on parchment, where lakewater is
   // large-text-only (4.28:1) and this is 15px.
   brandTag: { ...type.label, fontSize: 15, color: colors.emberInk, letterSpacing: -0.2 },
@@ -263,15 +306,20 @@ const styles = StyleSheet.create({
     borderRadius: radius.sheet,
     padding: spacing(5),
     marginBottom: spacing(7),
+    // Clips the wash, the oversized mark and the press tint to the card.
+    overflow: "hidden",
+    backgroundColor: colors.brand,
     ...elevation(2),
   },
+  heroMark: {
+    position: "absolute",
+    top: -46,
+    right: -52,
+    opacity: 0.16,
+  },
   heroKicker: {
-    ...type.label,
-    fontSize: 11,
-    letterSpacing: 1.6,
-    textTransform: "uppercase",
-    color: colors.onFill,
-    opacity: 0.7,
+    ...type.eyebrow,
+    color: colors.brass,
   },
   heroTitle: {
     ...type.h2,
@@ -308,6 +356,7 @@ const styles = StyleSheet.create({
     borderRadius: radius.sheet,
     padding: spacing(5),
     minHeight: 132,
+    overflow: "hidden",
     ...hairline,
     ...elevation(1),
   },

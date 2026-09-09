@@ -18,6 +18,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from 
 import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
+import Skeleton from "../components/Skeleton";
 import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
 import { computeNodeStates } from "../game/masteryPolicy";
 import { useAuth } from "../auth/AuthProvider";
@@ -37,14 +38,27 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   // mislabel every locked tier as genuinely un-played. Track it separately so
   // a signed-in player sees an honest "couldn't load" notice instead.
   const [resultsError, setResultsError] = useState(false);
+  // Mastery is mined entirely from round history, so until the fetch lands
+  // `results` is [] and computeNodeStates() honestly reports every tier past
+  // the first as locked. Painting that and then re-labelling it a beat later
+  // reads as the app taking progress away and giving it back. Skeleton rows
+  // instead: the list keeps its shape and its height, and nothing claims a
+  // state it doesn't know yet.
+  //
+  // Only for a signed-in player. Signed out there is no history to wait for —
+  // local storage keeps totals, never per-round rows — so the locked list is
+  // the final answer and a skeleton would be a lie about a pending fetch.
+  const [loadingResults, setLoadingResults] = useState(Boolean(user));
 
   useEffect(() => {
     let active = true;
     setResultsError(false);
+    setLoadingResults(Boolean(user));
     fetchRoundResults(user).then(({ rows, error }) => {
       if (!active) return;
       setResults(rows);
       setResultsError(Boolean(error));
+      setLoadingResults(false);
     });
     return () => {
       active = false;
@@ -136,27 +150,37 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
             </FadeInUp>
 
             <FadeInUp rise={0} index={1}>
-              {nodes.map((node) => {
-                const locked = node.state === "locked";
-                return (
-                  <Pressable
-                    key={node.code}
-                    disabled={locked}
-                    onPress={() => onOpenCountry?.(node.code)}
-                    style={[styles.row, locked && styles.rowLocked]}
-                  >
-                    <View style={styles.rowBody}>
-                      <Text style={[styles.rowName, locked && styles.rowNameLocked]}>
-                        {node.name}
-                      </Text>
-                      <Text style={styles.rowDifficulty}>{node.difficulty}</Text>
+              {loadingResults
+                ? path.nodes.map((node) => (
+                    <View key={node.code} style={styles.row}>
+                      <View style={styles.rowBody}>
+                        <Skeleton width="58%" height={15} />
+                        <Skeleton width="34%" height={11} style={styles.skeletonSub} />
+                      </View>
+                      <Skeleton width={64} height={11} />
                     </View>
-                    <Text style={[styles.rowState, styles[`rowState_${node.state}`]]}>
-                      {STATE_LABEL[node.state]}
-                    </Text>
-                  </Pressable>
-                );
-              })}
+                  ))
+                : nodes.map((node) => {
+                    const locked = node.state === "locked";
+                    return (
+                      <Pressable
+                        key={node.code}
+                        disabled={locked}
+                        onPress={() => onOpenCountry?.(node.code)}
+                        style={[styles.row, locked && styles.rowLocked]}
+                      >
+                        <View style={styles.rowBody}>
+                          <Text style={[styles.rowName, locked && styles.rowNameLocked]}>
+                            {node.name}
+                          </Text>
+                          <Text style={styles.rowDifficulty}>{node.difficulty}</Text>
+                        </View>
+                        <Text style={[styles.rowState, styles[`rowState_${node.state}`]]}>
+                          {STATE_LABEL[node.state]}
+                        </Text>
+                      </Pressable>
+                    );
+                  })}
             </FadeInUp>
           </Container>
         </ScrollView>
@@ -166,7 +190,8 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   back: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(2) },
   // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
   // inset moves to the wrapper instead of vanishing with it.
@@ -213,6 +238,7 @@ const styles = StyleSheet.create({
     ...elevation(1),
   },
   rowLocked: { opacity: 0.5 },
+  skeletonSub: { marginTop: 6 },
   rowBody: { flex: 1 },
   rowName: { ...type.body, color: colors.brand },
   rowNameLocked: { color: colors.textMuted },

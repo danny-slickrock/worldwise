@@ -26,6 +26,8 @@ import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
 import GlobeMap from "./GlobeMap";
 import BasemapToggle from "./BasemapToggle";
+import CompassMark from "./CompassMark";
+import AnimatedNumber from "./AnimatedNumber";
 import { locatorView } from "../game/locatorRound";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
@@ -262,13 +264,28 @@ export default function QuizScreen({
         <Container>
           <FadeInUp>
             <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
+              {/* The instrument, oversized and bleeding off the corner — the
+                  same brand-in-use treatment as Home's Daily card and the level
+                  card on Achievements, so a "you finished something" surface is
+                  recognisable across the app. Brass on the mode's own accent,
+                  which stays the card's colour: one warm accent per screen. */}
+              <CompassMark size={150} tone="brass" style={styles.resultMark} />
               <Text style={styles.resultKicker}>{meta.title}</Text>
               <Text style={styles.resultScore}>
                 {score}/{questions.length}
               </Text>
               <Text style={styles.resultPct}>{pct}% correct</Text>
               <View style={styles.xpPill}>
-                <Text style={styles.xpPillText}>+{xp} XP</Text>
+                {/* The one place a number counts up from zero. Everywhere else
+                    AnimatedNumber refuses to animate its first value, because a
+                    total that merely happens to be on screen shouldn't roll —
+                    but arriving at this number is the reward the round is for. */}
+                <AnimatedNumber
+                  from={0}
+                  value={xp}
+                  format={(n) => `+${n} XP`}
+                  style={styles.xpPillText}
+                />
               </View>
             </View>
           </FadeInUp>
@@ -564,7 +581,9 @@ export default function QuizScreen({
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre), and
+  // it is drawn in focus mode too.
+  wrap: { flex: 1, backgroundColor: "transparent" },
   // Constrained like the question body, so the progress bar tracks the column
   // instead of stretching the full width of a desktop window above it.
   topBar: {
@@ -726,7 +745,7 @@ const styles = StyleSheet.create({
   },
   nextBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
 
-  resultWrap: { flex: 1, backgroundColor: colors.surface },
+  resultWrap: { flex: 1, backgroundColor: "transparent" },
   resultContent: { alignItems: "center", padding: spacing(5), paddingBottom: spacing(12) },
   // The score sits on the mode's accent as one solid slab — the payoff moment
   // gets the loudest surface in the app.
@@ -736,6 +755,8 @@ const styles = StyleSheet.create({
     borderRadius: radius.sheet,
     paddingVertical: spacing(7),
     marginBottom: spacing(7),
+    // Clips the oversized mark to the card.
+    overflow: "hidden",
     ...elevation(2),
   },
   resultKicker: {
@@ -748,6 +769,7 @@ const styles = StyleSheet.create({
   },
   resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
   resultPct: { ...type.h3, color: colors.onFill, opacity: 0.75, marginBottom: spacing(4) },
+  resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
   xpPill: {
     backgroundColor: colors.brandDeep,
     borderRadius: radius.pill,

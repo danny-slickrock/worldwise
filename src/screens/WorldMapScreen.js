@@ -21,6 +21,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp from "../components/FadeInUp";
+import Material from "../components/Material";
 import GlobeMap from "../components/GlobeMap";
 import BasemapToggle from "../components/BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
@@ -179,6 +180,9 @@ export default function WorldMapScreen({
 
       <FadeInUp index={1} rise={0} style={styles.mapOuter}>
         <View style={styles.mapWrap} {...surfaceProps}>
+          {/* Pine grain behind the globe, same as the Home card: the dark stage
+              is a wall in the cartography room rather than a flat pine fill. */}
+          <Material name="pineGrain" />
           {/* No wrapping transform: the globe applies zoom to its own radius,
               which is what keeps borders a constant thickness on screen. */}
           <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} basemap={basemap} />
@@ -219,7 +223,8 @@ export default function WorldMapScreen({
 export { REGION_TARGETS, clampSpin };
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   // Chrome tracks the reading column; the map below gets the wider media cap.
   back: {
     ...constrain.content,

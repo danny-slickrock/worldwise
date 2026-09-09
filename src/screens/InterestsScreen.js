@@ -70,7 +70,8 @@ export default function InterestsScreen({
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: colors.surface },
+  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+  wrap: { flex: 1, backgroundColor: "transparent" },
   content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
   kicker: { ...type.eyebrow, fontSize: 12 },
   title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
