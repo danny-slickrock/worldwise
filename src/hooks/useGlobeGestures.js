@@ -17,7 +17,6 @@
 // The math is all pure and already tested: globeMotion.js for spin/wrap/clamp
 // and momentum, mapZoom.js for the zoom scalars. Nothing here decides anything;
 // it wires input events into those functions and holds the result as state.
-/* global requestAnimationFrame, window */
 import { useEffect, useRef, useState } from "react";
 import { PanResponder, Platform, Animated } from "react-native";
 import {
