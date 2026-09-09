@@ -9,10 +9,17 @@
 //   relatedGameModes       →  related_game_modes
 //   noOutline              →  has_outline   (inverted)
 //   hasFullContent         →  (derived — see below)
+//   hero                   →  content.country_media (embedded; approved rows only)
 //
 // Both directions live here because both are needed: page→row seeds Postgres
 // from the bundled JSON (scripts/seed-content.mjs), row→page renders a fetched
 // country. Keeping them adjacent is what makes a round-trip test meaningful.
+//
+// `hero` is the one asymmetric field: it comes from a *different table*
+// (content.country_media, embedded into the countries select by the fetch
+// layer), so it is read here but never written back — seeding a country and
+// ingesting its photo are separate pipelines on purpose.
+import { heroFromMediaRows } from "./mediaPolicy";
 
 // Game modes suggested when a row carries none. Mirrors the bundled default in
 // data/countryPages.js so a fetched page and a bundled page agree.
@@ -77,6 +84,11 @@ export function pageFromCountryRow(row) {
     // The column is positive, the page flag is negative. A null column (older
     // row, pre-default) is treated as "has an outline" — the common case.
     noOutline: row.has_outline === false,
+    // The approved hero photo, if this country has one. Null is the normal
+    // case — the bundled baseline never carries a photo, and a country whose
+    // draft hasn't been reviewed yet reads as null too, because RLS hides
+    // pending rows from the app entirely.
+    hero: heroFromMediaRows(row.country_media),
   };
 }
 

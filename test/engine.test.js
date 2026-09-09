@@ -28,6 +28,24 @@ import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/gam
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
 import {
+  HERO_KIND,
+  commonsFileTitle,
+  commonsSourceUrl,
+  stripCommonsHtml,
+  attributionFromExtMetadata,
+  storageObjectPath,
+  extensionFor,
+  contentTypeFor,
+  storagePublicUrl,
+  mediaRowFromCommons,
+  isPublishable,
+  formatPhotoCredit,
+  heroFromMediaRows,
+  imageVariantUrl,
+  heroImageWidth,
+  IMAGE_WIDTH_LADDER,
+} from "../src/game/mediaPolicy";
+import {
   contentCacheKey,
   cacheEntry,
   parseCacheEntry,
@@ -3163,6 +3181,164 @@ check(formatMetric(null, popMetric) === "—", "a missing value renders as a das
 check(MODES.higherLower != null, "the mode is registered");
 check(MODES.higherLower.accent != null, "...with an accent, so Home renders its tile");
 check(HIGHER_LOWER_METRICS.length >= 3, "population, area and borders are all offered");
+
+
+// ---------------------------------------------------------------------------
+// Country photos — the pure half of the Wikidata/Commons → Storage → page
+// pipeline (src/game/mediaPolicy.js, docs/adr/0002-country-photos.md).
+//
+// This module is imported by BOTH ends: the Node ingest script that writes
+// content.country_media rows, and the app that renders them. The network and
+// Storage IO around it is faked here — a real Commons imageinfo response, run
+// through the same functions the script uses — so the row shape and the credit
+// line are asserted without touching either service.
+// ---------------------------------------------------------------------------
+console.log("\nCountry photos — sourcing, licensing, display");
+
+// A Wikidata P18 claim is a Special:FilePath URL, not a file title.
+check(
+  commonsFileTitle("http://commons.wikimedia.org/wiki/Special:FilePath/Rio%20de%20Janeiro.jpg") ===
+    "File:Rio de Janeiro.jpg",
+  "a P18 FilePath URL becomes a Commons file title"
+);
+check(
+  commonsFileTitle("http://commons.wikimedia.org/wiki/Special:FilePath/Mount_Fuji.jpg") ===
+    "File:Mount Fuji.jpg",
+  "...with underscores normalised to spaces"
+);
+check(commonsFileTitle("File:Already a title.jpg") === "File:Already a title.jpg", "an existing title passes through");
+check(commonsFileTitle(null) === null, "a missing claim is skipped, not turned into a bad fetch");
+check(commonsFileTitle("https://example.com/photo.jpg") === null, "a non-Commons URL is skipped");
+check(
+  commonsSourceUrl("File:Rio de Janeiro.jpg") ===
+    "https://commons.wikimedia.org/wiki/File%3ARio_de_Janeiro.jpg",
+  "the source URL points at the file description page a reviewer can check"
+);
+
+// extmetadata.Artist is HTML — often a link, sometimes a whole vCard.
+check(
+  stripCommonsHtml('<a href="//commons.wikimedia.org/wiki/User:Foo" title="User:Foo">Jane&nbsp;Doe</a>') ===
+    "Jane Doe",
+  "an HTML author credit is reduced to plain text"
+);
+check(stripCommonsHtml("  spaced   out  ") === "spaced out", "whitespace is collapsed");
+check(stripCommonsHtml("<span></span>") === null, "markup with no text reads as no author");
+check(stripCommonsHtml(undefined) === null, "a missing field reads as no author");
+
+const extmeta = {
+  Artist: { value: '<a href="//commons.wikimedia.org/wiki/User:AB">A. Botanist</a>' },
+  LicenseShortName: { value: "CC BY-SA 4.0" },
+  LicenseUrl: { value: "https://creativecommons.org/licenses/by-sa/4.0" },
+};
+const attribution = attributionFromExtMetadata(extmeta);
+check(attribution.author === "A. Botanist", "the author comes out of extmetadata");
+check(attribution.license === "CC BY-SA 4.0", "...and the human-readable licence name");
+check(attribution.licenseUrl.includes("creativecommons.org"), "...and the licence URL");
+check(
+  attributionFromExtMetadata({ License: { value: "cc-by-4.0" } }).license === "CC BY 4.0",
+  "the machine slug is the fallback, upper-cased — a caption reading 'cc-by-4.0' looks like a bug"
+);
+check(attributionFromExtMetadata(null).author === null, "a missing extmetadata blob yields nulls, not a throw");
+
+// Storage keys are derived, not random: that is what makes a re-run overwrite
+// one object instead of accumulating a new one per run.
+check(storageObjectPath("br", "https://upload.wikimedia.org/x/1600px-Rio.jpg") === "hero/br.jpg", "the object key is stable per country");
+check(storageObjectPath("is", "https://upload.wikimedia.org/x/1600px-Foo.PNG") === "hero/is.png", "the extension follows the source, not an assumption");
+check(extensionFor("https://x/y.svg") === "jpg", "an unsupported extension falls back rather than storing something we can't serve");
+check(contentTypeFor("https://x/y.png") === "image/png", "...and the Content-Type follows the extension");
+check(storageObjectPath("BR", "x.jpg") === null, "a non-ISO code yields no path");
+check(
+  storagePublicUrl("https://abc.supabase.co/", "country-media", "hero/br.jpg") ===
+    "https://abc.supabase.co/storage/v1/object/public/country-media/hero/br.jpg",
+  "the public object URL is built once, here"
+);
+
+// The row the ingest script writes. Faked Commons response in, row out.
+const fakeImageInfo = {
+  thumburl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Rio.jpg/1600px-Rio.jpg",
+  thumbwidth: 1600,
+  thumbheight: 1067,
+  extmetadata: extmeta,
+};
+const fakeTitle = commonsFileTitle("http://commons.wikimedia.org/wiki/Special:FilePath/Rio.jpg");
+const fakeAttr = attributionFromExtMetadata(fakeImageInfo.extmetadata);
+const draftRow = mediaRowFromCommons({
+  code: "br",
+  url: storagePublicUrl("https://abc.supabase.co", "country-media", storageObjectPath("br", fakeImageInfo.thumburl)),
+  storagePath: storageObjectPath("br", fakeImageInfo.thumburl),
+  sourceUrl: commonsSourceUrl(fakeTitle),
+  author: fakeAttr.author,
+  license: fakeAttr.license,
+  licenseUrl: fakeAttr.licenseUrl,
+  width: fakeImageInfo.thumbwidth,
+  height: fakeImageInfo.thumbheight,
+});
+check(draftRow.status === "pending", "an ingested row is ALWAYS a draft — this is the review gate");
+check(draftRow.kind === HERO_KIND, "...of kind 'hero'");
+check(draftRow.url.includes("/storage/v1/object/public/"), "...pointing at our Storage, never at Wikimedia");
+check(draftRow.source_url.includes("commons.wikimedia.org"), "...while still recording where it came from");
+check(draftRow.width === 1600 && draftRow.height === 1067, "...with its real dimensions");
+check(mediaRowFromCommons({ code: "br", url: "u", width: "0" }).width === null, "a zero dimension stores as null, not 0");
+
+// The licensing gate. CC BY / BY-SA both require attribution, so an image we
+// cannot credit is a licensing failure and must never be publishable.
+check(isPublishable(draftRow), "a fully credited image can be approved");
+check(!isPublishable({ ...draftRow, author: null }), "an uncreditable image can never be approved");
+check(!isPublishable({ ...draftRow, license: "  " }), "...nor one with no named licence");
+check(!isPublishable({ ...draftRow, url: null }), "...nor one with no image");
+check(!isPublishable(null), "...and a missing row is not publishable");
+
+// One wording, one place — the same discipline as theme.js's onFill().
+check(
+  formatPhotoCredit(draftRow) === "Photo: A. Botanist / Wikimedia (CC BY-SA 4.0)",
+  "the credit line names the author and the licence"
+);
+check(formatPhotoCredit({ license: "Public domain" }) === "Photo: Wikimedia (Public domain)", "an anonymous public-domain image still credits its source");
+check(formatPhotoCredit({}) === null, "nothing creditable renders no caption");
+
+// Row → page. RLS already hides pending rows from the app, but the same
+// function runs against a service-role read in the review script, where
+// everything is visible — so status is checked here too.
+const approvedRow = { ...draftRow, kind: "hero", status: "approved", license_url: draftRow.license_url, source_url: draftRow.source_url };
+const hero = heroFromMediaRows([approvedRow]);
+check(hero?.url === draftRow.url, "an approved hero row becomes the page's hero");
+check(hero.credit === "Photo: A. Botanist / Wikimedia (CC BY-SA 4.0)", "...carrying its pre-composed credit");
+check(hero.licenseUrl === extmeta.LicenseUrl.value, "...and its licence link");
+check(heroFromMediaRows([draftRow]) === null, "a PENDING row never becomes a hero");
+check(heroFromMediaRows([{ ...approvedRow, kind: "landmark" }]) === null, "a landmark is not a hero");
+check(heroFromMediaRows([]) === null, "no media reads as no hero");
+check(heroFromMediaRows(undefined) === null, "...and so does a missing embed");
+
+// The country page renders the hero through pageFromCountryRow, so the embed
+// has to survive that mapping.
+const rowWithMedia = {
+  code: "br",
+  name: "Brazil",
+  has_outline: true,
+  country_media: [approvedRow],
+};
+check(pageFromCountryRow(rowWithMedia).hero?.url === draftRow.url, "a fetched country row carries its hero photo onto the page");
+check(pageFromCountryRow({ code: "br", name: "Brazil" }).hero === null, "a country with no media has no hero — and the page must render anyway");
+check(
+  countryRowFromPage(pageFromCountryRow(rowWithMedia)).hero === undefined,
+  "hero is read-only: seeding a country never writes back into country_media"
+);
+
+// Storage transforms are an optimisation with a fallback, never a dependency —
+// image transformation is a Pro-plan feature.
+const variant = imageVariantUrl(draftRow.url, { width: 960 });
+check(variant.includes("/storage/v1/render/image/public/"), "a variant URL uses the render endpoint");
+check(variant.includes("width=960") && variant.includes("resize=cover"), "...at the requested width, cropped the way the layout crops");
+check(imageVariantUrl("https://example.com/x.jpg", { width: 960 }) === "https://example.com/x.jpg", "a non-Storage URL is returned untouched rather than rewritten into a 404");
+check(imageVariantUrl(draftRow.url, {}) === draftRow.url, "no width means no transform");
+check(imageVariantUrl(null) === null, "a missing URL doesn't throw");
+
+// Widths snap to a ladder: a continuous width would mint a new CDN cache entry
+// per viewport, which is slower for everyone and free for no one.
+check(IMAGE_WIDTH_LADDER.every((w, i, a) => i === 0 || w > a[i - 1]), "the width ladder ascends");
+check(heroImageWidth(320, 2) === 640, "a 320pt box at 2x asks for 640px");
+check(heroImageWidth(680, 2) === IMAGE_WIDTH_LADDER[IMAGE_WIDTH_LADDER.length - 1], "an oversized request is capped at the stored width");
+check(heroImageWidth(0) === IMAGE_WIDTH_LADDER[0], "an unmeasured box asks for the smallest rung, not NaN");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

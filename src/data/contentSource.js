@@ -18,6 +18,7 @@ import {
   contentCacheKey,
   resolveCountryContent,
 } from "../game/contentPolicy";
+import { HERO_KIND } from "../game/mediaPolicy";
 
 // content.* is a separate schema from the user domain, so every query goes
 // through .schema() — and the schema must also be listed under the project's
@@ -26,9 +27,21 @@ const CONTENT_SCHEMA = "content";
 
 // Named explicitly rather than select("*") so a column added later can't start
 // silently inflating every country fetch.
-const COUNTRY_COLUMNS =
+//
+// The trailing country_media(...) is a PostgREST resource embed over the
+// country_code foreign key: the hero photo arrives on the SAME request and
+// therefore in the SAME cache entry as the country, so a cached page can never
+// hold a country from one version and a photo from another. Pending drafts are
+// not filtered out here — RLS refuses to return them at all (see the
+// country-media review migration), which is the whole review gate.
+const COUNTRY_MEDIA_COLUMNS =
+  "kind, url, author, license, license_url, source_url, width, height, status";
+
+const COUNTRY_COLUMNS_NO_MEDIA =
   "code, name, capital, region, difficulty, summary, population, area_km2, " +
   "lat, lng, has_outline, neighbors, related_game_modes, facts";
+
+const COUNTRY_COLUMNS = `${COUNTRY_COLUMNS_NO_MEDIA}, country_media(${COUNTRY_MEDIA_COLUMNS})`;
 
 // The content version is process-wide, not per country: one read serves every
 // country page opened this session. Memoized as a promise so concurrent opens
@@ -70,6 +83,33 @@ async function fetchCountryRow(code, client) {
       .schema(CONTENT_SCHEMA)
       .from("countries")
       .select(COUNTRY_COLUMNS)
+      .eq("code", code)
+      // Filters the EMBEDDED table, not the outer one: a country with no hero
+      // still comes back, just with an empty country_media array.
+      .eq("country_media.kind", HERO_KIND)
+      .maybeSingle();
+    if (error) {
+      // The embed is the one part of this select that can fail for a reason a
+      // fresh deploy would hit — the country-media migration not applied yet.
+      // Retry without it rather than dropping the whole country to the bundled
+      // baseline over a missing photo.
+      return fetchCountryRowWithoutMedia(code, client);
+    }
+    return data;
+  } catch {
+    return null;
+  }
+}
+
+// The country half alone, for when the media embed is unavailable (the
+// migration hasn't been applied to this project yet). The page then renders
+// exactly as it did before photos existed.
+async function fetchCountryRowWithoutMedia(code, client) {
+  try {
+    const { data, error } = await client
+      .schema(CONTENT_SCHEMA)
+      .from("countries")
+      .select(COUNTRY_COLUMNS_NO_MEDIA)
       .eq("code", code)
       .maybeSingle();
     if (error) return null;
