@@ -1,7 +1,15 @@
 /* global setTimeout, clearTimeout */
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Platform } from "react-native";
-import Svg, { Circle, Path, Text as SvgText, Defs, RadialGradient, Stop } from "react-native-svg";
+import Svg, {
+  Circle,
+  Path,
+  Rect,
+  Text as SvgText,
+  Defs,
+  RadialGradient,
+  Stop,
+} from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
 import { colors, map, fonts } from "../theme";
@@ -17,6 +25,7 @@ import {
 } from "../game/globeProjection";
 import { angleBetween } from "../game/globeMotion";
 import { locatorFillState, nonOverlappingRadius, needsMarker } from "../game/locatorRound";
+import { tooltipBox, placeTooltip } from "../game/mapLabels";
 import {
   GLOBE_VIEW_SIZE,
   GLOBE_BASE_RADIUS,
@@ -35,6 +44,10 @@ import {
   GLOBE_ATMOSPHERE_RIM_OPACITY,
   MAP_TAP_LABEL_DELAY_MS,
   MAP_TAP_LABEL_FONT_SIZE,
+  GLOBE_TOOLTIP_FONT_SIZE,
+  GLOBE_TOOLTIP_PAD_X,
+  GLOBE_TOOLTIP_PAD_Y,
+  GLOBE_TOOLTIP_GAP,
 } from "../constants";
 
 // The globe (M2.3.7) — the Explore surface's replacement for the flat
@@ -84,7 +97,10 @@ for (const code of GLOBE_COUNTRY_CODES) {
   for (const ring of COUNTRY_RINGS[code]) {
     for (let i = 0; i < ring.length; i += 3) {
       widest = Math.max(widest, angleBetween(center, [ring[i], ring[i + 1], ring[i + 2]]));
-      if (widest > GLOBE_SMALL_COUNTRY_MAX_DEGREES) { tooBig = true; break; }
+      if (widest > GLOBE_SMALL_COUNTRY_MAX_DEGREES) {
+        tooBig = true;
+        break;
+      }
     }
     if (tooBig) break;
   }
@@ -213,6 +229,24 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
       ? nonOverlappingRadius(centers[code], candidateCenters, GLOBE_LOCATOR_HIT_RADIUS)
       : GLOBE_SMALL_HIT_RADIUS;
 
+  // Hover tooltip: name the country under the pointer before committing to a
+  // tap. Explore only — NEVER in locator mode, where hovering the candidates
+  // would hand over the answer, which is also why `interactive()` withholds
+  // hover handlers from non-candidates there.
+  //
+  // Pointer-only by nature. HOVER_HANDLERS_SUPPORTED is already false off web,
+  // so on touch nothing sets hoveredCode and this is simply never built; the
+  // tap label remains the only naming affordance there.
+  const tooltip = (() => {
+    if (isLocator || !hoveredCode) return null;
+    const center = centers[hoveredCode];
+    if (!center) return null;
+    const name = countryName(hoveredCode);
+    if (!name) return null;
+    const box = tooltipBox(name, GLOBE_TOOLTIP_FONT_SIZE, GLOBE_TOOLTIP_PAD_X, GLOBE_TOOLTIP_PAD_Y);
+    const placed = placeTooltip(center, box, GLOBE_VIEW_SIZE, GLOBE_TOOLTIP_GAP);
+    return placed ? { ...placed, name } : null;
+  })();
 
   return (
     <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
@@ -223,7 +257,11 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
             a wash, and no hard cutoff for the outer circle to reveal. */}
         <RadialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
           <Stop offset="0%" stopColor={map.related} stopOpacity={0} />
-          <Stop offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`} stopColor={map.related} stopOpacity={0} />
+          <Stop
+            offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`}
+            stopColor={map.related}
+            stopOpacity={0}
+          />
           <Stop
             offset={`${(atmosphere.peakFrac * 100).toFixed(2)}%`}
             stopColor={map.related}
@@ -253,7 +291,13 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
           open ocean — exactly like a country's own coastline would occlude
           it, with no extra clipping logic needed. */}
       {graticuleD.map((d, i) => (
-        <Path key={`grid-${i}`} d={d} fill="none" stroke={map.graticule} strokeWidth={GLOBE_GRATICULE_WIDTH} />
+        <Path
+          key={`grid-${i}`}
+          d={d}
+          fill="none"
+          stroke={map.graticule}
+          strokeWidth={GLOBE_GRATICULE_WIDTH}
+        />
       ))}
 
       {paths.map(([code, d]) => (
@@ -312,7 +356,10 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
             fill="transparent"
             {...pickHandler(code, handleTap)}
             {...(HOVER_HANDLERS_SUPPORTED
-              ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
+              ? {
+                  onMouseEnter: () => setHoveredCode(code),
+                  onMouseLeave: () => setHoveredCode(null),
+                }
               : null)}
           />
         ) : null
@@ -350,6 +397,39 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
         >
           {countryName(tapped)}
         </SvgText>
+      )}
+
+      {/* Hover tooltip, drawn above everything including the tap label — it
+          follows the pointer, so anything it slipped under would flicker.
+          pointerEvents none throughout: a chip that intercepted the pointer
+          would un-hover the country the moment it appeared, then re-hover it,
+          forever. */}
+      {tooltip && (
+        <>
+          <Rect
+            x={tooltip.x}
+            y={tooltip.y}
+            width={tooltip.width}
+            height={tooltip.height}
+            rx={tooltip.height / 2}
+            fill={map.ocean}
+            fillOpacity={0.92}
+            stroke={map.border}
+            strokeWidth={0.5}
+            pointerEvents="none"
+          />
+          <SvgText
+            x={tooltip.textX}
+            y={tooltip.textY}
+            textAnchor="middle"
+            fontSize={GLOBE_TOOLTIP_FONT_SIZE}
+            fontFamily={fonts.monoMedium}
+            fill={map.onMap}
+            pointerEvents="none"
+          >
+            {tooltip.name}
+          </SvgText>
+        </>
       )}
     </Svg>
   );

@@ -57,6 +57,14 @@ export const MAP_SMALL_HIT_RADIUS = 5;
 // size.
 export const MAP_TAP_LABEL_DELAY_MS = 380;
 export const MAP_TAP_LABEL_FONT_SIZE = 7;
+// Hover tooltip on the Explore globe. Sized in viewBox units like everything
+// else the globe draws, so it stays the same on-screen size at any zoom.
+export const GLOBE_TOOLTIP_FONT_SIZE = 7;
+export const GLOBE_TOOLTIP_PAD_X = 4;
+export const GLOBE_TOOLTIP_PAD_Y = 2.5;
+// How far above the country's center the chip floats. Enough to clear the
+// shape being named without detaching from it.
+export const GLOBE_TOOLTIP_GAP = 7;
 
 // World Map screen (M2.3 step 5.3): how long a region-pill jump (or the
 // return to the full World view) takes to animate, instead of cutting

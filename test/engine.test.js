@@ -27,6 +27,7 @@ import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan, le
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
+import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
 import {
   HERO_KIND,
   commonsFileTitle,
@@ -3339,6 +3340,47 @@ check(IMAGE_WIDTH_LADDER.every((w, i, a) => i === 0 || w > a[i - 1]), "the width
 check(heroImageWidth(320, 2) === 640, "a 320pt box at 2x asks for 640px");
 check(heroImageWidth(680, 2) === IMAGE_WIDTH_LADDER[IMAGE_WIDTH_LADDER.length - 1], "an oversized request is capped at the stored width");
 check(heroImageWidth(0) === IMAGE_WIDTH_LADDER[0], "an unmeasured box asks for the smallest rung, not NaN");
+
+
+// ---------------------------------------------------------------------------
+// Globe hover tooltip placement (src/game/mapLabels.js). The globe draws into a
+// fixed square viewBox, so a label's box and position are pure arithmetic — and
+// the two ways this looks like a bug (a chip half off the canvas, or a chip
+// covering the country it names) are exactly what the clamp and the gap exist
+// to prevent.
+// ---------------------------------------------------------------------------
+console.log("\nGlobe labels");
+
+const VIEW = 400;
+check(monoTextWidth("Chad", 10) === 4 * 10 * MONO_ADVANCE_RATIO, "monospaced width is computable, not measurable");
+check(monoTextWidth("", 10) === 0, "empty text has no width");
+check(monoTextWidth("Chad", 0) === 0, "a zero font size has no width");
+check(monoTextWidth(null, 10) === 0, "a missing name doesn't throw");
+
+const box = tooltipBox("Chad", 10, 4, 2);
+check(box.width === monoTextWidth("Chad", 10) + 8, "the chip adds horizontal padding on both sides");
+check(box.height === 14, "...and vertical padding above and below");
+
+// Middle of the canvas: straightforward, above the point, horizontally centred.
+const mid = placeTooltip([200, 200], box, VIEW, 6);
+check(mid.y + box.height <= 200 - 6 + 0.001, "the chip sits ABOVE the point it names, never on it");
+check(Math.abs(mid.textX - 200) < 0.001, "...centred on it horizontally");
+check(mid.textY > mid.y && mid.textY < mid.y + box.height, "the text baseline sits inside its own chip");
+
+// The limb is most of the globe — a sphere foreshortens hard toward its edge —
+// so off-canvas clamping is the common case, not the corner case.
+const left = placeTooltip([2, 200], box, VIEW, 6);
+check(left.x >= 0, "a chip near the left limb is clamped onto the canvas");
+const right = placeTooltip([398, 200], box, VIEW, 6);
+check(right.x + right.width <= VIEW + 0.001, "...and so is one near the right limb");
+
+// No room above: flip below rather than sliding down over the country.
+const top = placeTooltip([200, 3], box, VIEW, 6);
+check(top.y >= 3 + 6 - 0.001, "with no room above, the chip flips BELOW the point");
+check(top.y + top.height <= VIEW + 0.001, "...still inside the canvas");
+
+check(placeTooltip(null, box, VIEW) === null, "no center means no tooltip");
+check(placeTooltip([NaN, 10], box, VIEW) === null, "a country projected to NaN names nothing");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on
