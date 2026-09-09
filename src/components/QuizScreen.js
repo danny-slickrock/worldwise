@@ -10,7 +10,7 @@ import {
   Animated,
   Easing,
 } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion, map } from "../theme";
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily } from "../game/questions";
@@ -25,6 +25,7 @@ import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
 import GlobeMap from "./GlobeMap";
 import { locatorView } from "../game/locatorRound";
+import useGlobeGestures from "../hooks/useGlobeGestures";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
@@ -72,17 +73,45 @@ export default function QuizScreen({
   const q = questions[idx];
   const answered = picked !== null;
 
-  // Where the globe sits for a locator question. Recomputed per question, not
+  // Where the globe STARTS for a locator question. Recomputed per question, not
   // per render: the framing is a property of the round, and recomputing it on
   // every tap would snap the globe back and undo any spinning the player did
   // while thinking.
   const locatorFraming = useMemo(
     () =>
       q?.type === "locator"
-        ? locatorView(q.choices.map((c) => c.code), COUNTRY_CENTERS)
+        ? locatorView(
+            q.choices.map((c) => c.code),
+            COUNTRY_CENTERS
+          )
         : { spin: { lng: 0, lat: 0 }, zoom: 1 },
     [q]
   );
+
+  // The locator's globe is a real globe: drag to spin, pinch/scroll to zoom,
+  // flick to coast — the same gesture layer the Explore map uses, which is the
+  // whole reason it was extracted into a hook. Until then this screen passed
+  // two constants and the "globe" was a still photograph you could tap.
+  //
+  // The hook is created unconditionally because hooks cannot be conditional;
+  // on a non-locator question it simply holds a view nothing renders.
+  const globe = useGlobeGestures({
+    initialSpin: locatorFraming.spin,
+    initialZoom: locatorFraming.zoom,
+    onManualChange: () => setGlobeMoved(true),
+  });
+  const [globeMoved, setGlobeMoved] = useState(false);
+
+  // A new question means new candidates, so the globe snaps to their framing.
+  // snapTo, not animateTo: the question has already changed on screen, and a
+  // globe still gliding toward the new framing while the prompt reads the new
+  // country invites answering against the old view.
+  const { snapTo: snapGlobe } = globe;
+  useEffect(() => {
+    if (q?.type !== "locator") return;
+    snapGlobe(locatorFraming.zoom, locatorFraming.spin);
+    setGlobeMoved(false);
+  }, [q, locatorFraming, snapGlobe]);
 
   // Animated progress-bar fill, a gentle fade/rise-in per question, and a
   // small pulse on the option the player just tapped.
@@ -330,6 +359,9 @@ export default function QuizScreen({
               {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
             </Text>
             <Text style={styles.prompt}>{q.prompt}</Text>
+            {mode === "locator" && (
+              <Text style={styles.mapHint}>Drag to spin · pinch or scroll to zoom</Text>
+            )}
 
             {/* Country Locator: the globe is both prompt media and answer
                 surface (M2.3.7 step 2). It opens framed on this question's
@@ -337,10 +369,10 @@ export default function QuizScreen({
                 give the answer away, since all of them are visible — and the
                 player can still spin freely from there. */}
             {mode === "locator" ? (
-              <View style={styles.mapBox}>
+              <View style={styles.mapBox} {...globe.surfaceProps}>
                 <GlobeMap
-                  spin={locatorFraming.spin}
-                  zoom={locatorFraming.zoom}
+                  spin={globe.spin}
+                  zoom={globe.zoom}
                   onSelect={choose}
                   locator={{
                     choices: q.choices,
@@ -349,6 +381,19 @@ export default function QuizScreen({
                     answered,
                   }}
                 />
+                {/* Spinning far enough can carry every candidate onto the back
+                    face, which would leave the question unanswerable with no
+                    way back. Only shown once the player has actually moved the
+                    globe, so it isn't a control sitting there doing nothing. */}
+                {globeMoved && (
+                  <Pressable
+                    onPress={() => globe.animateTo(locatorFraming.zoom, locatorFraming.spin)}
+                    hitSlop={8}
+                    style={styles.recenterPill}
+                  >
+                    <Text style={styles.recenterText}>Recenter</Text>
+                  </Pressable>
+                )}
               </View>
             ) : (
               <>
@@ -567,6 +612,19 @@ const styles = StyleSheet.create({
     marginBottom: spacing(4),
     ...elevation(2),
   },
+  mapHint: { ...type.caption, fontSize: 12, marginBottom: spacing(3) },
+  // Sits on the dark globe stage, so it takes the map's own on-dark tokens
+  // rather than the page's ink.
+  recenterPill: {
+    position: "absolute",
+    right: spacing(3),
+    bottom: spacing(3),
+    backgroundColor: "rgba(22,41,63,0.82)",
+    borderRadius: radius.pill,
+    paddingVertical: spacing(2),
+    paddingHorizontal: spacing(3.5),
+  },
+  recenterText: { ...type.label, fontSize: 12, color: map.onMap },
   // The accent border is applied per-mode at the call site, which restates
   // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
   // flatten this depth edge back to the accent.
