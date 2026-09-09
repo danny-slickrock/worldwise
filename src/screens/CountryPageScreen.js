@@ -118,7 +118,6 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
 
   const facts = page.facts ?? {};
   const factRows = topicsPresent(facts);
-  const relatedModes = (page.relatedGameModes ?? []).filter((m) => MODES[m]);
 
   return (
     <Animated.View style={[styles.wrap, screenStyle]}>
@@ -236,26 +235,29 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
             </FadeInUp>
           )}
 
-          {/* Related games */}
-          {relatedModes.length > 0 && onPlay && (
+          {/* Play with this country.
+              This was a row of mode buttons that started an ordinary round of
+              that mode — in which this country was not even guaranteed to come
+              up. You could tap "Play with Brazil" and be asked about Latvia.
+              One button now, and it means what it says: a mixed round built
+              entirely from this place (game/countryRound.js). The individual
+              modes are still on Home, where a generic round belongs. */}
+          {onPlay && (
             <FadeInUp rise={0} index={6}>
-              <Text style={styles.section}>Play with {page.name}</Text>
-              <View style={styles.gameWrap}>
-                {relatedModes.map((m) => {
-                  const meta = MODES[m];
-                  return (
-                    <Pressable
-                      key={m}
-                      onPress={() => onPlay(m)}
-                      hitSlop={8}
-                      style={[styles.gameBtn, { backgroundColor: meta.accent }]}
-                    >
-                      <Text style={styles.gameIcon}>{meta.icon}</Text>
-                      <Text style={styles.gameBtnText}>{meta.title}</Text>
-                    </Pressable>
-                  );
-                })}
-              </View>
+              <Text style={styles.section}>Play</Text>
+              <Pressable
+                onPress={onPlay}
+                hitSlop={8}
+                style={[styles.gameBtn, { backgroundColor: MODES.country.accent }]}
+              >
+                <Text style={styles.gameIcon}>{MODES.country.icon}</Text>
+                <View>
+                  <Text style={styles.gameBtnText}>Play with {page.name}</Text>
+                  <Text style={styles.gameBtnSub}>
+                    Its borders, its people, its place on the map
+                  </Text>
+                </View>
+              </Pressable>
             </FadeInUp>
           )}
         </Container>
@@ -377,7 +379,6 @@ const styles = StyleSheet.create({
   },
   chipText: { ...type.label, color: colors.text },
 
-  gameWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(3) },
   // Filled with the mode's accent rather than outlined in it: on the dark base a
   // 1.5px tinted border is too faint to read as a button.
   gameBtn: {
@@ -391,6 +392,7 @@ const styles = StyleSheet.create({
   },
   gameIcon: { fontSize: 18, color: colors.onFill },
   gameBtnText: { ...type.body, color: colors.onFill },
+  gameBtnSub: { ...type.caption, fontSize: 12, color: "rgba(255,255,255,0.78)", marginTop: 2 },
 
   empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
   emptyText: { ...type.caption },

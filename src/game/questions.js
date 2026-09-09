@@ -1,11 +1,20 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
 import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
-import { ROUND_LENGTH, DAILY_LENGTH, OPTIONS_PER_QUESTION, DEFAULT_DIFFICULTY, HIGHER_LOWER_METRICS } from "../constants";
+import {
+  ROUND_LENGTH,
+  DAILY_LENGTH,
+  OPTIONS_PER_QUESTION,
+  DEFAULT_DIFFICULTY,
+  HIGHER_LOWER_METRICS,
+} from "../constants";
 import { modeAccents } from "../theme";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
 import { pickCandidateCodes } from "./locatorRound";
 import { metricPool } from "../data/countryMetrics";
 import { buildHigherLowerQuestion, METRIC_BY_KEY } from "./higherLower";
+import { buildCountryFactQuestions } from "./countryRound";
+import { getCountryPage } from "../data/countryPages";
+import { countryName } from "../data/countries";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -25,8 +34,20 @@ const DISTRACTORS = OPTIONS_PER_QUESTION - 1;
 // tints. Each is checked in test/engine.test.js for the contrast its own label
 // needs: white on every fill except sand, which takes ink (see theme.onFill).
 export const MODES = {
-  flag: { key: "flag", title: "Flag Guesser", blurb: "Whose flag is this?", icon: "\u2691", accent: modeAccents.flag },
-  capital: { key: "capital", title: "Capital Quiz", blurb: "Name the capital", icon: "\u2605", accent: modeAccents.capital },
+  flag: {
+    key: "flag",
+    title: "Flag Guesser",
+    blurb: "Whose flag is this?",
+    icon: "\u2691",
+    accent: modeAccents.flag,
+  },
+  capital: {
+    key: "capital",
+    title: "Capital Quiz",
+    blurb: "Name the capital",
+    icon: "\u2605",
+    accent: modeAccents.capital,
+  },
   capitalReverse: {
     key: "capitalReverse",
     title: "Capital Quiz: Reverse",
@@ -34,8 +55,20 @@ export const MODES = {
     icon: "\u21c4",
     accent: modeAccents.capitalReverse,
   },
-  shape: { key: "shape", title: "Shape Guesser", blurb: "Identify the outline", icon: "\u25c7", accent: modeAccents.shape },
-  locator: { key: "locator", title: "Country Locator", blurb: "Find it on the map", icon: "\u2316", accent: modeAccents.locator },
+  shape: {
+    key: "shape",
+    title: "Shape Guesser",
+    blurb: "Identify the outline",
+    icon: "\u25c7",
+    accent: modeAccents.shape,
+  },
+  locator: {
+    key: "locator",
+    title: "Country Locator",
+    blurb: "Find it on the map",
+    icon: "\u2316",
+    accent: modeAccents.locator,
+  },
   higherLower: {
     key: "higherLower",
     title: "Higher or Lower",
@@ -43,7 +76,24 @@ export const MODES = {
     icon: "\u21c5",
     accent: modeAccents.higherLower,
   },
-  daily: { key: "daily", title: "Daily Challenge", blurb: "A mixed round every day", icon: "\u25c9", accent: modeAccents.daily },
+  daily: {
+    key: "daily",
+    title: "Daily Challenge",
+    blurb: "A mixed round every day",
+    icon: "\u25c9",
+    accent: modeAccents.daily,
+  },
+  // Not offered on Home: a country round is meaningless without a country, so
+  // it is only ever reached from a country page's "Play with …" button, which
+  // supplies one. MODES still carries it because QuizScreen reads its title and
+  // accent like any other mode.
+  country: {
+    key: "country",
+    title: "Country Focus",
+    blurb: "Everything about one place",
+    icon: "\u25ce",
+    accent: modeAccents.country,
+  },
 };
 
 function shuffle(arr) {
@@ -180,10 +230,57 @@ function buildHigherLowerRound(count) {
   return questions;
 }
 
+// "Play with Brazil" — a mixed round about ONE country.
+//
+// These buttons used to start an ordinary round of a single mode, in which the
+// country on the button was not even guaranteed to appear: you tapped "Play
+// with Brazil" and got asked about Latvia.
+//
+// The round mixes the three modes that already have their own media and answer
+// surfaces (flag, outline, the globe) with the fact questions built by the pure
+// countryRound.js. Those three are NOT rebuilt there: the locator's
+// neighbourhood candidate-picking is the one genuinely subtle piece in this
+// file, and forking it to ask about one country would be the kind of duplicate
+// that silently drifts.
+//
+// Deliberately shuffled and capped rather than padded. A country with thin
+// content yields a shorter round, which is better than the alternative — the
+// only way to reach eight questions about a place we know five things about is
+// to ask something twice.
+export function buildCountryRound(code, count = ROUND_LENGTH) {
+  const target = COUNTRIES.find((c) => c.code === code);
+  if (!target) return [];
+
+  const page = getCountryPage(code);
+  const questions = buildCountryFactQuestions(target, {
+    countries: COUNTRIES,
+    page: page ?? {},
+    sample,
+    shuffle,
+    optionCount: OPTIONS_PER_QUESTION,
+    nameFor: countryName,
+  });
+
+  // The media-bearing modes, each only where its asset exists — asking for the
+  // outline of a country mapsicon has no vector for, or the globe position of
+  // one Natural Earth has no polygon for, is a broken question rather than a
+  // hard one.
+  questions.push(buildOne("capital", target));
+  questions.push(buildOne("capitalReverse", target));
+  questions.push(buildOne("flag", target));
+  if (!target.noOutline && OUTLINE_COUNTRIES.some((c) => c.code === code)) {
+    questions.push(buildOne("shape", target));
+  }
+  if (LOCATOR_COUNTRIES.some((c) => c.code === code)) {
+    questions.push(buildOne("locator", target));
+  }
+
+  return shuffle(questions).slice(0, count);
+}
+
 // Build the mixed Daily Challenge, deterministic per date.
 export function buildDaily(count = DAILY_LENGTH, date = new Date()) {
-  const seed =
-    date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
+  const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
   const targets = seededPick(COUNTRIES, seed, count);
   const types = ["flag", "capital", "shape"];
   return targets.map((t, i) => {

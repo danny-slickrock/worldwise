@@ -97,6 +97,7 @@ export const modeAccents = {
   shape: "#3E5C86", // navy, tinted up — 6.8:1 against white text
   locator: "#245A67", // teal, tinted down — 7.7:1 against white text
   higherLower: "#6E4326", // earth, tinted down for white text (checked in engine.test.js)
+  country: "#2E6E7E", // teal — a country round is the world itself, not a drill
 };
 
 // Country-page topic accents. Same idea as modeAccents, same rule: no invented

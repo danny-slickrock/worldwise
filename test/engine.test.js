@@ -2,7 +2,7 @@
 // No React Native imports here, so it runs fast in plain Node via tsx.
 import { COUNTRIES, LOCATOR_COUNTRIES, countryName } from "../src/data/countries";
 import { COUNTRY_PATHS } from "../src/data/worldMap";
-import { buildRound, buildDaily, MODES } from "../src/game/questions";
+import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -29,6 +29,13 @@ import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
 import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
 import { climateBand, CLIMATE_BANDS } from "../src/game/terrainTint";
+import {
+  buildCountryFactQuestions,
+  compactNumber,
+  formatArea,
+  magnitudeDistractors,
+  borderCountDistractors,
+} from "../src/game/countryRound";
 import {
   COUNTRY_TOPICS,
   COUNTRY_TOPIC_KEYS,
@@ -3464,6 +3471,120 @@ check(present[0].key === "physical_geography", "...still in reading order, not o
 check(!present.some((t) => t.key === "economy"), "a whitespace-only fact is not content");
 check(topicsPresent(null).length === 0, "a country with no facts shows no topic rows");
 check(topicsPresent("nope").length === 0, "...and neither does a malformed blob");
+
+
+// ---------------------------------------------------------------------------
+// "Play with Brazil" — a round about ONE country (src/game/countryRound.js).
+// These buttons used to start an ordinary round of a single mode, in which the
+// country on the button was not guaranteed to appear at all.
+// ---------------------------------------------------------------------------
+console.log("\nCountry rounds");
+
+check(compactNumber(216422446) === "216 million", "big numbers are spelled out, not abbreviated");
+check(compactNumber(8515767) === "8.5 million", "...with one decimal below ten");
+check(compactNumber(0) === "0", "zero is a number, not a null");
+check(compactNumber(-5) === null, "a negative population is not a question");
+check(compactNumber("nope") === null, "...and neither is a non-number");
+check(formatArea(8515767) === "8.5 million km²", "area carries its unit");
+
+// Multiplicative, not additive: the question is "what order of magnitude is
+// this country?" — ±10% distractors would make it a reading test.
+const popWrong = magnitudeDistractors(216422446, compactNumber, 3);
+check(popWrong.length === 3, "a numeric question gets a full set of distractors");
+check(!popWrong.includes(compactNumber(216422446)), "none of them IS the answer");
+check(new Set(popWrong).size === 3, "and none of them duplicates another");
+// Rounding is exactly how two options collide, so it is pinned rather than hoped for.
+check(
+  magnitudeDistractors(1000, () => "same", 3).length === 0,
+  "distractors that all format identically are dropped rather than shown twice"
+);
+
+// Border counts are small integers a player can actually hold in their head,
+// so this is the one place additive distractors are the right shape.
+const borders = borderCountDistractors(9, 3);
+check(borders.length === 3 && !borders.includes(9), "border-count distractors are near, and never the answer");
+check(borderCountDistractors(0, 3).every((n) => n >= 0), "a landlocked-island country never offers a negative count");
+
+// The fact builder, driven from fixtures rather than the live dataset.
+const fixtureCountries = [
+  { code: "br", name: "Brazil", region: "Americas", capital: "Brasília" },
+  { code: "ar", name: "Argentina", region: "Americas", capital: "Buenos Aires" },
+  { code: "pe", name: "Peru", region: "Americas", capital: "Lima" },
+  { code: "cl", name: "Chile", region: "Americas", capital: "Santiago" },
+  { code: "uy", name: "Uruguay", region: "Americas", capital: "Montevideo" },
+  { code: "no", name: "Norway", region: "Europe", capital: "Oslo" },
+  { code: "jp", name: "Japan", region: "Asia", capital: "Tokyo" },
+  { code: "ng", name: "Nigeria", region: "Africa", capital: "Abuja" },
+  { code: "nz", name: "New Zealand", region: "Oceania", capital: "Wellington" },
+];
+const fixtureNames = Object.fromEntries(fixtureCountries.map((c) => [c.code, c.name]));
+const firstN = (arr, n) => arr.slice(0, n);
+const identity = (arr) => arr;
+const factQs = buildCountryFactQuestions(fixtureCountries[0], {
+  countries: fixtureCountries,
+  page: { neighbors: ["ar", "pe"], population: 216422446, areaKm2: 8515767 },
+  sample: firstN,
+  shuffle: identity,
+  optionCount: 4,
+  nameFor: (c) => fixtureNames[c],
+});
+check(factQs.length === 5, "a well-stocked country yields every fact question");
+check(factQs.every((q) => q.country.code === "br"), "every question is about THIS country");
+check(factQs.every((q) => q.options.includes(q.correct)), "the answer is always among the options");
+check(factQs.every((q) => new Set(q.options).size === 4), "no question offers the same option twice");
+check(factQs.every((q) => q.prompt.includes("Brazil")), "every prompt names the country — that is the whole point");
+const borderQ = factQs.find((q) => q.type === "borderCount");
+check(borderQ.correct === "2", "the border count comes from the same neighbours the page lists");
+const neighborQ = factQs.find((q) => q.type === "neighbor");
+check(["Argentina", "Peru"].includes(neighborQ.correct), "the neighbour question's answer really is a neighbour");
+check(
+  !neighborQ.options.some((o) => o !== neighborQ.correct && ["Argentina", "Peru"].includes(o)),
+  "...and no distractor is secretly also a neighbour, which would make two options right"
+);
+
+// A country we know almost nothing about yields a shorter round, never a
+// broken question: two options, or "undefined" as an answer, is far worse.
+const sparseCountryQs = buildCountryFactQuestions(fixtureCountries[5], {
+  countries: fixtureCountries,
+  page: {},
+  sample: firstN,
+  shuffle: identity,
+  optionCount: 4,
+  nameFor: (c) => fixtureNames[c],
+});
+check(sparseCountryQs.length === 1, "a country with no content still gets the region question");
+check(sparseCountryQs.every((q) => q.options.includes(q.correct)), "...and it is still well-formed");
+
+// End to end against the real dataset.
+const brRound = buildCountryRound("br");
+check(brRound.length > 0 && brRound.length <= 8, "a real country round is non-empty and capped");
+check(brRound.every((q) => q.country.code === "br"), "every question in it is about Brazil");
+check(new Set(brRound.map((q) => q.type)).size === brRound.length, "no question type repeats within a round");
+check(brRound.some((q) => q.type === "locator" || q.type === "flag"), "it mixes in the media modes, not just facts");
+// The locator is the one question whose `correct` is an ISO code rather than
+// one of its own options — it is answered on the globe, not from the list. A
+// mixed round therefore has to branch on the QUESTION's type, never the round's
+// mode, or every locator answer inside a country round is marked wrong.
+for (const q of brRound) {
+  if (q.type === "locator") {
+    check(Array.isArray(q.choices) && q.choices.length > 1, "a locator question carries its map choices");
+    check(q.choices.some((c) => c.code === q.correct), "...and its answer is one of them");
+  } else {
+    check(q.options.includes(q.correct), `a ${q.type} question is answerable from its own options`);
+  }
+}
+check(buildCountryRound("zz").length === 0, "an unknown country is an empty round, not a crash");
+check(MODES.country != null && MODES.country.accent != null, "the mode is registered and themed");
+
+// The subject has to survive a URL, or a shared link to a country round is a
+// link to a generic one.
+check(
+  routeToPath({ name: "quiz", mode: "country", countryCode: "br", difficulty: "all", timed: false }) ===
+    "/play/country/br",
+  "a country round is linkable"
+);
+check(pathToRoute("/play/country/br").countryCode === "br", "...and comes back with its subject");
+check(pathToRoute("/play/flag").countryCode === null, "a generic round carries no subject");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

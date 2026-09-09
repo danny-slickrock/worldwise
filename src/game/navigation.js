@@ -229,7 +229,13 @@ export function routeToPath(route) {
         params.push(`difficulty=${route.difficulty}`);
       }
       if (route.timed) params.push("timed=1");
-      return `/play/${route.mode}${params.length ? `?${params.join("&")}` : ""}`;
+      // A country round is a mode PLUS a subject, so the country rides in the
+      // path rather than a query param: /play/country/br is a shareable link to
+      // "everything about Brazil", not a variant of a generic round.
+      const base = route.countryCode
+        ? `/play/${route.mode}/${route.countryCode}`
+        : `/play/${route.mode}`;
+      return `${base}${params.length ? `?${params.join("&")}` : ""}`;
     }
     default:
       return "/";
@@ -269,6 +275,7 @@ export function pathToRoute(path) {
         ? {
             name: "quiz",
             mode: second,
+            countryCode: segments[2] ?? null,
             difficulty: query.difficulty || DEFAULT_DIFFICULTY,
             timed: query.timed === "1",
           }

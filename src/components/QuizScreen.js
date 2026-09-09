@@ -13,7 +13,7 @@ import {
 import { colors, spacing, radius, type, elevation, constrain, motion, map } from "../theme";
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
-import { MODES, buildRound, buildDaily } from "../game/questions";
+import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
 import { countriesFromHistory } from "../game/cloudSync";
@@ -41,12 +41,17 @@ export default function QuizScreen({
   onPlayAgain,
   onFinish,
   onOpenCountry,
+  countryCode = null,
 }) {
   const meta = MODES[mode];
-  const questions = useMemo(
-    () => (mode === "daily" ? buildDaily() : buildRound(mode, difficulty)),
-    [mode, difficulty]
-  );
+  const questions = useMemo(() => {
+    if (mode === "daily") return buildDaily();
+    // A country round is the one mode whose questions depend on something other
+    // than the mode itself, so it takes the subject rather than the difficulty
+    // tier — "hard mode Brazil" isn't a thing; Brazil is the whole pool.
+    if (mode === "country") return countryCode ? buildCountryRound(countryCode) : [];
+    return buildRound(mode, difficulty);
+  }, [mode, difficulty, countryCode]);
   const difficultyLabel = DIFFICULTIES.find((d) => d.key === difficulty)?.label;
   const timedActive = timed && mode !== "daily"; // Daily always stays untimed
 
@@ -359,7 +364,13 @@ export default function QuizScreen({
               {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
             </Text>
             <Text style={styles.prompt}>{q.prompt}</Text>
-            {mode === "locator" && (
+            {/* Keyed off the QUESTION's type, never the round's mode. A
+                country round ("Play with Brazil") mixes a locator question in
+                among fact questions, and a locator question rendered as plain
+                text options is not merely plainer — its `correct` is an ISO
+                code while its options are names, so every answer would be
+                marked wrong. */}
+            {q.type === "locator" && (
               <Text style={styles.mapHint}>Drag to spin · pinch or scroll to zoom</Text>
             )}
 
@@ -368,7 +379,7 @@ export default function QuizScreen({
                 candidates so every choice is on the near face — which does not
                 give the answer away, since all of them are visible — and the
                 player can still spin freely from there. */}
-            {mode === "locator" ? (
+            {q.type === "locator" ? (
               <View style={styles.mapBox} {...globe.surfaceProps}>
                 <GlobeMap
                   spin={globe.spin}
@@ -498,7 +509,7 @@ export default function QuizScreen({
                       `${picked === q.correct ? "Nice — " : `It's ${q.correct}. `}${metricReadout(q)}`
                     : picked === q.correct
                       ? "Nice."
-                      : mode === "locator"
+                      : q.type === "locator"
                         ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`
                         : `Answer: ${q.correct}`}
               </Text>

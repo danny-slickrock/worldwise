@@ -152,12 +152,7 @@ function AppShell() {
 
   useEffect(() => {
     let active = true;
-    Promise.all([
-      loadProgress(),
-      loadSettings(),
-      loadInterests(),
-      loadInterestsAskedAt(),
-    ]).then(
+    Promise.all([loadProgress(), loadSettings(), loadInterests(), loadInterestsAskedAt()]).then(
       ([savedProgress, savedSettings, savedInterests, savedAskedAt]) => {
         if (active) {
           setProgress(savedProgress);
@@ -281,7 +276,11 @@ function AppShell() {
   }
 
   function handleFinish(round) {
-    const next = applyRoundResult(progress, { score: round.score, xp: round.xp }, dayKey(new Date()));
+    const next = applyRoundResult(
+      progress,
+      { score: round.score, xp: round.xp },
+      dayKey(new Date())
+    );
     setProgress(next);
 
     // Computed out here rather than inside the setProgress updater: React can
@@ -290,23 +289,23 @@ function AppShell() {
   }
 
   const openCountry = (code) => go({ name: "country", code });
-  const openQuiz = (mode, difficulty, timed) =>
-    go({ name: "quiz", mode, difficulty, timed, attempt: 0 });
+  const openQuiz = (mode, difficulty, timed, countryCode = null) =>
+    go({ name: "quiz", mode, difficulty, timed, countryCode, attempt: 0 });
 
   // "Play again" replaces the quiz route instead of stacking a second one, so
   // three rounds in a row still leave a single Back between you and where you
   // started. `attempt` is what makes it a *different* route object — it feeds
   // QuizScreen's key below, remounting it with a fresh round.
-  const playAgain = () =>
-    swap({ ...route, attempt: (route.attempt ?? 0) + 1 });
+  const playAgain = () => swap({ ...route, attempt: (route.attempt ?? 0) + 1 });
 
   function renderScreen() {
     switch (route.name) {
       case "quiz":
         return (
           <QuizScreen
-            key={`${route.mode}-${route.difficulty}-${route.timed}-${route.attempt ?? 0}`}
+            key={`${route.mode}-${route.countryCode ?? ""}-${route.difficulty}-${route.timed}-${route.attempt ?? 0}`}
             mode={route.mode}
+            countryCode={route.countryCode ?? null}
             difficulty={route.difficulty}
             timed={route.timed}
             soundEnabled={settings.soundEnabled}
@@ -326,7 +325,9 @@ function AppShell() {
             key={route.code}
             code={route.code}
             onExit={goBack}
-            onPlay={(mode) => openQuiz(mode, DEFAULT_DIFFICULTY, false)}
+            // "Play with Brazil" means a round ABOUT Brazil — not a generic
+            // round of one mode that may never mention it.
+            onPlay={() => openQuiz("country", DEFAULT_DIFFICULTY, false, route.code)}
             // Aims the Explore tab at this country. Because "explore" is a tab
             // root, `go` routes it through switchTab, so this lands on the
             // globe already spun to the country rather than stacking a second
