@@ -23,11 +23,16 @@ import path from "node:path";
 const run = promisify(execFile);
 
 const TITLE = "File:Whole world - land and oceans.jpg";
-// 2048 across is one texel per ~0.088° of longitude. The globe draws a
-// hemisphere into roughly 760 device pixels at 1x zoom, so this is a little
-// over one texel per pixel there and holds up to about 3x zoom before it
-// softens — past that the country outlines carry the detail anyway.
-const WIDTH = 2048;
+// 4096 across is one texel per ~0.088° of longitude. At 1x zoom that is far
+// more than the screen can show, which is the point: the detail is spent on
+// ZOOM. A hemisphere fills roughly 800 device pixels, so 4096 holds a clean
+// image out to about 5x before the source itself becomes the limit.
+//
+// It costs ~800 KB against ~360 KB for 2048. That is the single largest thing
+// the app bundles and it is a deliberate trade: the globe is the product, it
+// is cached after first load, and a soft basemap the moment anyone zooms was
+// the complaint this replaced.
+const WIDTH = 4096;
 const OUT_DIR = "assets/globe";
 const OUT = path.join(OUT_DIR, "earth-relief.jpg");
 // A bundled asset that grows without anyone noticing is how an app gets heavy.
@@ -74,7 +79,7 @@ async function main() {
   // this repo can assume.
   try {
     await run("sips", ["--resampleWidth", String(WIDTH), OUT, "--out", OUT]);
-    await run("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "70", OUT, "--out", OUT]);
+    await run("sips", ["-s", "format", "jpeg", "-s", "formatOptions", "50", OUT, "--out", OUT]);
   } catch {
     console.warn("  (sips unavailable — keeping the original encoding and size)");
   }

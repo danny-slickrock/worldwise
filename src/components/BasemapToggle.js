@@ -26,7 +26,7 @@ export default function BasemapToggle({ value, onChange, style }) {
           <Pressable
             key={key}
             onPress={() => onChange(key)}
-            hitSlop={8}
+            hitSlop={10}
             accessibilityRole="button"
             accessibilityState={{ selected: active }}
             accessibilityLabel={`${LABELS[key]} basemap`}
@@ -55,9 +55,10 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
     paddingVertical: spacing(1.5),
     paddingHorizontal: spacing(3),
-    // Kept at the pointer minimum rather than the touch minimum: the control
-    // sits ON the map, and a 44px-tall chrome element would eat the globe.
-    // hitSlop above carries it past 44 for a finger.
+    // Kept near the pointer minimum rather than the touch minimum: the control
+    // sits ON the map, and a 44px-tall chrome element would eat the globe. The
+    // hitSlop above carries the real target to 46px for a finger, which is what
+    // the kit's 44x44 actually asks for.
     minHeight: 26,
     justifyContent: "center",
   },

@@ -32,13 +32,22 @@ import { GLOBE_BASE_RADIUS, GLOBE_VIEW_SIZE } from "../constants";
 //
 // Nobody can see the detail on a spinning globe anyway, which is why this
 // trade is free rather than a compromise.
-const DRAFT_SIZE = 256;
-const FULL_SIZE = 900;
+// Budgets in PIXELS, not edge lengths. The container's aspect ratio varies a
+// lot — a square card on Home, a wide stage on Explore — and it is the pixel
+// COUNT that costs, so capping an edge either wastes detail on a tall box or
+// blows the frame time on a wide one.
+//
+// Measured on the pure renderer against the 4096x2048 source: ~2.8ms for a
+// 55k-pixel nearest-neighbour draft, ~36ms for a 700k-pixel bilinear settled
+// frame, ~60ms at 1.2M. So the draft holds 60fps through a drag and settling
+// costs one frame nobody will catch.
+const DRAFT_PIXELS = 60 * 1000;
+const SETTLED_PIXELS = 700 * 1000;
+// Rendering past the device's own pixels buys nothing but heat. Capped below
+// DPR3 anyway: on a phone the container is small enough that the pixel budget
+// already lands well above 1:1.
+const MAX_SCALE = 2.5;
 const SETTLE_MS = 160;
-
-// The longest edge the settled frame is rendered at. The canvas is stretched to
-// the layout box, so this is a resolution, not a size.
-const FRAME_CAP = FULL_SIZE;
 
 // One decode for the whole app, shared by every globe on screen. Resolves to
 // null if the asset can't be read, which is a clean fall back to flat fills.
@@ -121,13 +130,14 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
   useEffect(() => {
     if (!web || !texture) return undefined;
 
-    const draw = (longEdge) => {
+    const draw = (budget, smooth) => {
       const canvas = canvasRef.current;
       if (!canvas || !box?.width || !box?.height) return;
 
-      // Render at `longEdge` across the container's longest side, keeping its
-      // aspect ratio, then let CSS stretch it back up.
-      const k = longEdge / Math.max(box.width, box.height);
+      // Spend the budget over the container's actual shape, then let CSS
+      // stretch the result back to layout size.
+      const dpr = typeof window !== "undefined" ? (window.devicePixelRatio ?? 1) : 1;
+      const k = Math.min(Math.sqrt(budget / (box.width * box.height)), Math.min(dpr, MAX_SCALE));
       const w = Math.max(1, Math.round(box.width * k));
       const h = Math.max(1, Math.round(box.height * k));
 
@@ -148,6 +158,11 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
         centerX: w / 2,
         centerY: h / 2,
         radius: (GLOBE_BASE_RADIUS * zoom * Math.min(w, h)) / GLOBE_VIEW_SIZE,
+        // Bilinear only once the globe has settled. It is four texel reads
+        // instead of one, and it is also the whole reason a 4096-wide source
+        // is worth its bytes — with nearest-neighbour, zooming in just shows
+        // smaller rectangles.
+        smooth,
       });
 
       // Assigning width resets the backing store, which is also how the
@@ -159,9 +174,9 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
       ctx.putImageData(new window.ImageData(bytes, w, h), 0, 0);
     };
 
-    draw(DRAFT_SIZE);
+    draw(DRAFT_PIXELS, false);
     clearTimeout(settleTimer.current);
-    settleTimer.current = setTimeout(() => draw(FRAME_CAP), SETTLE_MS);
+    settleTimer.current = setTimeout(() => draw(SETTLED_PIXELS, true), SETTLE_MS);
     return () => clearTimeout(settleTimer.current);
     // Depending on spin's FIELDS rather than the object: callers rebuild
     // `spin` every render, so an object dep would redraw the globe on every

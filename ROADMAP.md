@@ -1516,6 +1516,39 @@ Three bugs found by driving it rather than reading it, all silent:
    matched), so the Country Locator alone kept its flat fills while every other globe had imagery.
    There is now an assertion in the change itself, and the fill path takes the flag explicitly.
 
+### High-definition, and usable on a phone — 2026-09-09
+
+Three things the raster basemap shipped without.
+
+**Touch.** The web gesture path bound mouse and wheel only — React Native's PanResponder is not
+wired on web because RNW does not surface raw touches — so on a phone the globe was completely
+inert while the Explore map told people to "drag to spin · pinch to zoom". The hook now binds
+touch events itself: one finger spins, two pinch, a flick still coasts.
+
+A finger on a globe *inside a scrolling page* is ambiguous, though, so embedded globes (Home, the
+country page, the locator) get an **axis lock**: the first movement decides — mostly horizontal
+spins, mostly vertical is handed back to the page. The full-screen Explore map claims everything.
+It is enforced with `touch-action` on the node (`pan-y` vs `none`) rather than `preventDefault`
+alone, because browser gestures are decided before a touch listener ever runs — without it, a
+two-finger zoom on the map pinch-zoomed the entire document.
+
+**Definition.** The source went from 2048x1024 to **4096x2048** (~360 KB → ~800 KB), and the settled
+frame now samples **bilinearly**. The two go together: with nearest-neighbour, four times the texels
+just means bigger rectangles when you zoom. Frames are budgeted in *pixels* rather than edge length,
+since container aspect ratios vary and it is the pixel count that costs — ~2.8ms for a 60k-pixel
+draft, ~36ms for a 700k-pixel settled frame, and the scale is capped at the device's own pixel
+ratio because rendering past it buys nothing but heat.
+
+One bug worth remembering: `texelCoords` returns EDGE space, because `floor(u)` answers "which texel
+contains this longitude" — which is right for nearest-neighbour. Bilinear needs texel CENTRES, so it
+shifts by half a texel. Without that the smooth and fast paths disagree and the imagery sits half a
+texel off the borders drawn on top of it.
+
+**Size.** The globes on Home and in the Country Locator are now square and full width. The SVG fits
+its square viewBox to the shorter side, so the old fixed-height stages were throwing most of the
+column away as empty ground — on Home a 280px-tall stage in a 680px column was showing a globe less
+than half the size it could have.
+
 ### The globe is the front page — 2026-09-09
 
 Home opened on a grid of game tiles, which is a fine games menu and a poor front door for a product

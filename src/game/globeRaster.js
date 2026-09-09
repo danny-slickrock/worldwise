@@ -39,6 +39,60 @@ export function vecToLonLat([x, y, z]) {
   return [Math.atan2(y, x) * DEG, Math.asin(clamped) * DEG];
 }
 
+// lon/lat → floating-point texel coordinates. Split out from texelIndex so the
+// smooth sampler can use the fraction the nearest-neighbour one throws away.
+//
+// Longitude WRAPS rather than clamps: the antimeridian is a seam in the source
+// image but not on the Earth, and clamping there would smear the last column of
+// the texture across the Pacific.
+export function texelCoords(lon, lat, width, height) {
+  let u = ((lon + 180) / 360) * width;
+  u = ((u % width) + width) % width;
+  const v = ((90 - lat) / 180) * (height - 1);
+  return [u, v < 0 ? 0 : v > height - 1 ? height - 1 : v];
+}
+
+// Bilinear sample. The reason a 4096-wide source is worth its bytes: with
+// nearest-neighbour, zooming in shows the texels as hard rectangles and the
+// extra resolution buys nothing but smaller rectangles. Costs four texel reads
+// instead of one, so it is used for the settled frame and not the draft.
+export function sampleSmooth(src, lon, lat, width, height, out) {
+  const [u, v] = texelCoords(lon, lat, width, height);
+  // texelCoords returns u in EDGE space — floor(u) is "which texel contains
+  // this longitude", which is what the nearest-neighbour path wants. Blending
+  // needs texel CENTRES, and the centre of texel i sits at u = i + 0.5. Without
+  // this shift the smooth frame lands half a texel east of the fast one, so the
+  // two disagree and the imagery sits half a texel off the borders drawn on it.
+  //
+  // v needs no such shift: texelCoords already scales it by (height - 1), which
+  // puts it in index space rather than edge space.
+  const t = u - 0.5;
+  const x0 = Math.floor(t);
+  const y0 = Math.floor(v);
+  const fx = t - x0;
+  const fy = v - y0;
+  // x wraps at the seam — including x0 = -1, which is the last column, not an
+  // out-of-bounds read; y is already clamped into range.
+  const xa = ((x0 % width) + width) % width;
+  const x1 = (xa + 1) % width;
+  const y1 = y0 + 1 > height - 1 ? height - 1 : y0 + 1;
+
+  const i00 = (y0 * width + xa) * 4;
+  const i10 = (y0 * width + x1) * 4;
+  const i01 = (y1 * width + xa) * 4;
+  const i11 = (y1 * width + x1) * 4;
+
+  const w00 = (1 - fx) * (1 - fy);
+  const w10 = fx * (1 - fy);
+  const w01 = (1 - fx) * fy;
+  const w11 = fx * fy;
+
+  for (let c = 0; c < 3; c++) {
+    out[c] = src[i00 + c] * w00 + src[i10 + c] * w10 + src[i01 + c] * w01 + src[i11 + c] * w11;
+  }
+  return out;
+}
+
 // lon/lat → the index of the first byte of that texel in an RGBA buffer.
 //
 // Longitude wraps rather than clamps: the antimeridian is a seam in the source
@@ -79,9 +133,13 @@ export function renderGlobeRaster({
   centerX = width / 2,
   centerY = height / 2,
   radius,
+  smooth = false,
 }) {
   const o = orientation(spin.lng, spin.lat);
   const invRadius = 1 / radius;
+  // Reused across every pixel: allocating a three-element array 700,000 times
+  // a frame is exactly the kind of garbage this loop cannot afford.
+  const rgb = smooth ? [0, 0, 0] : null;
 
   for (let py = 0; py < height; py++) {
     // View-space y grows up while canvas y grows down.
@@ -112,11 +170,18 @@ export function renderGlobeRaster({
 
       const world = viewToWorld(vx, vy, vz, o);
       const [lon, lat] = vecToLonLat(world);
-      const si = texelIndex(lon, lat, srcWidth, srcHeight);
 
-      dest[di] = src[si];
-      dest[di + 1] = src[si + 1];
-      dest[di + 2] = src[si + 2];
+      if (smooth) {
+        sampleSmooth(src, lon, lat, srcWidth, srcHeight, rgb);
+        dest[di] = rgb[0];
+        dest[di + 1] = rgb[1];
+        dest[di + 2] = rgb[2];
+      } else {
+        const si = texelIndex(lon, lat, srcWidth, srcHeight);
+        dest[di] = src[si];
+        dest[di + 1] = src[si + 1];
+        dest[di + 2] = src[si + 2];
+      }
       dest[di + 3] = 255;
     }
   }

@@ -10,11 +10,14 @@
 // picture of one — so terrain, the basemap toggle, hover tooltips and
 // tap-to-open all work here exactly as they do there.
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, useWindowDimensions } from "react-native";
 import GlobeMap from "./GlobeMap";
 import BasemapToggle from "./BasemapToggle";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { colors, spacing, radius, type, elevation, map } from "../theme";
+
+// Past this the globe stops being a front door and becomes the whole page.
+const STAGE_MAX = 560;
 
 export default function GlobeCard({ onOpenCountry, onOpenExplore, basemap, onChangeBasemap }) {
   const [moved, setMoved] = useState(false);
@@ -25,12 +28,23 @@ export default function GlobeCard({ onOpenCountry, onOpenExplore, basemap, onCha
   // and the link below goes there.
   const globe = useGlobeGestures({
     wheelZoomEnabled: false,
+    // A finger on an embedded globe is ambiguous. Horizontal spins it,
+    // vertical scrolls the page — without this the globe eats every scroll
+    // that starts on it, which on a phone is most of them.
+    axisLock: true,
     onManualChange: () => setMoved(true),
   });
 
+  // Square, so the globe is as large as the column allows: the SVG fits its
+  // square viewBox to the SHORTER side, so any non-square stage was throwing
+  // the difference away as empty ground. Capped on tall desktop windows, where
+  // a 680px globe would push everything else below the fold.
+  const { height: windowHeight } = useWindowDimensions();
+  const stageHeight = Math.min(STAGE_MAX, windowHeight * 0.55);
+
   return (
     <View style={styles.card}>
-      <View style={styles.stage} {...globe.surfaceProps}>
+      <View style={[styles.stage, { maxHeight: stageHeight }]} {...globe.surfaceProps}>
         <GlobeMap spin={globe.spin} zoom={globe.zoom} onSelect={onOpenCountry} basemap={basemap} />
         <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.toggle} />
         {/* The hint retires the moment it has been obeyed — a permanent
@@ -58,7 +72,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing(6),
     ...elevation(2),
   },
-  stage: { width: "100%", height: 280 },
+  stage: { width: "100%", aspectRatio: 1 },
   toggle: { position: "absolute", left: spacing(3), top: spacing(3) },
   hint: {
     ...type.data,

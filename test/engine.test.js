@@ -39,6 +39,8 @@ import {
   viewToWorld,
   vecToLonLat,
   texelIndex,
+  texelCoords,
+  sampleSmooth,
   renderGlobeRaster,
 } from "../src/game/globeRaster";
 import { COUNTRY_TERRAIN, terrainClass } from "../src/data/countryTerrain";
@@ -3795,6 +3797,27 @@ check(texelIndex(0, 90, 4, 2) < texelIndex(0, -90, 4, 2), "north is the top row 
 check(texelIndex(-179.9, 0, 8, 4) >= 0, "a longitude just west of the seam is in range");
 check(texelIndex(0, 0, 8, 4) % 4 === 0, "an index always lands on a pixel boundary");
 
+// Bilinear sampling — the reason a 4096-wide source is worth its bytes. With
+// nearest-neighbour, zooming in just shows the texels as bigger rectangles.
+const [uMid] = texelCoords(0, 0, 8, 4);
+check(uMid === 4, "longitude 0 is the middle column");
+check(texelCoords(-180, 0, 8, 4)[0] === texelCoords(180, 0, 8, 4)[0], "the seam is one place, not two");
+check(texelCoords(0, 91, 8, 4)[1] === 0, "a latitude past the pole clamps to the top row");
+{
+  // Two texels, black and white. A point exactly between them must read grey —
+  // that is the whole of bilinear, and it is what nearest-neighbour cannot do.
+  const ramp = new Uint8Array([0, 0, 0, 255, 255, 255, 255, 255]);
+  const out = [0, 0, 0];
+  sampleSmooth(ramp, -90, 0, 2, 1, out);
+  check(out[0] === 0, "sampling directly on a texel returns that texel");
+  sampleSmooth(ramp, 0, 0, 2, 1, out);
+  check(out[0] > 100 && out[0] < 155, `halfway between two texels blends them (${out[0].toFixed(0)})`);
+  // The seam again: the sampler must wrap to the first column, not clamp to
+  // the last, or the Pacific gets a bright stripe down it.
+  sampleSmooth(ramp, 179.9, 0, 2, 1, out);
+  check(Number.isFinite(out[0]), "sampling at the antimeridian wraps rather than reading past the end");
+}
+
 // Render against a texture whose four quadrants are distinguishable, so what
 // lands where is checkable rather than plausible.
 const TW = 4;
@@ -3814,7 +3837,7 @@ const SIZE = 32;
 // the whole container — so the renderer takes an explicit centre and radius.
 // A square frame here just keeps the arithmetic in the checks readable.
 const RADIUS = SIZE * 0.475;
-const renderAt = (dest, spin, zoom = 1, w = SIZE, h = SIZE) =>
+const renderAt = (dest, spin, zoom = 1, w = SIZE, h = SIZE, smooth = false) =>
   renderGlobeRaster({
     dest,
     width: w,
@@ -3824,6 +3847,7 @@ const renderAt = (dest, spin, zoom = 1, w = SIZE, h = SIZE) =>
     srcHeight: TH,
     spin,
     radius: RADIUS * zoom,
+    smooth,
   });
 
 const frame = new Uint8Array(SIZE * SIZE * 4);
@@ -3868,6 +3892,17 @@ const wideAt = (x, y) => wide.slice((y * WIDE_W + x) * 4, (y * WIDE_W + x) * 4 +
 check(wideAt(WIDE_W / 2, SIZE / 2)[3] === 255, "a non-square frame still has its sphere centred");
 check(wideAt(WIDE_W / 2, SIZE / 2)[0] === 120, "...sampling the same texel a square frame did");
 check(wideAt(1, SIZE / 2)[3] === 0, "...and its far corners are off the sphere");
+
+// The smooth path has to produce the same GEOMETRY as the fast one — same disc,
+// same transparent surround — and differ only in the colours it blends.
+const smoothFrame = new Uint8Array(SIZE * SIZE * 4);
+renderAt(smoothFrame, { lng: 0, lat: 0 }, 1, SIZE, SIZE, true);
+let sameAlpha = true;
+for (let i = 3; i < smoothFrame.length; i += 4) {
+  if ((smoothFrame[i] === 0) !== (frame[i] === 0)) sameAlpha = false;
+}
+check(sameAlpha, "bilinear covers exactly the same disc as nearest-neighbour");
+check(smoothFrame[((SIZE / 2) * SIZE + SIZE / 2) * 4 + 3] === 255, "...and still fills its centre");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

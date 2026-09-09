@@ -9,6 +9,7 @@ import {
   ScrollView,
   Animated,
   Easing,
+  useWindowDimensions,
 } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain, motion, map } from "../theme";
 import Container from "./Container";
@@ -106,8 +107,17 @@ export default function QuizScreen({
   const globe = useGlobeGestures({
     initialSpin: locatorFraming.spin,
     initialZoom: locatorFraming.zoom,
+    // Horizontal spins, vertical scrolls to the rest of the question. The
+    // answer surface fills the screen on a phone, so claiming every vertical
+    // swipe would trap the page.
+    axisLock: true,
     onManualChange: () => setGlobeMoved(true),
   });
+
+  // Leave room for the prompt above and the review card below rather than
+  // letting a square stage push them off a short screen.
+  const { height: windowHeight } = useWindowDimensions();
+  const locatorStageHeight = Math.min(560, windowHeight * 0.56);
   const [globeMoved, setGlobeMoved] = useState(false);
 
   // A new question means new candidates, so the globe snaps to their framing.
@@ -383,7 +393,10 @@ export default function QuizScreen({
                 give the answer away, since all of them are visible — and the
                 player can still spin freely from there. */}
             {q.type === "locator" ? (
-              <View style={styles.mapBox} {...globe.surfaceProps}>
+              <View
+                style={[styles.mapBox, { maxHeight: locatorStageHeight }]}
+                {...globe.surfaceProps}
+              >
                 <GlobeMap
                   spin={globe.spin}
                   zoom={globe.zoom}
@@ -623,9 +636,12 @@ const styles = StyleSheet.create({
     padding: spacing(4),
     ...elevation(2),
   },
+  // Square: the globe's SVG fits its square viewBox to the shorter side, so a
+  // 300px-tall box on a 680px column was throwing away most of the width. The
+  // globe IS the question here — it is the answer surface, not an illustration.
   mapBox: {
     width: "100%",
-    height: 300,
+    aspectRatio: 1,
     backgroundColor: colors.brand,
     borderRadius: radius.sheet,
     overflow: "hidden",

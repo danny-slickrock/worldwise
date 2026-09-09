@@ -53,6 +53,13 @@ import {
 //                              in a scrolling page would otherwise trap the
 //                              scroll whenever the pointer crossed it — the
 //                              country page's inset is exactly that case.
+//   axisLock                   the touch equivalent of that problem, and the
+//                              reason it needs a different answer. A finger on
+//                              an embedded globe is ambiguous: spin, or scroll
+//                              the page? With axisLock, the first movement
+//                              decides — mostly horizontal spins, mostly
+//                              vertical is handed back to the page. A
+//                              full-screen map claims everything instead.
 //   onManualChange             fired whenever the PLAYER moves the globe, not
 //                              when animateTo does. Lets a caller drop UI that
 //                              claims a framing the view no longer has.
@@ -63,6 +70,7 @@ export default function useGlobeGestures({
   maxZoom = MAP_ZOOM_MAX,
   enabled = true,
   wheelZoomEnabled = true,
+  axisLock = false,
   onManualChange = null,
 } = {}) {
   const [zoom, setZoom] = useState(initialZoom);
@@ -86,6 +94,7 @@ export default function useGlobeGestures({
   // change between renders is read through a ref instead.
   const enabledRef = useRef(enabled);
   const wheelRef = useRef(wheelZoomEnabled);
+  const axisLockRef = useRef(axisLock);
   const onManualChangeRef = useRef(onManualChange);
   const boundsRef = useRef({ minZoom, maxZoom });
   useEffect(() => {
@@ -94,6 +103,9 @@ export default function useGlobeGestures({
   useEffect(() => {
     wheelRef.current = wheelZoomEnabled;
   }, [wheelZoomEnabled]);
+  useEffect(() => {
+    axisLockRef.current = axisLock;
+  }, [axisLock]);
   useEffect(() => {
     onManualChangeRef.current = onManualChange;
   }, [onManualChange]);
@@ -291,6 +303,21 @@ export default function useGlobeGestures({
     if (Platform.OS !== "web" || !nodeRef.current) return;
     const node = nodeRef.current;
 
+    // Let the BROWSER enforce the axis lock rather than fighting it with
+    // preventDefault. Without this the page pinch-zooms underneath the globe
+    // — a two-finger zoom on the map scaled the whole document — because
+    // browser gestures are decided before a touch listener ever runs.
+    //
+    //   pan-y  the page may still scroll vertically over an embedded globe;
+    //          horizontal drags and pinches come to us.
+    //   none   a full-screen map claims everything.
+    //
+    // Set on the node rather than returned in surfaceProps: callers spread
+    // those onto a View that already has a style, and a `style` key there
+    // would clobber it.
+    const previousTouchAction = node.style.touchAction;
+    node.style.touchAction = axisLockRef.current ? "pan-y" : "none";
+
     const handleWheel = (e) => {
       if (!enabledRef.current || !wheelRef.current) return;
       e.preventDefault();
@@ -373,9 +400,122 @@ export default function useGlobeGestures({
     };
     node.addEventListener("mousedown", handleMouseDown);
 
+    // ------------------------------------------------------------------
+    // Touch. React Native's PanResponder is not wired on web (see
+    // surfaceProps), so without this the globe is completely inert on a
+    // phone — the Explore map told people to "drag to spin · pinch to zoom"
+    // and did neither. Bound here rather than through the responder system
+    // for the same reason the mouse is: RNW does not surface raw touches.
+    // ------------------------------------------------------------------
+    const touch = {
+      mode: null, // null | "pending" | "spin" | "pinch"
+      startSpin: DEFAULT_SPIN,
+      startX: 0,
+      startY: 0,
+      startDistance: 0,
+      startZoom: 1,
+      vx: 0,
+      vy: 0,
+      lastX: 0,
+      lastY: 0,
+      lastT: 0,
+    };
+
+    const distance = (t) => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+
+    const handleTouchStart = (e) => {
+      if (!enabledRef.current) return;
+      stopMomentum();
+      const t = e.touches;
+      if (t.length >= 2) {
+        touch.mode = "pinch";
+        touch.startDistance = distance(t);
+        touch.startZoom = zoomRef.current;
+        // Two fingers are never an attempt to scroll the page, so this is
+        // claimed immediately even on an axis-locked globe.
+        e.preventDefault();
+        return;
+      }
+      // One finger starts UNDECIDED on an axis-locked globe: the first real
+      // movement says whether this is a spin or a page scroll. Without the
+      // lock there is nothing to decide, so it is a spin from the start.
+      touch.mode = axisLockRef.current ? "pending" : "spin";
+      touch.startSpin = spinRef.current;
+      touch.startX = t[0].clientX;
+      touch.startY = t[0].clientY;
+      touch.vx = 0;
+      touch.vy = 0;
+      touch.lastX = t[0].clientX;
+      touch.lastY = t[0].clientY;
+      touch.lastT = e.timeStamp;
+    };
+
+    const handleTouchMove = (e) => {
+      if (!enabledRef.current || !touch.mode) return;
+      const t = e.touches;
+
+      if (touch.mode === "pinch") {
+        if (t.length < 2) return;
+        e.preventDefault();
+        const { minZoom: lo, maxZoom: hi } = boundsRef.current;
+        applyZoom(pinchScale(touch.startDistance, distance(t), touch.startZoom, lo, hi));
+        return;
+      }
+
+      const dx = t[0].clientX - touch.startX;
+      const dy = t[0].clientY - touch.startY;
+
+      if (touch.mode === "pending") {
+        if (Math.abs(dx) < MAP_DRAG_THRESHOLD && Math.abs(dy) < MAP_DRAG_THRESHOLD) return;
+        if (Math.abs(dy) > Math.abs(dx)) {
+          // The page wants this one. Standing down for the rest of the
+          // gesture rather than re-deciding every frame, which would make a
+          // diagonal drag stutter between the two.
+          touch.mode = null;
+          return;
+        }
+        touch.mode = "spin";
+      }
+
+      // Claimed: stop the page scrolling underneath the globe.
+      e.preventDefault();
+      applySpin(spinFromDrag(touch.startSpin, dx, dy, screenRadius()));
+
+      const now = e.timeStamp;
+      const dt = now - touch.lastT;
+      if (dt > 0) {
+        // Same exponential smoothing the mouse path uses, and for the same
+        // reason: a raw last-frame delta is too noisy to flick from.
+        touch.vx = touch.vx * 0.7 + ((t[0].clientX - touch.lastX) / dt) * 0.3;
+        touch.vy = touch.vy * 0.7 + ((t[0].clientY - touch.lastY) / dt) * 0.3;
+      }
+      touch.lastX = t[0].clientX;
+      touch.lastY = t[0].clientY;
+      touch.lastT = now;
+    };
+
+    const handleTouchEnd = () => {
+      if (touch.mode === "spin") {
+        startMomentum(spinVelocityFromDrag(touch.vx, touch.vy, screenRadius()));
+      }
+      touch.mode = null;
+    };
+
+    // passive:false on both, or preventDefault is ignored and the page scrolls
+    // out from under the gesture.
+    node.addEventListener("touchstart", handleTouchStart, { passive: false });
+    node.addEventListener("touchmove", handleTouchMove, { passive: false });
+    node.addEventListener("touchend", handleTouchEnd);
+    node.addEventListener("touchcancel", handleTouchEnd);
+
     return () => {
+      node.style.touchAction = previousTouchAction;
       node.removeEventListener("wheel", handleWheel);
       node.removeEventListener("mousedown", handleMouseDown);
+      node.removeEventListener("touchstart", handleTouchStart);
+      node.removeEventListener("touchmove", handleTouchMove);
+      node.removeEventListener("touchend", handleTouchEnd);
+      node.removeEventListener("touchcancel", handleTouchEnd);
       window.removeEventListener("click", swallowNextClick, true);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);

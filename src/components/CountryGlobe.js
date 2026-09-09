@@ -44,6 +44,10 @@ export default function CountryGlobe({ code, name, framing, basemap, onChangeBas
     initialSpin: framing.spin,
     initialZoom: framing.zoom,
     wheelZoomEnabled: false,
+    // Horizontal spins, vertical scrolls the page. This globe sits partway down
+    // a long article; eating every vertical swipe that lands on it would make
+    // the page feel broken on a phone.
+    axisLock: true,
     onManualChange: () => setMoved(true),
   });
   const [moved, setMoved] = React.useState(false);

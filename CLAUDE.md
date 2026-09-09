@@ -171,7 +171,9 @@ src/
   components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent.
                            #   Terrain-shaded by climate band; hover tooltip; optional highlightCode
   components/CountryGlobe.js # The country page's hero: the globe spun to this country, lit up
-  components/GlobeCard.js   # The globe on Home — the same GlobeMap and gestures, not a picture
+  components/GlobeCard.js   # The globe on Home — the same GlobeMap and gestures, not a picture.
+                           #   Square, because the SVG fits its square viewBox to the SHORTER side:
+                           #   any non-square stage throws the difference away as empty ground
   components/BasemapToggle.js # Terrain ↔ simple map, on every globe. Reads settings.basemap
   components/GlobeTexture.js # WEB ONLY: the reprojected photographic basemap, on a <canvas> under
                            #   the SVG. Native has no canvas, so it falls back to classified fills
@@ -227,6 +229,16 @@ threshold, the web mousedown/wheel listeners, the momentum coast — lives in
 `src/hooks/useGlobeGestures.js`. That split exists because it was got wrong once: the gesture layer
 was welded inside `WorldMapScreen`, so when the Country Locator got the globe it got a still image
 you could tap. Three rules:
+- **Touch is handled by the hook, not by RN.** `surfaceProps` deliberately omits the PanResponder
+  on web (RNW does not surface raw touches), so the hook binds `touchstart/move/end` itself. Without
+  that the globe is completely inert on a phone — the Explore map told people to "drag to spin ·
+  pinch to zoom" and did neither.
+- **`axisLock` is what makes an embedded globe usable on a phone.** A finger on a globe inside a
+  scrolling page is ambiguous; with the lock, the first movement decides — mostly horizontal spins,
+  mostly vertical is handed back to the page. Home, the country page and the locator use it; the
+  full-screen Explore map claims everything. It is enforced by setting `touch-action` on the node
+  (`pan-y` vs `none`), NOT by preventDefault alone: browser gestures are decided before a touch
+  listener runs, so without it a two-finger zoom on the map pinch-zooms the whole document.
 - **Spread `surfaceProps` onto the view that SIZES the globe.** Its ref binds the web listeners and
   its `onLayout` feeds the drag-to-screen-pixels conversion; on any other node, drags don't track.
 - **The hook's returned functions are identity-stable, deliberately.** A caller that re-frames from
@@ -257,8 +269,14 @@ Four things to know before touching it:
   zoomed, and a square photograph leaves two visible seams.
 - **Countries draw `fill="transparent"`, not `fill="none"`,** when the raster is up. A none-filled
   path is not hit-testable, and every country has to stay tappable over the imagery.
-- **Draft while moving, full size when settled.** ~2ms for a 256-long-edge frame against ~23ms at
-  900; `FULL_SIZE` is a cap, not a target.
+- **Draft while moving, full size when settled**, budgeted in PIXELS rather than edge length —
+  container aspect ratios vary a lot and it is the pixel count that costs. ~2.8ms for a 60k-pixel
+  nearest-neighbour draft against ~36ms for a 700k-pixel bilinear settled frame.
+- **The settled frame samples bilinearly; the draft does not.** That is the whole reason a
+  4096-wide source is worth its 800 KB: with nearest-neighbour, zooming in only shows bigger
+  rectangles. `texelCoords` returns EDGE space (`floor` = "which texel contains this longitude"),
+  so the smooth sampler shifts by half a texel to reach centres — without that the two paths
+  disagree and the imagery sits half a texel off the borders drawn on it.
 - **WEB ONLY, deliberately.** Reprojecting needs a writable pixel buffer and React Native has no
   canvas, so on native `terrain` falls back to the per-country classified fills — a real map rather
   than a broken one. Doing better means a GL surface.
