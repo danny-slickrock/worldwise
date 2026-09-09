@@ -1481,6 +1481,41 @@ One real bug this surfaced: `Number(null)` is `0`, not `NaN`, so a plain coercio
 country has no centroid" into "this country is on the equator", and every polygon-less microstate
 came out equatorial.
 
+### A real terrain basemap — 2026-09-09
+
+The classified per-country fills were an improvement on latitude stripes, but they were still flat
+colours: "terrain" meant eleven greens and ochres, not the Earth. The globes now drape **NASA's Blue
+Marble** — public domain, 2048x1024, bundled at 364 KB — onto the sphere, reprojected every frame.
+
+The countries stay SVG, which is what keeps taps, borders, highlights and locator states working;
+the photograph sits underneath as a raster layer. `src/game/globeRaster.js` runs the projection
+backwards — for every pixel in the disc, which point of the Earth is there? — which is why the
+source has to be equirectangular: pixel x maps linearly to longitude and pixel y to latitude, so a
+lookup is two multiplies with no search.
+
+Decisions worth not relitigating:
+
+- **Bundled, not fetched.** This is the one place the repo's "prefer runtime data sources over large
+  embedded assets" rule is knowingly broken: the basemap is not enrichment, it IS the globe, and one
+  that renders only when online would fail the offline promise the content layer works hard to keep.
+  `npm run build:globe-texture` rebuilds it and enforces a size budget and a public-domain licence —
+  a CC-BY basemap would put an attribution obligation on every globe, which is a product decision
+  rather than a build one, so the script refuses rather than shipping it quietly.
+- **Web only, deliberately.** Reprojection needs a writable pixel buffer and React Native has no
+  canvas, so on native `terrain` falls back to the classified fills — a real map rather than a
+  broken one. Doing better means a GL surface, which is a bigger change than this warrants before
+  the globe has been checked on a device at all.
+- **Draft while moving, full size when settled.** Measured: ~2ms for a 256-long-edge frame, ~23ms at
+  900. So a drag holds 60fps and settling costs one barely perceptible hitch.
+
+Three bugs found by driving it rather than reading it, all silent:
+1. `Image.resolveAssetSource` does not exist on react-native-web, so the first version resolved a
+   null URL and shipped a terrain toggle that did nothing. `Asset.fromModule` works on both.
+2. A square raster under a full-box SVG left two vertical seams the moment anyone zoomed.
+3. An edit to the locator's fill branch silently did not apply (prettier had reformatted the text it
+   matched), so the Country Locator alone kept its flat fills while every other globe had imagery.
+   There is now an assertion in the change itself, and the fill path takes the flag explicitly.
+
 ### The globe is the front page — 2026-09-09
 
 Home opened on a grid of game tiles, which is a fine games menu and a poor front door for a product

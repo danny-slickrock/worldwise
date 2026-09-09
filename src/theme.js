@@ -396,6 +396,10 @@ export const map = {
   landActive: colors.accent,
   // "borders 1px brass at 35%"
   border: "rgba(216,164,74,0.35)",
+  // Over the photographic basemap the same brass at 35% disappears into bright
+  // desert and reappears over dark ocean. Borders are the one thing that has to
+  // read everywhere on that layer, so they get more of it.
+  borderOnRaster: "rgba(216,164,74,0.62)",
   graticule: "rgba(216,164,74,0.22)",
   // "Selected place: ember dot + halo; related places: lakewater diamonds."
   selected: colors.ember,

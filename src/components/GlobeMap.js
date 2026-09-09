@@ -1,6 +1,6 @@
 /* global setTimeout, clearTimeout */
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Platform } from "react-native";
+import { Platform, View, StyleSheet } from "react-native";
 import Svg, {
   Circle,
   Path,
@@ -27,6 +27,7 @@ import { terrainClass } from "../data/countryTerrain";
 import { angleBetween } from "../game/globeMotion";
 import { locatorFillState, nonOverlappingRadius, needsMarker } from "../game/locatorRound";
 import { DEFAULT_BASEMAP } from "../game/settings";
+import GlobeTexture from "./GlobeTexture";
 import { tooltipBox, placeTooltip } from "../game/mapLabels";
 import {
   GLOBE_VIEW_SIZE,
@@ -121,11 +122,23 @@ for (const code of GLOBE_COUNTRY_CODES) {
   TERRAIN_FILLS[code] = map.terrain[terrainClass(code)] ?? map.land;
 }
 
-// The two basemaps. "simple" is the kit's own map layer — one flat land colour
-// over the ocean — and is what every globe looked like before terrain existed;
-// it reads borders better, which is why the Country Locator defaults to it.
-const landFill = (code, basemap) =>
-  basemap === "simple" ? map.land : (TERRAIN_FILLS[code] ?? map.land);
+// The three ways land gets its colour.
+//
+//   raster  — a photograph of the Earth, reprojected underneath the SVG
+//             (GlobeTexture). Countries then draw NO fill at all, so the
+//             imagery shows through and only their borders remain.
+//   terrain — the per-country classified fill. This is what "terrain" means
+//             wherever the raster can't run, which today is native: React
+//             Native has no canvas to reproject into.
+//   simple  — the kit's own map layer, one flat land colour over the ocean.
+//             Reads borders better, which is what the Country Locator wants.
+//
+// `fill="transparent"` rather than `fill="none"`: a none-filled path is not
+// hit-testable, and every country has to stay tappable over the imagery.
+const landFill = (code, basemap, raster) => {
+  if (raster) return "transparent";
+  return basemap === "simple" ? map.land : (TERRAIN_FILLS[code] ?? map.land);
+};
 
 // Locator mode's fill per state. The state itself is decided by the pure
 // locatorFillState(); this is only the name -> token mapping, kept here so that
@@ -163,6 +176,15 @@ export default function GlobeMap({
   basemap = DEFAULT_BASEMAP,
 }) {
   const [hoveredCode, setHoveredCode] = useState(null);
+  // Whether the photographic basemap actually rendered. It is asynchronous (the
+  // texture has to decode) and platform-dependent, so the vector layer cannot
+  // assume it: until this flips, countries keep their classified fills, and the
+  // globe simply improves rather than flashing empty.
+  const [rasterReady, setRasterReady] = useState(false);
+  // The square the SVG's preserveAspectRatio="xMidYMid meet" actually fits
+  // into. The raster has to occupy exactly that square or the imagery slides
+  // off the borders drawn on top of it.
+  const [box, setBox] = useState({ width: 0, height: 0 });
   const [tapped, setTapped] = useState(null);
   const tapTimer = useRef(null);
   useEffect(() => () => clearTimeout(tapTimer.current), []);
@@ -172,6 +194,8 @@ export default function GlobeMap({
     [locator]
   );
   const isLocator = Boolean(locator);
+  const wantsRaster = basemap === "terrain";
+  const raster = wantsRaster && rasterReady;
   const locked = isLocator && locator.answered;
 
   const handleTap = (code) => {
@@ -199,11 +223,13 @@ export default function GlobeMap({
       // same world the Explore map shows, not on a stripped-back diagram. Only
       // the states that mean something (candidate, correct, wrong) override it.
       return state === "inert"
-        ? landFill(code, basemap)
-        : (LOCATOR_FILLS[state] ?? landFill(code, basemap));
+        ? landFill(code, basemap, raster)
+        : (LOCATOR_FILLS[state] ?? landFill(code, basemap, raster));
     }
     if (code === highlightCode) return map.selected;
-    return code === hoveredCode || code === tapped ? map.landActive : landFill(code, basemap);
+    return code === hoveredCode || code === tapped
+      ? map.landActive
+      : landFill(code, basemap, raster);
   };
 
   // Only an answerable country should look answerable. In locator mode a
@@ -298,216 +324,252 @@ export default function GlobeMap({
   })();
 
   return (
-    <Svg viewBox={VIEWBOX} width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
-      <Defs>
-        {/* The atmosphere glow: transparent until the sphere's true edge,
+    <View
+      style={styles.root}
+      onLayout={(e) => setBox(e.nativeEvent.layout)}
+      pointerEvents="box-none"
+    >
+      {/* The raster covers the WHOLE box, not the fitted square: the SVG above
+          lets the sphere overflow that square once zoomed, and a square
+          photograph underneath leaves two visible seams where the imagery stops
+          and the borders carry on. */}
+      {wantsRaster && box.width > 0 && (
+        <GlobeTexture
+          spin={spin}
+          zoom={zoom}
+          box={box}
+          style={StyleSheet.absoluteFillObject}
+          onReady={setRasterReady}
+        />
+      )}
+      <Svg
+        viewBox={VIEWBOX}
+        width="100%"
+        height="100%"
+        preserveAspectRatio="xMidYMid meet"
+        style={StyleSheet.absoluteFill}
+      >
+        <Defs>
+          {/* The atmosphere glow: transparent until the sphere's true edge,
             peaking partway into the margin beyond it, then fading back to
             nothing at the halo's own outer boundary — a soft ring rather than
             a wash, and no hard cutoff for the outer circle to reveal. */}
-        <RadialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor={map.related} stopOpacity={0} />
-          <Stop
-            offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`}
-            stopColor={map.related}
-            stopOpacity={0}
-          />
-          <Stop
-            offset={`${(atmosphere.peakFrac * 100).toFixed(2)}%`}
-            stopColor={map.related}
-            stopOpacity={GLOBE_ATMOSPHERE_PEAK_OPACITY}
-          />
-          <Stop offset="100%" stopColor={map.related} stopOpacity={0} />
-        </RadialGradient>
+          <RadialGradient id="globeAtmosphere" cx="50%" cy="50%" r="50%">
+            <Stop offset="0%" stopColor={map.related} stopOpacity={0} />
+            <Stop
+              offset={`${(atmosphere.edgeFrac * 100).toFixed(2)}%`}
+              stopColor={map.related}
+              stopOpacity={0}
+            />
+            <Stop
+              offset={`${(atmosphere.peakFrac * 100).toFixed(2)}%`}
+              stopColor={map.related}
+              stopOpacity={GLOBE_ATMOSPHERE_PEAK_OPACITY}
+            />
+            <Stop offset="100%" stopColor={map.related} stopOpacity={0} />
+          </RadialGradient>
 
-        {/* The lit sphere. A flat ocean fill makes the globe read as a disc
+          {/* The lit sphere. A flat ocean fill makes the globe read as a disc
             with a picture on it; brightening the middle and letting it fall
             away toward the limb is what gives it volume. */}
-        <RadialGradient id="globeOcean" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor={map.oceanLit} stopOpacity={1} />
-          <Stop offset="55%" stopColor={map.ocean} stopOpacity={1} />
-          <Stop offset="100%" stopColor={map.ocean} stopOpacity={1} />
-        </RadialGradient>
+          <RadialGradient id="globeOcean" cx="50%" cy="50%" r="50%">
+            <Stop offset="0%" stopColor={map.oceanLit} stopOpacity={1} />
+            <Stop offset="55%" stopColor={map.ocean} stopOpacity={1} />
+            <Stop offset="100%" stopColor={map.ocean} stopOpacity={1} />
+          </RadialGradient>
 
-        {/* Limb darkening, laid over land and water alike. Transparent across
+          {/* Limb darkening, laid over land and water alike. Transparent across
             the middle of the disc so terrain colours stay true where they are
             actually being read, ramping only over the outer third. */}
-        <RadialGradient id="globeShade" cx="50%" cy="50%" r="50%">
-          <Stop offset="0%" stopColor={map.shade} stopOpacity={0} />
-          <Stop
-            offset={`${(GLOBE_SHADE_INNER_FRAC * 100).toFixed(0)}%`}
-            stopColor={map.shade}
-            stopOpacity={0}
-          />
-          <Stop offset="100%" stopColor={map.shade} stopOpacity={GLOBE_SHADE_OPACITY} />
-        </RadialGradient>
-      </Defs>
+          <RadialGradient id="globeShade" cx="50%" cy="50%" r="50%">
+            <Stop offset="0%" stopColor={map.shade} stopOpacity={0} />
+            <Stop
+              offset={`${(GLOBE_SHADE_INNER_FRAC * 100).toFixed(0)}%`}
+              stopColor={map.shade}
+              stopOpacity={0}
+            />
+            <Stop offset="100%" stopColor={map.shade} stopOpacity={GLOBE_SHADE_OPACITY} />
+          </RadialGradient>
+        </Defs>
 
-      {/* Drawn before the sphere itself so the ocean/land occlude the halo's
+        {/* Drawn before the sphere itself so the ocean/land occlude the halo's
           inner portion, leaving only the glow that bleeds past the true edge
           visible — a rim light, not a filled aura. */}
-      <Circle
-        cx={CENTER}
-        cy={CENTER}
-        r={atmosphere.outerRadius}
-        fill="url(#globeAtmosphere)"
-        pointerEvents="none"
-      />
+        <Circle
+          cx={CENTER}
+          cy={CENTER}
+          r={atmosphere.outerRadius}
+          fill="url(#globeAtmosphere)"
+          pointerEvents="none"
+        />
 
-      {/* The ocean is the sphere itself, so the globe reads as an object with
-          an edge rather than as land floating on a panel. Same lit-land-on-deep-
-          water relationship the flat map uses, just bounded by a circle. */}
-      <Circle cx={CENTER} cy={CENTER} r={radius} fill="url(#globeOcean)" />
+        {/* The ocean is the sphere itself, so the globe reads as an object with
+          an edge rather than as land floating on a panel — except under the
+          raster, where the ocean is part of the photograph and painting over it
+          would hide the thing we just reprojected. */}
+        <Circle
+          cx={CENTER}
+          cy={CENTER}
+          r={radius}
+          fill={raster ? "transparent" : "url(#globeOcean)"}
+        />
 
-      {/* The graticule, drawn before land so it's only ever visible through
+        {/* The graticule, drawn before land so it's only ever visible through
           open ocean — exactly like a country's own coastline would occlude
           it, with no extra clipping logic needed. */}
-      {graticuleD.map((d, i) => (
-        <Path
-          key={`grid-${i}`}
-          d={d}
-          fill="none"
-          stroke={map.graticule}
-          strokeWidth={GLOBE_GRATICULE_WIDTH}
-        />
-      ))}
+        {graticuleD.map((d, i) => (
+          <Path
+            key={`grid-${i}`}
+            d={d}
+            fill="none"
+            stroke={map.graticule}
+            strokeWidth={GLOBE_GRATICULE_WIDTH}
+          />
+        ))}
 
-      {paths.map(([code, d]) => (
-        <Path
-          key={code}
-          d={d}
-          fill={fillFor(code)}
-          // Borders in the ocean's own color, so every country reads as its
-          // own island and shared land borders are as legible as coastlines.
-          stroke={map.border}
-          strokeWidth={GLOBE_BORDER_WIDTH}
-          strokeLinejoin="round"
-          style={HOVER_HANDLERS_SUPPORTED && selectable(code) ? HOVER_STYLE : undefined}
-          {...(selectable(code) ? pickHandler(code, handleTap) : null)}
-          {...(hoverable(code)
-            ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
-            : null)}
-        />
-      ))}
-
-      {/* The sphere's own shading, above land so it darkens continents and
-          ocean together — the single thing that turns a flat disc into a ball.
-          Above the countries but below every marker and label, which have to
-          stay legible right out to the limb. */}
-      <Circle cx={CENTER} cy={CENTER} r={radius} fill="url(#globeShade)" pointerEvents="none" />
-
-      {/* Locator mode: a drawn ring around every candidate too small to see.
-          Without it the round can ask for Djibouti — six pixels of coastline —
-          and then reveal the answer by saying it is "in green", pointing at
-          something invisible. The ring is the affordance and carries the same
-          state colour as the country would; the hit circle below it is larger
-          again, so the touch target exceeds its visual. */}
-      {isLocator &&
-        SMALL_COUNTRIES.map((code) =>
-          centers[code] &&
-          candidateCodes.has(code) &&
-          needsMarker(SMALL_COUNTRY_DEGREES[code], zoom) ? (
-            <Circle
-              key={`marker-${code}`}
-              cx={centers[code][0]}
-              cy={centers[code][1]}
-              r={Math.min(GLOBE_LOCATOR_MARKER_RADIUS, hitRadiusFor(code))}
-              fill="none"
-              stroke={LOCATOR_FILLS[locatorFillState(code, locator)] ?? map.landActive}
-              strokeWidth={GLOBE_LOCATOR_MARKER_WIDTH}
-              pointerEvents="none"
-            />
-          ) : null
-        )}
-
-      {/* Enlarged invisible tap targets for the countries too small to hit,
-          placed on this frame's projected center and only while they face us.
-          Locator mode uses a bigger radius: answering is mandatory there, so a
-          missed tap is a wrong answer rather than a shrug. */}
-      {SMALL_COUNTRIES.map((code) =>
-        centers[code] && selectable(code) ? (
-          <Circle
-            key={`hit-${code}`}
-            cx={centers[code][0]}
-            cy={centers[code][1]}
-            r={hitRadiusFor(code)}
-            fill="transparent"
-            {...pickHandler(code, handleTap)}
-            {...(HOVER_HANDLERS_SUPPORTED
+        {paths.map(([code, d]) => (
+          <Path
+            key={code}
+            d={d}
+            fill={fillFor(code)}
+            // Borders in the ocean's own color, so every country reads as its
+            // own island and shared land borders are as legible as coastlines.
+            stroke={raster ? map.borderOnRaster : map.border}
+            strokeWidth={GLOBE_BORDER_WIDTH}
+            strokeLinejoin="round"
+            style={HOVER_HANDLERS_SUPPORTED && selectable(code) ? HOVER_STYLE : undefined}
+            {...(selectable(code) ? pickHandler(code, handleTap) : null)}
+            {...(hoverable(code)
               ? {
                   onMouseEnter: () => setHoveredCode(code),
                   onMouseLeave: () => setHoveredCode(null),
                 }
               : null)}
           />
-        ) : null
-      )}
+        ))}
 
-      {/* A crisp rim highlight traced right at the sphere's true edge, on top
+        {/* The sphere's own shading, above land so it darkens continents and
+          ocean together — the single thing that turns a flat disc into a ball.
+          Above the countries but below every marker and label, which have to
+          stay legible right out to the limb. */}
+        <Circle cx={CENTER} cy={CENTER} r={radius} fill="url(#globeShade)" pointerEvents="none" />
+
+        {/* Locator mode: a drawn ring around every candidate too small to see.
+          Without it the round can ask for Djibouti — six pixels of coastline —
+          and then reveal the answer by saying it is "in green", pointing at
+          something invisible. The ring is the affordance and carries the same
+          state colour as the country would; the hit circle below it is larger
+          again, so the touch target exceeds its visual. */}
+        {isLocator &&
+          SMALL_COUNTRIES.map((code) =>
+            centers[code] &&
+            candidateCodes.has(code) &&
+            needsMarker(SMALL_COUNTRY_DEGREES[code], zoom) ? (
+              <Circle
+                key={`marker-${code}`}
+                cx={centers[code][0]}
+                cy={centers[code][1]}
+                r={Math.min(GLOBE_LOCATOR_MARKER_RADIUS, hitRadiusFor(code))}
+                fill="none"
+                stroke={LOCATOR_FILLS[locatorFillState(code, locator)] ?? map.landActive}
+                strokeWidth={GLOBE_LOCATOR_MARKER_WIDTH}
+                pointerEvents="none"
+              />
+            ) : null
+          )}
+
+        {/* Enlarged invisible tap targets for the countries too small to hit,
+          placed on this frame's projected center and only while they face us.
+          Locator mode uses a bigger radius: answering is mandatory there, so a
+          missed tap is a wrong answer rather than a shrug. */}
+        {SMALL_COUNTRIES.map((code) =>
+          centers[code] && selectable(code) ? (
+            <Circle
+              key={`hit-${code}`}
+              cx={centers[code][0]}
+              cy={centers[code][1]}
+              r={hitRadiusFor(code)}
+              fill="transparent"
+              {...pickHandler(code, handleTap)}
+              {...(HOVER_HANDLERS_SUPPORTED
+                ? {
+                    onMouseEnter: () => setHoveredCode(code),
+                    onMouseLeave: () => setHoveredCode(null),
+                  }
+                : null)}
+            />
+          ) : null
+        )}
+
+        {/* A crisp rim highlight traced right at the sphere's true edge, on top
           of land and water alike — the thin bright line a lit atmosphere
           leaves right at the limb, distinct from the softer glow bleeding
           past it. */}
-      <Circle
-        cx={CENTER}
-        cy={CENTER}
-        r={radius}
-        fill="none"
-        stroke={map.related}
-        strokeOpacity={GLOBE_ATMOSPHERE_RIM_OPACITY}
-        strokeWidth={GLOBE_ATMOSPHERE_RIM_WIDTH}
-        pointerEvents="none"
-      />
+        <Circle
+          cx={CENTER}
+          cy={CENTER}
+          r={radius}
+          fill="none"
+          stroke={map.related}
+          strokeOpacity={GLOBE_ATMOSPHERE_RIM_OPACITY}
+          strokeWidth={GLOBE_ATMOSPHERE_RIM_WIDTH}
+          pointerEvents="none"
+        />
 
-      {/* Tap confirmation, drawn last so it sits above every shape. Skipped if
+        {/* Tap confirmation, drawn last so it sits above every shape. Skipped if
           the country has spun out of view mid-delay, which would otherwise
           strand its name over open ocean. */}
-      {!isLocator && tapped && centers[tapped] && (
-        <SvgText
-          x={centers[tapped][0]}
-          y={centers[tapped][1]}
-          textAnchor="middle"
-          fontSize={MAP_TAP_LABEL_FONT_SIZE}
-          fontFamily={fonts.monoMedium}
-          fill={map.onMap}
-          stroke={map.ocean}
-          strokeWidth={0.9}
-          paintOrder="stroke"
-        >
-          {countryName(tapped)}
-        </SvgText>
-      )}
+        {!isLocator && tapped && centers[tapped] && (
+          <SvgText
+            x={centers[tapped][0]}
+            y={centers[tapped][1]}
+            textAnchor="middle"
+            fontSize={MAP_TAP_LABEL_FONT_SIZE}
+            fontFamily={fonts.monoMedium}
+            fill={map.onMap}
+            stroke={map.ocean}
+            strokeWidth={0.9}
+            paintOrder="stroke"
+          >
+            {countryName(tapped)}
+          </SvgText>
+        )}
 
-      {/* Hover tooltip, drawn above everything including the tap label — it
+        {/* Hover tooltip, drawn above everything including the tap label — it
           follows the pointer, so anything it slipped under would flicker.
           pointerEvents none throughout: a chip that intercepted the pointer
           would un-hover the country the moment it appeared, then re-hover it,
           forever. */}
-      {tooltip && (
-        <>
-          <Rect
-            x={tooltip.x}
-            y={tooltip.y}
-            width={tooltip.width}
-            height={tooltip.height}
-            rx={tooltip.height / 2}
-            fill={map.ocean}
-            fillOpacity={0.92}
-            stroke={map.border}
-            strokeWidth={0.5}
-            pointerEvents="none"
-          />
-          <SvgText
-            x={tooltip.textX}
-            y={tooltip.textY}
-            textAnchor="middle"
-            fontSize={GLOBE_TOOLTIP_FONT_SIZE}
-            fontFamily={fonts.monoMedium}
-            fill={map.onMap}
-            pointerEvents="none"
-          >
-            {tooltip.name}
-          </SvgText>
-        </>
-      )}
-    </Svg>
+        {tooltip && (
+          <>
+            <Rect
+              x={tooltip.x}
+              y={tooltip.y}
+              width={tooltip.width}
+              height={tooltip.height}
+              rx={tooltip.height / 2}
+              fill={map.ocean}
+              fillOpacity={0.92}
+              stroke={raster ? map.borderOnRaster : map.border}
+              strokeWidth={0.5}
+              pointerEvents="none"
+            />
+            <SvgText
+              x={tooltip.textX}
+              y={tooltip.textY}
+              textAnchor="middle"
+              fontSize={GLOBE_TOOLTIP_FONT_SIZE}
+              fontFamily={fonts.monoMedium}
+              fill={map.onMap}
+              pointerEvents="none"
+            >
+              {tooltip.name}
+            </SvgText>
+          </>
+        )}
+      </Svg>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({ root: { flex: 1, overflow: "hidden" } });

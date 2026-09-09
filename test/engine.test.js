@@ -35,6 +35,12 @@ import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
 import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
 import { classifyTerrain, bandFromLatitude, TERRAIN_CLASSES } from "../src/game/terrainTint";
+import {
+  viewToWorld,
+  vecToLonLat,
+  texelIndex,
+  renderGlobeRaster,
+} from "../src/game/globeRaster";
 import { COUNTRY_TERRAIN, terrainClass } from "../src/data/countryTerrain";
 import {
   buildCountryFactQuestions,
@@ -3751,6 +3757,117 @@ check(
 );
 check(pathToRoute("/play/country/br").countryCode === "br", "...and comes back with its subject");
 check(pathToRoute("/play/flag").countryCode === null, "a generic round carries no subject");
+
+
+// ---------------------------------------------------------------------------
+// The raster basemap (src/game/globeRaster.js). Countries are projected
+// FORWARD — world point to screen. A photograph has to go the other way: for
+// every pixel in the disc, which point of the Earth is there? That inverse is
+// what this tests, against a four-texel synthetic texture rather than against a
+// photograph, so a failure names the bug instead of looking slightly wrong.
+// ---------------------------------------------------------------------------
+console.log("\nGlobe raster basemap");
+
+// viewToWorld must be the exact inverse of globeProjection.rotate(). If it
+// drifts, the map slides off the countries and every border is subtly wrong —
+// the kind of bug that looks like bad data rather than bad math.
+for (const spin of [{ lng: 0, lat: 0 }, { lng: 137, lat: -22 }, { lng: -64, lat: 71 }]) {
+  const o = orientation(spin.lng, spin.lat);
+  for (const [lng, lat] of [[0, 0], [45, 30], [-120, -60], [179, 12]]) {
+    const world = lngLatToVec(lng, lat);
+    const view = rotate(world, o);
+    const back = viewToWorld(view[0], view[1], view[2], o);
+    const err = Math.max(...[0, 1, 2].map((i) => Math.abs(back[i] - world[i])));
+    check(err < 1e-9, `viewToWorld inverts rotate at spin ${spin.lng}/${spin.lat}, point ${lng}/${lat}`);
+  }
+}
+
+const [lonBack, latBack] = vecToLonLat(lngLatToVec(-73.5, 45.5));
+check(Math.abs(lonBack + 73.5) < 1e-9 && Math.abs(latBack - 45.5) < 1e-9, "a vector round-trips to its own lon/lat");
+// asin(1.0000001) is NaN, and the sub-viewer point is the one pixel a reader is
+// most likely looking at.
+check(Number.isFinite(vecToLonLat([0, 0, 1.0000001])[1]), "a float-error pole does not become NaN");
+
+// Longitude wraps, latitude clamps: the antimeridian is a seam in the image but
+// not on the Earth, and clamping there smears one column across the Pacific.
+check(texelIndex(-180, 0, 8, 4) === texelIndex(180, 0, 8, 4), "the antimeridian samples the same texel from both sides");
+check(texelIndex(0, 90, 4, 2) < texelIndex(0, -90, 4, 2), "north is the top row of the texture");
+check(texelIndex(-179.9, 0, 8, 4) >= 0, "a longitude just west of the seam is in range");
+check(texelIndex(0, 0, 8, 4) % 4 === 0, "an index always lands on a pixel boundary");
+
+// Render against a texture whose four quadrants are distinguishable, so what
+// lands where is checkable rather than plausible.
+const TW = 4;
+const TH = 2;
+const tex = new Uint8Array(TW * TH * 4);
+for (let y = 0; y < TH; y++) {
+  for (let x = 0; x < TW; x++) {
+    const i = (y * TW + x) * 4;
+    tex[i] = x * 60;
+    tex[i + 1] = y * 200;
+    tex[i + 2] = 7;
+    tex[i + 3] = 255;
+  }
+}
+const SIZE = 32;
+// The frame is deliberately not square in production — the SVG above it fills
+// the whole container — so the renderer takes an explicit centre and radius.
+// A square frame here just keeps the arithmetic in the checks readable.
+const RADIUS = SIZE * 0.475;
+const renderAt = (dest, spin, zoom = 1, w = SIZE, h = SIZE) =>
+  renderGlobeRaster({
+    dest,
+    width: w,
+    height: h,
+    src: tex,
+    srcWidth: TW,
+    srcHeight: TH,
+    spin,
+    radius: RADIUS * zoom,
+  });
+
+const frame = new Uint8Array(SIZE * SIZE * 4);
+renderAt(frame, { lng: 0, lat: 0 });
+const at = (x, y) => frame.slice((y * SIZE + x) * 4, (y * SIZE + x) * 4 + 4);
+check(at(0, 0)[3] === 0, "a corner outside the disc is fully transparent");
+check(at(SIZE / 2, SIZE / 2)[3] === 255, "the centre of the disc is opaque");
+// At spin 0/0 the viewer faces lon 0, which is the middle of the source image.
+check(at(SIZE / 2, SIZE / 2)[0] === 120, "the centre samples the texel at lon 0");
+// Northern hemisphere is the top row of an equirectangular source.
+check(at(SIZE / 2, SIZE / 2 - 8)[1] === 0, "above the equator samples the top row");
+check(at(SIZE / 2, SIZE / 2 + 8)[1] === 200, "below it samples the bottom row");
+
+// Spinning east must move the sampled column — the check that would catch an
+// inverse rotation that is right at the identity and wrong everywhere else.
+const spun = new Uint8Array(SIZE * SIZE * 4);
+renderAt(spun, { lng: 90, lat: 0 });
+const centreIdx = ((SIZE / 2) * SIZE + SIZE / 2) * 4;
+check(spun[centreIdx] !== frame[centreIdx], "spinning the globe changes what is under the viewer");
+
+// Zoom grows the disc; at 2x the pixel that was at the limb is now well inside
+// it, which is what keeps the raster registered with the vector layer.
+const zoomed = new Uint8Array(SIZE * SIZE * 4);
+renderAt(zoomed, { lng: 0, lat: 0 }, 2);
+// x = 0 sits just outside the disc at 1x (radius is 0.475 of the frame) and
+// well inside it at 2x.
+const edge = ((SIZE / 2) * SIZE + 0) * 4;
+check(frame[edge + 3] === 0 && zoomed[edge + 3] === 255, "zooming in fills pixels that were off the sphere");
+
+// A reused buffer must not keep last frame's pixels where this frame has none.
+const reused = new Uint8Array(SIZE * SIZE * 4).fill(255);
+renderAt(reused, { lng: 0, lat: 0 });
+check(reused[3] === 0, "a reused buffer is cleared outside the disc, not left with stale pixels");
+
+// A wide frame is the real case: the container is wider than it is tall, the
+// sphere is centred in it, and the corners are ocean-free. A renderer that
+// assumed square would smear here.
+const WIDE_W = 48;
+const wide = new Uint8Array(WIDE_W * SIZE * 4);
+renderAt(wide, { lng: 0, lat: 0 }, 1, WIDE_W, SIZE);
+const wideAt = (x, y) => wide.slice((y * WIDE_W + x) * 4, (y * WIDE_W + x) * 4 + 4);
+check(wideAt(WIDE_W / 2, SIZE / 2)[3] === 255, "a non-square frame still has its sphere centred");
+check(wideAt(WIDE_W / 2, SIZE / 2)[0] === 120, "...sampling the same texel a square frame did");
+check(wideAt(1, SIZE / 2)[3] === 0, "...and its far corners are off the sphere");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

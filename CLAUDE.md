@@ -124,6 +124,8 @@ src/
                            #   instructions, never topics — geography is legitimately full of war
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
+  game/globeRaster.js      # PURE inverse orthographic: for every pixel in the disc, which point of
+                           #   the Earth is there? Fills an RGBA buffer from an equirectangular source
   game/mapLabels.js        # PURE label geometry: monospaced text width, and placing a hover tooltip
                            #   so it never covers the country it names or runs off the viewBox
   game/terrainTint.js      # PURE terrain classifier: reads a country's own Factbook climate and
@@ -171,6 +173,10 @@ src/
   components/CountryGlobe.js # The country page's hero: the globe spun to this country, lit up
   components/GlobeCard.js   # The globe on Home — the same GlobeMap and gestures, not a picture
   components/BasemapToggle.js # Terrain ↔ simple map, on every globe. Reads settings.basemap
+  components/GlobeTexture.js # WEB ONLY: the reprojected photographic basemap, on a <canvas> under
+                           #   the SVG. Native has no canvas, so it falls back to classified fills
+assets/globe/earth-relief.jpg # NASA Blue Marble, 2048x1024, PUBLIC DOMAIN. Bundled, not fetched
+scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run build:globe-texture)
   components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
                            #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
@@ -238,6 +244,24 @@ found against the real prose and each one a place naive keyword matching gets it
 coast" is a location rather than a climate, and "subarctic" must never satisfy the arctic pattern.
 The same words also mean different ground at different latitudes — "arid to semiarid" is cold steppe
 at 48°N and hot desert at 25°S — which is why this is a hybrid rather than a lookup.
+
+**The terrain basemap is a real photograph, reprojected per frame.**
+`assets/globe/earth-relief.jpg` is NASA's Blue Marble — an *equirectangular* image, which is the one
+projection the globe can resample cheaply, because pixel x maps linearly to longitude and pixel y to
+latitude. `game/globeRaster.js` runs the projection BACKWARDS (screen pixel → point on the Earth →
+texel) and fills a buffer; `components/GlobeTexture.js` puts that on a `<canvas>` beneath the SVG.
+Four things to know before touching it:
+- **The two layers are registered by construction, not by tuning.** The raster is handed the same
+  centre and radius the SVG derives from `GLOBE_BASE_RADIUS`/`GLOBE_VIEW_SIZE`. It also covers the
+  WHOLE container rather than the fitted square — the SVG lets the sphere overflow that square once
+  zoomed, and a square photograph leaves two visible seams.
+- **Countries draw `fill="transparent"`, not `fill="none"`,** when the raster is up. A none-filled
+  path is not hit-testable, and every country has to stay tappable over the imagery.
+- **Draft while moving, full size when settled.** ~2ms for a 256-long-edge frame against ~23ms at
+  900; `FULL_SIZE` is a cap, not a target.
+- **WEB ONLY, deliberately.** Reprojecting needs a writable pixel buffer and React Native has no
+  canvas, so on native `terrain` falls back to the per-country classified fills — a real map rather
+  than a broken one. Doing better means a GL surface.
 
 **Every globe takes a `basemap`, and it is a SETTING.** `terrain` is the realistic basemap;
 `simple` is the kit's own map layer, one flat land colour, which reads borders better and is what
