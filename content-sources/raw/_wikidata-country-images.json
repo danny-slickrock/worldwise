@@ -1,0 +1,1087 @@
+{
+  "ie": {
+    "entity": "http://www.wikidata.org/entity/Q27",
+    "label": "Ireland",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/000%20Irlanda%20harta.PNG"
+  },
+  "aq": {
+    "entity": "http://www.wikidata.org/entity/Q51",
+    "label": "Antarctica",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Antarctica%206400px%20from%20Blue%20Marble.jpg"
+  },
+  "ke": {
+    "entity": "http://www.wikidata.org/entity/Q114",
+    "label": "Kenya",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Kenya%20-%20Location%20Map%20%282013%29%20-%20KEN%20-%20UNOCHA.svg"
+  },
+  "gh": {
+    "entity": "http://www.wikidata.org/entity/Q117",
+    "label": "Ghana",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Beach%20with%20palms%20Ghana.jpg"
+  },
+  "is": {
+    "entity": "http://www.wikidata.org/entity/Q189",
+    "label": "Iceland",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Cloud-free%20Iceland%20ESA22181280%20%28cropped%29.jpeg"
+  },
+  "ee": {
+    "entity": "http://www.wikidata.org/entity/Q191",
+    "label": "Estonia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Estonia%20-%20Location%20Map%20%282013%29%20-%20EST%20-%20UNOCHA.svg"
+  },
+  "ua": {
+    "entity": "http://www.wikidata.org/entity/Q212",
+    "label": "Ukraine",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Maidan%20Nezalezhnosti%20view.jpg"
+  },
+  "md": {
+    "entity": "http://www.wikidata.org/entity/Q217",
+    "label": "Moldova",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/MoldRelief.jpg"
+  },
+  "mk": {
+    "entity": "http://www.wikidata.org/entity/Q221",
+    "label": "North Macedonia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Map%20of%20the%20Republic%20of%20Macedonia-mk.svg"
+  },
+  "gl": {
+    "entity": "http://www.wikidata.org/entity/Q223",
+    "label": "Greenland",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Greenland%2042.74746W%2071.57394N.jpg"
+  },
+  "hr": {
+    "entity": "http://www.wikidata.org/entity/Q224",
+    "label": "Croatia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Dubrovnik%20june%202011..JPG"
+  },
+  "az": {
+    "entity": "http://www.wikidata.org/entity/Q227",
+    "label": "Azerbaijan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Aj-map.png"
+  },
+  "cy": {
+    "entity": "http://www.wikidata.org/entity/Q229",
+    "label": "Cyprus",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/CGI%20Cyprus%20Flag.png"
+  },
+  "mc": {
+    "entity": "http://www.wikidata.org/entity/Q235",
+    "label": "Monaco",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20von%20Monaco-La%20Turbie.jpg"
+  },
+  "uz": {
+    "entity": "http://www.wikidata.org/entity/Q265",
+    "label": "Uzbekistan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Uzbekistan%20-%20Location%20Map%20%282011%29%20-%20UZB%20-%20UNOCHA.svg"
+  },
+  "kh": {
+    "entity": "http://www.wikidata.org/entity/Q424",
+    "label": "Cambodia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Angkor%20Wat%20W-Seite.jpg"
+  },
+  "ws": {
+    "entity": "http://www.wikidata.org/entity/Q683",
+    "label": "Samoa",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Beach%20on%20Upolu%20Island%2C%20Samoa%2C%202009.jpg"
+  },
+  "fj": {
+    "entity": "http://www.wikidata.org/entity/Q712",
+    "label": "Fiji",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/%D0%9A%D1%83%D0%B8%D0%BD%D1%81-%D1%80%D0%BE%D1%83%D0%B4%2C%20%D0%B3%D0%BE%D1%80%D0%BE%D0%B4%20%D0%9D%D0%B0%D0%BD%D0%B4%D0%B8%20%28Queens%20Rd.%2C%20Nadi%29.jpg"
+  },
+  "jm": {
+    "entity": "http://www.wikidata.org/entity/Q766",
+    "label": "Jamaica",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Jamaica%20in%20November%202001.jpg"
+  },
+  "gt": {
+    "entity": "http://www.wikidata.org/entity/Q774",
+    "label": "Guatemala",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Guatemala%20in%20April%202002.jpg"
+  },
+  "ht": {
+    "entity": "http://www.wikidata.org/entity/Q790",
+    "label": "Haiti",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS020-E-43300%20-%20View%20of%20Haiti.jpg"
+  },
+  "il": {
+    "entity": "http://www.wikidata.org/entity/Q801",
+    "label": "Israel",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/%D0%A7%D0%B0%D1%81%D0%BE%D0%B2%D0%B0%D1%8F%20%D0%B1%D0%B0%D1%88%D0%BD%D1%8F%20%D1%81%D1%83%D0%BB%D1%82%D0%B0%D0%BD%D0%B0%20%D0%90%D0%B1%D0%B4%D1%83%D0%BB%20%D0%A5%D0%B0%D0%BC%D0%B8%D0%B4%D0%B0%20II%20-%20panoramio.jpg"
+  },
+  "ye": {
+    "entity": "http://www.wikidata.org/entity/Q805",
+    "label": "Yemen",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/MallaDistrict.jpg"
+  },
+  "jo": {
+    "entity": "http://www.wikidata.org/entity/Q810",
+    "label": "Jordan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/17%20Dead%20Sea%20%2813%29%20%2813252089754%29.jpg"
+  },
+  "la": {
+    "entity": "http://www.wikidata.org/entity/Q819",
+    "label": "Laos",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Karst%20peaks%20and%20green%20paddy%20fields%20under%20a%20stormy%20sky%2C%20South%20view%20from%20Mount%20Nam%20Xay%2C%20Vang%20Vieng%2C%20Laos.jpg"
+  },
+  "mm": {
+    "entity": "http://www.wikidata.org/entity/Q836",
+    "label": "Myanmar",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/%40HaNgryBam.jpg"
+  },
+  "om": {
+    "entity": "http://www.wikidata.org/entity/Q842",
+    "label": "Oman",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Nakhal%20Fort%20Sultanate%20of%20Oman%20001.jpg"
+  },
+  "qa": {
+    "entity": "http://www.wikidata.org/entity/Q846",
+    "label": "Qatar",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Skyline%20of%20Doha%20West%20Bay.jpg"
+  },
+  "lk": {
+    "entity": "http://www.wikidata.org/entity/Q854",
+    "label": "Sri Lanka",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Topography%20Sri%20Lanka.jpg"
+  },
+  "th": {
+    "entity": "http://www.wikidata.org/entity/Q869",
+    "label": "Thailand",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Temple%20of%20the%20Emerald%20of%20buddha%20or%20Wat%20Phra%20Kaew%20%28cropped%29.jpg"
+  },
+  "tm": {
+    "entity": "http://www.wikidata.org/entity/Q874",
+    "label": "Turkmenistan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Historical%20turkmen%20wedding%20of%20the%20bride.jpg"
+  },
+  "vn": {
+    "entity": "http://www.wikidata.org/entity/Q881",
+    "label": "Vietnam",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Hanoi%20Temple%20of%20Literature.jpg"
+  },
+  "tz": {
+    "entity": "http://www.wikidata.org/entity/Q924",
+    "label": "Tanzania",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Tanzania%20-%20Location%20Map%20%282013%29%20-%20TZA%20-%20UNOCHA.svg"
+  },
+  "tg": {
+    "entity": "http://www.wikidata.org/entity/Q945",
+    "label": "Togo",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Kpalime.jpg"
+  },
+  "zw": {
+    "entity": "http://www.wikidata.org/entity/Q954",
+    "label": "Zimbabwe",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Zimbabwe%20-%20Location%20Map%20%282013%29%20-%20ZWE%20-%20UNOCHA.svg"
+  },
+  "gq": {
+    "entity": "http://www.wikidata.org/entity/Q983",
+    "label": "Equatorial Guinea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Equatorialguinea%20w1%20locator.svg"
+  },
+  "xk": {
+    "entity": "http://www.wikidata.org/entity/Q1246",
+    "label": "Kosovo",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Geb%C3%A4ude%20der%20UNMIK%20NEW%20BORN%20SIGN%20PRISTINA%20KOSOVO%20Giv%20Owned%20Image%2023%20August%202008.jpg"
+  },
+  "gf": {
+    "entity": "http://www.wikidata.org/entity/Q3769",
+    "label": "French Guiana",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS009-E-21542%20-%20View%20of%20French%20Guiana.jpg"
+  },
+  "fo": {
+    "entity": "http://www.wikidata.org/entity/Q4628",
+    "label": "Faroe Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Faroe%20Islands%20by%20Sentinel-2.jpg"
+  },
+  "ax": {
+    "entity": "http://www.wikidata.org/entity/Q5689",
+    "label": "Åland",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Alands%20flag.jpg"
+  },
+  "fk": {
+    "entity": "http://www.wikidata.org/entity/Q9648",
+    "label": "Falkland Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Falkland-Islands-Terra-2011-01-23-250m.jpg"
+  },
+  "gu": {
+    "entity": "http://www.wikidata.org/entity/Q16635",
+    "label": "Guam",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Guam%20satellite%20photo%20map.jpg"
+  },
+  "mq": {
+    "entity": "http://www.wikidata.org/entity/Q17054",
+    "label": "Martinique",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Martinique%2014.6346N%2061.0051W%20Landsat7.jpg"
+  },
+  "aw": {
+    "entity": "http://www.wikidata.org/entity/Q21203",
+    "label": "Aruba",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Aruba%20World%20Wind.jpg"
+  },
+  "vg": {
+    "entity": "http://www.wikidata.org/entity/Q25305",
+    "label": "British Virgin Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/British%20Virgin%20Islands.jpg"
+  },
+  "pf": {
+    "entity": "http://www.wikidata.org/entity/Q30971",
+    "label": "French Polynesia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Archipel%20des%20Tuamotu.jpg"
+  },
+  "cx": {
+    "entity": "http://www.wikidata.org/entity/Q31063",
+    "label": "Christmas Island",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Crab%20migration%20extra%20-%20chris%20bray-1.jpg"
+  },
+  "nc": {
+    "entity": "http://www.wikidata.org/entity/Q33788",
+    "label": "New Caledonia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/New%20Caledonia%20after%20the%20passage%20of%20tropical%20cyclone%20Niran.jpg"
+  },
+  "hm": {
+    "entity": "http://www.wikidata.org/entity/Q131198",
+    "label": "Heard Island and McDonald Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Heard%20Island.jpg"
+  },
+  "dg": {
+    "entity": "http://www.wikidata.org/entity/Q184851",
+    "label": "Diego Garcia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Diegogarcia.jpg"
+  },
+  "cq": {
+    "entity": "http://www.wikidata.org/entity/Q3405693",
+    "label": "Sark",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Sark-aerial.jpg"
+  },
+  "ca": {
+    "entity": "http://www.wikidata.org/entity/Q16",
+    "label": "Canada",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Canada%20-%20Location%20Map%20%282013%29%20-%20CAN%20-%20UNOCHA.svg"
+  },
+  "jp": {
+    "entity": "http://www.wikidata.org/entity/Q17",
+    "label": "Japan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Japan%20in%20May%202003.jpg"
+  },
+  "es": {
+    "entity": "http://www.wikidata.org/entity/Q29",
+    "label": "Spain",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Spain%20-%20Location%20Map%20%282013%29%20-%20ESP%20-%20UNOCHA.svg"
+  },
+  "us": {
+    "entity": "http://www.wikidata.org/entity/Q30",
+    "label": "United States",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/United%20States%20-%20Location%20Map%20%282013%29%20-%20USA%20-%20UNOCHA.svg"
+  },
+  "be": {
+    "entity": "http://www.wikidata.org/entity/Q31",
+    "label": "Belgium",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Belgique%20-%20Bruxelles%20-%20Grand-Place%20-%20C%C3%B4t%C3%A9%20nord-est.jpg"
+  },
+  "se": {
+    "entity": "http://www.wikidata.org/entity/Q34",
+    "label": "Sweden",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Sweden%20-%20Location%20Map%20%282013%29%20-%20SWE%20-%20UNOCHA.svg"
+  },
+  "it": {
+    "entity": "http://www.wikidata.org/entity/Q38",
+    "label": "Italy",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Italy%20in%20March%202003.jpg"
+  },
+  "at": {
+    "entity": "http://www.wikidata.org/entity/Q40",
+    "label": "Austria",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Austria%20-%20Location%20Map%20%282019%29%20-%20AUT%20-%20UNOCHA.svg"
+  },
+  "tr": {
+    "entity": "http://www.wikidata.org/entity/Q43",
+    "label": "Turkey",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Historical%20peninsula%20and%20modern%20skyline%20of%20Istanbul.jpg"
+  },
+  "pt": {
+    "entity": "http://www.wikidata.org/entity/Q45",
+    "label": "Portugal",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Carte%20du%20Portugal.png"
+  },
+  "eg": {
+    "entity": "http://www.wikidata.org/entity/Q79",
+    "label": "Egypt",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/All%20Gizah%20Pyramids.jpg"
+  },
+  "mx": {
+    "entity": "http://www.wikidata.org/entity/Q96",
+    "label": "Mexico",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Ciudad.de.Mexico.City.Distrito.Federal.DF.Paseo.Reforma.Skyline.jpg"
+  },
+  "et": {
+    "entity": "http://www.wikidata.org/entity/Q115",
+    "label": "Ethiopia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Ethiopia%20in%20its%20region.svg"
+  },
+  "fr": {
+    "entity": "http://www.wikidata.org/entity/Q142",
+    "label": "France",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Paris%20from%20the%20Arc%20de%20Triomphe%2C%2017%20October%202019.jpg"
+  },
+  "gb": {
+    "entity": "http://www.wikidata.org/entity/Q145",
+    "label": "United Kingdom",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Palace%20of%20Westminster%20from%20the%20dome%20on%20Methodist%20Central%20Hall.jpg"
+  },
+  "cn": {
+    "entity": "http://www.wikidata.org/entity/Q148",
+    "label": "People's Republic of China",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Badaling%20China%20Great-Wall-of-China-01.jpg"
+  },
+  "br": {
+    "entity": "http://www.wikidata.org/entity/Q155",
+    "label": "Brazil",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Cidade%20Maravilhosa.jpg"
+  },
+  "lv": {
+    "entity": "http://www.wikidata.org/entity/Q211",
+    "label": "Latvia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Latvia%20in%20March%202003.jpg"
+  },
+  "cz": {
+    "entity": "http://www.wikidata.org/entity/Q213",
+    "label": "Czech Republic",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Czechia%20Montage.jpg"
+  },
+  "si": {
+    "entity": "http://www.wikidata.org/entity/Q215",
+    "label": "Slovenia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/SLO%20%E2%80%94%20Ljubljana%20%28Blick%20auf%20Burg%29%202020.JPG"
+  },
+  "bg": {
+    "entity": "http://www.wikidata.org/entity/Q219",
+    "label": "Bulgaria",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Rila%20Monastery%2C%20August%202013.jpg"
+  },
+  "al": {
+    "entity": "http://www.wikidata.org/entity/Q222",
+    "label": "Albania",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Albania%20-%20Location%20Map%20%282013%29%20-%20ALB%20-%20UNOCHA.svg"
+  },
+  "ad": {
+    "entity": "http://www.wikidata.org/entity/Q228",
+    "label": "Andorra",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Andorra%20la%20Vella%20-%20footpath.jpg"
+  },
+  "me": {
+    "entity": "http://www.wikidata.org/entity/Q236",
+    "label": "Montenegro",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/R-1%20regional%20road%20%28Montenegro%29%2007.jpg"
+  },
+  "va": {
+    "entity": "http://www.wikidata.org/entity/Q237",
+    "label": "Vatican City",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/0%20Basilique%20Saint-Pierre%20-%20Rome%20%281%29.JPG"
+  },
+  "bb": {
+    "entity": "http://www.wikidata.org/entity/Q244",
+    "label": "Barbados",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Barbados%20%2850%29.jpg"
+  },
+  "id": {
+    "entity": "http://www.wikidata.org/entity/Q252",
+    "label": "Indonesia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Indonesian%20Culture.jpg"
+  },
+  "za": {
+    "entity": "http://www.wikidata.org/entity/Q258",
+    "label": "South Africa",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/South%20Africa%20-%20Location%20Map%20%282013%29%20-%20ZAF%20-%20UNOCHA.svg"
+  },
+  "cl": {
+    "entity": "http://www.wikidata.org/entity/Q298",
+    "label": "Chile",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Macizo%20Paine%20al%20Amanecer%20Torres%20del%20Paine.jpg"
+  },
+  "sg": {
+    "entity": "http://www.wikidata.org/entity/Q334",
+    "label": "Singapore",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Raffles%20Place.jpg"
+  },
+  "li": {
+    "entity": "http://www.wikidata.org/entity/Q347",
+    "label": "Liechtenstein",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Liechtenstein%20asv2022-10%20img02%20Vaduz%20Aussicht%20beim%20Schloss.jpg"
+  },
+  "bh": {
+    "entity": "http://www.wikidata.org/entity/Q398",
+    "label": "Bahrain",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Manama%2C%20Bahrain%20Decembre%202014.jpg"
+  },
+  "am": {
+    "entity": "http://www.wikidata.org/entity/Q399",
+    "label": "Armenia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Noravank%20panorama.jpg"
+  },
+  "au": {
+    "entity": "http://www.wikidata.org/entity/Q408",
+    "label": "Australia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Australia%20satellite%20plane.jpg"
+  },
+  "tl": {
+    "entity": "http://www.wikidata.org/entity/Q574",
+    "label": "Timor-Leste",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Lospalos%20klein.jpg"
+  },
+  "in": {
+    "entity": "http://www.wikidata.org/entity/Q668",
+    "label": "India",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/India-locator-map-blank.svg"
+  },
+  "vu": {
+    "entity": "http://www.wikidata.org/entity/Q686",
+    "label": "Vanuatu",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Vanuatu%20in%20October%201998.jpg"
+  },
+  "mn": {
+    "entity": "http://www.wikidata.org/entity/Q711",
+    "label": "Mongolia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Gurvger.jpg"
+  },
+  "ve": {
+    "entity": "http://www.wikidata.org/entity/Q717",
+    "label": "Venezuela",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Embalse%20la%20Vueltosa%202022.jpg"
+  },
+  "ec": {
+    "entity": "http://www.wikidata.org/entity/Q736",
+    "label": "Ecuador",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Ecuador%20Blue%20Marble.png"
+  },
+  "bo": {
+    "entity": "http://www.wikidata.org/entity/Q750",
+    "label": "Bolivia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/LagunaChiarKhota2013.jpg"
+  },
+  "tt": {
+    "entity": "http://www.wikidata.org/entity/Q754",
+    "label": "Trinidad and Tobago",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Pigeon%20Point%20beach.jpg"
+  },
+  "gd": {
+    "entity": "http://www.wikidata.org/entity/Q769",
+    "label": "Grenada",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/StGeorgesGrenada2000.jpg"
+  },
+  "ag": {
+    "entity": "http://www.wikidata.org/entity/Q781",
+    "label": "Antigua and Barbuda",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Antigua%20And%20Barbuda%20in%20September%202002.jpg"
+  },
+  "hn": {
+    "entity": "http://www.wikidata.org/entity/Q783",
+    "label": "Honduras",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Copan%20sculpture.jpg"
+  },
+  "dm": {
+    "entity": "http://www.wikidata.org/entity/Q784",
+    "label": "Dominica",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Dominica%20from%20ISS.jpg"
+  },
+  "je": {
+    "entity": "http://www.wikidata.org/entity/Q785",
+    "label": "Jersey",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Jersey%20by%20Sentinel-2.jpg"
+  },
+  "ir": {
+    "entity": "http://www.wikidata.org/entity/Q794",
+    "label": "Iran",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Iran%20-%20Location%20Map%20%282013%29%20-%20IRN%20-%20UNOCHA.svg"
+  },
+  "pa": {
+    "entity": "http://www.wikidata.org/entity/Q804",
+    "label": "Panama",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Panama%20flag.png"
+  },
+  "kg": {
+    "entity": "http://www.wikidata.org/entity/Q813",
+    "label": "Kyrgyzstan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Kichi%20Ak%20Suu%20Sanctuary%2C%20Issyk%20Kul%20Region%2C%20Kyrgyzstan%20001.jpg"
+  },
+  "pk": {
+    "entity": "http://www.wikidata.org/entity/Q843",
+    "label": "Pakistan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Blue%20Hour%20at%20Pakistan%20Monument.jpg"
+  },
+  "ae": {
+    "entity": "http://www.wikidata.org/entity/Q878",
+    "label": "United Arab Emirates",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Souq%20Al%20Bahar%20From%20Burj%20Khalifa%2C%20Dubai%20%287997597156%29.jpg"
+  },
+  "ml": {
+    "entity": "http://www.wikidata.org/entity/Q912",
+    "label": "Mali",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Mali%20-%20Location%20Map%20%282013%29%20-%20MLI%20-%20UNOCHA.svg"
+  },
+  "ao": {
+    "entity": "http://www.wikidata.org/entity/Q916",
+    "label": "Angola",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Angola%20-%20Location%20Map%20%282013%29%20-%20AGO%20-%20UNOCHA.svg"
+  },
+  "tn": {
+    "entity": "http://www.wikidata.org/entity/Q948",
+    "label": "Tunisia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Tunisia%20-%20Location%20Map%20%282013%29%20-%20TUN%20-%20UNOCHA.svg"
+  },
+  "ss": {
+    "entity": "http://www.wikidata.org/entity/Q958",
+    "label": "South Sudan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/South%20Sudan%20topographic%20map.svg"
+  },
+  "km": {
+    "entity": "http://www.wikidata.org/entity/Q970",
+    "label": "Comoros",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Fish%20Harvest.jpg"
+  },
+  "cg": {
+    "entity": "http://www.wikidata.org/entity/Q971",
+    "label": "Republic of the Congo",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Republic%20of%20the%20Congo%20-%20Location%20Map%20%282011%29%20-%20COG%20-%20UNOCHA.svg"
+  },
+  "dj": {
+    "entity": "http://www.wikidata.org/entity/Q977",
+    "label": "Djibouti",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/An%20aerial%20view%20of%20Djibouti%20City.jpg"
+  },
+  "er": {
+    "entity": "http://www.wikidata.org/entity/Q986",
+    "label": "Eritrea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Eritrea%20-%20Location%20Map%20%282013%29%20-%20ERI%20-%20UNOCHA.svg"
+  },
+  "gw": {
+    "entity": "http://www.wikidata.org/entity/Q1007",
+    "label": "Guinea-Bissau",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Guinea-Bissau%20-%20Location%20Map%20%282013%29%20-%20GNB%20-%20UNOCHA.svg"
+  },
+  "cv": {
+    "entity": "http://www.wikidata.org/entity/Q1011",
+    "label": "Cape Verde",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Cape%20Verde%20in%20December%202002.jpg"
+  },
+  "ls": {
+    "entity": "http://www.wikidata.org/entity/Q1013",
+    "label": "Lesotho",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Lesotho%20-%20Location%20Map%20%282013%29%20-%20LSO%20-%20UNOCHA.svg"
+  },
+  "ma": {
+    "entity": "http://www.wikidata.org/entity/Q1028",
+    "label": "Morocco",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Volubilis%20Longshot%20II.jpg"
+  },
+  "na": {
+    "entity": "http://www.wikidata.org/entity/Q1030",
+    "label": "Namibia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Duna%20en%20Sossusvlei%2C%20Namibia%2C%202018-08-06%2C%20DD%20002.jpg"
+  },
+  "rw": {
+    "entity": "http://www.wikidata.org/entity/Q1037",
+    "label": "Rwanda",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/An%20aerial%20of%20Kigali%20Convention%20Center%20on%20June%2019%2C%202019.%20Photo%20by%20Emmanuel%20Kwizera.jpg"
+  },
+  "sn": {
+    "entity": "http://www.wikidata.org/entity/Q1041",
+    "label": "Senegal",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20map%20of%20Senegal.svg"
+  },
+  "so": {
+    "entity": "http://www.wikidata.org/entity/Q1045",
+    "label": "Somalia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/A%20man%20carries%20a%20huge%20hammerhead%20through%20the%20streets%20of%20Mogadishu.jpg"
+  },
+  "sd": {
+    "entity": "http://www.wikidata.org/entity/Q1049",
+    "label": "Sudan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Western%20Deffufa%20-%20Kerma.jpg"
+  },
+  "ky": {
+    "entity": "http://www.wikidata.org/entity/Q5785",
+    "label": "Cayman Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS014-E-20406%20-%20View%20of%20the%20Cayman%20Islands.jpg"
+  },
+  "eh": {
+    "entity": "http://www.wikidata.org/entity/Q6250",
+    "label": "Western Sahara",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Atlantic%20Ocean%20in%20Western%20Sahara.jpg"
+  },
+  "vi": {
+    "entity": "http://www.wikidata.org/entity/Q11703",
+    "label": "United States Virgin Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/St.%20John%2C%20U.S.%20Virgin%20Islands.jpg"
+  },
+  "ms": {
+    "entity": "http://www.wikidata.org/entity/Q13353",
+    "label": "Montserrat",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/From%20Garibaldi%20Hill%20%285809292121%29%20%282%29.jpg"
+  },
+  "as": {
+    "entity": "http://www.wikidata.org/entity/Q16641",
+    "label": "American Samoa",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/AmericanSamoa.jpg"
+  },
+  "gp": {
+    "entity": "http://www.wikidata.org/entity/Q17012",
+    "label": "Guadeloupe",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Pointe%20de%20la%20Petite-Tortue.JPG"
+  },
+  "yt": {
+    "entity": "http://www.wikidata.org/entity/Q17063",
+    "label": "Mayotte",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Mayotte%2C%20vue%20par%20Sentinel%202%20%28cropped%29.jpg"
+  },
+  "bm": {
+    "entity": "http://www.wikidata.org/entity/Q23635",
+    "label": "Bermuda",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS017-E-10695%20-%20View%20of%20Bermuda.jpg"
+  },
+  "ai": {
+    "entity": "http://www.wikidata.org/entity/Q25228",
+    "label": "Anguilla",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Anguilla%20-%20Location%20Map%20%282013%29%20-%20AIA%20-%20UNOCHA.svg"
+  },
+  "cw": {
+    "entity": "http://www.wikidata.org/entity/Q25279",
+    "label": "Curaçao",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Facades%20of%20Handelskade%2C%20Willemstad%2C%20Cura%C3%A7ao%20-%20February%202020.jpg"
+  },
+  "bl": {
+    "entity": "http://www.wikidata.org/entity/Q25362",
+    "label": "Saint Barthélemy",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Barth%20-%20Vue%20panoramique%20-%20Octobre%202009.jpg"
+  },
+  "ck": {
+    "entity": "http://www.wikidata.org/entity/Q26988",
+    "label": "Cook Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS006-E-38664%20-%20View%20of%20the%20Cook%20Islands.jpg"
+  },
+  "nu": {
+    "entity": "http://www.wikidata.org/entity/Q34020",
+    "label": "Niue",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Niue%20ISS004.jpg"
+  },
+  "pm": {
+    "entity": "http://www.wikidata.org/entity/Q34617",
+    "label": "Saint Pierre and Miquelon",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Saint-PierreEtMiquelonFromTheISS.jpg"
+  },
+  "cc": {
+    "entity": "http://www.wikidata.org/entity/Q36004",
+    "label": "Cocos (Keeling) Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Cocos%20%28Keeling%29%20Islands%20%2832206670676%29.jpg"
+  },
+  "tk": {
+    "entity": "http://www.wikidata.org/entity/Q36823",
+    "label": "Tokelau",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Landscape-tokelau-2011-photo-new-zealand-ministry-of-foreign-affairs-and-trade%2012779814375%20o.jpg"
+  },
+  "ps": {
+    "entity": "http://www.wikidata.org/entity/Q219060",
+    "label": "Palestine",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Palestine%20-%2020190204-DSC%200007.jpg"
+  },
+  "hu": {
+    "entity": "http://www.wikidata.org/entity/Q28",
+    "label": "Hungary",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/20190502%20Widok%20na%20Budapeszt%20z%20G%C3%B3ry%20Gellerta%201651%202150%20DxO.jpg"
+  },
+  "lu": {
+    "entity": "http://www.wikidata.org/entity/Q32",
+    "label": "Luxembourg",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Luxemburg.jpg"
+  },
+  "dk": {
+    "entity": "http://www.wikidata.org/entity/Q35",
+    "label": "Denmark",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Dannebrog.jpg"
+  },
+  "pl": {
+    "entity": "http://www.wikidata.org/entity/Q36",
+    "label": "Poland",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Warsaw%20Old%20Town%20Market%20Square%2010.JPG"
+  },
+  "gr": {
+    "entity": "http://www.wikidata.org/entity/Q41",
+    "label": "Greece",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/The%20Acropolis%20and%20Mount%20Hymettus%20from%20Philopappos%20Hill%20on%20July%2018%2C%202019.jpg"
+  },
+  "uy": {
+    "entity": "http://www.wikidata.org/entity/Q77",
+    "label": "Uruguay",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Uruguay%20-%20Location%20Map%20%282013%29%20-%20URY%20-%20UNOCHA.svg"
+  },
+  "ru": {
+    "entity": "http://www.wikidata.org/entity/Q159",
+    "label": "Russia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Kremlin%20Moscow.jpg"
+  },
+  "de": {
+    "entity": "http://www.wikidata.org/entity/Q183",
+    "label": "Germany",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Aerial%20view%20of%20Berlin%20%2832881394137%29.jpg"
+  },
+  "by": {
+    "entity": "http://www.wikidata.org/entity/Q184",
+    "label": "Belarus",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Belarus%20in%20December%202002.jpg"
+  },
+  "sk": {
+    "entity": "http://www.wikidata.org/entity/Q214",
+    "label": "Slovakia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/000%20Sllovakia%20harta.PNG"
+  },
+  "ro": {
+    "entity": "http://www.wikidata.org/entity/Q218",
+    "label": "Romania",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Bucharest%20University%20Square%20%28cropped%29.jpg"
+  },
+  "ba": {
+    "entity": "http://www.wikidata.org/entity/Q225",
+    "label": "Bosnia and Herzegovina",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Gornji%20Orahovac%2C%20Bosnia%20y%20Herzegovina%2C%202014-04-14%2C%20DD%2010-13%20PAN.jpg"
+  },
+  "mt": {
+    "entity": "http://www.wikidata.org/entity/Q233",
+    "label": "Malta",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Malta%2C%202010%20-%20panoramio%20-%20Bengt%20Nyman%20%2823%29.jpg"
+  },
+  "sm": {
+    "entity": "http://www.wikidata.org/entity/Q238",
+    "label": "San Marino",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Mount%20Titano%20-%20San%20Marino.jpg"
+  },
+  "cu": {
+    "entity": "http://www.wikidata.org/entity/Q241",
+    "label": "Cuba",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Santa%20Clara%20%28Cuba%29.jpg"
+  },
+  "bz": {
+    "entity": "http://www.wikidata.org/entity/Q242",
+    "label": "Belize",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Belize%20Topography.png"
+  },
+  "dz": {
+    "entity": "http://www.wikidata.org/entity/Q262",
+    "label": "Algeria",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Algeria%20-%20Location%20Map%20%282013%29%20-%20DZA%20-%20UNOCHA.svg"
+  },
+  "pe": {
+    "entity": "http://www.wikidata.org/entity/Q419",
+    "label": "Peru",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Cuarentena%20Lima%20%2819%20de%20marzo%202%29.jpg"
+  },
+  "kp": {
+    "entity": "http://www.wikidata.org/entity/Q423",
+    "label": "North Korea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/North%20Korea%20-%20Location%20Map%20%282013%29%20-%20PRK%20-%20UNOCHA.svg"
+  },
+  "nz": {
+    "entity": "http://www.wikidata.org/entity/Q664",
+    "label": "New Zealand",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/New%20Zealand%20Topography.jpg"
+  },
+  "tv": {
+    "entity": "http://www.wikidata.org/entity/Q672",
+    "label": "Tuvalu",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Nui%20atoll.jpg"
+  },
+  "sb": {
+    "entity": "http://www.wikidata.org/entity/Q685",
+    "label": "Solomon Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Solomon%20Islands%20-%20Location%20Map%20%282012%29%20-%20SLB%20-%20UNOCHA.svg"
+  },
+  "pg": {
+    "entity": "http://www.wikidata.org/entity/Q691",
+    "label": "Papua New Guinea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Papua%20New%20Guinea%20map.png"
+  },
+  "nr": {
+    "entity": "http://www.wikidata.org/entity/Q697",
+    "label": "Nauru",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Coral%20reef%20on%20Nauru.jpg"
+  },
+  "mh": {
+    "entity": "http://www.wikidata.org/entity/Q709",
+    "label": "Marshall Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Marshall%20Islands%20-%20Location%20Map%20%282013%29%20-%20MHL%20-%20UNOCHA.svg"
+  },
+  "vc": {
+    "entity": "http://www.wikidata.org/entity/Q757",
+    "label": "Saint Vincent and the Grenadines",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ISS006-E-38029%20-%20View%20of%20the%20Lesser%20Antilles.jpg"
+  },
+  "lc": {
+    "entity": "http://www.wikidata.org/entity/Q760",
+    "label": "Saint Lucia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Saint%20Lucia.png"
+  },
+  "kn": {
+    "entity": "http://www.wikidata.org/entity/Q763",
+    "label": "Saint Kitts and Nevis",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Approaching%20St%20Kitts%20and%20Nevis%20-%20southern%20tip%20of%20St.%20Kitts%20-%20panoramio.jpg"
+  },
+  "bs": {
+    "entity": "http://www.wikidata.org/entity/Q778",
+    "label": "The Bahamas",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Bahamas%20regions%20map-es.svg"
+  },
+  "sv": {
+    "entity": "http://www.wikidata.org/entity/Q792",
+    "label": "El Salvador",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/ES%20JoyadeCeren%2006%202011%20Estructura%209%20Area%202%20Tamazcal%202106%20zoom%20out.jpg"
+  },
+  "iq": {
+    "entity": "http://www.wikidata.org/entity/Q796",
+    "label": "Iraq",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/View%20of%20Sulaymaniyah%20%28Slemani%29%20City%20in%20Winter%20-%20Snow%202015.JPG"
+  },
+  "ni": {
+    "entity": "http://www.wikidata.org/entity/Q811",
+    "label": "Nicaragua",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/%D0%9A%D0%B0%D1%84%D0%B5%D0%B4%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D1%81%D0%BE%D0%B1%D0%BE%D1%80%20%D0%B2%20%D0%9C%D0%B0%D0%BD%D0%B0%D0%B3%D1%83%D0%B0.jpg"
+  },
+  "lb": {
+    "entity": "http://www.wikidata.org/entity/Q822",
+    "label": "Lebanon",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Beirut%20skyline%2C%20Beirut%2C%20Lebanon.jpg"
+  },
+  "np": {
+    "entity": "http://www.wikidata.org/entity/Q837",
+    "label": "Nepal",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Nepal%20in%20October%202002.jpg"
+  },
+  "sa": {
+    "entity": "http://www.wikidata.org/entity/Q851",
+    "label": "Saudi Arabia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Saudi%20Arabia%20-%20Location%20Map%20%282013%29%20-%20SAU%20-%20UNOCHA.svg"
+  },
+  "sy": {
+    "entity": "http://www.wikidata.org/entity/Q858",
+    "label": "Syria",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Damascus%2C%20Syria%2C%20Panoramic%20view%20of%20Damascus.jpg"
+  },
+  "tj": {
+    "entity": "http://www.wikidata.org/entity/Q863",
+    "label": "Tajikistan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Tajikistan%20-%20Location%20Map%20%282013%29%20-%20TJK%20-%20UNOCHA.svg"
+  },
+  "tw": {
+    "entity": "http://www.wikidata.org/entity/Q865",
+    "label": "Taiwan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Taipei%20Night%20Skyline%20from%20Hongludi%2020240113.jpg"
+  },
+  "kr": {
+    "entity": "http://www.wikidata.org/entity/Q884",
+    "label": "South Korea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/South%20Korea%20-%20Location%20Map%20%282013%29%20-%20KOR%20-%20UNOCHA.svg"
+  },
+  "af": {
+    "entity": "http://www.wikidata.org/entity/Q889",
+    "label": "Afghanistan",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Afghanistan%20-%20Location%20Map%20%282013%29%20-%20AFG%20-%20UNOCHA.svg"
+  },
+  "bn": {
+    "entity": "http://www.wikidata.org/entity/Q921",
+    "label": "Brunei",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/BN-bsb-jame-asr-hassanil-m-2.jpg"
+  },
+  "ph": {
+    "entity": "http://www.wikidata.org/entity/Q928",
+    "label": "Philippines",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Manila%20Bay%2C%20Roxas%20Boulevard%20buildings%20with%20navy%20fleet%20%28Ermita%20and%20Malate%2C%20Manila%29%282017-12-31%29.jpg"
+  },
+  "zm": {
+    "entity": "http://www.wikidata.org/entity/Q953",
+    "label": "Zambia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Zambia%20-%20Location%20Map%20%282011%29%20-%20ZMB%20-%20UNOCHA.svg"
+  },
+  "bw": {
+    "entity": "http://www.wikidata.org/entity/Q963",
+    "label": "Botswana",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Okavango%20Delta%2C%20Botswana%20%282674364913%29.jpg"
+  },
+  "bi": {
+    "entity": "http://www.wikidata.org/entity/Q967",
+    "label": "Burundi",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/By-map-fr.png"
+  },
+  "ga": {
+    "entity": "http://www.wikidata.org/entity/Q1000",
+    "label": "Gabon",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Topographic%20map%20of%20Gabon-fr.svg"
+  },
+  "gm": {
+    "entity": "http://www.wikidata.org/entity/Q1005",
+    "label": "The Gambia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Map%20drawing%20of%20the%20Republic%20of%20The%20Gambia.jpg"
+  },
+  "gn": {
+    "entity": "http://www.wikidata.org/entity/Q1006",
+    "label": "Guinea",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/LocationGuinea.svg"
+  },
+  "ci": {
+    "entity": "http://www.wikidata.org/entity/Q1008",
+    "label": "Ivory Coast",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Ivory%20Coast%20-%20Location%20Map%20%282013%29%20-%20CIV%20-%20UNOCHA.svg"
+  },
+  "lr": {
+    "entity": "http://www.wikidata.org/entity/Q1014",
+    "label": "Liberia",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Liberian%20Capitol%20Building.jpg"
+  },
+  "ly": {
+    "entity": "http://www.wikidata.org/entity/Q1016",
+    "label": "Libya",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Tripoli%20at%20night.jpg"
+  },
+  "mg": {
+    "entity": "http://www.wikidata.org/entity/Q1019",
+    "label": "Madagascar",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Satellite%20image%20of%20Madagascar%20in%20September%202003.jpg"
+  },
+  "mw": {
+    "entity": "http://www.wikidata.org/entity/Q1020",
+    "label": "Malawi",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Malawi%20-%20Location%20Map%20%282013%29%20-%20MWI%20-%20UNOCHA.svg"
+  },
+  "mr": {
+    "entity": "http://www.wikidata.org/entity/Q1025",
+    "label": "Mauritania",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Flag%20map%20of%20Mauritania.svg"
+  },
+  "mu": {
+    "entity": "http://www.wikidata.org/entity/Q1027",
+    "label": "Mauritius",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Mauritius%2023.08.2009%2011-42-31.jpg"
+  },
+  "mz": {
+    "entity": "http://www.wikidata.org/entity/Q1029",
+    "label": "Mozambique",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Mozambique%20-%20Location%20Map%20%282013%29%20-%20MOZ%20-%20UNOCHA.svg"
+  },
+  "ne": {
+    "entity": "http://www.wikidata.org/entity/Q1032",
+    "label": "Niger",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Niger%20-%20Location%20Map%20%282011%29%20-%20NER%20-%20UNOCHA.svg"
+  },
+  "ng": {
+    "entity": "http://www.wikidata.org/entity/Q1033",
+    "label": "Nigeria",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/The%20City%20Gate%20of%20Abuja.jpg"
+  },
+  "ug": {
+    "entity": "http://www.wikidata.org/entity/Q1036",
+    "label": "Uganda",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Uganda%20-%20Location%20Map%20%282013%29%20-%20UGA%20-%20UNOCHA.svg"
+  },
+  "st": {
+    "entity": "http://www.wikidata.org/entity/Q1039",
+    "label": "São Tomé and Príncipe",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/S%C3%A3o%20Tom%C3%A9%20and%20Pr%C3%ADncipe%20administrative%20divisions%2Blocation%20in%20Africa.svg"
+  },
+  "sc": {
+    "entity": "http://www.wikidata.org/entity/Q1042",
+    "label": "Seychelles",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/La%20Digue%20asv2024-10%20img56%20Anse%20Patates.jpg"
+  },
+  "sl": {
+    "entity": "http://www.wikidata.org/entity/Q1044",
+    "label": "Sierra Leone",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Leone-Mappa.gif"
+  },
+  "gi": {
+    "entity": "http://www.wikidata.org/entity/Q1410",
+    "label": "Gibraltar",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Gibraltar%20aerial%20view%20looking%20northwest.jpg"
+  },
+  "hk": {
+    "entity": "http://www.wikidata.org/entity/Q8646",
+    "label": "Hong Kong",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Hong%20Kong%20from%20Victoria%20Peak1.jpg"
+  },
+  "im": {
+    "entity": "http://www.wikidata.org/entity/Q9676",
+    "label": "Isle of Man",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Isle%20of%20Man%20by%20Sentinel-2.jpg"
+  },
+  "mo": {
+    "entity": "http://www.wikidata.org/entity/Q14773",
+    "label": "Macau",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20of%20Macau%20Peninsula2021.jpg"
+  },
+  "re": {
+    "entity": "http://www.wikidata.org/entity/Q17070",
+    "label": "Réunion",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/L%27%C3%AEle%20de%20la%20R%C3%A9union%20vue%20par%20le%20satellite%20Sentinel-2%20%28cropped%29.jpg"
+  },
+  "tc": {
+    "entity": "http://www.wikidata.org/entity/Q18221",
+    "label": "Turks and Caicos Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Turks%20%26%20Caicos%20%2812173672765%29.jpg"
+  },
+  "bv": {
+    "entity": "http://www.wikidata.org/entity/Q23408",
+    "label": "Bouvet Island",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Bouvet%20island%200.jpg"
+  },
+  "gg": {
+    "entity": "http://www.wikidata.org/entity/Q25230",
+    "label": "Guernsey",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Guernsey%20from%20the%20air%20-%20geograph.ci%20-%20371.jpg"
+  },
+  "sx": {
+    "entity": "http://www.wikidata.org/entity/Q26273",
+    "label": "Sint Maarten",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Philipsburg%20and%20the%20Great%20Bay%2C%20Sint%20Maarten%2C%20Caribbean.jpg"
+  },
+  "bq": {
+    "entity": "http://www.wikidata.org/entity/Q27561",
+    "label": "Caribbean Netherlands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Bonaire%20%2834769022732%29.jpg"
+  },
+  "nf": {
+    "entity": "http://www.wikidata.org/entity/Q31057",
+    "label": "Norfolk Island",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Dusk%20on%20Norfolk%20Island.jpg"
+  },
+  "gs": {
+    "entity": "http://www.wikidata.org/entity/Q35086",
+    "label": "South Georgia and the South Sandwich Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/South%20Georgia%20Island%20as%20seen%20by%20Sentinel-2.jpg"
+  },
+  "pn": {
+    "entity": "http://www.wikidata.org/entity/Q35672",
+    "label": "Pitcairn Islands",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Stpaulspoint.jpg"
+  },
+  "io": {
+    "entity": "http://www.wikidata.org/entity/Q43448",
+    "label": "British Indian Ocean Territory",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Biot-map.png"
+  },
+  "cp": {
+    "entity": "http://www.wikidata.org/entity/Q161258",
+    "label": "Clipperton Island",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/2022-04-20-00%2000%202022-04-20-23%2059%20Sentinel-2%20L2A%20True%20color.jpg"
+  },
+  "sh": {
+    "entity": "http://www.wikidata.org/entity/Q192184",
+    "label": "Saint Helena, Ascension and Tristan da Cunha",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/SH-St%20Helena.png"
+  },
+  "ac": {
+    "entity": "http://www.wikidata.org/entity/Q31890709",
+    "label": "Ascension",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/View%20from%20peak%20of%20Two%20Sisters%20to%20Two%20Boats%20Village.jpg"
+  },
+  "ta": {
+    "entity": "http://www.wikidata.org/entity/Q34625512",
+    "label": "Tristan da Cunha",
+    "image": "http://commons.wikimedia.org/wiki/Special:FilePath/Tristan%20da%20Cunha%20ASTER.jpg"
+  }
+}

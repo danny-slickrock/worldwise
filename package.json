@@ -11,6 +11,8 @@
     "build": "expo export --platform web",
     "test": "tsx test/engine.test.js",
     "seed:content": "tsx scripts/seed-content.js",
+    "media:photos": "tsx scripts/fetch-country-photos.js",
+    "media:approve": "tsx scripts/approve-country-media.js",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "format": "prettier --write .",
