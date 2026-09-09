@@ -1367,34 +1367,56 @@ maps, follows at least one learning path to mastery, earns achievements, compete
 and can upgrade to Premium. A learner who shared interests sees facts framed around them; a learner
 who skipped has an equally complete experience — that second case is the one to actually verify.
 
-### Requested, unscheduled — 2026-09-09
+### Requested — 2026-09-09 — all shipped
 
-Asked for in one batch alongside the country-photo work (which shipped; see M2.3.5's closed
-`country_media` follow-up). Ordered roughly by size. None is a gate on anything; pull them when
-the milestone order allows, one per session as usual.
+Asked for in one batch alongside the country-photo work (see M2.3.5's closed `country_media`
+follow-up). All five are now done and verified in a real browser, driven over CDP rather than
+eyeballed — which is what caught two bugs that tests and typecheck both passed (see below).
 
-- 🌐 **Hover tooltip on the Explore map.** Pointing at a country names it before you commit to a
+- ☑ 🌐 **Hover tooltip on the Explore map.** Pointing at a country names it before you commit to a
   tap. `WorldMapScreen` already has a tap-point country label from M2.3 step 3 and `GlobeMap` knows
   which country is under a point — this is a hover seam over existing hit-testing, not new geometry.
   Pointer-only by nature, so it must not regress touch, where there is no hover state.
-- 🌐 **Country map inset on a country page.** Show the globe with this country highlighted, in place
+  **Shipped.** Placement is pure and tested (`src/game/mapLabels.js`): IBM Plex Mono is monospaced,
+  so the chip's width is computable rather than measurable, which is what lets it be a plain
+  `<Rect>` + `<Text>` with no layout pass. Two rules, both there because breaking them reads as a
+  bug: it sits above the point and flips below when there is no room, so it never covers what it
+  names; and it clamps inside the viewBox, which is the common case rather than the corner case
+  because a sphere foreshortens hard toward its limb. **Never shown in locator mode** — hovering the
+  candidates would hand over the answer.
+- ☑ 🌐 **Country map inset on a country page.** Show the globe with this country highlighted, in place
   of (or above) the flat `CountryOutline` hero. The pieces exist: `globeProjection.js` +
   `globeMotion.js` can already frame and centre a country, which is what the "spin to this country"
   link from M2.3.7 step 4.1 does. The open question is cost — a per-page globe reprojecting every
   frame is heavier than an inline SVG outline, so it likely wants a static, non-interactive
   projection rather than the live component.
-- 🎨 **Terrain-style basemap for every globe.** The globes are flat navy land on a navy ocean today.
+  **Shipped, and the cost worry didn't materialise** — the projection is already memoized on
+  orientation and zoom, so a static globe pays for exactly one. `src/components/CountryGlobe.js`
+  frames it the way "View on map" does (`countryAngularRadius`, *not* `groupZoom`, which reads a
+  lone country as a zero-width point and always zooms to max). Drag to spin, but deliberately not
+  wheel-to-zoom: the wheel handler must `preventDefault`, which would trap the page's scroll.
+- ☑ 🎨 **Terrain-style basemap for every globe.** The globes are flat navy land on a navy ocean today.
   Give them elevation/terrain shading while staying inside the kit's `map.*` tokens — this is a
   palette-and-shading exercise, not a tile-server one. **Do not reach for a raster basemap**: the
   "the app is light, the map is dark" rule and the `map.*` token set are the whole visual identity,
   and third-party tiles would replace both, plus add a runtime dependency the offline story can't
   carry.
-- 🏷️ **Icons / colour-coding for topic sections on a country page.** The fact rows (Landscape ·
+  **Shipped, and no raster tiles were harmed.** Land is shaded by climate band from the latitude of
+  the country's own centre (`src/game/terrainTint.js`) — real band edges (23.5°/35°/55°/66.5°), so
+  it is geography rather than decoration. Colours stay inside the kit: each is close to `land` in
+  *lightness* and varies mostly in hue, ice being the one deliberate exception. Two shading passes
+  give the sphere volume — the ocean brightens toward the point facing the viewer, and a limb-
+  darkening gradient covers land and water alike.
+- ☑ 🏷️ **Icons / colour-coding for topic sections on a country page.** The fact rows (Landscape ·
   Climate · Economy · People & culture) are undifferentiated eyebrow labels. Give each a glyph and a
   tint. Two existing things to reuse rather than reinvent: `data/interests.js` already carries a
   stable slug + label + glyph per interest, and the "one accent per screen, 5% accent" rule means
   this is tinting within a family, not six saturated colours.
-- 🎮 **"Play with {country}" should be a country-specific round.** Today those buttons start a normal
+  **Shipped.** The allowlist moved out of the screen into `src/data/countryTopics.js` (catalog) with
+  the palette in `theme.js`'s `topicAccents`, the same split `MODES`/`modeAccents` already use.
+  Every accent clears 4.5:1 on a white card — it colours an 11px mono label, so AA *body*, not
+  large — and `sand` is excluded because at 2.30:1 it is never text on light.
+- ☑ 🎮 **"Play with {country}" should be a country-specific round.** Today those buttons start a normal
   mixed round of that mode — the country in the label is not guaranteed to appear. Make it a real
   per-country round: border questions, multiple-choice facts drawn from the country's own
   `facts`/`neighbors`/metrics. This is the biggest of the five and the one that needs a design pass

@@ -80,6 +80,7 @@ src/
                            #   Since the country-photo work it also embeds the approved hero row, so
                            #   country + photo share one request and one cache entry
   data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
+  data/countryTopics.js    # Country-page fact sections: allowlist + label + glyph (colours in theme)
   data/achievements.js     # M2.5 step 1: badge catalog — slug/label/description/glyph/metric/threshold
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
   data/worldGeo.js         # M2.3.7: the globe's geometry — worldMap.js's pixels inverted back to
@@ -123,6 +124,11 @@ src/
                            #   instructions, never topics — geography is legitimately full of war
   game/interestSync.js     # PURE M2.3.6: interest slugs ⇄ profile_interests rows, union-merge, diff
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
+  game/mapLabels.js        # PURE label geometry: monospaced text width, and placing a hover tooltip
+                           #   so it never covers the country it names or runs off the viewBox
+  game/terrainTint.js      # PURE climate band from a latitude — what shades the globe's land
+  game/countryRound.js     # PURE "Play with X": the fact questions (borders, region, population,
+                           #   area) that make a round about ONE country
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
   game/mapRegions.js       # PURE region bounds + scale/pan math for the World Map's region-zoom presets
   game/globeProjection.js  # PURE M2.3.7: orthographic projection, horizon clipping, limb arcs,
@@ -141,6 +147,8 @@ src/
   game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
                            #   game_results.countries into per-region collected/total/progress,
                            #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
+  hooks/useGlobeGestures.js # Drag-to-spin, pinch/wheel-to-zoom and flick momentum for a GlobeMap.
+                           #   Used by BOTH the Explore map and the Country Locator
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -155,7 +163,9 @@ src/
                            #   Locator (M2.3.7 step 2); kept until the globe is checked on a device
   components/ExploreMap.js  # M2.3: flat tappable world map. SUPERSEDED by GlobeMap on the Explore
                            #   screen (M2.3.7); kept as the fallback until the globe is checked on a device
-  components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent
+  components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent.
+                           #   Terrain-shaded by climate band; hover tooltip; optional highlightCode
+  components/CountryGlobe.js # The country page's hero: the globe spun to this country, lit up
   components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
                            #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
@@ -200,6 +210,26 @@ Learning Path → Country → Play → exit used to land on Home. Three rules wo
   surface keeps the tab bar/rail; a full-screen takeover with no way out but Back was the old
   behaviour and the main thing that read as clunky.
 
+**A globe is presentational; the gestures are a hook.** `GlobeMap` renders whatever `spin`/`zoom` it
+is handed and owns no input at all. Everything interactive — the 2-touch pinch claim, the drag
+threshold, the web mousedown/wheel listeners, the momentum coast — lives in
+`src/hooks/useGlobeGestures.js`. That split exists because it was got wrong once: the gesture layer
+was welded inside `WorldMapScreen`, so when the Country Locator got the globe it got a still image
+you could tap. Three rules:
+- **Spread `surfaceProps` onto the view that SIZES the globe.** Its ref binds the web listeners and
+  its `onLayout` feeds the drag-to-screen-pixels conversion; on any other node, drags don't track.
+- **The hook's returned functions are identity-stable, deliberately.** A caller that re-frames from
+  an effect must list them in its deps; with fresh identities every render that effect re-ran on
+  every render, and since every drag frame is a `setState`, each frame snapped the globe back. The
+  gestures fired perfectly and the globe looked completely inert.
+- **`wheelZoomEnabled: false` for a globe inside a scrolling page.** Zooming has to `preventDefault`,
+  so an embedded globe otherwise traps the page's scroll whenever the pointer crosses it.
+
+**Branch on the QUESTION's type, not the round's mode.** `QuizScreen` renders one surface per
+`q.type`. A country round mixes types, and a locator question's `correct` is an ISO code while its
+options are names — it is answered on the globe, not from a list — so `mode === "locator"` would
+mark every locator answer inside a country round wrong, with no map on screen to explain why.
+
 **Responsive is one decision, not two layouts.** `src/game/layout.js`'s `chromeLayout(width)` picks
 bottom-bar vs side-rail; `TabBar` and `NavRail` share a data contract so `AppChrome` swaps one child.
 Don't branch on width anywhere else — `theme.js`'s `constrain` still owns how wide *content* gets,
@@ -213,7 +243,7 @@ piece of cloud/auth logic is split in two: the *decision* is pure and tested (`c
 a module that imports RN can't be tested here at all.
 
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
-Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `higherLower`, `daily` (a deterministic mixed round, seeded by date).
+Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `higherLower`, `daily` (a deterministic mixed round, seeded by date), and `country` (a mixed round about ONE place, reached only from a country page's "Play with …" — it is meaningless without a subject, so it is not on Home).
 `higherLower` is the one question shape that is a *pair* rather than a target country:
 `{ type, metric, a, b, correct }`, where `correct` is the winning country's name so `QuizScreen`
 compares it against the tapped option directly.
