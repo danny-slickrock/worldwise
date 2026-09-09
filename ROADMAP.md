@@ -58,9 +58,15 @@ applied, the `content` schema is exposed in the Dashboard, and the seed has run:
 is at 5 with 196 rows in `content.countries`. Verified against the live site — a country page fires
 `GET /content_version` and `GET /countries?code=eq.br`, both 200, and caches the result stamped with
 the live version, so the page is reading Postgres rather than the bundled fallback; anon writes are
-refused with 401. **One follow-up remains:** `content.country_media` is still empty (0 rows) —
-nothing seeds it yet, which is harmless today because no surface reads it, but it means the media
-half of this milestone is unexercised in production. **M2.3.7 —
+refused with 401. **The `country_media` follow-up is now closed in code (2026-09-09):** country
+hero photographs are sourced from Wikidata `P18` → Wikimedia Commons, re-hosted in a `country-media`
+Storage bucket, and written as `status='pending'` drafts that RLS hides from the app entirely until
+a human approves them — see [docs/adr/0002-country-photos.md](./docs/adr/0002-country-photos.md) and
+[docs/country-photo-review.md](./docs/country-photo-review.md). Verified end to end on a local
+Postgres: migration applied from scratch, four real countries ingested from Commons with their
+licensing, objects served publicly, a pending row invisible to anon, approving it visible *and*
+bumping `content_version`, and anon writes refused with 401. The production migration, ingest run,
+and approvals are Danny's — see DANNY TO DO. **M2.3.7 —
 the globe** replaced the flat Explore map with a spinnable orthographic globe (step 1) and has now
 landed all of step 4's polish: step 4.1 ("spin to this country" from a country page's "View on
 map" link), step 4.2 (the graticule — lat/lng grid lines on the sphere, visible through ocean,
@@ -81,7 +87,7 @@ before building on it.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
-M2.3.5 now done (only an optional `country_media` seed left as a follow-up), M2.3.7 and M2.9 still
+M2.3.5 now done (its `country_media` follow-up closed in code, awaiting a production run), M2.3.7 and M2.9 still
 blocked on human-only steps, and M2.4 done, **M2.5 — Achievements,
 collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
 has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
@@ -621,9 +627,36 @@ teaching *how the world works*, not just *where things are*.
     The live-project steps are now done too (2026-09-04): migration applied, `content` exposed in the
     Dashboard, seed run — `content_version` 5, 196 rows — and the live site confirmed reading
     Postgres rather than the bundled fallback.
-    ☐ **Follow-up: seed `content.country_media`.** It is live but empty (0 rows). No surface reads it
-    yet, so nothing is broken; it just means the media half of this milestone has never been
-    exercised against production. Worth doing when the first media-bearing surface lands.
+    ☑ **Follow-up: seed `content.country_media`** — **closed in code, 2026-09-09.** The media half
+    of this milestone now has a real surface and a real pipeline. Decisions in
+    [docs/adr/0002-country-photos.md](./docs/adr/0002-country-photos.md); the runbook in
+    [docs/country-photo-review.md](./docs/country-photo-review.md). Five pieces:
+    a. **Source is Wikidata `P18`** — the *canonical representative image* for an entity, resolved
+       from the ISO alpha-2 code (`P297`) we already key `content.countries` on. One deliberate,
+       stable image per country, not an image search's ranking-of-the-day: that is what makes
+       ingestion idempotent and review finite. Every `P18` is a Wikimedia Commons file, which is
+       what makes the licensing tractable.
+    b. **Images are re-hosted, never hotlinked.** Downloaded at ingest (a 1600px Commons rendition,
+       not the original) and uploaded to a public `country-media` Storage bucket created by the
+       migration. A Commons file can be renamed or replaced; re-hosting is what makes "approved"
+       mean the image that was actually approved.
+    c. **Licensing is structured, not prose.** CC BY and CC BY-SA both *require* attribution, and
+       BY-SA requires the licence be named, so `author` / `license` / `license_url` / `source_url`
+       are four columns captured from Commons' `extmetadata`. A row with no author or no licence
+       **can never be approved** — the approval script refuses it.
+    d. **A review gate at the database, not in the client.** `status` defaults to `'pending'` and
+       the public-read policy is narrowed to `status = 'approved'`, so a draft is unreadable by
+       anon/authenticated rather than filtered out by client code a refactor could drop. This is a
+       children's product and `P18` is community curation, not our editorial call.
+    e. **Approving bumps `content_version`** (the existing statement-level trigger does it), so
+       clients refetch and see new photos. Deliberately the mirror image of the embeddings rule:
+       embeddings are invisible to a reader and must *not* bump the version; a photo is the most
+       visible thing on the page and must.
+    Verified on a local Postgres: `db reset` from scratch, four countries ingested from real
+    Commons data, public object read 200, a pending row invisible to anon, approval making it
+    visible and bumping the version 8 → 9, anon insert/update refused 401, one-hero-per-country
+    enforced while `landmark` stays many-per-country, and the licensing gate refusing an
+    author-less row. Production is Danny's (see DANNY TO DO).
     1. ☑ **Schema, as a migration file.** `supabase/migrations/*_init_content_domain.sql`:
        `content.countries` (the M2.2 page shape as columns, incl. `neighbors` / `related_game_modes` /
        `has_outline`, which the sketch omitted but the shipped page renders), `content.country_media`
@@ -1334,6 +1367,41 @@ maps, follows at least one learning path to mastery, earns achievements, compete
 and can upgrade to Premium. A learner who shared interests sees facts framed around them; a learner
 who skipped has an equally complete experience — that second case is the one to actually verify.
 
+### Requested, unscheduled — 2026-09-09
+
+Asked for in one batch alongside the country-photo work (which shipped; see M2.3.5's closed
+`country_media` follow-up). Ordered roughly by size. None is a gate on anything; pull them when
+the milestone order allows, one per session as usual.
+
+- 🌐 **Hover tooltip on the Explore map.** Pointing at a country names it before you commit to a
+  tap. `WorldMapScreen` already has a tap-point country label from M2.3 step 3 and `GlobeMap` knows
+  which country is under a point — this is a hover seam over existing hit-testing, not new geometry.
+  Pointer-only by nature, so it must not regress touch, where there is no hover state.
+- 🌐 **Country map inset on a country page.** Show the globe with this country highlighted, in place
+  of (or above) the flat `CountryOutline` hero. The pieces exist: `globeProjection.js` +
+  `globeMotion.js` can already frame and centre a country, which is what the "spin to this country"
+  link from M2.3.7 step 4.1 does. The open question is cost — a per-page globe reprojecting every
+  frame is heavier than an inline SVG outline, so it likely wants a static, non-interactive
+  projection rather than the live component.
+- 🎨 **Terrain-style basemap for every globe.** The globes are flat navy land on a navy ocean today.
+  Give them elevation/terrain shading while staying inside the kit's `map.*` tokens — this is a
+  palette-and-shading exercise, not a tile-server one. **Do not reach for a raster basemap**: the
+  "the app is light, the map is dark" rule and the `map.*` token set are the whole visual identity,
+  and third-party tiles would replace both, plus add a runtime dependency the offline story can't
+  carry.
+- 🏷️ **Icons / colour-coding for topic sections on a country page.** The fact rows (Landscape ·
+  Climate · Economy · People & culture) are undifferentiated eyebrow labels. Give each a glyph and a
+  tint. Two existing things to reuse rather than reinvent: `data/interests.js` already carries a
+  stable slug + label + glyph per interest, and the "one accent per screen, 5% accent" rule means
+  this is tinting within a family, not six saturated colours.
+- 🎮 **"Play with {country}" should be a country-specific round.** Today those buttons start a normal
+  mixed round of that mode — the country in the label is not guaranteed to appear. Make it a real
+  per-country round: border questions, multiple-choice facts drawn from the country's own
+  `facts`/`neighbors`/metrics. This is the biggest of the five and the one that needs a design pass
+  first: it is a new question *source* (one country, many question types) rather than a new mode, so
+  it belongs in `game/questions.js` as a builder, and it needs enough authored content per country
+  to avoid asking the same three questions every time.
+
 ---
 
 ## Phase 3 — Education
@@ -1471,9 +1539,49 @@ showing up on a country page in the browser. These steps just point it at produc
   `GET /content_version` and `GET /countries?code=eq.br`, both 200, and caches the page stamped with
   the live version — which only happens on the remote-fetch path, so it is genuinely reading
   Postgres and not the bundled fallback. Anon writes refused with 401.
-- ☐ **Seed `content.country_media`** *(follow-up, not blocking)*. The table is live but empty. No
-  surface reads it yet, so nothing is broken — it just means the media half of M2.3.5 is unexercised
-  in production. Worth doing when the first media-bearing surface lands.
+- ☐ **Country hero photos — three commands, in this order.** The code is done and proven against a
+  local Postgres (migration from scratch, four countries ingested from real Commons data, review
+  gate and licensing gate both exercised). These point it at production. Runbook:
+  [docs/country-photo-review.md](./docs/country-photo-review.md).
+
+  1. **Apply the migration.** Adds `status` + structured licensing columns to
+     `content.country_media`, narrows public read to approved rows, and creates the public
+     `country-media` Storage bucket.
+
+     ```bash
+     npx supabase db push
+     ```
+
+     (No DB password needed on a linked project — the CLI provisions a temporary login role over
+     the Management API. **Never `supabase config push`**: it would also push `[auth]` and wipe the
+     live `site_url` and redirect URLs.)
+
+  2. **Ingest the drafts.** Needs the service-role (secret) key inline — never in `.env`, never
+     behind `EXPO_PUBLIC_`. Nothing becomes visible to anyone: every row is written `pending`, and
+     RLS refuses to return pending rows to the app at all.
+
+     ```bash
+     npm run media:photos -- --dry-run              # optional, no key, writes nothing
+     SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run media:photos
+     ```
+
+     Idempotent — safe to re-run. `--limit 20` does a cheap first pass.
+
+  3. **Review, then publish.** This is the human-only part and the reason the gate exists: `P18` is
+     community curation, and it returns flags, coats of arms, maps, and satellite photos as often
+     as it returns a good picture of a place. **Open every image.**
+
+     ```bash
+     SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run media:approve -- --list
+     SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run media:approve -- br cl jp
+     ```
+
+     Approving bumps `content_version`, so clients refetch and the photos appear. `--revoke <iso2>`
+     undoes one. Rows with no author or no licence are refused: CC BY / BY-SA require attribution,
+     so an uncreditable image is a licensing problem, not a cosmetic one.
+
+  Nothing on Vercel changes — no new client env vars. The secret key is used only from your
+  machine.
 - ☐ *(nothing needed on Vercel)* — content adds no new client env vars. The seed key is used only
   from your machine.
 
