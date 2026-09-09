@@ -146,6 +146,10 @@ const LOCATOR_FILLS = {
 // the enlarged hit targets for small countries — is identical in both. A second
 // component would have been a copy of 250 lines to change which fill a path
 // gets.
+// `highlightCode` marks one country as THE subject — the country page's inset,
+// where the globe exists to say "this one, here". It takes map.selected (earth),
+// the kit's own "selected place" colour, which reads against every terrain band.
+// An absent `onSelect` is what makes a globe read-only scenery.
 export default function GlobeMap({
   spin,
   zoom = 1,
@@ -196,8 +200,18 @@ export default function GlobeMap({
   };
 
   // Only an answerable country should look answerable. In locator mode a
-  // non-candidate gets no pointer, no hover, and no handler at all.
-  const interactive = (code) => !locked && (!isLocator || candidateCodes.has(code));
+  // non-candidate gets no pointer and no handler at all; with no onSelect at
+  // all — the country page's inset, where the globe is context rather than
+  // navigation — nothing is tappable, so handleTap can never be reached with an
+  // undefined callback behind it.
+  const selectable = (code) =>
+    Boolean(onSelect) && !locked && (!isLocator || candidateCodes.has(code));
+
+  // Hovering is separate from tapping. A read-only globe still benefits from
+  // naming what is under the pointer, and the locator is the one place hover
+  // must be withheld from non-candidates — highlighting them would narrow the
+  // answer for free.
+  const hoverable = (code) => HOVER_HANDLERS_SUPPORTED && (isLocator ? selectable(code) : true);
 
   // The whole projection for this frame. Memoized on orientation and zoom
   // alone: hovering or tapping changes only fills, so it must not pay for a
@@ -360,9 +374,9 @@ export default function GlobeMap({
           stroke={map.border}
           strokeWidth={GLOBE_BORDER_WIDTH}
           strokeLinejoin="round"
-          style={HOVER_HANDLERS_SUPPORTED && interactive(code) ? HOVER_STYLE : undefined}
-          {...(interactive(code) ? pickHandler(code, handleTap) : null)}
-          {...(HOVER_HANDLERS_SUPPORTED && interactive(code)
+          style={HOVER_HANDLERS_SUPPORTED && selectable(code) ? HOVER_STYLE : undefined}
+          {...(selectable(code) ? pickHandler(code, handleTap) : null)}
+          {...(hoverable(code)
             ? { onMouseEnter: () => setHoveredCode(code), onMouseLeave: () => setHoveredCode(null) }
             : null)}
         />
@@ -403,7 +417,7 @@ export default function GlobeMap({
           Locator mode uses a bigger radius: answering is mandatory there, so a
           missed tap is a wrong answer rather than a shrug. */}
       {SMALL_COUNTRIES.map((code) =>
-        centers[code] && interactive(code) ? (
+        centers[code] && selectable(code) ? (
           <Circle
             key={`hit-${code}`}
             cx={centers[code][0]}

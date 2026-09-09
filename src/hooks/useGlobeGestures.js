@@ -48,6 +48,11 @@ import {
 //   enabled                    false freezes the globe (still tappable). The
 //                              listeners stay bound and simply do nothing, so
 //                              toggling it can't leak or double-bind.
+//   wheelZoomEnabled           false leaves the wheel to the page. The handler
+//                              calls preventDefault to zoom, so a globe embedded
+//                              in a scrolling page would otherwise trap the
+//                              scroll whenever the pointer crossed it — the
+//                              country page's inset is exactly that case.
 //   onManualChange             fired whenever the PLAYER moves the globe, not
 //                              when animateTo does. Lets a caller drop UI that
 //                              claims a framing the view no longer has.
@@ -57,6 +62,7 @@ export default function useGlobeGestures({
   minZoom = MAP_ZOOM_MIN,
   maxZoom = MAP_ZOOM_MAX,
   enabled = true,
+  wheelZoomEnabled = true,
   onManualChange = null,
 } = {}) {
   const [zoom, setZoom] = useState(initialZoom);
@@ -79,11 +85,15 @@ export default function useGlobeGestures({
   // mount, so they close over the FIRST value of everything. Anything that can
   // change between renders is read through a ref instead.
   const enabledRef = useRef(enabled);
+  const wheelRef = useRef(wheelZoomEnabled);
   const onManualChangeRef = useRef(onManualChange);
   const boundsRef = useRef({ minZoom, maxZoom });
   useEffect(() => {
     enabledRef.current = enabled;
   }, [enabled]);
+  useEffect(() => {
+    wheelRef.current = wheelZoomEnabled;
+  }, [wheelZoomEnabled]);
   useEffect(() => {
     onManualChangeRef.current = onManualChange;
   }, [onManualChange]);
@@ -282,7 +292,7 @@ export default function useGlobeGestures({
     const node = nodeRef.current;
 
     const handleWheel = (e) => {
-      if (!enabledRef.current) return;
+      if (!enabledRef.current || !wheelRef.current) return;
       e.preventDefault();
       const { minZoom: lo, maxZoom: hi } = boundsRef.current;
       applyZoom(wheelZoom(zoomRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, lo, hi));

@@ -4,7 +4,7 @@
 // its neighbors, and ways to jump into a game. Brazil is the reference entry
 // (see data/countryPages.js); every other country renders from the same shape,
 // degrading gracefully where content isn't authored yet.
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import Container from "../components/Container";
@@ -15,6 +15,7 @@ import { countryName } from "../data/countries";
 import { MODES } from "../game/questions";
 import CountryOutline from "../components/CountryOutline";
 import CountryPhoto from "../components/CountryPhoto";
+import CountryGlobe, { framingFor } from "../components/CountryGlobe";
 
 // Compact human numbers: 216422446 → "216M", 8515767 → "8.5M".
 function compact(n) {
@@ -58,6 +59,10 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
       cancelled = true;
     };
   }, [code]);
+
+  // Where the globe inset opens. Resolved from the code alone, so it survives
+  // the bundled-then-fetched page swap without re-framing and re-animating.
+  const globeFraming = useMemo(() => framingFor(code), [code]);
 
   // Fade/rise-in on open, matching QuizScreen's per-question transition;
   // fade/settle-out on close, so leaving the page doesn't cut instantly —
@@ -130,18 +135,35 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
                 nothing at all in that case — the outline below stays the hero,
                 exactly as it was before photos existed. */}
             <CountryPhoto hero={page.hero} name={page.name} />
-            <View style={styles.hero}>
-              <View style={styles.outlineBox}>
-                {page.noOutline ? (
-                  <View style={styles.outlineFallback}>
-                    <Text style={styles.outlineFallbackGlyph}>◇</Text>
-                    <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
-                  </View>
-                ) : (
-                  <CountryOutline code={page.code} />
-                )}
+            {/* The globe, spun to this country and lighting it up, in place of
+                the old flat outline. An outline answers "what shape is it?";
+                the page's actual question is "where is this, and what is it
+                next to?", which a silhouette on a navy card cannot say. The
+                shape is still there — now with its neighbours and its coastline
+                around it, and the outline itself still carries the Shape
+                Guesser.
+
+                Falls back to the outline for the handful of places the 110m
+                dataset has no polygon for, and to the existing placeholder for
+                the ones with neither. */}
+            {globeFraming ? (
+              <View style={styles.heroStage}>
+                <CountryGlobe code={page.code} name={page.name} framing={globeFraming} />
               </View>
-            </View>
+            ) : (
+              <View style={styles.hero}>
+                <View style={styles.outlineBox}>
+                  {page.noOutline ? (
+                    <View style={styles.outlineFallback}>
+                      <Text style={styles.outlineFallbackGlyph}>◇</Text>
+                      <Text style={styles.outlineFallbackText}>Map outline coming soon</Text>
+                    </View>
+                  ) : (
+                    <CountryOutline code={page.code} />
+                  )}
+                </View>
+              </View>
+            )}
           </FadeInUp>
 
           <FadeInUp rise={0} index={1}>
@@ -267,6 +289,7 @@ const styles = StyleSheet.create({
   viewMapText: { ...type.label, fontSize: 14, color: colors.accent },
   content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
 
+  heroStage: { marginBottom: spacing(5) },
   hero: {
     backgroundColor: colors.brand,
     borderRadius: radius.sheet,
