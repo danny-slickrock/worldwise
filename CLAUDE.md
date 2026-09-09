@@ -133,6 +133,9 @@ src/
   game/levelPolicy.js      # PURE M2.5 step 5: computeLevel(xp) — an escalating leveling curve off
                            #   LEVEL_XP_BASE/LEVEL_XP_GROWTH (constants.js): current level, XP
                            #   banked toward the next, and a 0..1 progress ratio
+  game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
+                           #   game_results.countries into per-region collected/total/progress,
+                           #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
   auth/redirectPolicy.js   # PURE auth-redirect selection
   auth/redirect.js         # Platform lookups feeding redirectPolicy
   auth/AuthProvider.js     # Session context: user/session/loading + sign-in/out
@@ -378,8 +381,13 @@ on `AchievementsScreen`) are done. Region collectible sets are deliberately thei
 rather than folded into step 1. Step 6 (collectible sets, e.g. "all of South America") now has its
 own ordered sub-checklist; sub-step 6.1 — a `countries jsonb` column on `game_results` plus
 `countriesFromHistory()` (`src/game/cloudSync.js`) turning `QuizScreen`'s per-question history into
-`{ code, correct }` pairs — is done, capture-only with nothing reading it yet. **Next up in M2.5 is
-step 6.2**, the pure policy that mines that column into per-region completion.
+`{ code, correct }` pairs — is done, capture-only with nothing reading it yet. Sub-step 6.2 — the
+pure collection policy, `src/game/collectionPolicy.js`'s `computeCollections(results, countries)` —
+is now also done: it folds every `game_results` row's `countries` array into the set of codes ever
+answered correctly, then groups that against `countryIndex.js`'s regions into a per-region
+`{ collected, total, progress }`, fed by `fetchRoundResults()` now also selecting `countries`. Still
+no UI. **Next up in M2.5 is step 6.3**, a navigation seam + hero surface to actually see
+collections.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

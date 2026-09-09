@@ -84,6 +84,7 @@ import { computeNodeStates } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
+import { computeCollections } from "../src/game/collectionPolicy";
 import {
   colors,
   contrastRatio,
@@ -1913,6 +1914,96 @@ check(
 check(
   computeLevel(1_000_000).level > 1 && Number.isFinite(computeLevel(1_000_000).level),
   "a very large XP total still resolves to a finite level, never hangs or overflows"
+);
+
+console.log("Collection policy (M2.5 step 6.2)");
+const collectionCountries = [
+  { code: "fr", region: "Europe" },
+  { code: "de", region: "Europe" },
+  { code: "es", region: "Europe" },
+  { code: "br", region: "Americas" },
+  { code: "ar", region: "Americas" },
+];
+const collectionRow = (countries) => ({ mode: "flag", difficulty: "all", score: 1, total: 1, countries });
+
+const noCollectionRounds = computeCollections([], collectionCountries);
+check(
+  noCollectionRounds.every((r) => r.collected === 0 && r.progress === 0),
+  "with no round history, every region starts at 0 collected"
+);
+check(
+  noCollectionRounds.find((r) => r.region === "Europe").total === 3 &&
+    noCollectionRounds.find((r) => r.region === "Americas").total === 2,
+  "computeCollections totals each region against the passed-in country list"
+);
+
+const partialEurope = computeCollections(
+  [
+    collectionRow([
+      { code: "fr", correct: true },
+      { code: "de", correct: false },
+    ]),
+  ],
+  collectionCountries
+);
+check(
+  partialEurope.find((r) => r.region === "Europe").collected === 1,
+  "only a country answered correctly at least once counts as collected"
+);
+check(
+  Math.abs(partialEurope.find((r) => r.region === "Europe").progress - 1 / 3) < 1e-9,
+  "progress is a 0..1 ratio of collected over the region's total"
+);
+
+const wrongThenRight = computeCollections(
+  [collectionRow([{ code: "es", correct: false }]), collectionRow([{ code: "es", correct: true }])],
+  collectionCountries
+);
+check(
+  wrongThenRight.find((r) => r.region === "Europe").collected === 1,
+  "a country answered correctly on any round counts, even after an earlier wrong answer"
+);
+
+const fullEurope = computeCollections(
+  [
+    collectionRow([
+      { code: "fr", correct: true },
+      { code: "de", correct: true },
+      { code: "es", correct: true },
+    ]),
+  ],
+  collectionCountries
+);
+check(
+  fullEurope.find((r) => r.region === "Europe").collected === 3 &&
+    fullEurope.find((r) => r.region === "Europe").progress === 1,
+  "collecting every country in a region reaches progress 1"
+);
+
+check(
+  JSON.stringify(computeCollections(null, collectionCountries).map((r) => r.collected)) ===
+    JSON.stringify(noCollectionRounds.map((r) => r.collected)),
+  "computeCollections tolerates a missing results array"
+);
+
+check(
+  computeCollections([], collectionCountries)
+    .map((r) => r.region)
+    .join(",") ===
+    REGIONS.filter((r) => r !== "All").join(","),
+  "computeCollections returns one entry per region, in countryIndex.js's own order (minus 'All')"
+);
+
+check(
+  JSON.stringify(
+    computeCollections([collectionRow([{ code: "zz", correct: true }])], collectionCountries).map((r) => r.collected)
+  ) === JSON.stringify(noCollectionRounds.map((r) => r.collected)),
+  "an unknown country code in the countries column doesn't inflate any region's count"
+);
+
+check(
+  computeCollections([]).every((r) => r.total === COUNTRIES.filter((c) => c.region === r.region).length),
+  "computeCollections defaults to the real COUNTRIES dataset when no country list is passed"
 );
 
 console.log("Navigation stack (nav rework)");

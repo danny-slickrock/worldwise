@@ -95,11 +95,13 @@ real Profile entry point — a "Achievements" row mirroring the Interests settin
 XP leveling curve — `src/game/levelPolicy.js`'s `computeLevel(xp)`, pure, walking an escalating
 per-level cost from `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card
 above the badge list on `AchievementsScreen`) are done. Step 6 (collectible sets, e.g. "all of
-South America") now has its own ordered sub-checklist, and its first chunk — 6.1, per-country
+South America") now has its own ordered sub-checklist. Its first chunk — 6.1, per-country
 signal capture (a `game_results.countries` column + `countriesFromHistory()`, capture-only, no UI
-yet) — is done. **Next up in M2.5 is step 6.2**, the pure collection policy that mines that column
-into per-region completion. The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+yet) — is done, and so is 6.2, the pure collection policy (`src/game/collectionPolicy.js`'s
+`computeCollections()`, mining `game_results.countries` into per-region collected/total counts,
+fed by `fetchRoundResults()` now also selecting `countries`) — still no UI. **Next up in M2.5 is
+step 6.3**, a navigation seam + hero surface to actually see collections. The Phase 1 backlog
+below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1213,15 +1215,19 @@ teaching *how the world works*, not just *where things are*.
           round's per-country outcomes reach `game_results` for free through the existing
           `saveRoundResult` write path — no new sink, no change to `App.js`. 8 new checks in
           `test/engine.test.js`. Deliberately capture-only: nothing reads the column yet.
-          *(Next up: step 6.2 — the pure collection policy, `computeCollections()`, mining
-          `game_results.countries` into per-region completion, plus extending
-          `fetchRoundResults()` to select it.)*
-       2. ☐ **Pure collection policy.** Extend `fetchRoundResults()`
-          (`src/storage/cloudProgress.js`) to also select `countries`, and add a pure
-          `computeCollections(results)` (new module, mirroring `masteryPolicy.js`'s shape) that
-          folds every row's `countries` array into "which country codes has this player ever
-          answered correctly," then groups that against `countryIndex.js`'s regions into a
-          per-region collected/total count.
+       2. ✅ **Pure collection policy.** `fetchRoundResults()` (`src/storage/cloudProgress.js`) now
+          also selects `countries` — additive, so every existing caller (`LearningPathScreen`,
+          `AchievementsScreen`, `ProfileScreen`) is unaffected. `src/game/collectionPolicy.js`
+          (`computeCollections(results, countries = COUNTRIES)`, mirroring `masteryPolicy.js`'s
+          "map the catalog, don't invent one" shape and `achievementPolicy.js`'s `{ value/progress }`
+          contract) folds every row's `countries` array into the set of codes ever answered
+          correctly — a country stays collected once earned, even if a later round misses it — then
+          groups that against `countryIndex.js`'s own `REGIONS` (minus its "All" filter option, not
+          a collectible set of its own) into one `{ region, collected, total, progress }` entry per
+          region. Takes the country list as a parameter, defaulting to the real `COUNTRIES`, so tests
+          run against a small fixture instead of the full 196-country dataset. 10 new checks in
+          `test/engine.test.js`. Deliberately no UI yet — same "policy layer first" split step 1
+          used. *(Next up: step 6.3 — a navigation seam + hero surface to actually see collections.)*
        3. ☐ **Navigation seam + hero surface.** A place to see collections — likely a section on
           `AchievementsScreen` (same screen as badges/levels) or its own route, following whichever
           of M2.4/M2.5's existing seams fits once the policy layer's shape is known.

@@ -83,12 +83,13 @@ export async function fetchProgress(user, client = supabase) {
   }
 }
 
-// Read a user's round history in the { mode, difficulty, score, total } shape
-// masteryPolicy.js's computeNodeStates expects. Local storage never kept
+// Read a user's round history in the { mode, difficulty, score, total,
+// countries } shape masteryPolicy.js's computeNodeStates and
+// collectionPolicy.js's computeCollections expect. Local storage never kept
 // per-round history (only the aggregated totals above), so this is cloud-only
-// — a signed-out player has no mastery signal yet, same as every other
-// cloud-only read in this file. `rows` is always an array — safe to pass
-// straight to computeNodeStates without a null check — but a failed fetch
+// — a signed-out player has no mastery/collection signal yet, same as every
+// other cloud-only read in this file. `rows` is always an array — safe to
+// pass straight to either function without a null check — but a failed fetch
 // (offline, backend down) also returns [] on its own, which looks identical
 // to "no history yet" and would mislabel every locked tier. `error` is how a
 // caller tells the two apart and shows an offline notice instead of a false
@@ -98,7 +99,7 @@ export async function fetchRoundResults(user, client = supabase) {
   try {
     const { data, error } = await client
       .from("game_results")
-      .select("mode, difficulty, score, total")
+      .select("mode, difficulty, score, total, countries")
       .eq("user_id", user.id);
     if (error) return { rows: [], error };
     return { rows: data ?? [], error: null };
