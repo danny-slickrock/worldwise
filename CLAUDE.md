@@ -76,7 +76,9 @@ src/
   data/countryPages.js     # M2.2 country-page content model: getCountryPage(code) + hero (Brazil).
                            #   Since M2.3.5 this is the SEED SOURCE for Postgres and the offline
                            #   baseline — the same data, serving both ends
-  data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback
+  data/contentSource.js    # M2.3.5 IO: fetchCountry(code) — Supabase + AsyncStorage cache + fallback.
+                           #   Since the country-photo work it also embeds the approved hero row, so
+                           #   country + photo share one request and one cache entry
   data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
   data/achievements.js     # M2.5 step 1: badge catalog — slug/label/description/glyph/metric/threshold
   data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
@@ -97,6 +99,9 @@ src/
   game/syncPolicy.js       # PURE: which sink gets a round (or an interest write); whether to migrate
   game/contentSync.js      # PURE country-page ⇄ content.countries row mapping (both directions)
   game/contentPolicy.js    # PURE content cache: keys, content_version freshness, fallback resolver
+  game/mediaPolicy.js      # PURE country photos: Wikidata P18 → Commons title, licence extraction,
+                           #   Storage key/URL derivation, the credit line, and the transform-URL
+                           #   ladder. Imported by BOTH the Node ingest script and the app
   game/navigation.js       # PURE nav core: per-tab stacks (push/pop/switch/replace), route⇄URL
                            #   serialization, and popstate reconciliation. The single source of
                            #   truth for where you are and what Back means
@@ -151,6 +156,8 @@ src/
   components/ExploreMap.js  # M2.3: flat tappable world map. SUPERSEDED by GlobeMap on the Explore
                            #   screen (M2.3.7); kept as the fallback until the globe is checked on a device
   components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent
+  components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
+                           #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
                            #   TabBar↔NavRail on layout.js's breakpoint. chrome={false} = focus mode
   components/TabBar.js      # Bottom tabs (mobile) — takes tabs as data, so it's extensible
@@ -173,6 +180,8 @@ supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + 
                            #   content with the built-in gte-small model. ask: retrieval + grounded
                            #   generation (Claude), the only place ANTHROPIC_API_KEY exists
 scripts/ingest-embeddings.mjs # Drives ingest-embeddings to completion (npm run ingest:embeddings)
+scripts/fetch-country-photos.js # Wikidata P18 → Commons → Storage → a PENDING country_media row
+scripts/approve-country-media.js # The only thing that publishes one (npm run media:approve)
 scripts/build-worldmap.mjs # One-off generator for data/worldMap.js (Natural Earth 110m)
 scripts/seed-content.js    # Repeatable bundled-JSON → content.countries seed (npm run seed:content)
 test/engine.test.js        # Pure-logic tests (no RN imports)
@@ -394,8 +403,8 @@ applied, `content` is exposed in the Dashboard, and the seed has run: `content_v
 in `content.countries`. Verified against the live site — a country page fetches the version and the
 row (both 200) and caches the result stamped with the live version, which only happens on the
 remote-fetch path, so it is genuinely reading Postgres and not the bundled fallback; anon writes are
-refused with 401. **One follow-up:** `content.country_media` is live but empty — nothing seeds it
-yet, harmless while no surface reads it, but the media half of the milestone is unexercised.
+refused with 401. **The `country_media` follow-up is closed in code** (2026-09-09) — see the country
+photos section below.
 
 Country content has a public-read `content.*` schema, a repeatable seed (`npm run seed:content`), and a fetch
 layer that caches per country against `content_version` and falls back to bundled JSON. The bundled
@@ -449,6 +458,37 @@ user. On a `security definer` function, where RLS does not apply at all, that is
 privilege escalation. Always `revoke all ... from anon, authenticated` explicitly, then grant back
 exactly what is needed — and test it with `set role authenticated`, because reading the migration
 will not reveal it.
+
+## Country photos — decisions worth not relitigating
+
+See [docs/adr/0002-country-photos.md](./docs/adr/0002-country-photos.md) and the runbook,
+[docs/country-photo-review.md](./docs/country-photo-review.md).
+
+- **The source is Wikidata `P18`**, resolved from the ISO alpha-2 code (`P297`) we already key
+  `content.countries` on. It is the entity's *canonical representative image*, so it is the same
+  image on every run — which is what makes ingestion idempotent and review finite. An image search
+  is none of those things. **`P18` is a draft, not an answer:** it returns flags, coats of arms,
+  maps and satellite photos often enough that review is the point, not a formality.
+- **Nothing is displayed until a human approves it.** `content.country_media.status` defaults to
+  `'pending'` and the public-read policy is `status = 'approved'`, so a draft is unreadable by
+  anon/authenticated *at the database*. Never re-open that by filtering in the client instead —
+  this is a product used by children, and a database-level gate cannot be dropped by a refactor.
+- **Approving bumps `content_version`; ingesting embeddings must not.** Images are the most visible
+  thing on a country page, so clients have to refetch to see them. Embeddings are invisible to a
+  reader and a bump would just make every device redownload content that reads identically.
+- **Licensing is structured and enforced.** CC BY and CC BY-SA both require attribution and BY-SA
+  requires the licence be named, so `author`/`license`/`license_url`/`source_url` are columns, and a
+  row missing an author or a licence is **refused** by the approval path. `formatPhotoCredit()` owns
+  the wording in one place, the way `onFill()` owns label colour.
+- **Images are re-hosted, never hotlinked.** A Commons file can be renamed, replaced or deleted;
+  re-hosting is what makes "approved" mean the image that was actually approved. The stored object
+  is already a 1600px Commons rendition, so the bucket stays small.
+- **Storage transforms are an optimisation with a fallback, never a dependency** — image
+  transformation is a Pro-plan feature. `CountryPhoto` falls back to the plain object URL on error.
+- **Do not gate an image's visibility on `onLoad`.** The first version faded in on that callback and
+  shipped a photo that had loaded and was permanently invisible: react-native-web never fired it, so
+  the animated opacity stayed at 0 over a 200 OK bitmap. Caught only by screenshotting the real
+  page. A pop-in is a far better failure than a photo that is there and cannot be seen.
 
 ## The mission (don't lose this)
 
