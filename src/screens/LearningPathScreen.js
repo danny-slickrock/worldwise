@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
   // inset moves to the wrapper instead of vanishing with it.
   wrapNoBack: { paddingTop: spacing(8) },
-  backText: { ...type.label, fontSize: 14, color: colors.accent },
+  backText: { ...type.label, fontSize: 14, color: colors.link },
   regionRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -232,8 +232,8 @@ const styles = StyleSheet.create({
     marginLeft: spacing(3),
   },
   rowState_locked: { color: colors.textMuted },
-  rowState_unlocked: { color: colors.accent },
-  rowState_mastered: { color: colors.success },
+  rowState_unlocked: { color: colors.link },
+  rowState_mastered: { color: colors.successInk },
   empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
   emptyText: { ...type.caption },
 });

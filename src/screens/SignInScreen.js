@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
 
   primaryBtn: {
-    backgroundColor: colors.accent,
+    backgroundColor: colors.brand,
     borderRadius: radius.pill,
     paddingVertical: spacing(3.5),
     alignItems: "center",
@@ -200,12 +200,12 @@ const styles = StyleSheet.create({
     minHeight: 54,
     ...elevation(1),
   },
-  googleMark: { fontSize: 17, color: colors.accent },
+  googleMark: { fontSize: 17, color: colors.link },
   googleBtnText: { ...type.body, color: colors.brand },
 
   note: { marginTop: spacing(4), borderRadius: radius.card, padding: spacing(3.5) },
   noteOk: { backgroundColor: colors.successSurface },
-  noteOkText: { ...type.body, color: colors.success },
+  noteOkText: { ...type.body, color: colors.successInk },
   noteBad: { backgroundColor: colors.dangerSurface },
   noteBadText: { ...type.body, color: colors.danger },
 

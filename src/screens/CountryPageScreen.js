@@ -45,7 +45,14 @@ function compact(n) {
   return String(n);
 }
 
-export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
+export default function CountryPageScreen({
+  code,
+  onExit,
+  onPlay,
+  onViewMap,
+  basemap,
+  onChangeBasemap,
+}) {
   // Bundled content paints immediately, then the fetched version replaces it if
   // one arrives (M2.3.5). The page is never blank waiting on a network call, and
   // an offline visitor sees exactly what shipped before this milestone — the
@@ -151,7 +158,13 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
                 the ones with neither. */}
             {globeFraming ? (
               <View style={styles.heroStage}>
-                <CountryGlobe code={page.code} name={page.name} framing={globeFraming} />
+                <CountryGlobe
+                  code={page.code}
+                  name={page.name}
+                  framing={globeFraming}
+                  basemap={basemap}
+                  onChangeBasemap={onChangeBasemap}
+                />
               </View>
             ) : (
               <View style={styles.hero}>
@@ -303,8 +316,8 @@ const styles = StyleSheet.create({
     paddingTop: spacing(4),
     paddingBottom: spacing(2),
   },
-  backText: { ...type.label, fontSize: 14, color: colors.accent },
-  viewMapText: { ...type.label, fontSize: 14, color: colors.accent },
+  backText: { ...type.label, fontSize: 14, color: colors.link },
+  viewMapText: { ...type.label, fontSize: 14, color: colors.link },
   content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
 
   heroStage: { marginBottom: spacing(5) },

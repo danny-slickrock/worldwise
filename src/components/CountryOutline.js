@@ -41,7 +41,7 @@ export default function CountryOutline({ code }) {
           style={{
             width: "100%",
             height: "100%",
-            backgroundColor: colors.sand,
+            backgroundColor: colors.brass,
             // Web-only mask props (ignored by native; RN types don't know them).
             maskImage: `url(${uri})`,
             maskRepeat: "no-repeat",
@@ -65,7 +65,7 @@ export default function CountryOutline({ code }) {
   }
 
   return (
-    <SvgUri uri={uri} width="100%" height="100%" fill={colors.sand} onError={() => setFailed(true)} />
+    <SvgUri uri={uri} width="100%" height="100%" fill={colors.brass} onError={() => setFailed(true)} />
   );
 }
 

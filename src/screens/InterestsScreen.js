@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceRaised,
     ...elevation(1),
   },
-  chipActive: { backgroundColor: colors.accent, ...elevation(2) },
+  chipActive: { backgroundColor: colors.brand, ...elevation(2) },
   chipText: { ...type.body, color: colors.text },
   chipTextActive: { color: colors.onFill },
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   secondaryText: { ...type.body, color: colors.brand },
   continueBtn: {
     flex: 1,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.brand,
     borderRadius: radius.pill,
     paddingVertical: spacing(3.5),
     alignItems: "center",

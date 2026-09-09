@@ -1,0 +1,133 @@
+{
+  "color": {
+    "brand": "#21403C",
+    "brandDeep": "#16292A",
+    "accent": "#2E7A72",
+    "accentLight": "#8FC4B4",
+    "ember": "#B0602C",
+    "brass": "#D8A44A",
+    "success": "#4A8C4A",
+    "danger": "#A6432E",
+    "surface": "#F4EBD9",
+    "surfaceRaised": "#FBF6EA",
+    "surfaceSunken": "#E8DBC3",
+    "text": "#2A2320",
+    "textSecondary": "#4A4038",
+    "textMuted": "#635547",
+    "textFaint": "#756654",
+    "border": "rgba(33,64,60,0.12)",
+    "borderStrong": "rgba(33,64,60,0.18)",
+    "onBrand": "#F4EBD9",
+    "onBrandQuiet": "#C9BFA8",
+    "emberInk": "#9A5225",
+    "successInk": "#35703A"
+  },
+  "font": {
+    "display": "Newsreader",
+    "body": "Instrument Sans",
+    "mono": "IBM Plex Mono"
+  },
+  "typeScale": {
+    "display": {
+      "size": 60,
+      "weight": 500,
+      "tracking": -0.012,
+      "lineHeight": 1.06
+    },
+    "h1": {
+      "size": 40,
+      "weight": 500,
+      "tracking": -0.006,
+      "lineHeight": 1.14
+    },
+    "h2": {
+      "size": 28,
+      "weight": 600,
+      "tracking": -0.004,
+      "lineHeight": 1.22
+    },
+    "h3": {
+      "size": 21,
+      "weight": 600,
+      "lineHeight": 1.25
+    },
+    "bodyLg": {
+      "size": 18,
+      "weight": 400,
+      "lineHeight": 1.65
+    },
+    "body": {
+      "size": 15,
+      "weight": 400,
+      "lineHeight": 1.6
+    },
+    "label": {
+      "size": 13,
+      "weight": 600
+    },
+    "eyebrow": {
+      "size": 11,
+      "weight": 500,
+      "tracking": 0.12,
+      "transform": "uppercase",
+      "font": "mono"
+    }
+  },
+  "space": {
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "6": 24,
+    "8": 32,
+    "12": 48,
+    "16": 64,
+    "22": 88
+  },
+  "radius": {
+    "sharp": 2,
+    "sm": 6,
+    "md": 8,
+    "sheet": 14,
+    "icon": 23,
+    "pill": 999
+  },
+  "elevation": {
+    "e1": "0 1px 2px rgba(42,35,32,.08)",
+    "e2": "0 4px 12px rgba(42,35,32,.10)",
+    "e3": "0 14px 34px rgba(42,35,32,.18)"
+  },
+  "motion": {
+    "micro": 120,
+    "ui": 200,
+    "sheet": 320,
+    "map": 600,
+    "ease": "cubic-bezier(.2,.7,.2,1)"
+  },
+  "breakpoints": {
+    "sm": 480,
+    "md": 768,
+    "lg": 1024,
+    "xl": 1280,
+    "contentMax": 1240
+  },
+  "layers": {
+    "map": 0,
+    "chrome": 10,
+    "sheet": 20,
+    "modal": 30,
+    "toast": 40
+  },
+  "hitTarget": {
+    "touch": 44,
+    "pointer": 32
+  },
+  "material": {
+    "dusk": "radial-gradient(120% 90% at 100% 0%,rgba(216,164,74,.30),transparent 58%),radial-gradient(90% 70% at 86% 10%,rgba(176,96,44,.26),transparent 62%),linear-gradient(168deg,#2A4A44 0%,#21403C 44%,#16292A 100%)",
+    "duskDeep": "radial-gradient(120% 90% at 100% 0%,rgba(216,164,74,.24),transparent 58%),radial-gradient(90% 70% at 88% 8%,rgba(176,96,44,.22),transparent 62%),linear-gradient(168deg,#20393A 0%,#1A2F2C 46%,#12211F 100%)",
+    "pineGrain": "repeating-linear-gradient(90deg,rgba(11,22,20,.20) 0 2px,transparent 2px 9px),repeating-linear-gradient(90deg,rgba(216,164,74,.045) 0 1px,transparent 1px 17px),repeating-linear-gradient(90deg,rgba(11,22,20,.11) 0 4px,transparent 4px 29px)",
+    "walnut": "repeating-linear-gradient(0deg,rgba(40,21,9,.15) 0 1px,transparent 1px 9px),repeating-linear-gradient(0deg,rgba(30,15,6,.11) 0 1px,transparent 1px 17px),repeating-linear-gradient(0deg,rgba(216,164,74,.05) 0 1px,transparent 1px 29px),repeating-linear-gradient(0deg,rgba(40,21,9,.09) 0 2px,transparent 2px 43px),repeating-linear-gradient(0deg,rgba(30,15,6,.13) 0 4px,transparent 4px 97px),radial-gradient(140% 100% at 20% 0%,rgba(216,164,74,.15),transparent 64%),linear-gradient(176deg,#6B4526,#482E17)",
+    "paper": "repeating-linear-gradient(0deg,rgba(122,106,88,.032) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(122,106,88,.026) 0 1px,transparent 1px 4px),radial-gradient(130% 90% at 50% 0%,rgba(216,164,74,.11),transparent 72%)",
+    "lantern": "radial-gradient(75% 65% at 10% 100%,rgba(216,164,74,.16),transparent 62%)"
+  }
+}

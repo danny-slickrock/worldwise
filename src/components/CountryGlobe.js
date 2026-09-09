@@ -16,6 +16,7 @@ import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import GlobeMap from "./GlobeMap";
 import useGlobeGestures from "../hooks/useGlobeGestures";
+import BasemapToggle from "./BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { groupSpin, countryAngularRadius, zoomForRadius } from "../game/globeMotion";
 import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
@@ -34,7 +35,7 @@ export function framingFor(code) {
   return { spin, zoom: zoomForRadius(angular, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX }) };
 }
 
-export default function CountryGlobe({ code, name, framing }) {
+export default function CountryGlobe({ code, name, framing, basemap, onChangeBasemap }) {
   // Drag to spin, but NOT wheel to zoom. This globe sits in a scrolling page,
   // and the wheel handler has to preventDefault to zoom — which would trap the
   // page's scroll every time the pointer crossed the hero. Spinning is the part
@@ -52,7 +53,8 @@ export default function CountryGlobe({ code, name, framing }) {
       {/* onSelect is deliberately absent: this is the country's own page, so
           tapping another country to navigate away from it would be a surprise.
           GlobeMap treats a missing handler as scenery. */}
-      <GlobeMap spin={globe.spin} zoom={globe.zoom} highlightCode={code} />
+      <GlobeMap spin={globe.spin} zoom={globe.zoom} highlightCode={code} basemap={basemap} />
+      <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.basemapToggle} />
       {moved ? (
         <Pressable
           onPress={() => globe.animateTo(framing.zoom, framing.spin)}
@@ -88,6 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing(3),
     color: map.onMapMuted,
   },
+  basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
   pill: {
     position: "absolute",
     right: spacing(3),

@@ -13,7 +13,13 @@ import {
   dayKey,
   DEFAULT_PROGRESS,
 } from "../src/game/progress";
-import { normalizeSettings, DEFAULT_SETTINGS } from "../src/game/settings";
+import {
+  normalizeSettings,
+  DEFAULT_SETTINGS,
+  BASEMAPS,
+  DEFAULT_BASEMAP,
+  nextBasemap,
+} from "../src/game/settings";
 import {
   statsRowFromProgress,
   progressFromStatsRow,
@@ -28,7 +34,8 @@ import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/gam
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
 import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
-import { climateBand, CLIMATE_BANDS } from "../src/game/terrainTint";
+import { classifyTerrain, bandFromLatitude, TERRAIN_CLASSES } from "../src/game/terrainTint";
+import { COUNTRY_TERRAIN, terrainClass } from "../src/data/countryTerrain";
 import {
   buildCountryFactQuestions,
   compactNumber,
@@ -126,6 +133,8 @@ import {
   modeAccents,
   map,
   topicAccents,
+  type,
+  LIGHT_GROUNDS,
   spacing,
   layout,
   constrain,
@@ -651,17 +660,26 @@ check(
   "REGIONS covers 'All' plus every distinct region in the dataset, once each"
 );
 
-console.log("Design tokens / a11y (brand kit v1.1)");
+console.log("Design tokens / a11y (brand kit v3)");
 // The kit's ACCESSIBILITY CONTRACT, encoded: "Body text >= 4.5:1; large text
-// and UI >= 3:1. Sand is never a text colour on light."
+// and UI >= 3:1."
 //
-// The palette inverted at the redesign — off-white page, white cards, ink type,
-// navy as authority — so these checks changed direction with it. What used to
-// be guarded was "an accent is bright enough to carry text on a dark base, and
-// dark enough to take navyDeep on top". Now it's "type is dark enough for
-// paper, and a fill is dark enough for white type on top".
+// v3 moved the whole palette from a cool printed atlas (navy on off-white) to a
+// warm cartography room (pine on parchment), so every number below changed —
+// but the SHAPE of the contract did not, which is why these checks read the
+// same. Two v3 rules are new and are asserted as prohibitions rather than
+// omissions, so that re-tinting one of them one day fails loudly:
+//   · Brass is decorative only. Never type on light.
+//   · Ember and success are fills; when a warm or green colour carries WORDS
+//     that is emberInk / successInk.
+//
+// The kit is explicit that BOTH light grounds must be checked: cream
+// (surfaceRaised) and parchment (surface) differ by roughly half a stop, and
+// small type sits on both. LIGHT_GROUNDS exists so a check cannot quietly pick
+// whichever one passes.
+check(LIGHT_GROUNDS.length === 2, "there are two light grounds, and both get checked");
 
-// Body copy on both surface levels. `text` is the only body colour.
+// Body copy on every surface level.
 for (const bg of ["surface", "surfaceRaised", "surfaceSunken"]) {
   check(
     contrastRatio(colors.text, colors[bg]) >= CONTRAST.body,
@@ -669,65 +687,107 @@ for (const bg of ["surface", "surfaceRaised", "surfaceSunken"]) {
   );
 }
 
-// textMuted is deliberately NOT body copy. It clears 4.5:1 on white cards but
-// lands at 4.40:1 on the off-white page — a genuine near-miss in the kit's own
-// palette. Pinning both numbers here keeps that a recorded decision: muted is
-// for labels, captions and metadata, which the contract scores as UI at 3:1.
-check(
-  contrastRatio(colors.textMuted, colors.surfaceRaised) >= CONTRAST.body,
-  "muted text clears body contrast on white cards"
-);
-check(
-  contrastRatio(colors.textMuted, colors.surface) >= CONTRAST.large,
-  "muted text clears UI contrast on the off-white page (it is not body copy)"
-);
-check(
-  contrastRatio(colors.textMuted, colors.surface) < CONTRAST.body,
-  "...and does NOT clear body contrast there — the reason it's labels-only"
-);
+// v3 fixed a genuine near-miss from v1.1: the old textMuted sat at 4.40:1 on
+// the page and had to be pinned as a labels-only exception. The new ramp
+// (secondary / muted / faint) clears body contrast on BOTH grounds all the way
+// down to `textFaint`, so the exception is gone — which is worth asserting, or
+// it will quietly get reintroduced.
+for (const ink of ["textSecondary", "textMuted", "textFaint"]) {
+  for (const ground of LIGHT_GROUNDS) {
+    check(
+      contrastRatio(colors[ink], ground) >= CONTRAST.body,
+      `${ink} clears body contrast on ${ground}`
+    );
+  }
+}
 
-// Accents used AS TEXT on light. Teal is the one safe for body size; earth is
-// large-text/UI only, exactly as the kit states.
+// Accents used AS TEXT on light. Lakewater is the one cool colour in the system
+// and the only accent safe at body size; emberInk is how warm type is set.
+// Lakewater is the kit's one documented split: "links on cream; large only on
+// parchment". Both halves are pinned, because the useful fact is the LIMIT —
+// a link set in lakewater on the page ground is a large-text-only decision.
 check(
   contrastRatio(colors.accent, colors.surfaceRaised) >= CONTRAST.body,
-  "teal is safe for body-size text on white"
+  "lakewater is safe for body-size text on cream"
 );
 check(
-  contrastRatio(colors.accent, colors.surface) >= CONTRAST.body,
-  "teal is safe for body-size text on the page"
+  contrastRatio(colors.accent, colors.surface) >= CONTRAST.large &&
+    contrastRatio(colors.accent, colors.surface) < CONTRAST.body,
+  "...and is large-text-only on parchment, exactly as the kit's table says"
 );
-for (const bg of ["surface", "surfaceRaised"]) {
+for (const ground of LIGHT_GROUNDS) {
   check(
-    contrastRatio(colors.earth, colors[bg]) >= CONTRAST.large,
-    `earth clears UI/large-text contrast on ${bg}`
+    contrastRatio(colors.emberInk, ground) >= CONTRAST.body,
+    `emberInk carries warm type at body size on ${ground}`
   );
   check(
-    contrastRatio(colors.brand, colors[bg]) >= CONTRAST.body,
-    `navy headings clear body contrast on ${bg}`
+    contrastRatio(colors.brand, ground) >= CONTRAST.body,
+    `pine headings clear body contrast on ${ground}`
   );
-}
-
-// "Sand is never a text colour on light." Asserted as a prohibition, not an
-// omission — if someone re-tints sand upward one day, this says why they can't.
-for (const bg of ["surface", "surfaceRaised"]) {
   check(
-    contrastRatio(colors.sand, colors[bg]) < CONTRAST.large,
-    `sand fails even UI contrast on ${bg} — decorative only, never type`
+    contrastRatio(colors.successInk, ground) >= CONTRAST.body,
+    `successInk carries green type at body size on ${ground}`
   );
 }
 
-// Fills carrying a label. Every brand fill takes white EXCEPT sand, which takes
-// ink; theme.onFill() is the single place that rule lives, so drive the check
-// through it rather than restating it.
-for (const name of ["brand", "brandDeep", "accent", "earth", "danger", "sand"]) {
+// The kit's lakewater split has a practical consequence: a link is 13-14px and
+// lands on BOTH grounds, so it cannot be `accent`. `link` is the deepened tint
+// that clears body contrast either way, and pinning it is what stops someone
+// "simplifying" it back to accent.
+for (const ground of LIGHT_GROUNDS) {
+  check(
+    contrastRatio(colors.link, ground) >= CONTRAST.body,
+    `the link colour clears body contrast on ${ground} — unlike accent itself`
+  );
+}
+check(colors.link !== colors.accent, "link is a deepened lakewater, not accent");
+
+// "Brass is decorative only — never a text colour on light." A prohibition, not
+// an omission: if someone re-tints brass upward one day, this says why they
+// can't.
+for (const ground of LIGHT_GROUNDS) {
+  check(
+    contrastRatio(colors.brass, ground) < CONTRAST.large,
+    `brass fails even UI contrast on ${ground} — rules and flecks, never type`
+  );
+}
+
+// "Ember is a fill, a rule and terrain — not type." Same shape of prohibition,
+// and the reason emberInk exists at all.
+check(
+  contrastRatio(colors.ember, colors.surface) < CONTRAST.body,
+  "ember does not clear body contrast on parchment — that is what emberInk is for"
+);
+check(
+  contrastRatio(colors.emberInk, colors.surface) >= CONTRAST.body,
+  "...and emberInk does"
+);
+
+// Fills carrying a label. Every brand fill takes parchment EXCEPT brass and
+// lichen-light, which take nightwood; theme.onFill() is the single place that
+// rule lives, so drive the check through it rather than restating it.
+for (const name of ["brand", "brandDeep", "emberInk", "danger", "brass", "accentLight"]) {
   const fill = colors[name];
   check(
     contrastRatio(onFill(fill), fill) >= CONTRAST.body,
     `a ${name} fill carries its label at 4.5:1 (onFill picks the right one)`
   );
 }
-check(onFill(colors.sand) === colors.text, "sand is the one fill that takes ink, not white");
-check(onFill(colors.brand) === colors.onFill, "navy fills take white");
+check(onFill(colors.brass) === colors.brandDeep, "brass is a fill that takes ink, not parchment");
+check(onFill(colors.accentLight) === colors.brandDeep, "...and so is lichen-light");
+check(onFill(colors.brand) === colors.onFill, "pine fills take parchment");
+// Raw lakewater is NOT in that list, and that is the finding rather than an
+// oversight: parchment on `accent` measures 4.28:1, so a lakewater fill cannot
+// carry a body-size label. Every mode accent that wanted to be teal is a
+// deepened tint of it instead.
+check(
+  contrastRatio(onFill(colors.accent), colors.accent) < CONTRAST.body,
+  "a raw lakewater fill cannot carry a body-size label — deepen it first"
+);
+check(
+  !Object.values(modeAccents).includes(colors.accent),
+  "...so no mode accent is raw lakewater"
+);
 
 // Every game-mode accent doubles as a tile/button fill carrying a label.
 for (const [mode, fill] of Object.entries(modeAccents)) {
@@ -737,26 +797,55 @@ for (const [mode, fill] of Object.entries(modeAccents)) {
   );
 }
 
-// Success/danger as status text on light. The kit scores these as UI ("pair
-// with an icon, never colour alone"), so 3:1 is the bar, and success genuinely
-// does not reach body contrast — worth pinning so nobody sets a paragraph in it.
-for (const bg of ["surface", "surfaceRaised"]) {
+// Status colours. The kit scores success/danger as UI ("pair with an icon,
+// never colour alone"), so 3:1 is the bar for the fill — and successInk is what
+// carries the words, checked above.
+for (const ground of LIGHT_GROUNDS) {
   check(
-    contrastRatio(colors.success, colors[bg]) >= CONTRAST.large,
-    `success status text clears UI contrast on ${bg}`
+    contrastRatio(colors.success, ground) >= CONTRAST.large,
+    `success status clears UI contrast on ${ground}`
   );
   check(
-    contrastRatio(colors.danger, colors[bg]) >= CONTRAST.body,
-    `danger status text clears body contrast on ${bg}`
+    contrastRatio(colors.danger, ground) >= CONTRAST.body,
+    `danger status text clears body contrast on ${ground}`
   );
 }
 check(
-  contrastRatio(colors.success, colors.successSurface) >= CONTRAST.large,
-  "success text on its own tint clears UI contrast"
+  contrastRatio(colors.successInk, colors.successSurface) >= CONTRAST.body,
+  "success text on its own tint clears body contrast"
 );
 check(
   contrastRatio(colors.danger, colors.dangerSurface) >= CONTRAST.body,
   "danger text on its own tint clears body contrast"
+);
+
+// The two inks permitted on a dark ground, and the rule that neither carries
+// alpha — an alpha tint over a gradient has no knowable contrast ratio.
+check(
+  contrastRatio(colors.onFill, colors.brand) >= CONTRAST.body,
+  "parchment ink is readable on pine at any size"
+);
+check(
+  contrastRatio(colors.onFillQuiet, colors.brand) >= CONTRAST.body,
+  "lichen ink clears body contrast on flat pine (large-text only over a material)"
+);
+check(
+  !String(colors.onFill).includes("rgba") && !String(colors.onFillQuiet).includes("rgba"),
+  "neither ink on dark carries alpha — hierarchy comes from size and case"
+);
+
+// Typography: the serif has a floor. Newsreader below 17px muddies, so h3 is
+// the smallest display step and everything under it is Instrument Sans.
+check(type.h3.fontSize >= 17, "the smallest serif step is at or above the kit's 17px floor");
+for (const role of ["body", "label", "caption", "eyebrow", "data"]) {
+  check(
+    !String(type[role].fontFamily).startsWith("Newsreader"),
+    `${role} is not set in the serif — below 17px it muddies`
+  );
+}
+check(
+  type.eyebrow.color === colors.emberInk,
+  "the eyebrow is emberInk, not ember — it is type, and warm type is always the ink"
 );
 
 // The map is the one surface that stayed dark, so its type is checked against
@@ -3399,41 +3488,118 @@ check(placeTooltip([NaN, 10], box, VIEW) === null, "a country projected to NaN n
 
 
 // ---------------------------------------------------------------------------
-// Terrain shading by climate band (src/game/terrainTint.js). The globe used to
-// paint all 196 countries one flat navy; latitude is the one piece of terrain
-// information a country's own center already carries, and it is genuinely
-// predictive — deserts sit in the subtropical dry belts, rainforest on the
-// equator. Boundaries are the real ones, so this stays geography rather than
-// decoration.
+// Realistic terrain (src/game/terrainTint.js + src/data/countryTerrain.js).
+//
+// The first version of this shaded land by the latitude of a country's centre,
+// which painted Egypt and Greece identically and had no idea most of Australia
+// is sand. This classifies each country from the CIA World Factbook climate and
+// landform prose the repo already carries for all 194 — the same reviewed text
+// a player can read on the country page.
+//
+// The Factbook is DESCRIPTIVE, not classificatory: it says "hot, dry summers
+// give way to moderate winters", almost never "boreal". So the text is asked
+// about moisture, relief and the far north, and latitude supplies the thermal
+// axis — which is also how a real biome map is built.
 // ---------------------------------------------------------------------------
-console.log("\nTerrain bands");
+console.log("\nTerrain");
 
-check(climateBand(0) === "tropical", "the equator is tropical");
-check(climateBand(23.5) === "tropical", "the Tropic of Cancer is the tropical edge");
-check(climateBand(25) === "arid", "just past it is the arid belt — where the Sahara is");
-check(climateBand(45) === "temperate", "the mid-latitudes are temperate");
-check(climateBand(60) === "boreal", "above them, taiga");
-check(climateBand(75) === "polar", "past the Arctic Circle, ice");
+check(TERRAIN_CLASSES.every((c) => typeof map.terrain[c] === "string"), "every terrain class has a colour");
+check(new Set(Object.values(map.terrain)).size === TERRAIN_CLASSES.length, "and no two classes share one");
 
-// Bands are symmetric: the Kalahari and the Sahara are the same latitude story.
-for (const lat of [10, 30, 45, 60, 80]) {
-  check(climateBand(lat) === climateBand(-lat), `${lat}° north and south band alike`);
+// The latitude fallback still exists — as a floor for a country with no prose,
+// not as the answer.
+check(bandFromLatitude(0) === "tropicalDry", "the equator falls back to dry tropics");
+check(bandFromLatitude(75) === "tundra", "past the Arctic Circle, tundra");
+check(bandFromLatitude(-45) === "temperate", "bands are symmetric about the equator");
+check(bandFromLatitude(undefined) === "temperate", "an unknown latitude falls back rather than throwing");
+// Number(null) is 0, not NaN. Without an explicit guard a plain coercion turns
+// "this country has no centroid" into "this country is on the equator", and
+// every polygon-less microstate comes out equatorial.
+check(bandFromLatitude(null) === "temperate", "a NULL latitude is absent, not zero");
+check(classifyTerrain({ latitude: null }).terrain === "temperate", "...and the classifier agrees");
+
+// The three text traps, each found against real Factbook prose and each one a
+// place a naive keyword match gets it exactly backwards.
+check(
+  classifyTerrain({ climate: "Temperate rather than arctic, despite the latitude.", latitude: 65 })
+    .terrain !== "tundra",
+  "'temperate rather than arctic' is not an arctic claim — negations are stripped"
+);
+check(
+  classifyTerrain({ climate: "Cool winters and mild summers, except along the Mediterranean coast.", latitude: 46 })
+    .terrain !== "mediterranean",
+  "'the Mediterranean coast' is a location, not a climate"
+);
+check(
+  classifyTerrain({ climate: "Italy's climate is predominantly Mediterranean.", latitude: 42 })
+    .terrain === "mediterranean",
+  "...while a climate that IS Mediterranean is one"
+);
+check(
+  classifyTerrain({ climate: "The south is temperate, the north subarctic.", latitude: 62 }).terrain === "boreal",
+  "'subarctic' is taiga, and must never satisfy the arctic pattern"
+);
+
+// The same words mean different ground at different latitudes — which is the
+// whole reason this is a hybrid rather than a keyword lookup.
+check(
+  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: 48 }).terrain === "drySteppe",
+  "high-latitude aridity is cold steppe"
+);
+check(
+  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: -25 }).terrain === "desert",
+  "...and low-latitude aridity is hot desert"
+);
+check(
+  classifyTerrain({ climate: "Tropical on the coast, arid in the interior, with rainy seasons.", latitude: 1 })
+    .terrain === "tropicalDry",
+  "dryness WITH a wet season is savanna and Sahel, not Sahara"
+);
+check(
+  classifyTerrain({ climate: "Temperate but shifts with altitude.", geography: "Mostly mountainous, the Alps rising in the south.", latitude: 47 })
+    .terrain === "highland",
+  "a country whose climate is organised by altitude is a mountain country"
+);
+check(
+  classifyTerrain({ geography: "Mountains rise in the west.", climate: "Temperate.", latitude: 60 })
+    .terrain !== "highland",
+  "...while merely having mountains is not enough — nearly every country does"
+);
+check(classifyTerrain({}).terrain === "temperate", "no text and no latitude still yields a class");
+
+// Against the real dataset.
+check(Object.keys(COUNTRY_TERRAIN).length >= 190, "every country gets a terrain class");
+check(
+  Object.values(COUNTRY_TERRAIN).every((t) => TERRAIN_CLASSES.includes(t.terrain)),
+  "...and every one of them is a class the palette knows"
+);
+// Spot checks a geography teacher would recognise. These are the point of the
+// whole exercise: if the classifier regresses, it regresses here first.
+for (const [code, want] of Object.entries({
+  eg: "desert", sa: "desert", au: "desert", mn: "desert",
+  kz: "drySteppe", ru: "tundra", ca: "tundra",
+  fi: "boreal", se: "boreal", gb: "temperate", de: "temperate", fr: "temperate",
+  gr: "mediterranean", it: "mediterranean",
+  cd: "tropicalWet", id: "tropicalWet", my: "tropicalWet",
+  ng: "tropicalDry", ch: "highland", np: "highland", bt: "highland",
+})) {
+  check(terrainClass(code) === want, `${code} reads as ${want}`);
 }
+// Most classes should actually appear — a classifier that collapses everything
+// into two colours is the failure mode that looks fine in a unit test.
+const terrainSpread = new Set(Object.values(COUNTRY_TERRAIN).map((t) => t.terrain));
+check(terrainSpread.size >= 8, `the world uses ${terrainSpread.size} of ${TERRAIN_CLASSES.length} terrain classes`);
+// And most of it should come from real text, not the latitude floor.
+const fromText = Object.values(COUNTRY_TERRAIN).filter((t) => t.source.startsWith("text")).length;
+check(fromText > Object.keys(COUNTRY_TERRAIN).length / 2, `${fromText} countries are classified from their own description`);
 
-check(CLIMATE_BANDS.every((b) => typeof map.terrain[b] === "string"), "every band has a terrain colour");
-// The map is a dark stage and land must stay land against the ocean. Ice is the
-// one deliberate exception — it is supposed to be the pale thing on the globe.
-for (const band of CLIMATE_BANDS) {
-  const vsOcean = contrastRatio(map.terrain[band], map.ocean);
-  check(vsOcean > 1.12, `${band} land is distinguishable from ocean (${vsOcean.toFixed(2)}:1)`);
-  if (band !== "polar") {
-    check(
-      contrastRatio(map.terrain[band], "#FFFFFF") > 6,
-      `${band} stays dark enough to be a map stage, not a light surface`
-    );
-  }
-}
-check(climateBand(undefined) === "temperate", "an unknown latitude falls back rather than throwing");
+// The basemap toggle.
+check(BASEMAPS.includes(DEFAULT_BASEMAP), "the default basemap is one of the basemaps");
+check(nextBasemap("terrain") === "simple" && nextBasemap("simple") === "terrain", "the toggle round-trips");
+check(nextBasemap("nonsense") === BASEMAPS[0], "an unknown basemap toggles to a real one rather than sticking");
+check(normalizeSettings({ basemap: "nope" }).basemap === DEFAULT_BASEMAP, "a corrupt stored basemap falls back");
+check(normalizeSettings({ basemap: "simple" }).basemap === "simple", "...and a valid one is kept");
+check(DEFAULT_SETTINGS.basemap === DEFAULT_BASEMAP, "the default settings carry a basemap");
 
 
 // ---------------------------------------------------------------------------

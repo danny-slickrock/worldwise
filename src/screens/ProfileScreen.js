@@ -186,8 +186,8 @@ function SignedIn({
 // well as a colour: the kit's rule is that status colour is never the only
 // signal.
 const SYNC_TONES = {
-  ok: { color: colors.success, glyph: "\u2713" },
-  warning: { color: colors.earth, glyph: "\u21BB" },
+  ok: { color: colors.successInk, glyph: "\u2713" },
+  warning: { color: colors.emberInk, glyph: "\u21BB" },
   error: { color: colors.danger, glyph: "\u26A0" },
 };
 
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     borderRadius: radius.pill,
-    backgroundColor: colors.sand,
+    backgroundColor: colors.brass,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   interestsBody: { flex: 1 },
   interestsLabel: { ...type.body, color: colors.brand },
   interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
-  interestsChevron: { fontSize: 20, color: colors.accent, marginLeft: spacing(2) },
+  interestsChevron: { fontSize: 20, color: colors.link, marginLeft: spacing(2) },
 
   signOutBtn: {
     backgroundColor: colors.surfaceRaised,

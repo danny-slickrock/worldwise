@@ -24,6 +24,7 @@ import { correctHaptic, wrongHaptic } from "../haptics";
 import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
 import GlobeMap from "./GlobeMap";
+import BasemapToggle from "./BasemapToggle";
 import { locatorView } from "../game/locatorRound";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
@@ -42,6 +43,8 @@ export default function QuizScreen({
   onFinish,
   onOpenCountry,
   countryCode = null,
+  basemap,
+  onChangeBasemap,
 }) {
   const meta = MODES[mode];
   const questions = useMemo(() => {
@@ -385,12 +388,18 @@ export default function QuizScreen({
                   spin={globe.spin}
                   zoom={globe.zoom}
                   onSelect={choose}
+                  basemap={basemap}
                   locator={{
                     choices: q.choices,
                     correctCode: q.correct,
                     pickedCode: picked,
                     answered,
                   }}
+                />
+                <BasemapToggle
+                  value={basemap}
+                  onChange={onChangeBasemap}
+                  style={styles.basemapToggle}
                 />
                 {/* Spinning far enough can carry every candidate onto the back
                     face, which would leave the question unanswerable with no
@@ -626,6 +635,7 @@ const styles = StyleSheet.create({
   mapHint: { ...type.caption, fontSize: 12, marginBottom: spacing(3) },
   // Sits on the dark globe stage, so it takes the map's own on-dark tokens
   // rather than the page's ink.
+  basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
   recenterPill: {
     position: "absolute",
     right: spacing(3),
@@ -683,14 +693,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceRaised,
     borderRadius: radius.sheet,
     borderLeftWidth: 4,
-    borderLeftColor: colors.earth,
+    borderLeftColor: colors.ember,
     padding: spacing(4),
     ...elevation(1),
   },
   contextKicker: { ...type.eyebrow },
   contextCountry: { ...type.h3, marginTop: spacing(1), marginBottom: spacing(1.5) },
   contextFact: { ...type.body, fontSize: 14, color: colors.textMuted, lineHeight: 21 },
-  contextLink: { ...type.label, fontSize: 13, color: colors.accent, marginTop: spacing(2.5) },
+  contextLink: { ...type.label, fontSize: 13, color: colors.link, marginTop: spacing(2.5) },
   nextBtn: {
     ...constrain.action,
     borderRadius: radius.sheet,
@@ -741,7 +751,7 @@ const styles = StyleSheet.create({
   },
   reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(2) },
   reviewMark: { fontSize: 16, width: 20 },
-  reviewMarkRight: { color: colors.success },
+  reviewMarkRight: { color: colors.successInk },
   reviewMarkWrong: { color: colors.danger },
   reviewPrompt: { ...type.body, flex: 1, color: colors.brand },
   reviewAnswer: { ...type.caption, fontSize: 13 },

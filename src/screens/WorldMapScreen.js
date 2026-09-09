@@ -22,6 +22,7 @@ import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp from "../components/FadeInUp";
 import GlobeMap from "../components/GlobeMap";
+import BasemapToggle from "../components/BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
 import { COUNTRIES } from "../data/countries";
 import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
@@ -63,6 +64,8 @@ export default function WorldMapScreen({
   onBrowseIndex,
   onOpenLearningPath,
   focusCountry = null,
+  basemap,
+  onChangeBasemap,
 }) {
   const [activeRegion, setActiveRegion] = useState(null);
 
@@ -178,7 +181,9 @@ export default function WorldMapScreen({
         <View style={styles.mapWrap} {...surfaceProps}>
           {/* No wrapping transform: the globe applies zoom to its own radius,
               which is what keeps borders a constant thickness on screen. */}
-          <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} />
+          <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} basemap={basemap} />
+
+          <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.basemapToggle} />
 
           {activeRegion !== null && (
             // M2.4 step 5: the same region pill that framed the globe doubles
@@ -222,7 +227,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing(4),
     paddingBottom: spacing(2),
   },
-  backText: { ...type.label, fontSize: 14, color: colors.accent },
+  backText: { ...type.label, fontSize: 14, color: colors.link },
 
   header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
   // A quiet link, not a slab: the globe is the hero on this screen and a
@@ -232,7 +237,7 @@ const styles = StyleSheet.create({
   // inset moves onto the wrapper rather than disappearing with the button.
   wrapNoBack: { paddingTop: spacing(8) },
   browseBtn: { alignSelf: "flex-start", marginTop: spacing(2.5) },
-  browseText: { ...type.label, color: colors.accent },
+  browseText: { ...type.label, color: colors.link },
   title: { ...type.h1, fontSize: 34 },
   subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
 
@@ -279,8 +284,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surfaceRaised,
     ...elevation(1),
   },
-  resetPillText: { ...type.label, fontSize: 12, color: colors.accent },
+  resetPillText: { ...type.label, fontSize: 12, color: colors.link },
 
+  basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
   regionLabel: {
     position: "absolute",
     top: spacing(4),
@@ -288,7 +294,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing(3.5),
     paddingVertical: spacing(2),
     borderRadius: radius.pill,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.brand,
     ...elevation(1),
   },
   regionLabelText: { ...type.label, fontSize: 12, color: colors.onFill },

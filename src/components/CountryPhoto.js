@@ -133,5 +133,5 @@ const styles = StyleSheet.create({
   },
   // Teal is the one accent safe at body size (5.8:1 on white), which is why the
   // link colour is `accent` and not `earth`.
-  creditLink: { color: colors.accent },
+  creditLink: { color: colors.link },
 });

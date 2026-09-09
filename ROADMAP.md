@@ -1424,6 +1424,74 @@ eyeballed — which is what caught two bugs that tests and typecheck both passed
   it belongs in `game/questions.js` as a builder, and it needs enough authored content per country
   to avoid asking the same three questions every time.
 
+### Brand Identity Kit v3 — applied 2026-09-09
+
+The kit moved from a cool printed atlas (navy ink on off-white) to "a cartography room after dark":
+pine walls, brass fittings, lantern light on parchment. Everything warm-biased, including the
+shadows; cool colour survives only as lakewater, and only where something is live. The display face
+changed with it, from Archivo (grotesque) to **Newsreader** (serif) — the single biggest visible
+change, and the reason the app now reads as a book rather than a dashboard.
+
+The handoff is checked in at [docs/brand/kit-v3-handoff.md](./docs/brand/kit-v3-handoff.md) and
+[docs/brand/tokens-v3.json](./docs/brand/tokens-v3.json), so the source of truth travels with the
+code rather than living in a Downloads folder.
+
+Because every component builds against semantic tokens, most of the sweep was a `theme.js` rewrite.
+What it did NOT carry, and had to be fixed by hand — each now pinned by a test so it cannot creep
+back:
+
+- **`accent` as a button/chip fill.** Parchment on lakewater is 4.28:1, so it cannot carry a
+  body-size label. The kit's primary and selected states are pine fills; every mode accent that
+  wanted to be teal is a deepened tint instead.
+- **`accent` as a link colour.** The kit's own table splits it: "links on cream, large only on
+  parchment". Back buttons and inline links sit on both at 13-14px, so they take a new
+  `colors.link`, deepened to clear 4.5:1 either way.
+- **`success` and `ember` as text.** Both are fills, rules and terrain in v3; when a warm or green
+  colour carries words it is `successInk` / `emberInk`.
+- **The wordmark.** Two-tone is a brand rule, not a preference — "World" in pine, "wise" in
+  lakewater, Newsreader 600.
+
+One thing v3 quietly fixed: v1.1's `textMuted` sat at 4.40:1 on the page and had to be pinned as a
+deliberate labels-only exception. The v3 ink ramp clears body contrast on **both** grounds all the
+way down to `textFaint`, and a test now asserts that so the exception cannot come back.
+
+### Realistic terrain, and a basemap toggle — 2026-09-09
+
+The globes shaded land by the latitude of a country's centre, which painted Egypt and Greece
+identically and had no idea most of Australia is sand. They now classify each country from the CIA
+World Factbook climate and landform prose the repo already carries for all 194 (see
+[docs/adr/0001](./docs/adr/0001-content-enrichment-sourcing.md)) — the same reviewed text a player
+reads on the country page, so the shading and the words agree by construction.
+
+The Factbook is descriptive, not classificatory: it says "hot, dry summers give way to moderate
+winters", almost never "boreal". So the text is asked about **moisture, relief and the far north**,
+and latitude supplies the **thermal axis** — which is how a real biome map is built. Three traps,
+each found against the real prose and each one a place naive keyword matching gets it backwards:
+"temperate rather than arctic" is not an arctic claim; "the Mediterranean coast" is a location, not
+a climate; "subarctic" must never satisfy the arctic pattern. And the same words mean different
+ground at different latitudes — "arid to semiarid" is cold steppe in Kazakhstan and hot desert in
+Australia.
+
+A **Terrain / Map toggle** sits on every globe. Both are legitimate: terrain answers "what is this
+place like?", simple answers "where exactly does this country end?", which is what the Country
+Locator actually asks. It is a setting rather than per-screen state — switching on one surface and
+finding another still flat would read as a bug.
+
+One real bug this surfaced: `Number(null)` is `0`, not `NaN`, so a plain coercion turned "this
+country has no centroid" into "this country is on the equator", and every polygon-less microstate
+came out equatorial.
+
+### The globe is the front page — 2026-09-09
+
+Home opened on a grid of game tiles, which is a fine games menu and a poor front door for a product
+whose premise is that maps are the hero — the world was two taps away behind a tab. `GlobeCard` puts
+a real, spinnable, tappable globe above the fold. It is the same `GlobeMap` and the same gesture
+hook as the Explore tab, not a picture of one, so terrain, the toggle, hover tooltips and
+tap-to-open all work there. Wheel-zoom is off, because Home scrolls.
+
+Also fixes the gap flagged in the last batch: **Higher or Lower now has a tile on Home**. It was
+themed, tested and reachable by URL, but missing from `GAME_GRID`.
+
 ---
 
 ## Phase 3 — Education

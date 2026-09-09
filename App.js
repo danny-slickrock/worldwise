@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { SafeAreaView, View, StyleSheet, Platform, StatusBar as RNStatusBar } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-import { Archivo_600SemiBold, Archivo_700Bold } from "@expo-google-fonts/archivo";
+import { Newsreader_500Medium, Newsreader_600SemiBold } from "@expo-google-fonts/newsreader";
 import {
   InstrumentSans_400Regular,
   InstrumentSans_500Medium,
@@ -64,8 +64,8 @@ import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history
 // names theme.js references; weight is part of the name, not a `fontWeight`
 // (see the note on `fonts` there).
 const FONTS = {
-  Archivo_600SemiBold,
-  Archivo_700Bold,
+  Newsreader_500Medium,
+  Newsreader_600SemiBold,
   InstrumentSans_400Regular,
   InstrumentSans_500Medium,
   InstrumentSans_600SemiBold,
@@ -248,6 +248,11 @@ function AppShell() {
     }
   }, [hydrated, user, interestsSettled, askedAt, interests, go]);
 
+  // The globe basemap is a SETTING, not per-screen state: switching to terrain
+  // on the Explore map and finding the country page still flat would read as a
+  // bug. Every globe in the app reads the same value.
+  const setBasemap = (basemap) => setSettings((s) => ({ ...s, basemap }));
+
   function toggleSound() {
     setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));
   }
@@ -310,6 +315,8 @@ function AppShell() {
             timed={route.timed}
             soundEnabled={settings.soundEnabled}
             onToggleSound={toggleSound}
+            basemap={settings.basemap}
+            onChangeBasemap={setBasemap}
             onExit={goBack}
             onPlayAgain={playAgain}
             onFinish={handleFinish}
@@ -328,6 +335,8 @@ function AppShell() {
             // "Play with Brazil" means a round ABOUT Brazil — not a generic
             // round of one mode that may never mention it.
             onPlay={() => openQuiz("country", DEFAULT_DIFFICULTY, false, route.code)}
+            basemap={settings.basemap}
+            onChangeBasemap={setBasemap}
             // Aims the Explore tab at this country. Because "explore" is a tab
             // root, `go` routes it through switchTab, so this lands on the
             // globe already spun to the country rather than stacking a second
@@ -364,6 +373,8 @@ function AppShell() {
             onOpenLearningPath={(pathId) => go({ name: "learn", pathId })}
             onBrowseIndex={() => go({ name: "countryIndex" })}
             focusCountry={route.focusCountry}
+            basemap={settings.basemap}
+            onChangeBasemap={setBasemap}
           />
         );
 
@@ -417,7 +428,16 @@ function AppShell() {
         );
 
       default:
-        return <HomeScreen progress={progress} onPlay={openQuiz} />;
+        return (
+          <HomeScreen
+            progress={progress}
+            onPlay={openQuiz}
+            onOpenCountry={openCountry}
+            onOpenExplore={() => go({ name: "explore" })}
+            basemap={settings.basemap}
+            onChangeBasemap={setBasemap}
+          />
+        );
     }
   }
 

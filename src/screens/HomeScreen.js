@@ -10,16 +10,18 @@ import {
   buttonHeight,
   motion,
   onFill,
+  fonts,
 } from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
+import GlobeCard from "../components/GlobeCard";
 import { MODES } from "../game/questions";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
 const FEATURED = "daily";
-const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator"];
+const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"];
 
 // The tiles cascade among themselves, but only after the header and hero above
 // them have landed — otherwise the page assembles bottom-up, which reads as a
@@ -31,7 +33,14 @@ const TILE_BASE_DELAY = motion.stagger * 2;
 // reachable only from here. They are top-level tabs as of the navigation
 // rework (see src/game/navigation.js), so keeping tiles for them would be a
 // second, competing route to the same place.
-export default function HomeScreen({ progress, onPlay }) {
+export default function HomeScreen({
+  progress,
+  onPlay,
+  onOpenCountry,
+  onOpenExplore,
+  basemap,
+  onChangeBasemap,
+}) {
   const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
   const [timed, setTimed] = useState(false);
 
@@ -79,7 +88,14 @@ export default function HomeScreen({ progress, onPlay }) {
             its call-back, and splitting them would stagger two lines of text. */}
         <FadeInUp index={1}>
           <View style={styles.brandRow}>
-            <Text style={styles.wordmark}>Worldwise</Text>
+            {/* Two-tone, and this is a brand rule rather than a preference:
+                "World" in pine, "wise" in lakewater, Newsreader 600, never one
+                flat colour and never another face. Rendered as one <Text> with
+                a nested span so it stays a single line of type that wraps and
+                scales as one word. */}
+            <Text style={styles.wordmark}>
+              World<Text style={styles.wordmarkAccent}>wise</Text>
+            </Text>
             <Text style={styles.brandTag}>geography</Text>
           </View>
           <Text style={styles.tagline}>Learn the world through curiosity.</Text>
@@ -92,8 +108,25 @@ export default function HomeScreen({ progress, onPlay }) {
           </View>
         </FadeInUp>
 
+        {/* The world, before the games.
+            Home used to open on a grid of buttons, which is a fine games menu
+            and a poor front door for a product whose premise is that maps are
+            the hero. This is the same globe as the Explore tab — same gestures,
+            same terrain, same tap-to-open — not a picture of one. */}
+        {onOpenCountry && (
+          <FadeInUp index={2}>
+            <Text style={styles.section}>The world</Text>
+            <GlobeCard
+              onOpenCountry={onOpenCountry}
+              onOpenExplore={onOpenExplore}
+              basemap={basemap}
+              onChangeBasemap={onChangeBasemap}
+            />
+          </FadeInUp>
+        )}
+
         {/* Today */}
-        <FadeInUp index={2}>
+        <FadeInUp index={3}>
           <Text style={styles.section}>Today</Text>
           <Pressable
             onPress={() => onPlay(FEATURED, difficulty, timed)}
@@ -186,13 +219,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing(3),
     ...elevation(1),
   },
-  statusGlyph: { fontSize: 15, color: colors.sand },
+  statusGlyph: { fontSize: 15, color: colors.brass },
   statusValue: { ...type.h3, fontSize: 16 },
   statusUnit: { ...type.label, fontSize: 10, color: colors.textMuted, letterSpacing: 1 },
 
   brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
-  wordmark: { ...type.h1, fontSize: 38 },
-  brandTag: { ...type.label, fontSize: 15, color: colors.accent, letterSpacing: -0.2 },
+  // The wordmark is the single place Newsreader 600 is used at headline size:
+  // "a logotype needs presence the headline scale does not". Tracking is the
+  // kit's -0.01em and must never tighten past -0.012em — the serif wants air.
+  wordmark: { ...type.h1, fontFamily: fonts.displayBold, fontSize: 38, letterSpacing: -0.38 },
+  wordmarkAccent: { color: colors.accent },
+  // emberInk, not lakewater: this sits on parchment, where lakewater is
+  // large-text-only (4.28:1) and this is 15px.
+  brandTag: { ...type.label, fontSize: 15, color: colors.emberInk, letterSpacing: -0.2 },
   tagline: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
 
   streakBanner: {
@@ -297,7 +336,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing(2.5),
     borderRadius: radius.pill,
   },
-  segmentItemActive: { backgroundColor: colors.accent },
+  segmentItemActive: { backgroundColor: colors.brand },
   segmentText: { ...type.label, color: colors.textMuted },
   segmentTextActive: { color: colors.onFill },
 
@@ -311,7 +350,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing(4),
     ...elevation(1),
   },
-  toggleActive: { backgroundColor: colors.accent },
+  toggleActive: { backgroundColor: colors.brand },
   toggleText: { ...type.body, color: colors.text },
   toggleTextActive: { color: colors.onFill },
   toggleState: {

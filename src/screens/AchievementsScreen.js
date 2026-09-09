@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing(4),
     paddingBottom: spacing(2),
   },
-  backText: { ...type.label, fontSize: 14, color: colors.accent },
+  backText: { ...type.label, fontSize: 14, color: colors.link },
 
   content: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
   header: { ...constrain.content, marginBottom: spacing(4) },
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   unlockedText: {
     ...type.label,
     fontSize: 11,
-    color: colors.success,
+    color: colors.successInk,
     textTransform: "uppercase",
     letterSpacing: 1,
     marginTop: spacing(1.5),
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   progressFill: {
     height: "100%",
     borderRadius: radius.pill,
-    backgroundColor: colors.accent,
+    backgroundColor: colors.brand,
   },
   progressText: {
     ...type.label,

@@ -126,7 +126,10 @@ src/
   game/mapZoom.js          # PURE zoom/pan math for the World Map screen (pinch/wheel/drag, clamped)
   game/mapLabels.js        # PURE label geometry: monospaced text width, and placing a hover tooltip
                            #   so it never covers the country it names or runs off the viewBox
-  game/terrainTint.js      # PURE climate band from a latitude — what shades the globe's land
+  game/terrainTint.js      # PURE terrain classifier: reads a country's own Factbook climate and
+                           #   landform prose (moisture, relief, the far north) with latitude as the
+                           #   thermal axis. Latitude alone is only the fallback
+  data/countryTerrain.js   # code → terrain class, resolved once from countryContent.js
   game/countryRound.js     # PURE "Play with X": the fact questions (borders, region, population,
                            #   area) that make a round about ONE country
   game/mapHitTargets.js    # PURE bounding-box + enlarged tap targets for small countries on the World Map
@@ -166,6 +169,8 @@ src/
   components/GlobeMap.js    # M2.3.7: the globe — reprojects per frame, back face genuinely absent.
                            #   Terrain-shaded by climate band; hover tooltip; optional highlightCode
   components/CountryGlobe.js # The country page's hero: the globe spun to this country, lit up
+  components/GlobeCard.js   # The globe on Home — the same GlobeMap and gestures, not a picture
+  components/BasemapToggle.js # Terrain ↔ simple map, on every globe. Reads settings.basemap
   components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
                            #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
@@ -225,6 +230,20 @@ you could tap. Three rules:
 - **`wheelZoomEnabled: false` for a globe inside a scrolling page.** Zooming has to `preventDefault`,
   so an embedded globe otherwise traps the page's scroll whenever the pointer crosses it.
 
+**Terrain is derived from content, not from a formula.** `game/terrainTint.js` classifies each
+country from the CIA World Factbook climate and landform lines already in `data/countryContent.js` —
+the same reviewed text a player reads on the country page. Three traps it exists to avoid, each
+found against the real prose and each one a place naive keyword matching gets it exactly backwards:
+"temperate rather than arctic" is not an arctic claim (negations are stripped), "the Mediterranean
+coast" is a location rather than a climate, and "subarctic" must never satisfy the arctic pattern.
+The same words also mean different ground at different latitudes — "arid to semiarid" is cold steppe
+at 48°N and hot desert at 25°S — which is why this is a hybrid rather than a lookup.
+
+**Every globe takes a `basemap`, and it is a SETTING.** `terrain` is the realistic basemap;
+`simple` is the kit's own map layer, one flat land colour, which reads borders better and is what
+the Country Locator wants. Switching on one surface and finding another still flat would read as a
+bug, so all of them read `settings.basemap`.
+
 **Branch on the QUESTION's type, not the round's mode.** `QuizScreen` renders one surface per
 `q.type`. A country round mixes types, and a locator question's `correct` is an ISO code while its
 options are names — it is answered on the globe, not from a list — so `mode === "locator"` would
@@ -255,37 +274,55 @@ mapsicon project (see `data/countries.js`). Keeps the app light and the repo sma
 ## Conventions
 
 - **Reuse `theme.js` tokens** for all colors/spacing/type — never hardcode hex in components.
-  `theme.js` is the Slickrock **Brand Identity Kit v1.1 / UI Kit v1.0** expressed in code, and the
-  kit's own first rule applies: semantic names, not literals — `colors.surfaceRaised`, never
-  `"#FFFFFF"`.
+  `theme.js` is the Slickrock **Brand Identity Kit v3** expressed in code, and the kit's own first
+  rule applies: semantic names, not literals — `colors.surfaceRaised`, never `"#FBF6EA"`.
 - **Keep gameplay numbers in `constants.js`** and XP in `scoring.js` — no magic numbers in UI.
 - **Maps are the hero.** Premium, timeless, map-first. Avoid childish or enterprise looks.
-- **The app is light; the map is dark.** Warm off-white (`surface`) is "the page the world is
-  printed on", cards are white (`surfaceRaised`), body copy is ink (`text`), and navy (`brand`) is
-  authority — wordmark, headings, primary buttons, active nav. The *one* surface that stays dark is
-  the map: ocean `map.ocean`, land `map.land`, sand graticule and borders. Reaching for `map.*` means
-  you are deliberately entering that dark stage; a dark token anywhere else is a mistake.
-  Roughly **70% neutral, 25% navy, 5% accent, one accent per screen.**
-- **Depth is `elevation(1|2|3)`** — real soft shadows (e1 rest · e2 hover · e3 overlay), navy-tinted
-  so they stay in palette on warm paper. The old `depth()` solid bottom lip is gone: a solid
-  extrusion is a dark-UI trick that reads as a printing error on off-white. Most separation is
+- **The app is light; the map is dark.** v3 reads as "a cartography room after dark": parchment
+  (`surface`) is the page, cards are cream (`surfaceRaised`), body copy is bark ink (`text`), and
+  pine (`brand`) is authority — wordmark, headings, primary buttons, active nav. Everything is
+  **warm-biased, including the shadows** (`rgba(42,35,32,…)`, never neutral grey). Cool colour
+  appears only as lakewater (`accent`), and only where something is live: water, routes, links,
+  interactive state. The *one* surface that stays dark is the map: `map.ocean`, `map.land`, brass
+  graticule and borders. Reaching for `map.*` means you are deliberately entering that dark stage.
+  Roughly **70% parchment, 25% pine, 5% firelight, one warm accent per screen.**
+- **Three v3 rules that are easy to break by accident, and are pinned by tests:**
+  **Brass is decorative only** — 1.9:1 on parchment, so it is a rule, a fleck, a graticule, never
+  type on light. **Ember and success are fills** — when a warm or green colour has to carry words
+  that is `emberInk` / `successInk`. And **`accent` is not a link colour**: the kit's own table says
+  lakewater is "links on cream, large only on parchment", so text links use `colors.link`, a
+  deepened tint that clears 4.5:1 on both grounds. A raw `accent` FILL cannot carry a body-size
+  label either (4.28:1) — every mode accent that wanted to be teal is a deepened tint of it.
+- **Type on a dark ground never carries alpha.** An alpha tint over a gradient has no knowable
+  contrast ratio. There are exactly two inks on dark — `onFill` (parchment) at any size and
+  `onFillQuiet` (lichen) at 14px+ — and hierarchy comes from size, case and the mono/serif switch.
+- **Depth is `elevation(1|2|3)`** — real soft shadows (e1 rest · e2 hover · e3 overlay), **bark**-
+  tinted so they stay warm; a neutral shadow on parchment goes grey and dirty. Most separation is
   actually done by `hairline`, not by shadow. Never nest two elevations.
-- **Weight lives in the font family, not `fontWeight`.** `fonts.display` is `Archivo_600SemiBold`,
+- **Weight lives in the font family, not `fontWeight`.** `fonts.display` is `Newsreader_500Medium`,
   `fonts.bodySemi` is `InstrumentSans_600SemiBold`, and so on. Each Google font weight registers as
   its own family declared at weight `normal`, so adding `fontWeight: "700"` on top makes the browser
   synthesise a second, fake bold. Pick the family; never set `fontWeight` in a component.
-- **Three typefaces, three jobs.** Archivo = display (wordmark, headings, numerals). Instrument Sans
-  = body, UI labels, buttons. IBM Plex Mono = coordinates, eyebrows, map labels, data — **never
-  sentences**. `type.eyebrow` (mono, uppercase, 12% tracked) is this UI's structural voice.
-- **Spacing is a 4px base** (`spacing(n) === n * 4`), scale 4·8·12·16·24·32·48·64, "never an odd
-  value". Card padding 24 mobile / 32 desktop; section rhythm 64/88.
-- **A label on a fill goes through `onFill(fill)`.** Every brand fill carries white except `sand`,
-  which carries ink — white on sand is 2.3:1. That rule lives in one function so no component has to
-  remember it, and `test/engine.test.js` drives its checks through the same function.
-- **Sand is never text on light** (2.1:1). It is graticules, grids, and highlights on navy.
-  `success` is UI/large-text only and must be paired with an icon, never colour alone. `textMuted` is
-  labels and captions, not body copy — it lands at 4.40:1 on the off-white page, just under AA, and
-  the tests pin that deliberately.
+- **Three typefaces, three jobs.** **Newsreader** (a serif, as of v3) = display: wordmark, headings,
+  numerals. Instrument Sans = body, UI labels, buttons. IBM Plex Mono = coordinates, eyebrows, map
+  labels, data — **never sentences**. `type.eyebrow` (mono, uppercase, 12% tracked, emberInk) is
+  this UI's structural voice.
+- **Newsreader is never used below 17px** — the serif detail muddies; below that, drop to Instrument
+  Sans. `type.h3` at 21 is the floor, and a test asserts no small role uses the serif.
+- **The wordmark is two-tone and that is a brand rule, not a preference:** "World" in `brand`,
+  "wise" in `accent`, Newsreader 600 — never one flat colour, never another face, never tightened
+  past -0.012em tracking.
+- **Spacing is a 4px base** (`spacing(n) === n * 4`), scale 4·8·12·16·24·32·48·64·88, "never an odd
+  value". Card padding 20 mobile / 24 desktop; section rhythm 64/88.
+- **A label on a fill goes through `onFill(fill)`.** Every brand fill carries parchment except
+  `brass` and `accentLight`, which carry nightwood — parchment on brass is 1.9:1. That rule lives in
+  one function so no component has to remember it, and `test/engine.test.js` drives its checks
+  through the same function.
+- **Check BOTH light grounds.** Cream and parchment differ by roughly half a stop and small type
+  sits on both; `LIGHT_GROUNDS` exists so a contrast check cannot quietly pick whichever one passes.
+  (v1.1's `textMuted` sat at 4.40:1 on the page and had to be pinned as a labels-only exception; the
+  v3 ink ramp clears body contrast on both grounds all the way down to `textFaint`, and a test now
+  asserts that so the exception cannot creep back.)
 - **Prefer runtime data sources** over large embedded assets as the dataset grows.
 - **One reusable surface over many bespoke screens** (see `QuizScreen.js`).
 

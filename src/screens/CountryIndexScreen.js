@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     paddingTop: spacing(4),
     paddingBottom: spacing(2),
   },
-  backText: { ...type.label, fontSize: 14, color: colors.accent },
+  backText: { ...type.label, fontSize: 14, color: colors.link },
 
   header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
   title: { ...type.h1, fontSize: 34 },

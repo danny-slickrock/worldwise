@@ -22,11 +22,11 @@ import {
   graticuleLines,
   projectGraticuleLine,
   pointsToPolylinePath,
-  vecToLngLat,
 } from "../game/globeProjection";
-import { climateBand } from "../game/terrainTint";
+import { terrainClass } from "../data/countryTerrain";
 import { angleBetween } from "../game/globeMotion";
 import { locatorFillState, nonOverlappingRadius, needsMarker } from "../game/locatorRound";
+import { DEFAULT_BASEMAP } from "../game/settings";
 import { tooltipBox, placeTooltip } from "../game/mapLabels";
 import {
   GLOBE_VIEW_SIZE,
@@ -112,16 +112,20 @@ for (const code of GLOBE_COUNTRY_CODES) {
 }
 const SMALL_COUNTRIES = Object.keys(SMALL_COUNTRY_DEGREES);
 
-// Each country's terrain colour, resolved once at module load from the latitude
-// of its own center. Static data in, static map out — the per-frame render never
-// recomputes it, and a country's band never changes as the globe turns.
+// Each country's terrain colour, resolved once at module load from the class
+// data/countryTerrain.js derived from its own Factbook climate and landform
+// prose. Static data in, static map out — the per-frame render never recomputes
+// it, and a country's class never changes as the globe turns.
 const TERRAIN_FILLS = {};
 for (const code of GLOBE_COUNTRY_CODES) {
-  const center = COUNTRY_CENTERS[code];
-  if (!center) continue;
-  TERRAIN_FILLS[code] = map.terrain[climateBand(vecToLngLat(center)[1])] ?? map.land;
+  TERRAIN_FILLS[code] = map.terrain[terrainClass(code)] ?? map.land;
 }
-const terrainFill = (code) => TERRAIN_FILLS[code] ?? map.land;
+
+// The two basemaps. "simple" is the kit's own map layer — one flat land colour
+// over the ocean — and is what every globe looked like before terrain existed;
+// it reads borders better, which is why the Country Locator defaults to it.
+const landFill = (code, basemap) =>
+  basemap === "simple" ? map.land : (TERRAIN_FILLS[code] ?? map.land);
 
 // Locator mode's fill per state. The state itself is decided by the pure
 // locatorFillState(); this is only the name -> token mapping, kept here so that
@@ -156,6 +160,7 @@ export default function GlobeMap({
   onSelect,
   locator = null,
   highlightCode = null,
+  basemap = DEFAULT_BASEMAP,
 }) {
   const [hoveredCode, setHoveredCode] = useState(null);
   const [tapped, setTapped] = useState(null);
@@ -193,10 +198,12 @@ export default function GlobeMap({
       // Scenery still gets its terrain colour — the round is played on the
       // same world the Explore map shows, not on a stripped-back diagram. Only
       // the states that mean something (candidate, correct, wrong) override it.
-      return state === "inert" ? terrainFill(code) : (LOCATOR_FILLS[state] ?? terrainFill(code));
+      return state === "inert"
+        ? landFill(code, basemap)
+        : (LOCATOR_FILLS[state] ?? landFill(code, basemap));
     }
     if (code === highlightCode) return map.selected;
-    return code === hoveredCode || code === tapped ? map.landActive : terrainFill(code);
+    return code === hoveredCode || code === tapped ? map.landActive : landFill(code, basemap);
   };
 
   // Only an answerable country should look answerable. In locator mode a
