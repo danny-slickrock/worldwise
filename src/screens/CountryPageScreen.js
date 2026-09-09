@@ -14,6 +14,7 @@ import { fetchCountry } from "../data/contentSource";
 import { countryName } from "../data/countries";
 import { MODES } from "../game/questions";
 import CountryOutline from "../components/CountryOutline";
+import CountryPhoto from "../components/CountryPhoto";
 
 // Compact human numbers: 216422446 → "216M", 8515767 → "8.5M".
 function compact(n) {
@@ -123,6 +124,12 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
               via screenAnim, so these contribute the stagger and nothing else —
               stacking transforms would overshoot the 8-16px band. */}
           <FadeInUp rise={0}>
+            {/* An approved photograph leads the page when there is one: it
+                answers "why should I care about this place?" before a word is
+                read. Most countries have none yet, and CountryPhoto renders
+                nothing at all in that case — the outline below stays the hero,
+                exactly as it was before photos existed. */}
+            <CountryPhoto hero={page.hero} name={page.name} />
             <View style={styles.hero}>
               <View style={styles.outlineBox}>
                 {page.noOutline ? (
