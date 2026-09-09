@@ -28,6 +28,7 @@ import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/gam
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
 import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
+import { climateBand, CLIMATE_BANDS } from "../src/game/terrainTint";
 import {
   HERO_KIND,
   commonsFileTitle,
@@ -3381,6 +3382,44 @@ check(top.y + top.height <= VIEW + 0.001, "...still inside the canvas");
 
 check(placeTooltip(null, box, VIEW) === null, "no center means no tooltip");
 check(placeTooltip([NaN, 10], box, VIEW) === null, "a country projected to NaN names nothing");
+
+
+// ---------------------------------------------------------------------------
+// Terrain shading by climate band (src/game/terrainTint.js). The globe used to
+// paint all 196 countries one flat navy; latitude is the one piece of terrain
+// information a country's own center already carries, and it is genuinely
+// predictive — deserts sit in the subtropical dry belts, rainforest on the
+// equator. Boundaries are the real ones, so this stays geography rather than
+// decoration.
+// ---------------------------------------------------------------------------
+console.log("\nTerrain bands");
+
+check(climateBand(0) === "tropical", "the equator is tropical");
+check(climateBand(23.5) === "tropical", "the Tropic of Cancer is the tropical edge");
+check(climateBand(25) === "arid", "just past it is the arid belt — where the Sahara is");
+check(climateBand(45) === "temperate", "the mid-latitudes are temperate");
+check(climateBand(60) === "boreal", "above them, taiga");
+check(climateBand(75) === "polar", "past the Arctic Circle, ice");
+
+// Bands are symmetric: the Kalahari and the Sahara are the same latitude story.
+for (const lat of [10, 30, 45, 60, 80]) {
+  check(climateBand(lat) === climateBand(-lat), `${lat}° north and south band alike`);
+}
+
+check(CLIMATE_BANDS.every((b) => typeof map.terrain[b] === "string"), "every band has a terrain colour");
+// The map is a dark stage and land must stay land against the ocean. Ice is the
+// one deliberate exception — it is supposed to be the pale thing on the globe.
+for (const band of CLIMATE_BANDS) {
+  const vsOcean = contrastRatio(map.terrain[band], map.ocean);
+  check(vsOcean > 1.12, `${band} land is distinguishable from ocean (${vsOcean.toFixed(2)}:1)`);
+  if (band !== "polar") {
+    check(
+      contrastRatio(map.terrain[band], "#FFFFFF") > 6,
+      `${band} stays dark enough to be a map stage, not a light surface`
+    );
+  }
+}
+check(climateBand(undefined) === "temperate", "an unknown latitude falls back rather than throwing");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

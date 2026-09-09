@@ -66,6 +66,22 @@ export const GLOBE_TOOLTIP_PAD_Y = 2.5;
 // shape being named without detaching from it.
 export const GLOBE_TOOLTIP_GAP = 7;
 
+// Terrain shading. The climate bands are the conventional latitude belts —
+// tropics to ~23.5° (the Tropic of Cancer/Capricorn), the arid subtropical
+// belts out to ~35°, temperate to ~55°, subpolar to ~66.5° (the Arctic/
+// Antarctic Circle), ice beyond. Real boundaries, not invented ones, which is
+// what keeps the shading readable as geography.
+export const CLIMATE_TROPIC_DEG = 23.5;
+export const CLIMATE_ARID_DEG = 35;
+export const CLIMATE_TEMPERATE_DEG = 55;
+export const CLIMATE_POLAR_DEG = 66.5;
+
+// How hard the sphere's limb darkens. The gradient is transparent across the
+// middle of the disc and ramps only over the outer third, so terrain colours
+// stay true where the player is actually reading them.
+export const GLOBE_SHADE_INNER_FRAC = 0.62;
+export const GLOBE_SHADE_OPACITY = 0.42;
+
 // World Map screen (M2.3 step 5.3): how long a region-pill jump (or the
 // return to the full World view) takes to animate, instead of cutting
 // straight to the new scale/pan.

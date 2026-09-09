@@ -272,6 +272,32 @@ export const map = {
   // "borders 1px sand at 35%"
   border: "rgba(201,166,107,0.35)",
   graticule: "rgba(201,166,107,0.22)",
+  // --- Terrain ------------------------------------------------------------
+  // The globe used to be one flat navy for all 196 countries, which reads as a
+  // diagram rather than a world. These are climate bands by latitude — the one
+  // piece of terrain information a country's own center actually carries — so
+  // the shading is geography rather than decoration: rainforest green at the
+  // equator, desert ochre through the arid belts, cooling to slate and then ice
+  // toward the poles.
+  //
+  // Every value is deliberately close to `land` in LIGHTNESS and varies mostly
+  // in hue. The map is a dark stage and land must stay clearly land against
+  // `ocean`; a properly bright terrain ramp would turn the globe into a
+  // different product. Ochre is `earth` tinted down toward `brandDeep`, which
+  // is the kit's sanctioned way to extend the palette.
+  terrain: {
+    tropical: "#1F4A3C", // rainforest — the equatorial belt
+    arid: "#5C4630", // desert and steppe — the two subtropical dry belts
+    temperate: "#25456A", // the mid-latitudes; nearest to plain `land`
+    boreal: "#2B4A63", // taiga and cold continental
+    polar: "#55697F", // ice, and the pale ground that goes with it
+  },
+  // The sphere is lit: the ocean is brighter where it faces the viewer and
+  // falls away toward the limb, and `shade` darkens everything near the edge.
+  // Together they are what make the globe read as a ball rather than a disc.
+  oceanLit: "#1D3550",
+  shade: "#0B1421",
+
   // "Selected place: earth dot + halo; related places: teal diamonds."
   selected: colors.earth,
   related: colors.accent,

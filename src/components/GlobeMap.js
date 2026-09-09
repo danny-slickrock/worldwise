@@ -22,7 +22,9 @@ import {
   graticuleLines,
   projectGraticuleLine,
   pointsToPolylinePath,
+  vecToLngLat,
 } from "../game/globeProjection";
+import { climateBand } from "../game/terrainTint";
 import { angleBetween } from "../game/globeMotion";
 import { locatorFillState, nonOverlappingRadius, needsMarker } from "../game/locatorRound";
 import { tooltipBox, placeTooltip } from "../game/mapLabels";
@@ -48,6 +50,8 @@ import {
   GLOBE_TOOLTIP_PAD_X,
   GLOBE_TOOLTIP_PAD_Y,
   GLOBE_TOOLTIP_GAP,
+  GLOBE_SHADE_INNER_FRAC,
+  GLOBE_SHADE_OPACITY,
 } from "../constants";
 
 // The globe (M2.3.7) — the Explore surface's replacement for the flat
@@ -108,6 +112,17 @@ for (const code of GLOBE_COUNTRY_CODES) {
 }
 const SMALL_COUNTRIES = Object.keys(SMALL_COUNTRY_DEGREES);
 
+// Each country's terrain colour, resolved once at module load from the latitude
+// of its own center. Static data in, static map out — the per-frame render never
+// recomputes it, and a country's band never changes as the globe turns.
+const TERRAIN_FILLS = {};
+for (const code of GLOBE_COUNTRY_CODES) {
+  const center = COUNTRY_CENTERS[code];
+  if (!center) continue;
+  TERRAIN_FILLS[code] = map.terrain[climateBand(vecToLngLat(center)[1])] ?? map.land;
+}
+const terrainFill = (code) => TERRAIN_FILLS[code] ?? map.land;
+
 // Locator mode's fill per state. The state itself is decided by the pure
 // locatorFillState(); this is only the name -> token mapping, kept here so that
 // module stays theme-free and testable.
@@ -131,7 +146,13 @@ const LOCATOR_FILLS = {
 // the enlarged hit targets for small countries — is identical in both. A second
 // component would have been a copy of 250 lines to change which fill a path
 // gets.
-export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
+export default function GlobeMap({
+  spin,
+  zoom = 1,
+  onSelect,
+  locator = null,
+  highlightCode = null,
+}) {
   const [hoveredCode, setHoveredCode] = useState(null);
   const [tapped, setTapped] = useState(null);
   const tapTimer = useRef(null);
@@ -163,8 +184,15 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
   // This frame's projected centers for the candidates, so a tap target can be
   // shrunk to never overlap its neighbour's.
   const fillFor = (code) => {
-    if (isLocator) return LOCATOR_FILLS[locatorFillState(code, locator)] ?? map.land;
-    return code === hoveredCode || code === tapped ? map.landActive : map.land;
+    if (isLocator) {
+      const state = locatorFillState(code, locator);
+      // Scenery still gets its terrain colour — the round is played on the
+      // same world the Explore map shows, not on a stripped-back diagram. Only
+      // the states that mean something (candidate, correct, wrong) override it.
+      return state === "inert" ? terrainFill(code) : (LOCATOR_FILLS[state] ?? terrainFill(code));
+    }
+    if (code === highlightCode) return map.selected;
+    return code === hoveredCode || code === tapped ? map.landActive : terrainFill(code);
   };
 
   // Only an answerable country should look answerable. In locator mode a
@@ -269,6 +297,28 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
           />
           <Stop offset="100%" stopColor={map.related} stopOpacity={0} />
         </RadialGradient>
+
+        {/* The lit sphere. A flat ocean fill makes the globe read as a disc
+            with a picture on it; brightening the middle and letting it fall
+            away toward the limb is what gives it volume. */}
+        <RadialGradient id="globeOcean" cx="50%" cy="50%" r="50%">
+          <Stop offset="0%" stopColor={map.oceanLit} stopOpacity={1} />
+          <Stop offset="55%" stopColor={map.ocean} stopOpacity={1} />
+          <Stop offset="100%" stopColor={map.ocean} stopOpacity={1} />
+        </RadialGradient>
+
+        {/* Limb darkening, laid over land and water alike. Transparent across
+            the middle of the disc so terrain colours stay true where they are
+            actually being read, ramping only over the outer third. */}
+        <RadialGradient id="globeShade" cx="50%" cy="50%" r="50%">
+          <Stop offset="0%" stopColor={map.shade} stopOpacity={0} />
+          <Stop
+            offset={`${(GLOBE_SHADE_INNER_FRAC * 100).toFixed(0)}%`}
+            stopColor={map.shade}
+            stopOpacity={0}
+          />
+          <Stop offset="100%" stopColor={map.shade} stopOpacity={GLOBE_SHADE_OPACITY} />
+        </RadialGradient>
       </Defs>
 
       {/* Drawn before the sphere itself so the ocean/land occlude the halo's
@@ -285,7 +335,7 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
       {/* The ocean is the sphere itself, so the globe reads as an object with
           an edge rather than as land floating on a panel. Same lit-land-on-deep-
           water relationship the flat map uses, just bounded by a circle. */}
-      <Circle cx={CENTER} cy={CENTER} r={radius} fill={map.ocean} />
+      <Circle cx={CENTER} cy={CENTER} r={radius} fill="url(#globeOcean)" />
 
       {/* The graticule, drawn before land so it's only ever visible through
           open ocean — exactly like a country's own coastline would occlude
@@ -317,6 +367,12 @@ export default function GlobeMap({ spin, zoom = 1, onSelect, locator = null }) {
             : null)}
         />
       ))}
+
+      {/* The sphere's own shading, above land so it darkens continents and
+          ocean together — the single thing that turns a flat disc into a ball.
+          Above the countries but below every marker and label, which have to
+          stay legible right out to the limb. */}
+      <Circle cx={CENTER} cy={CENTER} r={radius} fill="url(#globeShade)" pointerEvents="none" />
 
       {/* Locator mode: a drawn ring around every candidate too small to see.
           Without it the round can ask for Djibouti — six pixels of coastline —
