@@ -6,16 +6,35 @@
 // degrading gracefully where content isn't authored yet.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  topicAccents,
+} from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { getCountryPage } from "../data/countryPages";
 import { fetchCountry } from "../data/contentSource";
 import { countryName } from "../data/countries";
 import { MODES } from "../game/questions";
+import { topicsPresent } from "../data/countryTopics";
 import CountryOutline from "../components/CountryOutline";
 import CountryPhoto from "../components/CountryPhoto";
 import CountryGlobe, { framingFor } from "../components/CountryGlobe";
+
+// A topic accent at ~10%, for the glyph badge behind it. RN has no colour-mix,
+// and the badge sits on white in every case (the fact card), so an rgba wash is
+// exact rather than approximate. Hex in, rgba out — the token stays the source.
+function tintWash(hex) {
+  const n = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16));
+  return `rgba(${r},${g},${b},0.1)`;
+}
 
 // Compact human numbers: 216422446 → "216M", 8515767 → "8.5M".
 function compact(n) {
@@ -25,21 +44,6 @@ function compact(n) {
   if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
   return String(n);
 }
-
-// Order of the labelled fact rows, so they read consistently across countries.
-// An allowlist, deliberately: facts arrive as a jsonb blob, so rendering
-// whatever keys happen to be present would surface metadata (`_sources`) and
-// any future field the moment it landed. Order here is reading order.
-const FACT_ORDER = [
-  { key: "physical_geography", label: "Landscape" },
-  { key: "climate", label: "Climate" },
-  { key: "economy", label: "Economy" },
-  { key: "people_and_culture", label: "People & culture" },
-  // Pre-enrichment keys, kept so an older cached page or a hand-authored
-  // override still renders rather than silently losing sections.
-  { key: "trade", label: "Trade" },
-  { key: "culture", label: "Culture" },
-];
 
 export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   // Bundled content paints immediately, then the fetched version replaces it if
@@ -113,7 +117,7 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
   }
 
   const facts = page.facts ?? {};
-  const factRows = FACT_ORDER.filter((f) => facts[f.key]);
+  const factRows = topicsPresent(facts);
   const relatedModes = (page.relatedGameModes ?? []).filter((m) => MODES[m]);
 
   return (
@@ -196,12 +200,24 @@ export default function CountryPageScreen({ code, onExit, onPlay, onViewMap }) {
           {factRows.length > 0 && (
             <FadeInUp rise={0} index={4}>
               <View style={styles.card}>
-                {factRows.map((f, i) => (
-                  <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
-                    <Text style={styles.factLabel}>{f.label}</Text>
-                    <Text style={styles.factText}>{facts[f.key]}</Text>
-                  </View>
-                ))}
+                {factRows.map((f, i) => {
+                  // One accent per topic, not per screen: these are six small
+                  // glyph badges and six 11px labels, so the coloured AREA
+                  // stays inside the kit's 5% even though the colour COUNT
+                  // doesn't. The body copy underneath stays ink.
+                  const tint = topicAccents[f.key] ?? colors.brand;
+                  return (
+                    <View key={f.key} style={[styles.factRow, i > 0 && styles.factRowDivider]}>
+                      <View style={styles.factHead}>
+                        <View style={[styles.factBadge, { backgroundColor: tintWash(tint) }]}>
+                          <Text style={[styles.factGlyph, { color: tint }]}>{f.glyph}</Text>
+                        </View>
+                        <Text style={[styles.factLabel, { color: tint }]}>{f.label}</Text>
+                      </View>
+                      <Text style={styles.factText}>{facts[f.key]}</Text>
+                    </View>
+                  );
+                })}
               </View>
             </FadeInUp>
           )}
@@ -330,7 +346,24 @@ const styles = StyleSheet.create({
 
   factRow: { paddingVertical: spacing(2.5) },
   factRowDivider: { borderTopWidth: 1, borderTopColor: colors.border, marginTop: spacing(0.5) },
-  factLabel: { ...type.eyebrow, marginBottom: spacing(1) },
+  factHead: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing(2),
+    marginBottom: spacing(1.5),
+  },
+  // A wash, not a fill: the kit asks for "line and texture more often than
+  // fill", and a solid badge six times over would shout. The glyph carries the
+  // colour; the disc only holds it.
+  factBadge: {
+    width: 24,
+    height: 24,
+    borderRadius: radius.pill,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  factGlyph: { fontSize: 12 },
+  factLabel: { ...type.eyebrow, marginBottom: 0 },
   factText: { ...type.body, fontSize: 14, color: colors.text, lineHeight: 20 },
 
   section: { ...type.eyebrow, marginBottom: spacing(3) },

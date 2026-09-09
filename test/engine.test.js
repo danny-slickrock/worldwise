@@ -30,6 +30,12 @@ import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync"
 import { monoTextWidth, tooltipBox, placeTooltip, MONO_ADVANCE_RATIO } from "../src/game/mapLabels";
 import { climateBand, CLIMATE_BANDS } from "../src/game/terrainTint";
 import {
+  COUNTRY_TOPICS,
+  COUNTRY_TOPIC_KEYS,
+  topicFor,
+  topicsPresent,
+} from "../src/data/countryTopics";
+import {
   HERO_KIND,
   commonsFileTitle,
   commonsSourceUrl,
@@ -112,6 +118,7 @@ import {
   onFill,
   modeAccents,
   map,
+  topicAccents,
   spacing,
   layout,
   constrain,
@@ -3420,6 +3427,43 @@ for (const band of CLIMATE_BANDS) {
   }
 }
 check(climateBand(undefined) === "temperate", "an unknown latitude falls back rather than throwing");
+
+
+// ---------------------------------------------------------------------------
+// Country-page topics (src/data/countryTopics.js + theme.topicAccents). The
+// allowlist predates the icons and is the load-bearing part: `facts` is a jsonb
+// blob, so rendering whatever keys are present would surface `_sources` and
+// every future field the moment it landed.
+// ---------------------------------------------------------------------------
+console.log("\nCountry-page topics");
+
+check(new Set(COUNTRY_TOPIC_KEYS).size === COUNTRY_TOPICS.length, "topic keys are unique");
+check(COUNTRY_TOPICS.every((t) => t.label && t.glyph), "every topic has a label and a glyph");
+check(COUNTRY_TOPIC_KEYS[0] === "physical_geography", "reading order starts with the land itself");
+check(topicFor("climate").label === "Climate", "a topic is findable by key");
+check(topicFor("_sources") === null, "metadata is not a topic — this is the allowlist doing its job");
+
+// Colour-coding: catalog here, palette in theme.js, same split as MODES and
+// modeAccents. A topic with no accent would render an invisible glyph.
+for (const t of COUNTRY_TOPICS) {
+  check(typeof topicAccents[t.key] === "string", `${t.key} has an accent`);
+  // The accent colours an 11px mono label — small text, so AA body, not large.
+  const ratio = contrastRatio(topicAccents[t.key], colors.surfaceRaised);
+  check(ratio >= CONTRAST.body, `${t.key}'s accent is readable on a card (${ratio.toFixed(2)}:1)`);
+}
+check(
+  !Object.values(topicAccents).includes(colors.sand),
+  "sand is never one of them — at 2.30:1 it is never text on light"
+);
+
+// topicsPresent is what the page actually renders from.
+const someFacts = { climate: "Warm.", _sources: ["x"], economy: "  ", physical_geography: "Flat." };
+const present = topicsPresent(someFacts);
+check(present.length === 2, "only topics with real content are shown");
+check(present[0].key === "physical_geography", "...still in reading order, not object order");
+check(!present.some((t) => t.key === "economy"), "a whitespace-only fact is not content");
+check(topicsPresent(null).length === 0, "a country with no facts shows no topic rows");
+check(topicsPresent("nope").length === 0, "...and neither does a malformed blob");
 
 
 // The async sections. Everything above is synchronous, so the summary waits on

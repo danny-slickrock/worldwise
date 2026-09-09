@@ -99,6 +99,26 @@ export const modeAccents = {
   higherLower: "#6E4326", // earth, tinted down for white text (checked in engine.test.js)
 };
 
+// Country-page topic accents. Same idea as modeAccents, same rule: no invented
+// hues — every one is a brand colour or a sanctioned tint of navy/earth/teal.
+//
+// Keyed by the `facts` jsonb key rather than by a display label, so relabeling
+// a section never silently drops its colour. The two legacy keys (trade,
+// culture) are here because older cached pages and hand-authored overrides
+// still carry them.
+//
+// All six clear 4.5:1 on `surfaceRaised`, because they colour the section
+// label, which is 11px mono — small text, so AA body contrast, not large.
+// `sand` is deliberately absent: at 2.3:1 it is never text on light.
+export const topicAccents = {
+  physical_geography: colors.earth, // 4.58:1 — terrain ochre
+  climate: colors.accent, // 5.76:1 — teal, the sky-and-water accent
+  economy: "#3E5C86", // 6.82:1 — navy, tinted up
+  people_and_culture: "#6E4326", // 8.42:1 — earth, tinted down
+  trade: "#245A67", // 7.68:1 — teal, tinted down
+  culture: colors.brand, // 11.48:1
+};
+
 // --- Spacing ---------------------------------------------------------------
 // 4px base, not 8. The kit's scale is 4·8·12·16·24·32·48·64 and "never an odd
 // value", so spacing(3) is 12 and the ramp has the mid-steps the old 8px base
