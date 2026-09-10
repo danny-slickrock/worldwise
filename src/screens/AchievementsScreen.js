@@ -17,6 +17,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { computeAchievements } from "../game/achievementPolicy";
+import { computeCollections } from "../game/collectionPolicy";
 import { computeLevel } from "../game/levelPolicy";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
@@ -46,6 +47,7 @@ export default function AchievementsScreen({ onExit, progress }) {
   const badges = computeAchievements(progress, results);
   const unlockedCount = badges.filter((b) => b.unlocked).length;
   const level = computeLevel(progress?.xp);
+  const collections = computeCollections(results);
 
   return (
     <View style={styles.wrap}>
@@ -135,6 +137,42 @@ export default function AchievementsScreen({ onExit, progress }) {
             </View>
           </FadeInUp>
         ))}
+
+        {/* M2.5 step 6.3 — collectible sets: one row per region, mined the
+            same "answered correctly at least once" way computeCollections
+            folds game_results.countries. No lock state here — unlike a
+            badge, a region has no single threshold to clear, so every row
+            always shows its bar rather than switching to an unlocked label. */}
+        <FadeInUp delay={staggerDelay(badges.length + 2)}>
+          <Text style={styles.sectionTitle}>Collections</Text>
+        </FadeInUp>
+
+        {collections.map((set, index) => (
+          <FadeInUp key={set.region} delay={staggerDelay(badges.length + 3 + index)}>
+            <View style={styles.row}>
+              <View style={styles.rowBody}>
+                <View style={styles.collectionHeader}>
+                  <Text style={styles.rowLabel}>{set.region}</Text>
+                  {set.progress >= 1 ? (
+                    <Text style={[styles.unlockedText, styles.collectionStatus]}>Complete ✓</Text>
+                  ) : (
+                    <Text style={[styles.progressText, styles.collectionStatus]}>
+                      {set.collected}/{set.total}
+                    </Text>
+                  )}
+                </View>
+                <ProgressTrack
+                  value={set.progress}
+                  height={6}
+                  fill={colors.brand}
+                  track={colors.surfaceSunken}
+                  style={styles.progressTrack}
+                  label={`${set.region}: ${set.collected} of ${set.total} countries collected`}
+                />
+              </View>
+            </View>
+          </FadeInUp>
+        ))}
       </ScrollView>
     </View>
   );
@@ -193,6 +231,19 @@ const styles = StyleSheet.create({
     ...elevation(1),
   },
   rowLocked: { opacity: 0.75 },
+  sectionTitle: {
+    ...constrain.content,
+    ...type.eyebrow,
+    marginTop: spacing(2),
+    marginBottom: spacing(3),
+  },
+  collectionHeader: {
+    flexDirection: "row",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    marginBottom: spacing(2),
+  },
+  collectionStatus: { marginTop: 0, marginLeft: spacing(2) },
   glyph: {
     fontSize: 26,
     color: colors.brand,

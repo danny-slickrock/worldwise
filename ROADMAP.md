@@ -105,9 +105,10 @@ South America") now has its own ordered sub-checklist. Its first chunk — 6.1, 
 signal capture (a `game_results.countries` column + `countriesFromHistory()`, capture-only, no UI
 yet) — is done, and so is 6.2, the pure collection policy (`src/game/collectionPolicy.js`'s
 `computeCollections()`, mining `game_results.countries` into per-region collected/total counts,
-fed by `fetchRoundResults()` now also selecting `countries`) — still no UI. **Next up in M2.5 is
-step 6.3**, a navigation seam + hero surface to actually see collections. The Phase 1 backlog
-below gets picked up opportunistically, not as a gate.
+fed by `fetchRoundResults()` now also selecting `countries`). **6.3 is now done too** — a
+"Collections" section on `AchievementsScreen` (no new route) renders `computeCollections()` as one
+progress row per region, verified in a real browser. **Next up in M2.5 is step 6.4**, the closing
+polish + a11y pass. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1260,10 +1261,15 @@ teaching *how the world works*, not just *where things are*.
           region. Takes the country list as a parameter, defaulting to the real `COUNTRIES`, so tests
           run against a small fixture instead of the full 196-country dataset. 10 new checks in
           `test/engine.test.js`. Deliberately no UI yet — same "policy layer first" split step 1
-          used. *(Next up: step 6.3 — a navigation seam + hero surface to actually see collections.)*
-       3. ☐ **Navigation seam + hero surface.** A place to see collections — likely a section on
-          `AchievementsScreen` (same screen as badges/levels) or its own route, following whichever
-          of M2.4/M2.5's existing seams fits once the policy layer's shape is known.
+          used.
+       3. ✅ **Navigation seam + hero surface.** No new route — `AchievementsScreen` (already fetching
+          `fetchRoundResults(user)` for badges) now also runs it through `computeCollections()` and
+          renders a "Collections" section below the badge list: one row per region (`countryIndex.js`'s
+          `REGIONS`, minus "All"), each a `ProgressTrack` plus a `{collected}/{total}` readout, or a
+          "Complete ✓" label once a region hits 100% — mirroring the badge rows' own unlocked-label
+          swap. Verified in a real browser: all five regions render with the live counts (Africa
+          0/54, Americas 0/35, Asia 0/48, Europe 0/45, Oceania 0/14 for a guest with no rounds
+          played), no console errors. *(Next up: step 6.4 — the polish + a11y pass.)*
        4. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap
           targets, offline/error states, transitions).
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,

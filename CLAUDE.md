@@ -605,9 +605,13 @@ own ordered sub-checklist; sub-step 6.1 — a `countries jsonb` column on `game_
 pure collection policy, `src/game/collectionPolicy.js`'s `computeCollections(results, countries)` —
 is now also done: it folds every `game_results` row's `countries` array into the set of codes ever
 answered correctly, then groups that against `countryIndex.js`'s regions into a per-region
-`{ collected, total, progress }`, fed by `fetchRoundResults()` now also selecting `countries`. Still
-no UI. **Next up in M2.5 is step 6.3**, a navigation seam + hero surface to actually see
-collections.
+`{ collected, total, progress }`, fed by `fetchRoundResults()` now also selecting `countries`.
+Sub-step 6.3 — the navigation seam + hero surface — is now also done: no new route, since
+`AchievementsScreen` already fetches round history for badges — it now also runs
+`computeCollections()` and renders a "Collections" section below the badge list, one row per
+region with a `ProgressTrack` and a `{collected}/{total}` readout (or "Complete ✓" at 100%),
+mirroring the badge rows' own unlocked-label swap. Verified in a real browser. **Next up in M2.5
+is step 6.4**, the closing polish + a11y pass.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows
