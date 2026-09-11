@@ -610,8 +610,17 @@ Sub-step 6.3 — the navigation seam + hero surface — is now also done: no new
 `AchievementsScreen` already fetches round history for badges — it now also runs
 `computeCollections()` and renders a "Collections" section below the badge list, one row per
 region with a `ProgressTrack` and a `{collected}/{total}` readout (or "Complete ✓" at 100%),
-mirroring the badge rows' own unlocked-label swap. Verified in a real browser. **Next up in M2.5
-is step 6.4**, the closing polish + a11y pass.
+mirroring the badge rows' own unlocked-label swap. Verified in a real browser. Step 6.4 (the closing
+polish + a11y pass) is underway, broken into the same four chunks M2.4 step 6 used: 6.4.1 (contrast
+audit) is done — unlike M2.4's audit, this one found a real gap rather than a clean bill of health.
+`AchievementsScreen`'s level-card XP readout used `colors.brass` as an 11px eyebrow ink over the
+`dusk` material's brightest corner (the same corner the oversized `CompassMark` bleeds off, and the
+same reasoning `HomeScreen`'s "Daily challenge" kicker used); composited there, brass measures
+~2.6:1 — well under even the 3:1 UI floor. It now uses `colors.onFill`, pinned by a
+`test/engine.test.js` check that composites the corner from `materials.dusk`'s own data rather than
+a hand-typed hex. `HomeScreen`'s kicker likely shares the same shortfall and is flagged in
+ROADMAP.md as a follow-up, deliberately left untouched here since fixing it is outside M2.5's scope.
+**Next up in M2.5 is step 6.4.2**, large tap targets.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

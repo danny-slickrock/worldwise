@@ -1270,8 +1270,29 @@ teaching *how the world works*, not just *where things are*.
           swap. Verified in a real browser: all five regions render with the live counts (Africa
           0/54, Americas 0/35, Asia 0/48, Europe 0/45, Oceania 0/14 for a guest with no rounds
           played), no console errors. *(Next up: step 6.4 — the polish + a11y pass.)*
-       4. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap
-          targets, offline/error states, transitions).
+       4. **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step. Broken into its own
+          ordered chunks, same shape as M2.4 step 6:
+          1. ✅ **WCAG AA contrast audit.** Unlike M2.4's step 6.1 (which found the tokens already
+             clean), this one found a real gap: the level card's XP readout
+             (`AchievementsScreen`'s `levelXpText`) used `colors.brass` as an 11px eyebrow ink over
+             the `dusk` material, reasoning it was the kit's sanctioned "eyebrow on dark" pattern —
+             the same reasoning `HomeScreen`'s "Daily challenge" kicker uses. But the dusk wash's
+             glow is brightest in exactly the top-right corner both eyebrows sit in (the same corner
+             the oversized `CompassMark` bleeds off), and composited there — the material's own ramp
+             stop plus its brass glow at full strength — brass measures ~2.6:1: it fails even the
+             3:1 UI floor, nowhere near the 4.5:1 an 11px label needs. `levelXpText` now uses
+             `colors.onFill` (parchment), which clears 4.9:1 even at that corner's worst case;
+             hierarchy still reads from the mono/uppercase eyebrow face against the serif level
+             number, not from a third ink. Pinned in `test/engine.test.js`: a small helper
+             composites the corner from `materials.dusk`'s own stop + glow data (so the number can't
+             drift into a hand-typed hex), then asserts `onFill` clears body contrast there and
+             `brass` fails UI contrast there. **`HomeScreen`'s "Daily challenge" kicker uses the
+             identical `colors.brass`-on-`dusk` pattern and likely shares this same shortfall — left
+             untouched here since it's outside M2.5's scope (M2.11 already shipped it); flagging for
+             a follow-up, not fixing it in this run.** *(Next up: step 6.4.2 — large tap targets.)*
+          2. ☐ **Large tap targets.**
+          3. ☐ **Offline/error states.**
+          4. ☐ **Transitions.**
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
        offline/error states, transitions).
 - **M2.10 — Navigation & user flow 🧭** — ✅ **done (web-verified pending, see below).** Not a

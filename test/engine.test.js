@@ -4124,6 +4124,39 @@ for (const name of ["dusk", "duskDeep", "pineGrain", "walnut"]) {
 }
 check(materialInk("paper").primary === colors.text, "paper carries bark ink, being a light ground");
 
+// M2.5 step 6.4.1 (contrast audit) — the dusk wash's lit corner is brighter
+// than flat pine, and that corner is exactly where a card's eyebrow tends to
+// sit (the oversized CompassMark bleeds off that same corner, top-right).
+// `materialInk()`'s L~0.12 comment above was itself measured from this exact
+// composite; this pins it as a check instead of a comment, using the
+// material's own stop + glow data so it can't drift into a hand-typed hex.
+// Two real screens once used `colors.brass` as an eyebrow ink there —
+// HomeScreen's "Daily challenge" kicker and AchievementsScreen's level-card
+// XP readout — reasoning it was the sanctioned "eyebrow on dark" pattern.
+// Composited at full glow strength, brass measures ~2.6:1: it fails even the
+// 3:1 UI floor, well short of the 4.5:1 an 11px label actually needs. Brass
+// stays a fill/decoration; onFill is the ink an eyebrow over that corner
+// needs instead.
+function compositeOverGlow(baseHex, glow) {
+  const toRgb = (hex) => {
+    const n = hex.replace("#", "");
+    return [0, 2, 4].map((i) => parseInt(n.slice(i, i + 2), 16));
+  };
+  const base = toRgb(baseHex);
+  const fg = toRgb(glow.color);
+  const blended = fg.map((c, i) => c * glow.opacity + base[i] * (1 - glow.opacity));
+  return "#" + blended.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
+}
+const duskCorner = compositeOverGlow(materials.dusk.ramp.stops[0].color, materials.dusk.glow[0]);
+check(
+  contrastRatio(colors.onFill, duskCorner) >= CONTRAST.body,
+  "parchment ink clears body contrast even at the dusk wash's brightest corner"
+);
+check(
+  contrastRatio(colors.brass, duskCorner) < CONTRAST.large,
+  "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
+);
+
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

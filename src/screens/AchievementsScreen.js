@@ -213,11 +213,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginBottom: spacing(2),
   },
-  // Parchment and brass, the two inks a dark ground gets. `onFillQuiet` would
-  // need 16px over a material; the XP readout is 11px mono, so it takes brass
-  // instead — the kit's own eyebrow-on-dark pattern.
+  // Parchment for both. `onFillQuiet` would need 16px over a material and the
+  // XP readout is 11px mono, so lichen is out; brass looked like the kit's
+  // eyebrow-on-dark pattern but measures ~2.6:1 at this card's lit corner
+  // (M2.5 step 6.4.1's contrast audit, pinned in test/engine.test.js) — well
+  // under even the 3:1 UI floor. Parchment is the only ink left that clears
+  // AA there, so hierarchy comes from the mono/uppercase eyebrow face alone.
   levelLabel: { ...type.h3, fontSize: 18, color: colors.onFill },
-  levelXpText: { ...type.eyebrow, fontSize: 11, color: colors.brass },
+  levelXpText: { ...type.eyebrow, fontSize: 11, color: colors.onFill },
 
   row: {
     ...constrain.content,
