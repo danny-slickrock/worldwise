@@ -107,8 +107,13 @@ yet) — is done, and so is 6.2, the pure collection policy (`src/game/collectio
 `computeCollections()`, mining `game_results.countries` into per-region collected/total counts,
 fed by `fetchRoundResults()` now also selecting `countries`). **6.3 is now done too** — a
 "Collections" section on `AchievementsScreen` (no new route) renders `computeCollections()` as one
-progress row per region, verified in a real browser. **Next up in M2.5 is step 6.4**, the closing
-polish + a11y pass. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+progress row per region, verified in a real browser. Step 6.4 (the closing polish + a11y pass) is
+underway: 6.4.1 (contrast audit) found and fixed a real gap, and so did 6.4.2 (large tap targets) —
+`AchievementsScreen`'s Back button relied on `hitSlop={12}` to reach 44px, but react-native-web's
+`Pressable` never implements `hitSlop`, so its actual web tap target was 42px; fixed with 2px more
+padding, verified by click-testing the real boundary in a browser rather than trusting the prop.
+**Next up in M2.5 is step 6.4.3**, offline/error states.
+The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1289,8 +1294,29 @@ teaching *how the world works*, not just *where things are*.
              `brass` fails UI contrast there. **`HomeScreen`'s "Daily challenge" kicker uses the
              identical `colors.brass`-on-`dusk` pattern and likely shares this same shortfall — left
              untouched here since it's outside M2.5's scope (M2.11 already shipped it); flagging for
-             a follow-up, not fixing it in this run.** *(Next up: step 6.4.2 — large tap targets.)*
-          2. ☐ **Large tap targets.**
+             a follow-up, not fixing it in this run.**
+          2. ✅ **Large tap targets.** Also a real gap, not a clean bill of health: click-testing
+             `AchievementsScreen`'s Back button in an actual browser (bisecting the exact pixel row
+             where a click stops registering, not just eyeballing the JSX) showed its real target
+             stops at 42px tall — 2px under the 44px floor — even though the `Pressable` carries
+             `hitSlop={12}`. The reason is structural, not a typo: **react-native-web's `Pressable`
+             never implements `hitSlop` at all** (only the legacy `Touchable*` mixin — used by
+             `TouchableOpacity`/`TouchableHighlight`, not `Pressable` — references it, and even
+             there it feeds the responder system, not browser hit-testing). On web the *only* thing
+             that determines a `Pressable`'s real tap target is its own visible box — `hitSlop`
+             quietly does nothing. `AchievementsScreen`'s `back` style now reaches 46px through
+             `paddingBottom: spacing(3)` instead of `spacing(2)`, verified by re-running the same
+             click bisection against the live dev server. **Every other M2.5-owned target already
+             clears 44px from padding alone** — Profile's "Interests"/"Achievements" rows are ~78px
+             tall and the "Sign out" button 46px, all independent of `hitSlop` — so nothing else in
+             this milestone needed a change. **This almost certainly means every other `hitSlop`-only
+             tap target in the app is the same size gap on web** — the World Map's region-pill chips
+             and the Country Locator's tap targets (M2.3 steps 3/5) were verified by the same
+             "carries hitSlop" reasoning, never by an actual click-boundary test on web. Flagging as
+             a follow-up rather than fixing here, the same way 6.4.1 flagged `HomeScreen`'s kicker:
+             it is a real app-wide gap, but auditing and fixing every other screen is not "one
+             scoped chunk" and is outside this milestone's own surfaces. *(Next up: step 6.4.3 —
+             offline/error states.)*
           3. ☐ **Offline/error states.**
           4. ☐ **Transitions.**
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,

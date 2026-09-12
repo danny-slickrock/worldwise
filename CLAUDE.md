@@ -620,7 +620,18 @@ same reasoning `HomeScreen`'s "Daily challenge" kicker used); composited there, 
 `test/engine.test.js` check that composites the corner from `materials.dusk`'s own data rather than
 a hand-typed hex. `HomeScreen`'s kicker likely shares the same shortfall and is flagged in
 ROADMAP.md as a follow-up, deliberately left untouched here since fixing it is outside M2.5's scope.
-**Next up in M2.5 is step 6.4.2**, large tap targets.
+**6.4.2 (large tap targets) is also done, and also found a real gap.** Click-testing (bisecting the
+exact pixel row a click stops registering, not just reading the JSX) found `AchievementsScreen`'s
+Back button's real web tap target stops at 42px even though its `Pressable` carries `hitSlop={12}`:
+**react-native-web never implements `hitSlop` on `Pressable`** — only the legacy `Touchable*` mixin
+references it, and that feeds the responder system, not browser hit-testing — so on web a
+`Pressable`'s tap target is exactly its visible box, full stop. Fixed with `paddingBottom: spacing(3)`
+instead of `spacing(2)`, reaching 46px. Every other M2.5-owned target (Profile's "Interests"/
+"Achievements" rows, ~78px; "Sign out", 46px) already cleared 44px from padding alone, so nothing
+else in this milestone needed a change — but the same reasoning likely undersizes every other
+`hitSlop`-only target in the app (M2.3's region-pill chips and locator targets included), flagged in
+ROADMAP.md as a follow-up rather than fixed here, since that sweep is a different milestone's surfaces.
+**Next up in M2.5 is step 6.4.3**, offline/error states.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

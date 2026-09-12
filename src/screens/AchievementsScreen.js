@@ -181,11 +181,16 @@ export default function AchievementsScreen({ onExit, progress }) {
 const styles = StyleSheet.create({
   // Transparent: AppChrome owns the page ground (the kit's paper fibre).
   wrap: { flex: 1, backgroundColor: "transparent" },
+  // paddingBottom is spacing(3), not spacing(2): react-native-web's Pressable
+  // never implements `hitSlop` (it's a Touchable-only concept there, wired to
+  // the responder system rather than to browser hit-testing), so on web the
+  // real tap target is exactly this box, not the 12px-larger one the prop
+  // implies. spacing(2) left it at 42px, 2px under the 44px floor.
   back: {
     ...constrain.content,
     paddingHorizontal: spacing(5),
     paddingTop: spacing(4),
-    paddingBottom: spacing(2),
+    paddingBottom: spacing(3),
   },
   backText: { ...type.label, fontSize: 14, color: colors.link },
 
