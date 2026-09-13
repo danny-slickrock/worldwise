@@ -12,10 +12,20 @@
 // fetch failed — local storage keeps no per-round history, so an empty result
 // looks identical to "no rounds yet" and would otherwise mislabel every badge
 // that depends on round data as un-earned.
+//
+// Step 6.4.3 (offline/error states) closed the one gap step 3 left open:
+// while a signed-in player's fetch is in flight, `results` reads as `[]` —
+// identical to "no history yet" — so badges/collections briefly painted
+// every locked state at 0 progress before snapping to the real numbers a
+// beat later. That's the same "app takes progress away and gives it back"
+// bug LearningPathScreen's own loadingResults flag exists to avoid, so this
+// screen now carries the same flag and Skeleton rows in place of both
+// sections while the fetch is pending.
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
+import Skeleton from "../components/Skeleton";
 import { computeAchievements } from "../game/achievementPolicy";
 import { computeCollections } from "../game/collectionPolicy";
 import { computeLevel } from "../game/levelPolicy";
@@ -30,14 +40,20 @@ export default function AchievementsScreen({ onExit, progress }) {
   const { user } = useAuth();
   const [results, setResults] = useState([]);
   const [resultsError, setResultsError] = useState(false);
+  // Signed out, local totals are the final answer (no per-round history ever
+  // existed to wait for), so there's nothing to load. Signed in, badges and
+  // collections both read `results`, so both wait on the same flag.
+  const [loadingResults, setLoadingResults] = useState(Boolean(user));
 
   useEffect(() => {
     let active = true;
     setResultsError(false);
+    setLoadingResults(Boolean(user));
     fetchRoundResults(user).then(({ rows, error }) => {
       if (!active) return;
       setResults(rows);
       setResultsError(Boolean(error));
+      setLoadingResults(false);
     });
     return () => {
       active = false;
@@ -101,42 +117,53 @@ export default function AchievementsScreen({ onExit, progress }) {
           </View>
         </FadeInUp>
 
-        {badges.map((badge, index) => (
-          <FadeInUp key={badge.slug} delay={staggerDelay(index + 2)}>
-            <View style={[styles.row, !badge.unlocked && styles.rowLocked]}>
-              <Text style={[styles.glyph, !badge.unlocked && styles.glyphLocked]}>
-                {badge.glyph}
-              </Text>
-              <View style={styles.rowBody}>
-                <Text style={[styles.rowLabel, !badge.unlocked && styles.rowLabelLocked]}>
-                  {badge.label}
-                </Text>
-                <Text style={styles.rowDescription}>{badge.description}</Text>
-                {badge.unlocked ? (
-                  <Text style={styles.unlockedText}>Unlocked ✓</Text>
-                ) : (
-                  <View style={styles.progressRow}>
-                    {/* Animated: these bars move when round history lands from
-                        the cloud a beat after the screen paints, and a bar that
-                        grows to its value is the only thing that shows the
-                        fetch actually did something. */}
-                    <ProgressTrack
-                      value={badge.progress}
-                      height={6}
-                      fill={colors.brand}
-                      track={colors.surfaceSunken}
-                      style={styles.progressTrack}
-                      label={`${badge.label}: ${Math.min(badge.value, badge.threshold)} of ${badge.threshold}`}
-                    />
-                    <Text style={styles.progressText}>
-                      {Math.min(badge.value, badge.threshold)}/{badge.threshold}
-                    </Text>
-                  </View>
-                )}
+        {loadingResults
+          ? badges.map((badge) => (
+              <View key={badge.slug} style={styles.row}>
+                <Skeleton width={32} height={32} radius={radius.pill} />
+                <View style={styles.rowBody}>
+                  <Skeleton width="52%" height={15} />
+                  <Skeleton width="72%" height={12} style={styles.skeletonSub} />
+                  <Skeleton height={6} style={styles.skeletonBar} />
+                </View>
               </View>
-            </View>
-          </FadeInUp>
-        ))}
+            ))
+          : badges.map((badge, index) => (
+              <FadeInUp key={badge.slug} delay={staggerDelay(index + 2)}>
+                <View style={[styles.row, !badge.unlocked && styles.rowLocked]}>
+                  <Text style={[styles.glyph, !badge.unlocked && styles.glyphLocked]}>
+                    {badge.glyph}
+                  </Text>
+                  <View style={styles.rowBody}>
+                    <Text style={[styles.rowLabel, !badge.unlocked && styles.rowLabelLocked]}>
+                      {badge.label}
+                    </Text>
+                    <Text style={styles.rowDescription}>{badge.description}</Text>
+                    {badge.unlocked ? (
+                      <Text style={styles.unlockedText}>Unlocked ✓</Text>
+                    ) : (
+                      <View style={styles.progressRow}>
+                        {/* Animated: these bars move when round history lands from
+                            the cloud a beat after the screen paints, and a bar that
+                            grows to its value is the only thing that shows the
+                            fetch actually did something. */}
+                        <ProgressTrack
+                          value={badge.progress}
+                          height={6}
+                          fill={colors.brand}
+                          track={colors.surfaceSunken}
+                          style={styles.progressTrack}
+                          label={`${badge.label}: ${Math.min(badge.value, badge.threshold)} of ${badge.threshold}`}
+                        />
+                        <Text style={styles.progressText}>
+                          {Math.min(badge.value, badge.threshold)}/{badge.threshold}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
+                </View>
+              </FadeInUp>
+            ))}
 
         {/* M2.5 step 6.3 — collectible sets: one row per region, mined the
             same "answered correctly at least once" way computeCollections
@@ -147,32 +174,46 @@ export default function AchievementsScreen({ onExit, progress }) {
           <Text style={styles.sectionTitle}>Collections</Text>
         </FadeInUp>
 
-        {collections.map((set, index) => (
-          <FadeInUp key={set.region} delay={staggerDelay(badges.length + 3 + index)}>
-            <View style={styles.row}>
-              <View style={styles.rowBody}>
-                <View style={styles.collectionHeader}>
-                  <Text style={styles.rowLabel}>{set.region}</Text>
-                  {set.progress >= 1 ? (
-                    <Text style={[styles.unlockedText, styles.collectionStatus]}>Complete ✓</Text>
-                  ) : (
-                    <Text style={[styles.progressText, styles.collectionStatus]}>
-                      {set.collected}/{set.total}
-                    </Text>
-                  )}
+        {loadingResults
+          ? collections.map((set) => (
+              <View key={set.region} style={styles.row}>
+                <View style={styles.rowBody}>
+                  <View style={styles.collectionHeader}>
+                    <Skeleton width="34%" height={15} />
+                    <Skeleton width={44} height={12} />
+                  </View>
+                  <Skeleton height={6} />
                 </View>
-                <ProgressTrack
-                  value={set.progress}
-                  height={6}
-                  fill={colors.brand}
-                  track={colors.surfaceSunken}
-                  style={styles.progressTrack}
-                  label={`${set.region}: ${set.collected} of ${set.total} countries collected`}
-                />
               </View>
-            </View>
-          </FadeInUp>
-        ))}
+            ))
+          : collections.map((set, index) => (
+              <FadeInUp key={set.region} delay={staggerDelay(badges.length + 3 + index)}>
+                <View style={styles.row}>
+                  <View style={styles.rowBody}>
+                    <View style={styles.collectionHeader}>
+                      <Text style={styles.rowLabel}>{set.region}</Text>
+                      {set.progress >= 1 ? (
+                        <Text style={[styles.unlockedText, styles.collectionStatus]}>
+                          Complete ✓
+                        </Text>
+                      ) : (
+                        <Text style={[styles.progressText, styles.collectionStatus]}>
+                          {set.collected}/{set.total}
+                        </Text>
+                      )}
+                    </View>
+                    <ProgressTrack
+                      value={set.progress}
+                      height={6}
+                      fill={colors.brand}
+                      track={colors.surfaceSunken}
+                      style={styles.progressTrack}
+                      label={`${set.region}: ${set.collected} of ${set.total} countries collected`}
+                    />
+                  </View>
+                </View>
+              </FadeInUp>
+            ))}
       </ScrollView>
     </View>
   );
@@ -239,6 +280,8 @@ const styles = StyleSheet.create({
     ...elevation(1),
   },
   rowLocked: { opacity: 0.75 },
+  skeletonSub: { marginTop: spacing(1) },
+  skeletonBar: { marginTop: spacing(2) },
   sectionTitle: {
     ...constrain.content,
     ...type.eyebrow,

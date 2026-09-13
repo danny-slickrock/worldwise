@@ -631,7 +631,20 @@ instead of `spacing(2)`, reaching 46px. Every other M2.5-owned target (Profile's
 else in this milestone needed a change — but the same reasoning likely undersizes every other
 `hitSlop`-only target in the app (M2.3's region-pill chips and locator targets included), flagged in
 ROADMAP.md as a follow-up rather than fixed here, since that sweep is a different milestone's surfaces.
-**Next up in M2.5 is step 6.4.3**, offline/error states.
+**6.4.3 (offline/error states) is also done, and also found a real gap.** The fetch-failure notice
+itself already existed (step 3 built it, mirroring `LearningPathScreen`'s own "couldn't load your
+progress" text), but nothing covered the window *before* that fetch resolves: `results` reads as
+`[]` while `fetchRoundResults(user)` is still in flight, identical to "no rounds yet," so a
+signed-in player briefly saw every badge and every region at 0 before the real numbers landed a
+beat later — the same "app takes progress away and gives it back" bug `LearningPathScreen`'s own
+`loadingResults` flag exists to avoid, just never ported here. `AchievementsScreen` now carries the
+same flag (`Boolean(user)`, since signed-out local totals need no fetch) and renders `Skeleton`
+rows in place of both the badge list and the Collections section while loading. Verified for real
+in a browser via Playwright against a static export, with a routed network delay/failure and a
+spoofed signed-in session in `localStorage` (no live Supabase project reachable from this
+environment) — captured the skeleton frame mid-fetch, then the resolved error notice, then
+re-confirmed the signed-out real-content path was unaffected by the new branch.
+**Next up in M2.5 is step 6.4.4**, transitions.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

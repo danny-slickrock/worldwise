@@ -112,7 +112,13 @@ underway: 6.4.1 (contrast audit) found and fixed a real gap, and so did 6.4.2 (l
 `AchievementsScreen`'s Back button relied on `hitSlop={12}` to reach 44px, but react-native-web's
 `Pressable` never implements `hitSlop`, so its actual web tap target was 42px; fixed with 2px more
 padding, verified by click-testing the real boundary in a browser rather than trusting the prop.
-**Next up in M2.5 is step 6.4.3**, offline/error states.
+**6.4.3 (offline/error states) is now done too, and also found a real gap**: the fetch-failure
+notice already existed from step 3, but nothing covered the loading window before that fetch
+resolves, so a signed-in player briefly saw every badge/collection at 0 before the real numbers
+landed. `AchievementsScreen` now carries the same `loadingResults` + `Skeleton`-row treatment
+`LearningPathScreen` already used for the identical problem, verified with a spoofed signed-in
+session and a routed network delay in a real browser (no live Supabase project reachable here).
+**Next up in M2.5 is step 6.4.4**, transitions.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1317,7 +1323,32 @@ teaching *how the world works*, not just *where things are*.
              it is a real app-wide gap, but auditing and fixing every other screen is not "one
              scoped chunk" and is outside this milestone's own surfaces. *(Next up: step 6.4.3 —
              offline/error states.)*
-          3. ☐ **Offline/error states.**
+          3. ✅ **Offline/error states.** The fetch-failure notice was already built in step 3
+             (`resultsError`, mirroring `LearningPathScreen`'s own "couldn't load your progress"
+             text) — but a real gap surfaced once this step actually forced the failure and
+             watched the screen in a browser rather than reading the code and assuming step 3
+             covered it: while a signed-in player's `fetchRoundResults(user)` call is still in
+             flight, `results` reads as `[]` — indistinguishable from "no rounds yet" — so both
+             the badge list and the Collections section briefly painted "0 of 9 unlocked" and
+             every region at 0/total before snapping to the real numbers a beat later. That's the
+             exact "app takes progress away and gives it back" bug `LearningPathScreen`'s own
+             `loadingResults` flag + `Skeleton` rows exist to avoid (M2.4 step 6.3's sibling
+             concern, never ported here when step 3 built this screen after that pattern already
+             existed). `AchievementsScreen` now carries the same `loadingResults` flag, gated the
+             same way (`Boolean(user)` — signed out, local totals are the final answer, so there's
+             nothing to wait for) and renders `Skeleton` placeholder rows, sized to the already-
+             known badge/collection catalog, in place of both sections while the fetch is pending.
+             Verified for real, not just read: Playwright against a static export with a routed
+             REST delay + forced failure and a spoofed signed-in session in `localStorage` (no
+             live Supabase project reachable from this environment) — captured the skeleton frame
+             mid-fetch (9 badge-row + 5 collection-row skeletons, header still reads "0 of 9
+             unlocked" nowhere on screen), then the resolved failure state (the "couldn't load
+             your progress" notice, real 0-progress content). No console errors either run. The
+             same forced-failure rig also re-confirmed the signed-out real-content path (no
+             regression from the new branch) and reproduced a build-time environment gap along
+             the way: `npm run build`'s Metro cache doesn't pick up a fresh `.env` file without
+             `--clear`, worth knowing if a future run has the same "Supabase is not configured"
+             error despite a present `.env`. *(Next up: step 6.4.4 — transitions.)*
           4. ☐ **Transitions.**
     7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
        offline/error states, transitions).
