@@ -644,7 +644,23 @@ in a browser via Playwright against a static export, with a routed network delay
 spoofed signed-in session in `localStorage` (no live Supabase project reachable from this
 environment) — captured the skeleton frame mid-fetch, then the resolved error notice, then
 re-confirmed the signed-out real-content path was unaffected by the new branch.
-**Next up in M2.5 is step 6.4.4**, transitions.
+**6.4.4 (transitions) is also done, closing out M2.5 end to end.** `AchievementsScreen` had shipped
+with no motion of its own, since it was built after the cross-cutting `FadeInUp` pass. It now
+fades/rises in on mount and fades/settles out on Back, via a `screenAnim` `Animated.Value` and a
+`handleExit()` that defers `onExit` until the exit animation finishes — the exact
+`screenStyle`/`handleExit` shape `CountryPageScreen` and `LearningPathScreen` already use — and
+every existing staggered `FadeInUp` on the screen now passes `rise={0}`, since the screen itself
+already rises and a second rise on top would overshoot the 8-16px band. Verified in a real browser
+(Playwright/Chromium, static export, placeholder Supabase env, client-side nav to `/achievements`):
+a faded/risen early frame, a mid-cascade frame, the settled screen, and a mid-fade frame after
+tapping Back that confirmed Back waits for the animation before actually navigating home.
+**M2.5 — Achievements, collections & deeper gamification is now fully done end to end.**
+
+**Next up:** with M2.3.5, M2.3.7, and M2.9 still blocked on human-only steps and M2.4/M2.5 both
+done, **M2.6 — Leaderboards & light social** is the lowest-numbered milestone with unblocked work.
+It has no ordered sub-checklist yet — see ROADMAP.md's one-paragraph description — so the next run
+that picks it up needs to add one (mirroring how M2.4 and M2.5 each started) before implementing
+its first scoped step.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -21,9 +21,16 @@
 // bug LearningPathScreen's own loadingResults flag exists to avoid, so this
 // screen now carries the same flag and Skeleton rows in place of both
 // sections while the fetch is pending.
-import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain } from "../theme";
+//
+// Step 6.4.4 (transitions) closes the last gap in the polish pass: this
+// screen shipped with no motion of its own, since it was built before the
+// cross-cutting FadeInUp pass. Fade/rise-in on open, fade/settle-out on
+// close — the same shape CountryPageScreen and LearningPathScreen already
+// use — plus `rise={0}` on every existing staggered FadeInUp group below,
+// so the screen's own rise isn't compounded with each group's.
+import React, { useEffect, useRef, useState } from "react";
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
+import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
 import { computeAchievements } from "../game/achievementPolicy";
@@ -65,16 +72,41 @@ export default function AchievementsScreen({ onExit, progress }) {
   const level = computeLevel(progress?.xp);
   const collections = computeCollections(results);
 
+  // Fade/rise-in on open, fade/settle-out on close — same shape as
+  // CountryPageScreen (M2.2 step 6.4) and LearningPathScreen (M2.4 step 6.4).
+  const screenAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    Animated.timing(screenAnim, {
+      toValue: 1,
+      duration: motion.duration.ui,
+      easing: Easing.bezier(...motion.easing),
+      useNativeDriver: true,
+    }).start();
+  }, [screenAnim]);
+  function handleExit() {
+    Animated.timing(screenAnim, {
+      toValue: 0,
+      duration: motion.duration.micro,
+      useNativeDriver: true,
+    }).start(onExit);
+  }
+  const screenStyle = {
+    opacity: screenAnim,
+    transform: [
+      { translateY: screenAnim.interpolate({ inputRange: [0, 1], outputRange: [motion.rise, 0] }) },
+    ],
+  };
+
   return (
-    <View style={styles.wrap}>
+    <Animated.View style={[styles.wrap, screenStyle]}>
       {onExit && (
-        <Pressable onPress={onExit} hitSlop={12} style={styles.back}>
+        <Pressable onPress={handleExit} hitSlop={12} style={styles.back}>
           <Text style={styles.backText}>‹ Back</Text>
         </Pressable>
       )}
 
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        <FadeInUp>
+        <FadeInUp rise={0}>
           <View style={styles.header}>
             <Text style={styles.title}>Achievements</Text>
             <Text style={styles.subtitle}>
@@ -92,7 +124,7 @@ export default function AchievementsScreen({ onExit, progress }) {
             wash — the same treatment Home gives the Daily card, and the same
             reason: a page of cream rows needs exactly one lit panel, not two.
             Every other card here stays flat. */}
-        <FadeInUp delay={staggerDelay(1)}>
+        <FadeInUp rise={0} delay={staggerDelay(1)}>
           <View style={styles.levelCard}>
             <Material name="dusk" />
             <CompassMark size={124} tone="brass" style={styles.levelMark} />
@@ -129,7 +161,7 @@ export default function AchievementsScreen({ onExit, progress }) {
               </View>
             ))
           : badges.map((badge, index) => (
-              <FadeInUp key={badge.slug} delay={staggerDelay(index + 2)}>
+              <FadeInUp key={badge.slug} rise={0} delay={staggerDelay(index + 2)}>
                 <View style={[styles.row, !badge.unlocked && styles.rowLocked]}>
                   <Text style={[styles.glyph, !badge.unlocked && styles.glyphLocked]}>
                     {badge.glyph}
@@ -170,7 +202,7 @@ export default function AchievementsScreen({ onExit, progress }) {
             folds game_results.countries. No lock state here — unlike a
             badge, a region has no single threshold to clear, so every row
             always shows its bar rather than switching to an unlocked label. */}
-        <FadeInUp delay={staggerDelay(badges.length + 2)}>
+        <FadeInUp rise={0} delay={staggerDelay(badges.length + 2)}>
           <Text style={styles.sectionTitle}>Collections</Text>
         </FadeInUp>
 
@@ -187,7 +219,7 @@ export default function AchievementsScreen({ onExit, progress }) {
               </View>
             ))
           : collections.map((set, index) => (
-              <FadeInUp key={set.region} delay={staggerDelay(badges.length + 3 + index)}>
+              <FadeInUp key={set.region} rise={0} delay={staggerDelay(badges.length + 3 + index)}>
                 <View style={styles.row}>
                   <View style={styles.rowBody}>
                     <View style={styles.collectionHeader}>
@@ -215,7 +247,7 @@ export default function AchievementsScreen({ onExit, progress }) {
               </FadeInUp>
             ))}
       </ScrollView>
-    </View>
+    </Animated.View>
   );
 }
 

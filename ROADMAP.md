@@ -89,36 +89,35 @@ blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Su
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
 M2.3.5 now done (its `country_media` follow-up closed in code, awaiting a production run), M2.3.7 and M2.9 still
 blocked on human-only steps, and M2.4 done, **M2.5 — Achievements,
-collections & deeper gamification** is the lowest-numbered milestone with unblocked work. It now
-has an ordered sub-checklist, and step 1 (the badge catalog + pure policy layer — `src/data/
-achievements.js` + `src/game/achievementPolicy.js`, mined entirely from existing progress/
-game_results signals, no new schema), step 2 (the navigation seam — an `achievements` route in
-`src/game/navigation.js`, owned by the Profile tab, rendered by `App.js`), step 3 (the hero
-screen — `AchievementsScreen` now renders real locked/unlocked state and progress bars via
-`computeAchievements()`, fed by local `progress` and `fetchRoundResults(user)`), and step 4 (the
-real Profile entry point — a "Achievements" row mirroring the Interests settings row, showing an
-"{unlocked} of {total} unlocked" summary, replacing the temporary preview link), and step 5 (an
-XP leveling curve — `src/game/levelPolicy.js`'s `computeLevel(xp)`, pure, walking an escalating
-per-level cost from `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in `constants.js`, surfaced as a level card
-above the badge list on `AchievementsScreen`) are done. Step 6 (collectible sets, e.g. "all of
-South America") now has its own ordered sub-checklist. Its first chunk — 6.1, per-country
-signal capture (a `game_results.countries` column + `countriesFromHistory()`, capture-only, no UI
-yet) — is done, and so is 6.2, the pure collection policy (`src/game/collectionPolicy.js`'s
-`computeCollections()`, mining `game_results.countries` into per-region collected/total counts,
-fed by `fetchRoundResults()` now also selecting `countries`). **6.3 is now done too** — a
-"Collections" section on `AchievementsScreen` (no new route) renders `computeCollections()` as one
-progress row per region, verified in a real browser. Step 6.4 (the closing polish + a11y pass) is
-underway: 6.4.1 (contrast audit) found and fixed a real gap, and so did 6.4.2 (large tap targets) —
-`AchievementsScreen`'s Back button relied on `hitSlop={12}` to reach 44px, but react-native-web's
-`Pressable` never implements `hitSlop`, so its actual web tap target was 42px; fixed with 2px more
-padding, verified by click-testing the real boundary in a browser rather than trusting the prop.
-**6.4.3 (offline/error states) is now done too, and also found a real gap**: the fetch-failure
-notice already existed from step 3, but nothing covered the loading window before that fetch
-resolves, so a signed-in player briefly saw every badge/collection at 0 before the real numbers
-landed. `AchievementsScreen` now carries the same `loadingResults` + `Skeleton`-row treatment
-`LearningPathScreen` already used for the identical problem, verified with a spoofed signed-in
-session and a routed network delay in a real browser (no live Supabase project reachable here).
-**Next up in M2.5 is step 6.4.4**, transitions.
+collections & deeper gamification is now fully done end to end.** It had an ordered sub-checklist:
+step 1 (the badge catalog + pure policy layer — `src/data/achievements.js` +
+`src/game/achievementPolicy.js`, mined entirely from existing progress/game_results signals, no new
+schema), step 2 (the navigation seam — an `achievements` route in `src/game/navigation.js`, owned by
+the Profile tab, rendered by `App.js`), step 3 (the hero screen — `AchievementsScreen` renders real
+locked/unlocked state and progress bars via `computeAchievements()`, fed by local `progress` and
+`fetchRoundResults(user)`), step 4 (the real Profile entry point — an "Achievements" row mirroring
+the Interests settings row, showing an "{unlocked} of {total} unlocked" summary, replacing the
+temporary preview link), and step 5 (an XP leveling curve — `src/game/levelPolicy.js`'s
+`computeLevel(xp)`, pure, walking an escalating curve off `LEVEL_XP_BASE`/`LEVEL_XP_GROWTH` in
+`constants.js`, surfaced as a level card above the badge list). Step 6 (collectible sets, e.g. "all
+of South America") had its own ordered sub-checklist: 6.1, per-country signal capture (a
+`game_results.countries` column + `countriesFromHistory()`); 6.2, the pure collection policy
+(`src/game/collectionPolicy.js`'s `computeCollections()`, mining `game_results.countries` into
+per-region collected/total counts); 6.3, the "Collections" section on `AchievementsScreen`, one
+progress row per region; and 6.4, the closing polish + a11y pass, itself broken into four chunks —
+6.4.1 (a real contrast gap: the level card's XP readout used `colors.brass` on the `dusk` material's
+brightest corner at ~2.6:1, fixed with `colors.onFill`), 6.4.2 (a real tap-target gap: the Back
+button's real web target was 42px because react-native-web's `Pressable` never implements
+`hitSlop`, fixed with more `paddingBottom`), 6.4.3 (a real loading-flash gap: `results` reads `[]`
+while `fetchRoundResults` is in flight, briefly showing every badge/region at 0 — fixed with the
+same `loadingResults` + `Skeleton` treatment `LearningPathScreen` already used), and 6.4.4
+(transitions: the screen had shipped with no motion of its own — it now fades/rises in on mount and
+fades/settles out on Back via a `screenAnim` `Animated.Value`, the same `handleExit`/`screenStyle`
+shape `CountryPageScreen`/`LearningPathScreen` already use, with every nested `FadeInUp` passing
+`rise={0}` so the screen's own rise isn't compounded). All verified in a real browser. **With M2.5
+done, M2.6 — Leaderboards & light social is the lowest-numbered milestone with unblocked work; it
+has no ordered sub-checklist yet** (see its one-paragraph description below) — that's the first
+thing a future run on this milestone needs to add, before picking a first scoped step from it.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1349,9 +1348,28 @@ teaching *how the world works*, not just *where things are*.
              the way: `npm run build`'s Metro cache doesn't pick up a fresh `.env` file without
              `--clear`, worth knowing if a future run has the same "Supabase is not configured"
              error despite a present `.env`. *(Next up: step 6.4.4 — transitions.)*
-          4. ☐ **Transitions.**
-    7. ☐ **Polish + a11y pass**, mirroring M2.2/M2.3/M2.4's own closing step (contrast, tap targets,
-       offline/error states, transitions).
+          4. ✅ **Transitions.** `AchievementsScreen` shipped with no motion of its own, since it was
+             built after M2.2/M2.4 had already established the fade/rise-in-on-open,
+             fade/settle-out-on-close shape. It now uses that same shape verbatim: a screen-level
+             `Animated.Value` (`screenAnim`) fades and rises the whole screen in on mount, and Back
+             now runs through a `handleExit()` that animates out (`motion.duration.micro`) before
+             calling `onExit`, instead of calling it directly — mirroring `LearningPathScreen`'s
+             `handleExit`/`screenStyle` split exactly. Every existing staggered `FadeInUp` on this
+             screen (the header, the level card, each badge row, the Collections heading, each
+             region row) now passes `rise={0}`, since the screen itself already rises and stacking
+             two rises would overshoot the 8–16px band — the same reasoning `CountryPageScreen` and
+             `LearningPathScreen` both already apply to their own nested groups. No new pure logic:
+             this is rendering-only, reusing `motion.duration`/`motion.easing`/`motion.rise` from
+             `theme.js` verbatim. Verified in a real browser (Playwright/Chromium, static export,
+             placeholder Supabase env, client-side navigation to `/achievements` since the static
+             server has no SPA rewrite): captured a faded/risen early frame right after mount, a
+             mid-cascade frame with later badge rows still settling, the fully-settled screen, and a
+             mid-fade frame after tapping Back — confirming Back defers navigation until the
+             fade-out actually plays, landing on Home only once it finishes, with no console errors.
+             **M2.5 step 6.4 (the closing polish + a11y pass) is now fully done, which completes
+             M2.5 — Achievements, collections & deeper gamification — end to end**, aside from the
+             two flagged app-wide follow-ups noted in 6.4.1/6.4.2 above (out of scope for this
+             milestone).
 - **M2.10 — Navigation & user flow 🧭** — ✅ **done (web-verified pending, see below).** Not a
   feature so much as the floor every feature stands on: by M2.5 the app had nine surfaces and a
   navigation model built for three. Replaced wholesale.
