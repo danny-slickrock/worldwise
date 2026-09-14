@@ -1,0 +1,171 @@
+{
+  "iso": "xk",
+  "fetchedAt": "2026-09-14T23:09:45.596Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "europe/kv.json"
+    }
+  },
+  "wikidata": {
+    "name": "Kosovo",
+    "gec": "KV",
+    "capital": "Pristina",
+    "areaKm2": 10909,
+    "population": 1586659,
+    "continent": "Europe",
+    "officialLanguages": [
+      "Albanian",
+      "Serbian"
+    ],
+    "currencies": [],
+    "sharesBorderWithAnyType": [
+      "mk",
+      "al",
+      "me",
+      "rs"
+    ]
+  },
+  "factbook": {
+    "_path": "europe/kv.json",
+    "Introduction": {
+      "Background": {
+        "text": "<p>The Ottoman Empire took control of Kosovo in 1389 after defeating Serbian forces. Large numbers of Turks and Albanians moved to the region, and by the end of the 19th century, Albanians had replaced Serbs as the majority ethnic group in Kosovo. Serbia reacquired control of Kosovo during the First Balkan War of 1912, and after World War II, Kosovo became an autonomous province of Serbia in the Socialist Federal Republic of Yugoslavia (SFRY). Increasing Albanian nationalism in the 1980s led to riots and calls for Kosovo's independence, but in 1989, Belgrade -- which has in turn served as the capital of Serbia and Yugoslavia -- revoked Kosovo's autonomous status. When the SFRY broke up in 1991, Kosovo Albanian leaders organized an independence referendum, and Belgrade's repressive response led to an insurgency. Kosovo remained part of Serbia, which joined with Montenegro to declare a new Federal Republic of Yugoslavia (FRY) in 1992. <br><br>In 1998, Belgrade launched a brutal counterinsurgency campaign, with some 800,000 ethnic Albanians expelled from their homes in Kosovo. After international mediation failed, a NATO military operation began in March 1999 and forced Belgrade to withdraw its forces from Kosovo. UN Security Council Resolution 1244 (1999) placed Kosovo under the temporary control of the UN Interim Administration Mission in Kosovo (UNMIK). Negotiations in 2006-07 ended without agreement between Serbia and Kosovo, though the UN issued a comprehensive report that endorsed independence. On 17 February 2008, the Kosovo Assembly declared Kosovo independent. <br><br>Serbia continues to reject Kosovo's independence, but the two countries began EU-facilitated discussions in 2013 to normalize relations, which resulted in several agreements. Additional agreements were reached in 2015 and 2023, but implementation remains incomplete. In 2022, Kosovo formally applied for membership in the EU, which is contingent on fulfillment of accession criteria, and the Council of Europe. Kosovo is also seeking UN and NATO memberships.</p>"
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southeastern Europe, between Serbia and Macedonia"
+      },
+      "Area": {
+        "total ": {
+          "text": "10,887 sq km"
+        },
+        "land": {
+          "text": "10,887 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "714 km"
+        },
+        "border countries": {
+          "text": "Albania 112 km; North Macedonia 160 km; Montenegro 76 km; Serbia 366 km"
+        }
+      },
+      "Coastline": {
+        "text": "0 km (landlocked)"
+      },
+      "Climate": {
+        "text": "influenced by continental air masses resulting in relatively cold winters with heavy snowfall and hot, dry summers and autumns; Mediterranean and alpine influences create regional variation; maximum rainfall between October and December"
+      },
+      "Terrain": {
+        "text": "flat fluvial basin at an elevation of 400-700 m above sea level surrounded by several high mountain ranges with elevations of 2,000 to 2,500 m"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gjeravica/Deravica 2,656 m"
+        },
+        "lowest point": {
+          "text": "Drini i Bardhe/Beli Drim (located on the border with Albania) 297 m"
+        },
+        "mean elevation": {
+          "text": "450 m"
+        }
+      },
+      "Natural resources": {
+        "text": "nickel, lead, zinc, magnesium, lignite, kaolin, chrome, bauxite"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "52.8% (2018 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 27.4% (2018 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.9% (2018 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 23.5% (2018 est.)"
+        },
+        "forest": {
+          "text": "41.7% (2018 est.)"
+        },
+        "other": {
+          "text": "5.5% (2018 est.)"
+        }
+      },
+      "Geography - note": {
+        "text": "the 41-km (25-mi) Nerodimka River divides into two branches, each of which flows into a different sea: the northern branch flows into the Sitnica River, which via the Ibar, Morava, and Danube Rivers ultimately flows into the Black Sea; the southern branch flows via the Lepenac and Vardar Rivers into the Aegean Sea"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,977,093 (2024 est.)"
+        },
+        "male": {
+          "text": "1,017,992"
+        },
+        "female": {
+          "text": "959,101"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Albanian (official) 94.5%, Bosnian 1.7%, Serbian (official) 1.6%, Turkish 1.1%, other 0.9% (includes Romani), unspecified 0.1% (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "Libri i fakteve boterore, burimi i pazevendesueshem per informacione elementare (Albanian)<br><br>Knjiga svetskih činjenica, neophodan izvor osnovnih informacija. (Serbian)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> these estimates may under-represent Serb, Romani, and other ethnic minority languages because they are based on the 2011 Kosovo national census, which excluded northern Kosovo (a largely Serb-inhabited region) and was partially boycotted by Serb and Romani communities in southern Kosovo"
+      },
+      "Religions": {
+        "text": "Muslim 95.6%, Roman Catholic 2.2%, Orthodox 1.5%, other 0.1%, none 0.1%, unspecified 0.6% (2011 est.)",
+        "note": "<strong>note:</strong> these estimates may under-represent Serb, Romani, and some other ethnic minorities because they are based on the 2011 Kosovo national census, which excluded northern Kosovo (a largely Serb-inhabited region) and was partially boycotted by Serb and Romani communities in southern Kosovo"
+      },
+      "Ethnic groups": {
+        "text": "Albanians 92.9%, Bosniaks 1.6%, Serbs 1.5%, Turk 1.1%, Ashkali 0.9%, Egyptian 0.7%, Gorani 0.6%, Romani 0.5%, other/unspecified 0.2% (2011 est.)",
+        "note": "<strong>note:</strong> these estimates may under-represent Serb, Romani, and some other ethnic minorities because they are based on the 2011 Kosovo national census, which excluded northern Kosovo (a largely Serb-inhabited region) and was partially boycotted by Serb and Romani communities in southern Kosovo"
+      },
+      "Population distribution": {
+        "text": "population clusters exist throughout the country, with the largest in the east in and around the capital of Pristina"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "small-but-growing European economy; non-EU member but unilateral euro user; very high unemployment, especially youth; vulnerable reliance on diaspora tourism services, curtailed by COVID-19 disruptions; unclear public loan portfolio health"
+      },
+      "Agricultural products": {
+        "text": "wheat, corn, berries, potatoes, peppers, fruit; dairy, livestock; fish"
+      },
+      "Industries": {
+        "text": "mineral mining, construction materials, base metals, leather, machinery, appliances, foodstuffs and beverages, textiles"
+      },
+      "Exports - commodities": {
+        "text": "mattress materials, iron alloys, metal piping, scrap iron, building plastics (2021)",
+        "note": "top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "United States 16%, Albania 15%, North Macedonia 12%, Germany 8%, Italy 8% (2021)"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, cars, iron rods, electricity, cigars, packaged medicines (2021)"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "influenced by continental air masses resulting in relatively cold winters with heavy snowfall and hot, dry summers and autumns; Mediterranean and alpine influences create regional variation; maximum rainfall between October and December"
+      }
+    }
+  }
+}

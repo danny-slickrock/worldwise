@@ -1,0 +1,61 @@
+{
+  "iso": "gl",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.741Z",
+  "structured": {
+    "code": "gl",
+    "name": "Greenland",
+    "capital": "Nuuk",
+    "continent": "North America",
+    "areaKm2": 2166086,
+    "population": 56609,
+    "officialLanguages": [
+      "Greenlandic"
+    ],
+    "currencies": [
+      "Danish krone"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "coal, iron ore, lead, zinc, molybdenum, diamonds, gold, platinum, niobium, tantalite, uranium, fish, seals, whales, hydropower, possible oil and gas",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "The world's largest island is, in practice, a single enormous sheet of ice. A flat to gradually sloping icecap covers about 79% of Greenland, leaving a narrow, mountainous, barren, rocky coast as the only place anyone lives. That ice is the second-largest mass on Earth after Antarctica's — 1.71 million sq km of it, holding almost 7% of the world's fresh water — and the people are a rounding error beside it: a population under 60,000, in small settlements along the shore, close to a quarter of them in the capital, Nuuk.",
+    "physicalGeography": "A flat to gradually sloping icecap covers all but a narrow, mountainous, barren, rocky rim of coast. Greenland lies in northern North America, an island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada, and it dominates the North Atlantic between North America and Europe. The ice sheet covers 1.71 million sq km, about 79% of the island, and contains 2.85 million cu km of ice.",
+    "climate": "Arctic to subarctic: cool summers and cold winters. Continuous permafrost underlies the northern two-thirds of the island.",
+    "economy": "A high-income, self-governing Danish territorial economy. It is not an EU member but holds preferential market access, and it depends on Danish financial support. Fishing leads exports — fish, shellfish and processed crustaceans, alongside ships and precious stones — and fish processing, chiefly shrimp and Greenland halibut, anchors industry, with anorthosite and ruby mining, handicrafts, hides and skins, and small shipyards beside it. Tourism is growing, as is interest in untapped mineral deposits, and hydropower supplies the fuel.",
+    "peopleAndCulture": "Greenlandic, Danish and English are spoken. About 88.1% of residents are Greenlandic and 7.1% Danish, with Filipino residents at 1.6% and other Nordic peoples at 0.9%. Religious life is Evangelical Lutheran alongside traditional Inuit spiritual beliefs. The whole population is confined to coastal settlements, with close to a quarter of it in Nuuk."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern North America, island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada || flat to gradually sloping icecap covers all but a narrow, mountainous, barren, rocky coast || dominates North Atlantic Ocean between North America and Europe; sparse population confined to small settlements along coast; close to one-quarter of the population lives in the capital, Nuuk; world's second largest ice sheet after that of Antarctica, covering an area of 1.71 million sq km (660,000 sq mi), or about 79% of the island, and containing 2.85 million cu km (684 thousand cu mi) of ice (almost 7% of the world's fresh water) || Resources: coal, iron ore, lead, zinc, molybdenum, diamonds, gold, platinum, niobium, tantalite, uranium, fish, seals, whales, hydropower, possible oil and gas || Exports: fish, shellfish, processed crustaceans, ships, precious stones (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat to gradually sloping icecap covers all but a narrow, mountainous, barren, rocky coast || Northern North America, island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "arctic to subarctic; cool summers, cold winters || continuous permafrost over northern two-thirds of the island"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "high-income, self-governing Danish territorial economy; non-EU member but preferential market access; dependent on Danish financial support; exports led by fishing industry; growing tourism and interest in untapped mineral deposits; relies on hydropower for fuel || Exports: fish, shellfish, processed crustaceans, ships, precious stones (2023) || Industries: fish processing (mainly shrimp and Greenland halibut), anorthosite and ruby mining, handicrafts, hides and skins, small shipyards"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Greenlandic, Danish, English || Evangelical Lutheran, traditional Inuit spiritual beliefs || Greenlandic 88.1%, Danish 7.1%, Filipino 1.6%, other Nordic peoples 0.9%, and other 2.3% (2024 est.)"
+    }
+  }
+}

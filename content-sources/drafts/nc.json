@@ -1,0 +1,61 @@
+{
+  "iso": "nc",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.748Z",
+  "structured": {
+    "code": "nc",
+    "name": "New Caledonia",
+    "capital": "Nouméa",
+    "continent": "Insular Oceania",
+    "areaKm2": 18576,
+    "population": 278500,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "CFP Franc"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "nickel, chrome, iron, cobalt, manganese, silver, gold, lead, copper",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Islands in the South Pacific Ocean east of Australia: a main island that is one of the largest in the Pacific, the Îles Loyauté archipelago, and numerous small, sparsely populated islands and atolls, all coastal plains around interior mountains. What sets the place apart is underground. Enormous nickel reserves — with chrome, iron, cobalt, manganese, silver, gold, lead and copper beside them — mean that nickel mining and smelting is essentially the whole of local industry.",
+    "physicalGeography": "Coastal plains with interior mountains. New Caledonia lies in Oceania, in the South Pacific Ocean east of Australia, and consists of the main island of New Caledonia — one of the largest in the Pacific Ocean — the archipelago of the Îles Loyauté, and numerous small, sparsely populated islands and atolls.",
+    "climate": "Tropical, modified by the southeast trade winds, and hot and humid. Cyclones are most frequent from November to March, and Matthew and Hunter Islands are historically volcanically active.",
+    "economy": "An upper-middle-income French Pacific territorial economy resting on enormous nickel reserves; it is a large exporter of nickel to China, and nickel mining and smelting is the dominant industry. Exports are led by iron alloys, nickel and nickel ore, with processed crustaceans and shellfish behind them. It is also a luxury eco-tourism destination and a large recipient of French aid, and it carries a high cost of living and lingering wealth disparities.",
+    "peopleAndCulture": "Kanak people, the Indigenous population, make up 39.1%, Europeans 27.1%, and Wallisian and Futunian communities 8.2%, with Tahitian, Indonesian, Ni-Vanuatu and Vietnamese communities beside them. Christianity is the majority religion at 85.2% and Islam at 2.8%, while about 10.4% are unaffiliated."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Oceania, islands in the South Pacific Ocean, east of Australia || coastal plains with interior mountains || consists of the main island of New Caledonia (one of the largest in the Pacific Ocean), the archipelago of Iles Loyauté, and numerous small, sparsely populated islands and atolls || Resources: nickel, chrome, iron, cobalt, manganese, silver, gold, lead, copper || Exports: iron alloys, nickel, nickel ore, processed crustaceans, shellfish (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "coastal plains with interior mountains || Oceania, islands in the South Pacific Ocean, east of Australia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical; modified by southeast trade winds; hot, humid || cyclones, most frequent from November to March volcanism: Matthew and Hunter Islands are historically active"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "upper-middle-income French Pacific territorial economy; enormous nickel reserves; ongoing French independence negotiations; large Chinese nickel exporter; luxury eco-tourism destination; large French aid recipient; high cost-of-living; lingering wealth disparities || Exports: iron alloys, nickel, nickel ore, processed crustaceans, shellfish (2023) || Industries: nickel mining and smelting"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Christian 85.2%, Muslim 2.8%, other 1.6%, unaffiliated 10.4% (2020 est.) || Kanak 39.1%, European 27.1%, Wallisian, Futunian 8.2%, Tahitian 2.1%, Indonesian 1.4%, Ni-Vanuatu 1%, Vietnamese 0.9%, other 17.7%, unspecified 2.5% (2014 est.)"
+    }
+  }
+}

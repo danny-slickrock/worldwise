@@ -9,14 +9,18 @@
 // Static data in, static map out. GlobeMap reprojects 8,190 points per frame
 // and must never be doing string matching while it does.
 import { COUNTRY_CONTENT } from "./countryContent";
-import { COUNTRIES } from "./countries";
+import { PLACES } from "./countries";
 import { COUNTRY_CENTERS } from "./worldGeo";
 import { vecToLngLat } from "../game/globeProjection";
 import { classifyTerrain, bandFromLatitude } from "../game/terrainTint";
 
 const byCode = {};
 
-for (const country of COUNTRIES) {
+// PLACES, not COUNTRIES: the globe paints by terrain class, and a territory
+// with no class falls through to the latitude default — which put Greenland
+// and Antarctica, the two most obviously frozen places on the map, in the same
+// band as temperate farmland.
+for (const country of PLACES) {
   const facts = COUNTRY_CONTENT[country.code]?.facts ?? {};
   const center = COUNTRY_CENTERS[country.code];
   // A country with no globe polygon has no centre either; latitude then has

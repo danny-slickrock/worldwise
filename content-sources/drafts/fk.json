@@ -1,0 +1,61 @@
+{
+  "iso": "fk",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.749Z",
+  "structured": {
+    "code": "fk",
+    "name": "Falkland Islands",
+    "capital": "Stanley",
+    "continent": "South America",
+    "areaKm2": 12200,
+    "population": 4550,
+    "officialLanguages": [
+      "British English"
+    ],
+    "currencies": [
+      "Falkland Islands pound"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, squid, wildlife, calcified seaweed, sphagnum moss",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Islands in the South Atlantic Ocean about 500 km east of southern Argentina — rocky, hilly and mountainous, with some boggy, undulating plains between. The deeply indented coast provides good natural harbours, and the growing season is short. What the islands send out comes from the sea and the hills: shellfish, fish, wool, and sheep and goat meat.",
+    "physicalGeography": "Rocky, hilly and mountainous, with some boggy, undulating plains. The islands lie off southern South America, in the South Atlantic Ocean about 500 km east of southern Argentina, and their deeply indented coast provides good natural harbours.",
+    "climate": "Cold marine, with strong westerly winds that persist throughout the year, cloud and humidity. Rain falls on more than half the days of the year — an average of 60 cm annually in Stanley — and snow can fall in any month except January and February, though it typically does not accumulate.",
+    "economy": "A British South American territorial economy with a longstanding fishing industry. Tourism was surging before COVID-19 and Brexit, and recent offshore hydrocarbon discoveries sit uneasily beside the ecotourism industries they threaten. Fish and wool processing and tourism are the industries; shellfish, fish, wool, and sheep and goat meat the exports. There is no central bank, and currency shifts require British approval.",
+    "peopleAndCulture": "A population of only a few thousand people. English is spoken by 89% and Spanish by 7.7%. Nearly half — 48.3% — identify as Falkland Islanders, with British at 23.1%, St Helenian at 7.5% and Chilean at 4.6%. Christianity accounts for 57.1%, while 35.4% report no religion, one of the higher shares recorded anywhere."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southern South America, islands in the South Atlantic Ocean, about 500 km east of southern Argentina || rocky, hilly, mountainous with some boggy, undulating plains || deeply indented coast provides good natural harbors; short growing season || Resources: fish, squid, wildlife, calcified seaweed, sphagnum moss || Exports: shellfish, fish, wool, sheep and goat meat (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "rocky, hilly, mountainous with some boggy, undulating plains || Southern South America, islands in the South Atlantic Ocean, about 500 km east of southern Argentina"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "cold marine; strong westerly winds, cloudy, humid; rain occurs on more than half of days in year; average annual rainfall is 60 cm in Stanley; occasional snow all year, except in January and February, but typically does not accumulate || strong winds persist throughout the year"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "British South American territorial economy; longstanding fishing industry; surging tourism prior to COVID-19 and Brexit; recent offshore hydrocarbon discoveries threaten ecotourism industries; no central bank and must have British approval on currency shifts || Exports: shellfish, fish, wool, sheep and goat meat (2023) || Industries: fish and wool processing; tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "English 89%, Spanish 7.7%, other 3.3% (2006 est.) || Christian 57.1%, other 1.6%, none 35.4%, unspecified 6% (2016 est.) || Falkland Islander 48.3%, British 23.1%, St. Helenian 7.5%, Chilean 4.6%, mixed 6%, other 8.5%, unspecified 2% (2016 est.)"
+    }
+  }
+}

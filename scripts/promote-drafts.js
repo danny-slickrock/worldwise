@@ -1,8 +1,10 @@
 // Promotion — turns approved drafts into the bundled content model.
 //
 // Generates src/data/countryContent.js from content-sources/drafts/. Only
-// countries with real prose are promoted; a hollow draft (cy, ps — no Factbook
-// entry to draft from) is skipped rather than published empty.
+// drafts with real prose are promoted; a hollow draft is skipped rather than
+// published empty. There are none today — cy and ps were the last two, and
+// they were hollow because the Factbook lookup failed for them, not because
+// there was nothing to say.
 //
 // This file is GENERATED. Edit a draft and re-run; never hand-edit the output.
 // Hand-authored overrides live in COUNTRY_PAGES in countryPages.js and win over
@@ -34,7 +36,10 @@ async function main() {
     const s = d.structured;
     const prose = d.prose ?? {};
     const hasProse = Object.values(prose).some((v) => (v ?? "").trim());
-    if (!hasProse) { skipped.push(d.iso); continue; }
+    if (!hasProse) {
+      skipped.push(d.iso);
+      continue;
+    }
 
     const facts = {};
     for (const [from, key] of Object.entries(FACT_KEYS)) {
@@ -100,14 +105,20 @@ async function main() {
 // This is both the seed source for content.countries and the offline baseline
 // the app falls back to, so Postgres holds exactly what renders offline.
 //
-// ${entries.length} countries. ${skipped.length ? `Not promoted (no source prose): ${skipped.join(", ")}.` : ""}
+// ${entries.length} places — the 196 countries plus the non-sovereign territories
+// the map draws (see src/data/territories.js), which go through this same
+// pipeline so a territory page is built from the same sources a country's is.
+// ${skipped.length ? `Not promoted (no source prose): ${skipped.join(", ")}.` : "Every draft has prose."}
 export const COUNTRY_CONTENT = {
 `;
 
   await writeFile(OUT, header + body + "\n};\n");
   const bytes = (await readFile(OUT)).length;
-  console.log(`Wrote ${OUT}: ${entries.length} countries, ${(bytes / 1024).toFixed(0)} KB`);
+  console.log(`Wrote ${OUT}: ${entries.length} places, ${(bytes / 1024).toFixed(0)} KB`);
   if (skipped.length) console.log(`Skipped (no prose): ${skipped.join(", ")}`);
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

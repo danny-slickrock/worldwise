@@ -1,0 +1,174 @@
+{
+  "iso": "nc",
+  "fetchedAt": "2026-09-14T23:09:45.827Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "australia-oceania/nc.json"
+    }
+  },
+  "wikidata": {
+    "name": "New Caledonia",
+    "gec": "NC",
+    "capital": "Nouméa",
+    "areaKm2": 18576,
+    "population": 278500,
+    "continent": "Insular Oceania",
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [
+      "CFP Franc"
+    ],
+    "sharesBorderWithAnyType": [
+      "au"
+    ]
+  },
+  "factbook": {
+    "_path": "australia-oceania/nc.json",
+    "Introduction": {
+      "Background": {
+        "text": "The first humans settled in New Caledonia around 1600 B.C. The Lapita were skilled navigators, and evidence of their pottery around the Pacific has served as a guide for understanding human expansion in the region. Successive waves of migrants from other islands in Melanesia intermarried with the Lapita, giving rise to the Kanak ethnic group considered indigenous to New Caledonia. British explorer James COOK was the first European to visit New Caledonia in 1774, giving it the Latin name for Scotland. Missionaries first landed in New Caledonia in 1840. In 1853, France annexed New Caledonia to preclude any British attempt to claim the island. France declared it a penal colony in 1864 and sent more than 20,000 prisoners to New Caledonia in the ensuing three decades.<br><br>Nickel was discovered in 1864, and French prisoners were directed to mine it. France brought in indentured servants and enslaved labor from elsewhere in Southeast Asia to work the mines, blocking Kanaks from accessing the most profitable part of the local economy. In 1878, High Chief ATAI led a rebellion against French rule. The Kanaks were relegated to reservations, leading to periodic smaller uprisings and culminating in a large revolt in 1917 that colonial authorities brutally suppressed. During World War II, New Caledonia became an important base for Allied troops, and the US moved its South Pacific headquarters to the island in 1942. Following the war, France made New Caledonia an overseas territory and granted French citizenship to all inhabitants in 1953, thereby permitting the Kanaks to move off the reservations.<br><br>The Kanak nationalist movement began in the 1950s, but most voters chose to remain a territory in an independence referendum in 1958. The European population of New Caledonia boomed in the 1970s with a renewed focus on nickel mining, reigniting Kanak nationalism. Key Kanak leaders were assassinated in the early 1980s, leading to escalating violence and dozens of fatalities. The Matignon Accords of 1988 provided for a 10-year transition period. The Noumea Accord of 1998 transferred increasing governing responsibility from France to New Caledonia over a 20-year period and provided for three independence referenda. In the first held in 2018, voters rejected independence by 57% to 43%; in the second held in 2020, voters rejected independence 53% to 47%. In the third referendum held in 2021, voters rejected independence 96% to 4%; however, a boycott by key Kanak groups spurred challenges about the legitimacy of the vote. Pro-independence parties subsequently won a majority in the New Caledonian Government for the first time. France and New Caledonia officials remain in talks about the status of the territory."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Oceania, islands in the South Pacific Ocean, east of Australia"
+      },
+      "Area": {
+        "total ": {
+          "text": "18,575 sq km"
+        },
+        "land": {
+          "text": "18,275 sq km"
+        },
+        "water": {
+          "text": "300 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "2,254 km"
+      },
+      "Climate": {
+        "text": "tropical; modified by southeast trade winds; hot, humid"
+      },
+      "Terrain": {
+        "text": "coastal plains with interior mountains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mont Panie 1,628 m"
+        },
+        "lowest point": {
+          "text": "Pacific Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "nickel, chrome, iron, cobalt, manganese, silver, gold, lead, copper"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "10.1% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0.3% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0.2% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 9.5% (2023 est.)"
+        },
+        "forest": {
+          "text": "48.8% (2023 est.)"
+        },
+        "other": {
+          "text": "41.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "cyclones, most frequent from November to March <br><br><strong>volcanism:</strong> Matthew and Hunter Islands are historically active"
+      },
+      "Geography - note": {
+        "text": "consists of the main island of New Caledonia (one of the largest in the Pacific Ocean), the archipelago of Iles Loyaut&eacute;, and numerous small, sparsely populated islands and atolls"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "307,612 (2025 est.)"
+        },
+        "male": {
+          "text": "153,036"
+        },
+        "female": {
+          "text": "154,576"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "French (official), 33 Melanesian-Polynesian dialects"
+        },
+        "major-language sample(s)": {
+          "text": "<br>The World Factbook, une source indispensable d'informations de base. (French)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Christian 85.2%, Muslim 2.8%, other 1.6%, unaffiliated 10.4% (2020 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Kanak 39.1%, European 27.1%, Wallisian, Futunian 8.2%, Tahitian 2.1%, Indonesian 1.4%, Ni-Vanuatu 1%, Vietnamese 0.9%, other 17.7%, unspecified 2.5% (2014 est.)"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "72.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "1.72% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the populace lives in the southern part of the main island, in and around the capital of Noumea"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "upper-middle-income French Pacific territorial economy; enormous nickel reserves; ongoing French independence negotiations; large Chinese nickel exporter; luxury eco-tourism destination; large French aid recipient; high cost-of-living; lingering wealth disparities"
+      },
+      "Agricultural products": {
+        "text": "coconuts, vegetables, fruits, pork, beef, maize, eggs, bananas, yams, oranges (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "nickel mining and smelting"
+      },
+      "Exports - commodities": {
+        "text": "iron alloys, nickel, nickel ore, processed crustaceans, shellfish (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "China 75%, Japan 9%, Taiwan 3%, India 3%, France 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, coal, cars, aircraft, packaged medicine (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical; modified by southeast trade winds; hot, humid"
+      }
+    }
+  }
+}

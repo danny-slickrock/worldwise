@@ -1,19 +1,19 @@
-// Browsable country index (M2.2 step 5b) — every country, searchable and
-// filterable by region, each row opening its country page. The third real
+// Browsable place index (M2.2 step 5b) — every country AND the territories the
+// map draws, searchable and filterable by region, each row opening its page. The third real
 // entry point into CountryPageScreen, alongside the post-answer "Learn more"
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
-import { COUNTRIES } from "../data/countries";
-import { searchCountries, REGIONS } from "../game/countryIndex";
+import { PLACES } from "../data/countries";
+import { searchCountries, INDEX_FILTERS } from "../game/countryIndex";
 
 export default function CountryIndexScreen({ onExit, onOpenCountry }) {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("All");
 
-  const results = useMemo(() => searchCountries(COUNTRIES, { query, region }), [query, region]);
+  const results = useMemo(() => searchCountries(PLACES, { query, region }), [query, region]);
 
   return (
     <View style={styles.wrap}>
@@ -27,7 +27,7 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         <View style={styles.header}>
           <Text style={styles.title}>Countries</Text>
           <Text style={styles.subtitle}>
-            {results.length} of {COUNTRIES.length} places
+            {results.length} of {PLACES.length} places
           </Text>
         </View>
       </FadeInUp>
@@ -45,7 +45,7 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
       </View>
 
       <View style={styles.regionRow}>
-        {REGIONS.map((r) => {
+        {INDEX_FILTERS.map((r) => {
           const active = r === region;
           return (
             <Pressable
@@ -68,14 +68,23 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
-        ListEmptyComponent={<Text style={styles.empty}>No countries match "{query}".</Text>}
+        ListEmptyComponent={<Text style={styles.empty}>No places match "{query}".</Text>}
         renderItem={({ item, index }) => {
           const row = (
             <Pressable onPress={() => onOpenCountry(item.code)} style={styles.row}>
               <View style={styles.rowBody}>
-                <Text style={styles.rowName}>{item.name}</Text>
+                <View style={styles.rowTitle}>
+                  <Text style={styles.rowName}>{item.name}</Text>
+                  {/* Says it on the row rather than only on the page: a list
+                      that mixes countries and territories without marking
+                      which is which is how someone learns that Greenland is a
+                      country. */}
+                  {item.territory ? <Text style={styles.tag}>Territory</Text> : null}
+                </View>
+                {/* Joined rather than interpolated: Antarctica has no capital,
+                    and "{null} · Antarctica" renders as a stray separator. */}
                 <Text style={styles.rowCapital}>
-                  {item.capital} · {item.region}
+                  {[item.capital, item.region].filter(Boolean).join(" · ")}
                 </Text>
               </View>
               <Text style={styles.chev}>›</Text>
@@ -161,7 +170,21 @@ const styles = StyleSheet.create({
     ...elevation(1),
   },
   rowBody: { flex: 1 },
+  rowTitle: { flexDirection: "row", alignItems: "center", gap: spacing(2) },
   rowName: { ...type.body, color: colors.brand },
+  // The kit's eyebrow voice at its smallest: mono, tracked, uppercase. On
+  // surfaceSunken rather than a brand fill, because this classifies a row
+  // rather than calling for attention.
+  tag: {
+    ...type.eyebrow,
+    fontSize: 9,
+    color: colors.textMuted,
+    backgroundColor: colors.surfaceSunken,
+    borderRadius: radius.sm,
+    paddingHorizontal: spacing(2),
+    paddingVertical: 2,
+    overflow: "hidden",
+  },
   rowCapital: { ...type.caption, fontSize: 13, marginTop: 2 },
   chev: { fontSize: 24, color: colors.textMuted },
 

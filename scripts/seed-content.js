@@ -28,7 +28,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { COUNTRIES } from "../src/data/countries.js";
+import { PLACES } from "../src/data/countries.js";
 import { getCountryPage } from "../src/data/countryPages.js";
 import { countryRowFromPage } from "../src/game/contentSync.js";
 import { announceTarget } from "./lib/target-banner.mjs";
@@ -118,7 +118,14 @@ function explain(status, body) {
 // ---------------------------------------------------------------------------
 function buildRows() {
   const rows = [];
-  for (const country of COUNTRIES) {
+  // PLACES, so the eight territories are seeded alongside the 196 countries.
+  // They would render correctly without this — an absent row falls through to
+  // the bundled baseline — but the AI hub retrieves from content.countries,
+  // and an unseeded Greenland is a Greenland the "ask" function cannot cite.
+  // The schema needs nothing new for them: `code` takes any lowercase alpha-2,
+  // `capital` is nullable (Antarctica), and `difficulty` is a CHECK that a
+  // null passes.
+  for (const country of PLACES) {
     const page = getCountryPage(country.code);
     if (!page) {
       console.warn(`  ! skipping ${country.code} — getCountryPage returned null`);
@@ -132,7 +139,7 @@ function buildRows() {
 async function main() {
   const rows = buildRows();
   announceTarget(url);
-  console.log(`Seeding ${rows.length} countries → content.countries`);
+  console.log(`Seeding ${rows.length} places → content.countries`);
 
   let written = 0;
   for (let i = 0; i < rows.length; i += BATCH_SIZE) {

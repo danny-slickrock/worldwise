@@ -20,6 +20,24 @@
 // layer), so it is read here but never written back — seeding a country and
 // ingesting its photo are separate pipelines on purpose.
 import { heroFromMediaRows } from "./mediaPolicy";
+import { TERRITORIES } from "../data/territories";
+
+// What a place IS — a country, or a territory and whose — is classification,
+// not content. It never travels through Postgres in either direction: it is
+// not written by the seed and not read from a row, it is re-derived here from
+// the bundled registry by code.
+//
+// That is deliberate, and it is the safe direction of the two. The alternative
+// is columns, and a column can be empty: a row seeded before those columns
+// existed, or seeded from a client that did not know about them, would return
+// Greenland with no status — a territory rendering as a country, silently,
+// through the one path (a live fetch) that overrides the bundled baseline.
+// Deriving it means the classification cannot be dropped in transit.
+const CLASSIFICATION = Object.fromEntries(
+  TERRITORIES.map((t) => [t.code, { territory: true, status: t.status, sovereign: t.sovereign }])
+);
+const COUNTRY_CLASSIFICATION = { territory: false, status: null, sovereign: null };
+const classify = (code) => CLASSIFICATION[code] ?? COUNTRY_CLASSIFICATION;
 
 // Game modes suggested when a row carries none. Mirrors the bundled default in
 // data/countryPages.js so a fetched page and a bundled page agree.
@@ -89,6 +107,7 @@ export function pageFromCountryRow(row) {
     // draft hasn't been reviewed yet reads as null too, because RLS hides
     // pending rows from the app entirely.
     hero: heroFromMediaRows(row.country_media),
+    ...classify(row.code),
   };
 }
 

@@ -25,7 +25,7 @@ import Material from "../components/Material";
 import GlobeMap from "../components/GlobeMap";
 import BasemapToggle from "../components/BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
-import { COUNTRIES } from "../data/countries";
+import { COUNTRIES, PLACES } from "../data/countries";
 import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
 import { MAP_REGIONS } from "../game/mapRegions";
 import {
@@ -140,7 +140,10 @@ export default function WorldMapScreen({
               inside the same tab rather than a sibling doorway off Home. */}
           {onBrowseIndex && (
             <Pressable onPress={onBrowseIndex} hitSlop={8} style={styles.browseBtn}>
-              <Text style={styles.browseText}>Browse all 196 ›</Text>
+              {/* Counted, not typed. The literal said 196 and the index now lists
+                  the territories too, so the link undercounted the list it
+                  opens the moment the map stopped having holes in it. */}
+              <Text style={styles.browseText}>Browse all {PLACES.length} ›</Text>
             </Pressable>
           )}
         </View>

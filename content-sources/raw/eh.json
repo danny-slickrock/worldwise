@@ -1,0 +1,150 @@
+{
+  "iso": "eh",
+  "fetchedAt": "2026-09-14T23:09:45.488Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "africa/wi.json"
+    }
+  },
+  "wikidata": {
+    "name": "Western Sahara",
+    "gec": "WI",
+    "capital": null,
+    "areaKm2": 266000,
+    "population": 612000,
+    "continent": "Africa",
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Sahrawi peseta",
+      "Moroccan dirham"
+    ],
+    "sharesBorderWithAnyType": [
+      "dz",
+      "mr",
+      "ma"
+    ]
+  },
+  "factbook": {
+    "_path": "africa/wi.json",
+    "Introduction": {
+      "Background": {
+        "text": "Western Sahara is a non-self-governing territory on the northwest coast of Africa bordered by Morocco, Mauritania, and Algeria. After Spain withdrew from its former colony of Spanish Sahara in 1976, Morocco annexed the northern two-thirds of Western Sahara and claimed the rest of the territory in 1979, following Mauritania's withdrawal. A guerrilla war with the Polisario Front contesting Morocco's sovereignty ended in a 1991 cease-fire and the establishment of a UN peacekeeping operation. As part of this effort, the UN sought to offer a choice to the peoples of Western Sahara between independence (favored by the Polisario Front) or integration into Morocco. A proposed referendum on the question of independence never took place due to lack of agreement on voter eligibility. The approximately 1,600 km- (almost 1,000 mi-) long defensive sand berm, built by the Moroccans from 1980 to 1987 and running the length of the territory, continues to separate the opposing forces, with Morocco controlling the roughly three-quarters of the territory west of the berm. There are periodic ethnic tensions between the native Sahrawi population and Moroccan immigrants. Morocco maintains a heavy security presence in the territory. The UN revived direct talks about the territory between Morocco, the Polisario Front, Algeria, and Mauritania in December 2018."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern Africa, bordering the North Atlantic Ocean, between Mauritania and Morocco"
+      },
+      "Area": {
+        "total": {
+          "text": "266,000 sq km"
+        },
+        "land": {
+          "text": "266,000 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "2,049 km"
+        },
+        "border countries": {
+          "text": "Algeria 41 km, Mauritania 1564 km, Morocco 444 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,110 km"
+      },
+      "Climate": {
+        "text": "hot, dry desert; rain is rare; cold offshore air currents produce fog and heavy dew"
+      },
+      "Terrain": {
+        "text": "mostly low, flat desert with large areas of rocky or sandy surfaces rising to small mountains in south and northeast"
+      },
+      "Elevation": {
+        "mean elevation": {
+          "text": "256 m"
+        },
+        "lowest point": {
+          "text": "Sebjet Tah -55 m"
+        },
+        "highest point": {
+          "text": "unnamed elevation 805 m"
+        }
+      },
+      "Natural resources": {
+        "text": "phosphates, iron ore"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "18.8% (2011 est.)"
+        },
+        "arable land / permanent crops / permanent pasture": {
+          "text": "0% (2011 est.) / 0% (2011 est.) / 18.8% (2011 est.)"
+        },
+        "forest": {
+          "text": "2.7% (2011 est.)"
+        },
+        "other": {
+          "text": "78.5% (2011 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "hot, dry, dust/sand-laden sirocco wind can occur during winter and spring; widespread harmattan haze exists 60% of time, often severely restricting visibility"
+      },
+      "Geography - note": {
+        "text": "the waters off the coast are particularly rich fishing areas"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "text": "652,271 (July 2020 est.)",
+        "note": "note: estimate is based on projections by age, sex, fertility, mortality, and migration; fertility and mortality are based on data from neighboring countries"
+      },
+      "Languages": {
+        "text": "Standard Arabic, Hassaniya Arabic, Moroccan Arabic, Berber, Spanish, French"
+      },
+      "Religions": {
+        "text": "Muslim"
+      },
+      "Ethnic groups": {
+        "text": "Arab, Berber"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "86.8% of total population (2020)"
+        },
+        "rate of urbanization": {
+          "text": "2.61% annual rate of change (2015-20 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "most of the population lives in the two-thirds of the area west of the berm (Moroccan-occupied) that divides the territory; about 40% of that populace resides in Laayoune as shown in this population distribution map"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "Western Sahara has a small market-based economy whose main industries are fishing, phosphate mining, tourism, and pastoral nomadism. The territory's arid desert climate makes sedentary agriculture difficult, and much of its food is imported. The Moroccan Government administers Western Sahara's economy and is a key source of employment, infrastructure development, and social spending in the territory. ++ Western Sahara's unresolved legal status makes the exploitation of its natural resources a contentious issue between Morocco and the Polisario. Morocco and the EU in December 2013 finalized a four-year agreement allowing European vessels to fish off the coast of Morocco, including disputed waters off the coast of Western Sahara. As of April 2018, Moroccan and EU authorities were negotiating an amendment to renew the agreement. ++ Oil has never been found in Western Sahara in commercially significant quantities, but Morocco and the Polisario have quarreled over rights to authorize and benefit from oil exploration in the territory. Western Sahara's main long-term economic challenge is the development of a more diverse set of industries capable of providing greater employment and income to the territory. However, following King MOHAMMED VI's November 2015 visit to Western Sahara, the Government of Morocco announced a series of investments aimed at spurring economic activity in the region, while the General Confederation of Moroccan Enterprises announced a $609 million investment initiative in the region in March 2015."
+      },
+      "Industries": {
+        "text": "phosphate mining, handicrafts"
+      },
+      "Exports - commodities": {
+        "text": "phosphates 62% (2012 est.)"
+      },
+      "Imports - commodities": {
+        "text": "fuel for fishing fleet, foodstuffs"
+      }
+    }
+  }
+}

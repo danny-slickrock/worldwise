@@ -1,0 +1,59 @@
+{
+  "iso": "tf",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.749Z",
+  "structured": {
+    "code": "tf",
+    "name": "French Southern and Antarctic Lands",
+    "capital": "Port-aux-Français",
+    "continent": "Africa",
+    "areaKm2": 7829,
+    "population": 196,
+    "officialLanguages": [
+      "French"
+    ],
+    "currencies": [],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "fish, crayfish, note, Glorioso Islands and Tromelin Island (Iles Eparses) have guano, phosphates, and coconuts",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Not one place but a scatter of them across the southern Indian Ocean: Île Amsterdam, Île Saint-Paul, the Îles Crozet, the Îles Kerguelen, and the Îles Éparses — Bassas da India, Europa, the Glorioso Islands, Juan de Nova and Tromelin — some near Madagascar, others about equidistant between Africa, Antarctica and Australia, together with the French-claimed Antarctic sector of Adélie Land. Almost all of it is volcanic rock, reef and wildlife sanctuary, and the only export is fish.",
+    "physicalGeography": "Île Amsterdam is a volcanic island with steep coastal cliffs, the centre floor of its volcano a large plateau; Île Saint-Paul is triangular, the top of a volcano, rocky with steep cliffs on the eastern side and active thermal springs. The Îles Crozet are a large archipelago formed from the Crozet Plateau and divided into two groups. The interior of the large island of the Îles Kerguelen is high mountains, hills, valleys and plains, with peninsulas stretching off its coasts. The Îles Éparses are lower and smaller: Bassas da India is an atoll awash at high tide around a shallow 15 m lagoon, while Europa, the Glorioso Islands, Juan de Nova and Tromelin are low, flat and sandy.",
+    "climate": "Cold and wind-scoured in the south, tropical in the north. Île Amsterdam and Île Saint-Paul are oceanic with persistent westerly winds and high humidity; the Îles Crozet are windy, cold, wet and cloudy; the Îles Kerguelen oceanic, cold, overcast and windy. The Îles Éparses, far to the north, are tropical and subject to periodic cyclones — and Tromelin's position makes it a climatologically important location for forecasting cyclones in the western Indian Ocean.",
+    "economy": "Very small, and almost entirely fishing: fish is the only export, alongside servicing for the military base. Guano, phosphates and coconuts are found on the Glorioso Islands and Tromelin, and crayfish in the surrounding waters.",
+    "peopleAndCulture": ""
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "southeast and east of Africa, islands in the southern Indian Ocean, some near Madagascar and others about equidistant between Africa, Antarctica, and Australia; note - French Southern and Antarctic Lands include Ile Amsterdam, Ile Saint-Paul, Iles Crozet, Iles Kerguelen, Bassas da India, Europa Island, Glorioso Islands, Juan de Nova Island, and Tromelin Island in the southern Indian Ocean, along with the French-claimed sector of Antarctica, \"Adelie Land\"; the US does not recognize the French claim to \"Adelie Land\" || Ile Amsterdam (Ile Amsterdam et Ile Saint-Paul): a volcanic island with steep coastal cliffs; the center floor of the volcano is a large plateau Ile Saint-Paul (Ile Amsterdam et Ile Saint-Paul): triangular in shape, the island is the top of a volcano, rocky with steep cliffs on the eastern side; has active thermal springs Iles Crozet: a large archipelago formed from the Crozet Plateau is divided into two groups of islands Iles Kerguelen: the interior of the large island of Ile Kerguelen is composed of high mountains, hills, valleys, and plains with peninsulas stretching off its coasts Bassas da India (Iles Eparses): atoll, awash at high tide; shallow (15 m) lagoon Europa Island, Glorioso Islands, Juan de Nova Island: low, flat, and sandy Tromelin Island (Iles Eparses): low, flat, sandy; likely volcanic seamount || islands are widely scattered across remote locations in the southern Indian Ocean Bassas da India (Iles Éparses): atoll is a circular reef on top of a long-extinct, submerged volcano Europa Island and Juan de Nova Island (Iles Éparses): wildlife sanctuary for seabirds and sea turtles Glorioso Island (Iles Éparses): an extensive reef system surrounds the island Tromelin Island (Iles Éparses): climatologically important location for forecasting cyclones in the western Indian Ocean; wildlife sanctuary (seabirds, tortoises) || Resources: fish, crayfish, note, Glorioso Islands and Tromelin Island (Iles Eparses) have guano, phosphates, and coconuts || Exports: fish (2023)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "Ile Amsterdam (Ile Amsterdam et Ile Saint-Paul): a volcanic island with steep coastal cliffs; the center floor of the volcano is a large plateau Ile Saint-Paul (Ile Amsterdam et Ile Saint-Paul): triangular in shape, the island is the top of a volcano, rocky with steep cliffs on the eastern side; has active thermal springs Iles Crozet: a large archipelago formed from the Crozet Plateau is divided into two groups of islands Iles Kerguelen: the interior of the large island of Ile Kerguelen is composed of high mountains, hills, valleys, and plains with peninsulas stretching off its coasts Bassas da India (Iles Eparses): atoll, awash at high tide; shallow (15 m) lagoon Europa Island, Glorioso Islands, Juan de Nova Island: low, flat, and sandy Tromelin Island (Iles Eparses): low, flat, sandy; likely volcanic seamount || southeast and east of Africa, islands in the southern Indian Ocean, some near Madagascar and others about equidistant between Africa, Antarctica, and Australia; note - French Southern and Antarctic Lands include Ile Amsterdam, Ile Saint-Paul, Iles Crozet, Iles Kerguelen, Bassas da India, Europa Island, Glorioso Islands, Juan de Nova Island, and Tromelin Island in the southern Indian Ocean, along with the French-claimed sector of Antarctica, \"Adelie Land\"; the US does not recognize the French claim to \"Adelie Land\""
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "Ile Amsterdam et Ile Saint-Paul: oceanic with persistent westerly winds and high humidity Iles Crozet: windy, cold, wet, and cloudy Iles Kerguelen: oceanic, cold, overcast, windy Iles Eparses: tropical || Ile Amsterdam and Ile Saint-Paul are inactive volcanoes; Iles Éparses are subject to periodic cyclones; Bassas da India is a maritime hazard because it is under water for three hours before and after high tide volcanism: Reunion Island - Piton de la Fournaise (2,632 m), which has erupted many times in recent years, is one of the world's most active volcanoes; although rare, eruptions outside the volcano's caldera could threaten nearby cities"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "very small, fishing-based, domestic economic activity; military base servicing || Exports: fish (2023)"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": ""
+    }
+  }
+}

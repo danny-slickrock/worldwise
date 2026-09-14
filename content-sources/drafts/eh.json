@@ -1,0 +1,66 @@
+{
+  "iso": "eh",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.747Z",
+  "structured": {
+    "code": "eh",
+    "name": "Western Sahara",
+    "capital": null,
+    "continent": "Africa",
+    "areaKm2": 266000,
+    "population": 612000,
+    "officialLanguages": [
+      "Arabic"
+    ],
+    "currencies": [
+      "Sahrawi peseta",
+      "Moroccan dirham"
+    ],
+    "landBorderNames": [
+      "Algeria"
+    ],
+    "landBorderCodes": [
+      "dz"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "phosphates, iron ore",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "Mostly low, flat desert — great stretches of rocky or sandy surface rising to small mountains in the south and northeast — along the North Atlantic coast of northern Africa, between Mauritania and Morocco. The land is dry enough that settled farming is difficult and much of the food is imported, but the water offshore is a different story: the waters off this coast are particularly rich fishing areas, and phosphates and iron ore lie under the ground.",
+    "physicalGeography": "Mostly low, flat desert, with large areas of rocky or sandy surface rising to small mountains in the south and northeast. It sits in northern Africa on the North Atlantic coast, between Mauritania and Morocco.",
+    "climate": "Hot, dry desert where rain is rare. Cold offshore air currents produce fog and heavy dew, giving the coast moisture with almost no rainfall behind it. Hot, dry, dust- and sand-laden sirocco winds blow through in winter and spring, and a widespread harmattan haze is present about 60% of the time, often severely restricting visibility.",
+    "economy": "A small market-based economy whose main industries are fishing, phosphate mining, tourism and pastoral nomadism. The arid desert climate makes sedentary agriculture difficult, so much of the food is imported. Morocco administers the territory's economy and is a key source of employment, infrastructure development and social spending there. Because the territory's legal status is unresolved, the right to authorise and benefit from its natural resources is contested between Morocco and the Polisario — over the fisheries offshore, and over oil exploration, which has never found commercially significant quantities. Building a more varied set of industries that can provide employment and income is the long-term economic challenge.",
+    "peopleAndCulture": "Standard Arabic and Hassaniya Arabic are spoken alongside Moroccan Arabic, Berber, Spanish and French — a language list that traces ties across the Maghreb and to Europe. The population is Arab and Berber, and Muslim."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Northern Africa, bordering the North Atlantic Ocean, between Mauritania and Morocco || mostly low, flat desert with large areas of rocky or sandy surfaces rising to small mountains in south and northeast || the waters off the coast are particularly rich fishing areas || Resources: phosphates, iron ore || Exports: phosphates 62% (2012 est.)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly low, flat desert with large areas of rocky or sandy surfaces rising to small mountains in south and northeast || Northern Africa, bordering the North Atlantic Ocean, between Mauritania and Morocco"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "hot, dry desert; rain is rare; cold offshore air currents produce fog and heavy dew || hot, dry, dust/sand-laden sirocco wind can occur during winter and spring; widespread harmattan haze exists 60% of time, often severely restricting visibility"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "Western Sahara has a small market-based economy whose main industries are fishing, phosphate mining, tourism, and pastoral nomadism. The territory's arid desert climate makes sedentary agriculture difficult, and much of its food is imported. The Moroccan Government administers Western Sahara's economy and is a key source of employment, infrastructure development, and social spending in the territory. ++ Western Sahara's unresolved legal status makes the exploitation of its natural resources a contentious issue between Morocco and the Polisario. Morocco and the EU in December 2013 finalized a four-year agreement allowing European vessels to fish off the coast of Morocco, including disputed waters off the coast of Western Sahara. As of April 2018, Moroccan and EU authorities were negotiating an amendment to renew the agreement. ++ Oil has never been found in Western Sahara in commercially significant quantities, but Morocco and the Polisario have quarreled over rights to authorize and benefit from oil exploration in the territory. Western Sahara's main long-term economic challenge is the development of a more diverse set of industries capable of providing greater employment and income to the territory. However, following King MOHAMMED VI's November 2015 visit to Western Sahara, the Government of Morocco announced a series of investments aimed at spurring economic activity in the region, while the General Confederation of Moroccan Enterprises announced a $609 million investment initiative in the region in March 2015. || Exports: phosphates 62% (2012 est.) || Industries: phosphate mining, handicrafts"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "652,271 (July 2020 est.) || Standard Arabic, Hassaniya Arabic, Moroccan Arabic, Berber, Spanish, French || Muslim || Arab, Berber"
+    }
+  }
+}

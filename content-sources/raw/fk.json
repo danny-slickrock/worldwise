@@ -1,0 +1,169 @@
+{
+  "iso": "fk",
+  "fetchedAt": "2026-09-14T23:09:45.952Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "south-america/fk.json"
+    }
+  },
+  "wikidata": {
+    "name": "Falkland Islands",
+    "gec": "FK",
+    "capital": "Stanley",
+    "areaKm2": 12200,
+    "population": 4550,
+    "continent": "South America",
+    "officialLanguages": [
+      "British English"
+    ],
+    "currencies": [
+      "Falkland Islands pound"
+    ],
+    "sharesBorderWithAnyType": []
+  },
+  "factbook": {
+    "_path": "south-america/fk.json",
+    "Introduction": {
+      "Background": {
+        "text": "Although first sighted by an English navigator in 1592, the first landing (English) did not occur until almost a century later in 1690, and the first settlement (French) was not established until 1764. The colony was turned over to Spain two years later, and the islands have since been the subject of a territorial dispute, first between Britain and Spain, then between Britain and Argentina. The UK asserted its claim to the islands by establishing a naval garrison there in 1833. Argentina invaded the islands in 1982. The British responded with an expeditionary force and after fierce fighting forced an Argentine surrender on 14 June 1982. With hostilities ended and Argentine forces withdrawn, UK administration resumed. In response to renewed calls from Argentina for Britain to relinquish control of the islands, a referendum was held in 2013 that resulted in 99.8% of the population voting to remain a part of the UK."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Southern South America, islands in the South Atlantic Ocean, about 500 km east of southern Argentina"
+      },
+      "Area": {
+        "total ": {
+          "text": "12,173 sq km"
+        },
+        "land": {
+          "text": "12,173 sq km"
+        },
+        "water": {
+          "text": "0 sq km"
+        },
+        "note": "<strong>note:</strong> includes the two main islands of East and West Falkland and about 200 small islands"
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "1,288 km"
+      },
+      "Climate": {
+        "text": "cold marine; strong westerly winds, cloudy, humid; rain occurs on more than half of days in year; average annual rainfall is 60 cm in Stanley; occasional snow all year, except in January and February, but typically does not accumulate"
+      },
+      "Terrain": {
+        "text": "rocky, hilly, mountainous with some boggy, undulating plains"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Usborne 705 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        }
+      },
+      "Natural resources": {
+        "text": "fish, squid, wildlife, calcified seaweed, sphagnum moss"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "93.2% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0% (2022 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2022 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 93.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "0% (2022 est.)"
+        },
+        "other": {
+          "text": "6.8% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "strong winds persist throughout the year"
+      },
+      "Geography - note": {
+        "text": "deeply indented coast provides good natural harbors; short growing season"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "3,142 (2021)"
+        },
+        "male": {
+          "text": "1,645"
+        },
+        "female": {
+          "text": "1,497"
+        },
+        "note": "<strong>note:</strong> data include all persons usually resident in the islands at the time of the 2021 census"
+      },
+      "Languages": {
+        "text": "English 89%, Spanish 7.7%, other 3.3% (2006 est.)"
+      },
+      "Religions": {
+        "text": "Christian 57.1%, other 1.6%, none 35.4%, unspecified 6% (2016 est.)"
+      },
+      "Ethnic groups": {
+        "text": "Falkland Islander 48.3%, British 23.1%, St. Helenian 7.5%, Chilean 4.6%, mixed 6%, other 8.5%, unspecified 2% (2016 est.)",
+        "note": "<strong>note: </strong>data represent population by national identity"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "79.7% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.53% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "a very small population, with most residents living in and around Stanley"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "British South American territorial economy; longstanding fishing industry; surging tourism prior to COVID-19 and Brexit; recent offshore hydrocarbon discoveries threaten ecotourism industries; no central bank and must have British approval on currency shifts"
+      },
+      "Agricultural products": {
+        "text": "fodder and vegetable crops; venison, sheep, dairy products; fish, squid"
+      },
+      "Industries": {
+        "text": "fish and wool processing; tourism"
+      },
+      "Exports - commodities": {
+        "text": "shellfish, fish, wool, sheep and goat meat (2023)",
+        "note": "<strong>note:</strong> top export commodities based on value in dollars over $500,000"
+      },
+      "Exports - partners": {
+        "text": "Spain 68%, Morocco 10%, USA 8%, Namibia 3%, Germany 2% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, aircraft parts, prefabricated buildings, plastic products, surveying equipment (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "cold marine; strong westerly winds, cloudy, humid; rain occurs on more than half of days in year; average annual rainfall is 60 cm in Stanley; occasional snow all year, except in January and February, but typically does not accumulate"
+      }
+    }
+  }
+}

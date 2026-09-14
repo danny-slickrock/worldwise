@@ -1720,6 +1720,61 @@ themed, tested and reachable by URL, but missing from `GAME_GRID`.
 
 ---
 
+### Every place on the map — 2026-09-14
+
+Reported as "the map is missing Greenland", which it was. The map drew the 167 sovereign states
+Natural Earth has a 1:110m polygon for, and nothing else, so it had two different kinds of hole and
+Greenland sat in the biggest one. A sweep closed both, plus the content gaps behind them.
+
+**The 29 invisible countries.** Malta, Singapore, Bahrain, the Maldives, Barbados, Tuvalu, the
+Vatican and 22 more have no geometry at that scale. They were not merely small on the map — they
+were absent from it, untappable, and unreachable from any map surface. Each now draws as a point
+symbol at its Natural Earth label coordinate, the standard cartographic treatment for a state too
+small to draw to scale, sized against Luxembourg (the smallest real shape) so the Vatican cannot
+out-measure it. They are **not** in the Country Locator pool: a dot carries position but no shape,
+so "find Tuvalu" would be four identical Pacific dots. Explorable, unaskable.
+
+**The ten missing landmasses.** Greenland, Antarctica, Western Sahara, Kosovo, Puerto Rico, New
+Caledonia, the Falklands and the French Southern Lands are now drawn, tappable, and carry full
+pages. Somaliland and Northern Cyprus have no ISO code to key on, so their land is merged into
+Somalia and Cyprus — following ISO, which removes the hole without this app inventing a code for a
+place or a position on it.
+
+**Territories are places, not countries, and that is enforced rather than described.** `COUNTRIES`
+stays exactly the 196 sovereign states, because quiz pools, learning paths and region collections
+are built from it. The new `PLACES` is the atlas — what the map draws, what search finds, what
+`getCountryPage` resolves. Each territory carries a `status` line ("Autonomous territory of the
+Kingdom of Denmark", "Partially recognised state") shown where a country shows its capital, so a
+territory page can never read as a country's. Status wording follows the map source and the ISO
+register, and names both administrator and claimant where both exist. A test samples 200 rounds
+across five modes and asserts none ever targets one.
+
+**Two content gaps closed on the way.** Cyprus and Palestine were the only two countries with no
+promoted content — thin pages, and absent from Higher or Lower, which draws its numbers from it.
+Neither was a hard content problem: the pipeline resolves a Factbook entry through Wikidata's GEC
+code, Wikidata has no GEC for either, and both fell out of the run with `factbook: null`. Cyprus's
+GEC is simply `cy`; Palestine has no single entry because the Factbook covers the West Bank and the
+Gaza Strip separately, so its draft is written from both. The Factbook index was also excluding the
+`antarctica` folder, which is why Antarctica and the French Southern Lands were the only two
+landmasses with no source at all. **All 204 places now carry promoted content.**
+
+Two smaller things the sweep turned up and fixed:
+
+- Serbia and Kosovo were both classified as **Mediterranean** terrain — two landlocked Balkan
+  basins painted as olive-grove scrub, because their climate lines mention Mediterranean
+  _influences_. A climate influenced by the Mediterranean is not a Mediterranean climate.
+- The flat maps cropped at +79°, cutting the northern tips off Canada, Russia and Norway. Now +84°.
+  Antarctica is deliberately left off those two surfaces: it sits almost entirely below the band,
+  and equirectangular stretches it into the largest thing on the map. It draws correctly on the
+  globe, which is the surface that matters.
+
+Verified by driving the real app in a browser: Greenland on the Home globe and traced on Explore,
+its page with capital, status and four fact sections, Antarctica's page with no capital line at all,
+Malta's point symbol sitting exactly south of Sicily, Cyprus tracing the whole island including the
+Karpas Peninsula, and the index reading "204 of 204 places" with a Territories filter.
+
+---
+
 ## Phase 3 — Education
 
 **Goal:** become the best geography *teaching* platform available — the strengths of Google Classroom,
@@ -1943,6 +1998,22 @@ showing up on a country page in the browser. These steps just point it at produc
 - ☐ **Confirm account deletion removes interests.** `profile_interests` needs to be in whatever
   delete path exists (or `on delete cascade` from `auth.users`), so a deleted account leaves nothing
   behind.
+
+## To publish the new places (2026-09-14) — optional, they already work
+
+The eight territories, plus Cyprus's and Palestine's new content, render today from the bundled
+baseline, so nothing is broken without these. They are what puts the same content in Postgres.
+
+- ☐ **Re-seed content.** `SUPABASE_SERVICE_ROLE_KEY=sb_secret_... npm run seed:content`. It now
+  seeds 204 places rather than 196 and needs no migration — `content.countries` already accepts
+  them (`code` takes any lowercase alpha-2, `capital` is nullable for Antarctica, and the
+  `difficulty` CHECK passes a null). Verified end to end against a local Postgres: `db reset` from
+  scratch, 204 rows seeded, Greenland and Antarctica readable as anon, anon writes still 401.
+  It bumps `content_version`, so clients refetch on next launch — which is what you want, since
+  the pages changed.
+- ☐ **Re-run embeddings afterwards.** `npm run ingest:embeddings`. Ten places have new prose and
+  the AI hub can only cite what it has embedded, so until this runs a question about Greenland has
+  no sources to ground an answer in.
 
 ## Standing habits
 

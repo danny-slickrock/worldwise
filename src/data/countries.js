@@ -1,4 +1,5 @@
 import { COUNTRY_PATHS } from "./worldMap.js";
+import { TERRITORIES } from "./territories.js";
 
 // Full country dataset: the 196 sovereign states of the world
 // (193 UN members + Taiwan, Vatican City, and Palestine).
@@ -225,18 +226,49 @@ export const COUNTRIES = [
   { code: "vu", name: "Vanuatu", capital: "Port Vila", region: "Oceania", difficulty: "hard" },
 ];
 
+// Every place the app can show a page for: the 196 countries plus the
+// non-sovereign territories the map has to draw to not have holes in it.
+//
+// The split matters and is the whole reason TERRITORIES is a separate module.
+// COUNTRIES is the gameplay dataset — quiz pools, learning paths and region
+// collections are all built from it, and "196" is asserted by the test suite.
+// PLACES is the *atlas*: what the map draws, what search can find, and what
+// getCountryPage can resolve. Reach for COUNTRIES when something is a country
+// question and PLACES when it is a place question; the bug this prevents is
+// Greenland turning up as an answer in the Flag Guesser.
+export const PLACES = [...COUNTRIES, ...TERRITORIES];
+
 // Countries with a usable map outline (Shape game draws only from these).
 export const OUTLINE_COUNTRIES = COUNTRIES.filter((c) => !c.noOutline);
 
-// Countries that have a shape on the equirectangular world map (Country Locator
-// draws only from these). Micro-states absent from the 1:110m source — and thus
-// too small to tap anyway — are naturally excluded. See src/data/worldMap.js.
+// Countries that have a real drawn shape on the world map (Country Locator
+// draws only from these).
+//
+// Deliberately COUNTRY_PATHS rather than MAP_PATHS. The 29 micro-states now
+// appear on every map, but as point symbols — a dot carries position and no
+// shape at all, so "find Tuvalu" would offer four identical Pacific dots and
+// test nothing but memory of the answer's pixel. They stay explorable and
+// unaskable. See scripts/build-worldmap.mjs.
 export const LOCATOR_COUNTRIES = COUNTRIES.filter((c) => COUNTRY_PATHS[c.code]);
 
 export const flagUrl = (code) => `https://flagcdn.com/w320/${code}.png`;
 export const outlineUrl = (code) =>
   `https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code}/vector.svg`;
 
-// Shared code → display-name lookup, used anywhere a country needs to show
-// as text rather than a shape (neighbor chips, the World Map's tap label, …).
-export const countryName = (code) => COUNTRIES.find((c) => c.code === code)?.name ?? code.toUpperCase();
+// Shared code → display-name lookup, used anywhere a place needs to show as
+// text rather than a shape (neighbor chips, the map's tap label, the globe's
+// hover tooltip, …).
+//
+// Resolves against PLACES, not COUNTRIES: every one of these callers sits on a
+// map surface, and a map surface draws territories too. Before that, hovering
+// Greenland on the globe produced the tooltip "GL".
+export const countryName = (code) => PLACES.find((c) => c.code === code)?.name ?? code.toUpperCase();
+
+// The full record for a place, country or territory. Returns null for an
+// unknown code rather than a blank shell, so a caller can tell "not a place"
+// from "a place with nothing filled in".
+export const placeFor = (code) => PLACES.find((c) => c.code === code) ?? null;
+
+// Is this code a non-sovereign territory? One predicate, so no surface has to
+// remember that the marker is a `territory` flag rather than, say, a region.
+export const isTerritory = (code) => Boolean(placeFor(code)?.territory);

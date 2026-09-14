@@ -66,7 +66,9 @@ function clean(text) {
     .trim() || null;
 }
 
-const t = (node) => clean(node?.text);
+// Accepts either a raw Factbook node ({ text }) or an already-cleaned string,
+// so the same expression works before and after the multi-entry gather above.
+const t = (node) => (typeof node === "string" ? node : clean(node?.text));
 
 // Land borders, from the Factbook's explicit field rather than Wikidata P47 —
 // which counts maritime borders and would give Japan six neighbours. Absence of
@@ -75,9 +77,16 @@ const t = (node) => clean(node?.text);
 // Resolve land borders into three lists, because they answer different needs:
 // codes drive the app's neighbour relations, names drive prose, and territories
 // must be named accurately without ever being called countries.
-function landBorders(fb, BY_NAME) {
-  const raw = t(fb?.Geography?.["Land boundaries"]?.["border countries"]);
-  const names = parseBorderNames(raw);
+function landBorders(entries, BY_NAME) {
+  // Union across every cached Factbook entry, because a place can be split
+  // across more than one of them: the Factbook covers Palestine as the West
+  // Bank (Israel, Jordan) and the Gaza Strip (Israel, Egypt), and taking only
+  // the first would drop Egypt from a border list that has it.
+  const names = [];
+  for (const fb of entries) {
+    const raw = t(fb?.Geography?.["Land boundaries"]?.["border countries"]);
+    for (const n of parseBorderNames(raw)) if (!names.includes(n)) names.push(n);
+  }
   const codes = [];
   const countries = [];
   const territories = [];
@@ -104,14 +113,34 @@ async function main() {
     const raw = JSON.parse(await readFile(rawPath, "utf8"));
     const w = raw.wikidata;
     const fb = raw.factbook ?? {};
-    const geo = fb.Geography ?? {};
-    const people = fb["People and Society"] ?? {};
-    const econ = fb.Economy ?? {};
+
+    // A place can span several Factbook entries (see FACTBOOK_GEC_OVERRIDES in
+    // fetch-country-sources.mjs). Each stays a separate, labelled excerpt
+    // rather than being merged into one blob — a reviewer has to be able to
+    // see which territory a sentence came from.
+    const entries = [
+      { label: null, fb },
+      ...Object.entries(fb._also ?? {}).map(([gec, e]) => ({ label: gec.toUpperCase(), fb: e })),
+    ];
+    // section -> field across every entry, each labelled with its source when
+    // there is more than one.
+    const g = (section, field) =>
+      entries
+        .map(({ label, fb: e }) => {
+          const text = t(e?.[section]?.[field]);
+          if (!text) return null;
+          return label ? `[${label}] ${text}` : text;
+        })
+        .filter(Boolean)
+        .join(" || ") || null;
+    const geo = new Proxy({}, { get: (_, f) => g("Geography", f) });
+    const people = new Proxy({}, { get: (_, f) => g("People and Society", f) });
+    const econ = new Proxy({}, { get: (_, f) => g("Economy", f) });
 
     const draftPath = path.join(DRAFT_DIR, `${iso}.json`);
     const existing = existsSync(draftPath) ? JSON.parse(await readFile(draftPath, "utf8")) : null;
 
-    const borders = landBorders(fb, BY_NAME);
+    const borders = landBorders(entries.map((e) => e.fb), BY_NAME);
     const structured = {
       code: iso,
       name: w.name,
@@ -170,8 +199,14 @@ async function main() {
         ].filter(Boolean).join(" || "),
       },
       peopleAndCulture: {
-        from: "People and Society > Languages, Religions, Ethnic groups, Urbanization",
+        // Population leads, because for the places with no settled society —
+        // Antarctica, the French Southern Lands — it is the ONLY thing the
+        // Factbook says about people, and without it their pages had no
+        // people section at all. Elsewhere it adds distribution context to
+        // fields that are otherwise pure percentages.
+        from: "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
         excerpt: [
+          t(people.Population),
           t(people.Languages), t(people.Religions), t(people["Ethnic groups"]), t(people.Urbanization),
         ].filter(Boolean).join(" || "),
       },

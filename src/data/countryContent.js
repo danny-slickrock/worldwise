@@ -8,7 +8,10 @@
 // This is both the seed source for content.countries and the offline baseline
 // the app falls back to, so Postgres holds exactly what renders offline.
 //
-// 194 countries. Not promoted (no source prose): cy, ps.
+// 204 places — the 196 countries plus the non-sovereign territories
+// the map draws (see src/data/territories.js), which go through this same
+// pipeline so a territory page is built from the same sources a country's is.
+// Every draft has prose.
 export const COUNTRY_CONTENT = {
   ad: {
     summary: "Tucked into the Pyrenees between France and Spain, this landlocked microstate sits astride crossroads that have long mattered for crossing the mountains. Its rugged terrain hasn't stopped it from becoming a tourist hub and duty-free trading point between two much larger neighbors.",
@@ -98,6 +101,18 @@ export const COUNTRY_CONTENT = {
       climate: "The south and coastal areas up to Luanda are semiarid, while the north experiences a cool, dry season from May to October and a hot, rainy season from November to April. Locally heavy rainfall on the plateau can cause periodic flooding.",
       economy: "Angola is a middle-income economy heavily dependent on oil, with widespread poverty alongside rising inflation and currency depreciation. It is working toward diversification through agricultural production, though corruption in public institutions remains significant, and it has drawn major infrastructure investment from China and the United States; the country exited OPEC in 2023. Its exports center on crude petroleum, diamonds, natural gas, ships, and refined petroleum, while industries range from petroleum and mining to cement, food processing, textiles, and ship repair.",
       people_and_culture: "Angola's population reflects a mix of ethnic groups including the Ovimbundu, Kimbundu, and Bakongo, alongside smaller Mestico and European communities. Portuguese is the official language, spoken by the large majority, though Umbundu, Kikongo, Kimbundu, and several other languages remain in use. Religiously, the population is largely Roman Catholic and Protestant, with smaller shares practicing other faiths or none at all.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  aq: {
+    summary: "A continent almost entirely south of the Antarctic Circle, and almost entirely ice: 99% of Antarctica's land sits under the largest single mass of ice on Earth, about 14 million sq km of it holding nearly 62% of the world's fresh water. It is the coldest, windiest, driest and — on average — highest continent, with average elevations between 2,000 and 4,000 m. One consequence is genuinely strange: during the summer, more solar radiation reaches the surface at the South Pole than reaches the equator over the same period.",
+    population: 5000,
+    areaKm2: 13720000,
+    neighbors: [],
+    facts: {
+      physical_geography: "About 99% thick continental ice sheet and 1% barren rock, with average elevations between 2,000 and 4,000 m and mountain ranges rising to nearly 5,000 m. Ice-free coastal areas are the exception rather than the rule: parts of southern Victoria Land, Wilkes Land, the Antarctic Peninsula area, and parts of Ross Island on McMurdo Sound. Glaciers form ice shelves along about half of the coastline, and floating ice shelves make up 11% of the area of the continent.",
+      climate: "The coldest, windiest and driest continent on Earth. Severe low temperatures vary with latitude, elevation and distance from the ocean: East Antarctica is colder than West Antarctica because it sits higher, and the Antarctic Peninsula has the most moderate climate of all, with coastal highs in January averaging slightly below freezing. Summer is continuous daylight and winter continuous darkness, while persistent high pressure over the interior brings dry, sinking air and very little cloud. Katabatic winds pour coastward off the high interior under gravity alone, blizzards form near the foot of the plateau, and cyclonic storms track clockwise along the coast, where large icebergs may calve from the ice shelves.",
+      people_and_culture: "There are no permanent inhabitants. People live instead at year-round and summer-only research stations, and the population swings with the season: roughly 5,000 in summer and about 1,100 in winter, with around another 1,000 support personnel on ships nearby. Fifty-six countries have signed the 1959 Antarctic Treaty and 30 of them operate stations on the continent and its nearby islands — the largest summer contingents being those of the United States, Argentina, Chile and the United Kingdom.",
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
@@ -543,6 +558,19 @@ export const COUNTRY_CONTENT = {
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
+  cy: {
+    summary: "The third-largest island in the Mediterranean lies south of Turkey, on a seam that geographers cannot agree on: Cyprus views itself as part of Europe, while the island can reasonably be filed under Europe, the Middle East, or both. A central plain runs between mountain ranges to the north and south, and the export list — ships, refined petroleum, packaged medicine, cheese — describes a services economy rather than the copper, gypsum and marble sitting under its hills.",
+    population: 1344976,
+    areaKm2: 9242.45,
+    neighbors: [],
+    facts: {
+      physical_geography: "A central plain runs between mountains rising to the north and south of it, with scattered but significant plains along the southern coast. Cyprus sits in the eastern Mediterranean, south of Turkey, and is the third-largest island in that sea after Sicily and Sardinia — a position that is exactly why its filing is ambiguous, falling within Europe, the Middle East, or both depending on who is drawing the map.",
+      climate: "Temperate and thoroughly Mediterranean: hot, dry summers and cool winters. Droughts are the recurring hazard, and the island sees moderate earthquake activity.",
+      economy: "A services-based, high-income EU island economy that leans heavily on tourism, with high living standards and sustained growth between the recovery of its national banking system and the trade restrictions of COVID-19. It is a known financial hub whose stock exchange functions as an investment bridge between EU and EEU member countries. Exports run to ships, refined petroleum, packaged medicine, cheese and scented mixtures, while industry covers tourism, food and beverage processing, cement and gypsum, ship repair and refurbishment, textiles, light chemicals, metal products, wood, paper, stone and clay.",
+      people_and_culture: "Of the population counted, 98.8% is Greek, with Maronite, Armenian and Turkish-Cypriot communities among the remaining 1%. Eastern Orthodox Christianity is overwhelmingly the largest faith at 89.1%, followed by Roman Catholics at 2.9%, Protestant and Anglican at 2%, and Muslims at 1.8%, with smaller Buddhist, Maronite Catholic, Armenian Apostolic and Hindu communities beside them.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
   cz: {
     summary: "Landlocked at the crossroads of central Europe, this country sits astride some of the continent's oldest and most significant land routes, including the Moravian Gate, a traditional military corridor linking the North European Plain to the Danube. Beneath its surface lies the Hranice Abyss, the world's deepest surveyed freshwater cave at 519 meters, though incomplete surveys suggest it could run as deep as 800 to 1,200 meters.",
     population: 10909500,
@@ -673,6 +701,19 @@ export const COUNTRY_CONTENT = {
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
+  eh: {
+    summary: "Mostly low, flat desert — great stretches of rocky or sandy surface rising to small mountains in the south and northeast — along the North Atlantic coast of northern Africa, between Mauritania and Morocco. The land is dry enough that settled farming is difficult and much of the food is imported, but the water offshore is a different story: the waters off this coast are particularly rich fishing areas, and phosphates and iron ore lie under the ground.",
+    population: 612000,
+    areaKm2: 266000,
+    neighbors: ["dz"],
+    facts: {
+      physical_geography: "Mostly low, flat desert, with large areas of rocky or sandy surface rising to small mountains in the south and northeast. It sits in northern Africa on the North Atlantic coast, between Mauritania and Morocco.",
+      climate: "Hot, dry desert where rain is rare. Cold offshore air currents produce fog and heavy dew, giving the coast moisture with almost no rainfall behind it. Hot, dry, dust- and sand-laden sirocco winds blow through in winter and spring, and a widespread harmattan haze is present about 60% of the time, often severely restricting visibility.",
+      economy: "A small market-based economy whose main industries are fishing, phosphate mining, tourism and pastoral nomadism. The arid desert climate makes sedentary agriculture difficult, so much of the food is imported. Morocco administers the territory's economy and is a key source of employment, infrastructure development and social spending there. Because the territory's legal status is unresolved, the right to authorise and benefit from its natural resources is contested between Morocco and the Polisario — over the fisheries offshore, and over oil exploration, which has never found commercially significant quantities. Building a more varied set of industries that can provide employment and income is the long-term economic challenge.",
+      people_and_culture: "Standard Arabic and Hassaniya Arabic are spoken alongside Moroccan Arabic, Berber, Spanish and French — a language list that traces ties across the Maghreb and to Europe. The population is Arab and Berber, and Muslim.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
   er: {
     summary: "Eritrea sits on the Red Sea between Djibouti and Sudan, holding a stretch of one of the world's busiest shipping lanes. Its territory runs from a coastal desert plain up into highlands that continue the Ethiopian ranges, with hilly ground to the northwest and flatter plains to the southwest. Beneath this varied terrain lie deposits of gold, potash, zinc, and copper, alongside possible oil and natural gas.",
     population: 3497000,
@@ -735,6 +776,19 @@ export const COUNTRY_CONTENT = {
       climate: "Fiji has a tropical marine climate with only slight seasonal temperature variation. Cyclonic storms can occur between November and January.",
       economy: "Fiji is an upper-middle income, tourism-based Pacific island economy that has seen a resurgence in tourism after the pandemic along with improved debt standing, though it operates with a limited workforce and remains susceptible to ocean rises. Key industries include tourism, sugar processing, clothing manufacture, copra, gold, silver, and lumber, while resources include timber, fish, gold, copper, offshore oil potential, and hydropower. Its main exports are water, fish, raw sugar, refined petroleum, and garments.",
       people_and_culture: "Fiji has three official languages: English, iTaukei, and Fiji Hindi. The population is predominantly iTaukei, a group of mainly Melanesian ancestry with some Polynesian admixture, alongside a substantial Indo-Fijian community along with smaller numbers of Rotuman and other groups. Religiously, Protestant Christians form the largest share, with sizable Hindu and Roman Catholic populations along with smaller Muslim and Sikh communities.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  fk: {
+    summary: "Islands in the South Atlantic Ocean about 500 km east of southern Argentina — rocky, hilly and mountainous, with some boggy, undulating plains between. The deeply indented coast provides good natural harbours, and the growing season is short. What the islands send out comes from the sea and the hills: shellfish, fish, wool, and sheep and goat meat.",
+    population: 4550,
+    areaKm2: 12200,
+    neighbors: [],
+    facts: {
+      physical_geography: "Rocky, hilly and mountainous, with some boggy, undulating plains. The islands lie off southern South America, in the South Atlantic Ocean about 500 km east of southern Argentina, and their deeply indented coast provides good natural harbours.",
+      climate: "Cold marine, with strong westerly winds that persist throughout the year, cloud and humidity. Rain falls on more than half the days of the year — an average of 60 cm annually in Stanley — and snow can fall in any month except January and February, though it typically does not accumulate.",
+      economy: "A British South American territorial economy with a longstanding fishing industry. Tourism was surging before COVID-19 and Brexit, and recent offshore hydrocarbon discoveries sit uneasily beside the ecotourism industries they threaten. Fish and wool processing and tourism are the industries; shellfish, fish, wool, and sheep and goat meat the exports. There is no central bank, and currency shifts require British approval.",
+      people_and_culture: "A population of only a few thousand people. English is spoken by 89% and Spanish by 7.7%. Nearly half — 48.3% — identify as Falkland Islanders, with British at 23.1%, St Helenian at 7.5% and Chilean at 4.6%. Christianity accounts for 57.1%, while 35.4% report no religion, one of the higher shares recorded anywhere.",
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
@@ -826,6 +880,19 @@ export const COUNTRY_CONTENT = {
       climate: "The climate is tropical throughout, though conditions vary by region: warm and comparatively dry along the southeast coast, hot and humid in the southwest, and hot and dry in the north. Between January and March, the harmattan brings dry, dusty northeastern winds, and the country experiences droughts.",
       economy: "Ghana is a West African lower-middle income economy and a major exporter of gold, oil, and cocoa. After nearly four decades of sustained growth, it has faced macroeconomic challenges, though it has made recent progress on debt restructuring, fiscal reforms, financial stability, and curbing inflation under a 2023-26 IMF credit facility program. Its industries include mining, lumbering, light manufacturing, aluminum smelting, food processing, cement, small commercial shipbuilding, and petroleum.",
       people_and_culture: "Ghana's population is ethnically diverse, with the Asante the largest single group at 16%, followed by the Ewe, Fante, and numerous other groups including the Boron, Dagomba, Dangme, Dagarte, Kokomba, Akyem, and Ga. By broader ethnic grouping, the Akan make up 45.7% of the population, followed by the Mole-Dagbani, Ewe, and Ga-Dangme. Christianity is the majority religion at 71.3%, split among Pentecostal/Charismatic, Protestant, and Catholic adherents, with Islam practiced by 19.9% and traditionalist beliefs by 3.2%.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  gl: {
+    summary: "The world's largest island is, in practice, a single enormous sheet of ice. A flat to gradually sloping icecap covers about 79% of Greenland, leaving a narrow, mountainous, barren, rocky coast as the only place anyone lives. That ice is the second-largest mass on Earth after Antarctica's — 1.71 million sq km of it, holding almost 7% of the world's fresh water — and the people are a rounding error beside it: a population under 60,000, in small settlements along the shore, close to a quarter of them in the capital, Nuuk.",
+    population: 56609,
+    areaKm2: 2166086,
+    neighbors: [],
+    facts: {
+      physical_geography: "A flat to gradually sloping icecap covers all but a narrow, mountainous, barren, rocky rim of coast. Greenland lies in northern North America, an island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada, and it dominates the North Atlantic between North America and Europe. The ice sheet covers 1.71 million sq km, about 79% of the island, and contains 2.85 million cu km of ice.",
+      climate: "Arctic to subarctic: cool summers and cold winters. Continuous permafrost underlies the northern two-thirds of the island.",
+      economy: "A high-income, self-governing Danish territorial economy. It is not an EU member but holds preferential market access, and it depends on Danish financial support. Fishing leads exports — fish, shellfish and processed crustaceans, alongside ships and precious stones — and fish processing, chiefly shrimp and Greenland halibut, anchors industry, with anorthosite and ruby mining, handicrafts, hides and skins, and small shipyards beside it. Tourism is growing, as is interest in untapped mineral deposits, and hydropower supplies the fuel.",
+      people_and_culture: "Greenlandic, Danish and English are spoken. About 88.1% of residents are Greenlandic and 7.1% Danish, with Filipino residents at 1.6% and other Nordic peoples at 0.9%. Religious life is Evangelical Lutheran alongside traditional Inuit spiritual beliefs. The whole population is confined to coastal settlements, with close to a quarter of it in Nuuk.",
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
@@ -1635,6 +1702,19 @@ export const COUNTRY_CONTENT = {
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
+  nc: {
+    summary: "Islands in the South Pacific Ocean east of Australia: a main island that is one of the largest in the Pacific, the Îles Loyauté archipelago, and numerous small, sparsely populated islands and atolls, all coastal plains around interior mountains. What sets the place apart is underground. Enormous nickel reserves — with chrome, iron, cobalt, manganese, silver, gold, lead and copper beside them — mean that nickel mining and smelting is essentially the whole of local industry.",
+    population: 278500,
+    areaKm2: 18576,
+    neighbors: [],
+    facts: {
+      physical_geography: "Coastal plains with interior mountains. New Caledonia lies in Oceania, in the South Pacific Ocean east of Australia, and consists of the main island of New Caledonia — one of the largest in the Pacific Ocean — the archipelago of the Îles Loyauté, and numerous small, sparsely populated islands and atolls.",
+      climate: "Tropical, modified by the southeast trade winds, and hot and humid. Cyclones are most frequent from November to March, and Matthew and Hunter Islands are historically volcanically active.",
+      economy: "An upper-middle-income French Pacific territorial economy resting on enormous nickel reserves; it is a large exporter of nickel to China, and nickel mining and smelting is the dominant industry. Exports are led by iron alloys, nickel and nickel ore, with processed crustaceans and shellfish behind them. It is also a luxury eco-tourism destination and a large recipient of French aid, and it carries a high cost of living and lingering wealth disparities.",
+      people_and_culture: "Kanak people, the Indigenous population, make up 39.1%, Europeans 27.1%, and Wallisian and Futunian communities 8.2%, with Tahitian, Indonesian, Ni-Vanuatu and Vietnamese communities beside them. Christianity is the majority religion at 85.2% and Islam at 2.8%, while about 10.4% are unaffiliated.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
   ne: {
     summary: "Niger is landlocked and ranks among the hottest countries on Earth, with a northern four-fifths given over to desert and only a southern strip of savanna suitable for livestock and limited farming. Beneath that harsh terrain lies a wealth of uranium, along with coal, iron ore, tin, gold, and petroleum.",
     population: 21477348,
@@ -1827,6 +1907,32 @@ export const COUNTRY_CONTENT = {
       climate: "Poland has a temperate climate with cold, cloudy, moderately severe winters marked by frequent precipitation, and mild summers with frequent showers and thundershowers. Flooding is a recurring hazard.",
       economy: "Poland is a high-income, diversified economy and EU member that has seen significant growth in GDP, trade, and investment since joining the EU in 2004, driven by private consumption and EU-funded public investment. Increased social spending, flood recovery costs, and defense spending have added to public debt. Key industries include machine building, iron and steel, coal mining, chemicals, shipbuilding, food processing, glass, beverages, and textiles, while major exports include vehicle parts and accessories, electric batteries, plastic products, cars, and seats.",
       people_and_culture: "The population is overwhelmingly Polish by ethnicity, at 96.9 percent, with small Silesian, German, and Ukrainian minorities. Roman Catholicism dominates religious life at 70.7 percent, though a notable 20.9 percent declined to answer and 6.9 percent report no religion, with numerous smaller Christian and other faiths each accounting for less than one percent.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  pr: {
+    summary: "A Caribbean island of mountains and coast: precipitous mountains fall straight to the sea on the west coast, a fertile coastal plain belt runs along the north, and sandy beaches line most of the shore. Position is the other half of the story — the island sits on the Mona Passage, a key shipping lane to the Panama Canal, and San Juan is one of the biggest and best natural harbours in the Caribbean. Many small rivers running off the high central mountains keep the land well watered, though the south coast stays relatively dry.",
+    population: 3285874,
+    areaKm2: 9104,
+    neighbors: [],
+    facts: {
+      physical_geography: "Mostly mountains, with a coastal plain in the north and precipitous mountains dropping to the sea on the west coast; sandy beaches run along most coastal areas. The island lies in the Caribbean between the Caribbean Sea and the North Atlantic Ocean, east of the Dominican Republic.",
+      climate: "Tropical marine and mild, with little seasonal variation in temperature. Periodic droughts and hurricanes are the hazards that matter.",
+      economy: "A US Caribbean island territorial economy, hit hard by COVID-19 and by hurricanes, with a declining labour force and weak job growth following a decade of continuous recession. Capital-based industry and tourism carry it: pharmaceuticals, electronics, apparel and food products, with exports led by packaged medicines, medical cultures and vaccines, hormones, orthopaedic and medical appliances, and sulfur compounds. Poverty is high and the island is dependent on imported energy.",
+      people_and_culture: "Roman Catholics are the largest religious group at 56%, with Protestants — largely Pentecostal — at 33%, and about 7% reporting no religion. In the 2010 count, 75.8% of residents identified as White, 12.4% as Black or African American, 8.5% as other groups including American Indian, Alaskan Native, Native Hawaiian and other Pacific Islander, and 3.3% as mixed.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  ps: {
+    summary: "Palestine is two separated territories with two different landscapes. The West Bank is rugged, dissected upland in the west, dropping east in flat plains to the Jordan River Valley; it is landlocked, and its highlands are the main recharge area for Israel's coastal aquifers. The Gaza Strip is a flat to rolling, sand- and dune-covered coastal plain on the Mediterranean between Egypt and Israel, on ground that was once a strategic link along trade routes between the Middle East and North Africa. What the territories send out is modest and physical: scrap iron, tropical fruits, olive oil, building stone.",
+    population: 5227193,
+    areaKm2: 6020,
+    neighbors: ["il","jo","eg"],
+    facts: {
+      physical_geography: "The West Bank is mostly rugged, dissected upland in the west, with flat plains descending eastward to the Jordan River Valley; it lies west of Jordan and east of Israel. The Gaza Strip is separate from it, a flat to rolling, sand- and dune-covered coastal plain on the Mediterranean between Egypt and Israel.",
+      climate: "Temperate across both territories, with warm to hot summers and cool to mild winters. In the West Bank temperature and precipitation vary with altitude, which changes sharply over short distances; Gaza is milder in winter and dry and warm to hot in summer. Drought is the standing hazard in both.",
+      economy: "Small-scale and physical on both sides. West Bank industry runs to small-scale manufacturing, quarrying, textiles, soap, olive-wood carvings and mother-of-pearl souvenirs; Gaza's to textiles, food processing and furniture. Exports from the territories are led by scrap iron, tropical fruits, olive oil, building stone and prepared meat.",
+      people_and_culture: "The population is Palestinian Arab, with Jewish and other communities also present in the West Bank. There, Muslims — predominantly Sunni — are 80 to 85%, Jewish residents 12 to 14%, and Christians 1 to 2.5%, mainly Greek Orthodox. Gaza is far more uniform: Muslim at 98 to 99%, again predominantly Sunni, with Christians and everyone else under 1%.",
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
@@ -2181,6 +2287,18 @@ export const COUNTRY_CONTENT = {
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },
+  tf: {
+    summary: "Not one place but a scatter of them across the southern Indian Ocean: Île Amsterdam, Île Saint-Paul, the Îles Crozet, the Îles Kerguelen, and the Îles Éparses — Bassas da India, Europa, the Glorioso Islands, Juan de Nova and Tromelin — some near Madagascar, others about equidistant between Africa, Antarctica and Australia, together with the French-claimed Antarctic sector of Adélie Land. Almost all of it is volcanic rock, reef and wildlife sanctuary, and the only export is fish.",
+    population: 196,
+    areaKm2: 7829,
+    neighbors: [],
+    facts: {
+      physical_geography: "Île Amsterdam is a volcanic island with steep coastal cliffs, the centre floor of its volcano a large plateau; Île Saint-Paul is triangular, the top of a volcano, rocky with steep cliffs on the eastern side and active thermal springs. The Îles Crozet are a large archipelago formed from the Crozet Plateau and divided into two groups. The interior of the large island of the Îles Kerguelen is high mountains, hills, valleys and plains, with peninsulas stretching off its coasts. The Îles Éparses are lower and smaller: Bassas da India is an atoll awash at high tide around a shallow 15 m lagoon, while Europa, the Glorioso Islands, Juan de Nova and Tromelin are low, flat and sandy.",
+      climate: "Cold and wind-scoured in the south, tropical in the north. Île Amsterdam and Île Saint-Paul are oceanic with persistent westerly winds and high humidity; the Îles Crozet are windy, cold, wet and cloudy; the Îles Kerguelen oceanic, cold, overcast and windy. The Îles Éparses, far to the north, are tropical and subject to periodic cyclones — and Tromelin's position makes it a climatologically important location for forecasting cyclones in the western Indian Ocean.",
+      economy: "Very small, and almost entirely fishing: fish is the only export, alongside servicing for the military base. Guano, phosphates and coconuts are found on the Glorioso Islands and Tromelin, and crayfish in the surrounding waters.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
   tg: {
     summary: "Wedged between Benin and Ghana on the Bight of Benin, Togo packs six distinct geographic regions and a climate spanning tropical to savanna into a narrow strip of West Africa. Its resource base of phosphates, limestone, marble, and arable land underpins an economy that also exports gold, refined petroleum, and soybeans.",
     population: 7797694,
@@ -2477,6 +2595,19 @@ export const COUNTRY_CONTENT = {
       climate: "The climate is tropical, with a rainy season running from November to April and a dry season from May to October. The islands are subject to occasional cyclones, and volcanism remains active, with Savai'i Island's volcano, rising to 1,858 meters, historically active.",
       economy: "Samoa is a lower middle-income Pacific island economy built on large fishing and agriculture industries, supplemented by significant remittances and a growing offshore financial sector. It has recently hosted the Pacific Games as part of an effort to drive tourism and infrastructure growth. Its main industries include food processing, building materials, and auto parts, while exports feature refined petroleum, integrated circuits, coconut oil, fish, and insulated wire.",
       people_and_culture: "The population is overwhelmingly Samoan, a Polynesian people, with Samoan and English both recognized as official languages and most residents speaking Samoan alone or alongside English. Christianity dominates religious life, with Protestant denominations, particularly Congregationalist and Methodist, making up more than half the population, alongside sizable Roman Catholic and Church of Jesus Christ communities. Ethnically, the country is almost entirely Samoan.",
+      _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
+    },
+  },
+  xk: {
+    summary: "A flat river basin 400 to 700 m above sea level, ringed by high mountain ranges reaching 2,000 to 2,500 m, in southeastern Europe between Serbia and North Macedonia. One small river here does something remarkable: the 41-km Nerodimka divides into two branches that finish in different seas — the northern one flowing via the Sitnica, Ibar, Morava and Danube to the Black Sea, the southern via the Lepenac and Vardar to the Aegean.",
+    population: 1586659,
+    areaKm2: 10909,
+    neighbors: ["al","mk","me","rs"],
+    facts: {
+      physical_geography: "A flat fluvial basin at an elevation of 400 to 700 m above sea level, surrounded by several high mountain ranges with elevations of 2,000 to 2,500 m. It lies in southeastern Europe, between Serbia and North Macedonia.",
+      climate: "Continental air masses dominate, bringing relatively cold winters with heavy snowfall and hot, dry summers and autumns. Mediterranean and alpine influences create real regional variation across a small area, and the heaviest rain falls between October and December.",
+      economy: "A small but growing European economy, not an EU member yet a unilateral user of the euro. Unemployment is very high, especially among young people, and the economy leans on diaspora tourism services — a reliance that proved vulnerable when COVID-19 curtailed travel. Mineral mining is the industrial backbone, alongside construction materials, base metals, leather, machinery, appliances, foodstuffs and beverages, and textiles; exports run to mattress materials, iron alloys, metal piping, scrap iron and building plastics.",
+      people_and_culture: "Albanians make up 92.9% of the population, with Bosniaks at 1.6%, Serbs at 1.5% and Turks at 1.1%, alongside Ashkali, Egyptian, Gorani and Romani communities. Islam is by far the largest religion at 95.6%, followed by Roman Catholics at 2.2% and Orthodox Christians at 1.5%.",
       _sources: {"prose":"CIA World Factbook (public domain)","structured":"Wikidata (CC0)"},
     },
   },

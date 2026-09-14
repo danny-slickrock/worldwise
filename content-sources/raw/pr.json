@@ -1,0 +1,175 @@
+{
+  "iso": "pr",
+  "fetchedAt": "2026-09-14T23:09:45.720Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "central-america-n-caribbean/rq.json"
+    }
+  },
+  "wikidata": {
+    "name": "Puerto Rico",
+    "gec": "RQ",
+    "capital": "San Juan",
+    "areaKm2": 9104,
+    "population": 3285874,
+    "continent": "North America",
+    "officialLanguages": [
+      "Spanish",
+      "English"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "sharesBorderWithAnyType": []
+  },
+  "factbook": {
+    "_path": "central-america-n-caribbean/rq.json",
+    "Introduction": {
+      "Background": {
+        "text": "Populated for centuries by aboriginal peoples, Puerto Rico was claimed by the Spanish Crown in 1493 after Christopher COLUMBUS' second voyage to the Americas. In 1898, after 400 years of colonial rule that saw the indigenous population nearly exterminated and African slave labor introduced, Puerto Rico was ceded to the US as a result of the Spanish-American War. Puerto Ricans were granted US citizenship in 1917. Popularly elected governors have served since 1948. In 1952, a constitution was enacted that provided for internal self-government. In plebiscites held in 1967, 1993, and 1998, voters chose not to alter the existing political status with the US, but the results of a 2012 vote left open the possibility of American statehood. A referendum held in late 2020 showed a narrow preference for statehood.<br><br>Economic recession on the island has led to a net population loss since about 2005, as large numbers of residents moved to the US mainland. In 2017, Hurricane Maria was the worst storm to hit the island in eight decades, and damage was estimated in the tens of billions of dollars. "
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, east of the Dominican Republic"
+      },
+      "Area": {
+        "total ": {
+          "text": "9,104 sq km"
+        },
+        "land": {
+          "text": "8,959 sq km"
+        },
+        "water": {
+          "text": "145 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "501 km"
+      },
+      "Climate": {
+        "text": "tropical marine, mild; little seasonal temperature variation"
+      },
+      "Terrain": {
+        "text": "mostly mountains with coastal plain in north; precipitous mountains to the sea on west coast; sandy beaches along most coastal areas"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Cerro de Punta 1,338 m"
+        },
+        "lowest point": {
+          "text": "Caribbean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "261 m"
+        }
+      },
+      "Natural resources": {
+        "text": "some copper and nickel; potential for onshore and offshore oil"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "19% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 5.7% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 1.8% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 11.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "50.3% (2023 est.)"
+        },
+        "other": {
+          "text": "30.6% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "periodic droughts; hurricanes"
+      },
+      "Geography - note": {
+        "text": "important location along the Mona Passage, a key shipping lane to the Panama Canal; San Juan is one of the biggest and best natural harbors in the Caribbean; many small rivers and high central mountains ensure land is well-watered; south coast relatively dry; fertile coastal plain belt in north"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "2,984,841 (2025 est.)"
+        },
+        "male": {
+          "text": "1,400,771"
+        },
+        "female": {
+          "text": "1,584,070"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Spanish, English"
+        },
+        "major-language sample(s)": {
+          "text": "<br>La Libreta Informativa del Mundo, la fuente indispensable de información básica. (Spanish)<br><br>The World Factbook, the indispensable source for basic information."
+        }
+      },
+      "Religions": {
+        "text": "Roman Catholic 56%, Protestant 33% (largely Pentecostal), other 2%, atheist 1%, none 7% (2014 est.)"
+      },
+      "Ethnic groups": {
+        "text": "White 75.8%, Black/African American 12.4%, other 8.5% (includes American Indian, Alaskan Native, Native Hawaiian, other Pacific Islander, and others), mixed 3.3% (2010 est.)",
+        "note": "<strong>note:</strong> 99% of the population is Latino"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "93.6% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "-0.12% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population clusters tend to be found along the coast, with the largest of these in and around San Juan; an exception is a sizeable population located in the interior of the island immediately south of the capital around Caguas; most of the interior, particularly in the western half of the island, is dominated by the Cordillera Central mountains, where population density is low"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "US Caribbean island territorial economy; hit hard by COVID-19 and hurricanes; declining labor force and job growth after a decade of continuous recession; capital-based industry and tourism; high poverty; energy import-dependent"
+      },
+      "Agricultural products": {
+        "text": "milk, plantains, bananas, tomatoes, chicken, oranges, mangoes/guavas, pineapples, eggs, pumpkins/squash (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "pharmaceuticals, electronics, apparel, food products, tourism"
+      },
+      "Exports - commodities": {
+        "text": "packaged medicines, medical cultures/vaccines, hormones, orthopedic and medical appliances, sulfur compounds (2019)",
+        "note": "top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Italy 15%, Netherlands 15%, Belgium 9%, Japan 8%, Germany 8%, Austria 8%, Spain 7%, China 5% (2019)"
+      },
+      "Imports - commodities": {
+        "text": "nitrogen compounds, sulfur compounds, refined petroleum, medical cultures/vaccines, cars (2019)"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "tropical marine, mild; little seasonal temperature variation"
+      }
+    }
+  }
+}

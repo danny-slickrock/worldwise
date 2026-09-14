@@ -1,0 +1,62 @@
+{
+  "iso": "pr",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.748Z",
+  "structured": {
+    "code": "pr",
+    "name": "Puerto Rico",
+    "capital": "San Juan",
+    "continent": "North America",
+    "areaKm2": 9104,
+    "population": 3285874,
+    "officialLanguages": [
+      "Spanish",
+      "English"
+    ],
+    "currencies": [
+      "United States dollar"
+    ],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "some copper and nickel; potential for onshore and offshore oil",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "A Caribbean island of mountains and coast: precipitous mountains fall straight to the sea on the west coast, a fertile coastal plain belt runs along the north, and sandy beaches line most of the shore. Position is the other half of the story — the island sits on the Mona Passage, a key shipping lane to the Panama Canal, and San Juan is one of the biggest and best natural harbours in the Caribbean. Many small rivers running off the high central mountains keep the land well watered, though the south coast stays relatively dry.",
+    "physicalGeography": "Mostly mountains, with a coastal plain in the north and precipitous mountains dropping to the sea on the west coast; sandy beaches run along most coastal areas. The island lies in the Caribbean between the Caribbean Sea and the North Atlantic Ocean, east of the Dominican Republic.",
+    "climate": "Tropical marine and mild, with little seasonal variation in temperature. Periodic droughts and hurricanes are the hazards that matter.",
+    "economy": "A US Caribbean island territorial economy, hit hard by COVID-19 and by hurricanes, with a declining labour force and weak job growth following a decade of continuous recession. Capital-based industry and tourism carry it: pharmaceuticals, electronics, apparel and food products, with exports led by packaged medicines, medical cultures and vaccines, hormones, orthopaedic and medical appliances, and sulfur compounds. Poverty is high and the island is dependent on imported energy.",
+    "peopleAndCulture": "Roman Catholics are the largest religious group at 56%, with Protestants — largely Pentecostal — at 33%, and about 7% reporting no religion. In the 2010 count, 75.8% of residents identified as White, 12.4% as Black or African American, 8.5% as other groups including American Indian, Alaskan Native, Native Hawaiian and other Pacific Islander, and 3.3% as mixed."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, east of the Dominican Republic || mostly mountains with coastal plain in north; precipitous mountains to the sea on west coast; sandy beaches along most coastal areas || important location along the Mona Passage, a key shipping lane to the Panama Canal; San Juan is one of the biggest and best natural harbors in the Caribbean; many small rivers and high central mountains ensure land is well-watered; south coast relatively dry; fertile coastal plain belt in north || Resources: some copper and nickel; potential for onshore and offshore oil || Exports: packaged medicines, medical cultures/vaccines, hormones, orthopedic and medical appliances, sulfur compounds (2019)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "mostly mountains with coastal plain in north; precipitous mountains to the sea on west coast; sandy beaches along most coastal areas || Caribbean, island between the Caribbean Sea and the North Atlantic Ocean, east of the Dominican Republic"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "tropical marine, mild; little seasonal temperature variation || periodic droughts; hurricanes"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "US Caribbean island territorial economy; hit hard by COVID-19 and hurricanes; declining labor force and job growth after a decade of continuous recession; capital-based industry and tourism; high poverty; energy import-dependent || Exports: packaged medicines, medical cultures/vaccines, hormones, orthopedic and medical appliances, sulfur compounds (2019) || Industries: pharmaceuticals, electronics, apparel, food products, tourism"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Roman Catholic 56%, Protestant 33% (largely Pentecostal), other 2%, atheist 1%, none 7% (2014 est.) || White 75.8%, Black/African American 12.4%, other 8.5% (includes American Indian, Alaskan Native, Native Hawaiian, other Pacific Islander, and others), mixed 3.3% (2010 est.)"
+    }
+  }
+}

@@ -1,5 +1,5 @@
 // Quiz engine — builds rounds of multiple-choice questions from the dataset.
-import { COUNTRIES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
+import { COUNTRIES, PLACES, OUTLINE_COUNTRIES, LOCATOR_COUNTRIES } from "../data/countries";
 import {
   ROUND_LENGTH,
   DAILY_LENGTH,
@@ -248,7 +248,13 @@ function buildHigherLowerRound(count) {
 // only way to reach eight questions about a place we know five things about is
 // to ask something twice.
 export function buildCountryRound(code, count = ROUND_LENGTH) {
-  const target = COUNTRIES.find((c) => c.code === code);
+  // PLACES, not COUNTRIES: this round is only ever reached from a place's own
+  // page, so it is the one game mode a territory can legitimately be the
+  // subject of. Greenland's page offering a Play button that built an empty
+  // round would be worse than offering none. Distractors still come from
+  // COUNTRIES throughout — the subject may be a territory, the wrong answers
+  // should not be.
+  const target = PLACES.find((c) => c.code === code);
   if (!target) return [];
 
   const page = getCountryPage(code);
@@ -265,8 +271,12 @@ export function buildCountryRound(code, count = ROUND_LENGTH) {
   // outline of a country mapsicon has no vector for, or the globe position of
   // one Natural Earth has no polygon for, is a broken question rather than a
   // hard one.
-  questions.push(buildOne("capital", target));
-  questions.push(buildOne("capitalReverse", target));
+  // Both capital questions need a capital, and Antarctica has no government to
+  // have one. The reverse question needs more than that: it asks "which
+  // COUNTRY has this capital", which no territory is a correct answer to, so
+  // it is asked only about countries however good the data is.
+  if (target.capital) questions.push(buildOne("capital", target));
+  if (target.capital && !target.territory) questions.push(buildOne("capitalReverse", target));
   questions.push(buildOne("flag", target));
   if (!target.noOutline && OUTLINE_COUNTRIES.some((c) => c.code === code)) {
     questions.push(buildOne("shape", target));

@@ -1,7 +1,8 @@
 // One-line "why should I care?" facts, keyed by ISO code — the thesis of
 // Worldwise in miniature. Shown in the post-round review (see QuizScreen).
 // Kept short (curiosity hooks, not encyclopedia entries) so the dataset
-// stays light; every country in `countries.js` has an entry.
+// stays light; every place in `countries.js` PLACES has an entry — the 196
+// countries and the eight territories the map draws.
 export const WHY_IT_MATTERS = {
   // Europe
   al: "Albania was sealed off from the world for decades under one of the strictest communist regimes in history.",
@@ -208,6 +209,19 @@ export const WHY_IT_MATTERS = {
   to: "Tonga is the last remaining Pacific island kingdom still ruled by a monarchy.",
   tv: "Tuvalu is one of the smallest and lowest-lying countries on Earth, at constant risk from rising seas.",
   vu: "Vanuatu is home to some of the world's most accessible active volcanoes.",
+
+  // Territories (see data/territories.js). Not countries, and not in
+  // countries.js — but they are on the map and tappable, so a round about one
+  // needs a hook like everywhere else. Without these the generic fallback
+  // fires, and it produces "Antarctica is part of Antarctica".
+  gl: "Greenland's ice sheet is so heavy that it has pressed the middle of the island into a bowl below sea level.",
+  aq: "Antarctica is the only continent with no permanent residents — everyone there is visiting, and the population halves every winter.",
+  eh: "Western Sahara is one of the last places on Earth the UN still lists as a territory whose future has not been settled.",
+  xk: "Kosovo has a river that splits in two and sends half its water to the Black Sea and half to the Aegean.",
+  pr: "Puerto Rico has three bioluminescent bays that glow when the water is disturbed — more than anywhere else on Earth.",
+  nc: "New Caledonia sits on roughly a tenth of the world's nickel, the metal inside almost every rechargeable battery.",
+  fk: "Sheep outnumber people in the Falkland Islands by around a hundred to one.",
+  tf: "France's southern islands have no permanent population at all — the only people there are scientists on year-long postings.",
 };
 
 // Graceful fallback for any country missing a hand-written entry above —

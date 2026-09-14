@@ -9,7 +9,12 @@
 //
 // Everything here is derived, never hand-edited. To change the shapes, rerun
 // scripts/build-worldmap.mjs.
-import { COUNTRY_PATHS } from "./worldMap";
+//
+// Reads MAP_PATHS — every landmass — rather than COUNTRY_PATHS, which is only
+// the sovereign states with real geometry. The globe is a picture of the Earth,
+// so it draws the territories and the micro-state point symbols too; the
+// narrower tables exist for gameplay, which this is not.
+import { MAP_PATHS } from "./worldMap";
 import { ringsFromPath, countryCenter } from "../game/globeProjection";
 
 // code -> array of rings, each a flat Float64Array of unit vectors [x,y,z,...].
@@ -18,7 +23,7 @@ export const COUNTRY_RINGS = {};
 // aiming a rotation at it.
 export const COUNTRY_CENTERS = {};
 
-for (const [code, d] of Object.entries(COUNTRY_PATHS)) {
+for (const [code, d] of Object.entries(MAP_PATHS)) {
   const rings = ringsFromPath(d);
   if (!rings.length) continue;
   COUNTRY_RINGS[code] = rings;

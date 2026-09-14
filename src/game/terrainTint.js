@@ -70,7 +70,13 @@ const SIGNALS = {
   // lookahead is what separates them, and this signal is read from the CLIMATE
   // text only — a geography line naming the Mediterranean Sea says nothing
   // about what covers the ground.
-  mediterranean: /\bmediterranean(?!\s+(?:coast|sea|basin|region))/,
+  // A climate that is *influenced* by the Mediterranean is not a Mediterranean
+  // climate. Kosovo's line — "Mediterranean and alpine influences create
+  // regional variation" — describes a continental basin, and matching the bare
+  // word painted a landlocked Balkan plain as olive-grove scrub. The second
+  // lookahead spans a few words, because the influences are usually listed
+  // ("Mediterranean and alpine influences") rather than named one at a time.
+  mediterranean: /\bmediterranean(?!\s+(?:coast|sea|basin|region))(?![^.]{0,30}influenc)/,
   // The textbook Mediterranean description, for the countries whose prose gives
   // the pattern without ever naming it.
   medPattern: /(hot,? dry summers?[^.]*mild|mild,? wet winters?[^.]*hot,? dry)/,

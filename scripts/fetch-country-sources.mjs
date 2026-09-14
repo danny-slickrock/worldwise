@@ -69,8 +69,12 @@ async function factbookIndex() {
   }
   console.log("Building Factbook index...");
   const root = await getJson("https://api.github.com/repos/factbook/factbook.json/contents/");
+  // "antarctica" is a real region folder holding Antarctica (ay) and the French
+  // Southern and Antarctic Lands (fs). It used to be excluded alongside the
+  // non-place folders, which is why both were unreachable — the only two map
+  // landmasses with no Factbook entry, for no reason but this list.
   const regions = root
-    .filter((e) => e.type === "dir" && !["meta", "world", "oceans", "antarctica"].includes(e.name))
+    .filter((e) => e.type === "dir" && !["meta", "world", "oceans"].includes(e.name))
     .map((e) => e.name);
 
   const index = {};
@@ -173,7 +177,25 @@ function pick(section, fields) {
   return Object.keys(out).length ? out : null;
 }
 
-async function factbook(gec, index) {
+// Wikidata has no GEC (P901) for a few places, so the index lookup finds
+// nothing and the country lands in raw/ with `factbook: null` — which is
+// exactly why Cyprus and Palestine were never promoted.
+//
+// Mapped by hand rather than falling back to the ISO code, which looks like the
+// obvious fix and is a trap: the two code spaces collide. ISO "de" is Germany;
+// GEC "de" is Denmark. A blind fallback would silently attach the wrong
+// country's prose to a page, and nothing downstream would catch it.
+//
+// Palestine has no single Factbook entry at all: the Factbook covers the West
+// Bank (we) and the Gaza Strip (gz) separately. Both are fetched — an array
+// takes the first as primary and caches the rest alongside it — so the draft
+// can be written from the whole territory rather than half of it.
+const FACTBOOK_GEC_OVERRIDES = {
+  cy: "cy",
+  ps: ["we", "gz"],
+};
+
+async function factbookEntry(gec, index) {
   const rel = index[gec?.toLowerCase()];
   if (!rel) return null;
   const raw = await getJson(
@@ -185,6 +207,22 @@ async function factbook(gec, index) {
     if (picked) out[section] = picked;
   }
   return out;
+}
+
+async function factbook(iso, gec, index) {
+  const override = FACTBOOK_GEC_OVERRIDES[iso];
+  const codes = override ? (Array.isArray(override) ? override : [override]) : [gec];
+  const [primary, ...rest] = codes;
+  const main = await factbookEntry(primary, index);
+  if (!main) return null;
+  // Deliberately kept beside the primary rather than merged into it. Merging
+  // two territories' sections into one blob is how a claim about Gaza ends up
+  // reading as a claim about the West Bank.
+  for (const extra of rest) {
+    const entry = await factbookEntry(extra, index);
+    if (entry) (main._also ??= {})[extra] = entry;
+  }
+  return main;
 }
 
 await mkdir(RAW_DIR, { recursive: true });
@@ -210,7 +248,7 @@ for (const iso of todo) {
   }
   let fb = null;
   try {
-    fb = await factbook(w.gec, index);
+    fb = await factbook(iso, w.gec, index);
   } catch (err) {
     console.error(`  ${iso}: Factbook fetch failed — ${err.message}`);
   }
@@ -224,6 +262,7 @@ for (const iso of todo) {
         license: "public-domain (US Government work)",
         via: "github.com/factbook/factbook.json",
         path: fb?._path ?? null,
+        alsoPaths: fb?._also ? Object.values(fb._also).map((e) => e._path) : undefined,
       },
     },
     wikidata: w,

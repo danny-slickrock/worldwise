@@ -7,56 +7,54 @@
     "name": "Cyprus",
     "capital": "Nicosia",
     "continent": "Europe",
-    "areaKm2": 9234,
-    "population": 1120489,
+    "areaKm2": 9242.45,
+    "population": 1344976,
     "officialLanguages": [
       "Turkish",
-      "Greek"
+      "Modern Greek"
     ],
     "currencies": [],
     "landBorderNames": [],
     "landBorderCodes": [],
     "landBorderTerritories": [],
     "landBorderUnresolved": [],
-    "naturalResources": null,
+    "naturalResources": "copper, pyrites, asbestos, gypsum, timber, salt, marble, clay earth pigment",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "The third-largest island in the Mediterranean lies south of Turkey, on a seam that geographers cannot agree on: Cyprus views itself as part of Europe, while the island can reasonably be filed under Europe, the Middle East, or both. A central plain runs between mountain ranges to the north and south, and the export list — ships, refined petroleum, packaged medicine, cheese — describes a services economy rather than the copper, gypsum and marble sitting under its hills.",
+    "physicalGeography": "A central plain runs between mountains rising to the north and south of it, with scattered but significant plains along the southern coast. Cyprus sits in the eastern Mediterranean, south of Turkey, and is the third-largest island in that sea after Sicily and Sardinia — a position that is exactly why its filing is ambiguous, falling within Europe, the Middle East, or both depending on who is drawing the map.",
+    "climate": "Temperate and thoroughly Mediterranean: hot, dry summers and cool winters. Droughts are the recurring hazard, and the island sees moderate earthquake activity.",
+    "economy": "A services-based, high-income EU island economy that leans heavily on tourism, with high living standards and sustained growth between the recovery of its national banking system and the trade restrictions of COVID-19. It is a known financial hub whose stock exchange functions as an investment bridge between EU and EEU member countries. Exports run to ships, refined petroleum, packaged medicine, cheese and scented mixtures, while industry covers tourism, food and beverage processing, cement and gypsum, ship repair and refurbishment, textiles, light chemicals, metal products, wood, paper, stone and clay.",
+    "peopleAndCulture": "Of the population counted, 98.8% is Greek, with Maronite, Armenian and Turkish-Cypriot communities among the remaining 1%. Eastern Orthodox Christianity is overwhelmingly the largest faith at 89.1%, followed by Roman Catholics at 2.9%, Protestant and Anglican at 2%, and Muslims at 1.8%, with smaller Buddhist, Maronite Catholic, Armenian Apostolic and Hindu communities beside them."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
     "physicalGeography": "Geography > Terrain, Location, Elevation",
     "climate": "Geography > Climate",
     "economy": "Economy > Economic overview, Exports, Industries",
-    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
   },
   "_sourceExcerpts": {
     "hook": {
       "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
-      "excerpt": ""
+      "excerpt": "Middle East, island in the Mediterranean Sea, south of Turkey; note - Cyprus views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both || central plain with mountains to north and south; scattered but significant plains along southern coast || the third largest island in the Mediterranean Sea (after Sicily and Sardinia) || Resources: copper, pyrites, asbestos, gypsum, timber, salt, marble, clay earth pigment || Exports: ships, refined petroleum, packaged medicine, cheese, scented mixtures (2023)"
     },
     "physicalGeography": {
       "from": "Geography > Terrain, Location, Elevation",
-      "excerpt": ""
+      "excerpt": "central plain with mountains to north and south; scattered but significant plains along southern coast || Middle East, island in the Mediterranean Sea, south of Turkey; note - Cyprus views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
     },
     "climate": {
       "from": "Geography > Climate",
-      "excerpt": ""
+      "excerpt": "temperate; Mediterranean with hot, dry summers and cool winters || moderate earthquake activity; droughts"
     },
     "economy": {
       "from": "Economy > Economic overview, Exports, Industries",
-      "excerpt": ""
+      "excerpt": "services-based, high-income EU island economy; heavy tourism; sustained growth between recovery of national banking system and COVID-19 trade restrictions; high living standards; a known financial hub, its stock exchange functions as an investment bridge between EU-and EEU-member countries || Exports: ships, refined petroleum, packaged medicine, cheese, scented mixtures (2023) || Industries: tourism, food and beverage processing, cement and gypsum, ship repair and refurbishment, textiles, light chemicals, metal products, wood, paper, stone and clay products"
     },
     "peopleAndCulture": {
-      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
-      "excerpt": ""
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Eastern Orthodox Christian 89.1%, Roman Catholic 2.9%, Protestant/Anglican 2%, Muslim 1.8%, Buddhist 1%, other (includes Maronite Catholic, Armenian Apostolic, Hindu) 1.4%, unknown 1.1%, none/atheist 0.6% (2011 est.) || Greek 98.8%, other 1% (includes Maronite, Armenian, Turkish-Cypriot), unspecified 0.2% (2011 est.)"
     }
-  },
-  "draftedAt": "2026-09-05T00:57:48.197Z",
-  "draftModel": "claude-sonnet-5"
+  }
 }

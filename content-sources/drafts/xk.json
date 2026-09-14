@@ -1,0 +1,70 @@
+{
+  "iso": "xk",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.747Z",
+  "structured": {
+    "code": "xk",
+    "name": "Kosovo",
+    "capital": "Pristina",
+    "continent": "Europe",
+    "areaKm2": 10909,
+    "population": 1586659,
+    "officialLanguages": [
+      "Albanian",
+      "Serbian"
+    ],
+    "currencies": [],
+    "landBorderNames": [
+      "Albania",
+      "North Macedonia",
+      "Montenegro",
+      "Serbia"
+    ],
+    "landBorderCodes": [
+      "al",
+      "mk",
+      "me",
+      "rs"
+    ],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "nickel, lead, zinc, magnesium, lignite, kaolin, chrome, bauxite",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "A flat river basin 400 to 700 m above sea level, ringed by high mountain ranges reaching 2,000 to 2,500 m, in southeastern Europe between Serbia and North Macedonia. One small river here does something remarkable: the 41-km Nerodimka divides into two branches that finish in different seas — the northern one flowing via the Sitnica, Ibar, Morava and Danube to the Black Sea, the southern via the Lepenac and Vardar to the Aegean.",
+    "physicalGeography": "A flat fluvial basin at an elevation of 400 to 700 m above sea level, surrounded by several high mountain ranges with elevations of 2,000 to 2,500 m. It lies in southeastern Europe, between Serbia and North Macedonia.",
+    "climate": "Continental air masses dominate, bringing relatively cold winters with heavy snowfall and hot, dry summers and autumns. Mediterranean and alpine influences create real regional variation across a small area, and the heaviest rain falls between October and December.",
+    "economy": "A small but growing European economy, not an EU member yet a unilateral user of the euro. Unemployment is very high, especially among young people, and the economy leans on diaspora tourism services — a reliance that proved vulnerable when COVID-19 curtailed travel. Mineral mining is the industrial backbone, alongside construction materials, base metals, leather, machinery, appliances, foodstuffs and beverages, and textiles; exports run to mattress materials, iron alloys, metal piping, scrap iron and building plastics.",
+    "peopleAndCulture": "Albanians make up 92.9% of the population, with Bosniaks at 1.6%, Serbs at 1.5% and Turks at 1.1%, alongside Ashkali, Egyptian, Gorani and Romani communities. Islam is by far the largest religion at 95.6%, followed by Roman Catholics at 2.2% and Orthodox Christians at 1.5%."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "Southeastern Europe, between Serbia and Macedonia || flat fluvial basin at an elevation of 400-700 m above sea level surrounded by several high mountain ranges with elevations of 2,000 to 2,500 m || the 41-km (25-mi) Nerodimka River divides into two branches, each of which flows into a different sea: the northern branch flows into the Sitnica River, which via the Ibar, Morava, and Danube Rivers ultimately flows into the Black Sea; the southern branch flows via the Lepenac and Vardar Rivers into the Aegean Sea || Resources: nickel, lead, zinc, magnesium, lignite, kaolin, chrome, bauxite || Exports: mattress materials, iron alloys, metal piping, scrap iron, building plastics (2021)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "flat fluvial basin at an elevation of 400-700 m above sea level surrounded by several high mountain ranges with elevations of 2,000 to 2,500 m || Southeastern Europe, between Serbia and Macedonia"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "influenced by continental air masses resulting in relatively cold winters with heavy snowfall and hot, dry summers and autumns; Mediterranean and alpine influences create regional variation; maximum rainfall between October and December"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": "small-but-growing European economy; non-EU member but unilateral euro user; very high unemployment, especially youth; vulnerable reliance on diaspora tourism services, curtailed by COVID-19 disruptions; unclear public loan portfolio health || Exports: mattress materials, iron alloys, metal piping, scrap iron, building plastics (2021) || Industries: mineral mining, construction materials, base metals, leather, machinery, appliances, foodstuffs and beverages, textiles"
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 95.6%, Roman Catholic 2.2%, Orthodox 1.5%, other 0.1%, none 0.1%, unspecified 0.6% (2011 est.) || Albanians 92.9%, Bosniaks 1.6%, Serbs 1.5%, Turk 1.1%, Ashkali 0.9%, Egyptian 0.7%, Gorani 0.6%, Romani 0.5%, other/unspecified 0.2% (2011 est.)"
+    }
+  }
+}

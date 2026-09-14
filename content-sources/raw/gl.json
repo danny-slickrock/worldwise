@@ -1,0 +1,172 @@
+{
+  "iso": "gl",
+  "fetchedAt": "2026-09-14T23:09:45.245Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0-1.0",
+      "endpoint": "https://query.wikidata.org/sparql"
+    },
+    "factbook": {
+      "license": "public-domain (US Government work)",
+      "via": "github.com/factbook/factbook.json",
+      "path": "north-america/gl.json"
+    }
+  },
+  "wikidata": {
+    "name": "Greenland",
+    "gec": "GL",
+    "capital": "Nuuk",
+    "areaKm2": 2166086,
+    "population": 56609,
+    "continent": "North America",
+    "officialLanguages": [
+      "Greenlandic"
+    ],
+    "currencies": [
+      "Danish krone"
+    ],
+    "sharesBorderWithAnyType": [
+      "ca",
+      "no",
+      "is"
+    ]
+  },
+  "factbook": {
+    "_path": "north-america/gl.json",
+    "Introduction": {
+      "Background": {
+        "text": "Greenland, the world's largest island, is about 80% ice capped. The Inuit came to Greenland from North America in a series of migrations that stretched from 2500 BC to the11th century.&nbsp; Vikings reached the island in the 10th century from Iceland; Danish colonization began in the 18th century, and Greenland became part of the Kingdom of Denmark in 1953. It joined the European Community (now the EU) with Denmark in 1973 but withdrew in 1985 over a dispute centered on stringent fishing quotas. Greenland remains a member of the EU's Overseas Countries and Territories Association. The Danish parliament granted Greenland home rule in 1979; the law went into effect the following year. Greenland voted in favor of self-government in 2008 and acquired greater responsibility for internal affairs when the Act on Greenland Self-Government was signed into law in 2009. The Kingdom of Denmark, however, continues to exercise control over several policy areas on behalf of Greenland, including foreign affairs, security, and financial policy, in consultation with Greenland's Self-Rule Government."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Northern North America, island between the Arctic Ocean and the North Atlantic Ocean, northeast of Canada"
+      },
+      "Area": {
+        "total ": {
+          "text": "2,166,086 sq km"
+        },
+        "land": {
+          "text": "2,166,086 sq km (approximately 1,710,000 sq km ice-covered)"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "0 km"
+        }
+      },
+      "Coastline": {
+        "text": "44,087 km"
+      },
+      "Climate": {
+        "text": "arctic to subarctic; cool summers, cold winters"
+      },
+      "Terrain": {
+        "text": "flat to gradually sloping icecap covers all but a narrow, mountainous, barren, rocky coast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Gunnbjorn Fjeld 3,694 m"
+        },
+        "lowest point": {
+          "text": "Atlantic Ocean 0 m"
+        },
+        "mean elevation": {
+          "text": "1,792 m"
+        }
+      },
+      "Natural resources": {
+        "text": "coal, iron ore, lead, zinc, molybdenum, diamonds, gold, platinum, niobium, tantalite, uranium, fish, seals, whales, hydropower, possible oil and gas"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "0.6% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 0% (2022 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 0% (2022 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.6% (2023 est.)"
+        },
+        "forest": {
+          "text": "0% (2023 est.)"
+        },
+        "other": {
+          "text": "99.4% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "continuous permafrost over northern two-thirds of the island"
+      },
+      "Geography - note": {
+        "text": "dominates North Atlantic Ocean between North America and Europe; sparse population confined to small settlements along coast; close to one-quarter of the population lives in the capital, Nuuk; world's second largest ice sheet after that of Antarctica, covering an area of 1.71 million sq km (660,000 sq mi), or about 79% of the island, and containing 2.85 million cu km (684 thousand cu mi) of ice (almost 7% of the world's fresh water)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "57,751 (2024 est.)"
+        },
+        "male": {
+          "text": "29,843"
+        },
+        "female": {
+          "text": "27,908"
+        }
+      },
+      "Languages": {
+        "text": "Greenlandic, Danish, English",
+        "note": "<strong>note: </strong>West Greenlandic or Kalaallisut is the official language; Tunumiisut (East Greenlandic) and Inuktun (Polar Inuit Greenlandic) are considered dialects of Kalaallisut and spoken by about 10% of Greenlanders"
+      },
+      "Religions": {
+        "text": "Evangelical Lutheran, traditional Inuit spiritual beliefs"
+      },
+      "Ethnic groups": {
+        "text": "Greenlandic 88.1%, Danish 7.1%, Filipino 1.6%, other Nordic peoples 0.9%, and other 2.3% (2024 est.)",
+        "note": "<strong>note:</strong> data represent population by country of birth"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "87.9% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.41% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "settlement concentrated on the southwest shoreline, with limited settlements scattered along the remaining coast; interior is uninhabited"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "high-income, self-governing Danish territorial economy; non-EU member but preferential market access; dependent on Danish financial support; exports led by fishing industry; growing tourism and interest in untapped mineral deposits; relies on hydropower for fuel"
+      },
+      "Agricultural products": {
+        "text": "sheep, cattle, reindeer, fish, shellfish"
+      },
+      "Industries": {
+        "text": "fish processing (mainly shrimp and Greenland halibut), anorthosite and ruby mining, handicrafts, hides and skins, small shipyards"
+      },
+      "Exports - commodities": {
+        "text": "fish, shellfish, processed crustaceans, ships, precious stones (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Denmark 50%, China 23%, UK 5%, Japan 5%, Germany 3% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, ships, garments, plastic products, furniture (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "arctic to subarctic; cool summers, cold winters"
+      }
+    }
+  }
+}

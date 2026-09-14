@@ -1,7 +1,16 @@
 // Pure-logic tests for the quiz engine. Run with: npm test  (uses tsx)
 // No React Native imports here, so it runs fast in plain Node via tsx.
-import { COUNTRIES, LOCATOR_COUNTRIES, countryName } from "../src/data/countries";
-import { COUNTRY_PATHS } from "../src/data/worldMap";
+import {
+  COUNTRIES,
+  PLACES,
+  LOCATOR_COUNTRIES,
+  OUTLINE_COUNTRIES,
+  countryName,
+  placeFor,
+  isTerritory,
+} from "../src/data/countries";
+import { TERRITORIES, TERRITORY_CODES } from "../src/data/territories";
+import { COUNTRY_PATHS, TERRITORY_PATHS, MICRO_PATHS, MICRO_POINTS, MAP_PATHS, MAP_W, MAP_H } from "../src/data/worldMap";
 import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
@@ -28,7 +37,7 @@ import {
   countriesFromHistory,
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
-import { searchCountries, REGIONS } from "../src/game/countryIndex";
+import { searchCountries, REGIONS, INDEX_FILTERS, TERRITORY_FILTER } from "../src/game/countryIndex";
 import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan, lerpView } from "../src/game/mapZoom";
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
@@ -399,6 +408,206 @@ for (let i = 0; i < 200; i++) {
 }
 check(locBad === 0, "locator rounds never target a country without a map path");
 
+// ─────────────────────────────────────────────────────────────────────────────
+console.log("Places on the map");
+// The map used to draw 167 of 196 countries and nothing else, which left it
+// with two different kinds of hole: 29 countries with no geometry at this
+// scale (invisible AND untappable), and ten landmasses that are not sovereign
+// states and so were never considered — Greenland among them, the largest
+// island on Earth, simply absent from the North Atlantic.
+
+// 1. No country is left off the map. This is the invariant the whole change
+//    exists to establish, and the one most likely to regress: a country added
+//    to countries.js that Natural Earth has no 1:110m polygon for would
+//    silently vanish from every map surface, exactly as these 29 did.
+const offMap = COUNTRIES.filter((c) => !MAP_PATHS[c.code]);
+check(
+  offMap.length === 0,
+  `every country is on the map (missing: ${offMap.map((c) => c.code).join(",") || "none"})`
+);
+const offMapTerritories = TERRITORIES.filter((t) => !MAP_PATHS[t.code]);
+check(offMapTerritories.length === 0, "...and so is every territory");
+check(
+  Object.keys(MAP_PATHS).length === PLACES.length,
+  `MAP_PATHS holds exactly the ${PLACES.length} places, no more (${Object.keys(MAP_PATHS).length})`
+);
+
+// 2. The three tables are disjoint. A code in two of them means MAP_PATHS
+//    silently picks one, and which one depends on spread order.
+const drawn = new Set(Object.keys(COUNTRY_PATHS));
+const micro = new Set(Object.keys(MICRO_PATHS));
+const terr = new Set(Object.keys(TERRITORY_PATHS));
+check(
+  [...micro].every((c) => !drawn.has(c)) && [...terr].every((c) => !drawn.has(c) && !micro.has(c)),
+  "COUNTRY_PATHS, MICRO_PATHS and TERRITORY_PATHS share no codes"
+);
+check(
+  [...drawn, ...micro].every((c) => COUNTRIES.some((x) => x.code === c)),
+  "every drawn and every point-symbol code is a real country code"
+);
+check(
+  [...terr].every((c) => TERRITORY_CODES.includes(c)),
+  "every territory path code is a real territory code"
+);
+
+// 3. Gameplay is unchanged by all of this. A point symbol carries position and
+//    no shape, so "find Tuvalu" would be four identical Pacific dots; the
+//    Locator pool stays the countries with a real drawn outline.
+check(
+  LOCATOR_COUNTRIES.every((c) => COUNTRY_PATHS[c.code] && !MICRO_PATHS[c.code]),
+  "the Locator pool is drawn countries only — never a point symbol"
+);
+check(
+  LOCATOR_COUNTRIES.every((c) => !isTerritory(c.code)) &&
+    COUNTRIES.every((c) => !isTerritory(c.code)) &&
+    OUTLINE_COUNTRIES.every((c) => !isTerritory(c.code)),
+  "no territory can reach a quiz pool"
+);
+let territoryTargets = 0;
+for (const mode of ["flag", "capital", "capitalReverse", "shape", "locator"]) {
+  for (let i = 0; i < 40; i++) {
+    for (const q of buildRound(mode)) if (isTerritory(q.country.code)) territoryTargets++;
+  }
+}
+check(territoryTargets === 0, "...and 200 sampled rounds never ask about one");
+
+// 4. Point symbols land where the country actually is. The projection is
+//    linear, so this is checkable rather than eyeballable.
+const projected = (lng, lat) => [(lng + 180) * 2, (90 - lat) * 2];
+const nearPoint = ([ax, ay], [bx, by], tol = 0.5) =>
+  Math.abs(ax - bx) <= tol && Math.abs(ay - by) <= tol;
+check(Object.keys(MICRO_POINTS).length === micro.size, "every point symbol has a centre point");
+check(
+  Object.values(MICRO_POINTS).every(([x, y]) => x >= 0 && x <= MAP_W && y >= 0 && y <= MAP_H),
+  "every point symbol sits inside the map's viewBox"
+);
+check(nearPoint(MICRO_POINTS.sg, projected(103.82, 1.37)), "Singapore's dot is on Singapore");
+check(nearPoint(MICRO_POINTS.va, projected(12.45, 41.9)), "Vatican City's dot is on Rome");
+check(nearPoint(MICRO_POINTS.mt, projected(14.43, 35.89)), "Malta's dot is in the Mediterranean");
+
+// 5. The two landmasses with no ISO code of their own are merged into the
+//    country they were cut out of, rather than left as holes. Subpath count
+//    catches the merge disappearing; Cyprus's northern reach catches it being
+//    merged into the wrong place.
+const subpaths = (d) => (d.match(/M/g) ?? []).length;
+check(subpaths(MAP_PATHS.so) >= 2, "Somaliland's land is merged into Somalia, not dropped");
+check(subpaths(MAP_PATHS.cy) >= 2, "Northern Cyprus's land is merged into Cyprus, not dropped");
+check(
+  pathBounds(MAP_PATHS.cy).minY <= projected(33.32, 35.34)[1],
+  "...so Cyprus reaches its own northern coast"
+);
+
+// 6. Greenland, by name. It is the reason this exists and the thing a
+//    regression would be reported as.
+const greenland = getCountryPage("gl");
+check(Boolean(MAP_PATHS.gl), "Greenland is on the map");
+check(greenland !== null && greenland.name === "Greenland", "Greenland has a page");
+check(
+  countryName("gl") === "Greenland",
+  "...and a name, rather than the raw code the map used to show"
+);
+check(
+  greenland.capital === "Nuuk" && greenland.status.includes("Denmark"),
+  "...naming both its capital and whose territory it is"
+);
+check(
+  greenland.hasFullContent && Object.keys(greenland.facts).length >= 4,
+  "...and real facts to read"
+);
+check(
+  greenland.population > 0 && greenland.areaKm2 > 1_000_000,
+  "...with a population and an area"
+);
+
+// 7. Every territory is a complete, honest page.
+for (const t of TERRITORIES) {
+  const page = getCountryPage(t.code);
+  check(page !== null, `${t.name}: has a page`);
+  check(page.territory === true, `${t.name}: is marked as a territory`);
+  check(
+    typeof page.status === "string" && page.status.length > 10,
+    `${t.name}: says what it is, so its page cannot read as a country's`
+  );
+  check(page.hasFullContent, `${t.name}: carries promoted content`);
+  check(!COUNTRIES.some((c) => c.code === t.code), `${t.name}: is not in the country dataset`);
+}
+check(
+  getCountryPage("aq").capital === null,
+  "Antarctica has no capital, and the page says null rather than inventing one"
+);
+check(
+  buildCountryRound("aq").every((q) => q.type !== "capital" && q.type !== "capitalReverse"),
+  "...so a round about it never asks for one"
+);
+check(
+  buildCountryRound("gl").length > 0 &&
+    buildCountryRound("gl").every((q) => q.type !== "capitalReverse"),
+  "a territory round is playable but never asks 'which COUNTRY has this capital'"
+);
+check(
+  buildCountryRound("gl").every((q) => q.options.every((o) => o != null && o !== "")),
+  "...and every option in it is a real value"
+);
+
+// 8. The index can find them. Searching "Greenland" returning nothing was the
+//    other half of the original bug: not on the map, and not in the list.
+check(
+  searchCountries(PLACES, { query: "greenland" }).length === 1,
+  "the index finds Greenland by name"
+);
+check(
+  searchCountries(PLACES, { region: TERRITORY_FILTER }).length === TERRITORIES.length,
+  "the territories filter lists exactly the territories"
+);
+check(
+  searchCountries(PLACES, { region: TERRITORY_FILTER }).every((p) => p.territory),
+  "...and nothing else"
+);
+check(
+  searchCountries(PLACES, { query: "a" }).length > 0,
+  "searching with a capital-less place in the list does not throw"
+);
+check(
+  INDEX_FILTERS[0] === "All" && INDEX_FILTERS.includes(TERRITORY_FILTER),
+  "the index filters lead with All and include Territories"
+);
+check(
+  !REGIONS.includes(TERRITORY_FILTER),
+  "...but REGIONS does not, because collectionPolicy builds a collectible set per entry"
+);
+
+// 9. Classification survives a round trip through Postgres even though it is
+//    not stored there — a row seeded without it must not turn Greenland back
+//    into a country.
+const glRow = countryRowFromPage(getCountryPage("gl"), null);
+check(!("status" in glRow), "the seed does not write classification to content.countries");
+check(
+  placeFor("gl")?.sovereign === "dk" && placeFor("zz") === null,
+  "placeFor resolves a territory and returns null for a code that is not a place"
+);
+// A "Play with Greenland" round records gl in game_results.countries. Region
+// collections are counted against COUNTRIES, so a territory must contribute
+// nothing rather than inflating the Americas' numerator past its denominator.
+const withTerritory = computeCollections([
+  {
+    countries: [
+      { code: "gl", correct: true },
+      { code: "br", correct: true },
+    ],
+  },
+]);
+const americas = withTerritory.find((r) => r.region === "Americas");
+check(
+  americas.collected === 1 && americas.collected <= americas.total,
+  "a territory answered correctly never counts toward a region collection"
+);
+check(
+  pageFromCountryRow(glRow).status === getCountryPage("gl").status &&
+    pageFromCountryRow(glRow).territory === true,
+  "...and a fetched row is reclassified from the bundled registry, not from the row"
+);
+
+
 console.log("Daily challenge");
 const d = new Date(2026, 6, 8);
 const a = buildDaily(6, d).map((q) => q.country.code + ":" + q.correct).join("|");
@@ -499,7 +708,7 @@ check(
 
 console.log("Why it matters");
 check(
-  COUNTRIES.every((c) => typeof WHY_IT_MATTERS[c.code] === "string" && WHY_IT_MATTERS[c.code].length > 0),
+  PLACES.every((c) => typeof WHY_IT_MATTERS[c.code] === "string" && WHY_IT_MATTERS[c.code].length > 0),
   "every country has a hand-written 'why it matters' fact"
 );
 check(
@@ -507,7 +716,7 @@ check(
   "'why it matters' facts are all unique (no copy-paste duplicates)"
 );
 check(
-  COUNTRIES.every((c) => whyItMatters(c) === WHY_IT_MATTERS[c.code]),
+  PLACES.every((c) => whyItMatters(c) === WHY_IT_MATTERS[c.code]),
   "whyItMatters() returns the hand-written fact for every known country"
 );
 check(
@@ -542,24 +751,38 @@ for (const code of Object.keys(COUNTRY_PAGES)) {
   check(validCodes.has(code), `COUNTRY_PAGES key "${code}" is a real country code`);
 }
 
-// A country with no promoted content must still render something reasonable.
-// Cyprus is the real case rather than a hypothetical: it has no single CIA
-// World Factbook entry, so the enrichment pass had nothing to draft from and it
-// was deliberately left structured-only.
-const sparse = getCountryPage("cy");
-check(sparse.hasFullContent === false, "an unpromoted country reports hasFullContent: false");
+// There is no longer a country without promoted content, and that is the
+// assertion worth keeping — it is what stops a country being added to
+// countries.js with nothing behind it.
+//
+// Cyprus and Palestine were the last two, and they were not hard content
+// problems: the pipeline resolves a Factbook entry through Wikidata's GEC
+// code, Wikidata has no GEC for either, so both fell out of the run with
+// `factbook: null` and were skipped at promotion. Cyprus's GEC is simply "cy";
+// Palestine has no single entry at all, because the Factbook covers the West
+// Bank and the Gaza Strip separately. Both are mapped by hand now — see
+// FACTBOOK_GEC_OVERRIDES in scripts/fetch-country-sources.mjs.
+const unpromoted = PLACES.filter((p) => !getCountryPage(p.code).hasFullContent);
 check(
-  sparse.summary === whyItMatters(COUNTRIES.find((c) => c.code === "cy")),
-  "an unpromoted country falls back to its whyItMatters fact"
+  unpromoted.length === 0,
+  `every place carries promoted content (missing: ${unpromoted.map((p) => p.code).join(",") || "none"})`
 );
-check(sparse.population === null && sparse.areaKm2 === null, "an unpromoted country has no fabricated facts");
+check(
+  PLACES.every((p) => typeof getCountryPage(p.code).summary === "string" && getCountryPage(p.code).summary.length > 20),
+  "...and every place has a real summary to lead its page with"
+);
+
+// Cyprus keeps its own assertions, now for the opposite reason: it has content
+// AND genuinely no land borders, so an empty neighbour list is the right answer
+// rather than a missing one.
+const sparse = getCountryPage("cy");
 check(
   Array.isArray(sparse.neighbors) && sparse.neighbors.length === 0,
-  "an unpromoted country has an empty neighbor list, not a guess"
+  "an island country has an empty neighbor list, not a guess"
 );
 check(
   sparse.relatedGameModes.length > 0 && sparse.relatedGameModes.every((m) => validModes.has(m)),
-  "an unpromoted country still gets sensible default game-mode suggestions"
+  "...and still gets sensible default game-mode suggestions"
 );
 
 // ...and a promoted country carries the enriched content through the same
@@ -1293,7 +1516,7 @@ check(
 // The seed writes these rows and the app reads them back; any field that drifts
 // in between is a section that silently disappears from a country page.
 const driftedFields = new Set();
-for (const c of COUNTRIES) {
+for (const c of PLACES) {
   const original = getCountryPage(c.code);
   const back = pageFromCountryRow(countryRowFromPage(original, c.difficulty));
   for (const key of Object.keys(original)) {
@@ -3760,7 +3983,15 @@ const brRound = buildCountryRound("br");
 check(brRound.length > 0 && brRound.length <= 8, "a real country round is non-empty and capped");
 check(brRound.every((q) => q.country.code === "br"), "every question in it is about Brazil");
 check(new Set(brRound.map((q) => q.type)).size === brRound.length, "no question type repeats within a round");
-check(brRound.some((q) => q.type === "locator" || q.type === "flag"), "it mixes in the media modes, not just facts");
+// Asked of an UNCAPPED round. Brazil yields ten candidate questions and the
+// round keeps eight, so a capped round drops two at random — roughly one run
+// in fifty dropped both media modes and failed a test that was making a claim
+// about the builder, not about the shuffle.
+const brFull = buildCountryRound("br", 20);
+check(
+  brFull.some((q) => q.type === "locator") && brFull.some((q) => q.type === "flag"),
+  "it mixes in the media modes, not just facts"
+);
 // The locator is the one question whose `correct` is an ISO code rather than
 // one of its own options — it is answered on the globe, not from the list. A
 // mixed round therefore has to branch on the QUESTION's type, never the round's

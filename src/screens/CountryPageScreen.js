@@ -185,7 +185,17 @@ export default function CountryPageScreen({
           <FadeInUp rise={0} index={1}>
             <Text style={styles.kicker}>{page.region.toUpperCase()}</Text>
             <Text style={styles.name}>{page.name}</Text>
-            <Text style={styles.capital}>Capital · {page.capital}</Text>
+            {/* Two conditionals, both load-bearing rather than defensive.
+                Antarctica has no capital because it has no government to have
+                one, so the line is absent instead of reading "Capital · null".
+                And `status` is what keeps a territory page honest: Greenland
+                gets a page exactly like a country's, so the page has to say
+                out loud that it is not one. It is present for the eight
+                territories and null for all 196 countries. */}
+            <View style={styles.subtitle}>
+              {page.capital ? <Text style={styles.capital}>Capital · {page.capital}</Text> : null}
+              {page.status ? <Text style={styles.status}>{page.status}</Text> : null}
+            </View>
           </FadeInUp>
 
           {/* Key facts */}
@@ -337,7 +347,12 @@ const styles = StyleSheet.create({
 
   kicker: { ...type.eyebrow, fontSize: 12 },
   name: { ...type.h1, fontSize: 38, marginTop: spacing(1) },
-  capital: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
+  subtitle: { marginBottom: spacing(5) },
+  capital: { ...type.caption, fontSize: 15, marginTop: spacing(1) },
+  // Quieter than the capital and a size down: it classifies the place rather
+  // than telling you something about it. textFaint is the bottom of the v3 ink
+  // ramp and still clears body contrast on both light grounds.
+  status: { ...type.caption, fontSize: 13, color: colors.textFaint, marginTop: spacing(1) },
 
   statsRow: { flexDirection: "row", gap: spacing(3), marginBottom: spacing(5) },
   stat: {

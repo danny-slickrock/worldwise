@@ -1,0 +1,57 @@
+{
+  "iso": "aq",
+  "status": "drafted",
+  "scaffoldedAt": "2026-09-14T22:39:57.746Z",
+  "structured": {
+    "code": "aq",
+    "name": "Antarctica",
+    "capital": null,
+    "continent": null,
+    "areaKm2": 13720000,
+    "population": 5000,
+    "officialLanguages": [],
+    "currencies": [],
+    "landBorderNames": [],
+    "landBorderCodes": [],
+    "landBorderTerritories": [],
+    "landBorderUnresolved": [],
+    "naturalResources": "iron ore, chromium, copper, gold, nickel, platinum and other minerals, and coal and hydrocarbons have been found in small noncommercial quantities; mineral exploitation except for scientific research is banned by the Environmental Protocol to the Antarctic Treaty; krill, icefish, toothfish, and crab have been taken by commercial fisheries, which are managed through the Commission for the Conservation of Antarctic Marine Living Resources (CCAMLR)",
+    "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
+  },
+  "prose": {
+    "hook": "A continent almost entirely south of the Antarctic Circle, and almost entirely ice: 99% of Antarctica's land sits under the largest single mass of ice on Earth, about 14 million sq km of it holding nearly 62% of the world's fresh water. It is the coldest, windiest, driest and — on average — highest continent, with average elevations between 2,000 and 4,000 m. One consequence is genuinely strange: during the summer, more solar radiation reaches the surface at the South Pole than reaches the equator over the same period.",
+    "physicalGeography": "About 99% thick continental ice sheet and 1% barren rock, with average elevations between 2,000 and 4,000 m and mountain ranges rising to nearly 5,000 m. Ice-free coastal areas are the exception rather than the rule: parts of southern Victoria Land, Wilkes Land, the Antarctic Peninsula area, and parts of Ross Island on McMurdo Sound. Glaciers form ice shelves along about half of the coastline, and floating ice shelves make up 11% of the area of the continent.",
+    "climate": "The coldest, windiest and driest continent on Earth. Severe low temperatures vary with latitude, elevation and distance from the ocean: East Antarctica is colder than West Antarctica because it sits higher, and the Antarctic Peninsula has the most moderate climate of all, with coastal highs in January averaging slightly below freezing. Summer is continuous daylight and winter continuous darkness, while persistent high pressure over the interior brings dry, sinking air and very little cloud. Katabatic winds pour coastward off the high interior under gravity alone, blizzards form near the foot of the plateau, and cyclonic storms track clockwise along the coast, where large icebergs may calve from the ice shelves.",
+    "economy": "",
+    "peopleAndCulture": "There are no permanent inhabitants. People live instead at year-round and summer-only research stations, and the population swings with the season: roughly 5,000 in summer and about 1,100 in winter, with around another 1,000 support personnel on ships nearby. Fifty-six countries have signed the 1959 Antarctic Treaty and 30 of them operate stations on the continent and its nearby islands — the largest summer contingents being those of the United States, Argentina, Chile and the United Kingdom."
+  },
+  "proseSources": {
+    "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+    "physicalGeography": "Geography > Terrain, Location, Elevation",
+    "climate": "Geography > Climate",
+    "economy": "Economy > Economic overview, Exports, Industries",
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
+  },
+  "_sourceExcerpts": {
+    "hook": {
+      "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
+      "excerpt": "continent mostly south of the Antarctic Circle || about 99% thick continental ice sheet and 1% barren rock, with average elevations between 2,000 and 4,000 m; mountain ranges up to nearly 5,000 m; ice-free coastal areas include parts of southern Victoria Land, Wilkes Land, the Antarctic Peninsula area, and parts of Ross Island on McMurdo Sound; glaciers form ice shelves along about half of the coastline, and floating ice shelves constitute 11% of the area of the continent || the coldest, windiest, highest (on average), and driest continent; during the summer, more solar radiation reaches the surface at the South Pole than is received at the equator in an equivalent period mostly uninhabitable, 99% of the land area is covered by the Antarctic ice sheet, the largest single mass of ice on Earth; it covers an area of 14 million sq km (5.4 million sq mi) and contains 26.5 million cu km (6.4 million cu mi) of ice (almost 62% of the world's fresh water) || Resources: iron ore, chromium, copper, gold, nickel, platinum and other minerals, and coal and hydrocarbons have been found in small noncommercial quantities; mineral exploitation except for scientific research is banned by the Environmental Protocol to the Antarctic Treaty; krill, icefish, toothfish, and crab have been taken by commercial fisheries, which are managed through the Commission for the Conservation of Antarctic Marine Living Resources (CCAMLR)"
+    },
+    "physicalGeography": {
+      "from": "Geography > Terrain, Location, Elevation",
+      "excerpt": "about 99% thick continental ice sheet and 1% barren rock, with average elevations between 2,000 and 4,000 m; mountain ranges up to nearly 5,000 m; ice-free coastal areas include parts of southern Victoria Land, Wilkes Land, the Antarctic Peninsula area, and parts of Ross Island on McMurdo Sound; glaciers form ice shelves along about half of the coastline, and floating ice shelves constitute 11% of the area of the continent || continent mostly south of the Antarctic Circle"
+    },
+    "climate": {
+      "from": "Geography > Climate",
+      "excerpt": "the coldest, windiest, and driest continent on Earth; severe low temperatures vary with latitude, elevation, and distance from the ocean; East Antarctica is colder than West Antarctica because of its higher elevation; Antarctic Peninsula has the most moderate climate; higher temperatures occur in January along the coast and average slightly below freezing; summers characterized by continuous daylight, while winters bring continuous darkness; persistent high pressure over the interior brings dry, subsiding air that results in very little cloud cover || katabatic (gravity-driven) winds blow coastward from the high interior; frequent blizzards form near the foot of the plateau; cyclonic storms form over the ocean and move clockwise along the coast; large icebergs may calve from ice shelf volcanism: volcanic activity on Deception Island and isolated areas of West Antarctica; other seismic activity rare and weak"
+    },
+    "economy": {
+      "from": "Economy > Economic overview, Exports, Industries",
+      "excerpt": ""
+    },
+    "peopleAndCulture": {
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "no permanent inhabitants, but staff is present at year-round and summer-only research stations 56 countries have signed the 1959 Antarctic Treaty; 30 of those operate a number of seasonal-only (summer) and year-round research stations on the continent and its nearby islands; the population varies from approximately 5,000 in summer to 1,100 in winter, with about 1,000 support personnel on ships nearby as of 2024, peak summer (December-February) maximum capacity in scientific stations - 4,713 total; Argentina 425, Australia 238, Belarus 15, Belgium 55, Brazil 64, Bulgaria 25, Chile 375, China 164, Czechia 32, Ecuador 35, Finland 16, France 136, France and Italy jointly 70, Germany 60, India 72, Italy 150, Japan 130, South Korea 158, New Zealand 85, Norway 60, Peru 30, Poland 41, Russia 211, South Africa 80, Spain 79, Sweden 16, Ukraine 15, United Kingdom 315, United States 1,495 , Uruguay 66 (2024) winter (June-August) maximum capacity in scientific stations - 1,056 total; Argentina 221, Australia 52, Brazil 15, Chile 114, China 32, France 24, France and Italy jointly 13, Germany 9, India 48, Japan 40, Netherlands 10, South Korea 25, NZ 11, Norway 7, Poland 16, Russia 125, South Africa 15, Ukraine 12, UK 44, US 215, Uruguay 8 (2024)"
+    }
+  }
+}

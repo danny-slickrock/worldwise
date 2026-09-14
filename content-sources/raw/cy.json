@@ -1,6 +1,6 @@
 {
   "iso": "cy",
-  "fetchedAt": "2026-09-04T23:56:36.890Z",
+  "fetchedAt": "2026-09-14T23:09:44.885Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -9,22 +9,178 @@
     "factbook": {
       "license": "public-domain (US Government work)",
       "via": "github.com/factbook/factbook.json",
-      "path": null
+      "path": "europe/cy.json"
     }
   },
   "wikidata": {
     "name": "Cyprus",
-    "gec": null,
+    "gec": "CY",
     "capital": "Nicosia",
-    "areaKm2": 9234,
-    "population": 1120489,
+    "areaKm2": 9242.45,
+    "population": 1344976,
     "continent": "Europe",
     "officialLanguages": [
       "Turkish",
-      "Greek"
+      "Modern Greek"
     ],
     "currencies": [],
-    "sharesBorderWithAnyType": []
+    "sharesBorderWithAnyType": [
+      "tr",
+      "gb",
+      "il"
+    ]
   },
-  "factbook": null
+  "factbook": {
+    "_path": "europe/cy.json",
+    "Introduction": {
+      "Background": {
+        "text": "A former British colony, Cyprus became independent in 1960 after years of resistance to British rule. Tensions between the Greek Cypriot majority and Turkish Cypriot minority came to a head in December 1963, when violence broke out in the capital of Nicosia. Despite the deployment of UN peacekeepers in 1964, sporadic intercommunal violence continued and forced most Turkish Cypriots into enclaves throughout the island. In 1974, a Greek Government-sponsored attempt to overthrow the elected president of Cyprus was met by military intervention from Turkey, which soon controlled more than a third of the island. In 1983, the Turkish Cypriot administered area declared itself the \"Turkish Republic of Northern Cyprus\" (TRNC), but it is recognized only by Turkey. A UN-mediated agreement to reunite Cyprus, the Annan Plan, failed to win approval from both communities in 2004. The most recent round of reunification negotiations was suspended in 2017 after failure to achieve a breakthrough. <br><br>The entire island joined the EU in 2004, although the EU acquis -- the body of common rights and obligations -- applies only to the areas under the internationally recognized government and is suspended in the TRNC. However, individual Turkish Cypriots able to document their eligibility for Republic of Cyprus citizenship have the same legal rights accorded to citizens of other EU states."
+      }
+    },
+    "Geography": {
+      "Location": {
+        "text": "Middle East, island in the Mediterranean Sea, south of Turkey; note - Cyprus views itself as part of Europe; geopolitically, it can be classified as falling within Europe, the Middle East, or both"
+      },
+      "Area": {
+        "total ": {
+          "text": "9,251 sq km (of which 3,355 sq km are in north Cyprus)"
+        },
+        "land": {
+          "text": "9,241 sq km"
+        },
+        "water": {
+          "text": "10 sq km"
+        }
+      },
+      "Land boundaries": {
+        "total": {
+          "text": "156 km"
+        },
+        "border sovereign base areas": {
+          "text": "Akrotiri 48 km; Dhekelia 108 km"
+        }
+      },
+      "Coastline": {
+        "text": "648 km"
+      },
+      "Climate": {
+        "text": "temperate; Mediterranean with hot, dry summers and cool winters"
+      },
+      "Terrain": {
+        "text": "central plain with mountains to north and south; scattered but significant plains along southern coast"
+      },
+      "Elevation": {
+        "highest point": {
+          "text": "Mount Olympus 1,951 m"
+        },
+        "lowest point": {
+          "text": "Mediterranean Sea 0 m"
+        },
+        "mean elevation": {
+          "text": "91 m"
+        }
+      },
+      "Natural resources": {
+        "text": "copper, pyrites, asbestos, gypsum, timber, salt, marble, clay earth pigment"
+      },
+      "Land use": {
+        "agricultural land": {
+          "text": "14% (2023 est.)"
+        },
+        "agricultural land: arable land": {
+          "text": "arable land: 10.6% (2023 est.)"
+        },
+        "agricultural land: permanent crops": {
+          "text": "permanent crops: 3.1% (2023 est.)"
+        },
+        "agricultural land: permanent pasture": {
+          "text": "permanent pasture: 0.2% (2023 est.)"
+        },
+        "forest": {
+          "text": "18.6% (2023 est.)"
+        },
+        "other": {
+          "text": "67.1% (2023 est.)"
+        }
+      },
+      "Natural hazards": {
+        "text": "moderate earthquake activity; droughts"
+      },
+      "Geography - note": {
+        "text": "the third largest island in the Mediterranean Sea (after Sicily and Sardinia)"
+      }
+    },
+    "People and Society": {
+      "Population": {
+        "total": {
+          "text": "1,332,293 (2025 est.)"
+        },
+        "male": {
+          "text": "681,128"
+        },
+        "female": {
+          "text": "651,165"
+        }
+      },
+      "Languages": {
+        "Languages": {
+          "text": "Greek (official) 80.9%, Turkish (official) 0.2%, English 4.1%, Romanian 2.9%, Russian 2.5%, Bulgarian 2.2%, Arabic 1.2%, Filipino 1.1%, other 4.3%, unspecified 0.6%&nbsp; (2011 est.)"
+        },
+        "major-language sample(s)": {
+          "text": "<br>Το Παγκόσμιο Βιβλίο Δεδομένων, η απαραίτητη πηγή βασικών πληροφοριών. (Greek)<br><br>The World Factbook, the indispensable source for basic information."
+        },
+        "note": "<strong>note:</strong> data represent only the Republic of Cyprus"
+      },
+      "Religions": {
+        "text": "Eastern Orthodox Christian 89.1%, Roman Catholic 2.9%, Protestant/Anglican 2%, Muslim 1.8%, Buddhist 1%, other (includes Maronite Catholic, Armenian Apostolic, Hindu) 1.4%, unknown 1.1%, none/atheist 0.6% (2011 est.)",
+        "note": "<strong>note:</strong> data represent only the government-controlled area of Cyprus"
+      },
+      "Ethnic groups": {
+        "text": "Greek 98.8%, other 1% (includes Maronite, Armenian, Turkish-Cypriot), unspecified 0.2% (2011 est.)",
+        "note": "<strong>note:</strong> data represent only the Greek-Cypriot citizens in the Republic of Cyprus"
+      },
+      "Urbanization": {
+        "urban population": {
+          "text": "67% of total population (2023)"
+        },
+        "rate of urbanization": {
+          "text": "0.76% annual rate of change (2020-25 est.)"
+        }
+      },
+      "Population distribution": {
+        "text": "population concentrated in central Nicosia and in the major cities of the south: Paphos, Limassol, and Larnaca"
+      }
+    },
+    "Economy": {
+      "Economic overview": {
+        "text": "services-based, high-income EU island economy; heavy tourism; sustained growth between recovery of national banking system and COVID-19 trade restrictions; high living standards; a known financial hub, its stock exchange functions as an investment bridge between EU-and EEU-member countries",
+        "note": "<strong>note: </strong>Even though the whole of the island is part of the EU, implementation of the EU \"acquis communautaire\" has been suspended in the area administered by Turkish Cypriots, known locally as the Turkish Republic of Northern Cyprus, until political conditions permit the reunification of the island. Its market-based economy is roughly one-fifth the size of its southern neighbor and is likewise dominated by the service sector with a large portion of the population employed by the government. Manufacturing is limited mainly to food and beverages, furniture and fixtures, construction materials, metal and non-metal products, textiles and clothing. Little trade exists with the Republic of Cyprus outside of construction, historically relying heavily upon Turkey for financial aid, defense, telecommunications, utilities, and postal services. The Turkish Lira is the preferred currency, though foreign currencies are widely accepted in business transactions."
+      },
+      "Agricultural products": {
+        "text": "milk, potatoes, sheep milk, pork, goat milk, wheat, chicken, olives, grapes, barley (2023)",
+        "note": "<b>note:</b> top ten agricultural products based on tonnage"
+      },
+      "Industries": {
+        "text": "tourism, food and beverage processing, cement and gypsum, ship repair and refurbishment, textiles, light chemicals, metal products, wood, paper, stone and clay products",
+        "note": "<strong>note:</strong> area administered by Turkish Cypriots - foodstuffs, textiles, clothing, ship repair, clay, gypsum, copper, furniture"
+      },
+      "Exports - commodities": {
+        "text": "ships, refined petroleum, packaged medicine, cheese, scented mixtures (2023)",
+        "note": "<b>note:</b> top five export commodities based on value in dollars"
+      },
+      "Exports - partners": {
+        "text": "Libya 14%, Greece 11%, Lebanon 8%, Bermuda 7%, Marshall Islands 5% (2023)",
+        "note": "<b>note:</b> top five export partners based on percentage share of exports"
+      },
+      "Imports - commodities": {
+        "text": "refined petroleum, ships, cars, packaged medicine, coal tar oil (2023)",
+        "note": "<b>note:</b> top five import commodities based on value in dollars"
+      }
+    },
+    "Environment": {
+      "Climate": {
+        "text": "temperate; Mediterranean with hot, dry summers and cool winters"
+      }
+    }
+  }
 }

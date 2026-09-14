@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import Svg, { Rect, Path, Circle, Text as SvgText } from "react-native-svg";
-import { COUNTRY_PATHS, MAP_W } from "../data/worldMap";
+import { MAP_PATHS, MAP_W } from "../data/worldMap";
 import { countryName } from "../data/countries";
 import { map } from "../theme";
 import { smallCountryHitTargets, countryCentroids } from "../game/mapHitTargets";
@@ -33,9 +33,17 @@ const HOVER_HANDLERS_SUPPORTED = Platform.OS === "web";
 const HOVER_STYLE = { cursor: "pointer" };
 
 // Same inhabited-band crop as the Locator's map (see WorldMap.js), so the two
-// views read as the same instrument at different zoom levels.
-const VIEW_TOP = 22;
-const VIEW_HEIGHT = 290;
+// views read as the same instrument at different zoom levels — including its
+// exclusion of Antarctica, which this projection cannot show honestly.
+const VIEW_TOP = 12;
+const VIEW_HEIGHT = 300;
+
+// Antarctica is the one landmass this crop deliberately leaves out. It sits
+// almost entirely below the band, so it would render as a sliver pinned to the
+// bottom edge — and an equirectangular projection stretches it into the largest
+// thing on the map, which is the classic way a flat map miseducates. It draws
+// correctly on the globe, which is where it belongs.
+const OFF_BAND = new Set(["aq"]);
 const VIEWBOX = `0 ${VIEW_TOP} ${MAP_W} ${VIEW_HEIGHT}`;
 
 // Exported so WorldMapScreen's region picker (M2.3 step 5.2) can feed this
@@ -44,12 +52,12 @@ const VIEWBOX = `0 ${VIEW_TOP} ${MAP_W} ${VIEW_HEIGHT}`;
 // crop of the map.
 export const EXPLORE_MAP_VIEW = { x: 0, y: VIEW_TOP, width: MAP_W, height: VIEW_HEIGHT };
 
-const ALL_CODES = Object.keys(COUNTRY_PATHS);
+const ALL_CODES = Object.keys(MAP_PATHS).filter((code) => !OFF_BAND.has(code));
 
 // Computed once from the static path data (M2.3 step 3.2) — see
 // game/mapHitTargets.js for why only the smallest countries qualify.
 const SMALL_HIT_TARGETS = smallCountryHitTargets(
-  COUNTRY_PATHS,
+  MAP_PATHS,
   MAP_SMALL_COUNTRY_MAX_SIZE,
   MAP_SMALL_HIT_RADIUS
 );
@@ -57,7 +65,7 @@ const SMALL_HIT_TARGETS = smallCountryHitTargets(
 // Every country's own bounding-box center (M2.3 step 3.3), computed once —
 // anchors the tap label regardless of whether the tap landed on the real
 // shape or an enlarged small-country hit circle.
-const CENTROIDS = countryCentroids(COUNTRY_PATHS);
+const CENTROIDS = countryCentroids(MAP_PATHS);
 
 export default function ExploreMap({ onSelect }) {
   const [hoveredCode, setHoveredCode] = useState(null);
@@ -83,7 +91,7 @@ export default function ExploreMap({ onSelect }) {
       {ALL_CODES.map((code) => (
         <Path
           key={code}
-          d={COUNTRY_PATHS[code]}
+          d={MAP_PATHS[code]}
           // Same accent the Locator uses for a live candidate — the shape
           // under the cursor (or the one just tapped, on touch devices with
           // no hover) reads as "about to be tapped" before it is.

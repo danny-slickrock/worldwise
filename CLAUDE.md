@@ -84,7 +84,11 @@ src/
   data/interests.js        # M2.3.6: interest catalog — stable slug + label + glyph, display order
   data/countryTopics.js    # Country-page fact sections: allowlist + label + glyph (colours in theme)
   data/achievements.js     # M2.5 step 1: badge catalog — slug/label/description/glyph/metric/threshold
-  data/worldMap.js         # AUTO-GENERATED equirectangular country paths (Country Locator)
+  data/territories.js      # The 8 non-sovereign places the map draws — Greenland, Antarctica,
+                           #   Western Sahara, Kosovo, Puerto Rico, New Caledonia, the Falklands,
+                           #   the French Southern Lands. Each carries a `status` line
+  data/worldMap.js         # AUTO-GENERATED paths: COUNTRY_PATHS (167 drawn states) +
+                           #   TERRITORY_PATHS (8) + MICRO_PATHS (29 point symbols) + MAP_PATHS
   data/worldGeo.js         # M2.3.7: the globe's geometry — worldMap.js's pixels inverted back to
                            #   unit vectors at module load. Derived, never hand-edited
   game/questions.js        # Quiz engine: buildRound(mode) + buildDaily() → question objects
@@ -409,6 +413,34 @@ piece of cloud/auth logic is split in two: the *decision* is pure and tested (`c
 (`cloudProgress.js`, `redirect.js`, `cloudInterests.js`). Put new logic on the pure side by default;
 a module that imports RN can't be tested here at all.
 
+**COUNTRIES is the 196 sovereign states; PLACES is the atlas.** They are different lists on
+purpose and the difference is load-bearing. `COUNTRIES` is the _gameplay_ dataset — quiz pools,
+learning paths and region collections are all built from it, and "196" is asserted by the suite.
+`PLACES` is `COUNTRIES` plus `data/territories.js`, and it is what the map draws, what search
+finds, and what `getCountryPage` resolves. Reach for COUNTRIES on a country question and PLACES on
+a place question; the bug the split prevents is Greenland turning up in the Flag Guesser.
+
+- **A territory page must say it is one.** Every territory carries a `status` ("Autonomous
+  territory of the Kingdom of Denmark", "Partially recognised state"), rendered where a country
+  shows its capital. `capital` may be null — Antarctica has no government to have one — so every
+  surface that shows a capital has to handle that, and the country index joins its subtitle rather
+  than interpolating it.
+- **Classification never travels through Postgres.** `contentSync` re-derives territory/status/
+  sovereign from the bundled registry by code rather than reading columns. A column can be empty;
+  a row seeded before those columns existed would return Greenland with no status, and a territory
+  would render as a country through the one path that overrides the bundled baseline.
+- **The three path tables are separate for a gameplay reason, not a cartographic one.**
+  `COUNTRY_PATHS`' keys decide what the Country Locator can ask about, so it holds only countries
+  with a real drawn outline. The 29 micro-states are point symbols: a dot carries position but no
+  shape, so "find Tuvalu" would be four identical Pacific dots. They are explorable, not askable.
+  Map surfaces read `MAP_PATHS`; gameplay reads the narrower tables.
+- **Somaliland and Northern Cyprus have no ISO code**, so their land is merged into `so`/`cy` by
+  the generator. That follows ISO and removes the hole without inventing a code for a place — or a
+  position on it. Regenerating the map without the merge silently reopens two holes.
+- **Antarctica is deliberately absent from the two flat maps.** It sits almost entirely below their
+  inhabited-band crop, and equirectangular stretches it into the largest thing on the map. It draws
+  correctly on the globe, which is the surface that matters.
+
 **Data model.** A question is `{ type, country, prompt, correct, options[] }`.
 Modes: `flag`, `capital`, `capitalReverse`, `shape`, `locator`, `higherLower`, `daily` (a deterministic mixed round, seeded by date), and `country` (a mixed round about ONE place, reached only from a country page's "Play with …" — it is meaningless without a subject, so it is not on Home).
 `higherLower` is the one question shape that is a *pair* rather than a target country:
@@ -418,6 +450,22 @@ compares it against the tapped option directly.
 
 **Assets are loaded at runtime**, not bundled: flags from flagcdn.com, outlines from the
 mapsicon project (see `data/countries.js`). Keeps the app light and the repo small.
+
+**A Factbook lookup goes through Wikidata's GEC code, and that is where content silently goes
+missing.** Cyprus and Palestine spent the whole enrichment pass unpromoted — thin pages, and absent
+from Higher or Lower, which draws its numbers from the same content — for no better reason than
+Wikidata having no P901 for either. Two traps in that resolution, both now handled in
+`scripts/fetch-country-sources.mjs`:
+
+- **Never fall back from GEC to the ISO code.** It looks like the obvious fix and the two code
+  spaces collide: ISO "de" is Germany, GEC "de" is Denmark. A blind fallback attaches the wrong
+  country's prose to a page and nothing downstream catches it. `FACTBOOK_GEC_OVERRIDES` maps the
+  handful by hand instead.
+- **A place can span several Factbook entries.** The Factbook has no Palestine; it has the West
+  Bank and the Gaza Strip. They stay labelled, separate excerpts rather than being merged into one
+  blob, because merging is how a claim about Gaza ends up reading as a claim about the West Bank.
+  The index build also excluded the `antarctica` folder, which is why Antarctica and the French
+  Southern Lands were the only two landmasses with no source at all.
 
 ## Conventions
 

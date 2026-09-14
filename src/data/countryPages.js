@@ -12,7 +12,7 @@
 // COUNTRY_PAGES holds hand-authored entries; most countries don't have one yet.
 // Always read through getCountryPage(code), which fills gaps from countries.js
 // and whyItMatters.js so every country renders a reasonable page today.
-import { COUNTRIES } from "./countries";
+import { PLACES } from "./countries";
 import { whyItMatters } from "./whyItMatters";
 import { COUNTRY_CONTENT } from "./countryContent";
 
@@ -37,11 +37,18 @@ export const COUNTRY_PAGES = {
   },
 };
 
-// Pure accessor: merges a hand-authored page (if any) with the base country
-// record, so every known country returns a usable page. Returns null only if
-// the code isn't in the dataset at all.
+// Pure accessor: merges a hand-authored page (if any) with the base place
+// record, so every known place returns a usable page. Returns null only if the
+// code isn't in the dataset at all.
+//
+// Resolves against PLACES rather than COUNTRIES, which is what gives Greenland,
+// Antarctica and the other six territories a real page instead of a dead tap
+// on the map. A territory page differs in exactly two ways, both carried here
+// rather than decided by the screen: `capital` may be null (Antarctica has no
+// government to have one) and `status` says what the place actually is, so no
+// surface has to imply a territory is a country by leaving the field out.
 export function getCountryPage(code) {
-  const country = COUNTRIES.find((c) => c.code === code);
+  const country = PLACES.find((c) => c.code === code);
   if (!country) return null;
 
   // Generated content first, hand-authored overrides on top. Spreading in this
@@ -65,5 +72,10 @@ export function getCountryPage(code) {
     facts: page?.facts ?? null,
     hasFullContent: Boolean(page),
     noOutline: Boolean(country.noOutline),
+    // Non-sovereign places only; null for all 196 countries, so a truthy
+    // `status` is the test for "this is a territory" everywhere downstream.
+    territory: Boolean(country.territory),
+    status: country.status ?? null,
+    sovereign: country.sovereign ?? null,
   };
 }

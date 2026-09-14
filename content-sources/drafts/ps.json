@@ -5,7 +5,7 @@
   "structured": {
     "code": "ps",
     "name": "Palestine",
-    "capital": "East Jerusalem",
+    "capital": "Ramallah",
     "continent": "Asia",
     "areaKm2": 6020,
     "population": 5227193,
@@ -15,49 +15,55 @@
     "currencies": [
       "new shekel"
     ],
-    "landBorderNames": [],
-    "landBorderCodes": [],
+    "landBorderNames": [
+      "Israel",
+      "Jordan",
+      "Egypt"
+    ],
+    "landBorderCodes": [
+      "il",
+      "jo",
+      "eg"
+    ],
     "landBorderTerritories": [],
     "landBorderUnresolved": [],
-    "naturalResources": null,
+    "naturalResources": "arable land || [GZ] arable land, natural gas",
     "_source": "wikidata (CC0); landBorders + naturalResources from CIA World Factbook (public domain)"
   },
   "prose": {
-    "hook": "",
-    "physicalGeography": "",
-    "climate": "",
-    "economy": "",
-    "peopleAndCulture": ""
+    "hook": "Palestine is two separated territories with two different landscapes. The West Bank is rugged, dissected upland in the west, dropping east in flat plains to the Jordan River Valley; it is landlocked, and its highlands are the main recharge area for Israel's coastal aquifers. The Gaza Strip is a flat to rolling, sand- and dune-covered coastal plain on the Mediterranean between Egypt and Israel, on ground that was once a strategic link along trade routes between the Middle East and North Africa. What the territories send out is modest and physical: scrap iron, tropical fruits, olive oil, building stone.",
+    "physicalGeography": "The West Bank is mostly rugged, dissected upland in the west, with flat plains descending eastward to the Jordan River Valley; it lies west of Jordan and east of Israel. The Gaza Strip is separate from it, a flat to rolling, sand- and dune-covered coastal plain on the Mediterranean between Egypt and Israel.",
+    "climate": "Temperate across both territories, with warm to hot summers and cool to mild winters. In the West Bank temperature and precipitation vary with altitude, which changes sharply over short distances; Gaza is milder in winter and dry and warm to hot in summer. Drought is the standing hazard in both.",
+    "economy": "Small-scale and physical on both sides. West Bank industry runs to small-scale manufacturing, quarrying, textiles, soap, olive-wood carvings and mother-of-pearl souvenirs; Gaza's to textiles, food processing and furniture. Exports from the territories are led by scrap iron, tropical fruits, olive oil, building stone and prepared meat.",
+    "peopleAndCulture": "The population is Palestinian Arab, with Jewish and other communities also present in the West Bank. There, Muslims — predominantly Sunni — are 80 to 85%, Jewish residents 12 to 14%, and Christians 1 to 2.5%, mainly Greek Orthodox. Gaza is far more uniform: Muslim at 98 to 99%, again predominantly Sunni, with Christians and everyone else under 1%."
   },
   "proseSources": {
     "hook": "Geography > Location, Terrain, Natural resources; Economy > Exports",
     "physicalGeography": "Geography > Terrain, Location, Elevation",
     "climate": "Geography > Climate",
     "economy": "Economy > Economic overview, Exports, Industries",
-    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
   },
   "_sourceExcerpts": {
     "hook": {
       "from": "Geography > Location, Terrain, Natural resources; Economy > Exports",
-      "excerpt": ""
+      "excerpt": "Middle East, west of Jordan, east of Israel || [GZ] Middle East, bordering the Mediterranean Sea, between Egypt and Israel || mostly rugged, dissected upland in west, flat plains descending to Jordan River Valley to the east || [GZ] flat to rolling, sand- and dune-covered coastal plain || landlocked; highlands are main recharge area for Israel's coastal aquifers (2017) || [GZ] once a strategic strip of land along Mideast-North African trade routes || Resources: arable land || [GZ] arable land, natural gas || Exports: scrap iron, tropical fruits, olive oil, building stone, prepared meat (2023) || [GZ] scrap iron, tropical fruits, olive oil, building stone, prepared meat (2023)"
     },
     "physicalGeography": {
       "from": "Geography > Terrain, Location, Elevation",
-      "excerpt": ""
+      "excerpt": "mostly rugged, dissected upland in west, flat plains descending to Jordan River Valley to the east || [GZ] flat to rolling, sand- and dune-covered coastal plain || Middle East, west of Jordan, east of Israel || [GZ] Middle East, bordering the Mediterranean Sea, between Egypt and Israel"
     },
     "climate": {
       "from": "Geography > Climate",
-      "excerpt": ""
+      "excerpt": "temperate; temperature and precipitation vary with altitude, warm to hot summers, cool to mild winters || [GZ] temperate, mild winters, dry and warm to hot summers || droughts || [GZ] droughts"
     },
     "economy": {
       "from": "Economy > Economic overview, Exports, Industries",
-      "excerpt": ""
+      "excerpt": "Exports: scrap iron, tropical fruits, olive oil, building stone, prepared meat (2023) || [GZ] scrap iron, tropical fruits, olive oil, building stone, prepared meat (2023) || Industries: small-scale manufacturing, quarrying, textiles, soap, olive-wood carvings, and mother-of-pearl souvenirs || [GZ] textiles, food processing, furniture"
     },
     "peopleAndCulture": {
-      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
-      "excerpt": ""
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "Muslim 80-85% (predominantly Sunni), Jewish 12-14%, Christian 1-2.5% (mainly Greek Orthodox), other, unaffiliated, unspecified &lt;1% (2012 est.) || [GZ] Muslim 98.0 - 99.0% (predominantly Sunni), Christian &lt;1.0%, other, unaffiliated, unspecified &lt;1.0% (2012 est.) || Palestinian Arab, Jewish, other || [GZ] Palestinian Arab"
     }
-  },
-  "draftedAt": "2026-09-05T00:59:09.318Z",
-  "draftModel": "claude-sonnet-5"
+  }
 }
