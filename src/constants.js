@@ -211,3 +211,9 @@ export const HIGHER_LOWER_STREAK = {
   // Ceiling, so a perfect round cannot dwarf every other mode's XP.
   maxBonus: 40,
 };
+
+// Leaderboards (M2.6 step 1): how many ranked rows a leaderboard screen shows
+// before pinning the current player's own row separately (see
+// game/leaderboardPolicy.js's topWithYou). Large enough to feel like a real
+// board, small enough to render without its own scroll/pagination yet.
+export const LEADERBOARD_TOP_N = 10;

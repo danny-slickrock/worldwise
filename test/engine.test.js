@@ -133,6 +133,7 @@ import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
+import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
   colors,
   contrastRatio,
@@ -181,6 +182,7 @@ import {
   MAP_SMALL_HIT_RADIUS,
   LEVEL_XP_BASE,
   LEVEL_XP_GROWTH,
+  LEADERBOARD_TOP_N,
 } from "../src/constants";
 
 import {
@@ -4157,6 +4159,78 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nLeaderboard policy (M2.6 step 1)");
+const lbEntries = [
+  { userId: "a", displayName: "Amara", value: 300 },
+  { userId: "b", displayName: "Bo", value: 500 },
+  { userId: "c", displayName: "Chen", value: 500 },
+  { userId: "d", displayName: "Dana", value: 100 },
+];
+const lbRanked = rankLeaderboard(lbEntries, null);
+check(
+  lbRanked.map((e) => e.userId).join(",") === "b,c,a,d",
+  "rankLeaderboard sorts by value descending"
+);
+check(
+  JSON.stringify(lbRanked.map((e) => e.rank)) === JSON.stringify([1, 1, 3, 4]),
+  "tied scores share a rank, and the next distinct score skips ahead by the tie count (competition ranking)"
+);
+check(
+  lbRanked.every((e) => e.isYou === false),
+  "no currentUserId means nobody is flagged isYou"
+);
+check(
+  rankLeaderboard(lbEntries, "c").find((e) => e.userId === "c").isYou === true &&
+    rankLeaderboard(lbEntries, "c").filter((e) => e.isYou).length === 1,
+  "isYou flags exactly the matching userId's row"
+);
+check(
+  JSON.stringify(rankLeaderboard([{ userId: "b", value: 500 }, { userId: "c", value: 500 }]).map((e) => ({
+    id: e.userId,
+    rank: e.rank,
+  }))) ===
+    JSON.stringify(rankLeaderboard([{ userId: "c", value: 500 }, { userId: "b", value: 500 }]).map((e) => ({
+      id: e.userId,
+      rank: e.rank,
+    }))),
+  "a tie between two players breaks the same way regardless of input order (deterministic tie-break)"
+);
+check(rankLeaderboard([], "a").length === 0, "rankLeaderboard tolerates an empty entry list");
+check(
+  rankLeaderboard(null, "a").length === 0,
+  "rankLeaderboard tolerates a missing entry list"
+);
+check(
+  rankLeaderboard([{ userId: "e", displayName: "Eve" }], null)[0].value === 0,
+  "an entry with no value is treated as 0 rather than throwing"
+);
+
+const lbTop = topWithYou(lbEntries, "d", 2);
+check(
+  lbTop.rows.length === 2 && lbTop.rows.map((e) => e.userId).join(",") === "b,c",
+  "topWithYou returns only the top `limit` ranked rows"
+);
+check(
+  lbTop.you !== null && lbTop.you.userId === "d" && lbTop.youInTop === false,
+  "a player outside the top N still gets their own ranked row back, flagged as not in the visible top"
+);
+const lbTopInside = topWithYou(lbEntries, "b", 2);
+check(
+  lbTopInside.youInTop === true && lbTopInside.you.userId === "b",
+  "a player inside the top N is reported as such"
+);
+check(
+  topWithYou(lbEntries, "nobody-playing").you === null,
+  "topWithYou reports no 'you' row when currentUserId matches nothing"
+);
+check(
+  topWithYou(lbEntries, "a").rows.length === Math.min(lbEntries.length, LEADERBOARD_TOP_N),
+  "topWithYou defaults its limit to LEADERBOARD_TOP_N"
+);
+check(
+  topWithYou([], "a").rows.length === 0 && topWithYou([], "a").you === null,
+  "topWithYou tolerates an empty leaderboard"
+);
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

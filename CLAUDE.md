@@ -159,6 +159,10 @@ src/
   game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
                            #   game_results.countries into per-region collected/total/progress,
                            #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
+  game/leaderboardPolicy.js # PURE M2.6 step 1: rankLeaderboard(entries, currentUserId) — competition
+                           #   ranking (ties share a rank) + a deterministic tie-break; topWithYou()
+                           #   is the top N plus the player's own row when they're outside it. Ranks
+                           #   whatever rows a later IO layer fetches — no schema/IO yet
   hooks/useGlobeGestures.js # Drag-to-spin, pinch/wheel-to-zoom and flick momentum for a GlobeMap.
                            #   Used by BOTH the Explore map and the Country Locator
   auth/redirectPolicy.js   # PURE auth-redirect selection
@@ -658,9 +662,17 @@ tapping Back that confirmed Back waits for the animation before actually navigat
 
 **Next up:** with M2.3.5, M2.3.7, and M2.9 still blocked on human-only steps and M2.4/M2.5 both
 done, **M2.6 — Leaderboards & light social** is the lowest-numbered milestone with unblocked work.
-It has no ordered sub-checklist yet — see ROADMAP.md's one-paragraph description — so the next run
-that picks it up needs to add one (mirroring how M2.4 and M2.5 each started) before implementing
-its first scoped step.
+It now has an ordered sub-checklist (see ROADMAP.md), and step 1 — the pure ranking policy,
+`src/game/leaderboardPolicy.js`'s `rankLeaderboard()` (competition ranking: tied scores share a
+rank, the next distinct score skips ahead by the tie count, plus a deterministic name/id tie-break)
+and `topWithYou()` (the top `LEADERBOARD_TOP_N` rows, plus the player's own ranked row pinned on
+when they're outside it) — is done. It ranks whatever rows a caller hands it; there is deliberately
+no schema or IO yet. **Step 2 is next and needs a human read before landing:** the M2.1 RLS policies
+make every `user_stats`/`game_results` row visible only to its own owner, so a real leaderboard
+needs a new, narrow public-read surface (a view or summary table carrying only `user_id`/
+`display_name`/the ranked value) rather than widening either existing table to cross-user `select`
+— that would also expose `settings`, `difficulty_pref`, and every raw round. Mirror `content.*`'s
+public-read pattern (M2.3.5), not `user_stats`/`game_results`'s owner-only one.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

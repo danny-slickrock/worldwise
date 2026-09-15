@@ -115,9 +115,14 @@ same `loadingResults` + `Skeleton` treatment `LearningPathScreen` already used),
 fades/settles out on Back via a `screenAnim` `Animated.Value`, the same `handleExit`/`screenStyle`
 shape `CountryPageScreen`/`LearningPathScreen` already use, with every nested `FadeInUp` passing
 `rise={0}` so the screen's own rise isn't compounded). All verified in a real browser. **With M2.5
-done, M2.6 — Leaderboards & light social is the lowest-numbered milestone with unblocked work; it
-has no ordered sub-checklist yet** (see its one-paragraph description below) — that's the first
-thing a future run on this milestone needs to add, before picking a first scoped step from it.
+done, M2.6 — Leaderboards & light social is the lowest-numbered milestone with unblocked work.** It
+now has an ordered sub-checklist, and step 1 — the pure ranking policy
+(`src/game/leaderboardPolicy.js`'s `rankLeaderboard()`/`topWithYou()`, competition ranking with a
+deterministic tie-break, `LEADERBOARD_TOP_N` in `constants.js`) — is done. **Step 2 is next, and
+needs a human read before landing:** today's RLS (M2.1) makes every `user_stats`/`game_results` row
+visible only to its own owner, so a leaderboard needs a new, narrow public-read surface (view or
+summary table: just `user_id`/`display_name`/ranked value, nothing from `profiles` beyond a
+display name) rather than widening the existing owner-only tables — see M2.6 step 2's note below.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1448,6 +1453,57 @@ teaching *how the world works*, not just *where things are*.
     would not resize below the rail breakpoint in that session.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
+  - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
+    Strategy, mirroring M2.4/M2.5: unlike either of those, there's no existing per-user signal to
+    mine locally — a leaderboard is inherently cross-player, and today's RLS (M2.1) is "a player
+    sees only their own rows," full stop, so *no* row of `user_stats`/`game_results` is visible to
+    anyone but its owner. That means the pure ranking layer has to come first anyway (there's
+    nothing to fetch until the schema step after it decides what's safe to expose), then a narrow
+    public-read surface, then the IO + screen built on top of it.
+    1. ✅ **Ranking policy (pure + tested).** `src/game/leaderboardPolicy.js`: takes whatever
+       `{ userId, displayName, value }` rows a later IO layer fetches (global XP total today; the
+       same shape will carry a Daily Challenge score once that surface exists — the module doesn't
+       care what `value` means) and returns them ranked. `rankLeaderboard(entries, currentUserId)`
+       sorts descending and assigns **competition ranking** (1, 1, 3, 4 — tied scores share a rank,
+       the next distinct score skips ahead by the tie count, so two people tied for 2nd means
+       nobody is 3rd), with a deterministic name-then-id tie-break so two tied players don't swap
+       order on every re-render. `topWithYou(entries, currentUserId, limit = LEADERBOARD_TOP_N)` is
+       what a screen actually renders: the top `limit` rows, plus the current player's own ranked
+       row when they didn't make the cut — a leaderboard should never tell a real, ranked player
+       "you're nowhere." `LEADERBOARD_TOP_N` (10) lives in `constants.js`, same convention as every
+       other tunable gameplay number. 14 checks in `test/engine.test.js`: descending sort, the
+       competition-ranking tie sequence, `isYou` tagging (including "matches nothing"), tie-break
+       determinism regardless of input order, empty/missing-list tolerance, a missing `value`
+       defaulting to 0 instead of throwing, and `topWithYou`'s in-top vs. pinned-outside-top
+       contract. *(Next up: step 2 — the schema. `game_results`' own migration comment already
+       flagged it as "the source for leaderboards (M2.6)," but the row-owner RLS policy means a new,
+       narrow public-read surface is needed — never widen `user_stats`/`game_results` themselves to
+       cross-user `select`, since that would also expose `settings`/`difficulty_pref`/every raw
+       round. The safe shape is a view or a dedicated summary table carrying only `user_id`,
+       `display_name`, and the ranked value(s) — no email, no settings, nothing from `profiles`
+       beyond a name to show. Needs a human read before landing, since it's the first cross-user
+       read surface in the schema and the grant-less-RLS trap (M2.1) makes this exactly the kind of
+       change that fails silent instead of loud.)*
+    2. ☐ **Schema: a narrow public-read leaderboard surface.** A migration exposing only what a
+       leaderboard needs to render (display name + ranked value, per leaderboard), RLS'd `select`-only
+       for `authenticated` with explicit grants — mirroring `content.*`'s public-read pattern (M2.3.5)
+       rather than `user_stats`/`game_results`' owner-only pattern. Decide global-XP vs. daily-score
+       (or both) here; `anon` gets nothing, same reasoning M2.1 used.
+    3. ☐ **IO layer.** `src/storage/cloudLeaderboard.js`: fetch ranked rows from the new surface,
+       feeding `leaderboardPolicy.js`'s `topWithYou()`. Mirrors `cloudProgress.js`'s
+       `fetchRoundResults()` shape — cloud-only, `{ rows, error }`, no swallowed failures.
+    4. ☐ **Navigation seam + hero screen.** A `leaderboard` route (owned by the Profile tab, same
+       pattern as M2.5's `achievements` route) rendering `src/screens/LeaderboardScreen.js`: real
+       ranked rows via step 3 + `topWithYou()`, a "you" row pinned when outside the visible top,
+       loading/offline/signed-out states mirroring `AchievementsScreen`'s own (M2.5 step 6.4.3).
+    5. ☐ **Daily Challenge leaderboard.** A second ranked view scoped to today's `daily_date`, likely
+       reusing the same screen with a global/daily toggle rather than a second screen.
+    6. ☐ **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable
+       image/text summary of a finished Daily Challenge round (score, streak, rank if known).
+    7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
+       — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
+    8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
+       offline/error states, transitions).
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
   Currency, Language, National Animal, Food Origin, and City games — breadth without new bespoke code.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
