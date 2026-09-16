@@ -165,6 +165,15 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  countryStats,
+  studyReason,
+  needsStudy,
+  studyByRegion,
+  practiceSet,
+  reviewSummary,
+} from "../src/game/reviewPolicy";
+import { REVIEW_PRACTICE_SIZE } from "../src/constants";
+import {
   marathonPresentation,
   marathonUsesGlobe,
   marathonHighlights,
@@ -2984,6 +2993,7 @@ const roundTrips = [
   { name: "achievements" },
   { name: "quiz", mode: "shape", difficulty: "easy", timed: true },
   { name: "gameSetup", mode: "flag" },
+  { name: "review" },
   { name: "marathon", mode: "nameEveryCountry", tier: "easy" },
 ];
 check(
@@ -5183,6 +5193,253 @@ check(
 check(
   contrastRatio(colors.brass, duskCorner) < CONTRAST.large,
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
+);
+
+console.log("\nReview policy (M2.12 step 9)");
+const DAY = 24 * 60 * 60 * 1000;
+const NOW = Date.parse("2026-09-16T12:00:00Z");
+const agoISO = (daysAgo) => new Date(NOW - daysAgo * DAY).toISOString();
+const rvRow = (daysAgo, countries) => ({ played_at: agoISO(daysAgo), countries });
+
+// --- stats folding ---
+const basicStats = countryStats(
+  [
+    rvRow(1, [
+      { code: "lv", correct: false },
+      { code: "fr", correct: true },
+    ]),
+    rvRow(3, [{ code: "lv", correct: true }]),
+  ],
+  NOW
+);
+check(
+  basicStats.get("lv").seen === 2 && basicStats.get("lv").right === 1,
+  "attempts and hits are counted per country"
+);
+check(basicStats.get("lv").accuracy === 0.5, "accuracy is hits over attempts");
+check(
+  basicStats.get("lv").daysSinceSeen === 1,
+  "recency comes from the most recent row, not the first"
+);
+check(
+  basicStats.get("lv").daysSinceMiss === 1,
+  "the last MISS is tracked separately from the last sighting"
+);
+check(basicStats.get("fr").daysSinceMiss === null, "a country never missed has no miss date");
+
+// Sparse rows must be tolerated, not thrown on — older rounds predate the
+// countries column entirely.
+check(
+  countryStats([{ score: 5, total: 8 }], NOW).size === 0,
+  "a row with no countries contributes nothing"
+);
+check(countryStats(null, NOW).size === 0, "a null result set is empty, not an error");
+check(
+  countryStats([{ countries: [{ correct: true }] }], NOW).size === 0,
+  "an entry with no code is skipped"
+);
+
+// A missing timestamp must not date the row to 1970 — that would mark every
+// country in it permanently stale.
+const undated = countryStats([{ countries: [{ code: "jp", correct: true }] }], NOW);
+check(
+  undated.get("jp").daysSinceSeen === null,
+  "a row with no played_at means 'no recency information', not 1970"
+);
+check(studyReason(undated.get("jp"), NOW) === null, "...so it is not wrongly marked stale");
+
+// --- the three reasons, and their precedence ---
+const recent = countryStats([rvRow(2, [{ code: "lv", correct: false }])], NOW).get("lv");
+check(studyReason(recent, NOW) === "recent-miss", "a miss inside the window is a recent miss");
+check(
+  studyReason(countryStats([rvRow(1, [{ code: "x1", correct: false }])], NOW).get("x1"), NOW) ===
+    "recent-miss",
+  "one miss is enough — waiting for a third data point is the surface arriving too late"
+);
+
+const sloppy = countryStats(
+  [
+    rvRow(40, [{ code: "gh", correct: false }]),
+    rvRow(41, [{ code: "gh", correct: false }]),
+    rvRow(42, [{ code: "gh", correct: true }]),
+  ],
+  NOW
+).get("gh");
+check(
+  studyReason(sloppy, NOW) === "low-accuracy",
+  "poor accuracy over enough attempts is its own reason"
+);
+
+const unlucky = countryStats([rvRow(40, [{ code: "pe", correct: false }])], NOW).get("pe");
+check(
+  studyReason(unlucky, NOW) === "stale",
+  "a single old miss is NOT low-accuracy — the attempt minimum stops one unlucky answer branding a country forever"
+);
+
+const forgotten = countryStats([rvRow(40, [{ code: "jp", correct: true }])], NOW).get("jp");
+check(
+  studyReason(forgotten, NOW) === "stale",
+  "100% accuracy but not seen in weeks is still worth review — the case a pure accuracy metric cannot see"
+);
+check(
+  studyReason(countryStats([rvRow(1, [{ code: "jp", correct: true }])], NOW).get("jp"), NOW) ===
+    null,
+  "recently correct is solid, and reported as nothing at all"
+);
+check(studyReason(null, NOW) === "unseen", "a country with no stats is unseen");
+check(
+  studyReason({ seen: 0 }, NOW) === "unseen",
+  "...and unseen is a fourth state, never conflated with needing study"
+);
+
+// Precedence: a recent miss outranks bad accuracy, because it is the more
+// actionable of the two.
+const both = countryStats(
+  [
+    rvRow(1, [{ code: "ee", correct: false }]),
+    rvRow(30, [{ code: "ee", correct: false }]),
+    rvRow(31, [{ code: "ee", correct: false }]),
+  ],
+  NOW
+).get("ee");
+check(
+  studyReason(both, NOW) === "recent-miss",
+  "a recent miss outranks poor accuracy — it is the more actionable signal"
+);
+
+// --- the list ---
+const HISTORY = [
+  rvRow(1, [
+    { code: "lv", correct: false },
+    { code: "fr", correct: true },
+  ]),
+  rvRow(2, [{ code: "lv", correct: false }]),
+  rvRow(40, [{ code: "jp", correct: true }]),
+  rvRow(41, [
+    { code: "pe", correct: false },
+    { code: "pe", correct: false },
+    { code: "pe", correct: true },
+  ]),
+];
+const list = needsStudy(HISTORY, { now: NOW });
+check(list.length > 0, "a history with misses produces a study list");
+check(
+  list.every((r) => r.reason !== "unseen"),
+  "NEVER-SEEN countries are excluded — 195 unseen entries would bury the handful you actually got wrong"
+);
+check(
+  list.length < COUNTRIES.length,
+  "...which is why the list is a handful, not the whole dataset"
+);
+check(list[0].code === "lv", "the most urgent (a recent miss, 0% accuracy) leads the list");
+check(
+  REASON_ORDER_OK(list),
+  "the list is ordered by reason urgency: every recent-miss precedes every low-accuracy, which precedes every stale"
+);
+check(
+  list.every((r) => r.name && r.region),
+  "every row carries the name and region a surface needs, so it renders without a second lookup"
+);
+check(
+  needsStudy([{ countries: [{ code: "zzz", correct: false }], played_at: agoISO(1) }], { now: NOW })
+    .length === 0,
+  "a code from a retired dataset is dropped rather than rendered as a blank row"
+);
+
+function REASON_ORDER_OK(rows) {
+  const rank = { "recent-miss": 0, "low-accuracy": 1, stale: 2 };
+  for (let i = 1; i < rows.length; i++) {
+    if (rank[rows[i - 1].reason] > rank[rows[i].reason]) return false;
+  }
+  return true;
+}
+
+// --- regions ---
+const byRegion = studyByRegion(HISTORY, { now: NOW });
+check(
+  byRegion.every((r) => r.seen > 0),
+  "a region you have never touched is omitted rather than shown at 0"
+);
+check(
+  byRegion.every((r) => r.strength >= 0 && r.strength <= 1),
+  "strength is a ratio in [0,1]"
+);
+check(
+  byRegion.every((r) => r.seen <= r.total),
+  "you cannot have seen more of a region than it contains"
+);
+check(
+  byRegion.length < 2 || byRegion[0].strength <= byRegion[1].strength,
+  "the weakest region leads"
+);
+check(
+  byRegion.every((r) => r.weak === r.countries.length),
+  "the count and the list it summarises cannot disagree"
+);
+
+// --- practice set ---
+const practice = practiceSet(HISTORY, { now: NOW });
+check(practice.length > 0 && practice.length <= REVIEW_PRACTICE_SIZE, "the practice set is capped");
+check(practice[0] === "lv", "it takes the TOP of the urgency order, not an arbitrary slice");
+check(
+  practice.every((code) => list.some((r) => r.code === code)),
+  "you practise exactly the countries the list showed you"
+);
+check(practiceSet([], { now: NOW }).length === 0, "no history means nothing to practise");
+
+// The set has to survive the round builder, including on modes with their own
+// pool rules (a shape question needs a drawn outline).
+const practiceRound = buildRound("flag", "all", ROUND_LENGTH, {
+  only: practiceSet(HISTORY_MANY(), { now: NOW }),
+});
+check(practiceRound.length === ROUND_LENGTH, "a practice round is still a full round");
+// A SHORT weak set is the normal state of the Review surface, not an edge
+// case. It must repeat rather than fall back, or "practice your weak spots"
+// silently hands out a generic round — worse than useless, because it is
+// misleading. Caught in a browser: 6 weak countries produced a round of
+// Guatemala and Thailand.
+const tinyPractice = buildRound("flag", "all", ROUND_LENGTH, { only: ["lv"] });
+check(tinyPractice.length === ROUND_LENGTH, "a one-country weak set still fills a whole round");
+check(
+  tinyPractice.every((q) => q.country.code === "lv"),
+  "...entirely with that country, by repeating it rather than falling back to the world"
+);
+const sixPractice = buildRound("flag", "all", ROUND_LENGTH, {
+  only: ["lv", "ee", "gh", "jp", "mn", "np"],
+});
+check(
+  sixPractice.every((q) => ["lv", "ee", "gh", "jp", "mn", "np"].includes(q.country.code)),
+  "a six-country weak set — fewer than a round — stays entirely inside the set"
+);
+check(
+  buildRound("shape", "all", ROUND_LENGTH, { only: ["zzz"] }).length === ROUND_LENGTH,
+  "a weak set this mode cannot ask about at all falls back, rather than building an empty round"
+);
+
+function HISTORY_MANY() {
+  return COUNTRIES.slice(0, 40).map((c, i) => rvRow(i + 1, [{ code: c.code, correct: false }]));
+}
+const manyOnly = practiceSet(HISTORY_MANY(), { now: NOW });
+const narrowed = buildRound("flag", "all", ROUND_LENGTH, { only: manyOnly });
+check(
+  narrowed.every((q) => manyOnly.includes(q.country.code)),
+  "when there ARE enough weak countries, the round is drawn only from them"
+);
+
+// --- summary ---
+check(reviewSummary([], { now: NOW }).state === "empty", "no history reads as empty");
+check(
+  reviewSummary([rvRow(1, [{ code: "fr", correct: true }])], { now: NOW }).state === "clear",
+  "a clean history reads as clear, not as empty"
+);
+check(
+  reviewSummary(HISTORY, { now: NOW }).state === "work",
+  "a history with weak spots reads as work"
+);
+check(
+  reviewSummary(HISTORY, { now: NOW }).solid + reviewSummary(HISTORY, { now: NOW }).weak ===
+    reviewSummary(HISTORY, { now: NOW }).seen,
+  "solid + weak always accounts for everything seen"
 );
 
 console.log("\nMarathon presentation (M2.12 steps 7-8)");

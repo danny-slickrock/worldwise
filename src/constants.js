@@ -37,6 +37,9 @@ export const ANSWER_SUGGESTION_LIMIT = 6;
 // the real outlines rather than guessed: 0.70 keeps 52 of 167 countries —
 // enough for a varied round — and correctly excludes the unmistakable ones
 // (France 0.07, Russia 0.12, Chile 0.17, Norway 0.18).
+export const SHAPE_GRID = 16;
+export const SHAPE_MIN_SIMILARITY = 0.7;
+
 // The pro marathons (M2.12 steps 7-8): one timed sitting, scored by count.
 //
 // Five minutes is long enough that the score reflects knowledge rather than
@@ -47,8 +50,21 @@ export const MARATHON_DURATION_MS = 5 * 60 * 1000;
 export const MARATHON_POINTS_PER_FIND = 10;
 export const MARATHON_SPEED_BONUS_MAX = 250;
 
-export const SHAPE_GRID = 16;
-export const SHAPE_MIN_SIMILARITY = 0.7;
+// The Review surface (M2.12 step 9). Three different things mean "needs
+// study" — a recent miss, poor accuracy, and decay — and each gets its own
+// threshold, because collapsing them loses the reason, and the reason is the
+// product. See game/reviewPolicy.js.
+//
+// REVIEW_MIN_ATTEMPTS is the one that matters most: without it, a single
+// unlucky first answer brands a country weak forever. Two attempts is the
+// smallest number that can distinguish "got it wrong" from "keeps getting it
+// wrong", which is exactly the distinction low-accuracy is making.
+export const REVIEW_WEAK_ACCURACY = 0.7;
+export const REVIEW_STALE_DAYS = 14;
+export const REVIEW_MIN_ATTEMPTS = 2;
+// A round is 8 questions; a larger set keeps the practice pool varied across
+// repeat sessions without drifting away from the top of the urgency order.
+export const REVIEW_PRACTICE_SIZE = 24;
 
 // Timed mode: seconds allowed to answer each question before it counts as
 // wrong. Not applied to the Daily Challenge — that round stays untimed.

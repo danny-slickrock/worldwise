@@ -265,7 +265,7 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
       </View>
 
       <ProgressTrack
-        progress={1 - left / MARATHON_DURATION_MS}
+        value={1 - left / MARATHON_DURATION_MS}
         style={styles.track}
         accessibilityLabel="Time remaining"
       />

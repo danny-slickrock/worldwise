@@ -66,6 +66,10 @@ export const ROUTES = {
   countryIndex: { tab: "explore", root: false, chrome: true },
   interests: { tab: "profile", root: false, chrome: true },
   achievements: { tab: "profile", root: false, chrome: true },
+  // Review (M2.12 step 9). Owned by the Profile tab — it is about YOUR
+  // history, like Achievements — but reachable from Home too, which the
+  // per-tab stacks handle without a returnTo field.
+  review: { tab: "profile", root: false, chrome: true },
   // The pre-game difficulty menu (M2.12 step 2). Keeps its chrome, unlike the
   // quiz: you are still choosing, not yet playing, so wandering off is a
   // perfectly reasonable thing to want to do.
@@ -228,6 +232,8 @@ export function routeToPath(route) {
       return "/interests";
     case "achievements":
       return "/achievements";
+    case "review":
+      return "/review";
     case "gameSetup":
       return `/game/${route.mode}`;
     case "marathon": {
@@ -289,6 +295,8 @@ export function pathToRoute(path) {
       return { name: "interests" };
     case "achievements":
       return { name: "achievements" };
+    case "review":
+      return { name: "review" };
     case "country":
       return second ? { name: "country", code: second } : null;
     case "game":

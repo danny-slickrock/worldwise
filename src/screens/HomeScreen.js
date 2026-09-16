@@ -55,6 +55,7 @@ export default function HomeScreen({
   onPlay,
   onOpenCountry,
   onOpenExplore,
+  onOpenReview,
   basemap,
   onChangeBasemap,
 }) {
@@ -248,6 +249,29 @@ export default function HomeScreen({
             pool filter still exists (constants.js) and is still what the Daily
             and the learning paths lean on; buildRound still accepts it. */}
 
+        {/* Review (M2.12 step 9). Home is the second doorway — the surface is
+            owned by the Profile tab, but "what should I study?" is a question
+            you ask on your way INTO a session, not while looking at your
+            profile. The per-tab stacks make two entry points free. */}
+        {onOpenReview && (
+          <FadeInUp index={2} rise={0}>
+            <Text style={styles.section}>Study</Text>
+            <PressableTint
+              onPress={onOpenReview}
+              radius={radius.sheet}
+              style={styles.reviewRow}
+              accessibilityRole="button"
+              accessibilityLabel="Review — the places worth another look"
+            >
+              <View style={styles.reviewBody}>
+                <Text style={styles.reviewLabel}>Review</Text>
+                <Text style={styles.reviewValue}>The places worth another look</Text>
+              </View>
+              <Text style={styles.reviewChevron}>›</Text>
+            </PressableTint>
+          </FadeInUp>
+        )}
+
         {/* Timed mode */}
         <Text style={styles.section}>Options</Text>
         <Pressable
@@ -412,6 +436,21 @@ const styles = StyleSheet.create({
   // Quieted, not greyed: the kit has no disabled grey, and the tile still has
   // to read as a real game that is on its way rather than as broken chrome.
   tileSoon: { opacity: 0.68 },
+  reviewRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    paddingVertical: spacing(4),
+    paddingHorizontal: spacing(5),
+    ...hairline,
+    ...elevation(1),
+  },
+  reviewBody: { flex: 1 },
+  reviewLabel: { ...type.h3, fontSize: 16 },
+  reviewValue: { ...type.caption, marginTop: 2 },
+  reviewChevron: { ...type.h2, color: colors.textFaint },
   tileGlyph: { fontSize: 20 },
   tileTitle: { ...type.h3, fontSize: 16 },
   tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },

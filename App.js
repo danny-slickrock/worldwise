@@ -17,6 +17,7 @@ import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
 import GameSetupScreen from "./src/screens/GameSetupScreen";
 import MarathonScreen from "./src/screens/MarathonScreen";
+import ReviewScreen from "./src/screens/ReviewScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
 import AchievementsScreen from "./src/screens/AchievementsScreen";
@@ -365,6 +366,7 @@ function AppShell() {
             countryCode={route.countryCode ?? null}
             difficulty={route.difficulty}
             tier={route.tier ?? null}
+            only={route.only ?? null}
             timed={route.timed}
             soundEnabled={settings.soundEnabled}
             onToggleSound={toggleSound}
@@ -380,6 +382,29 @@ function AppShell() {
       case "gameSetup":
         return (
           <GameSetupScreen mode={route.mode} onExit={backHandler} onStart={startTieredRound} />
+        );
+
+      case "review":
+        return (
+          <ReviewScreen
+            onExit={backHandler}
+            onOpenCountry={openCountry}
+            // The weak set flows straight into buildRound's `only` filter, so
+            // practice is a real round of the exact countries the list named —
+            // not a new game mode that would need its own engine.
+            onPractice={(codes) =>
+              go({
+                name: "quiz",
+                mode: "flag",
+                difficulty: DEFAULT_DIFFICULTY,
+                timed: false,
+                countryCode: null,
+                tier: "easy",
+                only: codes,
+                attempt: 0,
+              })
+            }
+          />
         );
 
       case "marathon":
@@ -493,6 +518,7 @@ function AppShell() {
               go({ name: "interests" });
             }}
             onOpenAchievements={() => go({ name: "achievements" })}
+            onOpenReview={() => go({ name: "review" })}
           />
         );
 
@@ -501,6 +527,7 @@ function AppShell() {
           <HomeScreen
             progress={progress}
             onPlay={openGame}
+            onOpenReview={() => go({ name: "review" })}
             onOpenCountry={openCountry}
             onOpenExplore={() => go({ name: "explore" })}
             basemap={settings.basemap}

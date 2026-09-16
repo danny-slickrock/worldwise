@@ -13,6 +13,7 @@ import { getSyncState, subscribeSyncState } from "../game/syncStore";
 import { describeSyncState } from "../game/syncStatus";
 import { streakStatus, dayKey } from "../game/progress";
 import { computeAchievements } from "../game/achievementPolicy";
+import { reviewSummary } from "../game/reviewPolicy";
 import SignInScreen from "./SignInScreen";
 
 export default function ProfileScreen({
@@ -20,6 +21,7 @@ export default function ProfileScreen({
   interests,
   onOpenInterests,
   onOpenAchievements,
+  onOpenReview,
 }) {
   const { user, loading, signOut } = useAuth();
 
@@ -39,6 +41,7 @@ export default function ProfileScreen({
       onSignOut={signOut}
       onOpenInterests={onOpenInterests}
       onOpenAchievements={onOpenAchievements}
+      onOpenReview={onOpenReview}
     />
   );
 }
@@ -50,6 +53,7 @@ function SignedIn({
   onSignOut,
   onOpenInterests,
   onOpenAchievements,
+  onOpenReview,
 }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
@@ -89,6 +93,7 @@ function SignedIn({
 
   const streak = streakStatus(stats, dayKey(new Date()));
   const badges = computeAchievements(localProgress, roundResults);
+  const reviewState = reviewSummary(roundResults);
   const unlockedCount = badges.filter((b) => b.unlocked).length;
   const name = user.user_metadata?.display_name || user.user_metadata?.full_name;
   const avatar = user.user_metadata?.avatar_url;
@@ -163,6 +168,26 @@ function SignedIn({
                 <Text style={styles.interestsLabel}>Achievements</Text>
                 <Text style={styles.interestsValue}>
                   {unlockedCount} of {badges.length} unlocked
+                </Text>
+              </View>
+              <Text style={styles.interestsChevron}>›</Text>
+            </Pressable>
+          )}
+
+          {/* Review (M2.12 step 9). Sits beside Achievements because both are
+              read off the same round history — but they answer different
+              questions: that one says how you are doing, this says what to go
+              and learn. Reuses roundResults rather than fetching again. */}
+          {onOpenReview && (
+            <Pressable onPress={onOpenReview} style={styles.interestsRow} hitSlop={4}>
+              <View style={styles.interestsBody}>
+                <Text style={styles.interestsLabel}>Review</Text>
+                <Text style={styles.interestsValue}>
+                  {reviewState.state === "empty"
+                    ? "Play a few rounds to build this"
+                    : reviewState.state === "clear"
+                      ? `All ${reviewState.seen} places solid`
+                      : `${reviewState.weak} places to revisit`}
                 </Text>
               </View>
               <Text style={styles.interestsChevron}>›</Text>

@@ -99,7 +99,11 @@ export async function fetchRoundResults(user, client = supabase) {
   try {
     const { data, error } = await client
       .from("game_results")
-      .select("mode, difficulty, score, total, countries")
+      // played_at joins the list for M2.12 step 9: the Review surface's "you
+      // have not seen this in weeks" reason cannot be computed without it,
+      // and an absent timestamp is treated as "no recency information"
+      // rather than as the epoch (see reviewPolicy.countryStats).
+      .select("mode, difficulty, score, total, countries, played_at")
       .eq("user_id", user.id);
     if (error) return { rows: [], error };
     return { rows: data ?? [], error: null };

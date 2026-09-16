@@ -232,6 +232,32 @@ function buildOne(type, target, tier = null) {
   };
 }
 
+// Restrict a pool to a specific set of country codes, or leave it alone.
+//
+// A SHORT set repeats rather than falling back to the whole world, and that is
+// the important case, not an edge case: a player with four weak countries is
+// the normal state of the Review surface, and "practice your weak spots"
+// quietly handing them a generic round would be worse than useless — it would
+// be misleading. Drilling four countries across eight questions is what
+// practice actually means.
+//
+// The pool is only abandoned when NOTHING survives — a weak set this mode
+// cannot ask about at all (every code lacking an outline, say), where the
+// alternative is an empty round.
+function narrowToCodes(pool, only, count) {
+  if (!Array.isArray(only) || only.length === 0) return pool;
+  const wanted = new Set(only);
+  const narrowed = pool.filter((c) => wanted.has(c.code));
+  if (narrowed.length === 0) return pool;
+  if (narrowed.length >= count) return narrowed;
+
+  // Repeat the set until it can fill a round. shuffle() downstream still
+  // randomises the order, so the repeats are spread rather than adjacent.
+  const filled = [];
+  while (filled.length < count) filled.push(...narrowed);
+  return filled;
+}
+
 // Shape Expert's target pool: countries that are BOTH obscure and genuinely
 // confusable by outline — the tier's own promise, "Lookalike shapes, obscure
 // countries, blind."
@@ -305,7 +331,17 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   if (mode === "higherLower") return buildHigherLowerRound(count, tier);
 
   const tiered = poolFor(mode, difficulty);
-  const base = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  const wide = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  // M2.12 step 9: "practice your weak spots" hands in the codes the Review
+  // surface decided need work, and the round is built from those alone.
+  //
+  // Narrowing rather than replacing the pool matters: the filter still has to
+  // pass through poolFor()'s own rules (a shape question needs an outline, a
+  // locator question needs a map path), so a weak country the mode cannot ask
+  // about is dropped here rather than producing an unanswerable question. Too
+  // few survivors falls back to the full pool — a round slightly off-target
+  // beats a round with holes in it.
+  const base = narrowToCodes(wide, opts.only, count);
   const pool = expertShapePool(mode, tier, base, count) ?? base;
   const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t, tier));
