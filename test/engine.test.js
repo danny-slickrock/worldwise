@@ -165,6 +165,14 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  ringsOf,
+  shapeSignature,
+  shapeSimilarity,
+  similarShapes,
+  hasLookalike,
+  lookalikePool,
+} from "../src/game/shapeSimilarity";
+import {
   normalize,
   canonical,
   levenshtein,
@@ -5143,6 +5151,173 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nShape similarity + tiered rounds (M2.12 step 4)");
+
+// --- the path parser, against the real generated data ---
+check(
+  ringsOf(COUNTRY_PATHS.it).length >= 2,
+  "a multi-part country parses into several rings (Italy has islands)"
+);
+check(
+  ringsOf("").length === 0 && ringsOf(null).length === 0,
+  "an empty or missing path parses to no rings"
+);
+check(
+  Object.keys(COUNTRY_PATHS).every((c) => ringsOf(COUNTRY_PATHS[c]).length > 0),
+  "every drawn country's path parses into at least one ring"
+);
+check(
+  ringsOf(COUNTRY_PATHS.it).every((r) =>
+    r.every(([x, y]) => Number.isFinite(x) && Number.isFinite(y))
+  ),
+  "no ring contains a NaN coordinate"
+);
+
+// --- signatures ---
+check(shapeSignature("fr") !== null, "a real country has a silhouette signature");
+check(shapeSignature("zzz") === null, "an unknown code has none, rather than an empty grid");
+check(shapeSignature("fr").filled > 0, "a signature has at least one filled cell");
+check(
+  shapeSignature("cl").aspect < shapeSignature("ru").aspect,
+  "aspect is recorded: Chile's box is far taller-than-wide compared to Russia's"
+);
+
+// --- the measure ---
+check(shapeSimilarity("fr", "fr") === 1, "a country is identical to itself");
+check(
+  similarShapes("pt", null, 3).length === 3 &&
+    similarShapes("pt", null, 3)[0].score >= similarShapes("pt", null, 3)[2].score,
+  "similarShapes returns the requested count, best-confusable first"
+);
+check(
+  similarShapes("pt", ["it", "es"], 5).every((r) => ["it", "es"].includes(r.code)),
+  "a pool restricts the search, so an obscure round never offers a famous lookalike"
+);
+check(
+  similarShapes("pt", null, 3).every((r) => r.code !== "pt"),
+  "a country is never its own lookalike"
+);
+check(shapeSimilarity("fr", "zzz") === 0, "an unknown code scores 0 rather than throwing");
+check(
+  Object.keys(COUNTRY_PATHS).every((c) => {
+    const s = shapeSimilarity(c, "fr");
+    return s >= 0 && s <= 1;
+  }),
+  "every score is in [0,1]"
+);
+check(
+  Math.abs(shapeSimilarity("pt", "tw") - shapeSimilarity("tw", "pt")) < 1e-9,
+  "the measure is symmetric — the aspect penalty uses a ratio, so order cannot matter"
+);
+
+// The property the whole design exists for: normalizing away SIZE means
+// similarity is about shape, not area. Two countries of wildly different size
+// can score high, and two of similar size can score low.
+check(
+  shapeSimilarity("pt", "tw") > 0.6,
+  "Portugal and Taiwan — very different sizes, similar proportions — score as lookalikes"
+);
+check(shapeSimilarity("fr", "ru") < 0.3, "France and Russia do not, despite both being large");
+
+// The distinctive outlines must NOT qualify, or "Expert = lookalike shapes"
+// means nothing.
+check(
+  ["fr", "ru", "cl", "no"].every((c) => !hasLookalike(c)),
+  "the unmistakable outlines (France, Russia, Chile, Norway) have no lookalike"
+);
+check(hasLookalike("lk") || hasLookalike("al"), "...while the genuinely blobby ones do");
+
+// --- the Expert pool ---
+const ALL_DRAWN = Object.keys(COUNTRY_PATHS);
+const LOOKALIKES = lookalikePool(ALL_DRAWN);
+check(
+  LOOKALIKES.length >= ROUND_LENGTH,
+  `the lookalike pool can fill a round (${LOOKALIKES.length} countries)`
+);
+check(
+  LOOKALIKES.length < ALL_DRAWN.length,
+  "...and is a real subset — if everything qualified the filter would be doing nothing"
+);
+check(
+  LOOKALIKES.every((c) => hasLookalike(c, ALL_DRAWN)),
+  "every country in the pool actually has a lookalike"
+);
+check(
+  !LOOKALIKES.includes("fr") && !LOOKALIKES.includes("ru"),
+  "the unmistakable outlines are excluded from the pool"
+);
+
+// --- what each tier actually builds, across the whole type-in family ---
+for (const mode of ["flag", "capital", "capitalReverse", "shape"]) {
+  const easy = buildRound(mode, "all", ROUND_LENGTH, { tier: "easy" });
+  const medium = buildRound(mode, "all", ROUND_LENGTH, { tier: "medium" });
+  const hard = buildRound(mode, "all", ROUND_LENGTH, { tier: "hard" });
+  check(
+    easy.length === ROUND_LENGTH &&
+      easy.every((q) => q.answer === undefined && q.options.length === 4),
+    `${mode} Easy is 4-option multiple choice`
+  );
+  check(
+    medium.length === ROUND_LENGTH &&
+      medium.every((q) => q.answer === "type" && q.suggest === true),
+    `${mode} Medium is type-in WITH suggestions`
+  );
+  check(
+    hard.length === ROUND_LENGTH && hard.every((q) => q.answer === "type" && q.suggest === false),
+    `${mode} Hard is type-in, blind`
+  );
+  check(
+    medium.every((q) => q.answerPool.includes(q.correct)),
+    `${mode} Medium's suggestion pool always contains the right answer`
+  );
+  check(
+    hard.every((q) => matchAnswer(q.correct, q.correct, q.answerPool) === "match"),
+    `${mode} Hard's own answer validates against its own pool`
+  );
+}
+
+// Capital rounds answer with CAPITALS, country rounds with COUNTRY names —
+// the pools must not be crossed, or autocomplete offers the wrong noun.
+const capMedium = buildRound("capital", "all", 4, { tier: "medium" });
+check(
+  capMedium.every((q) => q.answerPool.includes(q.country.capital)),
+  "a capital question's pool is capitals, not country names"
+);
+const revMedium = buildRound("capitalReverse", "all", 4, { tier: "medium" });
+check(
+  revMedium.every((q) => q.answerPool.includes(q.country.name)),
+  "a reverse-capital question's pool is country names"
+);
+
+// --- Shape Expert specifically ---
+const shapeExpert = buildRound("shape", "all", ROUND_LENGTH, { tier: "expert" });
+check(
+  shapeExpert.length === ROUND_LENGTH &&
+    shapeExpert.every((q) => q.answer === "type" && q.suggest === false),
+  "Shape Expert is blind type-in"
+);
+check(
+  shapeExpert.every((q) => hasLookalike(q.country.code)),
+  "every Shape Expert target has a genuinely confusable lookalike"
+);
+check(
+  shapeExpert.every((q) => q.country.difficulty !== "easy"),
+  "...and is an obscure country, matching the tier's own microcopy"
+);
+// Run it repeatedly: the pool is sampled, so a one-shot check could pass by luck.
+let expertOk = true;
+for (let i = 0; i < 30; i++) {
+  const r = buildRound("shape", "all", ROUND_LENGTH, { tier: "expert" });
+  if (r.length !== ROUND_LENGTH || !r.every((q) => hasLookalike(q.country.code))) expertOk = false;
+}
+check(expertOk, "Shape Expert holds over 30 rounds — the pool never thins out mid-sample");
+
+// The modes without an expert tier must fall back rather than emit a broken one.
+check(
+  buildRound("flag", "all", 4, { tier: "expert" }).every((q) => q.answer === undefined),
+  "Flag has no Expert tier, so asking for one falls back to multiple choice"
+);
+
 console.log("\nTyped-answer matching (M2.12 step 3)");
 
 // --- normalization, against the real accented names in the dataset ---
@@ -5159,6 +5334,11 @@ check(
 );
 check(normalize("the Gambia") === "gambia", "a leading article is noise");
 check(normalize(null) === "" && normalize(undefined) === "", "non-strings normalize to empty");
+check(
+  canonical("USA") === "united states" && canonical("Holland") === "netherlands",
+  "canonical resolves an alias to the name the dataset actually uses"
+);
+check(canonical("Brazil") === "brazil", "...and passes a non-alias straight through, normalized");
 
 // --- exact and alias hits, over the whole real dataset ---
 check(
@@ -5419,16 +5599,17 @@ check(
   isTierBuilt("flag", "medium") === true && isTierBuilt("flag", "hard") === true,
   "Flag's typed tiers are built (step 3's proving ground)"
 );
+check(isTierBuilt("shape", "expert") === true, "Shape's Expert tier is built (step 4)");
 check(
-  isTierBuilt("shape", "expert") === false,
-  "a tier whose interaction is still unbuilt says so — step 4 wires Shape"
+  isTierBuilt("locator", "hard") === false,
+  "a tier whose interaction is still unbuilt says so — step 5 wires the Locator"
 );
 check(
-  effectiveTier("shape", "expert") === "easy",
+  effectiveTier("locator", "hard") === "easy",
   "an unbuilt tier BUILDS as the mode's first, so a question always has an answer surface"
 );
 check(
-  normalizeInteractionTier("shape", "expert") === "expert",
+  normalizeInteractionTier("locator", "hard") === "hard",
   "...while the SELECTION still reads as what the player picked — the fallback never rewrites their choice"
 );
 check(

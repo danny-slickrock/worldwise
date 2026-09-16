@@ -28,6 +28,18 @@ export const ANSWER_CLOSE_RATIO = 0.9;
 // be useful, few enough that the list is not just the answer key.
 export const ANSWER_SUGGESTION_LIMIT = 6;
 
+// Shape Guesser's Expert tier (M2.12 step 4). SHAPE_GRID is the resolution the
+// silhouette comparison rasterizes to — 16x16 is fine enough to tell Chile
+// from Italy and coarse enough that a coastline's wiggles don't dominate.
+// SHAPE_MIN_SIMILARITY is how alike two outlines must be before one counts as
+// a genuine lookalike; below it, Expert would be asking about countries with
+// no confusable twin, which is not what the tier promises. Measured against
+// the real outlines rather than guessed: 0.70 keeps 52 of 167 countries —
+// enough for a varied round — and correctly excludes the unmistakable ones
+// (France 0.07, Russia 0.12, Chile 0.17, Norway 0.18).
+export const SHAPE_GRID = 16;
+export const SHAPE_MIN_SIMILARITY = 0.7;
+
 // Timed mode: seconds allowed to answer each question before it counts as
 // wrong. Not applied to the Daily Challenge — that round stays untimed.
 export const TIMED_SECONDS_PER_QUESTION = 10;

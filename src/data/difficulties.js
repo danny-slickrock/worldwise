@@ -119,13 +119,14 @@ export function normalizeTier(mode, tier) {
 // no way to answer it. This is the one place that knows, so retiring a
 // fallback is a single edit here rather than a hunt through the engine.
 //
-// Step 3 built the shared type-in surface and proved it on Flag. Step 4 moves
-// capital/capitalReverse/shape across, steps 5-6 the other two.
+// Step 3 built the shared type-in surface and proved it on Flag; step 4 moved
+// the rest of the type-in family across. Steps 5-6 wire the other two, whose
+// interactions are not typed at all — a globe and a pair comparison.
 const BUILT_TIERS = {
   flag: ["easy", "medium", "hard"],
-  capital: ["easy"],
-  capitalReverse: ["easy"],
-  shape: ["easy"],
+  capital: ["easy", "medium", "hard"],
+  capitalReverse: ["easy", "medium", "hard"],
+  shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy"],
   higherLower: ["easy"],
 };

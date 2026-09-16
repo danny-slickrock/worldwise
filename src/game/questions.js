@@ -16,6 +16,7 @@ import { buildCountryFactQuestions } from "./countryRound";
 import { getCountryPage } from "../data/countryPages";
 import { countryName } from "../data/countries";
 import { effectiveTier } from "../data/difficulties";
+import { lookalikePool } from "./shapeSimilarity";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -232,6 +233,30 @@ function buildOne(type, target, tier = null) {
   };
 }
 
+// Shape Expert's target pool: countries that are BOTH obscure and genuinely
+// confusable by outline — the tier's own promise, "Lookalike shapes, obscure
+// countries, blind."
+//
+// Both filters are applied, then relaxed in order if the pool gets too thin to
+// fill a round. Obscurity is dropped first: a round of famous-but-confusable
+// countries is still recognisably Expert, while a round of obscure countries
+// with unmistakable outlines is just Hard with a smaller pool, which is the
+// one thing this tier must not collapse into.
+//
+// Returns null when it has nothing better to offer, so the caller keeps the
+// ordinary pool rather than being handed an empty one.
+function expertShapePool(mode, tier, base, count) {
+  if (mode !== "shape" || tier !== "expert") return null;
+
+  const byCode = new Map(base.map((c) => [c.code, c]));
+  const confusable = lookalikePool([...byCode.keys()]);
+  if (!confusable.length) return null;
+
+  const obscure = confusable.filter((code) => byCode.get(code)?.difficulty !== "easy");
+  const chosen = obscure.length >= count ? obscure : confusable;
+  return chosen.length >= count ? chosen.map((code) => byCode.get(code)) : null;
+}
+
 // The answer-surface flags a typed tier adds to a question.
 //
 // These ride on the QUESTION, not the round, because QuizScreen branches on
@@ -249,7 +274,10 @@ function buildOne(type, target, tier = null) {
 // Returns nothing at all for easy/null, so an untiered question object is
 // byte-identical to what it was before this milestone.
 function typedAnswer(tier, pool) {
-  if (tier !== "medium" && tier !== "hard") return null;
+  if (tier !== "medium" && tier !== "hard" && tier !== "expert") return null;
+  // Only Medium assists. Hard and Expert are both blind — Expert's extra
+  // difficulty is in WHICH countries it asks about (confusable outlines,
+  // obscure places), not in taking away an assist Hard still had.
   return { answer: "type", suggest: tier === "medium", answerPool: pool };
 }
 
@@ -278,7 +306,8 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   if (mode === "higherLower") return buildHigherLowerRound(count, tier);
 
   const tiered = poolFor(mode, difficulty);
-  const pool = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  const base = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  const pool = expertShapePool(mode, tier, base, count) ?? base;
   const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t, tier));
 }
