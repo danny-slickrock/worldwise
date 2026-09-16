@@ -15,12 +15,18 @@ import { colors, spacing, radius, type, elevation, constrain, motion, map } from
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
+import { tierFor } from "../data/difficulties";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
 import { countriesFromHistory } from "../game/cloudSync";
 import { flagUrl } from "../data/countries";
 import { whyItMatters } from "../data/whyItMatters";
-import { DIFFICULTIES, DEFAULT_DIFFICULTY, TIMED_SECONDS_PER_QUESTION } from "../constants";
+import {
+  DIFFICULTIES,
+  DEFAULT_DIFFICULTY,
+  ROUND_LENGTH,
+  TIMED_SECONDS_PER_QUESTION,
+} from "../constants";
 import { correctHaptic, wrongHaptic } from "../haptics";
 import { playCorrectTone, playWrongTone } from "../audio/sound";
 import CountryOutline from "./CountryOutline";
@@ -38,6 +44,10 @@ const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, exp
 export default function QuizScreen({
   mode,
   difficulty = DEFAULT_DIFFICULTY,
+  // The INTERACTION tier (data/difficulties.js) — how you answer. Separate
+  // from `difficulty`, which is the country-pool filter. See the two-axes note
+  // at the top of data/difficulties.js.
+  tier = null,
   timed = false,
   soundEnabled = true,
   onToggleSound,
@@ -56,9 +66,13 @@ export default function QuizScreen({
     // than the mode itself, so it takes the subject rather than the difficulty
     // tier — "hard mode Brazil" isn't a thing; Brazil is the whole pool.
     if (mode === "country") return countryCode ? buildCountryRound(countryCode) : [];
-    return buildRound(mode, difficulty);
-  }, [mode, difficulty, countryCode]);
+    return buildRound(mode, difficulty, ROUND_LENGTH, { tier });
+  }, [mode, difficulty, countryCode, tier]);
   const difficultyLabel = DIFFICULTIES.find((d) => d.key === difficulty)?.label;
+  // What the player PICKED, not what the round fell back to — a tier whose
+  // interaction isn't built yet still reads as the tier they chose, because
+  // silently relabelling their choice would be the more confusing of the two.
+  const tierLabel = tierFor(mode, tier)?.label ?? null;
   const timedActive = timed && mode !== "daily"; // Daily always stays untimed
 
   const [idx, setIdx] = useState(0);
@@ -392,6 +406,7 @@ export default function QuizScreen({
             <Text style={styles.counter}>
               Question {idx + 1} of {questions.length}
               {mode !== "daily" && difficulty !== DEFAULT_DIFFICULTY ? ` · ${difficultyLabel}` : ""}
+              {tierLabel ? ` · ${tierLabel}` : ""}
             </Text>
             <Text style={styles.prompt}>{q.prompt}</Text>
             {/* Keyed off the QUESTION's type, never the round's mode. A

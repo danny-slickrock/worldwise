@@ -21,7 +21,7 @@ import PressableTint from "../components/PressableTint";
 import AnimatedNumber from "../components/AnimatedNumber";
 import { MODES } from "../game/questions";
 import { isProMode } from "../game/entitlements";
-import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
+import { DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
@@ -58,7 +58,10 @@ export default function HomeScreen({
   basemap,
   onChangeBasemap,
 }) {
-  const [difficulty, setDifficulty] = useState(DEFAULT_DIFFICULTY);
+  // The pool filter defaults to "all" under the tier menu and is no longer
+  // player-facing here; it stays a named constant rather than an inline "all"
+  // so the two axes remain legible at the call site.
+  const difficulty = DEFAULT_DIFFICULTY;
   const [timed, setTimed] = useState(false);
 
   const streak = streakStatus(progress, dayKey(new Date()));
@@ -237,27 +240,13 @@ export default function HomeScreen({
           })}
         </View>
 
-        {/* Difficulty — a segmented control, so the whole choice reads at a glance. */}
-        <Text style={styles.section}>Difficulty</Text>
-        <View style={styles.segment}>
-          {DIFFICULTIES.map((d) => {
-            const active = d.key === difficulty;
-            return (
-              <Pressable
-                key={d.key}
-                onPress={() => setDifficulty(d.key)}
-                style={[styles.segmentItem, active && styles.segmentItemActive]}
-              >
-                <Text style={[styles.segmentText, active && styles.segmentTextActive]}>
-                  {d.label}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
-        <Text style={styles.hint}>
-          Applies to every game except Daily, which always mixes every tier.
-        </Text>
+        {/* M2.12 step 2: the pool-difficulty segmented control used to live
+            here. It is retired from the primary flow rather than deleted —
+            each game now asks for its INTERACTION tier on its own menu, and
+            two "Difficulty" controls meaning different things on one screen is
+            exactly the confusion the two axes were separated to avoid. The
+            pool filter still exists (constants.js) and is still what the Daily
+            and the learning paths lean on; buildRound still accepts it. */}
 
         {/* Timed mode */}
         <Text style={styles.section}>Options</Text>
@@ -426,23 +415,6 @@ const styles = StyleSheet.create({
   tileGlyph: { fontSize: 20 },
   tileTitle: { ...type.h3, fontSize: 16 },
   tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },
-
-  segment: {
-    flexDirection: "row",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    padding: spacing(1),
-    ...elevation(1),
-  },
-  segmentItem: {
-    flex: 1,
-    alignItems: "center",
-    paddingVertical: spacing(2.5),
-    borderRadius: radius.pill,
-  },
-  segmentItemActive: { backgroundColor: colors.brand },
-  segmentText: { ...type.label, color: colors.textMuted },
-  segmentTextActive: { color: colors.onFill },
 
   toggle: {
     flexDirection: "row",

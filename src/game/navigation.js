@@ -24,6 +24,7 @@
 // `nav` object in state and calls these; the web-history IO lives apart in
 // src/lib/history.js, same pure/IO split as cloudSync ⇄ cloudProgress.
 import { DEFAULT_DIFFICULTY } from "../constants";
+import { tiersFor, normalizeTier } from "../data/difficulties";
 
 // The four destinations. Ordered as they render, left→right in the mobile bar
 // and top→bottom in the desktop rail — one source of truth for both, so the
@@ -65,6 +66,10 @@ export const ROUTES = {
   countryIndex: { tab: "explore", root: false, chrome: true },
   interests: { tab: "profile", root: false, chrome: true },
   achievements: { tab: "profile", root: false, chrome: true },
+  // The pre-game difficulty menu (M2.12 step 2). Keeps its chrome, unlike the
+  // quiz: you are still choosing, not yet playing, so wandering off is a
+  // perfectly reasonable thing to want to do.
+  gameSetup: { tab: "home", root: false, chrome: true },
   quiz: { tab: "home", root: false, chrome: false },
 };
 
@@ -220,6 +225,8 @@ export function routeToPath(route) {
       return "/interests";
     case "achievements":
       return "/achievements";
+    case "gameSetup":
+      return `/game/${route.mode}`;
     case "quiz": {
       // Difficulty and timed ride as query params, and only when they differ
       // from the default — so the common link is a clean `/play/flag`, but a
@@ -229,6 +236,12 @@ export function routeToPath(route) {
         params.push(`difficulty=${route.difficulty}`);
       }
       if (route.timed) params.push("timed=1");
+      // The interaction tier, same rule: omitted when it is the mode's first
+      // tier, so the common link stays a clean /play/flag. It is the mode's
+      // OWN first tier rather than a global default, because a mode is not
+      // obliged to offer "easy".
+      const defaultTier = tiersFor(route.mode)[0]?.key;
+      if (route.tier && route.tier !== defaultTier) params.push(`tier=${route.tier}`);
       // A country round is a mode PLUS a subject, so the country rides in the
       // path rather than a query param: /play/country/br is a shareable link to
       // "everything about Brazil", not a variant of a generic round.
@@ -270,6 +283,8 @@ export function pathToRoute(path) {
       return { name: "achievements" };
     case "country":
       return second ? { name: "country", code: second } : null;
+    case "game":
+      return second ? { name: "gameSetup", mode: second } : null;
     case "play":
       return second
         ? {
@@ -278,6 +293,9 @@ export function pathToRoute(path) {
             countryCode: segments[2] ?? null,
             difficulty: query.difficulty || DEFAULT_DIFFICULTY,
             timed: query.timed === "1",
+            // Normalized on the way in: a hand-edited or stale URL must not be
+            // able to name a tier the mode does not have.
+            tier: normalizeTier(second, query.tier),
           }
         : null;
     default:

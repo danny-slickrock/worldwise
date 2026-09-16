@@ -10,7 +10,15 @@ import {
   isTerritory,
 } from "../src/data/countries";
 import { TERRITORIES, TERRITORY_CODES } from "../src/data/territories";
-import { COUNTRY_PATHS, TERRITORY_PATHS, MICRO_PATHS, MICRO_POINTS, MAP_PATHS, MAP_W, MAP_H } from "../src/data/worldMap";
+import {
+  COUNTRY_PATHS,
+  TERRITORY_PATHS,
+  MICRO_PATHS,
+  MICRO_POINTS,
+  MAP_PATHS,
+  MAP_W,
+  MAP_H,
+} from "../src/data/worldMap";
 import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
@@ -37,8 +45,21 @@ import {
   countriesFromHistory,
 } from "../src/game/cloudSync";
 import { roundSinks, shouldMigrate } from "../src/game/syncPolicy";
-import { searchCountries, REGIONS, INDEX_FILTERS, TERRITORY_FILTER } from "../src/game/countryIndex";
-import { clampScale, pinchScale, wheelZoom, touchDistance, dragPan, clampPan, lerpView } from "../src/game/mapZoom";
+import {
+  searchCountries,
+  REGIONS,
+  INDEX_FILTERS,
+  TERRITORY_FILTER,
+} from "../src/game/countryIndex";
+import {
+  clampScale,
+  pinchScale,
+  wheelZoom,
+  touchDistance,
+  dragPan,
+  clampPan,
+  lerpView,
+} from "../src/game/mapZoom";
 import { pathBounds, smallCountryHitTargets, countryCentroids } from "../src/game/mapHitTargets";
 import { MAP_REGIONS, regionBounds, regionView } from "../src/game/mapRegions";
 import { countryRowFromPage, pageFromCountryRow } from "../src/game/contentSync";
@@ -143,6 +164,16 @@ import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
+import {
+  TIER_ORDER,
+  TIERED_MODES,
+  tiersFor,
+  hasTiers,
+  tierFor,
+  normalizeTier as normalizeInteractionTier,
+  isTierBuilt,
+  effectiveTier,
+} from "../src/data/difficulties";
 import {
   TIERS,
   DEFAULT_TIER,
@@ -311,11 +342,7 @@ import {
   dailyCapResetsAt,
   DAILY_CAP,
 } from "../src/game/askLimits";
-import {
-  screenQuestion,
-  REFUSAL_SELF_HARM,
-  REFUSAL_OFF_LIMITS,
-} from "../src/game/askGuardrails";
+import { screenQuestion, REFUSAL_SELF_HARM, REFUSAL_OFF_LIMITS } from "../src/game/askGuardrails";
 
 let fails = 0;
 const check = (cond, msg) => {
@@ -357,7 +384,10 @@ for (const mode of ["flag", "capital", "capitalReverse", "shape"]) {
     check(q.options.includes(q.correct), `${mode}: correct answer is among options`);
     if (mode === "capitalReverse") {
       check(q.correct === q.country.name, "capitalReverse: correct answer is the country name");
-      check(q.prompt.includes(q.country.capital), "capitalReverse: prompt names the capital, not the country");
+      check(
+        q.prompt.includes(q.country.capital),
+        "capitalReverse: prompt names the capital, not the country"
+      );
     }
     break; // one representative question per mode keeps output readable
   }
@@ -400,15 +430,30 @@ check(
   LOCATOR_COUNTRIES.every((c) => COUNTRY_PATHS[c.code]),
   "every locator country has a world-map path"
 );
-check(LOCATOR_COUNTRIES.length >= ROUND_LENGTH * 4, `locator pool is large enough (${LOCATOR_COUNTRIES.length})`);
+check(
+  LOCATOR_COUNTRIES.length >= ROUND_LENGTH * 4,
+  `locator pool is large enough (${LOCATOR_COUNTRIES.length})`
+);
 const locRound = buildRound("locator");
 check(locRound.length === ROUND_LENGTH, `locator: default round length is ${ROUND_LENGTH}`);
 for (const q of locRound) {
   check(q.type === "locator", "locator: question type is locator");
-  check(q.choices.length === OPTIONS_PER_QUESTION, `locator: ${OPTIONS_PER_QUESTION} candidate choices`);
-  check(q.choices.some((c) => c.code === q.correct), "locator: correct code is among the choices");
-  check(q.choices.every((c) => COUNTRY_PATHS[c.code]), "locator: every candidate has a map path");
-  check(new Set(q.choices.map((c) => c.code)).size === q.choices.length, "locator: candidate codes are unique");
+  check(
+    q.choices.length === OPTIONS_PER_QUESTION,
+    `locator: ${OPTIONS_PER_QUESTION} candidate choices`
+  );
+  check(
+    q.choices.some((c) => c.code === q.correct),
+    "locator: correct code is among the choices"
+  );
+  check(
+    q.choices.every((c) => COUNTRY_PATHS[c.code]),
+    "locator: every candidate has a map path"
+  );
+  check(
+    new Set(q.choices.map((c) => c.code)).size === q.choices.length,
+    "locator: candidate codes are unique"
+  );
   check(q.prompt.includes(q.country.name), "locator: prompt names the target country");
   break; // one representative question keeps output readable
 }
@@ -618,25 +663,31 @@ check(
   "...and a fetched row is reclassified from the bundled registry, not from the row"
 );
 
-
 console.log("Daily challenge");
 const d = new Date(2026, 6, 8);
-const a = buildDaily(6, d).map((q) => q.country.code + ":" + q.correct).join("|");
-const b = buildDaily(6, d).map((q) => q.country.code + ":" + q.correct).join("|");
+const a = buildDaily(6, d)
+  .map((q) => q.country.code + ":" + q.correct)
+  .join("|");
+const b = buildDaily(6, d)
+  .map((q) => q.country.code + ":" + q.correct)
+  .join("|");
 check(a === b, "daily challenge is deterministic for a fixed date");
 check(buildDaily(6, d).length === 6, "daily has 6 questions");
 
 console.log("Progress");
 check(
-  applyRoundResult({ xp: 10, streak: 1, bestScore: 5 }, { score: 7, xp: 80 }, "2026-03-01").xp === 90,
+  applyRoundResult({ xp: 10, streak: 1, bestScore: 5 }, { score: 7, xp: 80 }, "2026-03-01").xp ===
+    90,
   "applyRoundResult accumulates xp"
 );
 check(
-  applyRoundResult({ xp: 0, streak: 0, bestScore: 8 }, { score: 3, xp: 0 }, "2026-03-01").bestScore === 8,
+  applyRoundResult({ xp: 0, streak: 0, bestScore: 8 }, { score: 3, xp: 0 }, "2026-03-01")
+    .bestScore === 8,
   "applyRoundResult keeps the higher best score"
 );
 check(
-  applyRoundResult({ xp: 0, streak: 0, bestScore: 2 }, { score: 6, xp: 0 }, "2026-03-01").bestScore === 6,
+  applyRoundResult({ xp: 0, streak: 0, bestScore: 2 }, { score: 6, xp: 0 }, "2026-03-01")
+    .bestScore === 6,
   "applyRoundResult raises best score to a new high"
 );
 check(
@@ -684,7 +735,10 @@ check(missed.longestStreak === 2, "a reset preserves the recorded longest streak
 
 const withFreeze = { ...day2, freezes: 1 };
 const bridged = applyRoundResult(withFreeze, { score: 3, xp: 30 }, "2026-03-04"); // skipped Mar 3
-check(bridged.streak === 3 && bridged.freezes === 0, "a freeze bridges one missed day and is spent");
+check(
+  bridged.streak === 3 && bridged.freezes === 0,
+  "a freeze bridges one missed day and is spent"
+);
 
 // A freeze is earned when the streak reaches its milestone over consecutive days.
 let run = DEFAULT_PROGRESS;
@@ -693,19 +747,26 @@ for (let i = 0; i < STREAK_FREEZE_EARN_EVERY; i++) {
   run = applyRoundResult(run, { score: 1, xp: 10 }, dayKey(dt));
   dt = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1);
 }
-check(run.streak === STREAK_FREEZE_EARN_EVERY, `streak reaches ${STREAK_FREEZE_EARN_EVERY} over consecutive days`);
+check(
+  run.streak === STREAK_FREEZE_EARN_EVERY,
+  `streak reaches ${STREAK_FREEZE_EARN_EVERY} over consecutive days`
+);
 check(run.freezes === 1, "a freeze is earned at the streak milestone");
 
 check(streakStatus(day1, "2026-03-01").playedToday === true, "streakStatus: played today");
 check(streakStatus(day1, "2026-03-02").atRisk === true, "streakStatus: at risk the next day");
 const lapsed = streakStatus(day1, "2026-03-10");
 check(!lapsed.alive && lapsed.count === 0, "streakStatus: lapsed after too long, count drops to 0");
-check(streakStatus(DEFAULT_PROGRESS, "2026-03-01").alive === false, "streakStatus: never played is not alive");
+check(
+  streakStatus(DEFAULT_PROGRESS, "2026-03-01").alive === false,
+  "streakStatus: never played is not alive"
+);
 
 console.log("Settings");
 check(DEFAULT_SETTINGS.soundEnabled === true, "DEFAULT_SETTINGS starts with sound on");
 check(
-  normalizeSettings(null).soundEnabled === true && normalizeSettings(undefined).soundEnabled === true,
+  normalizeSettings(null).soundEnabled === true &&
+    normalizeSettings(undefined).soundEnabled === true,
   "normalizeSettings falls back to defaults for missing data"
 );
 check(
@@ -719,7 +780,9 @@ check(
 
 console.log("Why it matters");
 check(
-  PLACES.every((c) => typeof WHY_IT_MATTERS[c.code] === "string" && WHY_IT_MATTERS[c.code].length > 0),
+  PLACES.every(
+    (c) => typeof WHY_IT_MATTERS[c.code] === "string" && WHY_IT_MATTERS[c.code].length > 0
+  ),
   "every country has a hand-written 'why it matters' fact"
 );
 check(
@@ -731,7 +794,8 @@ check(
   "whyItMatters() returns the hand-written fact for every known country"
 );
 check(
-  whyItMatters({ code: "zz", name: "Testlandia", region: "Europe" }) === "Testlandia is part of Europe — every place has a story worth knowing.",
+  whyItMatters({ code: "zz", name: "Testlandia", region: "Europe" }) ===
+    "Testlandia is part of Europe — every place has a story worth knowing.",
   "whyItMatters() falls back gracefully for an unknown code"
 );
 
@@ -742,10 +806,19 @@ check(getCountryPage("zz") === null, "getCountryPage returns null for an unknown
 
 const brazil = getCountryPage("br");
 check(brazil.hasFullContent === true, "Brazil (the hero entry) has full content");
-check(brazil.name === "Brazil" && brazil.capital === "Brasília", "getCountryPage merges in the base country record");
-check(typeof brazil.summary === "string" && brazil.summary.length > 100, "Brazil has a real story, not a one-liner");
+check(
+  brazil.name === "Brazil" && brazil.capital === "Brasília",
+  "getCountryPage merges in the base country record"
+);
+check(
+  typeof brazil.summary === "string" && brazil.summary.length > 100,
+  "Brazil has a real story, not a one-liner"
+);
 check(brazil.population > 0 && brazil.areaKm2 > 0, "Brazil has population and area facts");
-check(typeof brazil.lat === "number" && typeof brazil.lng === "number", "Brazil has map coordinates");
+check(
+  typeof brazil.lat === "number" && typeof brazil.lng === "number",
+  "Brazil has map coordinates"
+);
 check(brazil.neighbors.length > 0, "Brazil lists its neighbors");
 check(
   brazil.neighbors.every((code) => validCodes.has(code)),
@@ -756,7 +829,10 @@ check(
   brazil.relatedGameModes.length > 0 && brazil.relatedGameModes.every((m) => validModes.has(m)),
   "Brazil's related game modes are all real, country-targeted modes"
 );
-check(brazil.facts && typeof brazil.facts.climate === "string", "Brazil has climate/trade/culture facts");
+check(
+  brazil.facts && typeof brazil.facts.climate === "string",
+  "Brazil has climate/trade/culture facts"
+);
 
 for (const code of Object.keys(COUNTRY_PAGES)) {
   check(validCodes.has(code), `COUNTRY_PAGES key "${code}" is a real country code`);
@@ -779,7 +855,11 @@ check(
   `every place carries promoted content (missing: ${unpromoted.map((p) => p.code).join(",") || "none"})`
 );
 check(
-  PLACES.every((p) => typeof getCountryPage(p.code).summary === "string" && getCountryPage(p.code).summary.length > 20),
+  PLACES.every(
+    (p) =>
+      typeof getCountryPage(p.code).summary === "string" &&
+      getCountryPage(p.code).summary.length > 20
+  ),
   "...and every place has a real summary to lead its page with"
 );
 
@@ -803,7 +883,9 @@ check(enriched.hasFullContent === true, "a promoted country reports hasFullConte
 check(enriched.population > 0, "...with a real population");
 check(enriched.neighbors.length > 0, "...and real land borders");
 check(
-  ["physical_geography", "climate", "economy", "people_and_culture"].every((k) => enriched.facts[k]),
+  ["physical_geography", "climate", "economy", "people_and_culture"].every(
+    (k) => enriched.facts[k]
+  ),
   "...and all four enriched fact sections"
 );
 check(
@@ -818,10 +900,7 @@ check(
   getCountryPage("kz").region === COUNTRIES.find((c) => c.code === "kz").region,
   "region comes from our dataset, never from the promoted content"
 );
-check(
-  getCountryPage("mx").region === "Americas",
-  "...so the Americas stay the Americas"
-);
+check(getCountryPage("mx").region === "Americas", "...so the Americas stay the Americas");
 
 // Metadata must never become a retrievable "fact".
 const enrichedChunks = chunkCountry(
@@ -919,12 +998,16 @@ check(
   "surrounding whitespace in the query is trimmed"
 );
 check(
-  searchCountries(COUNTRIES, { query: "san", region: "Europe" })
-    .every((c) => c.region === "Europe" && (c.name.toLowerCase().includes("san") || c.capital.toLowerCase().includes("san"))),
+  searchCountries(COUNTRIES, { query: "san", region: "Europe" }).every(
+    (c) =>
+      c.region === "Europe" &&
+      (c.name.toLowerCase().includes("san") || c.capital.toLowerCase().includes("san"))
+  ),
   "query and region filters combine (both must match)"
 );
 check(
-  REGIONS[0] === "All" && new Set(REGIONS.slice(1)).size === new Set(COUNTRIES.map((c) => c.region)).size,
+  REGIONS[0] === "All" &&
+    new Set(REGIONS.slice(1)).size === new Set(COUNTRIES.map((c) => c.region)).size,
   "REGIONS covers 'All' plus every distinct region in the dataset, once each"
 );
 
@@ -1026,10 +1109,7 @@ check(
   contrastRatio(colors.ember, colors.surface) < CONTRAST.body,
   "ember does not clear body contrast on parchment — that is what emberInk is for"
 );
-check(
-  contrastRatio(colors.emberInk, colors.surface) >= CONTRAST.body,
-  "...and emberInk does"
-);
+check(contrastRatio(colors.emberInk, colors.surface) >= CONTRAST.body, "...and emberInk does");
 
 // Fills carrying a label. Every brand fill takes parchment EXCEPT brass and
 // lichen-light, which take nightwood; theme.onFill() is the single place that
@@ -1052,10 +1132,7 @@ check(
   contrastRatio(onFill(colors.accent), colors.accent) < CONTRAST.body,
   "a raw lakewater fill cannot carry a body-size label — deepen it first"
 );
-check(
-  !Object.values(modeAccents).includes(colors.accent),
-  "...so no mode accent is raw lakewater"
-);
+check(!Object.values(modeAccents).includes(colors.accent), "...so no mode accent is raw lakewater");
 
 // Every game-mode accent doubles as a tile/button fill carrying a label.
 for (const [mode, fill] of Object.entries(modeAccents)) {
@@ -1158,7 +1235,10 @@ const dailyRow = resultRowFromRound(
   { mode: "daily", score: 5, total: 6, xp: 50 },
   "2026-03-02"
 );
-check(dailyRow.daily_date === "2026-03-02", "resultRowFromRound stamps daily_date on a daily round");
+check(
+  dailyRow.daily_date === "2026-03-02",
+  "resultRowFromRound stamps daily_date on a daily round"
+);
 check(
   dailyRow.xp_awarded === 50 && dailyRow.difficulty === "all" && dailyRow.timed === false,
   "resultRowFromRound defaults difficulty/timed and maps xp to xp_awarded"
@@ -1170,7 +1250,8 @@ check(
 );
 check(
   JSON.stringify(
-    resultRowFromRound("user-1", { mode: "flag", score: 8, total: 8, xp: 100 }, "2026-03-02").countries
+    resultRowFromRound("user-1", { mode: "flag", score: 8, total: 8, xp: 100 }, "2026-03-02")
+      .countries
   ) === "[]",
   "resultRowFromRound defaults countries to an empty array"
 );
@@ -1206,20 +1287,44 @@ check(
   "countriesFromHistory skips an entry with no country rather than logging a bad code"
 );
 check(
-  JSON.stringify(countriesFromHistory(null)) === "[]" && JSON.stringify(countriesFromHistory(undefined)) === "[]",
+  JSON.stringify(countriesFromHistory(null)) === "[]" &&
+    JSON.stringify(countriesFromHistory(undefined)) === "[]",
   "countriesFromHistory tolerates a missing history rather than throwing"
 );
 
 // The merge must never cost a returning player progress they already earned.
-const localSide = { xp: 100, streak: 2, longestStreak: 4, bestScore: 8, lastPlayedOn: "2026-03-01", freezes: 0 };
-const cloudSide = { xp: 250, streak: 5, longestStreak: 3, bestScore: 6, lastPlayedOn: "2026-03-04", freezes: 1 };
+const localSide = {
+  xp: 100,
+  streak: 2,
+  longestStreak: 4,
+  bestScore: 8,
+  lastPlayedOn: "2026-03-01",
+  freezes: 0,
+};
+const cloudSide = {
+  xp: 250,
+  streak: 5,
+  longestStreak: 3,
+  bestScore: 6,
+  lastPlayedOn: "2026-03-04",
+  freezes: 1,
+};
 const merged = mergeProgress(localSide, cloudSide);
-check(merged.xp === 250 && merged.bestScore === 8, "mergeProgress takes the max of each side's totals");
-check(merged.streak === 5 && merged.freezes === 1, "mergeProgress keeps the higher streak and freezes");
+check(
+  merged.xp === 250 && merged.bestScore === 8,
+  "mergeProgress takes the max of each side's totals"
+);
+check(
+  merged.streak === 5 && merged.freezes === 1,
+  "mergeProgress keeps the higher streak and freezes"
+);
 // Each side is normalized first, so the cloud's longestStreak of 3 is lifted to
 // its live streak of 5 before the merge — a longest streak can never sit below
 // the current one, on either side of the sync.
-check(merged.longestStreak === 5, "mergeProgress never reports a longest streak below the current streak");
+check(
+  merged.longestStreak === 5,
+  "mergeProgress never reports a longest streak below the current streak"
+);
 check(merged.lastPlayedOn === "2026-03-04", "mergeProgress keeps the later last-played day");
 check(
   JSON.stringify(mergeProgress(localSide, null)) === JSON.stringify(localSide),
@@ -1261,12 +1366,16 @@ check(
 
 console.log("Auth redirect (M2.1)");
 check(
-  pickRedirectUrl({ platform: "web", origin: "https://worldwise.vercel.app", nativeUrl: "worldwise://auth/callback" }) ===
-    "https://worldwise.vercel.app",
+  pickRedirectUrl({
+    platform: "web",
+    origin: "https://worldwise.vercel.app",
+    nativeUrl: "worldwise://auth/callback",
+  }) === "https://worldwise.vercel.app",
   "web redirects back to its own origin, ignoring the native deep link"
 );
 check(
-  pickRedirectUrl({ platform: "web", origin: "http://localhost:8081", nativeUrl: null }) === "http://localhost:8081",
+  pickRedirectUrl({ platform: "web", origin: "http://localhost:8081", nativeUrl: null }) ===
+    "http://localhost:8081",
   "web uses the dev origin, so one build works locally and on Vercel"
 );
 check(
@@ -1275,8 +1384,11 @@ check(
   "native redirects to the app's deep link"
 );
 check(
-  pickRedirectUrl({ platform: "android", origin: "https://ignored.example", nativeUrl: "exp://127.0.0.1:8081/--/auth/callback" }) ===
-    "exp://127.0.0.1:8081/--/auth/callback",
+  pickRedirectUrl({
+    platform: "android",
+    origin: "https://ignored.example",
+    nativeUrl: "exp://127.0.0.1:8081/--/auth/callback",
+  }) === "exp://127.0.0.1:8081/--/auth/callback",
   "native prefers its deep link even if a window origin somehow exists"
 );
 // Returning null lets Supabase fall back to its configured Site URL, which beats
@@ -1310,10 +1422,7 @@ check(
   pinchScale(0, 20, 1, 1, 4) === 1,
   "pinchScale ignores a degenerate zero start-distance instead of dividing by zero"
 );
-check(
-  wheelZoom(1, -100, 0.01, 1, 4) === 2,
-  "wheelZoom zooms in (scrolling up) by deltaY * speed"
-);
+check(wheelZoom(1, -100, 0.01, 1, 4) === 2, "wheelZoom zooms in (scrolling up) by deltaY * speed");
 check(
   wheelZoom(2, 500, 0.01, 1, 4) === 1,
   "wheelZoom zooms back out (scrolling down), clamped at the minimum"
@@ -1372,7 +1481,10 @@ console.log("World Map region-jump animation (M2.3 step 5.3)");
     "lerpView at t=1 returns the target view exactly"
   );
   const mid = lerpView(start, target, 0.5);
-  check(mid.scale === 2 && mid.pan.x === 10 && mid.pan.y === -5, "lerpView at t=0.5 splits the difference");
+  check(
+    mid.scale === 2 && mid.pan.x === 10 && mid.pan.y === -5,
+    "lerpView at t=0.5 splits the difference"
+  );
 }
 
 console.log("World Map small-country hit targets (M2.3 step 3.2)");
@@ -1380,7 +1492,10 @@ console.log("World Map small-country hit targets (M2.3 step 3.2)");
   const square = pathBounds("M10 10L20 10L20 20L10 20Z");
   check(square.minX === 10 && square.maxX === 20, "pathBounds finds the x extent of a simple ring");
   check(square.minY === 10 && square.maxY === 20, "pathBounds finds the y extent of a simple ring");
-  check(square.cx === 15 && square.cy === 15, "pathBounds centers on the bounding box, not the vertices");
+  check(
+    square.cx === 15 && square.cy === 15,
+    "pathBounds centers on the bounding box, not the vertices"
+  );
 }
 {
   // A second, far-off subpath (M2.3's paths can have several rings) must
@@ -1395,15 +1510,28 @@ console.log("World Map small-country hit targets (M2.3 step 3.2)");
     6,
     5
   );
-  check(Object.keys(targets).length === 1 && targets.tiny, "only the bounding-box-under-threshold country gets a hit target");
-  check(targets.tiny.r === 5, "the hit target uses the configured radius, not the shape's own size");
-  check(targets.tiny.cx === 2 && targets.tiny.cy === 2, "the hit target is centered on the small country's own bounding box");
+  check(
+    Object.keys(targets).length === 1 && targets.tiny,
+    "only the bounding-box-under-threshold country gets a hit target"
+  );
+  check(
+    targets.tiny.r === 5,
+    "the hit target uses the configured radius, not the shape's own size"
+  );
+  check(
+    targets.tiny.cx === 2 && targets.tiny.cy === 2,
+    "the hit target is centered on the small country's own bounding box"
+  );
 }
 {
   // Sanity-check the real dataset with the shipped constants: Luxembourg is
   // the smallest bounding box in COUNTRY_PATHS and must qualify, while a
   // country the size of France (a several-hundred-unit bounding box) must not.
-  const targets = smallCountryHitTargets(COUNTRY_PATHS, MAP_SMALL_COUNTRY_MAX_SIZE, MAP_SMALL_HIT_RADIUS);
+  const targets = smallCountryHitTargets(
+    COUNTRY_PATHS,
+    MAP_SMALL_COUNTRY_MAX_SIZE,
+    MAP_SMALL_HIT_RADIUS
+  );
   check(!!targets.lu, "Luxembourg (one of the smallest real shapes) gets an enlarged hit target");
   check(!targets.fr, "France (a large real shape) is left to its own outline");
 }
@@ -1421,12 +1549,17 @@ console.log("World Map tap label (M2.3 step 3.3)");
   // has nothing to fall back to if one is missing.
   const centroids = countryCentroids(COUNTRY_PATHS);
   check(
-    Object.keys(COUNTRY_PATHS).every((code) => Number.isFinite(centroids[code].cx) && Number.isFinite(centroids[code].cy)),
+    Object.keys(COUNTRY_PATHS).every(
+      (code) => Number.isFinite(centroids[code].cx) && Number.isFinite(centroids[code].cy)
+    ),
     "every country in the real dataset gets a finite centroid"
   );
 }
 check(countryName("br") === "Brazil", "countryName resolves a known code to its display name");
-check(countryName("zz") === "ZZ", "countryName falls back to the uppercased code for an unknown one");
+check(
+  countryName("zz") === "ZZ",
+  "countryName falls back to the uppercased code for an unknown one"
+);
 
 console.log("World Map region presets (M2.3 step 5.1)");
 {
@@ -1435,12 +1568,17 @@ console.log("World Map region presets (M2.3 step 5.1)");
     b: "M20 5L30 5L30 15L20 15Z", // bounding box 20,5 - 30,15
   };
   check(
-    JSON.stringify(regionBounds(paths, ["a", "b"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 30, maxY: 15 }),
+    JSON.stringify(regionBounds(paths, ["a", "b"])) ===
+      JSON.stringify({ minX: 0, minY: 0, maxX: 30, maxY: 15 }),
     "regionBounds unions every listed country's own bounding box"
   );
-  check(regionBounds(paths, ["missing"]) === null, "regionBounds returns null when none of the codes have path data");
   check(
-    JSON.stringify(regionBounds(paths, ["a", "missing"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
+    regionBounds(paths, ["missing"]) === null,
+    "regionBounds returns null when none of the codes have path data"
+  );
+  check(
+    JSON.stringify(regionBounds(paths, ["a", "missing"])) ===
+      JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
     "regionBounds skips codes with no path data instead of failing the whole region"
   );
 
@@ -1450,7 +1588,8 @@ console.log("World Map region presets (M2.3 step 5.1)");
   // framing.
   const wrapping = { ...paths, wide: "M0 0L700 0L700 10L0 10Z" }; // 700-wide box
   check(
-    JSON.stringify(regionBounds(wrapping, ["a", "wide"])) === JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
+    JSON.stringify(regionBounds(wrapping, ["a", "wide"])) ===
+      JSON.stringify({ minX: 0, minY: 0, maxX: 10, maxY: 10 }),
     "regionBounds excludes an antimeridian-wrapping country's inflated bounding box"
   );
   check(
@@ -1474,8 +1613,9 @@ console.log("World Map region presets (M2.3 step 5.1)");
     "regionView falls back to the full unzoomed view when there are no bounds"
   );
   check(
-    JSON.stringify(regionView({ minX: 0, minY: 0, maxX: 10, maxY: 10 }, view, { width: 0, height: 0 }, 1, 4)) ===
-      JSON.stringify({ scale: 1, pan: { x: 0, y: 0 } }),
+    JSON.stringify(
+      regionView({ minX: 0, minY: 0, maxX: 10, maxY: 10 }, view, { width: 0, height: 0 }, 1, 4)
+    ) === JSON.stringify({ scale: 1, pan: { x: 0, y: 0 } }),
     "regionView falls back to the full unzoomed view before the box has been measured"
   );
 }
@@ -1542,10 +1682,18 @@ check(
 );
 
 check(pageFromCountryRow(null) === null, "pageFromCountryRow returns null for a missing row");
-check(pageFromCountryRow({ name: "No code" }) === null, "pageFromCountryRow rejects a row with no code");
+check(
+  pageFromCountryRow({ name: "No code" }) === null,
+  "pageFromCountryRow rejects a row with no code"
+);
 // PostgREST can serialize numeric/bigint as a string; the UI does arithmetic on
 // these, so a string would render as "8515767" instead of "8.5M".
-const stringy = pageFromCountryRow({ code: "zz", name: "Z", population: "1000000", area_km2: "2500.5" });
+const stringy = pageFromCountryRow({
+  code: "zz",
+  name: "Z",
+  population: "1000000",
+  area_km2: "2500.5",
+});
 check(stringy.population === 1_000_000, "a string population is coerced to a number");
 check(stringy.areaKm2 === 2500.5, "a string area_km2 is coerced to a number");
 check(
@@ -1557,7 +1705,8 @@ check(
   "an empty facts object reads back as null, matching the bundled shape"
 );
 check(
-  pageFromCountryRow({ code: "zz", name: "Z", related_game_modes: [] }).relatedGameModes.length === 4,
+  pageFromCountryRow({ code: "zz", name: "Z", related_game_modes: [] }).relatedGameModes.length ===
+    4,
   "a row with no related modes falls back to the default set"
 );
 check(
@@ -1574,7 +1723,10 @@ check(
 );
 
 console.log("Content cache policy (M2.3.5)");
-check(contentCacheKey("br") === "worldwise.content.country.br.v1", "cache key is versioned per country");
+check(
+  contentCacheKey("br") === "worldwise.content.country.br.v1",
+  "cache key is versioned per country"
+);
 check(parseCacheEntry(null) === null, "parseCacheEntry returns null for a missing entry");
 check(parseCacheEntry("{not json") === null, "parseCacheEntry survives corrupt JSON");
 check(parseCacheEntry('{"version":1}') === null, "parseCacheEntry rejects an entry with no page");
@@ -1660,7 +1812,10 @@ async function contentResolverChecks() {
     fetchRow: async () => null,
     bundled: async () => null,
   });
-  check(nothing.source === "none" && nothing.page === null, "an unknown country resolves to no page");
+  check(
+    nothing.source === "none" && nothing.page === null,
+    "an unknown country resolves to no page"
+  );
 
   // Nothing in this layer may throw — content failing to load must degrade the
   // page, never break it.
@@ -1773,7 +1928,10 @@ console.log("Globe projection (M2.3.7)");
 const near = (a, b, eps = 1e-6) => Math.abs(a - b) < eps;
 const unit = ([x, y, z]) => near(Math.hypot(x, y, z), 1, 1e-9);
 
-check(unit(lngLatToVec(0, 0)) && unit(lngLatToVec(140, -71)), "lng/lat always maps to a unit vector");
+check(
+  unit(lngLatToVec(0, 0)) && unit(lngLatToVec(140, -71)),
+  "lng/lat always maps to a unit vector"
+);
 check(
   near(lngLatToVec(0, 0)[0], 1) && near(lngLatToVec(0, 90)[2], 1),
   "0°N 0°E points down +x and the north pole points up +z"
@@ -1788,14 +1946,23 @@ check(
   const o = orientation(30, 45);
   const front = rotate(lngLatToVec(30, 45), o);
   const back = rotate(lngLatToVec(-150, -45), o);
-  check(near(front[0], 0) && near(front[1], 0) && near(front[2], 1), "the view center projects to the middle of the disc");
-  check(isVisible(front[2]) && !isVisible(back[2]), "the near face is visible and its antipode is not");
+  check(
+    near(front[0], 0) && near(front[1], 0) && near(front[2], 1),
+    "the view center projects to the middle of the disc"
+  );
+  check(
+    isVisible(front[2]) && !isVisible(back[2]),
+    "the near face is visible and its antipode is not"
+  );
   // A point exactly 90° out lands on the limb. Asserting which SIDE of the
   // horizon it falls on would be asserting float noise — the dot product there
   // is ±1e-17 — so the stable invariant is where it draws, plus the pure
   // boundary rule that z of exactly 0 is hidden.
   const grazing = toScreen(rotate(lngLatToVec(120, 0), o), { cx: 200, cy: 200, radius: 190 });
-  check(near(Math.hypot(grazing[0] - 200, grazing[1] - 200), 190, 1e-9), "a point 90° away projects exactly onto the limb");
+  check(
+    near(Math.hypot(grazing[0] - 200, grazing[1] - 200), 190, 1e-9),
+    "a point 90° away projects exactly onto the limb"
+  );
   check(!isVisible(0), "a point sitting exactly on the horizon counts as hidden");
 }
 check(
@@ -1816,16 +1983,47 @@ check(
     });
     return out;
   };
-  const facing = ring([[-5, -5], [5, -5], [5, 5], [-5, 5]]);
-  const behind = ring([[175, -5], [-175, -5], [-175, 5], [175, 5]]);
-  const straddling = ring([[80, -10], [110, -10], [110, 10], [80, 10]]);
+  const facing = ring([
+    [-5, -5],
+    [5, -5],
+    [5, 5],
+    [-5, 5],
+  ]);
+  const behind = ring([
+    [175, -5],
+    [-175, -5],
+    [-175, 5],
+    [175, 5],
+  ]);
+  const straddling = ring([
+    [80, -10],
+    [110, -10],
+    [110, 10],
+    [80, 10],
+  ]);
   const o = orientation(0, 0);
 
-  check(projectRing(facing, o, view)?.length === 4, "a ring fully facing the viewer projects every point");
+  check(
+    projectRing(facing, o, view)?.length === 4,
+    "a ring fully facing the viewer projects every point"
+  );
   check(projectRing(behind, o, view) === null, "a ring on the far side projects to nothing at all");
-  check(projectRing(ring([[0, 0], [1, 0]]), o, view) === null, "a degenerate ring of two points is dropped");
+  check(
+    projectRing(
+      ring([
+        [0, 0],
+        [1, 0],
+      ]),
+      o,
+      view
+    ) === null,
+    "a degenerate ring of two points is dropped"
+  );
   const clipped = projectRing(straddling, o, view);
-  check(clipped !== null && clipped.length > 4, "a ring crossing the horizon gains limb points rather than being dropped");
+  check(
+    clipped !== null && clipped.length > 4,
+    "a ring crossing the horizon gains limb points rather than being dropped"
+  );
   check(
     clipped.every(([x, y]) => Math.hypot(x - view.cx, y - view.cy) <= view.radius + 1e-6),
     "no projected point ever escapes the globe's disc"
@@ -1836,21 +2034,40 @@ check(
   // The exact inverse of the Day 4 projection (x = (lng+180)*2, y = (90-lat)*2),
   // which is what lets the globe reuse worldMap.js instead of a second dataset.
   const rings = ringsFromPath("M360 180L364 180L364 176Z");
-  check(rings.length === 1 && rings[0].length === 9, "ringsFromPath parses one ring of three points");
+  check(
+    rings.length === 1 && rings[0].length === 9,
+    "ringsFromPath parses one ring of three points"
+  );
   const [lng, lat] = vecToLngLat([rings[0][0], rings[0][1], rings[0][2]]);
   check(near(lng, 0, 1e-9) && near(lat, 0, 1e-9), "map pixel 360,180 inverts to 0°N 0°E");
-  check(ringsFromPath("M0 0L1 1").length === 0, "a ring with too few points is skipped, not emitted broken");
-  check(ringsFromPath("M10 10L20 10L20 20ZM100 100L110 100L110 110Z").length === 2, "multi-ring paths split into separate rings");
+  check(
+    ringsFromPath("M0 0L1 1").length === 0,
+    "a ring with too few points is skipped, not emitted broken"
+  );
+  check(
+    ringsFromPath("M10 10L20 10L20 20ZM100 100L110 100L110 110Z").length === 2,
+    "multi-ring paths split into separate rings"
+  );
 }
 {
   const box = ringsFromPath("M356 176L364 176L364 184L356 184Z");
   const center = countryCenter(box);
   check(unit(center), "countryCenter returns a unit vector");
   const [lng, lat] = vecToLngLat(center);
-  check(near(lng, 0, 1e-9) && near(lat, 0, 1e-9), "a ring centered on 0,0 has its center there too");
+  check(
+    near(lng, 0, 1e-9) && near(lat, 0, 1e-9),
+    "a ring centered on 0,0 has its center there too"
+  );
   check(countryCenter([]) === null, "a country with no rings has no center");
 }
-check(pointsToPath([[1.04, 2.06], [3, 4], [5, 6]]) === "M1 2.1L3 4L5 6Z", "points round to 0.1px and close the path");
+check(
+  pointsToPath([
+    [1.04, 2.06],
+    [3, 4],
+    [5, 6],
+  ]) === "M1 2.1L3 4L5 6Z",
+  "points round to 0.1px and close the path"
+);
 check(pointsToPath([[1, 2]]) === null, "fewer than three points is not a path");
 
 console.log("Globe graticule (M2.3.7 step 4.2)");
@@ -1870,53 +2087,110 @@ console.log("Globe graticule (M2.3.7 step 4.2)");
   const o = orientation(0, 0);
   const view = { cx: 200, cy: 200, radius: 190 };
 
-  const facing = [lngLatToVec(-10, -10), lngLatToVec(10, -10), lngLatToVec(10, 10), lngLatToVec(-10, 10)];
+  const facing = [
+    lngLatToVec(-10, -10),
+    lngLatToVec(10, -10),
+    lngLatToVec(10, 10),
+    lngLatToVec(-10, 10),
+  ];
   const onDisc = projectGraticuleLine(facing, o, view);
-  check(onDisc.length === 1 && onDisc[0].length === facing.length, "a line entirely facing the viewer projects every point as one segment");
+  check(
+    onDisc.length === 1 && onDisc[0].length === facing.length,
+    "a line entirely facing the viewer projects every point as one segment"
+  );
 
   const behind = [lngLatToVec(170, -10), lngLatToVec(-170, -10)];
-  check(projectGraticuleLine(behind, o, view).length === 0, "a line entirely on the far side projects to nothing");
+  check(
+    projectGraticuleLine(behind, o, view).length === 0,
+    "a line entirely on the far side projects to nothing"
+  );
 
   const line = [];
   for (let lng = -150; lng <= 150; lng += 10) line.push(lngLatToVec(lng, 0));
   const clipped = projectGraticuleLine(line, o, view);
-  check(clipped.length === 1, "a line that enters and exits the horizon once each yields a single clipped segment, not a chord through the far side");
-  check(clipped[0].length < line.length, "the hidden portion of the line is dropped rather than drawn through the far side");
+  check(
+    clipped.length === 1,
+    "a line that enters and exits the horizon once each yields a single clipped segment, not a chord through the far side"
+  );
+  check(
+    clipped[0].length < line.length,
+    "the hidden portion of the line is dropped rather than drawn through the far side"
+  );
   check(
     clipped[0].every(([x, y]) => Math.hypot(x - view.cx, y - view.cy) <= view.radius + 1e-6),
     "a clipped graticule segment never escapes the globe's disc"
   );
 }
-check(pointsToPolylinePath([[1.04, 2.06], [3, 4]]) === "M1 2.1L3 4", "a polyline path rounds like pointsToPath but never closes");
+check(
+  pointsToPolylinePath([
+    [1.04, 2.06],
+    [3, 4],
+  ]) === "M1 2.1L3 4",
+  "a polyline path rounds like pointsToPath but never closes"
+);
 check(pointsToPolylinePath([[1, 2]]) === null, "fewer than two points is not a polyline");
 
 console.log("Globe motion (M2.3.7)");
-check(normalizeLng(190) === -170 && normalizeLng(-190) === 170, "longitude wraps across the antimeridian");
-check(normalizeLng(180) === 180 && normalizeLng(-180) === 180, "the antimeridian normalizes to a single value");
-check(clampSpin({ lng: 0, lat: 120 }).lat === MAX_LATITUDE, "latitude clamps short of the pole so the globe can't flip");
-check(clampSpin({ lng: 540, lat: 0 }).lng === 180, "clampSpin folds a wound-up longitude back into range");
+check(
+  normalizeLng(190) === -170 && normalizeLng(-190) === 170,
+  "longitude wraps across the antimeridian"
+);
+check(
+  normalizeLng(180) === 180 && normalizeLng(-180) === 180,
+  "the antimeridian normalizes to a single value"
+);
+check(
+  clampSpin({ lng: 0, lat: 120 }).lat === MAX_LATITUDE,
+  "latitude clamps short of the pole so the globe can't flip"
+);
+check(
+  clampSpin({ lng: 540, lat: 0 }).lng === 180,
+  "clampSpin folds a wound-up longitude back into range"
+);
 check(shortestLngDelta(170, -170) === 20, "170°E to 170°W is 20° east, not 340° west");
-check(shortestLngDelta(-170, 170) === -20, "the short way is signed, so it works in both directions");
-check(near(lerpSpin({ lng: 170, lat: 0 }, { lng: -170, lat: 0 }, 0.5).lng, 180), "a tween across the antimeridian crosses the Pacific");
+check(
+  shortestLngDelta(-170, 170) === -20,
+  "the short way is signed, so it works in both directions"
+);
+check(
+  near(lerpSpin({ lng: 170, lat: 0 }, { lng: -170, lat: 0 }, 0.5).lng, 180),
+  "a tween across the antimeridian crosses the Pacific"
+);
 {
   const spun = spinFromDrag({ lng: 0, lat: 0 }, 190, 0, 190);
   check(near(spun.lng, -90), "dragging one radius to the right spins the globe 90° west");
-  check(spinFromDrag({ lng: 0, lat: 80 }, 0, 400, 190).lat === MAX_LATITUDE, "a drag past the pole stops at the clamp");
   check(
-    Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 380).lng) < Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 190).lng),
+    spinFromDrag({ lng: 0, lat: 80 }, 0, 400, 190).lat === MAX_LATITUDE,
+    "a drag past the pole stops at the clamp"
+  );
+  check(
+    Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 380).lng) <
+      Math.abs(spinFromDrag({ lng: 0, lat: 0 }, 50, 0, 190).lng),
     "the same drag rotates less when zoomed in, so the surface tracks the finger"
   );
 }
-check(near(angleBetween(lngLatToVec(0, 0), lngLatToVec(90, 0)), 90), "angleBetween measures the arc in degrees");
-check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a vector against itself is 0°, not NaN");
+check(
+  near(angleBetween(lngLatToVec(0, 0), lngLatToVec(90, 0)), 90),
+  "angleBetween measures the arc in degrees"
+);
+check(
+  !Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))),
+  "a vector against itself is 0°, not NaN"
+);
 {
   // The bug that already cost mapRegions.js a debugging pass: averaging
   // lng/lat puts a group straddling the antimeridian at 0° — the wrong side
   // of the planet. Averaging vectors cannot make that mistake.
   const centers = { a: lngLatToVec(179, 0), b: lngLatToVec(-179, 0) };
-  check(Math.abs(groupSpin(["a", "b"], centers).lng) > 179, "a group straddling the antimeridian centers on 180°, not 0°");
+  check(
+    Math.abs(groupSpin(["a", "b"], centers).lng) > 179,
+    "a group straddling the antimeridian centers on 180°, not 0°"
+  );
   check(groupSpin(["nope"], centers) === null, "a group with no known countries has no spin");
-  check(groupSpin(["a", "b", "c"], { ...centers, c: lngLatToVec(0, 0) }) !== null, "a partly-unknown group still resolves from its known members");
+  check(
+    groupSpin(["a", "b", "c"], { ...centers, c: lngLatToVec(0, 0) }) !== null,
+    "a partly-unknown group still resolves from its known members"
+  );
 }
 {
   const centers = { a: lngLatToVec(0, 0), b: lngLatToVec(4, 0) };
@@ -1928,7 +2202,10 @@ check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a 
   );
   check(tight > wide, "a tighter group frames at a closer zoom");
   check(wide >= 1, "no group ever zooms out past the whole globe");
-  check(groupZoom(["nope"], centers, DEFAULT_SPIN) === 1, "an unknown group falls back to the world view");
+  check(
+    groupZoom(["nope"], centers, DEFAULT_SPIN) === 1,
+    "an unknown group falls back to the world view"
+  );
 }
 {
   // groupZoom compares countries' CENTERS against each other, so a lone
@@ -1937,36 +2214,63 @@ check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a 
   // outline: it would zoom Russia and the Vatican to roughly the same tight
   // view, which is the bug countryAngularRadius exists to avoid
   // (WorldMapScreen's "spin to this country" link, M2.3.7 step 4).
-  check(zoomForRadius(0) === 1, "framing a zero-width point falls back to the world view, not a divide-by-zero");
+  check(
+    zoomForRadius(0) === 1,
+    "framing a zero-width point falls back to the world view, not a divide-by-zero"
+  );
   check(zoomForRadius(90) === 1, "a full hemisphere frames at the world view");
   check(zoomForRadius(0, { min: 2 }) === 2, "zoomForRadius honors a caller's own min");
-  check(zoomForRadius(1, { max: 3 }) === 3, "zoomForRadius clamps to a caller's own max rather than blowing up near the limb");
+  check(
+    zoomForRadius(1, { max: 3 }) === 3,
+    "zoomForRadius clamps to a caller's own max rather than blowing up near the limb"
+  );
 
   const brRadius = countryAngularRadius(COUNTRY_RINGS.br, COUNTRY_CENTERS.br);
   const luRadius = countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu);
-  check(brRadius > luRadius, "Brazil's own outline reaches further from its center than Luxembourg's");
+  check(
+    brRadius > luRadius,
+    "Brazil's own outline reaches further from its center than Luxembourg's"
+  );
   check(
     zoomForRadius(brRadius, { min: 1, max: 4 }) < zoomForRadius(luRadius, { min: 1, max: 4 }),
     "framing Brazil zooms in less than framing Luxembourg, since Brazil fills more of the view on its own"
   );
-  check(countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu) > 0, "even a small real country has a nonzero angular radius");
-  check(countryAngularRadius(null, COUNTRY_CENTERS.br) === 0, "no rings has no angular radius, rather than throwing");
-  check(countryAngularRadius(COUNTRY_RINGS.br, null) === 0, "no center has no angular radius, rather than throwing");
+  check(
+    countryAngularRadius(COUNTRY_RINGS.lu, COUNTRY_CENTERS.lu) > 0,
+    "even a small real country has a nonzero angular radius"
+  );
+  check(
+    countryAngularRadius(null, COUNTRY_CENTERS.br) === 0,
+    "no rings has no angular radius, rather than throwing"
+  );
+  check(
+    countryAngularRadius(COUNTRY_RINGS.br, null) === 0,
+    "no center has no angular radius, rather than throwing"
+  );
 }
 {
   // Spin momentum (M2.3.7 step 4.4): a release velocity that decays every
   // frame until it's imperceptible, rather than the globe stopping dead
   // where the finger let go.
   const v = spinVelocityFromDrag(1, 0, 190);
-  check(v.lng < 0, "dragging right releases with a westward (negative lng) velocity, matching spinFromDrag's own sign");
-  check(spinVelocityFromDrag(0, 1, 190).lat > 0, "dragging down releases with a positive lat velocity");
+  check(
+    v.lng < 0,
+    "dragging right releases with a westward (negative lng) velocity, matching spinFromDrag's own sign"
+  );
+  check(
+    spinVelocityFromDrag(0, 1, 190).lat > 0,
+    "dragging down releases with a positive lat velocity"
+  );
   check(
     Math.abs(spinVelocityFromDrag(1, 0, 380).lng) < Math.abs(spinVelocityFromDrag(1, 0, 190).lng),
     "the same release speed reads as a slower spin when zoomed in, same radius scaling as spinFromDrag"
   );
 
   const decayed = decayVelocity({ lng: -1, lat: 0.5 }, MOMENTUM_FRAME_MS);
-  check(Math.abs(decayed.lng) < 1 && decayed.lng < 0, "one frame's decay shrinks the magnitude without flipping its sign");
+  check(
+    Math.abs(decayed.lng) < 1 && decayed.lng < 0,
+    "one frame's decay shrinks the magnitude without flipping its sign"
+  );
   check(near(decayVelocity({ lng: -1, lat: 0 }, 0).lng, -1), "zero elapsed time decays nothing");
   check(
     Math.abs(decayVelocity({ lng: -1, lat: 0 }, MOMENTUM_FRAME_MS * 10).lng) <
@@ -1976,17 +2280,35 @@ check(!Number.isNaN(angleBetween(lngLatToVec(10, 10), lngLatToVec(10, 10))), "a 
 
   check(isMomentumDone({ lng: 0, lat: 0 }), "zero velocity is done");
   check(!isMomentumDone({ lng: 1, lat: 0 }), "a fast spin is not yet done");
-  check(isMomentumDone({ lng: 0.0001, lat: -0.0001 }), "velocity below the stop threshold in both axes counts as done");
+  check(
+    isMomentumDone({ lng: 0.0001, lat: -0.0001 }),
+    "velocity below the stop threshold in both axes counts as done"
+  );
 
   const stepped = stepMomentum({ lng: 0, lat: 0 }, { lng: -1, lat: 0.5 }, 10);
-  check(near(stepped.lng, -10) && near(stepped.lat, 5), "stepMomentum advances spin by velocity times elapsed time");
-  check(near(stepMomentum({ lng: 170, lat: 0 }, { lng: 1, lat: 0 }, 20).lng, -170), "stepMomentum wraps longitude across the antimeridian like any other spin update");
-  check(stepMomentum({ lng: 0, lat: 80 }, { lng: 0, lat: 1 }, 20).lat === MAX_LATITUDE, "stepMomentum clamps latitude at the pole like any other spin update");
+  check(
+    near(stepped.lng, -10) && near(stepped.lat, 5),
+    "stepMomentum advances spin by velocity times elapsed time"
+  );
+  check(
+    near(stepMomentum({ lng: 170, lat: 0 }, { lng: 1, lat: 0 }, 20).lng, -170),
+    "stepMomentum wraps longitude across the antimeridian like any other spin update"
+  );
+  check(
+    stepMomentum({ lng: 0, lat: 80 }, { lng: 0, lat: 1 }, 20).lat === MAX_LATITUDE,
+    "stepMomentum clamps latitude at the pole like any other spin update"
+  );
 }
 
 console.log("Globe geometry over the real dataset (M2.3.7)");
-check(GLOBE_COUNTRY_CODES.length === Object.keys(COUNTRY_RINGS).length, "every country with rings is listed");
-check(GLOBE_COUNTRY_CODES.length > 160, "the globe carries the same ~167 countries the flat map does");
+check(
+  GLOBE_COUNTRY_CODES.length === Object.keys(COUNTRY_RINGS).length,
+  "every country with rings is listed"
+);
+check(
+  GLOBE_COUNTRY_CODES.length > 160,
+  "the globe carries the same ~167 countries the flat map does"
+);
 check(
   GLOBE_COUNTRY_CODES.every((code) => COUNTRY_CENTERS[code] && unit(COUNTRY_CENTERS[code])),
   "every country resolves to a unit center vector"
@@ -1997,8 +2319,14 @@ check(
   // wrong hemisphere — the cheapest possible guard against a sign error.
   const [brLng, brLat] = vecToLngLat(COUNTRY_CENTERS.br);
   const [jpLng, jpLat] = vecToLngLat(COUNTRY_CENTERS.jp);
-  check(brLng < -40 && brLng > -70 && brLat < 0, "Brazil's center lands in the south-western hemisphere");
-  check(jpLng > 130 && jpLng < 145 && jpLat > 0, "Japan's center lands in the north-eastern hemisphere");
+  check(
+    brLng < -40 && brLng > -70 && brLat < 0,
+    "Brazil's center lands in the south-western hemisphere"
+  );
+  check(
+    jpLng > 130 && jpLng < 145 && jpLat > 0,
+    "Japan's center lands in the north-eastern hemisphere"
+  );
 }
 {
   // The projection's one hard invariant, over all 8,190 real points at four
@@ -2006,7 +2334,12 @@ check(
   const view = { cx: 200, cy: 200, radius: 190 };
   let drawn = 0;
   let escaped = 0;
-  for (const [lng, lat] of [[0, 20], [100, 20], [-60, 10], [30, 60]]) {
+  for (const [lng, lat] of [
+    [0, 20],
+    [100, 20],
+    [-60, 10],
+    [30, 60],
+  ]) {
     const o = orientation(lng, lat);
     for (const code of GLOBE_COUNTRY_CODES) {
       for (const ring of COUNTRY_RINGS[code]) {
@@ -2023,7 +2356,11 @@ check(
   check(escaped === 0, "across every real country at four orientations, no point escapes the disc");
 }
 check(
-  projectCountry(COUNTRY_RINGS.ru, orientation(100, 55), { cx: 200, cy: 200, radius: 190 })?.startsWith("M"),
+  projectCountry(COUNTRY_RINGS.ru, orientation(100, 55), {
+    cx: 200,
+    cy: 200,
+    radius: 190,
+  })?.startsWith("M"),
   "Russia — the country that broke the flat map's bounding boxes — projects to a real path"
 );
 check(
@@ -2033,8 +2370,14 @@ check(
 {
   const codes = COUNTRIES.filter((c) => c.region === "Europe").map((c) => c.code);
   const spin = groupSpin(codes, COUNTRY_CENTERS);
-  check(spin.lat > 30 && spin.lat < 65 && spin.lng > -15 && spin.lng < 40, "the Europe preset actually faces Europe");
-  check(groupZoom(codes, COUNTRY_CENTERS, spin, { min: 1, max: 4 }) > 1, "the Europe preset zooms in rather than staying at world view");
+  check(
+    spin.lat > 30 && spin.lat < 65 && spin.lng > -15 && spin.lng < 40,
+    "the Europe preset actually faces Europe"
+  );
+  check(
+    groupZoom(codes, COUNTRY_CENTERS, spin, { min: 1, max: 4 }) > 1,
+    "the Europe preset zooms in rather than staying at world view"
+  );
 }
 
 console.log("Scoring");
@@ -2056,7 +2399,8 @@ check(
   "normalizeInterests orders selections by catalog display order"
 );
 check(
-  JSON.stringify(normalizeInterests(["history", "food", "history"])) === JSON.stringify(["history", "food"]),
+  JSON.stringify(normalizeInterests(["history", "food", "history"])) ===
+    JSON.stringify(["history", "food"]),
   "normalizeInterests dedupes repeated slugs"
 );
 check(
@@ -2064,11 +2408,15 @@ check(
   "normalizeInterests drops unknown slugs (e.g. a retired one from an old client)"
 );
 check(
-  JSON.stringify(normalizeInterests(["food", "history"])) === JSON.stringify(normalizeInterests(["history", "food"])),
+  JSON.stringify(normalizeInterests(["food", "history"])) ===
+    JSON.stringify(normalizeInterests(["history", "food"])),
   "two equivalent selections in a different order normalize equal"
 );
 check(JSON.stringify(normalizeInterests(null)) === "[]", "normalizeInterests(null) is []");
-check(JSON.stringify(normalizeInterests(undefined)) === "[]", "normalizeInterests(undefined) is []");
+check(
+  JSON.stringify(normalizeInterests(undefined)) === "[]",
+  "normalizeInterests(undefined) is []"
+);
 check(JSON.stringify(normalizeInterests([])) === "[]", "normalizeInterests([]) is []");
 
 console.log("Interests cloud sync (M2.3.6 step 4)");
@@ -2086,8 +2434,9 @@ check(
   "interestRowsFromSlugs drops unknown slugs like normalizeInterests does"
 );
 check(
-  JSON.stringify(slugsFromInterestRows([{ interest_slug: "food" }, { interest_slug: "history" }])) ===
-    JSON.stringify(["history", "food"]),
+  JSON.stringify(
+    slugsFromInterestRows([{ interest_slug: "food" }, { interest_slug: "history" }])
+  ) === JSON.stringify(["history", "food"]),
   "slugsFromInterestRows normalizes rows back into catalog order"
 );
 check(JSON.stringify(slugsFromInterestRows(null)) === "[]", "slugsFromInterestRows(null) is []");
@@ -2098,10 +2447,14 @@ check(
   "mergeInterests unions both sides rather than picking one"
 );
 check(
-  JSON.stringify(mergeInterests(["history"], ["history", "food"])) === JSON.stringify(["history", "food"]),
+  JSON.stringify(mergeInterests(["history"], ["history", "food"])) ===
+    JSON.stringify(["history", "food"]),
   "mergeInterests dedupes a slug present on both sides"
 );
-check(JSON.stringify(mergeInterests(null, null)) === "[]", "mergeInterests with no data on either side is []");
+check(
+  JSON.stringify(mergeInterests(null, null)) === "[]",
+  "mergeInterests with no data on either side is []"
+);
 check(
   JSON.stringify(mergeInterests(["history"], null)) === JSON.stringify(["history"]),
   "mergeInterests with no cloud row keeps local interests as-is"
@@ -2120,33 +2473,46 @@ check(
 );
 const emptyDesiredDiff = diffInterestRows(["history", "food"], []);
 check(
-  emptyDesiredDiff.toAdd.length === 0 && JSON.stringify(emptyDesiredDiff.toRemove) === JSON.stringify(["history", "food"]),
+  emptyDesiredDiff.toAdd.length === 0 &&
+    JSON.stringify(emptyDesiredDiff.toRemove) === JSON.stringify(["history", "food"]),
   "diffInterestRows clears every row when the desired selection is empty (a skip)"
 );
 
 console.log("Learning paths content model (M2.4 step 1)");
+check(LEARNING_PATHS.length === LEARNING_PATH_REGIONS.length, "one learning path per region");
 check(
-  LEARNING_PATHS.length === LEARNING_PATH_REGIONS.length,
-  "one learning path per region"
-);
-check(
-  LEARNING_PATHS.every((p, i) => p.region === LEARNING_PATH_REGIONS[i] && p.id === LEARNING_PATH_REGIONS[i].toLowerCase()),
+  LEARNING_PATHS.every(
+    (p, i) =>
+      p.region === LEARNING_PATH_REGIONS[i] && p.id === LEARNING_PATH_REGIONS[i].toLowerCase()
+  ),
   "each path's id/region match LEARNING_PATH_REGIONS, in order"
 );
 const pathNodeCodes = LEARNING_PATHS.flatMap((p) => p.nodes.map((n) => n.code));
-check(pathNodeCodes.length === COUNTRIES.length, "every country appears in exactly one path's nodes");
-check(new Set(pathNodeCodes).size === pathNodeCodes.length, "no country appears in more than one path");
+check(
+  pathNodeCodes.length === COUNTRIES.length,
+  "every country appears in exactly one path's nodes"
+);
+check(
+  new Set(pathNodeCodes).size === pathNodeCodes.length,
+  "no country appears in more than one path"
+);
 check(
   LEARNING_PATHS.every((p) => p.nodes.every((n) => n.code && n.name && n.difficulty)),
   "every node carries code, name, and difficulty"
 );
 const DIFFICULTY_RANK = { easy: 0, medium: 1, hard: 2 };
 check(
-  LEARNING_PATHS.every((p) => p.nodes.every((n, i) => i === 0 || DIFFICULTY_RANK[p.nodes[i - 1].difficulty] <= DIFFICULTY_RANK[n.difficulty])),
+  LEARNING_PATHS.every((p) =>
+    p.nodes.every(
+      (n, i) =>
+        i === 0 || DIFFICULTY_RANK[p.nodes[i - 1].difficulty] <= DIFFICULTY_RANK[n.difficulty]
+    )
+  ),
   "each path's nodes run easy → medium → hard, never harder-to-easier"
 );
 check(
-  JSON.stringify(getLearningPath("americas")) === JSON.stringify(LEARNING_PATHS.find((p) => p.id === "americas")),
+  JSON.stringify(getLearningPath("americas")) ===
+    JSON.stringify(LEARNING_PATHS.find((p) => p.id === "americas")),
   "getLearningPath(id) returns the matching path"
 );
 check(getLearningPath("atlantis") === null, "getLearningPath returns null for an unknown id");
@@ -2195,10 +2561,13 @@ const allDifficultyRounds = [round("all", 8, 8), round("all", 8, 8), round("all"
 const allDifficulty = computeNodeStates(oceania, allDifficultyRounds);
 check(
   allDifficulty.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked"),
-  "difficulty:\"all\" rounds (Daily, or an untiered round) don't count toward any single tier"
+  'difficulty:"all" rounds (Daily, or an untiered round) don\'t count toward any single tier'
 );
 
-check(JSON.stringify(computeNodeStates(null, [])) === "[]", "computeNodeStates returns [] for an unknown path");
+check(
+  JSON.stringify(computeNodeStates(null, [])) === "[]",
+  "computeNodeStates returns [] for an unknown path"
+);
 check(
   oceania.nodes.every((n, i) => computeNodeStates(oceania, [])[i].code === n.code),
   "computeNodeStates preserves node order and identity"
@@ -2210,13 +2579,16 @@ check(
   "every achievement has a unique slug"
 );
 check(
-  ACHIEVEMENTS.every((a) => a.slug && a.label && a.description && a.glyph && a.metric && a.threshold > 0),
+  ACHIEVEMENTS.every(
+    (a) => a.slug && a.label && a.description && a.glyph && a.metric && a.threshold > 0
+  ),
   "every achievement has slug/label/description/glyph/metric and a positive threshold"
 );
 
 const noProgressNoResults = computeAchievements(null, []);
 check(
-  noProgressNoResults.length === ACHIEVEMENTS.length && noProgressNoResults.every((a) => !a.unlocked && a.progress === 0),
+  noProgressNoResults.length === ACHIEVEMENTS.length &&
+    noProgressNoResults.every((a) => !a.unlocked && a.progress === 0),
   "with no progress and no round history, every achievement is locked at 0 progress"
 );
 
@@ -2224,7 +2596,8 @@ const roundRow = (mode, score, total) => ({ mode, difficulty: "all", score, tota
 
 const streakAchievements = computeAchievements({ longestStreak: 7 }, []);
 check(
-  streakAchievements.find((a) => a.slug === "streak-3").unlocked && streakAchievements.find((a) => a.slug === "streak-7").unlocked,
+  streakAchievements.find((a) => a.slug === "streak-3").unlocked &&
+    streakAchievements.find((a) => a.slug === "streak-7").unlocked,
   "a 7-day longest streak unlocks the 3-day and 7-day streak badges"
 );
 check(
@@ -2239,7 +2612,8 @@ check(
 const tenRounds = Array.from({ length: 10 }, () => roundRow("flag", 6, 8));
 const roundsAchievements = computeAchievements(null, tenRounds);
 check(
-  roundsAchievements.find((a) => a.slug === "rounds-10").unlocked && !roundsAchievements.find((a) => a.slug === "rounds-50").unlocked,
+  roundsAchievements.find((a) => a.slug === "rounds-10").unlocked &&
+    !roundsAchievements.find((a) => a.slug === "rounds-50").unlocked,
   "10 completed rounds unlocks the 10-round badge but not the 50-round badge"
 );
 
@@ -2254,7 +2628,9 @@ check(
   "a single perfect round does not unlock the 10-perfect-rounds badge"
 );
 
-const allModeRows = ["flag", "capital", "capitalReverse", "shape", "locator", "daily"].map((m) => roundRow(m, 5, 8));
+const allModeRows = ["flag", "capital", "capitalReverse", "shape", "locator", "daily"].map((m) =>
+  roundRow(m, 5, 8)
+);
 check(
   computeAchievements(null, allModeRows).find((a) => a.slug === "modes-all").unlocked,
   "playing every game mode at least once unlocks the mode-variety badge"
@@ -2272,7 +2648,9 @@ check(
 
 console.log("XP levels (M2.5 step 5)");
 check(
-  computeLevel(0).level === 1 && computeLevel(0).xpIntoLevel === 0 && computeLevel(0).progress === 0,
+  computeLevel(0).level === 1 &&
+    computeLevel(0).xpIntoLevel === 0 &&
+    computeLevel(0).progress === 0,
   "zero XP is level 1 with no progress toward level 2"
 );
 check(
@@ -2315,7 +2693,13 @@ const collectionCountries = [
   { code: "br", region: "Americas" },
   { code: "ar", region: "Americas" },
 ];
-const collectionRow = (countries) => ({ mode: "flag", difficulty: "all", score: 1, total: 1, countries });
+const collectionRow = (countries) => ({
+  mode: "flag",
+  difficulty: "all",
+  score: 1,
+  total: 1,
+  countries,
+});
 
 const noCollectionRounds = computeCollections([], collectionCountries);
 check(
@@ -2380,20 +2764,23 @@ check(
 check(
   computeCollections([], collectionCountries)
     .map((r) => r.region)
-    .join(",") ===
-    REGIONS.filter((r) => r !== "All").join(","),
+    .join(",") === REGIONS.filter((r) => r !== "All").join(","),
   "computeCollections returns one entry per region, in countryIndex.js's own order (minus 'All')"
 );
 
 check(
   JSON.stringify(
-    computeCollections([collectionRow([{ code: "zz", correct: true }])], collectionCountries).map((r) => r.collected)
+    computeCollections([collectionRow([{ code: "zz", correct: true }])], collectionCountries).map(
+      (r) => r.collected
+    )
   ) === JSON.stringify(noCollectionRounds.map((r) => r.collected)),
   "an unknown country code in the countries column doesn't inflate any region's count"
 );
 
 check(
-  computeCollections([]).every((r) => r.total === COUNTRIES.filter((c) => c.region === r.region).length),
+  computeCollections([]).every(
+    (r) => r.total === COUNTRIES.filter((c) => c.region === r.region).length
+  ),
   "computeCollections defaults to the real COUNTRIES dataset when no country list is passed"
 );
 
@@ -2401,33 +2788,53 @@ console.log("Navigation stack (nav rework)");
 
 const nav0 = initialNav();
 check(nav0.tab === "home", "a fresh nav starts on Home");
-check(TAB_KEYS.every((t) => nav0.stacks[t].length === 1), "every tab starts at its own root");
+check(
+  TAB_KEYS.every((t) => nav0.stacks[t].length === 1),
+  "every tab starts at its own root"
+);
 check(!canGoBack(nav0), "a tab root has nothing to go back to");
-check(TABS.every((t) => ROUTES[t.key] && ROUTES[t.key].root), "every tab has a root route");
+check(
+  TABS.every((t) => ROUTES[t.key] && ROUTES[t.key].root),
+  "every tab has a root route"
+);
 
 // The bug the old returnTo/returnPathId could not express: more than one hop.
-const deep = navigate(
-  navigate(switchTab(nav0, "learn"), { name: "country", code: "BRA" }),
-  { name: "quiz", mode: "flag", difficulty: "all", timed: false }
-);
+const deep = navigate(navigate(switchTab(nav0, "learn"), { name: "country", code: "BRA" }), {
+  name: "quiz",
+  mode: "flag",
+  difficulty: "all",
+  timed: false,
+});
 check(stackDepth(deep) === 3, "learn → country → quiz is three deep in one stack");
 check(currentRoute(deep).name === "quiz", "the quiz is on top");
 check(currentRoute(back(deep)).name === "country", "back from the quiz lands on the country page");
-check(currentRoute(back(back(deep))).name === "learn", "back again lands on the learning path, not Home");
+check(
+  currentRoute(back(back(deep))).name === "learn",
+  "back again lands on the learning path, not Home"
+);
 check(!canGoBack(back(back(deep))), "and that's the root, so Back stops being offered");
 
 // Tabs keep their own stacks. This is what makes a detour non-destructive.
 const detoured = switchTab(switchTab(deep, "explore"), "learn");
 check(stackDepth(detoured) === 3, "leaving a tab and coming back preserves its stack");
 check(currentRoute(detoured).name === "quiz", "...including exactly where you were");
-check(stackDepth(switchTab(deep, "explore")) === 1, "the tab you switch TO is untouched at its root");
+check(
+  stackDepth(switchTab(deep, "explore")) === 1,
+  "the tab you switch TO is untouched at its root"
+);
 
 // Re-selecting the active tab is the standard "get me out of here".
-check(stackDepth(switchTab(deep, "learn")) === 1, "re-selecting the active tab resets it to its root");
+check(
+  stackDepth(switchTab(deep, "learn")) === 1,
+  "re-selecting the active tab resets it to its root"
+);
 
 // A root route can never stack on itself.
 const learnTwice = navigate(switchTab(nav0, "learn"), { name: "learn", pathId: "africa" });
-check(learnTwice.tab === "learn" && stackDepth(learnTwice) === 1, "navigating to a tab root switches instead of pushing");
+check(
+  learnTwice.tab === "learn" && stackDepth(learnTwice) === 1,
+  "navigating to a tab root switches instead of pushing"
+);
 check(currentRoute(learnTwice).pathId === "africa", "...while still carrying its params");
 
 // Cross-tab jump: the World Map's region pill opens a learning path.
@@ -2435,10 +2842,19 @@ const fromMap = navigate(switchTab(nav0, "explore"), { name: "learn", pathId: "e
 check(fromMap.tab === "learn", "opening a learning path from Explore switches tabs");
 check(fromMap.stacks.explore.length === 1, "and leaves Explore's stack alone");
 
-check(currentRoute(navigate(deep, currentRoute(deep))) === currentRoute(deep), "pushing the identical route is a no-op");
+check(
+  currentRoute(navigate(deep, currentRoute(deep))) === currentRoute(deep),
+  "pushing the identical route is a no-op"
+);
 check(stackDepth(back(nav0)) === 1, "back at a root is a no-op, so Back always terminates");
 
-const replaced = replace(deep, { name: "quiz", mode: "flag", difficulty: "all", timed: false, attempt: 1 });
+const replaced = replace(deep, {
+  name: "quiz",
+  mode: "flag",
+  difficulty: "all",
+  timed: false,
+  attempt: 1,
+});
 check(stackDepth(replaced) === 3, "replace swaps the top without deepening the stack");
 check(currentRoute(replaced).attempt === 1, "...and the new params take effect");
 
@@ -2447,7 +2863,10 @@ for (let i = 0; i < MAX_STACK_DEPTH + 8; i++) {
   grown = navigate(grown, { name: "country", code: `X${i}` });
 }
 check(stackDepth(grown) <= MAX_STACK_DEPTH, "a stack can't grow past MAX_STACK_DEPTH");
-check(currentStack(grown)[0].name === "explore", "...and the root is never the entry that gets trimmed");
+check(
+  currentStack(grown)[0].name === "explore",
+  "...and the root is never the entry that gets trimmed"
+);
 
 check(showsChrome(nav0), "ordinary screens keep the persistent nav chrome");
 check(!showsChrome(deep), "a quiz in progress is focus mode — no tab bar, no rail");
@@ -2455,14 +2874,52 @@ check(!showsChrome(deep), "a quiz in progress is focus mode — no tab bar, no r
 console.log("Navigation URLs");
 
 check(routeToPath({ name: "home" }) === "/", "home is /");
-check(routeToPath({ name: "learn", pathId: "africa" }) === "/learn/africa", "a learning path carries its region");
-check(routeToPath({ name: "learn", pathId: null }) === "/learn", "a path-less learn route is just /learn");
-check(routeToPath({ name: "explore", focusCountry: "BRA" }) === "/explore/BRA", "a focused globe is linkable");
-check(routeToPath({ name: "country", code: "JPN" }) === "/country/JPN", "country pages are linkable");
-check(routeToPath({ name: "quiz", mode: "flag", difficulty: "all", timed: false }) === "/play/flag", "a default round is a clean /play/mode");
 check(
-  routeToPath({ name: "quiz", mode: "flag", difficulty: "hard", timed: true }) === "/play/flag?difficulty=hard&timed=1",
+  routeToPath({ name: "learn", pathId: "africa" }) === "/learn/africa",
+  "a learning path carries its region"
+);
+check(
+  routeToPath({ name: "learn", pathId: null }) === "/learn",
+  "a path-less learn route is just /learn"
+);
+check(
+  routeToPath({ name: "explore", focusCountry: "BRA" }) === "/explore/BRA",
+  "a focused globe is linkable"
+);
+check(
+  routeToPath({ name: "country", code: "JPN" }) === "/country/JPN",
+  "country pages are linkable"
+);
+check(
+  routeToPath({ name: "quiz", mode: "flag", difficulty: "all", timed: false }) === "/play/flag",
+  "a default round is a clean /play/mode"
+);
+check(
+  routeToPath({ name: "quiz", mode: "flag", difficulty: "hard", timed: true }) ===
+    "/play/flag?difficulty=hard&timed=1",
   "a non-default round is still reproducible from its URL"
+);
+check(
+  routeToPath({ name: "gameSetup", mode: "flag" }) === "/game/flag",
+  "a difficulty menu is linkable"
+);
+check(
+  routeToPath({ name: "quiz", mode: "flag", difficulty: "all", timed: false, tier: "easy" }) ===
+    "/play/flag",
+  "the mode's FIRST tier is omitted from the URL, so the common link stays clean"
+);
+check(
+  routeToPath({ name: "quiz", mode: "flag", difficulty: "all", timed: false, tier: "hard" }) ===
+    "/play/flag?tier=hard",
+  "a non-default tier is reproducible from its URL"
+);
+check(
+  pathToRoute("/play/flag?tier=expert").tier === "easy",
+  "a tier the mode does not offer is normalized away rather than trusted — flag has no expert"
+);
+check(
+  pathToRoute("/play/shape?tier=expert").tier === "expert",
+  "...but a tier the mode DOES offer survives the URL"
 );
 
 // Round-trip: every route the app can reach must survive path serialization.
@@ -2476,6 +2933,7 @@ const roundTrips = [
   { name: "interests" },
   { name: "achievements" },
   { name: "quiz", mode: "shape", difficulty: "easy", timed: true },
+  { name: "gameSetup", mode: "flag" },
 ];
 check(
   roundTrips.every((r) => routeToPath(pathToRoute(routeToPath(r))) === routeToPath(r)),
@@ -2488,15 +2946,21 @@ check(
 
 check(pathToRoute("/nope") === null, "an unknown path is null, not a silent redirect to Home");
 check(pathToRoute("/country") === null, "a country page with no code is not a route");
-check(pathToRoute("") .name === "home", "the empty path is Home");
-check(pathToRoute("/learn/") .pathId === null, "a trailing slash doesn't invent an empty region id");
+check(pathToRoute("").name === "home", "the empty path is Home");
+check(pathToRoute("/learn/").pathId === null, "a trailing slash doesn't invent an empty region id");
 
 // A deep link needs something underneath it, or Back strands the visitor.
 const linked = navFromPath("/country/BRA");
 check(linked.tab === "explore", "a deep-linked country page opens in its owning tab");
-check(stackDepth(linked) === 2 && canGoBack(linked), "...with its tab root underneath, so Back works");
+check(
+  stackDepth(linked) === 2 && canGoBack(linked),
+  "...with its tab root underneath, so Back works"
+);
 check(navToPath(linked) === "/country/BRA", "and the URL it renders back is the one we arrived on");
-check(navToPath(navFromPath("/learn/africa")) === "/learn/africa", "a deep-linked root route doesn't double up");
+check(
+  navToPath(navFromPath("/learn/africa")) === "/learn/africa",
+  "a deep-linked root route doesn't double up"
+);
 check(navToPath(navFromPath("/garbage")) === "/", "an unparseable URL falls back to Home");
 
 // Browser Back must cost no more state than in-app Back.
@@ -2504,7 +2968,10 @@ const beforeBack = navigate(switchTab(deep, "explore"), { name: "country", code:
 const afterBack = syncToPath(beforeBack, "/explore");
 check(currentRoute(afterBack).name === "explore", "browser Back pops to the route underneath");
 check(afterBack.stacks.learn.length === 3, "...and does NOT flatten the other tabs' stacks");
-check(navToPath(syncToPath(nav0, "/profile")) === "/profile", "an edited URL navigates rather than being ignored");
+check(
+  navToPath(syncToPath(nav0, "/profile")) === "/profile",
+  "an edited URL navigates rather than being ignored"
+);
 check(syncToPath(nav0, "/") === nav0, "syncing to the path we're already on is a no-op");
 check(syncToPath(nav0, "/nonsense") === nav0, "an unparseable popstate leaves the stack alone");
 
@@ -2515,7 +2982,10 @@ check(navMode(834) === "bar", "a portrait tablet still gets the bar");
 check(navMode(1440) === "rail", "a desktop gets the side rail");
 check(navMode(BREAKPOINTS.rail) === "rail", "the rail breakpoint is inclusive");
 check(chromeLayout(390).railWidth === 0, "bar mode reserves no rail width");
-check(chromeLayout(900).railWidth === RAIL_WIDTH.compact, "a narrow desktop gets the icons-only rail");
+check(
+  chromeLayout(900).railWidth === RAIL_WIDTH.compact,
+  "a narrow desktop gets the icons-only rail"
+);
 check(chromeLayout(900).showLabels === false, "...without labels");
 check(chromeLayout(1440).railWidth === RAIL_WIDTH.full, "a wide desktop gets the labelled rail");
 check(chromeLayout(1440).showLabels === true, "...with labels");
@@ -2524,7 +2994,6 @@ check(
   "labels only appear once the media column still fits beside the rail"
 );
 
-
 console.log("Sync health (M2.1 — surfacing failed cloud writes)");
 
 // The state machine. These are the checks that would have failed loudly on
@@ -2532,14 +3001,15 @@ console.log("Sync health (M2.1 — surfacing failed cloud writes)");
 check(INITIAL_SYNC_STATE.status === SYNC_IDLE, "a fresh session starts idle, not ok");
 check(INITIAL_SYNC_STATE.failureCount === 0, "...with no failures recorded");
 
-const fkError = { code: "23503", message: 'insert violates foreign key constraint' };
+const fkError = { code: "23503", message: "insert violates foreign key constraint" };
 const oneFail = recordSyncFailure(INITIAL_SYNC_STATE, fkError, "t1");
 check(oneFail.status === SYNC_RETRYING, "one failure is 'retrying', not a hard failure");
 check(oneFail.failureCount === 1, "...and counts one failure");
 check(oneFail.lastError.code === "23503", "...preserving the Postgres error code");
 
 let escalated = INITIAL_SYNC_STATE;
-for (let i = 0; i < FAILURE_ESCALATION; i++) escalated = recordSyncFailure(escalated, fkError, `t${i}`);
+for (let i = 0; i < FAILURE_ESCALATION; i++)
+  escalated = recordSyncFailure(escalated, fkError, `t${i}`);
 check(escalated.status === SYNC_FAILED, "consecutive failures escalate to 'failed'");
 check(escalated.failureCount === FAILURE_ESCALATION, "...with the run counted");
 
@@ -2559,7 +3029,10 @@ check(describeError(null) === null, "no error narrows to null");
 check(describeError(fkError).code === "23503", "a PostgrestError keeps its code");
 check(describeError(new Error("boom")).message === "boom", "a thrown Error keeps its message");
 check(describeError(new Error("boom")).code === null, "...with a null code");
-check(describeError("plain string").message === "plain string", "a bare string still yields a message");
+check(
+  describeError("plain string").message === "plain string",
+  "a bare string still yields a message"
+);
 
 // What the player is told.
 check(
@@ -2599,7 +3072,6 @@ check(
   "an escalated failure can never read as ok — the bug this whole module exists for"
 );
 
-
 console.log("Sync store (observable session health)");
 
 // Deterministic clock + captured log, so these assert on real behaviour rather
@@ -2621,7 +3093,9 @@ check(seen.length === 1, "a failure notifies subscribers");
 check(getSyncState().status === SYNC_RETRYING, "...and moves the store to retrying");
 check(getSyncState().lastError.code === "23503", "...keeping the Postgres code for the log");
 check(
-  syncLogs.length === 1 && syncLogs[0].includes("user_stats upsert") && syncLogs[0].includes("23503"),
+  syncLogs.length === 1 &&
+    syncLogs[0].includes("user_stats upsert") &&
+    syncLogs[0].includes("23503"),
   "a failed write is logged with which write failed and why"
 );
 
@@ -2699,7 +3173,6 @@ async function syncWiringChecks() {
   restoreSyncDeps();
 }
 
-
 console.log("Interest prompt gate (M2.3.6 — asked once, never nagged)");
 
 const promptGate = (over) =>
@@ -2742,10 +3215,7 @@ check(
 
 // Defensive shapes — `selected` arrives from storage and a cloud merge.
 check(promptGate({ selected: null }).prompt === true, "a null selection reads as nothing picked");
-check(
-  promptGate({ selected: undefined }).prompt === true,
-  "...as does an undefined one"
-);
+check(promptGate({ selected: undefined }).prompt === true, "...as does an undefined one");
 check(resolveInterestPrompt().prompt === false, "called with nothing at all, it stays quiet");
 
 // The invariant the whole milestone rests on: there is no input where we both
@@ -2765,7 +3235,6 @@ for (const over of [
   }
 }
 check(true, "no input asks without also marking — the prompt can never repeat");
-
 
 console.log("Interests secondary button (Skip vs Cancel)");
 
@@ -2819,7 +3288,6 @@ for (const origin of [ORIGIN_PROMPT, ORIGIN_EDIT, "nonsense", undefined]) {
 }
 check(true, "no combination clears while picks exist — data loss is unreachable");
 
-
 console.log("Content chunking (M2.9 step 2 — RAG ingestion)");
 
 const chunkSrcRow = {
@@ -2827,7 +3295,8 @@ const chunkSrcRow = {
   name: "Brazil",
   capital: "Brasilia",
   region: "Americas",
-  summary: "Brazil is the giant of South America. It borders every country on the continent except Chile and Ecuador.",
+  summary:
+    "Brazil is the giant of South America. It borders every country on the continent except Chile and Ecuador.",
   population: 216422446,
   area_km2: 8515767,
   lat: -14.235,
@@ -2877,8 +3346,7 @@ const reordered = chunkCountry(
   neighborNames
 );
 check(
-  JSON.stringify(reordered.map((c) => c.source)) ===
-    JSON.stringify(brChunks.map((c) => c.source)),
+  JSON.stringify(reordered.map((c) => c.source)) === JSON.stringify(brChunks.map((c) => c.source)),
   "fact key order in the row doesn't change chunk order"
 );
 
@@ -2905,10 +3373,7 @@ check(
 // first piece only, leaving anonymous continuation chunks — silent, because
 // short content never splits.
 const longFact = "This country has a very long and detailed economic profile. ".repeat(40);
-const splitChunks = chunkCountry(
-  { ...chunkSrcRow, facts: { economy: longFact } },
-  neighborNames
-);
+const splitChunks = chunkCountry({ ...chunkSrcRow, facts: { economy: longFact } }, neighborNames);
 check(
   splitChunks.filter((c) => c.source === "facts.economy").length > 1,
   "an over-long fact splits into several chunks"
@@ -2921,10 +3386,7 @@ check(
   splitChunks.every((c) => c.content.length <= MAX_CHUNK_CHARS),
   "...while still respecting the budget"
 );
-const longSummary = chunkCountry(
-  { ...chunkSrcRow, summary: longFact },
-  neighborNames
-);
+const longSummary = chunkCountry({ ...chunkSrcRow, summary: longFact }, neighborNames);
 check(
   longSummary.every((c) => c.content.includes("Brazil")),
   "a split summary names its country in every piece too"
@@ -2936,7 +3398,10 @@ check(splitProse("One sentence.")[0] === "One sentence.", "short text passes thr
 const longProse = "This is a sentence about geography. ".repeat(120);
 const prosePieces = splitProse(longProse);
 check(prosePieces.length > 1, "over-budget prose is split");
-check(prosePieces.every((p) => p.length <= MAX_CHUNK_CHARS), "...and every piece fits the budget");
+check(
+  prosePieces.every((p) => p.length <= MAX_CHUNK_CHARS),
+  "...and every piece fits the budget"
+);
 check(
   prosePieces.every((p) => p.trim() === p && p.length > 0),
   "...with no blank or untrimmed pieces"
@@ -2956,28 +3421,41 @@ check(
   JSON.stringify(staleChunkIndexes([0, 1, 2, 3, 4], 3)) === JSON.stringify([3, 4]),
   "shrinking content marks the leftover tail stale"
 );
-check(
-  staleChunkIndexes([0, 1, 2], 3).length === 0,
-  "unchanged chunk counts leave nothing stale"
-);
-check(
-  staleChunkIndexes([0, 1], 5).length === 0,
-  "growing content marks nothing stale"
-);
+check(staleChunkIndexes([0, 1, 2], 3).length === 0, "unchanged chunk counts leave nothing stale");
+check(staleChunkIndexes([0, 1], 5).length === 0, "growing content marks nothing stale");
 check(staleChunkIndexes([], 0).length === 0, "an empty store has nothing stale");
 check(
   JSON.stringify(staleChunkIndexes([2, 0, 1, 2], 1)) === JSON.stringify([1, 2]),
   "duplicates and disorder are handled"
 );
 
-
 console.log("RAG ranking, prompt + limits (M2.9 step 3)");
 
 const ragChunks = [
-  { country_code: "br", source: "summary", content: "Brazil is a country in Americas.", similarity: 0.80 },
-  { country_code: "br", source: "geography", content: "Brazil borders Argentina.", similarity: 0.78 },
-  { country_code: "br", source: "facts.trade", content: "Brazil — Trade: soybeans.", similarity: 0.76 },
-  { country_code: "br", source: "facts.climate", content: "Brazil — Climate: tropical.", similarity: 0.74 },
+  {
+    country_code: "br",
+    source: "summary",
+    content: "Brazil is a country in Americas.",
+    similarity: 0.8,
+  },
+  {
+    country_code: "br",
+    source: "geography",
+    content: "Brazil borders Argentina.",
+    similarity: 0.78,
+  },
+  {
+    country_code: "br",
+    source: "facts.trade",
+    content: "Brazil — Trade: soybeans.",
+    similarity: 0.76,
+  },
+  {
+    country_code: "br",
+    source: "facts.climate",
+    content: "Brazil — Climate: tropical.",
+    similarity: 0.74,
+  },
 ];
 
 // Degrade to general — the skip path is the default, not an edge case.
@@ -2986,7 +3464,10 @@ check(
   unweighted.map((c) => c.source).join() === ragChunks.map((c) => c.source).join(),
   "no interests leaves retrieval order untouched"
 );
-check(unweighted.every((c) => c.interestMatched === false), "...and marks nothing as matched");
+check(
+  unweighted.every((c) => c.interestMatched === false),
+  "...and marks nothing as matched"
+);
 
 // Re-rank, never filter.
 const weighted = rerankByInterests(ragChunks, ["economics"]);
@@ -3015,8 +3496,8 @@ check(
 
 // The boost breaks ties; it must not override a clearly better match.
 const farBehind = [
-  { source: "summary", content: "x", similarity: 0.90 },
-  { source: "facts.trade", content: "y", similarity: 0.40 },
+  { source: "summary", content: "x", similarity: 0.9 },
+  { source: "facts.trade", content: "y", similarity: 0.4 },
 ];
 check(
   rerankByInterests(farBehind, ["economics"])[0].source === "summary",
@@ -3041,13 +3522,22 @@ check(
 
 // The grounding contract.
 const sys = systemPrompt();
-check(sys.includes("ONLY from the numbered sources"), "the system prompt states the grounding rule");
+check(
+  sys.includes("ONLY from the numbered sources"),
+  "the system prompt states the grounding rule"
+);
 check(sys.toLowerCase().includes("cite"), "...and requires citations");
-check(sys.toLowerCase().includes("never fill a gap from memory"), "...and forbids filling gaps from memory");
+check(
+  sys.toLowerCase().includes("never fill a gap from memory"),
+  "...and forbids filling gaps from memory"
+);
 
 // Tone, per docs/content-response-policy.md: capable adults by default, and the
 // curiosity principle — never imply a question shouldn't have been asked.
-check(sys.includes("capable adult"), "the system prompt targets the capable-adult default audience");
+check(
+  sys.includes("capable adult"),
+  "the system prompt targets the capable-adult default audience"
+);
 check(
   !sys.includes("12-year-old") && !sys.includes("school students"),
   "...and no longer writes for children by default (a kid variant comes later)"
@@ -3073,7 +3563,11 @@ check(
   "...and says what the corpus does cover"
 );
 
-const userMsg = buildUserMessage({ question: "What does Brazil export?", chunks: ragChunks, place: "Brazil" });
+const userMsg = buildUserMessage({
+  question: "What does Brazil export?",
+  chunks: ragChunks,
+  place: "Brazil",
+});
 check(userMsg.includes("[1]") && userMsg.includes("[4]"), "sources are numbered from 1");
 check(userMsg.includes("What does Brazil export?"), "the question is included");
 check(
@@ -3088,17 +3582,26 @@ check(
   "every returned source carries its text — a citation you can't read isn't evidence"
 );
 
-check(JSON.stringify(citedRefs("Brazil exports soybeans [3] and coffee [1].")) === JSON.stringify([1, 3]),
-  "cited refs are extracted and sorted");
+check(
+  JSON.stringify(citedRefs("Brazil exports soybeans [3] and coffee [1].")) ===
+    JSON.stringify([1, 3]),
+  "cited refs are extracted and sorted"
+);
 check(citedRefs("no citations here").length === 0, "an uncited answer yields no refs");
-check(JSON.stringify(citedRefs("see [2][2][2]")) === JSON.stringify([2]), "repeated citations dedupe");
+check(
+  JSON.stringify(citedRefs("see [2][2][2]")) === JSON.stringify([2]),
+  "repeated citations dedupe"
+);
 
 check(
   isUngrounded("Brazil is big.", 4) === true,
   "an answer citing nothing despite having sources is flagged ungrounded"
 );
 check(isUngrounded("Brazil is big [1].", 4) === false, "a cited answer is not flagged");
-check(isUngrounded("anything", 0) === false, "with no sources there is nothing to be ungrounded against");
+check(
+  isUngrounded("anything", 0) === false,
+  "with no sources there is nothing to be ungrounded against"
+);
 
 // A correct refusal is not a grounding failure. Observed live: the model
 // declined properly and the citation-count check called it ungrounded, which
@@ -3117,7 +3620,10 @@ check(
   answerStatus("Brazil's president is someone.", 5) === "ungrounded",
   "an uncited assertion with sources available is still 'ungrounded' — the real failure"
 );
-check(answerStatus("anything", 0) === "declined", "no sources means nothing was asserted from them");
+check(
+  answerStatus("anything", 0) === "declined",
+  "no sources means nothing was asserted from them"
+);
 check(
   stripMarker(`${NO_ANSWER_MARKER} — The sources cover borders.`) === "The sources cover borders.",
   "the marker is stripped before a learner sees the answer"
@@ -3148,7 +3654,6 @@ check(validateQuestion("  ") === "empty", "...whitespace too");
 check(validateQuestion("hi") === "too-short", "a too-short question is rejected");
 check(validateQuestion("x".repeat(601)) === "too-long", "an over-long question is rejected");
 check(validateQuestion("What does Brazil export?") === null, "a real question passes");
-
 
 console.log("Ask guardrails + daily cap (M2.9 step 4)");
 
@@ -3215,10 +3720,7 @@ check(
 
 check(screenQuestion("").allowed === true, "an empty question isn't a safety case");
 check(screenQuestion(null).allowed === true, "...nor is a missing one");
-check(
-  screenQuestion("HOW DO I MAKE A BOMB").allowed === false,
-  "screening is case-insensitive"
-);
+check(screenQuestion("HOW DO I MAKE A BOMB").allowed === false, "screening is case-insensitive");
 
 // The daily cap. Counts are post-increment, because bump_ask_usage is atomic
 // and returns the new value — so the boundary is `used <= cap`.
@@ -3238,10 +3740,14 @@ check(
   "...even a second before it"
 );
 
-
 console.log("Border aliases (content enrichment)");
 
-const borderIndex = new Map([["argentina", "ar"], ["china", "cn"], ["myanmar", "mm"], ["brazil", "br"]]);
+const borderIndex = new Map([
+  ["argentina", "ar"],
+  ["china", "cn"],
+  ["myanmar", "mm"],
+  ["brazil", "br"],
+]);
 
 // Parsing. Every one of these shapes appeared in the real 196-country corpus,
 // and the naive integer-only pattern left "Zambia 0." and "Italy 3." as names.
@@ -3252,21 +3758,27 @@ check(
 );
 check(parseBorderNames("Zambia 0.15 km")[0] === "Zambia", "a decimal distance is stripped");
 check(parseBorderNames("Italy 3.")[0] === "Italy", "a trailing note marker is stripped");
-check(parseBorderNames("Spain (Ceuta) 8 km")[0] === "Spain", "a parenthetical qualifier is stripped");
+check(
+  parseBorderNames("Spain (Ceuta) 8 km")[0] === "Spain",
+  "a parenthetical qualifier is stripped"
+);
 check(parseBorderNames("").length === 0, "an empty field yields no names");
 check(parseBorderNames(null).length === 0, "a missing field yields no names");
 
 // Aliases resolve to a code.
 check(resolveBorderName("Burma", borderIndex).code === "mm", "Burma resolves to Myanmar");
 check(resolveBorderName("China", borderIndex).code === "cn", "a direct dataset name resolves");
-check(resolveBorderName("Cote d'Ivoire", borderIndex).code === "ci", "an undiacriticised name resolves");
-check(resolveBorderName("Czech Republic", borderIndex).code === "cz", "a former name resolves");
-check(resolveBorderName("Holy See", borderIndex).code === "va", "the Holy See resolves to Vatican City");
-check(resolveBorderName("UAE", borderIndex).code === "ae", "an abbreviation resolves");
 check(
-  resolveBorderName("BURMA", borderIndex).code === "mm",
-  "resolution is case-insensitive"
+  resolveBorderName("Cote d'Ivoire", borderIndex).code === "ci",
+  "an undiacriticised name resolves"
 );
+check(resolveBorderName("Czech Republic", borderIndex).code === "cz", "a former name resolves");
+check(
+  resolveBorderName("Holy See", borderIndex).code === "va",
+  "the Holy See resolves to Vatican City"
+);
+check(resolveBorderName("UAE", borderIndex).code === "ae", "an abbreviation resolves");
+check(resolveBorderName("BURMA", borderIndex).code === "mm", "resolution is case-insensitive");
 
 // Territories resolve to NOTHING, on purpose. This is the pilot review's
 // finding: coding French Guiana would make Brazil border France.
@@ -3274,10 +3786,7 @@ const fg = resolveBorderName("French Guiana", borderIndex);
 check(fg.code === null, "a territory gets no country code");
 check(fg.isCountry === false, "...and is not marked a country");
 check(fg.known === true, "...but is known, so it is not flagged as unresolved");
-check(
-  resolveBorderName("Gaza Strip", borderIndex).code === null,
-  "the Gaza Strip gets no code"
-);
+check(resolveBorderName("Gaza Strip", borderIndex).code === null, "the Gaza Strip gets no code");
 check(
   resolveBorderName("Kosovo", borderIndex).code === null,
   "Kosovo gets no code — a recognition dispute the policy says to stay out of"
@@ -3299,7 +3808,6 @@ for (const key of Object.keys(BORDER_ALIASES)) {
   }
 }
 check(true, "no name is both an alias and a declared non-country");
-
 
 console.log("Locator on the globe (M2.3.7 step 2)");
 
@@ -3342,7 +3850,8 @@ const tightView = locatorView(["nl", "be", "lu", "de"], COUNTRY_CENTERS);
 check(tightView.zoom <= LOCATOR_MAX_ZOOM, "a tight cluster does not zoom past the ceiling");
 check(
   allVisible(["nl", "be", "lu", "de"], COUNTRY_CENTERS, tightView.spin),
-  "...and all of them are still visible");
+  "...and all of them are still visible"
+);
 
 // The hard case the fallback exists for: candidates that cannot share a face.
 const antipodal = ["nz", "es", "jp", "cl"];
@@ -3362,7 +3871,10 @@ for (const code of locatorPool) {
   const v = locatorView(set, COUNTRY_CENTERS);
   if (!allVisible(set, COUNTRY_CENTERS, v.spin)) unframable++;
 }
-check(unframable === 0, `every locator country frames all its candidates (${locatorPool.length} checked)`);
+check(
+  unframable === 0,
+  `every locator country frames all its candidates (${locatorPool.length} checked)`
+);
 
 // Fill states. Semantic names, never colours — the component maps them.
 const fillRound = { choices: [{ code: "py" }, { code: "bo" }, { code: "ar" }], correctCode: "py" };
@@ -3386,9 +3898,23 @@ check(locatorFillState("py", {}) === "inert", "with no round data nothing is a c
 // country tappable, and they become a correctness bug when the candidates are
 // tiny AND adjacent — Austria beside Slovenia and Slovakia. Two overlapping
 // circles mean the player taps the right country and is told they were wrong.
-const far = nonOverlappingRadius([0, 0], [[200, 0], [0, 200]], 29);
+const far = nonOverlappingRadius(
+  [0, 0],
+  [
+    [200, 0],
+    [0, 200],
+  ],
+  29
+);
 check(far === 29, "an isolated candidate keeps the full tap radius");
-const crowded = nonOverlappingRadius([0, 0], [[20, 0], [0, 200]], 29);
+const crowded = nonOverlappingRadius(
+  [0, 0],
+  [
+    [20, 0],
+    [0, 200],
+  ],
+  29
+);
 check(crowded === 10, "a crowded candidate shrinks to half the gap to its nearest neighbour");
 check(
   nonOverlappingRadius([0, 0], [[20, 0]], 29) * 2 <= 20,
@@ -3428,7 +3954,6 @@ check(
   "...and every round still contains its own answer"
 );
 
-
 console.log("Higher or Lower");
 
 const popMetric = METRIC_BY_KEY.population;
@@ -3443,7 +3968,10 @@ check(metricPool("population").length > 150, "...enough countries carry a popula
 check(metricPool("areaKm2").length > 150, "...and an area");
 check(metricPool("borderCount").length > 150, "...and a border count");
 check(metricValue("br", "population") > 2e8, "Brazil's population reads back");
-check(metricValue("br", "borderCount") === 9, "Brazil has nine coded land borders — territories excluded");
+check(
+  metricValue("br", "borderCount") === 9,
+  "Brazil has nine coded land borders — territories excluded"
+);
 check(metricValue("jp", "borderCount") === 0, "an island nation has zero, not null");
 check(metricValue("nope", "population") === null, "an unknown country has no value");
 check(
@@ -3489,8 +4017,10 @@ check(q.type === "higherLower", "a question carries its type");
 check(q.metric === "population", "...its metric");
 check(q.a && q.b, "...both countries");
 check(q.correct === "Big", "...and the winner as the name QuizScreen compares against");
-check(q.options.length === 2 && q.options.includes("Big") && q.options.includes("Small"),
-  "options are the two country names");
+check(
+  q.options.length === 2 && q.options.includes("Big") && q.options.includes("Small"),
+  "options are the two country names"
+);
 check(q.country.code === "aa", "the context card is about the winner");
 check(q.prompt.length > 0, "the prompt is the metric's own phrasing");
 check(
@@ -3498,7 +4028,8 @@ check(
   "a pool of one cannot make a pair"
 );
 check(
-  buildHigherLowerQuestion([big, { ...big, code: "zz", name: "Twin" }], popMetric, firstTwo) === null,
+  buildHigherLowerQuestion([big, { ...big, code: "zz", name: "Twin" }], popMetric, firstTwo) ===
+    null,
   "a pool where every pair ties gives up rather than looping forever"
 );
 check(hlPool.length === 3, "the mixed pool is intact for the round check below");
@@ -3506,7 +4037,10 @@ check(hlPool.length === 3, "the mixed pool is intact for the round check below")
 // A real round from the real engine.
 const hlRound = buildRound("higherLower");
 check(hlRound.length === ROUND_LENGTH, "a full-length round is built from real data");
-check(hlRound.every((x) => x.type === "higherLower"), "every question is the right type");
+check(
+  hlRound.every((x) => x.type === "higherLower"),
+  "every question is the right type"
+);
 check(
   hlRound.every((x) => x.options.includes(x.correct)),
   "the correct answer is always one of the options"
@@ -3555,7 +4089,6 @@ check(MODES.higherLower != null, "the mode is registered");
 check(MODES.higherLower.accent != null, "...with an accent, so Home renders its tile");
 check(HIGHER_LOWER_METRICS.length >= 3, "population, area and borders are all offered");
 
-
 // ---------------------------------------------------------------------------
 // Country photos — the pure half of the Wikidata/Commons → Storage → page
 // pipeline (src/game/mediaPolicy.js, docs/adr/0002-country-photos.md).
@@ -3579,7 +4112,10 @@ check(
     "File:Mount Fuji.jpg",
   "...with underscores normalised to spaces"
 );
-check(commonsFileTitle("File:Already a title.jpg") === "File:Already a title.jpg", "an existing title passes through");
+check(
+  commonsFileTitle("File:Already a title.jpg") === "File:Already a title.jpg",
+  "an existing title passes through"
+);
 check(commonsFileTitle(null) === null, "a missing claim is skipped, not turned into a bad fetch");
 check(commonsFileTitle("https://example.com/photo.jpg") === null, "a non-Commons URL is skipped");
 check(
@@ -3590,8 +4126,9 @@ check(
 
 // extmetadata.Artist is HTML — often a link, sometimes a whole vCard.
 check(
-  stripCommonsHtml('<a href="//commons.wikimedia.org/wiki/User:Foo" title="User:Foo">Jane&nbsp;Doe</a>') ===
-    "Jane Doe",
+  stripCommonsHtml(
+    '<a href="//commons.wikimedia.org/wiki/User:Foo" title="User:Foo">Jane&nbsp;Doe</a>'
+  ) === "Jane Doe",
   "an HTML author credit is reduced to plain text"
 );
 check(stripCommonsHtml("  spaced   out  ") === "spaced out", "whitespace is collapsed");
@@ -3611,14 +4148,29 @@ check(
   attributionFromExtMetadata({ License: { value: "cc-by-4.0" } }).license === "CC BY 4.0",
   "the machine slug is the fallback, upper-cased — a caption reading 'cc-by-4.0' looks like a bug"
 );
-check(attributionFromExtMetadata(null).author === null, "a missing extmetadata blob yields nulls, not a throw");
+check(
+  attributionFromExtMetadata(null).author === null,
+  "a missing extmetadata blob yields nulls, not a throw"
+);
 
 // Storage keys are derived, not random: that is what makes a re-run overwrite
 // one object instead of accumulating a new one per run.
-check(storageObjectPath("br", "https://upload.wikimedia.org/x/1600px-Rio.jpg") === "hero/br.jpg", "the object key is stable per country");
-check(storageObjectPath("is", "https://upload.wikimedia.org/x/1600px-Foo.PNG") === "hero/is.png", "the extension follows the source, not an assumption");
-check(extensionFor("https://x/y.svg") === "jpg", "an unsupported extension falls back rather than storing something we can't serve");
-check(contentTypeFor("https://x/y.png") === "image/png", "...and the Content-Type follows the extension");
+check(
+  storageObjectPath("br", "https://upload.wikimedia.org/x/1600px-Rio.jpg") === "hero/br.jpg",
+  "the object key is stable per country"
+);
+check(
+  storageObjectPath("is", "https://upload.wikimedia.org/x/1600px-Foo.PNG") === "hero/is.png",
+  "the extension follows the source, not an assumption"
+);
+check(
+  extensionFor("https://x/y.svg") === "jpg",
+  "an unsupported extension falls back rather than storing something we can't serve"
+);
+check(
+  contentTypeFor("https://x/y.png") === "image/png",
+  "...and the Content-Type follows the extension"
+);
 check(storageObjectPath("BR", "x.jpg") === null, "a non-ISO code yields no path");
 check(
   storagePublicUrl("https://abc.supabase.co/", "country-media", "hero/br.jpg") ===
@@ -3637,7 +4189,11 @@ const fakeTitle = commonsFileTitle("http://commons.wikimedia.org/wiki/Special:Fi
 const fakeAttr = attributionFromExtMetadata(fakeImageInfo.extmetadata);
 const draftRow = mediaRowFromCommons({
   code: "br",
-  url: storagePublicUrl("https://abc.supabase.co", "country-media", storageObjectPath("br", fakeImageInfo.thumburl)),
+  url: storagePublicUrl(
+    "https://abc.supabase.co",
+    "country-media",
+    storageObjectPath("br", fakeImageInfo.thumburl)
+  ),
   storagePath: storageObjectPath("br", fakeImageInfo.thumburl),
   sourceUrl: commonsSourceUrl(fakeTitle),
   author: fakeAttr.author,
@@ -3648,10 +4204,19 @@ const draftRow = mediaRowFromCommons({
 });
 check(draftRow.status === "pending", "an ingested row is ALWAYS a draft — this is the review gate");
 check(draftRow.kind === HERO_KIND, "...of kind 'hero'");
-check(draftRow.url.includes("/storage/v1/object/public/"), "...pointing at our Storage, never at Wikimedia");
-check(draftRow.source_url.includes("commons.wikimedia.org"), "...while still recording where it came from");
+check(
+  draftRow.url.includes("/storage/v1/object/public/"),
+  "...pointing at our Storage, never at Wikimedia"
+);
+check(
+  draftRow.source_url.includes("commons.wikimedia.org"),
+  "...while still recording where it came from"
+);
 check(draftRow.width === 1600 && draftRow.height === 1067, "...with its real dimensions");
-check(mediaRowFromCommons({ code: "br", url: "u", width: "0" }).width === null, "a zero dimension stores as null, not 0");
+check(
+  mediaRowFromCommons({ code: "br", url: "u", width: "0" }).width === null,
+  "a zero dimension stores as null, not 0"
+);
 
 // The licensing gate. CC BY / BY-SA both require attribution, so an image we
 // cannot credit is a licensing failure and must never be publishable.
@@ -3666,19 +4231,34 @@ check(
   formatPhotoCredit(draftRow) === "Photo: A. Botanist / Wikimedia (CC BY-SA 4.0)",
   "the credit line names the author and the licence"
 );
-check(formatPhotoCredit({ license: "Public domain" }) === "Photo: Wikimedia (Public domain)", "an anonymous public-domain image still credits its source");
+check(
+  formatPhotoCredit({ license: "Public domain" }) === "Photo: Wikimedia (Public domain)",
+  "an anonymous public-domain image still credits its source"
+);
 check(formatPhotoCredit({}) === null, "nothing creditable renders no caption");
 
 // Row → page. RLS already hides pending rows from the app, but the same
 // function runs against a service-role read in the review script, where
 // everything is visible — so status is checked here too.
-const approvedRow = { ...draftRow, kind: "hero", status: "approved", license_url: draftRow.license_url, source_url: draftRow.source_url };
+const approvedRow = {
+  ...draftRow,
+  kind: "hero",
+  status: "approved",
+  license_url: draftRow.license_url,
+  source_url: draftRow.source_url,
+};
 const hero = heroFromMediaRows([approvedRow]);
 check(hero?.url === draftRow.url, "an approved hero row becomes the page's hero");
-check(hero.credit === "Photo: A. Botanist / Wikimedia (CC BY-SA 4.0)", "...carrying its pre-composed credit");
+check(
+  hero.credit === "Photo: A. Botanist / Wikimedia (CC BY-SA 4.0)",
+  "...carrying its pre-composed credit"
+);
 check(hero.licenseUrl === extmeta.LicenseUrl.value, "...and its licence link");
 check(heroFromMediaRows([draftRow]) === null, "a PENDING row never becomes a hero");
-check(heroFromMediaRows([{ ...approvedRow, kind: "landmark" }]) === null, "a landmark is not a hero");
+check(
+  heroFromMediaRows([{ ...approvedRow, kind: "landmark" }]) === null,
+  "a landmark is not a hero"
+);
 check(heroFromMediaRows([]) === null, "no media reads as no hero");
 check(heroFromMediaRows(undefined) === null, "...and so does a missing embed");
 
@@ -3690,8 +4270,14 @@ const rowWithMedia = {
   has_outline: true,
   country_media: [approvedRow],
 };
-check(pageFromCountryRow(rowWithMedia).hero?.url === draftRow.url, "a fetched country row carries its hero photo onto the page");
-check(pageFromCountryRow({ code: "br", name: "Brazil" }).hero === null, "a country with no media has no hero — and the page must render anyway");
+check(
+  pageFromCountryRow(rowWithMedia).hero?.url === draftRow.url,
+  "a fetched country row carries its hero photo onto the page"
+);
+check(
+  pageFromCountryRow({ code: "br", name: "Brazil" }).hero === null,
+  "a country with no media has no hero — and the page must render anyway"
+);
 check(
   countryRowFromPage(pageFromCountryRow(rowWithMedia)).hero === undefined,
   "hero is read-only: seeding a country never writes back into country_media"
@@ -3700,19 +4286,36 @@ check(
 // Storage transforms are an optimisation with a fallback, never a dependency —
 // image transformation is a Pro-plan feature.
 const variant = imageVariantUrl(draftRow.url, { width: 960 });
-check(variant.includes("/storage/v1/render/image/public/"), "a variant URL uses the render endpoint");
-check(variant.includes("width=960") && variant.includes("resize=cover"), "...at the requested width, cropped the way the layout crops");
-check(imageVariantUrl("https://example.com/x.jpg", { width: 960 }) === "https://example.com/x.jpg", "a non-Storage URL is returned untouched rather than rewritten into a 404");
+check(
+  variant.includes("/storage/v1/render/image/public/"),
+  "a variant URL uses the render endpoint"
+);
+check(
+  variant.includes("width=960") && variant.includes("resize=cover"),
+  "...at the requested width, cropped the way the layout crops"
+);
+check(
+  imageVariantUrl("https://example.com/x.jpg", { width: 960 }) === "https://example.com/x.jpg",
+  "a non-Storage URL is returned untouched rather than rewritten into a 404"
+);
 check(imageVariantUrl(draftRow.url, {}) === draftRow.url, "no width means no transform");
 check(imageVariantUrl(null) === null, "a missing URL doesn't throw");
 
 // Widths snap to a ladder: a continuous width would mint a new CDN cache entry
 // per viewport, which is slower for everyone and free for no one.
-check(IMAGE_WIDTH_LADDER.every((w, i, a) => i === 0 || w > a[i - 1]), "the width ladder ascends");
+check(
+  IMAGE_WIDTH_LADDER.every((w, i, a) => i === 0 || w > a[i - 1]),
+  "the width ladder ascends"
+);
 check(heroImageWidth(320, 2) === 640, "a 320pt box at 2x asks for 640px");
-check(heroImageWidth(680, 2) === IMAGE_WIDTH_LADDER[IMAGE_WIDTH_LADDER.length - 1], "an oversized request is capped at the stored width");
-check(heroImageWidth(0) === IMAGE_WIDTH_LADDER[0], "an unmeasured box asks for the smallest rung, not NaN");
-
+check(
+  heroImageWidth(680, 2) === IMAGE_WIDTH_LADDER[IMAGE_WIDTH_LADDER.length - 1],
+  "an oversized request is capped at the stored width"
+);
+check(
+  heroImageWidth(0) === IMAGE_WIDTH_LADDER[0],
+  "an unmeasured box asks for the smallest rung, not NaN"
+);
 
 // ---------------------------------------------------------------------------
 // Globe hover tooltip placement (src/game/mapLabels.js). The globe draws into a
@@ -3724,20 +4327,29 @@ check(heroImageWidth(0) === IMAGE_WIDTH_LADDER[0], "an unmeasured box asks for t
 console.log("\nGlobe labels");
 
 const VIEW = 400;
-check(monoTextWidth("Chad", 10) === 4 * 10 * MONO_ADVANCE_RATIO, "monospaced width is computable, not measurable");
+check(
+  monoTextWidth("Chad", 10) === 4 * 10 * MONO_ADVANCE_RATIO,
+  "monospaced width is computable, not measurable"
+);
 check(monoTextWidth("", 10) === 0, "empty text has no width");
 check(monoTextWidth("Chad", 0) === 0, "a zero font size has no width");
 check(monoTextWidth(null, 10) === 0, "a missing name doesn't throw");
 
 const box = tooltipBox("Chad", 10, 4, 2);
-check(box.width === monoTextWidth("Chad", 10) + 8, "the chip adds horizontal padding on both sides");
+check(
+  box.width === monoTextWidth("Chad", 10) + 8,
+  "the chip adds horizontal padding on both sides"
+);
 check(box.height === 14, "...and vertical padding above and below");
 
 // Middle of the canvas: straightforward, above the point, horizontally centred.
 const mid = placeTooltip([200, 200], box, VIEW, 6);
 check(mid.y + box.height <= 200 - 6 + 0.001, "the chip sits ABOVE the point it names, never on it");
 check(Math.abs(mid.textX - 200) < 0.001, "...centred on it horizontally");
-check(mid.textY > mid.y && mid.textY < mid.y + box.height, "the text baseline sits inside its own chip");
+check(
+  mid.textY > mid.y && mid.textY < mid.y + box.height,
+  "the text baseline sits inside its own chip"
+);
 
 // The limb is most of the globe — a sphere foreshortens hard toward its edge —
 // so off-canvas clamping is the common case, not the corner case.
@@ -3753,7 +4365,6 @@ check(top.y + top.height <= VIEW + 0.001, "...still inside the canvas");
 
 check(placeTooltip(null, box, VIEW) === null, "no center means no tooltip");
 check(placeTooltip([NaN, 10], box, VIEW) === null, "a country projected to NaN names nothing");
-
 
 // ---------------------------------------------------------------------------
 // Realistic terrain (src/game/terrainTint.js + src/data/countryTerrain.js).
@@ -3771,15 +4382,24 @@ check(placeTooltip([NaN, 10], box, VIEW) === null, "a country projected to NaN n
 // ---------------------------------------------------------------------------
 console.log("\nTerrain");
 
-check(TERRAIN_CLASSES.every((c) => typeof map.terrain[c] === "string"), "every terrain class has a colour");
-check(new Set(Object.values(map.terrain)).size === TERRAIN_CLASSES.length, "and no two classes share one");
+check(
+  TERRAIN_CLASSES.every((c) => typeof map.terrain[c] === "string"),
+  "every terrain class has a colour"
+);
+check(
+  new Set(Object.values(map.terrain)).size === TERRAIN_CLASSES.length,
+  "and no two classes share one"
+);
 
 // The latitude fallback still exists — as a floor for a country with no prose,
 // not as the answer.
 check(bandFromLatitude(0) === "tropicalDry", "the equator falls back to dry tropics");
 check(bandFromLatitude(75) === "tundra", "past the Arctic Circle, tundra");
 check(bandFromLatitude(-45) === "temperate", "bands are symmetric about the equator");
-check(bandFromLatitude(undefined) === "temperate", "an unknown latitude falls back rather than throwing");
+check(
+  bandFromLatitude(undefined) === "temperate",
+  "an unknown latitude falls back rather than throwing"
+);
 // Number(null) is 0, not NaN. Without an explicit guard a plain coercion turns
 // "this country has no centroid" into "this country is on the equator", and
 // every polygon-less microstate comes out equatorial.
@@ -3794,8 +4414,10 @@ check(
   "'temperate rather than arctic' is not an arctic claim — negations are stripped"
 );
 check(
-  classifyTerrain({ climate: "Cool winters and mild summers, except along the Mediterranean coast.", latitude: 46 })
-    .terrain !== "mediterranean",
+  classifyTerrain({
+    climate: "Cool winters and mild summers, except along the Mediterranean coast.",
+    latitude: 46,
+  }).terrain !== "mediterranean",
   "'the Mediterranean coast' is a location, not a climate"
 );
 check(
@@ -3804,28 +4426,36 @@ check(
   "...while a climate that IS Mediterranean is one"
 );
 check(
-  classifyTerrain({ climate: "The south is temperate, the north subarctic.", latitude: 62 }).terrain === "boreal",
+  classifyTerrain({ climate: "The south is temperate, the north subarctic.", latitude: 62 })
+    .terrain === "boreal",
   "'subarctic' is taiga, and must never satisfy the arctic pattern"
 );
 
 // The same words mean different ground at different latitudes — which is the
 // whole reason this is a hybrid rather than a keyword lookup.
 check(
-  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: 48 }).terrain === "drySteppe",
+  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: 48 }).terrain ===
+    "drySteppe",
   "high-latitude aridity is cold steppe"
 );
 check(
-  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: -25 }).terrain === "desert",
+  classifyTerrain({ climate: "Conditions range from arid to semiarid.", latitude: -25 }).terrain ===
+    "desert",
   "...and low-latitude aridity is hot desert"
 );
 check(
-  classifyTerrain({ climate: "Tropical on the coast, arid in the interior, with rainy seasons.", latitude: 1 })
-    .terrain === "tropicalDry",
+  classifyTerrain({
+    climate: "Tropical on the coast, arid in the interior, with rainy seasons.",
+    latitude: 1,
+  }).terrain === "tropicalDry",
   "dryness WITH a wet season is savanna and Sahel, not Sahara"
 );
 check(
-  classifyTerrain({ climate: "Temperate but shifts with altitude.", geography: "Mostly mountainous, the Alps rising in the south.", latitude: 47 })
-    .terrain === "highland",
+  classifyTerrain({
+    climate: "Temperate but shifts with altitude.",
+    geography: "Mostly mountainous, the Alps rising in the south.",
+    latitude: 47,
+  }).terrain === "highland",
   "a country whose climate is organised by altitude is a mountain country"
 );
 check(
@@ -3844,31 +4474,60 @@ check(
 // Spot checks a geography teacher would recognise. These are the point of the
 // whole exercise: if the classifier regresses, it regresses here first.
 for (const [code, want] of Object.entries({
-  eg: "desert", sa: "desert", au: "desert", mn: "desert",
-  kz: "drySteppe", ru: "tundra", ca: "tundra",
-  fi: "boreal", se: "boreal", gb: "temperate", de: "temperate", fr: "temperate",
-  gr: "mediterranean", it: "mediterranean",
-  cd: "tropicalWet", id: "tropicalWet", my: "tropicalWet",
-  ng: "tropicalDry", ch: "highland", np: "highland", bt: "highland",
+  eg: "desert",
+  sa: "desert",
+  au: "desert",
+  mn: "desert",
+  kz: "drySteppe",
+  ru: "tundra",
+  ca: "tundra",
+  fi: "boreal",
+  se: "boreal",
+  gb: "temperate",
+  de: "temperate",
+  fr: "temperate",
+  gr: "mediterranean",
+  it: "mediterranean",
+  cd: "tropicalWet",
+  id: "tropicalWet",
+  my: "tropicalWet",
+  ng: "tropicalDry",
+  ch: "highland",
+  np: "highland",
+  bt: "highland",
 })) {
   check(terrainClass(code) === want, `${code} reads as ${want}`);
 }
 // Most classes should actually appear — a classifier that collapses everything
 // into two colours is the failure mode that looks fine in a unit test.
 const terrainSpread = new Set(Object.values(COUNTRY_TERRAIN).map((t) => t.terrain));
-check(terrainSpread.size >= 8, `the world uses ${terrainSpread.size} of ${TERRAIN_CLASSES.length} terrain classes`);
+check(
+  terrainSpread.size >= 8,
+  `the world uses ${terrainSpread.size} of ${TERRAIN_CLASSES.length} terrain classes`
+);
 // And most of it should come from real text, not the latitude floor.
 const fromText = Object.values(COUNTRY_TERRAIN).filter((t) => t.source.startsWith("text")).length;
-check(fromText > Object.keys(COUNTRY_TERRAIN).length / 2, `${fromText} countries are classified from their own description`);
+check(
+  fromText > Object.keys(COUNTRY_TERRAIN).length / 2,
+  `${fromText} countries are classified from their own description`
+);
 
 // The basemap toggle.
 check(BASEMAPS.includes(DEFAULT_BASEMAP), "the default basemap is one of the basemaps");
-check(nextBasemap("terrain") === "simple" && nextBasemap("simple") === "terrain", "the toggle round-trips");
-check(nextBasemap("nonsense") === BASEMAPS[0], "an unknown basemap toggles to a real one rather than sticking");
-check(normalizeSettings({ basemap: "nope" }).basemap === DEFAULT_BASEMAP, "a corrupt stored basemap falls back");
+check(
+  nextBasemap("terrain") === "simple" && nextBasemap("simple") === "terrain",
+  "the toggle round-trips"
+);
+check(
+  nextBasemap("nonsense") === BASEMAPS[0],
+  "an unknown basemap toggles to a real one rather than sticking"
+);
+check(
+  normalizeSettings({ basemap: "nope" }).basemap === DEFAULT_BASEMAP,
+  "a corrupt stored basemap falls back"
+);
 check(normalizeSettings({ basemap: "simple" }).basemap === "simple", "...and a valid one is kept");
 check(DEFAULT_SETTINGS.basemap === DEFAULT_BASEMAP, "the default settings carry a basemap");
-
 
 // ---------------------------------------------------------------------------
 // Country-page topics (src/data/countryTopics.js + theme.topicAccents). The
@@ -3879,10 +4538,16 @@ check(DEFAULT_SETTINGS.basemap === DEFAULT_BASEMAP, "the default settings carry 
 console.log("\nCountry-page topics");
 
 check(new Set(COUNTRY_TOPIC_KEYS).size === COUNTRY_TOPICS.length, "topic keys are unique");
-check(COUNTRY_TOPICS.every((t) => t.label && t.glyph), "every topic has a label and a glyph");
+check(
+  COUNTRY_TOPICS.every((t) => t.label && t.glyph),
+  "every topic has a label and a glyph"
+);
 check(COUNTRY_TOPIC_KEYS[0] === "physical_geography", "reading order starts with the land itself");
 check(topicFor("climate").label === "Climate", "a topic is findable by key");
-check(topicFor("_sources") === null, "metadata is not a topic — this is the allowlist doing its job");
+check(
+  topicFor("_sources") === null,
+  "metadata is not a topic — this is the allowlist doing its job"
+);
 
 // Colour-coding: catalog here, palette in theme.js, same split as MODES and
 // modeAccents. A topic with no accent would render an invisible glyph.
@@ -3905,7 +4570,6 @@ check(present[0].key === "physical_geography", "...still in reading order, not o
 check(!present.some((t) => t.key === "economy"), "a whitespace-only fact is not content");
 check(topicsPresent(null).length === 0, "a country with no facts shows no topic rows");
 check(topicsPresent("nope").length === 0, "...and neither does a malformed blob");
-
 
 // ---------------------------------------------------------------------------
 // "Play with Brazil" — a round about ONE country (src/game/countryRound.js).
@@ -3936,8 +4600,14 @@ check(
 // Border counts are small integers a player can actually hold in their head,
 // so this is the one place additive distractors are the right shape.
 const borders = borderCountDistractors(9, 3);
-check(borders.length === 3 && !borders.includes(9), "border-count distractors are near, and never the answer");
-check(borderCountDistractors(0, 3).every((n) => n >= 0), "a landlocked-island country never offers a negative count");
+check(
+  borders.length === 3 && !borders.includes(9),
+  "border-count distractors are near, and never the answer"
+);
+check(
+  borderCountDistractors(0, 3).every((n) => n >= 0),
+  "a landlocked-island country never offers a negative count"
+);
 
 // The fact builder, driven from fixtures rather than the live dataset.
 const fixtureCountries = [
@@ -3963,14 +4633,29 @@ const factQs = buildCountryFactQuestions(fixtureCountries[0], {
   nameFor: (c) => fixtureNames[c],
 });
 check(factQs.length === 5, "a well-stocked country yields every fact question");
-check(factQs.every((q) => q.country.code === "br"), "every question is about THIS country");
-check(factQs.every((q) => q.options.includes(q.correct)), "the answer is always among the options");
-check(factQs.every((q) => new Set(q.options).size === 4), "no question offers the same option twice");
-check(factQs.every((q) => q.prompt.includes("Brazil")), "every prompt names the country — that is the whole point");
+check(
+  factQs.every((q) => q.country.code === "br"),
+  "every question is about THIS country"
+);
+check(
+  factQs.every((q) => q.options.includes(q.correct)),
+  "the answer is always among the options"
+);
+check(
+  factQs.every((q) => new Set(q.options).size === 4),
+  "no question offers the same option twice"
+);
+check(
+  factQs.every((q) => q.prompt.includes("Brazil")),
+  "every prompt names the country — that is the whole point"
+);
 const borderQ = factQs.find((q) => q.type === "borderCount");
 check(borderQ.correct === "2", "the border count comes from the same neighbours the page lists");
 const neighborQ = factQs.find((q) => q.type === "neighbor");
-check(["Argentina", "Peru"].includes(neighborQ.correct), "the neighbour question's answer really is a neighbour");
+check(
+  ["Argentina", "Peru"].includes(neighborQ.correct),
+  "the neighbour question's answer really is a neighbour"
+);
 check(
   !neighborQ.options.some((o) => o !== neighborQ.correct && ["Argentina", "Peru"].includes(o)),
   "...and no distractor is secretly also a neighbour, which would make two options right"
@@ -3987,13 +4672,22 @@ const sparseCountryQs = buildCountryFactQuestions(fixtureCountries[5], {
   nameFor: (c) => fixtureNames[c],
 });
 check(sparseCountryQs.length === 1, "a country with no content still gets the region question");
-check(sparseCountryQs.every((q) => q.options.includes(q.correct)), "...and it is still well-formed");
+check(
+  sparseCountryQs.every((q) => q.options.includes(q.correct)),
+  "...and it is still well-formed"
+);
 
 // End to end against the real dataset.
 const brRound = buildCountryRound("br");
 check(brRound.length > 0 && brRound.length <= 8, "a real country round is non-empty and capped");
-check(brRound.every((q) => q.country.code === "br"), "every question in it is about Brazil");
-check(new Set(brRound.map((q) => q.type)).size === brRound.length, "no question type repeats within a round");
+check(
+  brRound.every((q) => q.country.code === "br"),
+  "every question in it is about Brazil"
+);
+check(
+  new Set(brRound.map((q) => q.type)).size === brRound.length,
+  "no question type repeats within a round"
+);
 // Asked of an UNCAPPED round. Brazil yields ten candidate questions and the
 // round keeps eight, so a capped round drops two at random — roughly one run
 // in fifty dropped both media modes and failed a test that was making a claim
@@ -4009,8 +4703,14 @@ check(
 // mode, or every locator answer inside a country round is marked wrong.
 for (const q of brRound) {
   if (q.type === "locator") {
-    check(Array.isArray(q.choices) && q.choices.length > 1, "a locator question carries its map choices");
-    check(q.choices.some((c) => c.code === q.correct), "...and its answer is one of them");
+    check(
+      Array.isArray(q.choices) && q.choices.length > 1,
+      "a locator question carries its map choices"
+    );
+    check(
+      q.choices.some((c) => c.code === q.correct),
+      "...and its answer is one of them"
+    );
   } else {
     check(q.options.includes(q.correct), `a ${q.type} question is answerable from its own options`);
   }
@@ -4021,13 +4721,17 @@ check(MODES.country != null && MODES.country.accent != null, "the mode is regist
 // The subject has to survive a URL, or a shared link to a country round is a
 // link to a generic one.
 check(
-  routeToPath({ name: "quiz", mode: "country", countryCode: "br", difficulty: "all", timed: false }) ===
-    "/play/country/br",
+  routeToPath({
+    name: "quiz",
+    mode: "country",
+    countryCode: "br",
+    difficulty: "all",
+    timed: false,
+  }) === "/play/country/br",
   "a country round is linkable"
 );
 check(pathToRoute("/play/country/br").countryCode === "br", "...and comes back with its subject");
 check(pathToRoute("/play/flag").countryCode === null, "a generic round carries no subject");
-
 
 // ---------------------------------------------------------------------------
 // The raster basemap (src/game/globeRaster.js). Countries are projected
@@ -4041,26 +4745,44 @@ console.log("\nGlobe raster basemap");
 // viewToWorld must be the exact inverse of globeProjection.rotate(). If it
 // drifts, the map slides off the countries and every border is subtly wrong —
 // the kind of bug that looks like bad data rather than bad math.
-for (const spin of [{ lng: 0, lat: 0 }, { lng: 137, lat: -22 }, { lng: -64, lat: 71 }]) {
+for (const spin of [
+  { lng: 0, lat: 0 },
+  { lng: 137, lat: -22 },
+  { lng: -64, lat: 71 },
+]) {
   const o = orientation(spin.lng, spin.lat);
-  for (const [lng, lat] of [[0, 0], [45, 30], [-120, -60], [179, 12]]) {
+  for (const [lng, lat] of [
+    [0, 0],
+    [45, 30],
+    [-120, -60],
+    [179, 12],
+  ]) {
     const world = lngLatToVec(lng, lat);
     const view = rotate(world, o);
     const back = viewToWorld(view[0], view[1], view[2], o);
     const err = Math.max(...[0, 1, 2].map((i) => Math.abs(back[i] - world[i])));
-    check(err < 1e-9, `viewToWorld inverts rotate at spin ${spin.lng}/${spin.lat}, point ${lng}/${lat}`);
+    check(
+      err < 1e-9,
+      `viewToWorld inverts rotate at spin ${spin.lng}/${spin.lat}, point ${lng}/${lat}`
+    );
   }
 }
 
 const [lonBack, latBack] = vecToLonLat(lngLatToVec(-73.5, 45.5));
-check(Math.abs(lonBack + 73.5) < 1e-9 && Math.abs(latBack - 45.5) < 1e-9, "a vector round-trips to its own lon/lat");
+check(
+  Math.abs(lonBack + 73.5) < 1e-9 && Math.abs(latBack - 45.5) < 1e-9,
+  "a vector round-trips to its own lon/lat"
+);
 // asin(1.0000001) is NaN, and the sub-viewer point is the one pixel a reader is
 // most likely looking at.
 check(Number.isFinite(vecToLonLat([0, 0, 1.0000001])[1]), "a float-error pole does not become NaN");
 
 // Longitude wraps, latitude clamps: the antimeridian is a seam in the image but
 // not on the Earth, and clamping there smears one column across the Pacific.
-check(texelIndex(-180, 0, 8, 4) === texelIndex(180, 0, 8, 4), "the antimeridian samples the same texel from both sides");
+check(
+  texelIndex(-180, 0, 8, 4) === texelIndex(180, 0, 8, 4),
+  "the antimeridian samples the same texel from both sides"
+);
 check(texelIndex(0, 90, 4, 2) < texelIndex(0, -90, 4, 2), "north is the top row of the texture");
 check(texelIndex(-179.9, 0, 8, 4) >= 0, "a longitude just west of the seam is in range");
 check(texelIndex(0, 0, 8, 4) % 4 === 0, "an index always lands on a pixel boundary");
@@ -4069,7 +4791,10 @@ check(texelIndex(0, 0, 8, 4) % 4 === 0, "an index always lands on a pixel bounda
 // nearest-neighbour, zooming in just shows the texels as bigger rectangles.
 const [uMid] = texelCoords(0, 0, 8, 4);
 check(uMid === 4, "longitude 0 is the middle column");
-check(texelCoords(-180, 0, 8, 4)[0] === texelCoords(180, 0, 8, 4)[0], "the seam is one place, not two");
+check(
+  texelCoords(-180, 0, 8, 4)[0] === texelCoords(180, 0, 8, 4)[0],
+  "the seam is one place, not two"
+);
 check(texelCoords(0, 91, 8, 4)[1] === 0, "a latitude past the pole clamps to the top row");
 {
   // Two texels, black and white. A point exactly between them must read grey —
@@ -4079,11 +4804,17 @@ check(texelCoords(0, 91, 8, 4)[1] === 0, "a latitude past the pole clamps to the
   sampleSmooth(ramp, -90, 0, 2, 1, out);
   check(out[0] === 0, "sampling directly on a texel returns that texel");
   sampleSmooth(ramp, 0, 0, 2, 1, out);
-  check(out[0] > 100 && out[0] < 155, `halfway between two texels blends them (${out[0].toFixed(0)})`);
+  check(
+    out[0] > 100 && out[0] < 155,
+    `halfway between two texels blends them (${out[0].toFixed(0)})`
+  );
   // The seam again: the sampler must wrap to the first column, not clamp to
   // the last, or the Pacific gets a bright stripe down it.
   sampleSmooth(ramp, 179.9, 0, 2, 1, out);
-  check(Number.isFinite(out[0]), "sampling at the antimeridian wraps rather than reading past the end");
+  check(
+    Number.isFinite(out[0]),
+    "sampling at the antimeridian wraps rather than reading past the end"
+  );
 }
 
 // Render against a texture whose four quadrants are distinguishable, so what
@@ -4143,7 +4874,10 @@ renderAt(zoomed, { lng: 0, lat: 0 }, 2);
 // x = 0 sits just outside the disc at 1x (radius is 0.475 of the frame) and
 // well inside it at 2x.
 const edge = ((SIZE / 2) * SIZE + 0) * 4;
-check(frame[edge + 3] === 0 && zoomed[edge + 3] === 255, "zooming in fills pixels that were off the sphere");
+check(
+  frame[edge + 3] === 0 && zoomed[edge + 3] === 255,
+  "zooming in fills pixels that were off the sphere"
+);
 
 // A reused buffer must not keep last frame's pixels where this frame has none.
 const reused = new Uint8Array(SIZE * SIZE * 4).fill(255);
@@ -4171,7 +4905,6 @@ for (let i = 3; i < smoothFrame.length; i += 4) {
 }
 check(sameAlpha, "bilinear covers exactly the same disc as nearest-neighbour");
 check(smoothFrame[((SIZE / 2) * SIZE + SIZE / 2) * 4 + 3] === 255, "...and still fills its centre");
-
 
 // ---------------------------------------------------------------------------
 console.log("\nBrand mark");
@@ -4224,17 +4957,12 @@ check(
   dotRadius("micro") > dotRadius("simple") && dotRadius("simple") > dotRadius("detailed"),
   "the pivot dot grows as the artwork shrinks"
 );
-check(
-  starPoints("micro")[1][0] > starPoints("detailed")[1][0],
-  "...and so does the star's waist"
-);
+check(starPoints("micro")[1][0] > starPoints("detailed")[1][0], "...and so does the star's waist");
 
 // The ring has to stay inside the box once its stroke is counted, or the
 // rasterizer clips a flat edge onto the circle.
 check(
-  MARK_DETAILS.filter(hasRing).every(
-    (d) => RING_RADIUS + ringWidth(d) / 2 <= MARK_VIEWBOX / 2
-  ),
+  MARK_DETAILS.filter(hasRing).every((d) => RING_RADIUS + ringWidth(d) / 2 <= MARK_VIEWBOX / 2),
   "the ring plus half its stroke fits inside the viewBox"
 );
 
@@ -4244,7 +4972,9 @@ check(
 const gratArcs = graticuleArcs();
 check(gratArcs.length === 4, "the graticule is two meridians and two parallels");
 check(
-  gratArcs.every((d) => /^M [\d.-]+ [\d.-]+ A [\d.-]+ [\d.-]+ 0 [01] [01] [\d.-]+ [\d.-]+$/.test(d)),
+  gratArcs.every((d) =>
+    /^M [\d.-]+ [\d.-]+ A [\d.-]+ [\d.-]+ 0 [01] [01] [\d.-]+ [\d.-]+$/.test(d)
+  ),
   "...each a single unrotated elliptical arc, the only form the rasterizer parses"
 );
 check(
@@ -4281,7 +5011,10 @@ check(
   flatTone.star === "#123456" && flatTone.ring === "#123456" && flatTone.dot === "#123456",
   "a bare colour tints every part of the mark"
 );
-check(markTone("nonsense-tone").star === MARK_TONES.pine.star, "an unknown tone name is not a hole");
+check(
+  markTone("nonsense-tone").star === MARK_TONES.pine.star,
+  "an unknown tone name is not a hole"
+);
 
 // Kit §LOGO: clear space is 0.5x the mark height, so it scales with the lockup.
 check(clearSpace(32) === 16, "clear space is half the mark height");
@@ -4332,10 +5065,7 @@ for (const name of MATERIALS) {
   const stripes = [...(materials[name].weave ?? []), ...(materials[name].grain ?? [])];
   if (stripes.length < 2) continue;
   const periods = stripes.map((s) => s.period);
-  check(
-    new Set(periods).size === periods.length,
-    `${name}: no two stripe periods are equal`
-  );
+  check(new Set(periods).size === periods.length, `${name}: no two stripe periods are equal`);
   check(
     stripes.every((s) => s.thickness < s.period),
     `${name}: every stripe is thinner than its own period, so the ground shows through`
@@ -4355,7 +5085,10 @@ check(
   MATERIALS.filter((n) => n !== "lantern").every((n) => /^#[0-9A-Fa-f]{6}$/.test(materialBase(n))),
   "every ground material has an opaque base colour"
 );
-check(materialBase("nonsense") === "transparent", "an unknown material is transparent, not a crash");
+check(
+  materialBase("nonsense") === "transparent",
+  "an unknown material is transparent, not a crash"
+);
 
 // Kit: the two permitted inks on dark, and lichen's 16px floor OVER A MATERIAL
 // (rather than 14px on flat pine) — inside the dusk wash's lit corner the
@@ -4401,6 +5134,129 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nInteraction difficulty catalog (M2.12 step 2)");
+
+// The six tiered games, and only those. Daily and a country round deliberately
+// have no menu — see the note in data/difficulties.js.
+check(
+  TIERED_MODES.length === 6 &&
+    ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"].every((m) =>
+      TIERED_MODES.includes(m)
+    ),
+  "exactly the six free games carry a tier menu"
+);
+check(
+  !hasTiers("daily") && !hasTiers("country"),
+  "Daily and a country round have no tier menu — a Daily with difficulty would be incomparable between players"
+);
+
+// Shape and Locator are the two modes with a genuinely different interaction
+// left past "hard", so they are the only two with expert.
+check(
+  tiersFor("shape").length === 4 && tiersFor("locator").length === 4,
+  "Shape and Locator each offer four tiers, including expert"
+);
+check(
+  ["flag", "capital", "capitalReverse", "higherLower"].every((m) => tiersFor(m).length === 3),
+  "the other four offer three — past 'type it blind' there is nothing further to remove"
+);
+check(
+  tiersFor("shape").some((t) => t.key === "expert") &&
+    !tiersFor("flag").some((t) => t.key === "expert"),
+  "expert exists only where a new interaction exists, not merely a smaller pool"
+);
+
+// Ordering and completeness — every tier is well-formed and in ascending order.
+check(
+  TIERED_MODES.every((m) =>
+    tiersFor(m).every((t) => t.key && t.label && t.description && t.description.length > 5)
+  ),
+  "every tier carries a key, a label and a real one-line description"
+);
+check(
+  TIERED_MODES.every((m) => {
+    const idx = tiersFor(m).map((t) => TIER_ORDER.indexOf(t.key));
+    return idx.every((v, i) => v >= 0 && (i === 0 || v > idx[i - 1]));
+  }),
+  "every mode's tiers are valid and in ascending order"
+);
+check(
+  TIERED_MODES.every((m) => tiersFor(m)[0].key === "easy"),
+  "every tiered mode starts at easy"
+);
+check(
+  TIERED_MODES.every((m) => new Set(tiersFor(m).map((t) => t.key)).size === tiersFor(m).length),
+  "no mode lists the same tier twice"
+);
+
+// The exact microcopy the product asked for, spot-checked at the ends of the
+// range — these lines are the menu's whole reason to exist.
+check(
+  tierFor("flag", "easy").description === "Four flags, one answer.",
+  "Flag easy reads 'Four flags, one answer.'"
+);
+check(
+  tierFor("flag", "hard").description === "Type it blind — close spelling counts.",
+  "Flag hard names the close-spelling rule, which is what decides whether anyone tries it"
+);
+check(
+  tierFor("locator", "expert").description === "No borders — read the land itself.",
+  "Locator expert reads 'No borders — read the land itself.'"
+);
+check(
+  tierFor("higherLower", "hard").description === "Tight margins, deep cuts.",
+  "Higher or Lower hard reads 'Tight margins, deep cuts.'"
+);
+check(
+  tierFor("flag", "expert") === null,
+  "asking for a tier a mode lacks returns null, not a blank shell"
+);
+
+// Selection: an unrecognised tier falls back to the MODE's first tier, not to
+// a global default a mode might not offer.
+check(normalizeInteractionTier("shape", "expert") === "expert", "a valid tier passes through");
+check(
+  normalizeInteractionTier("flag", "expert") === "easy",
+  "a tier the mode lacks falls back to its first"
+);
+check(
+  normalizeInteractionTier("flag", undefined) === "easy" &&
+    normalizeInteractionTier("flag", null) === "easy",
+  "a missing tier resolves to the mode's first"
+);
+check(normalizeInteractionTier("daily", "hard") === null, "a mode with no menu has no tier at all");
+
+// Capability vs selection. Everything is easy today, so every pick still
+// builds the multiple-choice shape — but the pick itself is never rewritten.
+check(isTierBuilt("flag", "easy") === true, "easy is built for every mode today");
+check(
+  isTierBuilt("flag", "hard") === false,
+  "hard is not built yet — steps 3-6 wire the real interactions"
+);
+check(
+  effectiveTier("flag", "hard") === "easy",
+  "an unbuilt tier BUILDS as the mode's first, so a question always has an answer surface"
+);
+check(
+  normalizeInteractionTier("flag", "hard") === "hard",
+  "...while the SELECTION still reads as what the player picked — the fallback never rewrites their choice"
+);
+check(
+  TIERED_MODES.every((m) => tiersFor(m).every((t) => effectiveTier(m, t.key) !== null)),
+  "every tier on every mode resolves to something buildable"
+);
+
+// The two axes stay orthogonal: a round can be any tier over any pool.
+check(
+  buildRound("flag", "all", 4, { tier: "hard" }).length === 4 &&
+    buildRound("flag", "hard", 4, { tier: "easy" }).length === 4,
+  "interaction tier and country pool are independent — either can vary without the other"
+);
+check(
+  buildRound("flag", "all", 4, { tier: "garbage" }).every((q) => q.options.length === 4),
+  "a nonsense tier still produces a playable round"
+);
+
 console.log("\nEntitlements (M2.12 step 1)");
 check(
   TIERS.length === 2 && TIERS[0] === "free" && TIERS[1] === "pro",
@@ -4409,7 +5265,14 @@ check(
 check(DEFAULT_TIER === "pro", "every account is pro by default — the paywall is a later step");
 
 // The six free games named in the milestone, exactly.
-const EXPECTED_FREE_GAMES = ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"];
+const EXPECTED_FREE_GAMES = [
+  "flag",
+  "capital",
+  "capitalReverse",
+  "shape",
+  "locator",
+  "higherLower",
+];
 check(
   EXPECTED_FREE_GAMES.every((m) => MODE_TIERS[m] === "free"),
   "the six free games are all tagged free"
@@ -4542,21 +5405,28 @@ check(
   "isYou flags exactly the matching userId's row"
 );
 check(
-  JSON.stringify(rankLeaderboard([{ userId: "b", value: 500 }, { userId: "c", value: 500 }]).map((e) => ({
-    id: e.userId,
-    rank: e.rank,
-  }))) ===
-    JSON.stringify(rankLeaderboard([{ userId: "c", value: 500 }, { userId: "b", value: 500 }]).map((e) => ({
+  JSON.stringify(
+    rankLeaderboard([
+      { userId: "b", value: 500 },
+      { userId: "c", value: 500 },
+    ]).map((e) => ({
       id: e.userId,
       rank: e.rank,
-    }))),
+    }))
+  ) ===
+    JSON.stringify(
+      rankLeaderboard([
+        { userId: "c", value: 500 },
+        { userId: "b", value: 500 },
+      ]).map((e) => ({
+        id: e.userId,
+        rank: e.rank,
+      }))
+    ),
   "a tie between two players breaks the same way regardless of input order (deterministic tie-break)"
 );
 check(rankLeaderboard([], "a").length === 0, "rankLeaderboard tolerates an empty entry list");
-check(
-  rankLeaderboard(null, "a").length === 0,
-  "rankLeaderboard tolerates a missing entry list"
-);
+check(rankLeaderboard(null, "a").length === 0, "rankLeaderboard tolerates a missing entry list");
 check(
   rankLeaderboard([{ userId: "e", displayName: "Eve" }], null)[0].value === 0,
   "an entry with no value is treated as 0 rather than throwing"

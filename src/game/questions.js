@@ -15,6 +15,7 @@ import { buildHigherLowerQuestion, METRIC_BY_KEY } from "./higherLower";
 import { buildCountryFactQuestions } from "./countryRound";
 import { getCountryPage } from "../data/countryPages";
 import { countryName } from "../data/countries";
+import { effectiveTier } from "../data/difficulties";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -146,7 +147,10 @@ function seededPick(arr, seed, n) {
   return out;
 }
 
-function buildOne(type, target) {
+// `tier` rides through unused for now: every mode's built tier is "easy", so
+// every question is still the 4-option shape. Step 4 is where a tier starts
+// changing what comes out of here.
+function buildOne(type, target, tier = null) {
   if (type === "capital") {
     const distractors = sample(
       COUNTRIES.filter((c) => c.code !== target.code),
@@ -227,16 +231,28 @@ function buildOne(type, target) {
 
 // Build a standard single-mode round. Falls back to the full pool if a tier
 // doesn't have enough countries to fill the round (keeps hard-mode Shape safe).
-export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_LENGTH) {
+// `opts.tier` is the INTERACTION tier (data/difficulties.js) — how you answer.
+// `difficulty` is the POOL filter — which countries get asked about. They are
+// different axes and this signature is where that stays visible: a round can
+// be "type it blind" over famous countries, or "pick from four" over obscure
+// ones, and neither implies the other.
+//
+// The tier is resolved through effectiveTier(), so a tier whose interaction
+// isn't built yet quietly produces the multiple-choice question shape rather
+// than a question with no answer surface. Steps 4-6 retire those fallbacks one
+// family at a time.
+export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_LENGTH, opts = {}) {
+  const tier = effectiveTier(mode, opts.tier);
+
   // Higher or Lower does not have a "target" country the way every other mode
   // does — a question is a PAIR, so it is built from the metric pool rather
   // than by sampling one country and decorating it.
-  if (mode === "higherLower") return buildHigherLowerRound(count);
+  if (mode === "higherLower") return buildHigherLowerRound(count, tier);
 
   const tiered = poolFor(mode, difficulty);
   const pool = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
   const targets = sample(pool, count);
-  return targets.map((t) => buildOne(mode, t));
+  return targets.map((t) => buildOne(mode, t, tier));
 }
 
 // A round of pair comparisons, cycling the metrics so one round asks about
@@ -246,7 +262,7 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
 // or every sampled pair was a tie — is skipped rather than retried forever, and
 // the next metric is tried instead. That keeps a round full-length even if a
 // metric's data thins out later.
-function buildHigherLowerRound(count) {
+function buildHigherLowerRound(count, tier = null) {
   const questions = [];
   for (let i = 0; questions.length < count && i < count * HIGHER_LOWER_METRICS.length; i++) {
     const metric = HIGHER_LOWER_METRICS[i % HIGHER_LOWER_METRICS.length];
