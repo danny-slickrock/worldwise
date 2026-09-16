@@ -16,6 +16,8 @@ import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
 import { tierFor } from "../data/difficulties";
+import { matchAnswer, isCorrectAnswer } from "../game/answerMatch";
+import TypeAnswer from "./TypeAnswer";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
 import { countriesFromHistory } from "../game/cloudSync";
@@ -197,10 +199,29 @@ export default function QuizScreen({
     }
   }, [idx, questions]);
 
+  // The ONE place that decides whether an answer is right.
+  //
+  // A typed answer goes through the fuzzy matcher (a near-miss spelling
+  // counts); everything else is an exact comparison against the option the
+  // player tapped. Both choose() and next() call this, because they used to
+  // each carry their own `opt === q.correct` and a typed round would otherwise
+  // score one way on screen and another way in the results.
+  //
+  // Branches on the QUESTION's own shape, never the round's mode.
+  function resultFor(question, value) {
+    if (value === TIMEOUT) return "miss";
+    if (question.answer === "type") {
+      return matchAnswer(value, question.correct, question.answerPool ?? []);
+    }
+    return value === question.correct ? "match" : "miss";
+  }
+
+  const isRightFor = (question, value) => isCorrectAnswer(resultFor(question, value));
+
   function choose(opt) {
     if (answered) return;
     setPicked(opt);
-    const isRight = opt === q.correct;
+    const isRight = isRightFor(q, opt);
     if (isRight) {
       setScore((s) => s + 1);
       setStreak((s) => {
@@ -238,7 +259,7 @@ export default function QuizScreen({
   }
 
   function next() {
-    const entry = { question: q, picked, isRight: picked === q.correct };
+    const entry = { question: q, picked, isRight: isRightFor(q, picked) };
     const nextHistory = [...history, entry];
     if (idx + 1 >= questions.length) {
       // Higher or Lower alone pays for the chain. Folding this into computeXp()
@@ -502,51 +523,70 @@ export default function QuizScreen({
                   )}
                 </View>
 
-                {/* Options */}
-                <View style={styles.options}>
-                  {q.options.map((opt, i) => {
-                    const isCorrect = answered && opt === q.correct;
-                    const isWrong = answered && opt === picked && opt !== q.correct;
-                    const isPicked = answered && opt === picked;
-                    return (
-                      // rise={0}: the body wrapper above already provides the upward
-                      // travel for this whole group. Nesting a second one would stack
-                      // the transforms and overshoot the 8-16px band, so the options
-                      // contribute only the staggered fade.
-                      // Keyed by question index so the cascade replays per question
-                      // rather than only on the first.
-                      <FadeInUp key={`${idx}-${opt}`} rise={0} delay={staggerDelay(i)}>
-                        <Animated.View
-                          style={isPicked ? { transform: [{ scale: pickAnim }] } : null}
-                        >
-                          <Pressable
-                            onPress={() => choose(opt)}
-                            style={[
-                              styles.option,
-                              isCorrect && styles.optionCorrect,
-                              isWrong && styles.optionWrong,
-                            ]}
+                {/* The answer surface. Branches on the QUESTION's own shape —
+                    `q.answer === "type"` — rather than on the round's mode,
+                    the same rule a mixed country round already forces. A
+                    typed question carries its own pool, so this block needs to
+                    know nothing about which mode produced it. */}
+                {q.answer === "type" ? (
+                  <TypeAnswer
+                    // Remounts per question, so the field is empty for the
+                    // next one rather than holding the last answer.
+                    key={`type-${idx}`}
+                    suggest={Boolean(q.suggest)}
+                    pool={q.answerPool ?? []}
+                    answered={answered}
+                    result={answered ? resultFor(q, picked) : null}
+                    correct={q.correct}
+                    submitted={picked === TIMEOUT ? "" : (picked ?? "")}
+                    onSubmit={choose}
+                  />
+                ) : (
+                  <View style={styles.options}>
+                    {q.options.map((opt, i) => {
+                      const isCorrect = answered && opt === q.correct;
+                      const isWrong = answered && opt === picked && opt !== q.correct;
+                      const isPicked = answered && opt === picked;
+                      return (
+                        // rise={0}: the body wrapper above already provides the upward
+                        // travel for this whole group. Nesting a second one would stack
+                        // the transforms and overshoot the 8-16px band, so the options
+                        // contribute only the staggered fade.
+                        // Keyed by question index so the cascade replays per question
+                        // rather than only on the first.
+                        <FadeInUp key={`${idx}-${opt}`} rise={0} delay={staggerDelay(i)}>
+                          <Animated.View
+                            style={isPicked ? { transform: [{ scale: pickAnim }] } : null}
                           >
-                            <Text
+                            <Pressable
+                              onPress={() => choose(opt)}
                               style={[
-                                styles.optionText,
-                                // Resolved options fill with a bright success/error — dark
-                                // ink on top, not white, or the label washes out.
-                                (isCorrect || isWrong) && {
-                                  color: colors.onFill,
-                                },
+                                styles.option,
+                                isCorrect && styles.optionCorrect,
+                                isWrong && styles.optionWrong,
                               ]}
                             >
-                              {opt}
-                            </Text>
-                            {isCorrect && <Text style={styles.optionMark}>✓</Text>}
-                            {isWrong && <Text style={styles.optionMark}>✕</Text>}
-                          </Pressable>
-                        </Animated.View>
-                      </FadeInUp>
-                    );
-                  })}
-                </View>
+                              <Text
+                                style={[
+                                  styles.optionText,
+                                  // Resolved options fill with a bright success/error — dark
+                                  // ink on top, not white, or the label washes out.
+                                  (isCorrect || isWrong) && {
+                                    color: colors.onFill,
+                                  },
+                                ]}
+                              >
+                                {opt}
+                              </Text>
+                              {isCorrect && <Text style={styles.optionMark}>✓</Text>}
+                              {isWrong && <Text style={styles.optionMark}>✕</Text>}
+                            </Pressable>
+                          </Animated.View>
+                        </FadeInUp>
+                      );
+                    })}
+                  </View>
+                )}
               </>
             )}
           </Animated.View>
@@ -561,7 +601,11 @@ export default function QuizScreen({
                       // coin flip with no payoff; with them, a miss still
                       // teaches the comparison.
                       `${picked === q.correct ? "Nice — " : `It's ${q.correct}. `}${metricReadout(q)}`
-                    : picked === q.correct
+                    : // Typed answers route through the matcher too: a "close"
+                      // spelling earned the point, so the feedback must not
+                      // call it wrong. TypeAnswer's own read-back is what
+                      // shows the correct spelling underneath.
+                      isRightFor(q, picked)
                       ? "Nice."
                       : q.type === "locator"
                         ? `That's ${q.choices.find((c) => c.code === picked)?.name ?? "elsewhere"} — ${q.country.name} is in green.`

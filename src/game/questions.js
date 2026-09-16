@@ -162,6 +162,7 @@ function buildOne(type, target, tier = null) {
       prompt: `What is the capital of ${target.name}?`,
       correct: target.capital,
       options: shuffle([target.capital, ...distractors]),
+      ...typedAnswer(tier, CAPITAL_NAMES),
     };
   }
   if (type === "capitalReverse") {
@@ -175,6 +176,7 @@ function buildOne(type, target, tier = null) {
       prompt: `Which country has ${target.capital} as its capital?`,
       correct: target.name,
       options: shuffle([target.name, ...distractors]),
+      ...typedAnswer(tier, COUNTRY_NAMES),
     };
   }
   if (type === "locator") {
@@ -226,8 +228,34 @@ function buildOne(type, target, tier = null) {
     prompt: type === "flag" ? "Which country's flag is this?" : "Which country is this?",
     correct: target.name,
     options: shuffle([target.name, ...distractors]),
+    ...typedAnswer(tier, COUNTRY_NAMES),
   };
 }
+
+// The answer-surface flags a typed tier adds to a question.
+//
+// These ride on the QUESTION, not the round, because QuizScreen branches on
+// the question's own shape — a country round mixes types, and "what mode is
+// this round?" is the wrong question to ask when deciding how to render one
+// item. Same rule the locator already forced.
+//
+//   answer      "type" selects the text-input surface; absent means options.
+//   suggest     Medium shows autocomplete, Hard does not. That single flag is
+//               the entire difference between the two tiers.
+//   answerPool  What autocomplete draws from, and the alternatives the matcher
+//               uses to refuse a DIFFERENT real country that happens to score
+//               close (see answerMatch.js).
+//
+// Returns nothing at all for easy/null, so an untiered question object is
+// byte-identical to what it was before this milestone.
+function typedAnswer(tier, pool) {
+  if (tier !== "medium" && tier !== "hard") return null;
+  return { answer: "type", suggest: tier === "medium", answerPool: pool };
+}
+
+// Computed once: every answer a country-naming question can have.
+const COUNTRY_NAMES = COUNTRIES.map((c) => c.name);
+const CAPITAL_NAMES = COUNTRIES.map((c) => c.capital);
 
 // Build a standard single-mode round. Falls back to the full pool if a tier
 // doesn't have enough countries to fill the round (keeps hard-mode Shape safe).

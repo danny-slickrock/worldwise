@@ -165,6 +165,15 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  normalize,
+  canonical,
+  levenshtein,
+  similarity,
+  matchAnswer,
+  isCorrectAnswer,
+  suggestAnswers,
+} from "../src/game/answerMatch";
+import {
   TIER_ORDER,
   TIERED_MODES,
   tiersFor,
@@ -5134,6 +5143,183 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nTyped-answer matching (M2.12 step 3)");
+
+// --- normalization, against the real accented names in the dataset ---
+check(normalize("Brazil") === "brazil", "case folds");
+check(normalize("  BRAZIL  ") === "brazil", "whitespace trims");
+check(normalize("Côte d'Ivoire") === "cote d ivoire", "accents and punctuation are stripped");
+check(
+  normalize("São Tomé and Príncipe") === "sao tome and principe",
+  "every accent in the dataset normalizes, not a hand-listed few"
+);
+check(
+  normalize("Guinea-Bissau") === "guinea bissau",
+  "a hyphen becomes a space, so 'guinea bissau' agrees — deleting it would make 'guineabissau'"
+);
+check(normalize("the Gambia") === "gambia", "a leading article is noise");
+check(normalize(null) === "" && normalize(undefined) === "", "non-strings normalize to empty");
+
+// --- exact and alias hits, over the whole real dataset ---
+check(
+  COUNTRIES.every((c) => matchAnswer(c.name, c.name) === "match"),
+  "every one of the 196 country names matches itself exactly"
+);
+check(
+  COUNTRIES.every((c) => matchAnswer(c.name.toUpperCase(), c.name) === "match"),
+  "...and in any case"
+);
+check(
+  COUNTRIES.every((c) => matchAnswer(c.capital, c.capital) === "match"),
+  "every capital matches itself, accents included"
+);
+check(
+  matchAnswer("cote d ivoire", "Côte d'Ivoire") === "match" &&
+    matchAnswer("Sao Tome and Principe", "São Tomé and Príncipe") === "match",
+  "an unaccented spelling of an accented name is a full match, not merely close"
+);
+check(
+  matchAnswer("Brasil", "Brazil") === "match" &&
+    matchAnswer("Holland", "Netherlands") === "match" &&
+    matchAnswer("USA", "United States") === "match" &&
+    matchAnswer("Burma", "Myanmar") === "match",
+  "known alternative names are full matches via the alias table"
+);
+
+// --- THE SAFETY PROPERTY: names one edit apart must never match each other ---
+const ONE_EDIT_TRAPS = [
+  ["Iceland", "Ireland"],
+  ["Ireland", "Iceland"],
+  ["Iran", "Iraq"],
+  ["Iraq", "Iran"],
+  ["Gambia", "Zambia"],
+  ["Zambia", "Gambia"],
+];
+check(
+  ONE_EDIT_TRAPS.every(([typed, target]) => matchAnswer(typed, target) === "miss"),
+  "the one-edit country pairs (iceland/ireland, iran/iraq, gambia/zambia) never match each other"
+);
+
+// The general form of that property, over the entire dataset: no country name
+// may be accepted as any OTHER country name. This is the test that would catch
+// a future loosening of the threshold.
+const crossMatches = [];
+for (const a of COUNTRIES) {
+  for (const b of COUNTRIES) {
+    if (a.code === b.code) continue;
+    if (matchAnswer(a.name, b.name) !== "miss") crossMatches.push(`${a.name} -> ${b.name}`);
+  }
+}
+check(
+  crossMatches.length === 0,
+  `no country name is ever accepted as a different country (${crossMatches.slice(0, 3).join(", ")})`
+);
+
+// --- the middle state: real typos in long names ---
+check(
+  matchAnswer("Kyrgystan", "Kyrgyzstan") === "close",
+  "a dropped letter in a long name is close"
+);
+check(matchAnswer("Netherland", "Netherlands") === "close", "a missing plural is close");
+check(matchAnswer("Switzerlnd", "Switzerland") === "close", "a dropped vowel is close");
+check(matchAnswer("Afghanistn", "Afghanistan") === "close", "another long-name typo is close");
+check(
+  isCorrectAnswer("match") && isCorrectAnswer("close") && !isCorrectAnswer("miss"),
+  "close earns the point — that is the entire purpose of the middle state"
+);
+
+// --- misses ---
+check(matchAnswer("", "Brazil") === "miss", "an empty answer is a miss, not a match on empty");
+check(matchAnswer("   ", "Brazil") === "miss", "whitespace only is a miss");
+check(matchAnswer("France", "Germany") === "miss", "a different country is a miss");
+check(
+  matchAnswer("Guinea", "Papua New Guinea") === "miss",
+  "a substring is a miss — similarity divides by the LONGER string"
+);
+check(matchAnswer("xxxxx", "Brazil") === "miss", "nonsense is a miss");
+
+// The alternatives backstop: naming a real, different answer that happens to
+// score close is still a miss.
+check(
+  matchAnswer("Austria", "Australia", ["Austria", "Australia"]) === "miss",
+  "naming a different real answer is never a typo, whatever it scores"
+);
+
+// --- similarity and distance, the primitives ---
+check(levenshtein("", "") === 0 && levenshtein("abc", "abc") === 0, "distance is 0 for identical");
+check(
+  levenshtein("", "abc") === 3 && levenshtein("abc", "") === 3,
+  "distance against empty is length"
+);
+check(levenshtein("kitten", "sitting") === 3, "the textbook case: kitten -> sitting is 3");
+check(similarity("abc", "abc") === 1, "similarity is 1 for identical");
+check(similarity("", "") === 1, "two empties are identical");
+check(
+  similarity("guinea", "papua new guinea") < 0.5,
+  "similarity is normalized by the longer string, so a substring scores low"
+);
+
+// --- suggestions ---
+const SUGGEST_POOL = ["Guatemala", "Guinea", "Guyana", "Papua New Guinea", "Uruguay", "Germany"];
+check(suggestAnswers("", SUGGEST_POOL).length === 0, "no input suggests nothing");
+check(
+  suggestAnswers("gu", SUGGEST_POOL)[0] === "Guatemala",
+  "prefix hits rank above substring hits"
+);
+check(
+  suggestAnswers("gu", SUGGEST_POOL).includes("Papua New Guinea"),
+  "...but substring hits still appear"
+);
+check(
+  suggestAnswers("gu", SUGGEST_POOL).indexOf("Papua New Guinea") >
+    suggestAnswers("gu", SUGGEST_POOL).indexOf("Guyana"),
+  "...below every prefix hit"
+);
+check(
+  suggestAnswers("xyzzy", SUGGEST_POOL).length === 0,
+  "suggestions are NOT fuzzy — three wrong letters must not hand over the answer"
+);
+check(
+  suggestAnswers(
+    "g",
+    COUNTRIES.map((c) => c.name),
+    6
+  ).length === 6,
+  "the suggestion list is capped, so it is never just the answer key"
+);
+check(
+  suggestAnswers(
+    "cote",
+    COUNTRIES.map((c) => c.name)
+  ).includes("Côte d'Ivoire"),
+  "suggestions match on the normalized form, so an unaccented query finds an accented name"
+);
+
+// --- the question shapes the tiers produce ---
+const flagEasy = buildRound("flag", "all", 4, { tier: "easy" });
+const flagMedium = buildRound("flag", "all", 4, { tier: "medium" });
+const flagHard = buildRound("flag", "all", 4, { tier: "hard" });
+check(
+  flagEasy.every((q) => q.answer === undefined && q.options.length === 4),
+  "Easy is unchanged — a question object is byte-identical to pre-milestone"
+);
+check(
+  flagMedium.every((q) => q.answer === "type" && q.suggest === true),
+  "Medium is a typed question WITH suggestions"
+);
+check(
+  flagHard.every((q) => q.answer === "type" && q.suggest === false),
+  "Hard is a typed question with NO suggestions — that single flag is the whole difference"
+);
+check(
+  flagHard.every((q) => q.answerPool.length === COUNTRIES.length),
+  "a typed question carries its own answer pool, so the surface needs to know nothing about the mode"
+);
+check(
+  flagMedium.every((q) => matchAnswer(q.correct, q.correct, q.answerPool) === "match"),
+  "every typed question's own correct answer matches against its own pool"
+);
+
 console.log("\nInteraction difficulty catalog (M2.12 step 2)");
 
 // The six tiered games, and only those. Daily and a country round deliberately
@@ -5230,15 +5416,19 @@ check(normalizeInteractionTier("daily", "hard") === null, "a mode with no menu h
 // builds the multiple-choice shape — but the pick itself is never rewritten.
 check(isTierBuilt("flag", "easy") === true, "easy is built for every mode today");
 check(
-  isTierBuilt("flag", "hard") === false,
-  "hard is not built yet — steps 3-6 wire the real interactions"
+  isTierBuilt("flag", "medium") === true && isTierBuilt("flag", "hard") === true,
+  "Flag's typed tiers are built (step 3's proving ground)"
 );
 check(
-  effectiveTier("flag", "hard") === "easy",
+  isTierBuilt("shape", "expert") === false,
+  "a tier whose interaction is still unbuilt says so — step 4 wires Shape"
+);
+check(
+  effectiveTier("shape", "expert") === "easy",
   "an unbuilt tier BUILDS as the mode's first, so a question always has an answer surface"
 );
 check(
-  normalizeInteractionTier("flag", "hard") === "hard",
+  normalizeInteractionTier("shape", "expert") === "expert",
   "...while the SELECTION still reads as what the player picked — the fallback never rewrites their choice"
 );
 check(

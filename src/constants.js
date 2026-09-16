@@ -13,6 +13,21 @@ export const DIFFICULTIES = [
 ];
 export const DEFAULT_DIFFICULTY = "all";
 
+// Typed answers (M2.12 step 3): how close a spelling has to be to count.
+//
+// A Levenshtein *ratio* rather than an edit count, and 0.90 rather than
+// anything looser, because several real country names sit one edit apart —
+// iceland/ireland, iran/iraq, gambia/zambia. At this ratio a name has to be
+// 10+ characters before it can absorb a single edit at all, and no two country
+// names that long are close to each other. Legitimate alternative spellings
+// ("Brasil", "Holland", "USA") are handled by the alias table in
+// game/answerMatch.js, never by loosening this. See that file's header.
+export const ANSWER_CLOSE_RATIO = 0.9;
+
+// How many autocomplete suggestions the Medium tier offers at once. Enough to
+// be useful, few enough that the list is not just the answer key.
+export const ANSWER_SUGGESTION_LIMIT = 6;
+
 // Timed mode: seconds allowed to answer each question before it counts as
 // wrong. Not applied to the Daily Challenge — that round stays untimed.
 export const TIMED_SECONDS_PER_QUESTION = 10;

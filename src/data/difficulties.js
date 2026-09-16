@@ -119,9 +119,10 @@ export function normalizeTier(mode, tier) {
 // no way to answer it. This is the one place that knows, so retiring a
 // fallback is a single edit here rather than a hunt through the engine.
 //
-// Everything is `easy` today; steps 4-6 move modes into BUILT_TIERS.
+// Step 3 built the shared type-in surface and proved it on Flag. Step 4 moves
+// capital/capitalReverse/shape across, steps 5-6 the other two.
 const BUILT_TIERS = {
-  flag: ["easy"],
+  flag: ["easy", "medium", "hard"],
   capital: ["easy"],
   capitalReverse: ["easy"],
   shape: ["easy"],
