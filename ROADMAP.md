@@ -1530,44 +1530,90 @@ teaching *how the world works*, not just *where things are*.
        `MODES` now but carry `comingSoon: true`, because `buildRound()` has no branch for either
        and silently returns 8 questions of an unknown type that `QuizScreen` renders no answer
        surface for — steps 7-8 remove the flag.
-    2. ☐ **The pre-game difficulty menu.** `src/data/difficulties.js` (pure): per mode, ordered
+    2. ✅ **The pre-game difficulty menu.** `src/data/difficulties.js` (pure): per mode, ordered
        tiers with a label and a one-line description. Picking a game shows the tier menu before the
        round; the chosen tier flows into `buildRound(mode, { tier })`. Tiers whose interaction
        isn't built yet fall back to current multiple-choice behaviour, so nothing breaks mid-step.
-    3. ☐ **Type-in + fuzzy matcher (reusable).** `src/game/answerMatch.js` (pure): normalize case,
+    3. ✅ **Type-in + fuzzy matcher (reusable).** `src/game/answerMatch.js` (pure): normalize case,
        accents, punctuation and common aliases; return `match` / `close` (≥ a Levenshtein ratio
        threshold in `constants.js`) / `miss`. Plus a text-input answer surface in `QuizScreen`,
        selected by a question flag — **branch on the question's type, not the round's mode**, the
        rule a mixed country round already forces.
-    4. ☐ **Tiers into the type-in family** (Flag, Capital, Capital Reverse, Shape). Easy = today's
+    4. ✅ **Tiers into the type-in family** (Flag, Capital, Capital Reverse, Shape). Easy = today's
        4-option multiple choice; Medium = type-in with suggestions; Hard = type-in blind, close
        spelling accepted. Shape also gets **Expert**: blind type-in against visually
        similar-silhouette distractors, chosen by a pure, tested similarity helper.
-    5. ☐ **Country Locator tiers** on the globe. Easy = pre-oriented *and* candidates highlighted;
+    5. ✅ **Country Locator tiers** on the globe. Easy = pre-oriented *and* candidates highlighted;
        Medium = pre-oriented, no highlight; Hard = not pre-oriented, borders shown, simple basemap;
        Expert = terrain basemap with no borders drawn. Reuses `locatorRound.js` framing and the
        `settings.basemap` mechanism as a **per-question override**, never by writing the global
        setting — switching a game tier must not silently change what every other globe looks like.
-    6. ☐ **Higher or Lower tiers.** Easy = well-known countries, clear gaps; Medium = closer values,
+    6. ✅ **Higher or Lower tiers.** Easy = well-known countries, clear gaps; Medium = closer values,
        less-familiar places; Hard = the tightest *still-fair* ratio with obscure countries. Folded
        into the existing pure fair-pair builder, and Hard must still respect the no-impossible-
        near-tie rule — the hardest fair pair, never a coin flip.
-    7. ☐ **Pro game: Name Every Country.** A timed single sitting scored by count and time,
+    7. ✅ **Pro game: Name Every Country.** A timed single sitting scored by count and time,
        leaderboard-friendly. Four tiers: Easy = a country highlights, pick the name; Medium = a
        name is given, locate it; Hard = a country highlights, type it; Expert = blank map, type as
        many as you can from memory, blind. Pure run/timer/scoring logic (`src/game/marathon.js`),
        IO surface on top. Large — build the pure engine and one tier first, review, then the rest;
        one commit per part.
-    8. ☐ **Pro game: Identify All Flags.** The second marathon, **sharing step 7's engine rather
+    8. ✅ **Pro game: Identify All Flags.** The second marathon, **sharing step 7's engine rather
        than duplicating it**. Easy = pick from four; Medium = search + suggestions; Hard = type it
        blind. Optional Expert = rapid-fire every flag, blind, tighter clock.
-    9. ☐ **Review surface (study analytics).** `src/game/reviewPolicy.js` (pure) mines
+    9. ✅ **Review surface (study analytics).** `src/game/reviewPolicy.js` (pure) mines
        `game_results.countries` — the `{ code, correct }` pairs M2.5 step 6.1 already captures —
        into per-country accuracy, times seen and recency, classifying each as needs-study and
        grouping by region. A Quizlet-style Review surface reached from **both** Home and Profile,
        with a "Practice your weak spots" button that builds a round from the weak set. The loading
        window gets a `Skeleton` behind the same `loadingResults` flag `AchievementsScreen` uses —
        otherwise a signed-in player sees every country at 0% for a beat before the fetch lands.
+
+  **M2.12 is done end to end (2026-09-16), verified in a real browser at every
+  step.** Decisions worth not relitigating:
+  - **The fuzzy matcher's 0.90 ratio is a SAFETY property, not a tuning knob.**
+    `iceland/ireland`, `iran/iraq` and `gambia/zambia` are each one edit apart, so a
+    blanket "one typo is fine" rule accepts Iran for Iraq — worse than rejecting a typo,
+    because it teaches the wrong fact and calls it right. A ratio scales with length, so
+    only 10+ character names can absorb an edit, and no two country names that long are
+    near each other. Legitimate variants ("Brasil", "Holland", "USA") come from the alias
+    table in `game/answerMatch.js`, NEVER from loosening the threshold. A test proves the
+    general form over all 196x195 ordered pairs.
+  - **Shape Expert's lookalikes are measured, not listed.** A hand-written list encodes one
+    person's guesses and goes stale the moment the map is regenerated. `shapeSimilarity.js`
+    normalizes each outline into its own bounding box (so the comparison is about SHAPE, not
+    area), rasterizes to a 16x16 grid and takes a Jaccard penalised by aspect ratio. 0.70
+    keeps 52 of 167 countries and correctly excludes the unmistakable ones — France 0.07,
+    Russia 0.12, Chile 0.17, Norway 0.18.
+  - **Locator Medium drops the shortlist, not just the highlight.** `highlight` and
+    `restrictToCandidates` move together, because lighting four countries and then accepting
+    taps anywhere is the worst of both. Expert's borders-off and terrain are likewise locked:
+    an unbordered `simple` globe is a featureless green ball — unanswerable, not hard.
+  - **A tier's basemap is a PER-QUESTION override, never a write to `settings.basemap`.**
+    Otherwise one Expert round silently changes every other globe in the app.
+  - **Higher or Lower's "harder" means a tighter BAND, never an unfair one.** Every tier's
+    floor stays at or above `HIGHER_LOWER_MIN_RATIO` and `compareMetric` clamps rather than
+    trusting its caller, so Hard is the closest FAIR pair and never a coin flip. Land borders
+    band on the DIFFERENCE, since a ratio is meaningless on small integers.
+  - **The marathon engine never reads the clock.** `now` is a parameter to every function in
+    `game/marathon.js`, which is what makes a five-minute timed game testable in a
+    millisecond — 38 assertions, no fake timers. `isMatch` is injected too, which is why
+    step 8 reused the engine without touching it.
+  - **Count always outranks time.** 40 countries slowly beats 20 quickly, so the marathon's
+    speed bonus applies ONLY to a run that named everything, where every count is identical.
+  - **Review's three reasons are not interchangeable.** Recent miss, low accuracy and decay
+    call for different practice, so each country carries a reason rather than a blended
+    score. A never-seen country is a fourth state — marking all 196 weak on day one would
+    make the surface useless exactly when a new player first opens it.
+  - **A short weak set REPEATS rather than falling back.** Found in a browser: six weak
+    countries produced a practice round of Guatemala and Thailand, because `narrowToCodes`
+    fell back to the full pool below a full round. A short weak set is the normal state of
+    the Review surface, and "practice your weak spots" that ignores your weak spots is worse
+    than useless.
+  - **`DEFAULT_TIER = "pro"` is the whole paywall.** Every account unlocks everything today;
+    flipping that one constant in `game/entitlements.js` turns the cosmetic PRO badge into a
+    real lock, with every call site already in place.
+
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
   Currency, Language, National Animal, Food Origin, and City games — breadth without new bespoke code.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get

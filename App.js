@@ -48,11 +48,6 @@ import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
 import { hasTiers } from "./src/data/difficulties";
 import { isProMode } from "./src/game/entitlements";
-
-// The pro marathons run on their own screen and their own engine. Derived from
-// the entitlement catalog rather than a second hardcoded list, so adding a pro
-// game cannot forget to route it.
-const isMarathonMode = (mode) => isProMode(mode);
 import { LEARNING_PATH_REGIONS } from "./src/data/learningPaths";
 import {
   TABS,
@@ -68,6 +63,12 @@ import {
   syncToPath,
 } from "./src/game/navigation";
 import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history";
+
+// The pro marathons run on their own screen and their own engine. Derived from
+// the entitlement catalog rather than a second hardcoded list, so adding a pro
+// game cannot forget to route it.
+const isMarathonMode = (mode) => isProMode(mode);
+
 
 // The safe-area inset takes `surface` — the page the world is printed on — so
 // the notch area reads as more page rather than as a band of chrome.

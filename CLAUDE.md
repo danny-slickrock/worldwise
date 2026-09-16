@@ -163,6 +163,30 @@ src/
   game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
                            #   game_results.countries into per-region collected/total/progress,
                            #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
+  game/entitlements.js     # PURE M2.12 step 1: free|pro catalog + isUnlocked(mode, tier).
+                           #   DEFAULT_TIER is "pro" — flipping that one constant is the
+                           #   whole paywall; every call site already exists
+  data/difficulties.js     # PURE M2.12 step 2: INTERACTION difficulty per mode (how you
+                           #   answer). ORTHOGONAL to constants.js's DIFFICULTIES, which is
+                           #   the country POOL filter (famous vs obscure). isTierBuilt()
+                           #   separates "picked" from "buildable"
+  game/answerMatch.js      # PURE M2.12 step 3: match | close | miss. The 0.90 ratio is a
+                           #   SAFETY property — iceland/ireland, iran/iraq and gambia/zambia
+                           #   are each ONE edit apart. Variants come from the alias table,
+                           #   never from loosening the fuzz
+  game/shapeSimilarity.js  # PURE M2.12 step 4: which outlines LOOK alike. Normalized to each
+                           #   country's own bbox (so it measures shape, not area), 16x16
+                           #   grid, Jaccard, aspect-penalised. Feeds Shape Expert
+  game/locatorTiers.js     # PURE M2.12 step 5: the globe's four locator tiers. highlight and
+                           #   restrictToCandidates move TOGETHER; borders-off implies terrain
+  game/marathon.js         # PURE M2.12 step 7: the timed-run engine behind both pro games.
+                           #   NEVER reads the clock — `now` is a parameter, and `isMatch` is
+                           #   injected, which is why step 8 reused it untouched
+  game/marathonTiers.js    # PURE M2.12 steps 7-8: a marathon tier as (prompt, answer) rather
+                           #   than as branches — which is why the flag game needed no new UI
+  game/reviewPolicy.js     # PURE M2.12 step 9: per-country accuracy/recency -> a REASON
+                           #   (recent-miss | low-accuracy | stale). Never-seen is a fourth
+                           #   state, deliberately excluded from the study list
   game/leaderboardPolicy.js # PURE M2.6 step 1: rankLeaderboard(entries, currentUserId) — competition
                            #   ranking (ties share a rank) + a deterministic tie-break; topWithYou()
                            #   is the top N plus the player's own row when they're outside it. Ranks
@@ -231,6 +255,13 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
   screens/LearningPathScreen.js # M2.4: nav seam (step 3) + mastery states/tapping a node (step 4)
                            #   + a region-pill row generalizing to all five paths (step 5)
                            #   + fade/rise-in + fade/settle-out transitions (step 6.4)
+  screens/GameSetupScreen.js # M2.12 step 2: the pre-game difficulty menu (/game/<mode>)
+  screens/MarathonScreen.js # M2.12 steps 7-8: BOTH pro marathons. Owns the one real clock
+                           #   and the rendering; every decision about the run is marathon.js
+  screens/ReviewScreen.js  # M2.12 step 9: study analytics — what to go and learn, reached
+                           #   from Home AND Profile
+  components/TypeAnswer.js # M2.12 step 3: the typed answer surface. One component for Medium
+                           #   and Hard, because the ONLY difference is whether it suggests
   screens/AchievementsScreen.js # M2.5 hero screen (step 3): real locked/unlocked state + progress
                            #   bars via achievementPolicy.js, reached from a Profile row (step 4),
                            #   plus a level card via levelPolicy.js above the badge list (step 5)
