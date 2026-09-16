@@ -36,7 +36,7 @@ import GlobeMap from "./GlobeMap";
 import BasemapToggle from "./BasemapToggle";
 import CompassMark from "./CompassMark";
 import AnimatedNumber from "./AnimatedNumber";
-import { locatorView } from "../game/locatorRound";
+import { locatorStartView, locatorPresentation } from "../game/locatorTiers";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
 
@@ -104,16 +104,41 @@ export default function QuizScreen({
   // per render: the framing is a property of the round, and recomputing it on
   // every tap would snap the globe back and undo any spinning the player did
   // while thinking.
+  // Where the globe starts is now a TIER decision (M2.12 step 5): Easy and
+  // Medium open framed on the neighbourhood, Hard and Expert open on the plain
+  // world view and make you spin for it. locatorTiers.js owns the choice; the
+  // start view must never be derived from the answer on an unoriented tier, or
+  // the framing leaks what the question is asking.
   const locatorFraming = useMemo(
     () =>
       q?.type === "locator"
-        ? locatorView(
+        ? locatorStartView(
+            q.locatorTier,
             q.choices.map((c) => c.code),
             COUNTRY_CENTERS
           )
         : { spin: { lng: 0, lat: 0 }, zoom: 1 },
     [q]
   );
+
+  // The locator's presentation for this question's tier. A PER-QUESTION
+  // override — reading it here rather than writing settings.basemap is what
+  // stops one Expert round from silently changing every other globe in the app.
+  const locatorLook = q?.type === "locator" ? locatorPresentation(q.locatorTier) : null;
+
+  // The player may still toggle the basemap, but only on a tier where both
+  // options are actually playable. With borders off (Expert), `simple` is a
+  // featureless green ball and the question becomes unanswerable rather than
+  // hard, so that tier keeps its terrain and loses the toggle.
+  const [locatorBasemapOverride, setLocatorBasemapOverride] = useState(null);
+  useEffect(() => {
+    setLocatorBasemapOverride(null);
+  }, [idx]);
+  const locatorMapName = locatorLook
+    ? locatorLook.showBorders
+      ? (locatorBasemapOverride ?? locatorLook.basemap)
+      : locatorLook.basemap
+    : basemap;
 
   // The locator's globe is a real globe: drag to spin, pinch/scroll to zoom,
   // flick to coast — the same gesture layer the Explore map uses, which is the
@@ -454,19 +479,24 @@ export default function QuizScreen({
                   spin={globe.spin}
                   zoom={globe.zoom}
                   onSelect={choose}
-                  basemap={basemap}
+                  basemap={locatorMapName}
+                  showBorders={locatorLook.showBorders}
                   locator={{
                     choices: q.choices,
                     correctCode: q.correct,
                     pickedCode: picked,
                     answered,
+                    highlight: locatorLook.highlight,
+                    restrictToCandidates: locatorLook.restrictToCandidates,
                   }}
                 />
-                <BasemapToggle
-                  value={basemap}
-                  onChange={onChangeBasemap}
-                  style={styles.basemapToggle}
-                />
+                {locatorLook.showBorders && (
+                  <BasemapToggle
+                    value={locatorMapName}
+                    onChange={setLocatorBasemapOverride}
+                    style={styles.basemapToggle}
+                  />
+                )}
                 {/* Spinning far enough can carry every candidate onto the back
                     face, which would leave the question unanswerable with no
                     way back. Only shown once the player has actually moved the

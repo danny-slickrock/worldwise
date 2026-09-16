@@ -174,6 +174,11 @@ export default function GlobeMap({
   locator = null,
   highlightCode = null,
   basemap = DEFAULT_BASEMAP,
+  // M2.12 step 5: Expert draws no country borders at all, so the photographic
+  // basemap is the only information left. A per-question override — never the
+  // global setting, which would leave every other globe in the app changed
+  // after one round.
+  showBorders = true,
 }) {
   const [hoveredCode, setHoveredCode] = useState(null);
   // Whether the photographic basemap actually rendered. It is asynchronous (the
@@ -194,6 +199,13 @@ export default function GlobeMap({
     [locator]
   );
   const isLocator = Boolean(locator);
+  // Easy lights the candidates and accepts only those. Every harder tier does
+  // neither — the two move together, because highlighting four countries and
+  // then accepting taps anywhere would be the worst of both. locatorTiers.js
+  // owns that pairing; this just reads it. Defaults keep the pre-M2.12
+  // behaviour for any caller that passes no flags (the country round).
+  const locatorHighlight = isLocator ? locator.highlight !== false : false;
+  const locatorRestricts = isLocator ? locator.restrictToCandidates !== false : false;
   const wantsRaster = basemap === "terrain";
   const raster = wantsRaster && rasterReady;
   const locked = isLocator && locator.answered;
@@ -218,7 +230,12 @@ export default function GlobeMap({
   // shrunk to never overlap its neighbour's.
   const fillFor = (code) => {
     if (isLocator) {
-      const state = locatorFillState(code, locator);
+      // Before the answer, an unhighlighted tier paints nothing special: the
+      // candidate colour IS the hint, so showing it would hand back the
+      // narrowing the tier exists to remove. After the answer everything is
+      // revealed as normal — that is the teaching moment, not an assist.
+      const state =
+        !locatorHighlight && !locator.answered ? "inert" : locatorFillState(code, locator);
       // Scenery still gets its terrain colour — the round is played on the
       // same world the Explore map shows, not on a stripped-back diagram. Only
       // the states that mean something (candidate, correct, wrong) override it.
@@ -238,7 +255,7 @@ export default function GlobeMap({
   // navigation — nothing is tappable, so handleTap can never be reached with an
   // undefined callback behind it.
   const selectable = (code) =>
-    Boolean(onSelect) && !locked && (!isLocator || candidateCodes.has(code));
+    Boolean(onSelect) && !locked && (!isLocator || !locatorRestricts || candidateCodes.has(code));
 
   // Hovering is separate from tapping. A read-only globe still benefits from
   // naming what is under the pointer, and the locator is the one place hover
@@ -434,8 +451,8 @@ export default function GlobeMap({
             fill={fillFor(code)}
             // Borders in the ocean's own color, so every country reads as its
             // own island and shared land borders are as legible as coastlines.
-            stroke={raster ? map.borderOnRaster : map.border}
-            strokeWidth={GLOBE_BORDER_WIDTH}
+            stroke={showBorders ? (raster ? map.borderOnRaster : map.border) : "none"}
+            strokeWidth={showBorders ? GLOBE_BORDER_WIDTH : 0}
             strokeLinejoin="round"
             style={HOVER_HANDLERS_SUPPORTED && selectable(code) ? HOVER_STYLE : undefined}
             {...(selectable(code) ? pickHandler(code, handleTap) : null)}
@@ -461,6 +478,7 @@ export default function GlobeMap({
           state colour as the country would; the hit circle below it is larger
           again, so the touch target exceeds its visual. */}
         {isLocator &&
+          locatorHighlight &&
           SMALL_COUNTRIES.map((code) =>
             centers[code] &&
             candidateCodes.has(code) &&

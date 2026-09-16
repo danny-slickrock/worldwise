@@ -127,7 +127,7 @@ const BUILT_TIERS = {
   capital: ["easy", "medium", "hard"],
   capitalReverse: ["easy", "medium", "hard"],
   shape: ["easy", "medium", "hard", "expert"],
-  locator: ["easy"],
+  locator: ["easy", "medium", "hard", "expert"],
   higherLower: ["easy"],
 };
 

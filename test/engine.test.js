@@ -165,6 +165,15 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  LOCATOR_TIERS,
+  locatorPresentation,
+  locatorStartView,
+  locatorTappable,
+  locatorHighlights,
+  locatorBasemap,
+  locatorShowsBorders,
+} from "../src/game/locatorTiers";
+import {
   ringsOf,
   shapeSignature,
   shapeSimilarity,
@@ -5151,6 +5160,118 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nCountry Locator tiers (M2.12 step 5)");
+
+// --- the presentation table ---
+check(
+  locatorPresentation("easy").preOriented && locatorPresentation("medium").preOriented,
+  "Easy and Medium open framed on the neighbourhood"
+);
+check(
+  !locatorPresentation("hard").preOriented && !locatorPresentation("expert").preOriented,
+  "Hard and Expert make you spin for it"
+);
+check(
+  locatorHighlights("easy") && !["medium", "hard", "expert"].some(locatorHighlights),
+  "only Easy lights up the candidates"
+);
+
+// THE pairing this module exists to keep: highlight and the tappable set move
+// together. Lighting four countries and then accepting taps anywhere would be
+// the worst of both.
+check(
+  LOCATOR_TIERS.every(
+    (t) => locatorHighlights(t) === (locatorTappable(t, [{ code: "fr" }]) !== null)
+  ),
+  "highlight and restrict-to-candidates always agree — a lit tier is a shortlist tier"
+);
+check(
+  locatorTappable("easy", [{ code: "fr" }, { code: "de" }]).length === 2,
+  "Easy restricts taps to its shortlist"
+);
+check(
+  locatorTappable("hard", [{ code: "fr" }]) === null,
+  "every harder tier opens the whole globe — null means no restriction"
+);
+
+// --- borders and basemap ---
+check(
+  ["easy", "medium", "hard"].every(locatorShowsBorders) && !locatorShowsBorders("expert"),
+  "Expert alone draws no borders"
+);
+check(locatorBasemap("expert") === "terrain", "...which is exactly why Expert forces terrain");
+check(
+  !locatorShowsBorders("expert") && locatorBasemap("expert") === "terrain",
+  "borders-off and terrain are locked together: an unbordered `simple` globe is a flat green ball, unanswerable rather than hard"
+);
+check(
+  ["easy", "medium", "hard"].every((t) => locatorBasemap(t) === "simple"),
+  "the bordered tiers use the kit's simple map, which reads borders best"
+);
+
+// An unknown tier must degrade to something playable, never to undefined.
+check(
+  locatorPresentation("nonsense").restrictToCandidates === true,
+  "an unknown tier falls back to the Easy presentation rather than a globe with nothing tappable"
+);
+check(locatorPresentation(undefined).preOriented === true, "...and so does a missing one");
+
+// --- framing ---
+const LOC_CODES = ["fr", "de", "es", "it"];
+const easyView = locatorStartView("easy", LOC_CODES, COUNTRY_CENTERS);
+const hardView = locatorStartView("hard", LOC_CODES, COUNTRY_CENTERS);
+check(easyView.zoom > 1, "a pre-oriented tier zooms in on the neighbourhood");
+check(
+  hardView.zoom === 1 &&
+    hardView.spin.lng === DEFAULT_SPIN.lng &&
+    hardView.spin.lat === DEFAULT_SPIN.lat,
+  "an unoriented tier starts at the plain world view"
+);
+// The leak this guards against: a start view derived from the answer would
+// hand over the answer before the player touched anything.
+check(
+  ["hard", "expert"].every((t) => {
+    const a = locatorStartView(t, ["fr"], COUNTRY_CENTERS);
+    const b = locatorStartView(t, ["nz"], COUNTRY_CENTERS);
+    return a.spin.lng === b.spin.lng && a.spin.lat === b.spin.lat;
+  }),
+  "an unoriented tier's start view does not depend on the answer — France and New Zealand open identically"
+);
+check(
+  easyView.spin.lng !== locatorStartView("easy", ["nz"], COUNTRY_CENTERS).spin.lng,
+  "...while a pre-oriented tier's obviously does"
+);
+
+// --- the question carries its tier ---
+for (const tier of LOCATOR_TIERS) {
+  const round = buildRound("locator", "all", 4, { tier });
+  check(
+    round.length === 4 && round.every((q) => q.locatorTier === tier),
+    `a ${tier} locator round tags every question with its tier`
+  );
+  check(
+    round.every((q) => q.choices.length === 4 && q.choices.some((c) => c.code === q.correct)),
+    `...and still carries its candidates, including the answer (${tier})`
+  );
+}
+
+// A country round mixes a locator question in and passes no tier, so it must
+// keep the pre-M2.12 presentation rather than losing its highlights.
+const countryRound = buildCountryRound("br");
+const embeddedLocator = countryRound.find((q) => q.type === "locator");
+check(
+  !embeddedLocator || embeddedLocator.locatorTier === "easy",
+  "a locator question inside a country round defaults to the Easy presentation"
+);
+
+// The fill policy still hides nothing once the answer is in — the reveal is
+// the teaching moment on every tier.
+check(
+  locatorFillState("fr", { choices: [{ code: "fr" }], correctCode: "fr", answered: true }) ===
+    "correct",
+  "the answer is revealed as correct after answering, on every tier"
+);
+
 console.log("\nShape similarity + tiered rounds (M2.12 step 4)");
 
 // --- the path parser, against the real generated data ---
@@ -5600,16 +5721,17 @@ check(
   "Flag's typed tiers are built (step 3's proving ground)"
 );
 check(isTierBuilt("shape", "expert") === true, "Shape's Expert tier is built (step 4)");
+check(isTierBuilt("locator", "expert") === true, "the Locator's tiers are built (step 5)");
 check(
-  isTierBuilt("locator", "hard") === false,
-  "a tier whose interaction is still unbuilt says so — step 5 wires the Locator"
+  isTierBuilt("higherLower", "hard") === false,
+  "a tier whose interaction is still unbuilt says so — step 6 wires Higher or Lower"
 );
 check(
-  effectiveTier("locator", "hard") === "easy",
+  effectiveTier("higherLower", "hard") === "easy",
   "an unbuilt tier BUILDS as the mode's first, so a question always has an answer surface"
 );
 check(
-  normalizeInteractionTier("locator", "hard") === "hard",
+  normalizeInteractionTier("higherLower", "hard") === "hard",
   "...while the SELECTION still reads as what the player picked — the fallback never rewrites their choice"
 );
 check(

@@ -216,6 +216,12 @@ function buildOne(type, target, tier = null) {
       correct: target.code,
       options: choices.map((c) => c.name),
       choices,
+      // The tier rides ON THE QUESTION, like every other answer-surface flag,
+      // so QuizScreen and GlobeMap branch on the question rather than on the
+      // round's mode — the rule a mixed country round forces. A country round
+      // mixes a locator question in among fact questions and passes no tier,
+      // so this resolves to the easy presentation there, unchanged.
+      locatorTier: tier ?? "easy",
     };
   }
   // flag & shape both ask "which country?"
