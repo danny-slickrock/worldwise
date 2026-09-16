@@ -164,6 +164,21 @@ import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
+import {
+  runShape,
+  startRun,
+  submitAnswer,
+  skipTarget,
+  endRun,
+  currentTarget,
+  remaining,
+  isOver,
+  remainingMs,
+  elapsedMs,
+  marathonScore,
+  compareRuns,
+} from "../src/game/marathon";
+import { MARATHON_POINTS_PER_FIND } from "../src/constants";
 import { higherLowerBand } from "../src/game/higherLower";
 import { HIGHER_LOWER_TIERS } from "../src/constants";
 import {
@@ -2962,6 +2977,7 @@ const roundTrips = [
   { name: "achievements" },
   { name: "quiz", mode: "shape", difficulty: "easy", timed: true },
   { name: "gameSetup", mode: "flag" },
+  { name: "marathon", mode: "nameEveryCountry", tier: "easy" },
 ];
 check(
   roundTrips.every((r) => routeToPath(pathToRoute(routeToPath(r))) === routeToPath(r)),
@@ -5162,6 +5178,152 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nMarathon engine (M2.12 step 7 part 1)");
+const eqCode = (a, b) => a === b;
+const T3 = ["fr", "de", "es"];
+
+// --- shapes ---
+check(
+  ["easy", "medium", "hard"].every((t) => runShape(t) === "prompted"),
+  "the prompted tiers all share one run shape"
+);
+check(
+  runShape("expert") === "recall",
+  "Expert is free recall — a blank map is a different loop, not a harder version of the same one"
+);
+check(runShape("nonsense") === "prompted", "an unknown tier defaults to the prompted shape");
+
+// --- the clock is a parameter, never read ---
+const run0 = startRun({ tier: "easy", targets: T3, now: 1000, durationMs: 10000 });
+check(remainingMs(run0, 1000) === 10000, "a fresh run has its whole duration left");
+check(remainingMs(run0, 6000) === 5000, "the clock is a pure function of `now`");
+check(remainingMs(run0, 99999) === 0, "...and never goes negative");
+check(elapsedMs(run0, 6000) === 5000, "elapsed is the mirror of remaining");
+check(
+  elapsedMs(run0, 99999) === 10000,
+  "elapsed is capped at the duration — a run cannot report having taken longer than it had"
+);
+check(!isOver(run0, 5000) && isOver(run0, 11000), "the run ends when the clock does");
+
+// --- prompted flow ---
+check(currentTarget(run0, 1000) === "fr", "the first target is the first in the shuffled list");
+const a1 = submitAnswer(run0, "fr", { now: 1100, isMatch: eqCode });
+check(a1.outcome === "correct" && a1.run.found.length === 1, "a right answer is recorded");
+check(currentTarget(a1.run, 1100) === "de", "...and advances to the next target");
+const a2 = submitAnswer(a1.run, "zz", { now: 1200, isMatch: eqCode });
+check(
+  a2.outcome === "wrong" && a2.run.missed.length === 1 && a2.run.found.length === 1,
+  "a wrong answer is recorded as missed and does not count as found"
+);
+check(
+  currentTarget(a2.run, 1200) === "es",
+  "...and still advances — a marathon never stalls on one question"
+);
+
+// THE BUG THIS CAUGHT: a prompted run must end when every target has been
+// SHOWN, not when every target has been FOUND. Otherwise a run that missed
+// anything keeps going with nothing left to ask.
+const a3 = submitAnswer(a2.run, "zz", { now: 1300, isMatch: eqCode });
+check(
+  isOver(a3.run, 1300),
+  "a prompted run ends once every target has been shown, even with misses outstanding"
+);
+check(currentTarget(a3.run, 1300) === null, "...and offers no further target");
+check(
+  submitAnswer(a3.run, "fr", { now: 1400, isMatch: eqCode }).outcome === "over",
+  "answering after the end is a no-op, not a late point"
+);
+
+// --- skipping ---
+const skipped = skipTarget(run0, 1100);
+check(
+  skipped.missed.length === 1 && skipped.index === 1,
+  "a skip counts as missed — in a timed game, pretending skipping is free makes the score meaningless"
+);
+check(
+  skipTarget(startRun({ tier: "expert", targets: T3, now: 0 }), 10).missed.length === 0,
+  "there is nothing to skip on a recall run"
+);
+
+// --- recall flow ---
+let rec = startRun({ tier: "expert", targets: T3, now: 0, durationMs: 10000 });
+check(currentTarget(rec, 0) === null, "a recall run names no target — that is the whole point");
+const r1 = submitAnswer(rec, "de", { now: 100, isMatch: eqCode });
+rec = r1.run;
+check(
+  r1.outcome === "correct" && rec.found[0] === "de",
+  "a recalled country is matched in any order"
+);
+const r2 = submitAnswer(rec, "de", { now: 200, isMatch: eqCode });
+check(
+  r2.outcome === "duplicate" && r2.run.missed.length === 0,
+  "naming one you already found is a DUPLICATE, not a miss — it must not be punished"
+);
+check(r2.run.found.length === 1, "...and cannot be scored twice");
+const r3 = submitAnswer(r2.run, "zz", { now: 300, isMatch: eqCode });
+check(
+  r3.outcome === "wrong" && r3.run.missed[0] === "zz",
+  "a recall miss records what was actually guessed, so the results can say what you tried"
+);
+check(
+  remaining(r3.run).length === 2,
+  "a recall miss consumes no target — there was no target to consume"
+);
+const done = ["fr", "es"].reduce(
+  (acc, code) => submitAnswer(acc, code, { now: 400, isMatch: eqCode }).run,
+  r3.run
+);
+check(isOver(done, 400), "a recall run ends when everything has been named");
+
+// --- ending ---
+const ended = endRun(run0, 5000);
+check(ended.endedAt === 5000, "ending stamps the time");
+check(
+  endRun(ended, 9000).endedAt === 5000,
+  "endRun is idempotent — a timer and an unmount cannot stamp two different times"
+);
+check(
+  remainingMs(ended, 99999) === 6000 && elapsedMs(ended, 99999) === 4000,
+  "a closed run's clock stops where it stopped, however long ago that was"
+);
+
+// --- scoring ---
+const partial = marathonScore(a3.run, 1300);
+check(
+  partial.found === 1 && partial.total === 3 && partial.missed === 2,
+  "the count is the headline"
+);
+check(!partial.completedAll && partial.speedBonus === 0, "an incomplete run earns no speed bonus");
+check(partial.score === 1 * MARATHON_POINTS_PER_FIND, "...so its score is purely what it found");
+
+let sweep = startRun({ tier: "easy", targets: ["fr", "de"], now: 0, durationMs: 10000 });
+sweep = submitAnswer(sweep, "fr", { now: 10, isMatch: eqCode }).run;
+sweep = submitAnswer(sweep, "de", { now: 20, isMatch: eqCode }).run;
+const sweepScore = marathonScore(endRun(sweep, 20), 20);
+check(
+  sweepScore.completedAll && sweepScore.speedBonus > 0,
+  "naming everything quickly earns the bonus"
+);
+check(
+  marathonScore(endRun(sweep, 10000), 10000).speedBonus === 0,
+  "...and naming everything on the buzzer earns none of it"
+);
+check(marathonScore(null, 0).found === 0, "a missing run scores zero rather than throwing");
+
+// THE RULE: count always outranks time. 40 slow beats 20 fast, and no
+// weighting may ever let it be otherwise.
+const slowMany = { found: 40, elapsedMs: 300000 };
+const fastFew = { found: 20, elapsedMs: 10000 };
+check(compareRuns(slowMany, fastFew) < 0, "more countries beats faster, always");
+check(
+  compareRuns({ found: 30, elapsedMs: 100 }, { found: 30, elapsedMs: 200 }) < 0,
+  "a tie on count is broken by the faster sitting"
+);
+check(
+  [fastFew, slowMany].sort(compareRuns)[0].found === 40,
+  "compareRuns drops straight into sort()"
+);
+
 console.log("\nHigher or Lower tiers (M2.12 step 6)");
 
 // THE INVARIANT. "Harder" means a tighter band, never an unfair one. If this
@@ -5774,12 +5936,16 @@ console.log("\nInteraction difficulty catalog (M2.12 step 2)");
 // The six tiered games, and only those. Daily and a country round deliberately
 // have no menu — see the note in data/difficulties.js.
 check(
-  TIERED_MODES.length === 6 &&
-    ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"].every((m) =>
-      TIERED_MODES.includes(m)
-    ),
-  "exactly the six free games carry a tier menu"
+  ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"].every((m) =>
+    TIERED_MODES.includes(m)
+  ),
+  "all six free games carry a tier menu"
 );
+check(
+  ["nameEveryCountry", "identifyAllFlags"].every((m) => TIERED_MODES.includes(m)),
+  "...and so do the two pro marathons — a marathon is a different run length, not a different kind of choice"
+);
+check(TIERED_MODES.length === 8, "eight tiered modes in total, and nothing else");
 check(
   !hasTiers("daily") && !hasTiers("country"),
   "Daily and a country round have no tier menu — a Daily with difficulty would be incomparable between players"
@@ -5870,8 +6036,18 @@ check(
 );
 check(isTierBuilt("shape", "expert") === true, "Shape's Expert tier is built (step 4)");
 check(
-  TIERED_MODES.every((m) => tiersFor(m).every((t) => isTierBuilt(m, t.key))),
-  "steps 3-6 are complete: every tier of every tiered mode has a real interaction built"
+  ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"].every((m) =>
+    tiersFor(m).every((t) => isTierBuilt(m, t.key))
+  ),
+  "steps 3-6 are complete: every tier of every FREE game has a real interaction built"
+);
+check(
+  isTierBuilt("nameEveryCountry", "easy") === true,
+  "step 7 part 1 ships Name Every Country's Easy tier"
+);
+check(
+  ["medium", "hard", "expert"].every((t) => !isTierBuilt("nameEveryCountry", t)),
+  "...and says plainly that the other three are still to come (part 2)"
 );
 // The fallback mechanism still has to work, so it is proved against a mode
 // with no built tiers at all rather than against whichever one happens to be

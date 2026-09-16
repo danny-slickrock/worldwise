@@ -108,12 +108,6 @@ export const MODES = {
     blurb: "How many can you get?",
     icon: "\u2632",
     accent: modeAccents.nameEveryCountry,
-    // Catalogued and badged, but not yet built (step 7). Without this flag the
-    // tile launches buildRound() with a mode it has no branch for, which
-    // silently returns 8 questions of an unknown type — QuizScreen renders no
-    // answer surface for those, so the round is unplayable rather than
-    // missing. Removed when step 7 ships the marathon engine.
-    comingSoon: true,
   },
   identifyAllFlags: {
     key: "identifyAllFlags",

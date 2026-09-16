@@ -71,6 +71,9 @@ export const ROUTES = {
   // perfectly reasonable thing to want to do.
   gameSetup: { tab: "home", root: false, chrome: true },
   quiz: { tab: "home", root: false, chrome: false },
+  // The pro marathons (M2.12 step 7). Focus mode like the quiz: a timed
+  // sitting with a clock running should have exactly one way out.
+  marathon: { tab: "home", root: false, chrome: false },
 };
 
 // A stack can't grow forever. Bouncing country → map → country → map is a
@@ -227,6 +230,11 @@ export function routeToPath(route) {
       return "/achievements";
     case "gameSetup":
       return `/game/${route.mode}`;
+    case "marathon": {
+      const defaultTier = tiersFor(route.mode)[0]?.key;
+      const q = route.tier && route.tier !== defaultTier ? `?tier=${route.tier}` : "";
+      return `/marathon/${route.mode}${q}`;
+    }
     case "quiz": {
       // Difficulty and timed ride as query params, and only when they differ
       // from the default — so the common link is a clean `/play/flag`, but a
@@ -285,6 +293,10 @@ export function pathToRoute(path) {
       return second ? { name: "country", code: second } : null;
     case "game":
       return second ? { name: "gameSetup", mode: second } : null;
+    case "marathon":
+      return second
+        ? { name: "marathon", mode: second, tier: normalizeTier(second, query.tier) }
+        : null;
     case "play":
       return second
         ? {

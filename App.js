@@ -16,6 +16,7 @@ import CountryPageScreen from "./src/screens/CountryPageScreen";
 import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
 import GameSetupScreen from "./src/screens/GameSetupScreen";
+import MarathonScreen from "./src/screens/MarathonScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
 import AchievementsScreen from "./src/screens/AchievementsScreen";
@@ -45,6 +46,12 @@ import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
 import { hasTiers } from "./src/data/difficulties";
+import { isProMode } from "./src/game/entitlements";
+
+// The pro marathons run on their own screen and their own engine. Derived from
+// the entitlement catalog rather than a second hardcoded list, so adding a pro
+// game cannot forget to route it.
+const isMarathonMode = (mode) => isProMode(mode);
 import { LEARNING_PATH_REGIONS } from "./src/data/learningPaths";
 import {
   TABS,
@@ -323,15 +330,23 @@ function AppShell() {
   // than to the menu you already answered.
   const startTieredRound = (mode, tier) =>
     setNav((n) =>
-      navigate(replace(n, { name: "home" }), {
-        name: "quiz",
-        mode,
-        difficulty: DEFAULT_DIFFICULTY,
-        timed: false,
-        countryCode: null,
-        tier,
-        attempt: 0,
-      })
+      navigate(
+        replace(n, { name: "home" }),
+        // A marathon is its own route and its own screen: a timed sitting is
+        // not an 8-question round with a bigger number, and QuizScreen has no
+        // concept of a clock that ends the whole game.
+        isMarathonMode(mode)
+          ? { name: "marathon", mode, tier }
+          : {
+              name: "quiz",
+              mode,
+              difficulty: DEFAULT_DIFFICULTY,
+              timed: false,
+              countryCode: null,
+              tier,
+              attempt: 0,
+            }
+      )
     );
 
   // "Play again" replaces the quiz route instead of stacking a second one, so
@@ -365,6 +380,17 @@ function AppShell() {
       case "gameSetup":
         return (
           <GameSetupScreen mode={route.mode} onExit={backHandler} onStart={startTieredRound} />
+        );
+
+      case "marathon":
+        return (
+          <MarathonScreen
+            key={`${route.mode}-${route.tier ?? ""}`}
+            mode={route.mode}
+            tier={route.tier ?? "easy"}
+            onExit={backHandler}
+            onFinish={backHandler}
+          />
         );
 
       case "country":

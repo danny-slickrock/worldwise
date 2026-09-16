@@ -37,6 +37,16 @@ export const ANSWER_SUGGESTION_LIMIT = 6;
 // the real outlines rather than guessed: 0.70 keeps 52 of 167 countries —
 // enough for a varied round — and correctly excludes the unmistakable ones
 // (France 0.07, Russia 0.12, Chile 0.17, Norway 0.18).
+// The pro marathons (M2.12 steps 7-8): one timed sitting, scored by count.
+//
+// Five minutes is long enough that the score reflects knowledge rather than
+// typing speed, and short enough to sit down for on a phone. The speed bonus
+// applies ONLY to a run that named everything — see marathonScore()'s note on
+// why count must always outrank time.
+export const MARATHON_DURATION_MS = 5 * 60 * 1000;
+export const MARATHON_POINTS_PER_FIND = 10;
+export const MARATHON_SPEED_BONUS_MAX = 250;
+
 export const SHAPE_GRID = 16;
 export const SHAPE_MIN_SIMILARITY = 0.7;
 

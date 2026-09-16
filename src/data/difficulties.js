@@ -75,6 +75,20 @@ const MODE_TIERS = {
     { key: "medium", label: "Medium", description: "Closer calls, less-familiar places." },
     { key: "hard", label: "Hard", description: "Tight margins, deep cuts." },
   ],
+
+  // The pro marathons (M2.12 steps 7-8). Same menu, same shape — a marathon
+  // is a different run length, not a different kind of choice.
+  nameEveryCountry: [
+    { key: "easy", label: "Easy", description: "A country lights up — pick its name." },
+    { key: "medium", label: "Medium", description: "We name it; you find it on the globe." },
+    { key: "hard", label: "Hard", description: "A country lights up — type it, blind." },
+    { key: "expert", label: "Expert", description: "Blank map. Name as many as you can." },
+  ],
+  identifyAllFlags: [
+    { key: "easy", label: "Easy", description: "A flag, and four countries to choose from." },
+    { key: "medium", label: "Medium", description: "Search for the country, with suggestions." },
+    { key: "hard", label: "Hard", description: "Type it blind — close spelling counts." },
+  ],
 };
 
 // The modes that show a tier menu at all. Daily is deliberately absent: it is
@@ -129,6 +143,9 @@ const BUILT_TIERS = {
   shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy", "medium", "hard", "expert"],
   higherLower: ["easy", "medium", "hard"],
+  // Step 7 part 1 ships Easy; the other three follow in part 2.
+  nameEveryCountry: ["easy"],
+  identifyAllFlags: [],
 };
 
 export const isTierBuilt = (mode, tier) => (BUILT_TIERS[mode] ?? []).includes(tier);
