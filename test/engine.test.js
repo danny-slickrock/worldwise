@@ -164,6 +164,8 @@ import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
+import { higherLowerBand } from "../src/game/higherLower";
+import { HIGHER_LOWER_TIERS } from "../src/constants";
 import {
   LOCATOR_TIERS,
   locatorPresentation,
@@ -5160,6 +5162,152 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nHigher or Lower tiers (M2.12 step 6)");
+
+// THE INVARIANT. "Harder" means a tighter band, never an unfair one. If this
+// ever fails, some tier is emitting coin flips.
+check(
+  Object.entries(HIGHER_LOWER_TIERS).every(([, band]) => band.minRatio >= HIGHER_LOWER_MIN_RATIO),
+  "every tier's floor is at or above the fairness minimum — Hard is the closest FAIR pair, never a coin flip"
+);
+check(
+  HIGHER_LOWER_TIERS.hard.minRatio === HIGHER_LOWER_MIN_RATIO,
+  "Hard sits exactly ON the floor — the tightest still-answerable band there is"
+);
+check(
+  HIGHER_LOWER_TIERS.easy.minRatio > HIGHER_LOWER_TIERS.medium.minRatio &&
+    HIGHER_LOWER_TIERS.medium.minRatio > HIGHER_LOWER_TIERS.hard.minRatio,
+  "the bands tighten monotonically from Easy to Hard"
+);
+check(
+  HIGHER_LOWER_TIERS.easy.maxRatio === Infinity,
+  "Easy has no ceiling — a wildly obvious pair is exactly what Easy wants"
+);
+
+// A tier must never be able to relax the floor, even if someone edits the
+// table to a smaller number: compareMetric clamps.
+check(
+  compareMetric(
+    { code: "a", v: 100 },
+    { code: "b", v: 101 },
+    { key: "population", field: "v" },
+    { minRatio: 1.0, maxRatio: Infinity }
+  ) === null,
+  "a band that tries to go below the fairness floor is clamped, not obeyed"
+);
+
+// --- the band actually bands ---
+const POP = { key: "population", field: "v" };
+check(
+  compareMetric({ code: "a", v: 100 }, { code: "b", v: 1000 }, POP, HIGHER_LOWER_TIERS.easy) ===
+    "b",
+  "a 10x gap is a fine Easy pair"
+);
+check(
+  compareMetric({ code: "a", v: 100 }, { code: "b", v: 1000 }, POP, HIGHER_LOWER_TIERS.hard) ===
+    null,
+  "...and is rejected by Hard for being far too obvious — the ceiling is what makes it harder"
+);
+check(
+  compareMetric({ code: "a", v: 100 }, { code: "b", v: 140 }, POP, HIGHER_LOWER_TIERS.hard) === "b",
+  "a 1.4x gap is a Hard pair"
+);
+check(
+  compareMetric({ code: "a", v: 100 }, { code: "b", v: 110 }, POP, HIGHER_LOWER_TIERS.hard) ===
+    null,
+  "a 1.1x gap is below the floor and rejected even on Hard"
+);
+check(
+  compareMetric({ code: "a", v: 100 }, { code: "b", v: 100 }, POP, HIGHER_LOWER_TIERS.easy) ===
+    null,
+  "a tie is never a question, at any tier"
+);
+
+// Land borders band on the DIFFERENCE, because a ratio is meaningless on small
+// integers — 4 vs 5 is a real question but only a 1.25 ratio.
+const BORDERS = { key: "borders", field: "v" };
+check(
+  compareMetric({ code: "a", v: 4 }, { code: "b", v: 5 }, BORDERS, HIGHER_LOWER_TIERS.hard) === "b",
+  "4 borders against 5 is a real Hard question"
+);
+check(
+  compareMetric({ code: "a", v: 4 }, { code: "b", v: 5 }, BORDERS, HIGHER_LOWER_TIERS.easy) ===
+    null,
+  "...and far too tight for Easy, which wants a gap of 3+"
+);
+check(
+  compareMetric({ code: "a", v: 0 }, { code: "b", v: 8 }, BORDERS, HIGHER_LOWER_TIERS.easy) === "b",
+  "a zero border count is still comparable on a discrete metric (a ratio would divide by zero)"
+);
+
+// --- whole rounds, run many times because the pool is sampled ---
+const diffByCode = Object.fromEntries(COUNTRIES.map((c) => [c.code, c.difficulty]));
+const ratioOf = (q) => {
+  const m = METRIC_BY_KEY[q.metric];
+  const av = q.a[m.field];
+  const bv = q.b[m.field];
+  return m.key === "borders" ? null : Math.max(av, bv) / Math.min(av, bv);
+};
+
+for (const tier of ["easy", "medium", "hard"]) {
+  const band = HIGHER_LOWER_TIERS[tier];
+  let full = true;
+  let inBand = true;
+  let rightCountries = true;
+  let everFair = true;
+  for (let i = 0; i < 25; i++) {
+    const round = buildRound("higherLower", "all", ROUND_LENGTH, { tier });
+    if (round.length !== ROUND_LENGTH) full = false;
+    for (const q of round) {
+      const r = ratioOf(q);
+      if (r !== null && (r < band.minRatio || r > band.maxRatio)) inBand = false;
+      if (r !== null && r < HIGHER_LOWER_MIN_RATIO) everFair = false;
+      if (band.difficulties) {
+        if (
+          !band.difficulties.includes(diffByCode[q.a.code]) ||
+          !band.difficulties.includes(diffByCode[q.b.code])
+        ) {
+          rightCountries = false;
+        }
+      }
+      if (q.a.code === q.b.code) inBand = false;
+    }
+  }
+  check(full, `${tier} fills a full round, every time, over 25 rounds`);
+  check(inBand, `${tier} never emits a pair outside its own band`);
+  check(everFair, `${tier} never emits an unfair near-tie`);
+  check(rightCountries, `${tier} draws only from its own familiarity pool`);
+}
+
+// The teaching payoff survives every tier — the mode is a coin flip without it.
+for (const tier of ["easy", "medium", "hard"]) {
+  const round = buildRound("higherLower", "all", ROUND_LENGTH, { tier });
+  check(
+    round.every((q) => METRIC_BY_KEY[q.metric] && q.prompt && q.prompt.length > 0),
+    `${tier} labels its metric on every question`
+  );
+  check(
+    round.every((q) => {
+      const readout = metricReadout(q);
+      return readout && readout.includes(q.a.name) && readout.includes(q.b.name);
+    }),
+    `${tier} keeps the value readback, naming both countries`
+  );
+  check(
+    round.every((q) => q.options.length === 2 && q.options.includes(q.correct)),
+    `${tier} still offers exactly the two countries, one of which is correct`
+  );
+}
+
+// An untiered round (the Daily, a country round) must behave exactly as it did
+// before this milestone: the original floor, no ceiling.
+check(
+  higherLowerBand(undefined).maxRatio === Infinity &&
+    higherLowerBand(undefined).minRatio === HIGHER_LOWER_MIN_RATIO,
+  "an untiered round keeps the original open band, unchanged by this milestone"
+);
+check(higherLowerBand("nonsense").difficulties === null, "...and draws from every country");
+
 console.log("\nCountry Locator tiers (M2.12 step 5)");
 
 // --- the presentation table ---
@@ -5721,19 +5869,19 @@ check(
   "Flag's typed tiers are built (step 3's proving ground)"
 );
 check(isTierBuilt("shape", "expert") === true, "Shape's Expert tier is built (step 4)");
-check(isTierBuilt("locator", "expert") === true, "the Locator's tiers are built (step 5)");
 check(
-  isTierBuilt("higherLower", "hard") === false,
-  "a tier whose interaction is still unbuilt says so — step 6 wires Higher or Lower"
+  TIERED_MODES.every((m) => tiersFor(m).every((t) => isTierBuilt(m, t.key))),
+  "steps 3-6 are complete: every tier of every tiered mode has a real interaction built"
 );
+// The fallback mechanism still has to work, so it is proved against a mode
+// with no built tiers at all rather than against whichever one happens to be
+// next on the checklist — which is what made this check go stale four times.
+check(isTierBuilt("daily", "hard") === false, "a mode with no built tiers reports so");
 check(
-  effectiveTier("higherLower", "hard") === "easy",
-  "an unbuilt tier BUILDS as the mode's first, so a question always has an answer surface"
+  effectiveTier("daily", "hard") === null,
+  "a mode with no tier menu has no effective tier, rather than a made-up one"
 );
-check(
-  normalizeInteractionTier("higherLower", "hard") === "hard",
-  "...while the SELECTION still reads as what the player picked — the fallback never rewrites their choice"
-);
+check(normalizeInteractionTier("daily", "hard") === null, "...and no selection either");
 check(
   TIERED_MODES.every((m) => tiersFor(m).every((t) => effectiveTier(m, t.key) !== null)),
   "every tier on every mode resolves to something buildable"

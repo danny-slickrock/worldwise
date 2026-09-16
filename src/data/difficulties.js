@@ -128,7 +128,7 @@ const BUILT_TIERS = {
   capitalReverse: ["easy", "medium", "hard"],
   shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy", "medium", "hard", "expert"],
-  higherLower: ["easy"],
+  higherLower: ["easy", "medium", "hard"],
 };
 
 export const isTierBuilt = (mode, tier) => (BUILT_TIERS[mode] ?? []).includes(tier);

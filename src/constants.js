@@ -226,6 +226,31 @@ export const HIGHER_LOWER_MIN_RATIO = 1.25;
 // and moving to the next one. Bounded so a degenerate pool cannot spin forever.
 export const HIGHER_LOWER_MAX_ATTEMPTS = 40;
 
+// Higher or Lower's interaction tiers (M2.12 step 6). Each tier is a BAND of
+// how far apart the two values may be, plus which countries it draws from.
+//
+// The floor is the thing not to touch: every tier's `minRatio` must stay at or
+// above HIGHER_LOWER_MIN_RATIO, because that constant is what makes a question
+// answerable at all. "Harder" here means a TIGHTER band, never an unfair one —
+// Hard is the closest FAIR pair, not a coin flip. A test asserts the floor
+// holds for every tier, so lowering it is a failing test rather than a quietly
+// unwinnable game.
+//
+// `gap` is the discrete equivalent, for land borders: a ratio is the wrong
+// measure on small integers (4 vs 5 is a real question but only a 1.25 ratio),
+// so those tiers band on the difference instead.
+export const HIGHER_LOWER_TIERS = {
+  easy: { minRatio: 3, maxRatio: Infinity, minGap: 3, maxGap: Infinity, difficulties: ["easy"] },
+  medium: { minRatio: 1.6, maxRatio: 3, minGap: 2, maxGap: 3, difficulties: ["medium", "hard"] },
+  hard: {
+    minRatio: HIGHER_LOWER_MIN_RATIO,
+    maxRatio: 1.6,
+    minGap: 1,
+    maxGap: 2,
+    difficulties: ["hard"],
+  },
+};
+
 // The streak bonus. Deliberately superlinear: the mode is about chaining, and a
 // reward that scales linearly makes eight singles worth the same as a run of
 // eight, which is exactly the wrong incentive.

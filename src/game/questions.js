@@ -11,7 +11,7 @@ import { modeAccents } from "../theme";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
 import { pickCandidateCodes } from "./locatorRound";
 import { metricPool } from "../data/countryMetrics";
-import { buildHigherLowerQuestion, METRIC_BY_KEY } from "./higherLower";
+import { buildHigherLowerQuestion, higherLowerBand, METRIC_BY_KEY } from "./higherLower";
 import { buildCountryFactQuestions } from "./countryRound";
 import { getCountryPage } from "../data/countryPages";
 import { countryName } from "../data/countries";
@@ -326,14 +326,35 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
 // the next metric is tried instead. That keeps a round full-length even if a
 // metric's data thins out later.
 function buildHigherLowerRound(count, tier = null) {
+  const band = higherLowerBand(tier);
   const questions = [];
   for (let i = 0; questions.length < count && i < count * HIGHER_LOWER_METRICS.length; i++) {
     const metric = HIGHER_LOWER_METRICS[i % HIGHER_LOWER_METRICS.length];
-    const pool = metricPool(metric.field);
-    const question = buildHigherLowerQuestion(pool, metric, sample);
+    const pool = higherLowerPool(metric.field, band, count);
+    const question = buildHigherLowerQuestion(pool, metric, sample, band);
     if (question) questions.push(question);
   }
   return questions;
+}
+
+// The countries a Higher or Lower tier draws from: famous ones on Easy,
+// less-familiar ones as it gets harder.
+//
+// The familiarity axis lives on COUNTRIES (`difficulty`), not on the metric
+// table, so the two are joined here rather than duplicated there. A pool that
+// comes out too thin to build a question from falls back to the full one —
+// a round that is slightly easier than advertised beats a round with holes in
+// it, and the ratio band (the part that actually makes it hard) still applies.
+function higherLowerPool(field, band, count) {
+  const full = metricPool(field);
+  if (!band.difficulties) return full;
+  const allowed = new Set(
+    COUNTRIES.filter((c) => band.difficulties.includes(c.difficulty)).map((c) => c.code)
+  );
+  const narrowed = full.filter((m) => allowed.has(m.code));
+  // Needs comfortably more than two: the builder draws PAIRS and rejects the
+  // ones outside its band, so a pool of three would exhaust its attempts.
+  return narrowed.length >= Math.max(count, 8) ? narrowed : full;
 }
 
 // "Play with Brazil" — a mixed round about ONE country.

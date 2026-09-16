@@ -10,9 +10,29 @@ import {
   HIGHER_LOWER_MIN_RATIO,
   HIGHER_LOWER_MAX_ATTEMPTS,
   HIGHER_LOWER_STREAK,
+  HIGHER_LOWER_TIERS,
 } from "../constants";
 
 export const METRIC_BY_KEY = Object.fromEntries(HIGHER_LOWER_METRICS.map((m) => [m.key, m]));
+
+// The band a tier plays in (M2.12 step 6): how far apart the two values may be,
+// and which countries it draws from.
+//
+// An unknown or missing tier resolves to the widest FAIR band rather than to a
+// tier's own settings — a round with no tier (the Daily, a country round) must
+// behave exactly as it did before this milestone, which means the original
+// floor and no ceiling.
+const OPEN_BAND = {
+  minRatio: HIGHER_LOWER_MIN_RATIO,
+  maxRatio: Infinity,
+  minGap: 1,
+  maxGap: Infinity,
+  difficulties: null, // null = draw from everything
+};
+
+export function higherLowerBand(tier) {
+  return HIGHER_LOWER_TIERS[tier] ?? OPEN_BAND;
+}
 
 // Which of two countries wins on a metric, or null if it is not a fair ask.
 //
@@ -23,7 +43,9 @@ export const METRIC_BY_KEY = Object.fromEntries(HIGHER_LOWER_METRICS.map((m) => 
 //     country is 3% larger, and marking them wrong for it teaches nothing.
 //     Border counts are exempt: they are small integers a player can actually
 //     hold, so 4 against 5 is a real question.
-export function compareMetric(a, b, metric, minRatio = HIGHER_LOWER_MIN_RATIO) {
+// `band` may be a plain number (the old minRatio signature, kept because the
+// Daily and the country round still call it that way) or a full band object.
+export function compareMetric(a, b, metric, band = HIGHER_LOWER_MIN_RATIO) {
   const field = metric?.field;
   if (!field || !a || !b || a.code === b.code) return null;
 
@@ -32,11 +54,27 @@ export function compareMetric(a, b, metric, minRatio = HIGHER_LOWER_MIN_RATIO) {
   if (typeof av !== "number" || typeof bv !== "number") return null;
   if (av === bv) return null;
 
+  const limits = typeof band === "number" ? { ...OPEN_BAND, minRatio: band } : band;
   const [hi, lo] = av > bv ? [av, bv] : [bv, av];
   const discrete = metric.key === "borders";
-  if (!discrete) {
+
+  if (discrete) {
+    // Small integers: band on the DIFFERENCE. A ratio is the wrong measure
+    // here — 4 borders against 5 is a perfectly real question but only a 1.25
+    // ratio, which a continuous band would throw away.
+    const gap = hi - lo;
+    if (gap < (limits.minGap ?? 1)) return null;
+    if (gap > (limits.maxGap ?? Infinity)) return null;
+  } else {
     if (lo <= 0) return null; // a ratio against zero is meaningless
-    if (hi / lo < minRatio) return null;
+    const ratio = hi / lo;
+    // The floor is the fairness rule and is never relaxed by a tier; the
+    // ceiling is what makes a harder tier harder — a pair that is TOO obvious
+    // for this tier is rejected and another is drawn.
+    if (ratio < Math.max(limits.minRatio ?? HIGHER_LOWER_MIN_RATIO, HIGHER_LOWER_MIN_RATIO)) {
+      return null;
+    }
+    if (ratio > (limits.maxRatio ?? Infinity)) return null;
   }
 
   return av > bv ? a.code : b.code;
@@ -47,13 +85,13 @@ export function compareMetric(a, b, metric, minRatio = HIGHER_LOWER_MIN_RATIO) {
 //
 // Returns null if no fair pair turned up within the attempt budget, which the
 // caller treats as "try another metric" rather than as an error.
-export function buildHigherLowerQuestion(pool, metric, pick, minRatio = HIGHER_LOWER_MIN_RATIO) {
+export function buildHigherLowerQuestion(pool, metric, pick, band = HIGHER_LOWER_MIN_RATIO) {
   if (!pool || pool.length < 2) return null;
 
   for (let attempt = 0; attempt < HIGHER_LOWER_MAX_ATTEMPTS; attempt++) {
     const [a, b] = pick(pool, 2);
     if (!a || !b) continue;
-    const winner = compareMetric(a, b, metric, minRatio);
+    const winner = compareMetric(a, b, metric, band);
     if (!winner) continue;
 
     const winnerCountry = winner === a.code ? a : b;
@@ -86,7 +124,7 @@ export function streakBonusXp(bestStreak, config = HIGHER_LOWER_STREAK) {
   const streak = Number.isFinite(bestStreak) ? Math.floor(bestStreak) : 0;
   if (streak < config.bonusFrom) return 0;
   const steps = streak - config.bonusFrom + 1;
-  return Math.min(config.maxBonus, (steps * (steps + 1)) / 2 * config.xpPerStep);
+  return Math.min(config.maxBonus, ((steps * (steps + 1)) / 2) * config.xpPerStep);
 }
 
 // Read a metric value back for the answer reveal. This is the teaching moment:
