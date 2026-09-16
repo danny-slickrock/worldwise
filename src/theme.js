@@ -79,6 +79,12 @@ export const colors = {
   // the barely-there washes behind that.
   successSurface: "#E8F0E2",
   dangerSurface: "#F6E5DE",
+  // The same barely-there treatment in the firelight family, for a warm marker
+  // that has to carry a word — the PRO badge today. It exists because the
+  // alternative breaks a kit rule: brass is decorative only (1.9:1), so "PRO"
+  // can be neither brass type nor parchment-on-brass. emberInk on this measures
+  // 4.64:1, so the badge is real AA body text rather than a decorative fleck.
+  emberSurface: "#F4E3CF",
 
   // --- Surfaces ----------------------------------------------------------
   // Parchment is the page; cream is the card laid on it. They differ by about
@@ -143,6 +149,11 @@ export const modeAccents = {
   locator: "#2B5F6B", // lakewater, cooled toward slate
   higherLower: "#7E4720", // ember, deepened
   country: colors.brandDeep,
+  // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
+  // other mode accent is, because each carries a body-size label on parchment
+  // and a raw brand tint measures 4.28:1.
+  nameEveryCountry: "#1F5148", // pine, cooled
+  identifyAllFlags: "#6B4A86", // a warm violet, deepened — the one mode hue
 };
 
 // Country-page topic accents. Same idea as modeAccents, and the same rule.

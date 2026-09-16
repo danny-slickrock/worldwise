@@ -1,4 +1,5 @@
 // Pure settings logic — no React or storage imports, mirrors game/progress.js.
+import { DEFAULT_TIER, normalizeTier } from "./entitlements";
 
 // How the globes draw their land. "terrain" is the realistic basemap (climate
 // and landform, per game/terrainTint.js); "simple" is the kit's flat map layer,
@@ -11,7 +12,15 @@
 export const BASEMAPS = ["terrain", "simple"];
 export const DEFAULT_BASEMAP = "terrain";
 
-export const DEFAULT_SETTINGS = { soundEnabled: true, basemap: DEFAULT_BASEMAP };
+// The account's entitlement tier lives in settings rather than in progress:
+// it describes the ACCOUNT, not the play history, and progress.js is merged
+// max-wise across devices (see cloudSync.js), where "highest tier wins" would
+// quietly hand out pro to anyone who ever had it. See game/entitlements.js.
+export const DEFAULT_SETTINGS = {
+  soundEnabled: true,
+  basemap: DEFAULT_BASEMAP,
+  tier: DEFAULT_TIER,
+};
 
 // Coerce anything read back from storage into a valid settings object, so a
 // corrupt or partial payload can never crash the app.
@@ -23,6 +32,9 @@ export function normalizeSettings(raw) {
     // An unknown value falls back rather than being trusted: a basemap name is
     // used to pick a fill, and an unrecognised one would paint nothing.
     basemap: BASEMAPS.includes(raw.basemap) ? raw.basemap : DEFAULT_SETTINGS.basemap,
+    // Same rule, and it matters more here: an unrecognised tier decides what
+    // someone is allowed to play, so it falls back rather than being trusted.
+    tier: normalizeTier(raw.tier),
   };
 }
 

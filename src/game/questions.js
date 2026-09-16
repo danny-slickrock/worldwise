@@ -94,6 +94,33 @@ export const MODES = {
     icon: "\u25ce",
     accent: modeAccents.country,
   },
+
+  // The two pro marathons (M2.12 steps 7-8). Catalogued here before they are
+  // built so Home can render and badge them from the same MODES table every
+  // other tile reads, rather than carrying a second hardcoded list of
+  // "coming soon" games beside it. buildRound() has no branch for either —
+  // they are marathons, not 8-question rounds, and get their own engine.
+  nameEveryCountry: {
+    key: "nameEveryCountry",
+    title: "Name Every Country",
+    blurb: "How many can you get?",
+    icon: "\u2632",
+    accent: modeAccents.nameEveryCountry,
+    // Catalogued and badged, but not yet built (step 7). Without this flag the
+    // tile launches buildRound() with a mode it has no branch for, which
+    // silently returns 8 questions of an unknown type — QuizScreen renders no
+    // answer surface for those, so the round is unplayable rather than
+    // missing. Removed when step 7 ships the marathon engine.
+    comingSoon: true,
+  },
+  identifyAllFlags: {
+    key: "identifyAllFlags",
+    title: "Identify All Flags",
+    blurb: "Every flag, against the clock",
+    icon: "\u2690",
+    accent: modeAccents.identifyAllFlags,
+    comingSoon: true, // step 8; see nameEveryCountry above
+  },
 };
 
 function shuffle(arr) {

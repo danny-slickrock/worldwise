@@ -1504,6 +1504,70 @@ teaching *how the world works*, not just *where things are*.
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
     8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
        offline/error states, transitions).
+- **M2.12 — Game tiers & difficulty overhaul 🎚️** — the games stop being one-size-fits-all. Two
+  independent axes land here, and keeping them independent is the whole design:
+  - **Commercial tier** (free vs pro) — *which* games you may play. Six free games
+    (Flag Guesser, Capital Quiz, Capital Quiz Reverse, Shape Guesser, Country Locator,
+    Higher or Lower) and two pro marathons (Name Every Country, Identify All Flags).
+  - **Interaction difficulty** (easy/medium/hard, plus expert on Shape and Locator) — *how* you
+    answer, and how much the game helps. Multiple choice → type-with-suggestions → type blind.
+    This is **orthogonal to the existing `DIFFICULTIES` pool filter** in `constants.js`, which
+    selects famous-vs-obscure *countries*. Conflating the two is the trap: "hard" would then mean
+    both "obscure places" and "no assists" at once, and there would be no way to ask for an easy
+    interaction over obscure countries. The pool filter defaults to `all` under the new menu and
+    retires from the primary flow.
+  - **Ordered sub-checklist** (one scoped chunk per run; top-to-bottom, don't skip):
+    1. ✅ **Free/pro foundation.** `src/game/entitlements.js` (pure): a catalog tagging every mode
+       `free`/`pro`, `isUnlocked(mode, tier)`, and `normalizeTier()`. **Every account is `pro` by
+       default** — `DEFAULT_TIER` — so the gating is cosmetic this pass and flipping that one
+       constant is what turns the PRO badge into a real lock later. The tier is stored in
+       `settings` rather than `progress`, deliberately: it describes the account, and `progress`
+       is max-merged across devices (`cloudSync.js`), where "highest tier wins" would quietly hand
+       out pro to anyone who ever had it. Home renders a **PRO badge** on the two pro tiles and
+       keeps them playable — the kit decides its colours: brass is decorative-only (1.9:1), so the
+       word cannot be brass type or parchment-on-brass, and the badge is `emberInk` on a new
+       `emberSurface` wash (4.64:1), pinned by a contrast test. The two pro modes are catalogued in
+       `MODES` now but carry `comingSoon: true`, because `buildRound()` has no branch for either
+       and silently returns 8 questions of an unknown type that `QuizScreen` renders no answer
+       surface for — steps 7-8 remove the flag.
+    2. ☐ **The pre-game difficulty menu.** `src/data/difficulties.js` (pure): per mode, ordered
+       tiers with a label and a one-line description. Picking a game shows the tier menu before the
+       round; the chosen tier flows into `buildRound(mode, { tier })`. Tiers whose interaction
+       isn't built yet fall back to current multiple-choice behaviour, so nothing breaks mid-step.
+    3. ☐ **Type-in + fuzzy matcher (reusable).** `src/game/answerMatch.js` (pure): normalize case,
+       accents, punctuation and common aliases; return `match` / `close` (≥ a Levenshtein ratio
+       threshold in `constants.js`) / `miss`. Plus a text-input answer surface in `QuizScreen`,
+       selected by a question flag — **branch on the question's type, not the round's mode**, the
+       rule a mixed country round already forces.
+    4. ☐ **Tiers into the type-in family** (Flag, Capital, Capital Reverse, Shape). Easy = today's
+       4-option multiple choice; Medium = type-in with suggestions; Hard = type-in blind, close
+       spelling accepted. Shape also gets **Expert**: blind type-in against visually
+       similar-silhouette distractors, chosen by a pure, tested similarity helper.
+    5. ☐ **Country Locator tiers** on the globe. Easy = pre-oriented *and* candidates highlighted;
+       Medium = pre-oriented, no highlight; Hard = not pre-oriented, borders shown, simple basemap;
+       Expert = terrain basemap with no borders drawn. Reuses `locatorRound.js` framing and the
+       `settings.basemap` mechanism as a **per-question override**, never by writing the global
+       setting — switching a game tier must not silently change what every other globe looks like.
+    6. ☐ **Higher or Lower tiers.** Easy = well-known countries, clear gaps; Medium = closer values,
+       less-familiar places; Hard = the tightest *still-fair* ratio with obscure countries. Folded
+       into the existing pure fair-pair builder, and Hard must still respect the no-impossible-
+       near-tie rule — the hardest fair pair, never a coin flip.
+    7. ☐ **Pro game: Name Every Country.** A timed single sitting scored by count and time,
+       leaderboard-friendly. Four tiers: Easy = a country highlights, pick the name; Medium = a
+       name is given, locate it; Hard = a country highlights, type it; Expert = blank map, type as
+       many as you can from memory, blind. Pure run/timer/scoring logic (`src/game/marathon.js`),
+       IO surface on top. Large — build the pure engine and one tier first, review, then the rest;
+       one commit per part.
+    8. ☐ **Pro game: Identify All Flags.** The second marathon, **sharing step 7's engine rather
+       than duplicating it**. Easy = pick from four; Medium = search + suggestions; Hard = type it
+       blind. Optional Expert = rapid-fire every flag, blind, tighter clock.
+    9. ☐ **Review surface (study analytics).** `src/game/reviewPolicy.js` (pure) mines
+       `game_results.countries` — the `{ code, correct }` pairs M2.5 step 6.1 already captures —
+       into per-country accuracy, times seen and recency, classifying each as needs-study and
+       grouping by region. A Quizlet-style Review surface reached from **both** Home and Profile,
+       with a "Practice your weak spots" button that builds a round from the weak set. The loading
+       window gets a `Skeleton` behind the same `loadingResults` flag `AchievementsScreen` uses —
+       otherwise a signed-in player sees every country at 0% for a beat before the fetch lands.
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
   Currency, Language, National Animal, Food Origin, and City games — breadth without new bespoke code.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get

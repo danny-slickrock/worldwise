@@ -144,6 +144,17 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  TIERS,
+  DEFAULT_TIER,
+  MODE_TIERS,
+  FREE_MODES,
+  PRO_MODES,
+  isProMode,
+  isUnlocked,
+  normalizeTier,
+  unlockedModes,
+} from "../src/game/entitlements";
+import {
   colors,
   contrastRatio,
   CONTRAST,
@@ -4388,6 +4399,121 @@ check(
 check(
   contrastRatio(colors.brass, duskCorner) < CONTRAST.large,
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
+);
+
+console.log("\nEntitlements (M2.12 step 1)");
+check(
+  TIERS.length === 2 && TIERS[0] === "free" && TIERS[1] === "pro",
+  "two tiers, ordered free -> pro"
+);
+check(DEFAULT_TIER === "pro", "every account is pro by default — the paywall is a later step");
+
+// The six free games named in the milestone, exactly.
+const EXPECTED_FREE_GAMES = ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"];
+check(
+  EXPECTED_FREE_GAMES.every((m) => MODE_TIERS[m] === "free"),
+  "the six free games are all tagged free"
+);
+check(
+  PRO_MODES.length === 2 &&
+    PRO_MODES.includes("nameEveryCountry") &&
+    PRO_MODES.includes("identifyAllFlags"),
+  "exactly two pro games: Name Every Country and Identify All Flags"
+);
+check(
+  MODE_TIERS.daily === "free" && MODE_TIERS.country === "free",
+  "Daily and a country round are never behind the wall"
+);
+
+// The catalog and the derived lists cannot drift: every mode is in exactly one.
+check(
+  FREE_MODES.length + PRO_MODES.length === Object.keys(MODE_TIERS).length,
+  "every catalogued mode lands in exactly one of FREE_MODES/PRO_MODES"
+);
+check(
+  FREE_MODES.every((m) => !PRO_MODES.includes(m)),
+  "the two lists are disjoint"
+);
+
+// Every mode Home can actually launch has to be catalogued, or a game would
+// silently escape the tier system the day it is added.
+check(
+  Object.keys(MODES).every((m) => MODE_TIERS[m] !== undefined),
+  "every mode in MODES is catalogued in MODE_TIERS"
+);
+
+check(isProMode("nameEveryCountry") === true, "isProMode is true for a pro game");
+check(isProMode("flag") === false, "isProMode is false for a free game");
+check(
+  isProMode("somethingNobodyBuilt") === false,
+  "an uncatalogued mode is not pro — the safe failure is letting someone play"
+);
+
+// The question itself.
+check(
+  EXPECTED_FREE_GAMES.every((m) => isUnlocked(m, "free")),
+  "free unlocks all six free games"
+);
+check(
+  PRO_MODES.every((m) => !isUnlocked(m, "free")),
+  "free does NOT unlock the pro games"
+);
+check(
+  Object.keys(MODE_TIERS).every((m) => isUnlocked(m, "pro")),
+  "pro unlocks everything in the catalog"
+);
+check(
+  Object.keys(MODE_TIERS).every((m) => isUnlocked(m)),
+  "with no tier passed the default (pro) applies, so nothing is locked today"
+);
+
+// A corrupt tier must not decide what someone can play.
+check(
+  normalizeTier("free") === "free" && normalizeTier("pro") === "pro",
+  "valid tiers pass through"
+);
+check(
+  normalizeTier(undefined) === DEFAULT_TIER &&
+    normalizeTier(null) === DEFAULT_TIER &&
+    normalizeTier("PRO") === DEFAULT_TIER &&
+    normalizeTier({}) === DEFAULT_TIER,
+  "anything unrecognised falls back to the default tier rather than being trusted"
+);
+check(
+  isUnlocked("nameEveryCountry", "garbage") === true,
+  "an unreadable tier resolves through the default rather than answering undefined"
+);
+
+check(
+  unlockedModes("free").length === FREE_MODES.length,
+  "unlockedModes('free') is exactly the free catalog"
+);
+check(
+  unlockedModes("pro").length === Object.keys(MODE_TIERS).length,
+  "unlockedModes('pro') is the whole catalog"
+);
+
+// The tier rides in settings, and survives a round-trip through storage.
+check(DEFAULT_SETTINGS.tier === DEFAULT_TIER, "settings carry the default tier");
+check(normalizeSettings({ tier: "free" }).tier === "free", "a stored tier is read back");
+check(
+  normalizeSettings({ tier: "wizard" }).tier === DEFAULT_TIER,
+  "a corrupt stored tier falls back to the default"
+);
+check(
+  normalizeSettings({}).tier === DEFAULT_TIER,
+  "settings written before tiers existed still resolve to a valid tier"
+);
+
+// The PRO badge's ink pairing, driven through the same tokens the component
+// uses — brass is decorative only, so the badge cannot be brass type.
+check(
+  contrastRatio(colors.emberInk, colors.emberSurface) >= CONTRAST.body,
+  "the PRO badge's emberInk on emberSurface clears AA body contrast"
+);
+check(
+  contrastRatio(colors.brass, colors.surfaceRaised) < CONTRAST.body,
+  "...which is why the badge is not brass type: brass on cream fails body contrast outright"
 );
 
 console.log("\nLeaderboard policy (M2.6 step 1)");

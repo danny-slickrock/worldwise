@@ -20,12 +20,25 @@ import Material from "../components/Material";
 import PressableTint from "../components/PressableTint";
 import AnimatedNumber from "../components/AnimatedNumber";
 import { MODES } from "../game/questions";
+import { isProMode } from "../game/entitlements";
 import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, dayKey } from "../game/progress";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
 const FEATURED = "daily";
-const GAME_GRID = ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"];
+const GAME_GRID = [
+  "flag",
+  "capital",
+  "capitalReverse",
+  "shape",
+  "locator",
+  "higherLower",
+  // The two pro marathons. They sit in the same grid rather than in a separate
+  // "Pro" shelf: every account is pro today (see game/entitlements.js), so a
+  // roped-off section would be selling something the player already has.
+  "nameEveryCountry",
+  "identifyAllFlags",
+];
 
 // The tiles cascade among themselves, but only after the header and hero above
 // them have landed — otherwise the page assembles bottom-up, which reads as a
@@ -184,6 +197,10 @@ export default function HomeScreen({
         <View style={styles.grid}>
           {GAME_GRID.map((key, i) => {
             const m = MODES[key];
+            // Not built yet (steps 7-8). The tier system is not what withholds
+            // these — every account is pro — so the tile is badged exactly like
+            // a finished pro game and simply says it isn't here yet.
+            const soon = Boolean(m.comingSoon);
             return (
               <FadeInUp key={key} style={styles.tileCell} delay={TILE_BASE_DELAY + staggerDelay(i)}>
                 {/* PressableTint, not Pressable: the kit gives touch a 120ms
@@ -191,17 +208,29 @@ export default function HomeScreen({
                     scale bounce outright. These tiles previously had no press
                     feedback at all. */}
                 <PressableTint
-                  onPress={() => onPlay(key, difficulty, timed)}
+                  onPress={soon ? undefined : () => onPlay(key, difficulty, timed)}
+                  disabled={soon}
                   radius={radius.sheet}
-                  style={styles.tile}
+                  style={[styles.tile, soon && styles.tileSoon]}
                   accessibilityRole="button"
-                  accessibilityLabel={m.title}
+                  accessibilityState={{ disabled: soon }}
+                  accessibilityLabel={soon ? `${m.title} — coming soon` : m.title}
                 >
-                  <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
-                    <Text style={[styles.tileGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
+                  <View style={styles.tileTop}>
+                    <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
+                      <Text style={[styles.tileGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
+                    </View>
+                    {/* Cosmetic this pass: every account is pro, so the badge
+                        marks what WILL cost rather than what is locked, and the
+                        tile stays fully playable. */}
+                    {isProMode(key) && (
+                      <View style={styles.proBadge}>
+                        <Text style={styles.proBadgeText}>PRO</Text>
+                      </View>
+                    )}
                   </View>
                   <Text style={styles.tileTitle}>{m.title}</Text>
-                  <Text style={styles.tileBlurb}>{m.blurb}</Text>
+                  <Text style={styles.tileBlurb}>{soon ? "Coming soon" : m.blurb}</Text>
                 </PressableTint>
               </FadeInUp>
             );
@@ -360,14 +389,40 @@ const styles = StyleSheet.create({
     ...hairline,
     ...elevation(1),
   },
+  // The icon row. The badge is pinned opposite the glyph rather than beside
+  // it, so a two-line title underneath can never push it around.
+  tileTop: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    marginBottom: spacing(3),
+  },
   tileIcon: {
     width: 44,
     height: 44,
     borderRadius: radius.card,
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: spacing(3),
   },
+  // PRO badge. Two kit rules decide every value here:
+  //   · Brass is DECORATIVE ONLY — 1.9:1 on parchment — so the word cannot be
+  //     brass type, and a parchment label on a brass fill is no better. The
+  //     badge is emberInk type on a tinted ground, the same pairing every
+  //     warm label in this app uses.
+  //   · `type.eyebrow` is already the structural voice for a small mono
+  //     all-caps marker, so this borrows it wholesale instead of inventing an
+  //     11px mono style beside it. Tracking comes down slightly: eyebrow
+  //     tracking is tuned for a word in open space, not inside a pill.
+  proBadge: {
+    backgroundColor: colors.emberSurface,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing(2),
+    paddingVertical: 3,
+  },
+  proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
+  // Quieted, not greyed: the kit has no disabled grey, and the tile still has
+  // to read as a real game that is on its way rather than as broken chrome.
+  tileSoon: { opacity: 0.68 },
   tileGlyph: { fontSize: 20 },
   tileTitle: { ...type.h3, fontSize: 16 },
   tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },
