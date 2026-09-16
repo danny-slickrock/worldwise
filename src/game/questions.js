@@ -115,7 +115,6 @@ export const MODES = {
     blurb: "Every flag, against the clock",
     icon: "\u2690",
     accent: modeAccents.identifyAllFlags,
-    comingSoon: true, // step 8; see nameEveryCountry above
   },
 };
 

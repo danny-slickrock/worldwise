@@ -165,6 +165,13 @@ import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
 import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
 import {
+  marathonPresentation,
+  marathonUsesGlobe,
+  marathonHighlights,
+  marathonIsRecall,
+  marathonHint,
+} from "../src/game/marathonTiers";
+import {
   runShape,
   startRun,
   submitAnswer,
@@ -5178,6 +5185,102 @@ check(
   "brass fails even UI contrast at that same corner — it must never be a text ink there, only a fill or decoration"
 );
 
+console.log("\nMarathon presentation (M2.12 steps 7-8)");
+
+// Name Every Country: the four tiers are four (prompt, answer) pairs.
+check(
+  marathonPresentation("nameEveryCountry", "easy").prompt === "highlight" &&
+    marathonPresentation("nameEveryCountry", "easy").answer === "choices",
+  "NEC Easy: the globe highlights it, you pick from four"
+);
+check(
+  marathonPresentation("nameEveryCountry", "medium").prompt === "name" &&
+    marathonPresentation("nameEveryCountry", "medium").answer === "globe",
+  "NEC Medium: it is named, you find it on the globe"
+);
+check(
+  marathonPresentation("nameEveryCountry", "hard").prompt === "highlight" &&
+    marathonPresentation("nameEveryCountry", "hard").answer === "type",
+  "NEC Hard: the globe highlights it, you type it"
+);
+check(
+  marathonPresentation("nameEveryCountry", "expert").prompt === "none" &&
+    marathonPresentation("nameEveryCountry", "expert").answer === "type",
+  "NEC Expert: nothing is prompted at all — a blank map and a text field"
+);
+
+// Identify All Flags is the SAME table crossed with a flag prompt, which is
+// why step 8 needed no new rendering.
+check(
+  ["easy", "medium", "hard"].every(
+    (t) => marathonPresentation("identifyAllFlags", t).prompt === "flag"
+  ),
+  "every flag tier prompts with a flag"
+);
+check(
+  marathonPresentation("identifyAllFlags", "medium").suggest === true &&
+    marathonPresentation("identifyAllFlags", "hard").suggest === false,
+  "Medium suggests, Hard does not — the single flag that separates them, same as the quiz"
+);
+
+// THE LEAK GUARD: the globe must never highlight the target on a tier where
+// the globe is how you answer.
+check(
+  marathonHighlights("nameEveryCountry", "medium") === false,
+  "Medium does NOT highlight — the globe is the answer surface, so a highlight would be the answer"
+);
+check(
+  marathonHighlights("nameEveryCountry", "expert") === false,
+  "Expert highlights nothing — there is no target to light"
+);
+check(
+  ["easy", "hard"].every((t) => marathonHighlights("nameEveryCountry", t)),
+  "...while the two tiers that prompt BY highlighting do"
+);
+
+// Which tiers draw a globe at all.
+check(
+  ["easy", "medium", "hard", "expert"].every((t) => marathonUsesGlobe("nameEveryCountry", t)),
+  "every Name Every Country tier shows the globe, Expert's blank map included"
+);
+check(
+  ["easy", "medium", "hard"].every((t) => !marathonUsesGlobe("identifyAllFlags", t)),
+  "no flag tier draws a globe — it would give away the country it just asked for"
+);
+
+// Recall is exactly one tier.
+check(marathonIsRecall("nameEveryCountry", "expert") === true, "Expert is the free-recall tier");
+check(
+  ["easy", "medium", "hard"].every((t) => !marathonIsRecall("nameEveryCountry", t)),
+  "...and the only one"
+);
+
+// Fallbacks: an unknown mode or tier must still render something answerable.
+check(
+  marathonPresentation("nonsense", "easy").answer === "choices",
+  "an unknown mode falls back to something answerable, not to undefined"
+);
+check(
+  marathonPresentation("identifyAllFlags", "expert").prompt === "flag",
+  "a tier the mode lacks falls back to that mode's Easy, not another mode's"
+);
+check(marathonHint("nameEveryCountry", "expert").length > 0, "every tier carries an instruction");
+check(
+  marathonHint("nameEveryCountry", "expert") !== marathonHint("nameEveryCountry", "easy"),
+  "...and Expert's is its own — a blank globe with a text field explains nothing by itself"
+);
+
+// The two marathons' catalogs line up with what the engine can run.
+check(
+  tiersFor("nameEveryCountry").length === 4 && tiersFor("identifyAllFlags").length === 3,
+  "the marathons' menus match their built tiers"
+);
+check(
+  tiersFor("nameEveryCountry").every((t) => isTierBuilt("nameEveryCountry", t.key)) &&
+    tiersFor("identifyAllFlags").every((t) => isTierBuilt("identifyAllFlags", t.key)),
+  "every marathon tier on the menu is actually built"
+);
+
 console.log("\nMarathon engine (M2.12 step 7 part 1)");
 const eqCode = (a, b) => a === b;
 const T3 = ["fr", "de", "es"];
@@ -6042,12 +6145,8 @@ check(
   "steps 3-6 are complete: every tier of every FREE game has a real interaction built"
 );
 check(
-  isTierBuilt("nameEveryCountry", "easy") === true,
-  "step 7 part 1 ships Name Every Country's Easy tier"
-);
-check(
-  ["medium", "hard", "expert"].every((t) => !isTierBuilt("nameEveryCountry", t)),
-  "...and says plainly that the other three are still to come (part 2)"
+  TIERED_MODES.every((m) => tiersFor(m).every((t) => isTierBuilt(m, t.key))),
+  "M2.12 steps 3-8 are complete: every tier of every tiered mode has a real interaction built"
 );
 // The fallback mechanism still has to work, so it is proved against a mode
 // with no built tiers at all rather than against whichever one happens to be

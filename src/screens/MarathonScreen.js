@@ -1,18 +1,37 @@
-/* global setInterval, clearInterval */
+/* global setInterval, clearInterval, setTimeout, clearTimeout */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView, useWindowDimensions } from "react-native";
-import { colors, spacing, radius, type, elevation, hairline, buttonHeight, onFill } from "../theme";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  useWindowDimensions,
+} from "react-native";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  hairline,
+  buttonHeight,
+  onFill,
+  map,
+} from "../theme";
 import PressableTint from "../components/PressableTint";
 import ProgressTrack from "../components/ProgressTrack";
 import GlobeMap from "../components/GlobeMap";
 import FadeInUp from "../components/FadeInUp";
+import TypeAnswer from "../components/TypeAnswer";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { MODES } from "../game/questions";
 import { tierFor } from "../data/difficulties";
-import { COUNTRIES, countryName } from "../data/countries";
+import { COUNTRIES, LOCATOR_COUNTRIES, countryName, flagUrl } from "../data/countries";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
-import { LOCATOR_COUNTRIES } from "../data/countries";
 import { locatorView } from "../game/locatorRound";
+import { matchAnswer, isCorrectAnswer } from "../game/answerMatch";
 import {
   startRun,
   submitAnswer,
@@ -21,21 +40,27 @@ import {
   currentTarget,
   isOver,
   remainingMs,
+  remaining,
   marathonScore,
 } from "../game/marathon";
+import {
+  marathonPresentation,
+  marathonUsesGlobe,
+  marathonHighlights,
+  marathonIsRecall,
+  marathonHint,
+} from "../game/marathonTiers";
 import { MARATHON_DURATION_MS, OPTIONS_PER_QUESTION } from "../constants";
 
-// "Name Every Country" — the first pro marathon (M2.12 step 7).
+// The two pro marathons (M2.12 steps 7-8) — one screen, because the tiers
+// differ only in how a target is prompted and how it is answered, and
+// game/marathonTiers.js states that as a table.
 //
-// This screen owns exactly two things the pure engine deliberately does not:
-// the real clock, and the rendering. Every decision about what a run IS —
-// whether it is over, what the current target is, what an answer did, what it
-// scored — comes from game/marathon.js, which never reads Date.now(). That
-// split is what makes a five-minute timed game testable in a millisecond.
-//
-// Part 1 ships the Easy tier: a country lights up on the globe and you pick
-// its name from four. It exercises the whole prompted run shape, which is also
-// what step 8's flag marathon reuses wholesale.
+// This file owns exactly two things the pure engine deliberately does not: the
+// real clock, and the rendering. Every decision about what a run IS — whether
+// it is over, what the current target is, what an answer did, what it scored —
+// comes from game/marathon.js, which never reads Date.now(). That split is
+// what makes a five-minute timed game testable in a millisecond.
 
 const sample = (arr, n) => {
   const copy = [...arr];
@@ -51,17 +76,31 @@ const formatClock = (ms) => {
   return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
 };
 
+// Every country name, for the typed tiers' matcher and suggestions.
+const ALL_NAMES = COUNTRIES.map((c) => c.name);
+
 export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }) {
   const meta = MODES[mode];
   const tierMeta = tierFor(mode, tier);
+  const look = marathonPresentation(mode, tier);
+  const usesGlobe = marathonUsesGlobe(mode, tier);
+  const highlightsTarget = marathonHighlights(mode, tier);
+  const isRecall = marathonIsRecall(mode, tier);
 
-  // Only countries with a drawn outline can be the subject: the prompt is "this
-  // country is highlighted", and a country with no shape cannot be highlighted.
-  const targets = useMemo(() => sample(LOCATOR_COUNTRIES.map((c) => c.code)), []);
+  // Which countries can be asked about at all.
+  //
+  // A globe tier can only use countries with a drawn outline — you cannot
+  // highlight, or tap, a country that has no shape. A flag tier has no such
+  // limit, since every country has a flag.
+  const targets = useMemo(
+    () => sample((usesGlobe ? LOCATOR_COUNTRIES : COUNTRIES).map((c) => c.code)),
+    [usesGlobe]
+  );
 
   const [run, setRun] = useState(() => startRun({ tier, targets, now: Date.now() }));
   const [now, setNow] = useState(() => Date.now());
   const [picked, setPicked] = useState(null);
+  const [lastOutcome, setLastOutcome] = useState(null); // recall's running feedback
   const advanceTimer = useRef(null);
 
   const over = isOver(run, now);
@@ -75,8 +114,8 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
     return () => clearInterval(id);
   }, [over]);
 
-  // Close the run exactly once when it ends, whichever way it ended. endRun is
-  // idempotent, so a clock expiry and an unmount cannot stamp two times.
+  // Close the run exactly once, whichever way it ended. endRun is idempotent,
+  // so a clock expiry and an unmount cannot stamp two different times.
   useEffect(() => {
     if (!over || run.endedAt !== null) return;
     setRun((r) => endRun(r, Date.now()));
@@ -84,57 +123,84 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
 
   useEffect(() => () => clearTimeout(advanceTimer.current), []);
 
-  // Four names, one of them right. Rebuilt per target rather than per render,
-  // or the options would reshuffle under the player's thumb.
+  // Four names, one right. Rebuilt per target rather than per render, or they
+  // would reshuffle under the player's thumb.
   const options = useMemo(() => {
-    if (!target) return [];
+    if (!target || look.answer !== "choices") return [];
     const wrong = sample(
       COUNTRIES.filter((c) => c.code !== target),
       OPTIONS_PER_QUESTION - 1
     ).map((c) => c.name);
     return sample([countryName(target), ...wrong]);
-  }, [target]);
+  }, [target, look.answer]);
 
-  const framing = useMemo(
-    () => (target ? locatorView([target], COUNTRY_CENTERS) : { spin: { lng: 0, lat: 0 }, zoom: 1 }),
-    [target]
-  );
+  // Where the globe points.
+  //
+  // On a recall tier it never moves on its own: there is no target to frame,
+  // and the player spins the blank Earth themselves. On a tier where the globe
+  // is the ANSWER surface (Medium), it must NOT frame the target either — that
+  // would point straight at the answer. Only the highlight tiers frame.
+  const framing = useMemo(() => {
+    if (!highlightsTarget || !target) return null;
+    return locatorView([target], COUNTRY_CENTERS);
+  }, [highlightsTarget, target]);
 
   const globe = useGlobeGestures({
-    initialSpin: framing.spin,
-    initialZoom: framing.zoom,
+    initialSpin: { lng: -20, lat: 15 },
+    initialZoom: 1,
     axisLock: true,
   });
   const { snapTo } = globe;
   useEffect(() => {
-    snapTo(framing.zoom, framing.spin);
+    if (framing) snapTo(framing.zoom, framing.spin);
   }, [framing, snapTo]);
 
-  const answer = useCallback(
-    (name) => {
-      if (picked || over) return;
-      setPicked(name);
-      const result = submitAnswer(run, name, {
-        now: Date.now(),
-        isMatch: (value, code) => value === countryName(code),
-      });
-      // A beat on the reveal, then the next country. Short, because the whole
-      // premise is "how many can you get" and a long celebration is time taken
-      // off the player's own clock.
+  // One comparison for every tier, so a tier change can never silently change
+  // what counts as right. Typed tiers go through the fuzzy matcher (a close
+  // spelling earns it); everything else compares the country's own name.
+  const isMatch = useCallback(
+    (value, code) =>
+      look.answer === "type"
+        ? isCorrectAnswer(matchAnswer(value, countryName(code), ALL_NAMES))
+        : value === countryName(code),
+    [look.answer]
+  );
+
+  const commit = useCallback(
+    (value, { immediate = false } = {}) => {
+      if (over) return;
+      const result = submitAnswer(run, value, { now: Date.now(), isMatch });
+      setLastOutcome({ outcome: result.outcome, value, target: result.target });
+      if (immediate) {
+        setRun(result.run);
+        setPicked(null);
+        return;
+      }
+      setPicked(value);
+      // A short beat on the reveal — the premise is "how many can you get",
+      // and a long celebration is time off the player's own clock.
       advanceTimer.current = setTimeout(() => {
         setRun(result.run);
         setPicked(null);
       }, 550);
     },
-    [picked, over, run]
+    [over, run, isMatch]
   );
+
+  // A recall answer never waits: there is no target to reveal, and pausing
+  // half a second per entry would cost a fast player a dozen countries.
+  const answerRecall = useCallback((value) => commit(value, { immediate: true }), [commit]);
+
+  // The globe as an answer surface (Medium): tapping a country IS the answer.
+  const answerGlobe = useCallback((code) => commit(countryName(code)), [commit]);
 
   const score = marathonScore(run, now);
   const left = remainingMs(run, now);
   const { height } = useWindowDimensions();
-  const stageHeight = Math.min(460, height * 0.42);
+  const stageHeight = Math.min(460, height * (isRecall ? 0.34 : 0.42));
 
   if (over) {
+    const unfound = remaining(run);
     return (
       <ScrollView contentContainerStyle={styles.resultWrap}>
         <FadeInUp>
@@ -142,6 +208,7 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
           <Text style={styles.resultCount}>{score.found}</Text>
           <Text style={styles.resultLabel}>
             {score.found === 1 ? "country named" : "countries named"}
+            {score.total ? ` of ${score.total}` : ""}
           </Text>
           <View style={styles.resultRow}>
             <View style={styles.resultStat}>
@@ -157,6 +224,21 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
               <Text style={styles.resultStatLabel}>SCORE</Text>
             </View>
           </View>
+          {score.completedAll && (
+            <Text style={styles.resultBonus}>
+              Every one — {score.speedBonus} bonus for finishing with time to spare.
+            </Text>
+          )}
+          {/* The teaching half. A count alone says how you did; this says what
+              to go and learn, which is the only part that improves the next run. */}
+          {unfound.length > 0 && unfound.length <= 60 && (
+            <View style={styles.missedCard}>
+              <Text style={styles.missedKicker}>STILL TO LEARN</Text>
+              <Text style={styles.missedList}>
+                {unfound.map((code) => countryName(code)).join(" · ")}
+              </Text>
+            </View>
+          )}
           <PressableTint
             onPress={() => onFinish?.(score)}
             radius={radius.pill}
@@ -171,7 +253,7 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
   }
 
   return (
-    <View style={styles.wrap}>
+    <ScrollView contentContainerStyle={styles.wrap} keyboardShouldPersistTaps="handled">
       <View style={styles.topBar}>
         <Pressable onPress={onExit} style={styles.close} accessibilityLabel="End run">
           <Text style={styles.closeText}>✕</Text>
@@ -188,57 +270,136 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
         accessibilityLabel="Time remaining"
       />
 
-      <Text style={styles.prompt}>{meta?.title ?? "Name every country"}</Text>
-      <Text style={styles.sub}>Which country is highlighted?</Text>
+      <Text style={styles.prompt}>{meta?.title ?? "Marathon"}</Text>
+      <Text style={styles.sub}>{marathonHint(mode, tier)}</Text>
 
-      <View style={[styles.stage, { height: stageHeight }]} {...globe.surfaceProps}>
-        <GlobeMap spin={globe.spin} zoom={globe.zoom} basemap="simple" highlightCode={target} />
-      </View>
+      {/* The prompt. "name" is the only one that is text — on every other tier
+          the prompt is the media below. */}
+      {look.prompt === "name" && target && (
+        <Text style={styles.targetName}>{countryName(target)}</Text>
+      )}
 
-      <View style={styles.options}>
-        {options.map((name) => {
-          const isPicked = picked === name;
-          const right = picked && name === countryName(target);
-          return (
-            <Pressable
-              key={name}
-              onPress={() => answer(name)}
-              style={[
-                styles.option,
-                right && styles.optionCorrect,
-                isPicked && !right && styles.optionWrong,
-              ]}
-              accessibilityRole="button"
-            >
-              <Text
+      {look.prompt === "flag" && target && (
+        <View style={styles.flagBox}>
+          <Image source={{ uri: flagUrl(target) }} style={styles.flag} resizeMode="contain" />
+        </View>
+      )}
+
+      {usesGlobe && (
+        <View style={[styles.stage, { height: stageHeight }]} {...globe.surfaceProps}>
+          <GlobeMap
+            spin={globe.spin}
+            zoom={globe.zoom}
+            basemap="simple"
+            highlightCode={highlightsTarget ? target : null}
+            onSelect={look.answer === "globe" ? answerGlobe : undefined}
+          />
+        </View>
+      )}
+
+      {look.answer === "choices" && (
+        <View style={styles.options}>
+          {options.map((name) => {
+            const isPicked = picked === name;
+            const right = picked && name === countryName(target);
+            return (
+              <Pressable
+                key={name}
+                onPress={() => !picked && commit(name)}
                 style={[
-                  styles.optionText,
-                  (right || (isPicked && !right)) && styles.optionResolved,
+                  styles.option,
+                  right && styles.optionCorrect,
+                  isPicked && !right && styles.optionWrong,
                 ]}
+                accessibilityRole="button"
               >
-                {name}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </View>
+                <Text
+                  style={[
+                    styles.optionText,
+                    (right || (isPicked && !right)) && styles.optionResolved,
+                  ]}
+                >
+                  {name}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      )}
 
-      <Pressable
-        onPress={() => {
-          setRun((r) => skipTarget(r, Date.now()));
-          setPicked(null);
-        }}
-        style={styles.skip}
-        accessibilityRole="button"
-      >
-        <Text style={styles.skipText}>Skip ›</Text>
-      </Pressable>
-    </View>
+      {look.answer === "type" && !isRecall && (
+        <TypeAnswer
+          key={`type-${run.index}`}
+          suggest={look.suggest}
+          pool={ALL_NAMES}
+          answered={Boolean(picked)}
+          result={picked ? (lastOutcome?.outcome === "correct" ? "match" : "miss") : null}
+          correct={target ? countryName(target) : null}
+          submitted={picked ?? ""}
+          onSubmit={commit}
+        />
+      )}
+
+      {/* Recall: the field never resolves and never blocks. Keyed on how many
+          have been found so it clears after each entry, which is what lets
+          someone type continuously. */}
+      {isRecall && (
+        <View>
+          <TypeAnswer
+            key={`recall-${run.found.length}-${run.missed.length}`}
+            suggest={false}
+            pool={ALL_NAMES}
+            answered={false}
+            onSubmit={answerRecall}
+          />
+          {lastOutcome && (
+            <Text
+              style={[
+                styles.recallNote,
+                lastOutcome.outcome === "correct" && styles.recallOk,
+                lastOutcome.outcome === "duplicate" && styles.recallDupe,
+              ]}
+            >
+              {lastOutcome.outcome === "correct"
+                ? `✓ ${countryName(lastOutcome.target)}`
+                : lastOutcome.outcome === "duplicate"
+                  ? `Already had ${countryName(lastOutcome.target)}`
+                  : `${lastOutcome.value} isn't one`}
+            </Text>
+          )}
+          <View style={styles.foundWrap}>
+            {run.found
+              .slice()
+              .reverse()
+              .slice(0, 24)
+              .map((code) => (
+                <View key={code} style={styles.chip}>
+                  <Text style={styles.chipText}>{countryName(code)}</Text>
+                </View>
+              ))}
+          </View>
+        </View>
+      )}
+
+      {!isRecall && (
+        <Pressable
+          onPress={() => {
+            if (picked) return;
+            setRun((r) => skipTarget(r, Date.now()));
+            setLastOutcome(null);
+          }}
+          style={styles.skip}
+          accessibilityRole="button"
+        >
+          <Text style={styles.skipText}>Skip ›</Text>
+        </Pressable>
+      )}
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, paddingHorizontal: spacing(5), paddingTop: spacing(4) },
+  wrap: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(12) },
   topBar: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
   close: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   closeText: { ...type.h3, color: colors.textMuted },
@@ -257,12 +418,16 @@ const styles = StyleSheet.create({
 
   prompt: { ...type.eyebrow, marginTop: spacing(4) },
   sub: { ...type.h3, marginTop: spacing(1) },
+  targetName: { ...type.display, fontSize: 34, marginTop: spacing(3) },
+
+  flagBox: { alignItems: "center", marginTop: spacing(4) },
+  flag: { width: 220, height: 140, borderRadius: radius.card },
 
   stage: {
     marginTop: spacing(3),
     borderRadius: radius.sheet,
     overflow: "hidden",
-    backgroundColor: colors.map?.ocean ?? colors.brandDeep,
+    backgroundColor: map.ocean,
   },
 
   options: { marginTop: spacing(4), gap: spacing(2) },
@@ -280,6 +445,18 @@ const styles = StyleSheet.create({
   optionText: { ...type.body, fontSize: 16 },
   optionResolved: { color: colors.onFill },
 
+  recallNote: { ...type.caption, marginTop: spacing(2) },
+  recallOk: { color: colors.successInk },
+  recallDupe: { color: colors.emberInk },
+  foundWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2), marginTop: spacing(3) },
+  chip: {
+    backgroundColor: colors.successSurface,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing(3),
+    paddingVertical: spacing(1),
+  },
+  chipText: { ...type.caption, color: colors.successInk },
+
   skip: { alignSelf: "center", paddingVertical: spacing(3), marginTop: spacing(2) },
   skipText: { ...type.label, color: colors.link },
 
@@ -291,6 +468,21 @@ const styles = StyleSheet.create({
   resultStat: { alignItems: "center" },
   resultStatValue: { ...type.h2 },
   resultStatLabel: { ...type.eyebrow, fontSize: 10, marginTop: 2 },
+  resultBonus: {
+    ...type.caption,
+    color: colors.successInk,
+    marginTop: spacing(4),
+    textAlign: "center",
+  },
+  missedCard: {
+    marginTop: spacing(6),
+    backgroundColor: colors.surfaceRaised,
+    borderRadius: radius.sheet,
+    padding: spacing(5),
+    ...hairline,
+  },
+  missedKicker: { ...type.eyebrow },
+  missedList: { ...type.body, color: colors.textSecondary, marginTop: spacing(2), lineHeight: 24 },
   primary: {
     marginTop: spacing(8),
     height: buttonHeight,

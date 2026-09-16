@@ -143,9 +143,8 @@ const BUILT_TIERS = {
   shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy", "medium", "hard", "expert"],
   higherLower: ["easy", "medium", "hard"],
-  // Step 7 part 1 ships Easy; the other three follow in part 2.
-  nameEveryCountry: ["easy"],
-  identifyAllFlags: [],
+  nameEveryCountry: ["easy", "medium", "hard", "expert"],
+  identifyAllFlags: ["easy", "medium", "hard"],
 };
 
 export const isTierBuilt = (mode, tier) => (BUILT_TIERS[mode] ?? []).includes(tier);

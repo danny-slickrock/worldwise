@@ -200,9 +200,9 @@ export default function HomeScreen({
         <View style={styles.grid}>
           {GAME_GRID.map((key, i) => {
             const m = MODES[key];
-            // Not built yet (steps 7-8). The tier system is not what withholds
-            // these — every account is pro — so the tile is badged exactly like
-            // a finished pro game and simply says it isn't here yet.
+            // Kept as a seam rather than deleted: the next unbuilt game gets a
+            // badged, honest tile for free instead of a tile that launches a
+            // round with no answer surface. No mode sets it today.
             const soon = Boolean(m.comingSoon);
             return (
               <FadeInUp key={key} style={styles.tileCell} delay={TILE_BASE_DELAY + staggerDelay(i)}>
