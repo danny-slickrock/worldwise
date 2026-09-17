@@ -118,12 +118,16 @@ shape `CountryPageScreen`/`LearningPathScreen` already use, with every nested `F
 done, M2.6 — Leaderboards & light social is the lowest-numbered milestone with unblocked work.** It
 now has an ordered sub-checklist, and step 1 — the pure ranking policy
 (`src/game/leaderboardPolicy.js`'s `rankLeaderboard()`/`topWithYou()`, competition ranking with a
-deterministic tie-break, `LEADERBOARD_TOP_N` in `constants.js`) — is done. **Step 2 is next, and
-needs a human read before landing:** today's RLS (M2.1) makes every `user_stats`/`game_results` row
-visible only to its own owner, so a leaderboard needs a new, narrow public-read surface (view or
-summary table: just `user_id`/`display_name`/ranked value, nothing from `profiles` beyond a
-display name) rather than widening the existing owner-only tables — see M2.6 step 2's note below.
-The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+deterministic tie-break, `LEADERBOARD_TOP_N` in `constants.js`) — is done. **Step 2 — the schema —
+is now also done:** `supabase/migrations/20260917120000_leaderboard_global_view.sql` adds
+`public.leaderboard_global`, a narrow public-read view (`user_id`/`display_name`/`xp` only) over
+`profiles`+`user_stats` that a plain view's owner-privileged RLS bypass lets read across every user,
+grant-revoked down to `authenticated`-only (`anon` gets nothing). Verified against a real local
+Postgres 16 (not the Docker-based `supabase start`, which this environment's egress policy blocks) —
+see M2.6 step 2's note below for what that did and didn't cover. **Step 3 (the IO layer,
+`src/storage/cloudLeaderboard.js`) is next**, once the migration has had a human read and Danny has
+run it through `supabase db reset`/`db push`. The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1484,11 +1488,33 @@ teaching *how the world works*, not just *where things are*.
        beyond a name to show. Needs a human read before landing, since it's the first cross-user
        read surface in the schema and the grant-less-RLS trap (M2.1) makes this exactly the kind of
        change that fails silent instead of loud.)*
-    2. ☐ **Schema: a narrow public-read leaderboard surface.** A migration exposing only what a
+    2. ✅ **Schema: a narrow public-read leaderboard surface.** A migration exposing only what a
        leaderboard needs to render (display name + ranked value, per leaderboard), RLS'd `select`-only
        for `authenticated` with explicit grants — mirroring `content.*`'s public-read pattern (M2.3.5)
        rather than `user_stats`/`game_results`' owner-only pattern. Decide global-XP vs. daily-score
        (or both) here; `anon` gets nothing, same reasoning M2.1 used.
+       `supabase/migrations/20260917120000_leaderboard_global_view.sql`: `public.leaderboard_global`,
+       a plain (non-`security_invoker`) view joining `profiles.display_name` + `user_stats.xp`, owned
+       by the migration role — so it runs with the OWNER's privileges for RLS purposes (Postgres's
+       long-standing view default, unchanged in v15+ unless `security_invoker` is set) and sees every
+       row despite `user_stats`' owner-only policy, which is the whole point: a leaderboard has to
+       look across users. The narrowness is the column list (`user_id`/`display_name`/`xp`, nothing
+       else off `profiles`) plus an explicit `revoke all ... from public, anon, authenticated` before
+       granting `select` back to `authenticated` only — Supabase's ambient default privileges hand
+       `select` on every new `public` relation to both roles, the same trap M2.9 hit with `EXECUTE`
+       on functions, so the revoke has to be explicit rather than assumed. Global XP only, on
+       purpose: the Daily Challenge leaderboard (step 5) is its own later view scoped to
+       `game_results.daily_date`, and folding it in here would make one view answer two questions.
+       **Verified against a real (non-Docker) local Postgres 16**, since `supabase start`'s image
+       pulls are blocked by this environment's egress policy (403s from Docker's CDN — a sandbox
+       constraint, not a code issue): applied the M2.1 + this migration in sequence against a plain
+       `createdb`, seeded two users, and confirmed as `authenticated` with Alice's JWT claim that the
+       *base* `user_stats` table still returns only her own row (1) while `leaderboard_global`
+       returns both rows (2, correct xp values) — the view genuinely crosses the RLS boundary — and
+       that `anon` gets a hard `permission denied for view`, not an empty result. Danny: please still
+       run `npx supabase db reset` for the full Docker-based check before `db push`, per CLAUDE.md's
+       own guidance for schema changes; this local-Postgres pass covers the RLS/grant logic but not
+       PostgREST's schema exposure or the rest of the stack.
     3. ☐ **IO layer.** `src/storage/cloudLeaderboard.js`: fetch ranked rows from the new surface,
        feeding `leaderboardPolicy.js`'s `topWithYou()`. Mirrors `cloudProgress.js`'s
        `fetchRoundResults()` shape — cloud-only, `{ rows, error }`, no swallowed failures.
