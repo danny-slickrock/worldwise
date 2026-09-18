@@ -7,6 +7,19 @@
 // { userId, displayName, value } list it's handed.
 import { LEADERBOARD_TOP_N } from "../constants";
 
+// M2.6 step 3: the row shape ⇄ policy shape mapping, pure so it can sit next
+// to rankLeaderboard/topWithYou rather than inside the IO layer (mirrors
+// cloudSync.js's statsRowFromProgress/progressFromStatsRow split). The IO
+// layer (storage/cloudLeaderboard.js) fetches from `public.leaderboard_global`
+// and knows nothing else about the mapping.
+export function entryFromLeaderboardRow(row) {
+  return {
+    userId: row?.user_id ?? null,
+    displayName: row?.display_name ?? null,
+    value: row?.xp ?? 0,
+  };
+}
+
 function sortedEntries(entries) {
   return [...(entries ?? [])]
     .map((entry) => ({ ...entry, value: entry?.value ?? 0 }))

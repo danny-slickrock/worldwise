@@ -163,7 +163,11 @@ import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
 import { computeCollections } from "../src/game/collectionPolicy";
-import { rankLeaderboard, topWithYou } from "../src/game/leaderboardPolicy";
+import {
+  rankLeaderboard,
+  topWithYou,
+  entryFromLeaderboardRow,
+} from "../src/game/leaderboardPolicy";
 import {
   countryStats,
   studyReason,
@@ -6630,6 +6634,33 @@ check(
 check(
   topWithYou([], "a").rows.length === 0 && topWithYou([], "a").you === null,
   "topWithYou tolerates an empty leaderboard"
+);
+
+console.log("\nLeaderboard row mapping (M2.6 step 3)");
+check(
+  JSON.stringify(
+    entryFromLeaderboardRow({ user_id: "u1", display_name: "Amara", xp: 420 })
+  ) === JSON.stringify({ userId: "u1", displayName: "Amara", value: 420 }),
+  "entryFromLeaderboardRow maps a leaderboard_global row to the ranking policy's entry shape"
+);
+check(
+  entryFromLeaderboardRow({ user_id: "u2", display_name: "Bo" }).value === 0,
+  "a missing xp maps to 0 rather than undefined, so a fresh user_stats row still ranks last, not throwing"
+);
+check(
+  JSON.stringify(entryFromLeaderboardRow(null)) ===
+    JSON.stringify({ userId: null, displayName: null, value: 0 }),
+  "entryFromLeaderboardRow tolerates a missing row"
+);
+check(
+  rankLeaderboard(
+    [
+      { user_id: "u1", display_name: "Amara", xp: 300 },
+      { user_id: "u2", display_name: "Bo", xp: 500 },
+    ].map(entryFromLeaderboardRow),
+    "u2"
+  )[0].userId === "u2",
+  "mapped leaderboard_global rows rank correctly end to end through rankLeaderboard"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

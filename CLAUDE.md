@@ -189,8 +189,9 @@ src/
                            #   state, deliberately excluded from the study list
   game/leaderboardPolicy.js # PURE M2.6 step 1: rankLeaderboard(entries, currentUserId) — competition
                            #   ranking (ties share a rank) + a deterministic tie-break; topWithYou()
-                           #   is the top N plus the player's own row when they're outside it. Ranks
-                           #   whatever rows a later IO layer fetches — no schema/IO yet
+                           #   is the top N plus the player's own row when they're outside it. Also
+                           #   step 3's entryFromLeaderboardRow() — leaderboard_global row ⇄ entry
+                           #   shape, kept pure and tested rather than folded into the IO file
   hooks/useGlobeGestures.js # Drag-to-spin, pinch/wheel-to-zoom and flick momentum for a GlobeMap.
                            #   Used by BOTH the Explore map and the Country Locator
   auth/redirectPolicy.js   # PURE auth-redirect selection
@@ -202,6 +203,9 @@ src/
   storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
   storage/interests.js     # M2.3.6: AsyncStorage interest-selection cache
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
+  storage/cloudLeaderboard.js # M2.6 step 3 IO: fetchGlobalLeaderboard(user, client) reads
+                           #   public.leaderboard_global — signed-in only, the view grants
+                           #   `authenticated` alone. No screen reads it yet (M2.6 step 4)
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Flat tappable world map. SUPERSEDED by GlobeMap for the Country
                            #   Locator (M2.3.7 step 2); kept until the globe is checked on a device

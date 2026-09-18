@@ -124,10 +124,14 @@ is now also done:** `supabase/migrations/20260917120000_leaderboard_global_view.
 `profiles`+`user_stats` that a plain view's owner-privileged RLS bypass lets read across every user,
 grant-revoked down to `authenticated`-only (`anon` gets nothing). Verified against a real local
 Postgres 16 (not the Docker-based `supabase start`, which this environment's egress policy blocks) —
-see M2.6 step 2's note below for what that did and didn't cover. **Step 3 (the IO layer,
-`src/storage/cloudLeaderboard.js`) is next**, once the migration has had a human read and Danny has
-run it through `supabase db reset`/`db push`. The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+see M2.6 step 2's note below for what that did and didn't cover. **Step 3 — the IO layer — is now
+also done:** `src/storage/cloudLeaderboard.js`'s `fetchGlobalLeaderboard(user, client)` fetches from
+`public.leaderboard_global` and maps rows through a new pure `entryFromLeaderboardRow()` in
+`leaderboardPolicy.js` into `topWithYou()`'s expected shape. It talks to the view step 2 added, which
+still needs Danny's `supabase db reset`/`db push` before it exists in any real database — the code is
+written and tested against the mapping, but nothing in this repo can exercise it against a live
+Supabase project. **Step 4 (the navigation seam + `LeaderboardScreen`) is next.** The Phase 1 backlog
+below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1515,9 +1519,14 @@ teaching *how the world works*, not just *where things are*.
        run `npx supabase db reset` for the full Docker-based check before `db push`, per CLAUDE.md's
        own guidance for schema changes; this local-Postgres pass covers the RLS/grant logic but not
        PostgREST's schema exposure or the rest of the stack.
-    3. ☐ **IO layer.** `src/storage/cloudLeaderboard.js`: fetch ranked rows from the new surface,
-       feeding `leaderboardPolicy.js`'s `topWithYou()`. Mirrors `cloudProgress.js`'s
-       `fetchRoundResults()` shape — cloud-only, `{ rows, error }`, no swallowed failures.
+    3. ✅ **IO layer.** `src/storage/cloudLeaderboard.js`: `fetchGlobalLeaderboard(user, client)`
+       fetches `user_id, display_name, xp` from `public.leaderboard_global` (ordered by `xp` desc),
+       mapped through a new pure `entryFromLeaderboardRow()` in `leaderboardPolicy.js` into the
+       `{ userId, displayName, value }` shape `topWithYou()` already expects — mirroring
+       `cloudSync.js`'s row-mapping split, so the mapping is tested directly (4 new checks) rather
+       than only through the untestable IO file, same reasoning `cloudProgress.js` already
+       established. Signed-out returns `{ rows: [], error: null }` without a call, since the view
+       grants `select` to `authenticated` only. Not yet wired to a screen — that's step 4.
     4. ☐ **Navigation seam + hero screen.** A `leaderboard` route (owned by the Profile tab, same
        pattern as M2.5's `achievements` route) rendering `src/screens/LeaderboardScreen.js`: real
        ranked rows via step 3 + `topWithYou()`, a "you" row pinned when outside the visible top,
