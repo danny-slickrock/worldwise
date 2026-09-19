@@ -205,7 +205,7 @@ src/
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
   storage/cloudLeaderboard.js # M2.6 step 3 IO: fetchGlobalLeaderboard(user, client) reads
                            #   public.leaderboard_global — signed-in only, the view grants
-                           #   `authenticated` alone. No screen reads it yet (M2.6 step 4)
+                           #   `authenticated` alone. Read by LeaderboardScreen (M2.6 step 4)
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Flat tappable world map. SUPERSEDED by GlobeMap for the Country
                            #   Locator (M2.3.7 step 2); kept until the globe is checked on a device
@@ -269,6 +269,11 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
   screens/AchievementsScreen.js # M2.5 hero screen (step 3): real locked/unlocked state + progress
                            #   bars via achievementPolicy.js, reached from a Profile row (step 4),
                            #   plus a level card via levelPolicy.js above the badge list (step 5)
+  screens/LeaderboardScreen.js # M2.6 step 4: ranked rows via leaderboardPolicy.js's topWithYou() +
+                           #   cloudLeaderboard.js's fetchGlobalLeaderboard(), a "you" row pinned
+                           #   below the top 10 (or highlighted inline within it), reached from a
+                           #   Profile row. Same loading/error/signed-out shape AchievementsScreen
+                           #   and ReviewScreen already established
 supabase/migrations/       # Schema as code (user domain + content domain, RLS, signup trigger)
 supabase/functions/        # Edge Functions (Deno). ingest-embeddings: chunks + embeds country
                            #   content with the built-in gte-small model. ask: retrieval + grounded
@@ -745,17 +750,22 @@ tapping Back that confirmed Back waits for the animation before actually navigat
 
 **Next up:** with M2.3.5, M2.3.7, and M2.9 still blocked on human-only steps and M2.4/M2.5 both
 done, **M2.6 — Leaderboards & light social** is the lowest-numbered milestone with unblocked work.
-It now has an ordered sub-checklist (see ROADMAP.md), and step 1 — the pure ranking policy,
+It has an ordered sub-checklist (see ROADMAP.md): step 1, the pure ranking policy —
 `src/game/leaderboardPolicy.js`'s `rankLeaderboard()` (competition ranking: tied scores share a
 rank, the next distinct score skips ahead by the tie count, plus a deterministic name/id tie-break)
 and `topWithYou()` (the top `LEADERBOARD_TOP_N` rows, plus the player's own ranked row pinned on
-when they're outside it) — is done. It ranks whatever rows a caller hands it; there is deliberately
-no schema or IO yet. **Step 2 is next and needs a human read before landing:** the M2.1 RLS policies
-make every `user_stats`/`game_results` row visible only to its own owner, so a real leaderboard
-needs a new, narrow public-read surface (a view or summary table carrying only `user_id`/
-`display_name`/the ranked value) rather than widening either existing table to cross-user `select`
-— that would also expose `settings`, `difficulty_pref`, and every raw round. Mirror `content.*`'s
-public-read pattern (M2.3.5), not `user_stats`/`game_results`'s owner-only one.
+when they're outside it); step 2, `public.leaderboard_global` — a narrow public-read view over
+`profiles`+`user_stats` (`user_id`/`display_name`/`xp` only), grant-revoked down to `authenticated`
+only, mirroring `content.*`'s public-read pattern (M2.3.5) rather than `user_stats`/`game_results`'s
+owner-only one, verified against a real local Postgres 16 since this environment's egress policy
+blocks the Docker-based `supabase start`; step 3, `storage/cloudLeaderboard.js`'s
+`fetchGlobalLeaderboard()`, mapped through a pure `entryFromLeaderboardRow()`; and step 4,
+`screens/LeaderboardScreen.js` (ranked rows, a pinned/highlighted "you" row, and
+loading/error/signed-out states mirroring `AchievementsScreen`/`ReviewScreen`), reached from a new
+"Leaderboard" row on Profile — are all done. The view itself hasn't reached production yet
+(Danny's `supabase db reset`/`db push` are still pending), so step 4 was verified in a real browser
+against mocked `leaderboard_global` responses rather than a live leaderboard. **Step 5 (the Daily
+Challenge leaderboard) is next.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -130,7 +130,13 @@ also done:** `src/storage/cloudLeaderboard.js`'s `fetchGlobalLeaderboard(user, c
 `leaderboardPolicy.js` into `topWithYou()`'s expected shape. It talks to the view step 2 added, which
 still needs Danny's `supabase db reset`/`db push` before it exists in any real database — the code is
 written and tested against the mapping, but nothing in this repo can exercise it against a live
-Supabase project. **Step 4 (the navigation seam + `LeaderboardScreen`) is next.** The Phase 1 backlog
+Supabase project. **Step 4 — the navigation seam + hero screen — is now also done:** a `leaderboard`
+route (owned by the Profile tab, same pattern as M2.5's `achievements` route) renders
+`src/screens/LeaderboardScreen.js`, reached from a new "Leaderboard" row on `ProfileScreen`. It still
+needs a live `leaderboard_global` view to read from — step 2's migration hasn't reached production
+yet — so its cross-user fetch was verified against mocked responses in a real browser rather than a
+real leaderboard; every loading/error/signed-out/ranked state is covered (see the sub-checklist entry
+below for the full list). **Step 5 (the Daily Challenge leaderboard) is next.** The Phase 1 backlog
 below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1527,10 +1533,23 @@ teaching *how the world works*, not just *where things are*.
        than only through the untestable IO file, same reasoning `cloudProgress.js` already
        established. Signed-out returns `{ rows: [], error: null }` without a call, since the view
        grants `select` to `authenticated` only. Not yet wired to a screen — that's step 4.
-    4. ☐ **Navigation seam + hero screen.** A `leaderboard` route (owned by the Profile tab, same
-       pattern as M2.5's `achievements` route) rendering `src/screens/LeaderboardScreen.js`: real
-       ranked rows via step 3 + `topWithYou()`, a "you" row pinned when outside the visible top,
-       loading/offline/signed-out states mirroring `AchievementsScreen`'s own (M2.5 step 6.4.3).
+    4. ✅ **Navigation seam + hero screen.** A `leaderboard` route (owned by the Profile tab, same
+       pattern as M2.5's `achievements` route) added to `src/game/navigation.js`'s `ROUTES` +
+       `routeToPath`/`pathToRoute` (round-trip-tested, same as every other route), rendering
+       `src/screens/LeaderboardScreen.js`: real ranked rows via step 3's `fetchGlobalLeaderboard()`
+       + step 1's `topWithYou()`, a "you" row pinned below a separator when outside the visible
+       top (or highlighted inline via a `colors.brand` left rule when inside it), and the same
+       fade-in/fade-out shape + `loadingResults`/`Skeleton` treatment `AchievementsScreen` uses
+       (M2.5 step 6.4.3/6.4.4) for the fetch-in-flight window. Signed-out gets its own notice
+       rather than a skeleton, since `fetchGlobalLeaderboard` never fetches for a signed-out
+       player (the view grants `authenticated` only) — mirroring `ReviewScreen`'s own signed-out
+       notice. Reached from a new "Leaderboard" row on `ProfileScreen`, beside Achievements and
+       Review. **Verified in a real browser** (Playwright/Chromium, static dev server, placeholder
+       Supabase env, a spoofed signed-in session in `localStorage`, and mocked
+       `leaderboard_global` responses — no live Supabase project reachable from this environment):
+       the signed-out notice, the loading skeleton, the fetch-failure notice + empty state, ranked
+       rows with the player pinned outside the top 10, ranked rows with the player highlighted
+       inline inside the top 10, and Back correctly returning to Profile.
     5. ☐ **Daily Challenge leaderboard.** A second ranked view scoped to today's `daily_date`, likely
        reusing the same screen with a global/daily toggle rather than a second screen.
     6. ☐ **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable

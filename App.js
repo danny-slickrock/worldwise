@@ -21,6 +21,7 @@ import ReviewScreen from "./src/screens/ReviewScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
 import AchievementsScreen from "./src/screens/AchievementsScreen";
+import LeaderboardScreen from "./src/screens/LeaderboardScreen";
 import QuizScreen from "./src/components/QuizScreen";
 import AppChrome from "./src/components/AppChrome";
 import BrandLoader from "./src/components/BrandLoader";
@@ -509,6 +510,11 @@ function AppShell() {
       case "achievements":
         return <AchievementsScreen onExit={backHandler} progress={progress} />;
 
+      // M2.6 step 4 — real ranked rows via topWithYou()/fetchGlobalLeaderboard,
+      // owned by the Profile tab like Achievements.
+      case "leaderboard":
+        return <LeaderboardScreen onExit={backHandler} />;
+
       case "profile":
         return (
           <ProfileScreen
@@ -519,6 +525,7 @@ function AppShell() {
               go({ name: "interests" });
             }}
             onOpenAchievements={() => go({ name: "achievements" })}
+            onOpenLeaderboard={() => go({ name: "leaderboard" })}
             onOpenReview={() => go({ name: "review" })}
           />
         );

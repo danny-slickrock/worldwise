@@ -2995,6 +2995,7 @@ const roundTrips = [
   { name: "countryIndex" },
   { name: "interests" },
   { name: "achievements" },
+  { name: "leaderboard" },
   { name: "quiz", mode: "shape", difficulty: "easy", timed: true },
   { name: "gameSetup", mode: "flag" },
   { name: "review" },

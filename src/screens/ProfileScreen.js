@@ -21,6 +21,7 @@ export default function ProfileScreen({
   interests,
   onOpenInterests,
   onOpenAchievements,
+  onOpenLeaderboard,
   onOpenReview,
 }) {
   const { user, loading, signOut } = useAuth();
@@ -41,6 +42,7 @@ export default function ProfileScreen({
       onSignOut={signOut}
       onOpenInterests={onOpenInterests}
       onOpenAchievements={onOpenAchievements}
+      onOpenLeaderboard={onOpenLeaderboard}
       onOpenReview={onOpenReview}
     />
   );
@@ -53,6 +55,7 @@ function SignedIn({
   onSignOut,
   onOpenInterests,
   onOpenAchievements,
+  onOpenLeaderboard,
   onOpenReview,
 }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
@@ -169,6 +172,20 @@ function SignedIn({
                 <Text style={styles.interestsValue}>
                   {unlockedCount} of {badges.length} unlocked
                 </Text>
+              </View>
+              <Text style={styles.interestsChevron}>›</Text>
+            </Pressable>
+          )}
+
+          {/* Leaderboard (M2.6 step 4). No fetch here — unlike Achievements
+              and Review, ranking needs a cross-user read (leaderboard_global,
+              M2.6 step 2), which this row doesn't need in order to just open
+              the screen that does it. */}
+          {onOpenLeaderboard && (
+            <Pressable onPress={onOpenLeaderboard} style={styles.interestsRow} hitSlop={4}>
+              <View style={styles.interestsBody}>
+                <Text style={styles.interestsLabel}>Leaderboard</Text>
+                <Text style={styles.interestsValue}>See where your XP ranks</Text>
               </View>
               <Text style={styles.interestsChevron}>›</Text>
             </Pressable>

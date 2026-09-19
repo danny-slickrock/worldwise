@@ -66,6 +66,10 @@ export const ROUTES = {
   countryIndex: { tab: "explore", root: false, chrome: true },
   interests: { tab: "profile", root: false, chrome: true },
   achievements: { tab: "profile", root: false, chrome: true },
+  // The leaderboard (M2.6 step 4). Owned by Profile like Achievements — both
+  // are about where you stand, one against your own history, one against
+  // everyone else's.
+  leaderboard: { tab: "profile", root: false, chrome: true },
   // Review (M2.12 step 9). Owned by the Profile tab — it is about YOUR
   // history, like Achievements — but reachable from Home too, which the
   // per-tab stacks handle without a returnTo field.
@@ -232,6 +236,8 @@ export function routeToPath(route) {
       return "/interests";
     case "achievements":
       return "/achievements";
+    case "leaderboard":
+      return "/leaderboard";
     case "review":
       return "/review";
     case "gameSetup":
@@ -295,6 +301,8 @@ export function pathToRoute(path) {
       return { name: "interests" };
     case "achievements":
       return { name: "achievements" };
+    case "leaderboard":
+      return { name: "leaderboard" };
     case "review":
       return { name: "review" };
     case "country":
