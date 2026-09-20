@@ -136,8 +136,18 @@ route (owned by the Profile tab, same pattern as M2.5's `achievements` route) re
 needs a live `leaderboard_global` view to read from — step 2's migration hasn't reached production
 yet — so its cross-user fetch was verified against mocked responses in a real browser rather than a
 real leaderboard; every loading/error/signed-out/ranked state is covered (see the sub-checklist entry
-below for the full list). **Step 5 (the Daily Challenge leaderboard) is next.** The Phase 1 backlog
-below gets picked up opportunistically, not as a gate.
+below for the full list). **Step 5 (the Daily Challenge leaderboard) is next, and now has its own
+ordered sub-checklist** (schema → mapping → IO → screen, mirroring steps 1-4). **Sub-step 5.1 — the
+schema — is done:** `supabase/migrations/20260920120000_leaderboard_daily_view.sql` adds
+`public.leaderboard_daily` (`user_id`/`display_name`/`daily_date`/`score`), scoped to
+`mode = 'daily'` rows rather than filtered by date inside the view — a server-side `current_date`
+filter would disagree with `game_results.daily_date`, which is stamped from the player's own clock,
+so the date filter is left to the IO layer (sub-step 5.3) instead. Verified the same way step 2's
+migration was: a real local Postgres 16, `authenticated`-as-Alice sees only her own `game_results`
+rows but both players' rows through the view, filtering by a specific `daily_date` ranks correctly,
+and `anon` is refused outright. **Next up: sub-step 5.2 — the pure `row.score` mapping** so
+`topWithYou()` can rank Daily rows the same way it ranks XP. The Phase 1 backlog below gets picked
+up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1550,8 +1560,49 @@ teaching *how the world works*, not just *where things are*.
        the signed-out notice, the loading skeleton, the fetch-failure notice + empty state, ranked
        rows with the player pinned outside the top 10, ranked rows with the player highlighted
        inline inside the top 10, and Back correctly returning to Profile.
-    5. ☐ **Daily Challenge leaderboard.** A second ranked view scoped to today's `daily_date`, likely
-       reusing the same screen with a global/daily toggle rather than a second screen.
+    5. **Daily Challenge leaderboard.** A second ranked view scoped to today's `daily_date`, likely
+       reusing the same screen with a global/daily toggle rather than a second screen. Broken into
+       its own ordered sub-checklist, mirroring steps 1-4's schema → mapping → IO → screen shape:
+       1. ✅ **Schema: a narrow public-read daily view.**
+          `supabase/migrations/20260920120000_leaderboard_daily_view.sql`: `public.leaderboard_daily`,
+          a plain (non-`security_invoker`) view over `game_results` (`mode = 'daily'`) joined to
+          `profiles` for a display name, same owner-runs-as-owner mechanism as `leaderboard_global` —
+          it crosses the owner-only RLS on both tables by construction. Columns: `user_id`,
+          `display_name`, `daily_date`, `score`. `score` needs no normalization the way a mixed-length
+          round would, since every Daily is `DAILY_LENGTH` questions for everyone. **Deliberately
+          diverges from `docs/phase-2-data-model.md`'s original sketch**, which filters
+          `daily_date = current_date` inside the view: that reads the *database server's* calendar
+          day, while `game_results.daily_date` is stamped from the *player's own clock*
+          (`src/game/progress.js`'s `dayKey()`) — a player in Auckland and a player in Los Angeles
+          disagree about what day it is for a good chunk of every 24 hours, so a server-side
+          `current_date` filter would show one of them the wrong day's board. Exposing `daily_date`
+          as a column instead, and having the IO layer (step 5.3) filter by the same `dayKey()`
+          string the client already writes with, keeps the two sides agreeing by construction — the
+          same reasoning `resultRowFromRound()` already leans on. Same privilege trap and fix as
+          `leaderboard_global`: explicit `revoke all ... from public, anon, authenticated` before
+          granting `select` back to `authenticated` only. **Verified against a real (non-Docker)
+          local Postgres 16** (this environment's `service postgresql` is directly usable, unlike
+          `supabase start`'s blocked Docker image pulls): applied the M2.1 migration + this one in
+          sequence against a scratch `createdb` with a minimal `auth.users`/`auth.uid()` stub, seeded
+          two users with Daily rows on two different `daily_date`s, and confirmed as `authenticated`
+          with Alice's JWT claim that the *base* `game_results` table still returns only her 2 rows
+          while `leaderboard_daily` returns all 3 rows across both users, that filtering the view by
+          a specific `daily_date` returns exactly that day's rows ranked correctly, and that `anon`
+          gets a hard `permission denied for view`, not an empty result. Danny: please still run
+          `npx supabase db reset` for the full Docker-based check before `db push`, per CLAUDE.md's
+          own guidance for schema changes.
+       2. ☐ **Pure mapping.** `entryFromLeaderboardRow()` in `leaderboardPolicy.js` hardcodes
+          `row.xp` as the ranked value; the daily view's ranked column is `row.score`. Extend it (a
+          `valueKey` param, or a small sibling `entryFromDailyLeaderboardRow()`) so `topWithYou()`
+          still receives the same `{ userId, displayName, value }` shape either way. Pure, tested.
+       3. ☐ **IO layer.** `fetchDailyLeaderboard(user, dayKeyString, client)` in
+          `cloudLeaderboard.js`, mirroring `fetchGlobalLeaderboard()`: query `leaderboard_daily`
+          filtered to `daily_date = dayKeyString` (the caller's own `dayKey(new Date())`, never a
+          server-side "today"), mapped through step 5.2's mapping.
+       4. ☐ **Screen wiring.** A global/daily toggle on `LeaderboardScreen`, reusing its existing
+          ranked-row rendering, loading/error/signed-out states, and "you" pinning — just swapping
+          which fetch + mapping feeds it. A signed-in player with no Daily round played today should
+          read as "you haven't played today's Daily yet," not as a fetch error.
     6. ☐ **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable
        image/text summary of a finished Daily Challenge round (score, streak, rank if known).
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
