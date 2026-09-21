@@ -20,6 +20,20 @@ export function entryFromLeaderboardRow(row) {
   };
 }
 
+// M2.6 step 5.2: the same row ⇄ policy-shape mapping for
+// `public.leaderboard_daily` rows, whose ranked column is `score` rather
+// than `xp` (a Daily round's total is not an XP total). Kept as a sibling
+// rather than a `valueKey` param on `entryFromLeaderboardRow`, since the two
+// views' rows never mix in one call and a second small function reads
+// clearer than a generic one guessing which column to reach for.
+export function entryFromDailyLeaderboardRow(row) {
+  return {
+    userId: row?.user_id ?? null,
+    displayName: row?.display_name ?? null,
+    value: row?.score ?? 0,
+  };
+}
+
 function sortedEntries(entries) {
   return [...(entries ?? [])]
     .map((entry) => ({ ...entry, value: entry?.value ?? 0 }))

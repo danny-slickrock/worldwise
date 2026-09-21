@@ -167,6 +167,7 @@ import {
   rankLeaderboard,
   topWithYou,
   entryFromLeaderboardRow,
+  entryFromDailyLeaderboardRow,
 } from "../src/game/leaderboardPolicy";
 import {
   countryStats,
@@ -6662,6 +6663,38 @@ check(
     "u2"
   )[0].userId === "u2",
   "mapped leaderboard_global rows rank correctly end to end through rankLeaderboard"
+);
+
+console.log("\nDaily leaderboard row mapping (M2.6 step 5.2)");
+check(
+  JSON.stringify(
+    entryFromDailyLeaderboardRow({
+      user_id: "u1",
+      display_name: "Amara",
+      daily_date: "2026-09-21",
+      score: 9,
+    })
+  ) === JSON.stringify({ userId: "u1", displayName: "Amara", value: 9 }),
+  "entryFromDailyLeaderboardRow maps a leaderboard_daily row's score to the ranking policy's entry shape"
+);
+check(
+  entryFromDailyLeaderboardRow({ user_id: "u2", display_name: "Bo" }).value === 0,
+  "a missing score maps to 0 rather than undefined, so a row from before scoring existed still ranks last, not throwing"
+);
+check(
+  JSON.stringify(entryFromDailyLeaderboardRow(null)) ===
+    JSON.stringify({ userId: null, displayName: null, value: 0 }),
+  "entryFromDailyLeaderboardRow tolerates a missing row"
+);
+check(
+  rankLeaderboard(
+    [
+      { user_id: "u1", display_name: "Amara", score: 6 },
+      { user_id: "u2", display_name: "Bo", score: 10 },
+    ].map(entryFromDailyLeaderboardRow),
+    "u2"
+  )[0].userId === "u2",
+  "mapped leaderboard_daily rows rank correctly end to end through rankLeaderboard"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

@@ -145,9 +145,13 @@ filter would disagree with `game_results.daily_date`, which is stamped from the 
 so the date filter is left to the IO layer (sub-step 5.3) instead. Verified the same way step 2's
 migration was: a real local Postgres 16, `authenticated`-as-Alice sees only her own `game_results`
 rows but both players' rows through the view, filtering by a specific `daily_date` ranks correctly,
-and `anon` is refused outright. **Next up: sub-step 5.2 — the pure `row.score` mapping** so
-`topWithYou()` can rank Daily rows the same way it ranks XP. The Phase 1 backlog below gets picked
-up opportunistically, not as a gate.
+and `anon` is refused outright. **Sub-step 5.2 — the pure mapping — is now also done:**
+`entryFromDailyLeaderboardRow()` in `leaderboardPolicy.js` maps a `leaderboard_daily` row's `score`
+column into the same `{ userId, displayName, value }` shape `topWithYou()` already ranks, a sibling
+to step 3's `entryFromLeaderboardRow()` rather than a shared function with a `valueKey` param, since
+the two views' rows never mix in one call. **Next up: sub-step 5.3 — the IO layer**,
+`fetchDailyLeaderboard(user, dayKeyString, client)` in `cloudLeaderboard.js`, mirroring
+`fetchGlobalLeaderboard()`. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1591,10 +1595,16 @@ teaching *how the world works*, not just *where things are*.
           gets a hard `permission denied for view`, not an empty result. Danny: please still run
           `npx supabase db reset` for the full Docker-based check before `db push`, per CLAUDE.md's
           own guidance for schema changes.
-       2. ☐ **Pure mapping.** `entryFromLeaderboardRow()` in `leaderboardPolicy.js` hardcodes
-          `row.xp` as the ranked value; the daily view's ranked column is `row.score`. Extend it (a
-          `valueKey` param, or a small sibling `entryFromDailyLeaderboardRow()`) so `topWithYou()`
-          still receives the same `{ userId, displayName, value }` shape either way. Pure, tested.
+       2. ✅ **Pure mapping.** `entryFromDailyLeaderboardRow()`, a sibling to
+          `entryFromLeaderboardRow()` in `leaderboardPolicy.js`, maps a `leaderboard_daily` row's
+          `score` column (rather than `xp`) into the same `{ userId, displayName, value }` shape
+          `topWithYou()` already expects — a sibling rather than a `valueKey` param, since the two
+          views' rows never mix in one call and a second small function reads clearer than a
+          generic one guessing which column to reach for. 4 new checks in `test/engine.test.js`,
+          mirroring step 3's mapping tests: the row→entry mapping, a missing `score` defaulting to
+          0, tolerating a missing row, and ranking correctly end to end through `rankLeaderboard`.
+          *(Next up: sub-step 5.3 — the IO layer, `fetchDailyLeaderboard(user, dayKeyString,
+          client)` in `cloudLeaderboard.js`.)*
        3. ☐ **IO layer.** `fetchDailyLeaderboard(user, dayKeyString, client)` in
           `cloudLeaderboard.js`, mirroring `fetchGlobalLeaderboard()`: query `leaderboard_daily`
           filtered to `daily_date = dayKeyString` (the caller's own `dayKey(new Date())`, never a
