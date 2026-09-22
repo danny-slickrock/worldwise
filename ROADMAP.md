@@ -149,9 +149,13 @@ and `anon` is refused outright. **Sub-step 5.2 — the pure mapping — is now a
 `entryFromDailyLeaderboardRow()` in `leaderboardPolicy.js` maps a `leaderboard_daily` row's `score`
 column into the same `{ userId, displayName, value }` shape `topWithYou()` already ranks, a sibling
 to step 3's `entryFromLeaderboardRow()` rather than a shared function with a `valueKey` param, since
-the two views' rows never mix in one call. **Next up: sub-step 5.3 — the IO layer**,
-`fetchDailyLeaderboard(user, dayKeyString, client)` in `cloudLeaderboard.js`, mirroring
-`fetchGlobalLeaderboard()`. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+the two views' rows never mix in one call. **Sub-step 5.3 — the IO layer — is now also done:**
+`fetchDailyLeaderboard(user, dayKeyString, client)` in `cloudLeaderboard.js` mirrors
+`fetchGlobalLeaderboard()` — queries `leaderboard_daily` filtered to the caller's own
+`dayKey(new Date())` (never a server-side "today"), ordered by `score` descending, mapped through
+sub-step 5.2's `entryFromDailyLeaderboardRow()`. Not yet wired to a screen. **Next up: sub-step 5.4
+— the global/daily toggle on `LeaderboardScreen`.** The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1603,12 +1607,15 @@ teaching *how the world works*, not just *where things are*.
           generic one guessing which column to reach for. 4 new checks in `test/engine.test.js`,
           mirroring step 3's mapping tests: the row→entry mapping, a missing `score` defaulting to
           0, tolerating a missing row, and ranking correctly end to end through `rankLeaderboard`.
-          *(Next up: sub-step 5.3 — the IO layer, `fetchDailyLeaderboard(user, dayKeyString,
-          client)` in `cloudLeaderboard.js`.)*
-       3. ☐ **IO layer.** `fetchDailyLeaderboard(user, dayKeyString, client)` in
-          `cloudLeaderboard.js`, mirroring `fetchGlobalLeaderboard()`: query `leaderboard_daily`
+       3. ✅ **IO layer.** `fetchDailyLeaderboard(user, dayKeyString, client)` in
+          `cloudLeaderboard.js`, mirroring `fetchGlobalLeaderboard()`: queries `leaderboard_daily`
           filtered to `daily_date = dayKeyString` (the caller's own `dayKey(new Date())`, never a
-          server-side "today"), mapped through step 5.2's mapping.
+          server-side "today" — the view exposes `daily_date` as a plain column for exactly this
+          reason), ordered by `score` descending, mapped through step 5.2's
+          `entryFromDailyLeaderboardRow`. Same signed-out short-circuit and `{ rows, error }`
+          shape as `fetchGlobalLeaderboard` — no swallowed failures, no offline fallback (a
+          leaderboard has none). Not yet wired to a screen — that's step 5.4.
+          *(Next up: sub-step 5.4 — the global/daily toggle on `LeaderboardScreen`.)*
        4. ☐ **Screen wiring.** A global/daily toggle on `LeaderboardScreen`, reusing its existing
           ranked-row rendering, loading/error/signed-out states, and "you" pinning — just swapping
           which fetch + mapping feeds it. A signed-in player with no Daily round played today should

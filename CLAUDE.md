@@ -205,7 +205,10 @@ src/
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
   storage/cloudLeaderboard.js # M2.6 step 3 IO: fetchGlobalLeaderboard(user, client) reads
                            #   public.leaderboard_global — signed-in only, the view grants
-                           #   `authenticated` alone. Read by LeaderboardScreen (M2.6 step 4)
+                           #   `authenticated` alone. Read by LeaderboardScreen (M2.6 step 4).
+                           #   M2.6 step 5.3 adds fetchDailyLeaderboard(user, dayKeyString,
+                           #   client), the same shape over public.leaderboard_daily, filtered
+                           #   to the CALLER's own dayKey() — never a server-side "today"
   components/QuizScreen.js  # One reusable quiz surface powering every mode
   components/WorldMap.js    # Flat tappable world map. SUPERSEDED by GlobeMap for the Country
                            #   Locator (M2.3.7 step 2); kept until the globe is checked on a device
@@ -765,7 +768,14 @@ loading/error/signed-out states mirroring `AchievementsScreen`/`ReviewScreen`), 
 "Leaderboard" row on Profile — are all done. The view itself hasn't reached production yet
 (Danny's `supabase db reset`/`db push` are still pending), so step 4 was verified in a real browser
 against mocked `leaderboard_global` responses rather than a live leaderboard. **Step 5 (the Daily
-Challenge leaderboard) is next.**
+Challenge leaderboard) has its own ordered sub-checklist**, mirroring steps 1-4's schema → mapping →
+IO → screen shape. Sub-steps 5.1 (`public.leaderboard_daily`, scoped to `mode = 'daily'` rows and
+exposing `daily_date` as a plain column rather than filtering it server-side — `game_results.daily_date`
+is stamped from the player's own clock, so a server-side `current_date` filter would show the wrong
+day to players in different timezones), 5.2 (`entryFromDailyLeaderboardRow()`, a sibling to step 3's
+mapping over the `score` column instead of `xp`), and 5.3 (`fetchDailyLeaderboard(user, dayKeyString,
+client)` in `cloudLeaderboard.js`, filtered to the caller's own `dayKey(new Date())`) are all done.
+**Sub-step 5.4 (a global/daily toggle on `LeaderboardScreen`) is next.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows
