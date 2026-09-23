@@ -775,7 +775,11 @@ is stamped from the player's own clock, so a server-side `current_date` filter w
 day to players in different timezones), 5.2 (`entryFromDailyLeaderboardRow()`, a sibling to step 3's
 mapping over the `score` column instead of `xp`), and 5.3 (`fetchDailyLeaderboard(user, dayKeyString,
 client)` in `cloudLeaderboard.js`, filtered to the caller's own `dayKey(new Date())`) are all done.
-**Sub-step 5.4 (a global/daily toggle on `LeaderboardScreen`) is next.**
+**Sub-step 5.4 is also done, closing out M2.6 step 5 end to end:** `LeaderboardScreen` now has a
+Global/Daily toggle swapping which fetch + mapping feeds its existing ranked-row rendering, and a
+signed-in player with no Daily row today reads as its own "haven't played yet" notice rather than a
+fetch error, verified in a real browser against mocked responses. **Next up: M2.6 step 6 — a
+shareable Daily Challenge score card.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

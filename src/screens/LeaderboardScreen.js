@@ -2,29 +2,43 @@
 // Profile tab, same Back behavior as every other pushed route.
 //
 // All the deciding is already done by the time this file runs: step 1's
-// topWithYou() ranks whatever rows step 3's fetchGlobalLeaderboard() hands
+// topWithYou() ranks whatever rows step 3/5.3's fetch*Leaderboard() hands
 // it into the top LEADERBOARD_TOP_N plus the player's own row pinned on when
 // they're outside it. This file only fetches, loads, and renders.
+//
+// M2.6 step 5.4: a Global/Daily toggle reuses every bit of that — same
+// ranked-row rendering, same loading/error/signed-out states — by just
+// swapping which fetch + row mapping feeds `entries`. The one state a plain
+// swap doesn't cover on its own: a signed-in player who hasn't played
+// today's Daily has zero rows of THEIRS on an otherwise non-empty board,
+// which topWithYou already reports as `you === null` — that reads as "you
+// haven't played yet," never as a fetch error.
 //
 // Loading/offline states mirror AchievementsScreen's own (M2.5 step 6.4.3):
 // while a signed-in player's fetch is in flight, an empty rows array looks
 // identical to "loaded, nobody's played yet," so the same loadingResults +
 // Skeleton treatment covers the gap. Signed-out is its own notice rather
-// than a skeleton — fetchGlobalLeaderboard never fetches for a signed-out
-// player (the view grants `authenticated` only), so there is nothing
-// pending to wait on; the message says why, the way ReviewScreen's own
-// signed-out notice does.
+// than a skeleton — neither fetch runs for a signed-out player (both views
+// grant `authenticated` only), so there is nothing pending to wait on; the
+// message says why, the way ReviewScreen's own signed-out notice does.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import { DAILY_LENGTH } from "../constants";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
 import { topWithYou } from "../game/leaderboardPolicy";
+import { dayKey } from "../game/progress";
 import { useAuth } from "../auth/AuthProvider";
-import { fetchGlobalLeaderboard } from "../storage/cloudLeaderboard";
+import { fetchGlobalLeaderboard, fetchDailyLeaderboard } from "../storage/cloudLeaderboard";
+
+const BOARDS = ["global", "daily"];
+const BOARD_LABELS = { global: "Global", daily: "Daily" };
+const BOARD_SUBTITLES = { global: "Global XP", daily: "Today's Daily Challenge" };
 
 export default function LeaderboardScreen({ onExit }) {
   const { user } = useAuth();
+  const [board, setBoard] = useState("global");
   const [entries, setEntries] = useState([]);
   const [fetchError, setFetchError] = useState(false);
   const [loading, setLoading] = useState(Boolean(user));
@@ -33,7 +47,11 @@ export default function LeaderboardScreen({ onExit }) {
     let active = true;
     setFetchError(false);
     setLoading(Boolean(user));
-    fetchGlobalLeaderboard(user).then(({ rows, error }) => {
+    const request =
+      board === "daily"
+        ? fetchDailyLeaderboard(user, dayKey(new Date()))
+        : fetchGlobalLeaderboard(user);
+    request.then(({ rows, error }) => {
       if (!active) return;
       setEntries(rows);
       setFetchError(Boolean(error));
@@ -42,9 +60,10 @@ export default function LeaderboardScreen({ onExit }) {
     return () => {
       active = false;
     };
-  }, [user]);
+  }, [user, board]);
 
   const { rows, you, youInTop } = topWithYou(entries, user?.id ?? null);
+  const notPlayedToday = board === "daily" && user && !loading && !fetchError && !you;
 
   // Fade/rise-in on open, fade/settle-out on close — same shape
   // AchievementsScreen (M2.5 step 6.4.4) and CountryPageScreen/
@@ -84,7 +103,7 @@ export default function LeaderboardScreen({ onExit }) {
         <FadeInUp rise={0}>
           <View style={styles.header}>
             <Text style={styles.title}>Leaderboard</Text>
-            <Text style={styles.subtitle}>Global XP</Text>
+            <Text style={styles.subtitle}>{BOARD_SUBTITLES[board]}</Text>
             {fetchError && user && (
               <Text style={styles.noticeText}>
                 ⚠ Couldn't load the leaderboard — try again shortly.
@@ -93,11 +112,35 @@ export default function LeaderboardScreen({ onExit }) {
           </View>
         </FadeInUp>
 
+        <FadeInUp rise={0} delay={staggerDelay(1)}>
+          <View style={styles.boardToggle}>
+            {BOARDS.map((key) => {
+              const active = key === board;
+              return (
+                <Pressable
+                  key={key}
+                  onPress={() => setBoard(key)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: active }}
+                  style={[styles.boardOption, active && styles.boardOptionActive]}
+                >
+                  <Text style={[styles.boardOptionText, active && styles.boardOptionTextActive]}>
+                    {BOARD_LABELS[key]}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        </FadeInUp>
+
         {!user ? (
-          <FadeInUp rise={0} delay={staggerDelay(1)}>
+          <FadeInUp rise={0} delay={staggerDelay(2)}>
             <View style={styles.notice}>
               <Text style={styles.noticeBodyText}>
-                Sign in to see how your XP stacks up against every other player.
+                {board === "daily"
+                  ? "Sign in to see today's Daily Challenge leaderboard."
+                  : "Sign in to see how your XP stacks up against every other player."}
               </Text>
             </View>
           </FadeInUp>
@@ -112,24 +155,36 @@ export default function LeaderboardScreen({ onExit }) {
             </View>
           ))
         ) : rows.length === 0 ? (
-          <FadeInUp rise={0} delay={staggerDelay(1)}>
+          <FadeInUp rise={0} delay={staggerDelay(2)}>
             <View style={styles.notice}>
               <Text style={styles.noticeBodyText}>
-                Nobody's on the board yet — play a round to be the first.
+                {board === "daily"
+                  ? "Nobody's played today's Daily Challenge yet — be the first."
+                  : "Nobody's on the board yet — play a round to be the first."}
               </Text>
             </View>
           </FadeInUp>
         ) : (
           <>
             {rows.map((entry, index) => (
-              <FadeInUp key={entry.userId ?? index} rise={0} delay={staggerDelay(index + 1)}>
-                <LeaderboardRow entry={entry} />
+              <FadeInUp key={entry.userId ?? index} rise={0} delay={staggerDelay(index + 2)}>
+                <LeaderboardRow entry={entry} board={board} />
               </FadeInUp>
             ))}
             {you && !youInTop && (
-              <FadeInUp rise={0} delay={staggerDelay(rows.length + 1)}>
+              <FadeInUp rise={0} delay={staggerDelay(rows.length + 2)}>
                 <View style={styles.separator} />
-                <LeaderboardRow entry={you} />
+                <LeaderboardRow entry={you} board={board} />
+              </FadeInUp>
+            )}
+            {notPlayedToday && (
+              <FadeInUp rise={0} delay={staggerDelay(rows.length + 2)}>
+                <View style={styles.separator} />
+                <View style={styles.notice}>
+                  <Text style={styles.noticeBodyText}>
+                    You haven't played today's Daily Challenge yet — play now to see your rank.
+                  </Text>
+                </View>
               </FadeInUp>
             )}
           </>
@@ -139,7 +194,7 @@ export default function LeaderboardScreen({ onExit }) {
   );
 }
 
-function LeaderboardRow({ entry }) {
+function LeaderboardRow({ entry, board }) {
   return (
     <View style={[styles.row, entry.isYou && styles.rowYou]}>
       <Text style={[styles.rank, entry.isYou && styles.rankYou]}>{entry.rank}</Text>
@@ -149,7 +204,9 @@ function LeaderboardRow({ entry }) {
           {entry.isYou ? " (you)" : ""}
         </Text>
       </View>
-      <Text style={styles.rowValue}>{entry.value} XP</Text>
+      <Text style={styles.rowValue}>
+        {board === "daily" ? `${entry.value}/${DAILY_LENGTH}` : `${entry.value} XP`}
+      </Text>
     </View>
   );
 }
@@ -181,6 +238,27 @@ const styles = StyleSheet.create({
     padding: spacing(4),
   },
   noticeBodyText: { ...type.caption },
+
+  // Same chip shape as the World Map's region pills (surfaceRaised + brand
+  // fill when active), sized down to sit as a toggle rather than a row of
+  // filters.
+  boardToggle: {
+    ...constrain.content,
+    flexDirection: "row",
+    gap: spacing(2),
+    marginBottom: spacing(4),
+  },
+  boardOption: {
+    paddingVertical: spacing(1.5),
+    paddingHorizontal: spacing(4),
+    borderRadius: radius.pill,
+    backgroundColor: colors.surfaceRaised,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  boardOptionActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+  boardOptionText: { ...type.label, fontSize: 13, color: colors.textMuted },
+  boardOptionTextActive: { color: colors.onFill },
 
   row: {
     ...constrain.content,

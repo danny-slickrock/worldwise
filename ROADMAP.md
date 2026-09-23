@@ -153,9 +153,18 @@ the two views' rows never mix in one call. **Sub-step 5.3 — the IO layer — i
 `fetchDailyLeaderboard(user, dayKeyString, client)` in `cloudLeaderboard.js` mirrors
 `fetchGlobalLeaderboard()` — queries `leaderboard_daily` filtered to the caller's own
 `dayKey(new Date())` (never a server-side "today"), ordered by `score` descending, mapped through
-sub-step 5.2's `entryFromDailyLeaderboardRow()`. Not yet wired to a screen. **Next up: sub-step 5.4
-— the global/daily toggle on `LeaderboardScreen`.** The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+sub-step 5.2's `entryFromDailyLeaderboardRow()`. **Sub-step 5.4 — the screen wiring — is now also
+done, closing out step 5 end to end:** `LeaderboardScreen` grew a Global/Daily toggle (the same
+chip shape the World Map's region pills use) that swaps which fetch + mapping feeds it, reusing
+every existing ranked-row/loading/error/signed-out/"you"-pinning state untouched. The one gap a
+plain fetch-swap didn't cover — a signed-in player with no Daily row today reads as `you === null`
+from `topWithYou`, same as an empty board — now renders as its own "you haven't played today's
+Daily Challenge yet" notice rather than either silence or a fetch error, distinct from the
+board-aware empty-board and signed-out copy. Verified in a real browser (mocked
+`leaderboard_global`/`leaderboard_daily` responses, a spoofed signed-in session) with the player
+ranked and highlighted on Global, then the "haven't played today" notice after tapping to Daily,
+then the signed-out copy swapping per tab. **Next up: step 6 — the shareable Daily Challenge score
+card.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1615,11 +1624,31 @@ teaching *how the world works*, not just *where things are*.
           `entryFromDailyLeaderboardRow`. Same signed-out short-circuit and `{ rows, error }`
           shape as `fetchGlobalLeaderboard` — no swallowed failures, no offline fallback (a
           leaderboard has none). Not yet wired to a screen — that's step 5.4.
-          *(Next up: sub-step 5.4 — the global/daily toggle on `LeaderboardScreen`.)*
-       4. ☐ **Screen wiring.** A global/daily toggle on `LeaderboardScreen`, reusing its existing
-          ranked-row rendering, loading/error/signed-out states, and "you" pinning — just swapping
-          which fetch + mapping feeds it. A signed-in player with no Daily round played today should
-          read as "you haven't played today's Daily yet," not as a fetch error.
+       4. ✅ **Screen wiring.** `LeaderboardScreen` now carries a Global/Daily toggle (the same
+          surfaceRaised/brand chip shape the World Map's region pills use), swapping which fetch +
+          mapping feeds `entries` — `fetchGlobalLeaderboard`/`entryFromLeaderboardRow` vs.
+          `fetchDailyLeaderboard(user, dayKey(new Date()))`/`entryFromDailyLeaderboardRow` — while
+          reusing every bit of the existing ranked-row rendering, loading/error/signed-out states,
+          and "you" pinning untouched. The Daily row's value reads `score/DAILY_LENGTH` rather than
+          "XP", since a Daily round's score isn't an XP total. The one state a plain fetch-swap
+          doesn't cover on its own: `topWithYou` already reports `you === null` for a signed-in
+          player with no row of theirs on the board, which on the Daily tab means "hasn't played
+          today" rather than "board's empty" — a new `notPlayedToday` flag renders "You haven't
+          played today's Daily Challenge yet — play now to see your rank." underneath the other
+          players' rows instead of pinning nothing, and is distinct from the `rows.length === 0`
+          empty-board copy (which is now also board-aware: "Nobody's played today's Daily Challenge
+          yet — be the first." vs. the existing global copy). The signed-out notice is likewise
+          board-aware ("Sign in to see today's Daily Challenge leaderboard."). **Verified in a real
+          browser** (Playwright/Chromium, static `expo export --platform web` build, placeholder
+          Supabase env baked in via `EXPO_PUBLIC_SUPABASE_URL`/`EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY`,
+          a spoofed signed-in session written directly into `localStorage`'s
+          `sb-<project-ref>-auth-token` key, and mocked `leaderboard_global`/`leaderboard_daily`
+          REST responses — no live Supabase project reachable from this environment): the Global tab
+          with the player ranked 3rd and highlighted inline, tapping to the Daily tab with the
+          player showing the "haven't played today" notice below two other ranked players, and the
+          signed-out notice text swapping correctly between both tabs.
+       **M2.6 step 5 (the Daily Challenge leaderboard) is now fully done end to end.**
+       *(Next up: step 6 — the shareable Daily Challenge score card.)*
     6. ☐ **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable
        image/text summary of a finished Daily Challenge round (score, streak, rank if known).
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
