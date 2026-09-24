@@ -169,6 +169,7 @@ import {
   entryFromLeaderboardRow,
   entryFromDailyLeaderboardRow,
 } from "../src/game/leaderboardPolicy";
+import { buildDailyShareText } from "../src/game/shareCard";
 import {
   countryStats,
   studyReason,
@@ -6695,6 +6696,45 @@ check(
     "u2"
   )[0].userId === "u2",
   "mapped leaderboard_daily rows rank correctly end to end through rankLeaderboard"
+);
+
+console.log("\nDaily share card text (M2.6 step 6.1)");
+check(
+  buildDailyShareText({ score: 5, total: 6 }) ===
+    "I scored 5/6 on today's Worldwise Daily Challenge 🌍",
+  "buildDailyShareText renders a plain score/total line with no streak or rank"
+);
+check(
+  buildDailyShareText({ score: 5, total: 6, streak: 7 }) ===
+    "I scored 5/6 on today's Worldwise Daily Challenge 🌍\n🔥 7-day streak",
+  "buildDailyShareText adds a streak line when a positive streak is given"
+);
+check(
+  buildDailyShareText({ score: 5, total: 6, rank: 12 }) ===
+    "I scored 5/6 on today's Worldwise Daily Challenge 🌍\nRanked #12 today",
+  "buildDailyShareText adds a rank line when a positive rank is given"
+);
+check(
+  buildDailyShareText({ score: 5, total: 6, streak: 7, rank: 12 }) ===
+    "I scored 5/6 on today's Worldwise Daily Challenge 🌍\n🔥 7-day streak\nRanked #12 today",
+  "buildDailyShareText includes both streak and rank when both are given"
+);
+check(
+  buildDailyShareText({ score: 5, total: 6, streak: 0, rank: 0 }) ===
+    "I scored 5/6 on today's Worldwise Daily Challenge 🌍",
+  "a zero streak or rank is omitted rather than printed as '0-day streak'/'Ranked #0'"
+);
+check(
+  buildDailyShareText({ score: -3, total: 6 }) === "I scored 0/6 on today's Worldwise Daily Challenge 🌍",
+  "a negative score clamps to 0 rather than printing"
+);
+check(
+  buildDailyShareText({ score: 9, total: 6 }) === "I scored 6/6 on today's Worldwise Daily Challenge 🌍",
+  "a score above total clamps to total rather than overrunning it"
+);
+check(
+  buildDailyShareText() === "I scored 0/0 on today's Worldwise Daily Challenge 🌍",
+  "buildDailyShareText tolerates being called with no arguments at all"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

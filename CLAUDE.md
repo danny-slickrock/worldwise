@@ -192,6 +192,10 @@ src/
                            #   is the top N plus the player's own row when they're outside it. Also
                            #   step 3's entryFromLeaderboardRow() — leaderboard_global row ⇄ entry
                            #   shape, kept pure and tested rather than folded into the IO file
+  game/shareCard.js        # PURE M2.6 step 6.1: buildDailyShareText({score, total, streak, rank}) —
+                           #   the shareable Daily Challenge summary text. streak/rank are optional
+                           #   since neither is available the instant a round ends (streak lives in
+                           #   App.js's progress; rank needs its own leaderboard_daily fetch)
   hooks/useGlobeGestures.js # Drag-to-spin, pinch/wheel-to-zoom and flick momentum for a GlobeMap.
                            #   Used by BOTH the Explore map and the Country Locator
   auth/redirectPolicy.js   # PURE auth-redirect selection
@@ -778,8 +782,14 @@ client)` in `cloudLeaderboard.js`, filtered to the caller's own `dayKey(new Date
 **Sub-step 5.4 is also done, closing out M2.6 step 5 end to end:** `LeaderboardScreen` now has a
 Global/Daily toggle swapping which fetch + mapping feeds its existing ranked-row rendering, and a
 signed-in player with no Daily row today reads as its own "haven't played yet" notice rather than a
-fetch error, verified in a real browser against mocked responses. **Next up: M2.6 step 6 — a
-shareable Daily Challenge score card.**
+fetch error, verified in a real browser against mocked responses. **M2.6 step 6 (a shareable Daily
+Challenge score card) now has its own ordered sub-checklist; sub-step 6.1 — a pure
+`buildDailyShareText({score, total, streak, rank})` text builder, `src/game/shareCard.js` — is
+done.** Streak and rank aren't available the instant a Daily round ends (streak lives one level up
+in `App.js`'s `progress`; rank needs its own `fetchDailyLeaderboard` call), so both are optional
+inputs the builder omits gracefully today. **Next up: sub-step 6.2 — thread the daily login streak
+down into `QuizScreen`'s results view**, so there's a real streak to feed the builder before wiring
+in rank or a Share button.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

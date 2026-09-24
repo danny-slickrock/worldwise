@@ -163,8 +163,11 @@ Daily Challenge yet" notice rather than either silence or a fetch error, distinc
 board-aware empty-board and signed-out copy. Verified in a real browser (mocked
 `leaderboard_global`/`leaderboard_daily` responses, a spoofed signed-in session) with the player
 ranked and highlighted on Global, then the "haven't played today" notice after tapping to Daily,
-then the signed-out copy swapping per tab. **Next up: step 6 — the shareable Daily Challenge score
-card.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+then the signed-out copy swapping per tab. **Step 6 (the shareable Daily Challenge score card) now
+has its own ordered sub-checklist; sub-step 6.1 — a pure `buildDailyShareText()` text builder
+(`src/game/shareCard.js`) — is done. Next up: sub-step 6.2 — threading the daily login streak down
+into QuizScreen's results view**, so the builder has a real streak to render before rank or a
+Share button get wired in. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1649,8 +1652,35 @@ teaching *how the world works*, not just *where things are*.
           signed-out notice text swapping correctly between both tabs.
        **M2.6 step 5 (the Daily Challenge leaderboard) is now fully done end to end.**
        *(Next up: step 6 — the shareable Daily Challenge score card.)*
-    6. ☐ **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable
+    6. **Shareable Daily Challenge score card.** The parked Phase 1 "sharing" idea — a shareable
        image/text summary of a finished Daily Challenge round (score, streak, rank if known).
+       Broken into its own ordered sub-checklist, since score/streak/rank aren't all available at
+       the same moment: score/total come straight off `onFinish`'s payload, but the daily login
+       streak lives one level up in `App.js`'s `progress` and a Daily rank needs its own
+       `fetchDailyLeaderboard` call that hasn't run yet at round-end.
+       1. ✅ **Pure share-text builder.** `src/game/shareCard.js`'s `buildDailyShareText({ score,
+          total, streak, rank })` — no RN, no Share API, no network, so `test/engine.test.js` can
+          exercise it directly under tsx. Score/total render unconditionally (clamped so a bad
+          input can't overrun or go negative); a streak or rank line is appended only when given
+          and positive, since both are optional at round-end today. 8 checks in
+          `test/engine.test.js`: the plain line, streak-only, rank-only, both together, a zero
+          streak/rank omitted rather than printed as "0-day streak"/"Ranked #0", score clamped on
+          both ends, and no-arguments tolerance. *(Next up: step 2 — thread the daily login streak
+          down into QuizScreen's `done` result view (today it only has `score`/`total`/`xp` from
+          its own local state; `streak` lives in `App.js`'s `progress` and isn't passed down), so
+          there's a real streak value to feed this builder before wiring rank or a Share button.)*
+       2. ☐ **Thread the daily streak into the results view.** Pass the player's current streak
+          (`progress.streak` / `streakStatus()`) down into `QuizScreen`'s `done` result card for a
+          `mode === "daily"` round, so `buildDailyShareText()` has a real streak to render.
+       3. ☐ **Rank lookup.** After a Daily round finishes (signed-in only), fetch the player's own
+          rank via `fetchDailyLeaderboard()` + `rankLeaderboard()`/`topWithYou()`, feeding
+          `buildDailyShareText()`'s `rank`. Must degrade gracefully (no rank shown) when
+          signed-out, offline, or the player has no row yet.
+       4. ☐ **Share UI.** A "Share" button on the Daily result card wired to a platform share
+          sheet. React Native's built-in `Share` API needs no new dependency and is the likely
+          path; `expo-sharing`/`expo-clipboard` are net-new otherwise, since none of the three
+          exist in `package.json` today.
+       5. ☐ **Polish + a11y pass**, same shape as every other milestone's closing chunk.
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
     8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
