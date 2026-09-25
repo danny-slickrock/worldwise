@@ -787,9 +787,16 @@ Challenge score card) now has its own ordered sub-checklist; sub-step 6.1 — a 
 `buildDailyShareText({score, total, streak, rank})` text builder, `src/game/shareCard.js` — is
 done.** Streak and rank aren't available the instant a Daily round ends (streak lives one level up
 in `App.js`'s `progress`; rank needs its own `fetchDailyLeaderboard` call), so both are optional
-inputs the builder omits gracefully today. **Next up: sub-step 6.2 — thread the daily login streak
-down into `QuizScreen`'s results view**, so there's a real streak to feed the builder before wiring
-in rank or a Share button.
+inputs the builder omits gracefully today. **Sub-step 6.2 is also done:** `App.js` now passes
+`streakStatus(progress, dayKey(new Date())).count` down to `QuizScreen` as a new `dailyStreak`
+prop — kept separate from the screen's existing `streak` state, which is Higher or Lower's
+unrelated in-round comparison streak — and the Daily result card shows a "🔥 {N}-day streak" line
+whenever it's positive. Verified in a real browser (Playwright/Chromium, static export, placeholder
+Supabase env): seeded a 4-day streak last played yesterday, played a full Daily round, and the
+result card read "🔥 5-day streak", confirming it reflects today's just-applied increment rather
+than yesterday's count. **Next up: sub-step 6.3 — the rank lookup** (fetch the player's own Daily
+rank via `fetchDailyLeaderboard()` + `topWithYou()` after a round finishes, signed-in only, and
+degrade gracefully otherwise) before wiring in a Share button.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -1665,13 +1665,22 @@ teaching *how the world works*, not just *where things are*.
           and positive, since both are optional at round-end today. 8 checks in
           `test/engine.test.js`: the plain line, streak-only, rank-only, both together, a zero
           streak/rank omitted rather than printed as "0-day streak"/"Ranked #0", score clamped on
-          both ends, and no-arguments tolerance. *(Next up: step 2 — thread the daily login streak
-          down into QuizScreen's `done` result view (today it only has `score`/`total`/`xp` from
-          its own local state; `streak` lives in `App.js`'s `progress` and isn't passed down), so
-          there's a real streak value to feed this builder before wiring rank or a Share button.)*
-       2. ☐ **Thread the daily streak into the results view.** Pass the player's current streak
-          (`progress.streak` / `streakStatus()`) down into `QuizScreen`'s `done` result card for a
-          `mode === "daily"` round, so `buildDailyShareText()` has a real streak to render.
+          both ends, and no-arguments tolerance.
+       2. ✅ **Thread the daily streak into the results view.** `App.js` now computes
+          `streakStatus(progress, dayKey(new Date())).count` and passes it to `QuizScreen` as a new
+          `dailyStreak` prop — cheap and pure to recompute on every render, so it's already in step
+          with `progress` by the time `handleFinish`'s `setProgress` and `QuizScreen`'s own
+          `setDone(true)` land in the same batched re-render. `QuizScreen`'s `done` result card shows
+          a "🔥 {dailyStreak}-day streak" line for `mode === "daily"` only, whenever the streak is a
+          positive number — named `dailyStreak` rather than reusing the screen's existing `streak`
+          state, which is Higher or Lower's unrelated in-round comparison streak. Verified in a real
+          browser (Playwright/Chromium, static export, placeholder Supabase env): seeded
+          `localStorage` with a 4-day streak last played yesterday, played a full Daily Challenge
+          round, and the result card read "🔥 5-day streak" — confirming both the render and that
+          it picks up today's increment from the same `handleFinish` call, not yesterday's count.
+          No new pure logic here (a prop thread, not a decision), so no new test. *(Next up: step 3
+          — the rank lookup, fetching the player's own Daily rank via `fetchDailyLeaderboard()` +
+          `topWithYou()` after a round finishes, signed-in only.)*
        3. ☐ **Rank lookup.** After a Daily round finishes (signed-in only), fetch the player's own
           rank via `fetchDailyLeaderboard()` + `rankLeaderboard()`/`topWithYou()`, feeding
           `buildDailyShareText()`'s `rank`. Must degrade gracefully (no rank shown) when

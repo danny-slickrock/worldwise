@@ -27,7 +27,7 @@ import AppChrome from "./src/components/AppChrome";
 import BrandLoader from "./src/components/BrandLoader";
 import { MaterialSurface } from "./src/components/Material";
 import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
-import { DEFAULT_PROGRESS, applyRoundResult, dayKey } from "./src/game/progress";
+import { DEFAULT_PROGRESS, applyRoundResult, dayKey, streakStatus } from "./src/game/progress";
 import { roundSinks } from "./src/game/syncPolicy";
 import { loadProgress, saveProgress } from "./src/storage/progress";
 import { saveRoundResult, migrateLocalToCloud } from "./src/storage/cloudProgress";
@@ -378,6 +378,12 @@ function AppShell() {
             onPlayAgain={playAgain}
             onFinish={handleFinish}
             onOpenCountry={openCountry}
+            // M2.6 step 6.2: only the Daily result card reads this, but it
+            // costs nothing to compute for every mode — streakStatus is pure
+            // and cheap, and re-deriving it here (rather than threading a
+            // memoized value) keeps it in step with `progress` the instant
+            // handleFinish's setProgress lands, same tick as this re-render.
+            dailyStreak={streakStatus(progress, dayKey(new Date())).count}
           />
         );
 

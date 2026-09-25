@@ -63,6 +63,11 @@ export default function QuizScreen({
   countryCode = null,
   basemap,
   onChangeBasemap,
+  // M2.6 step 6.2: the player's current daily-login streak (progress.js's
+  // streakStatus().count), threaded down from App.js so the Daily Challenge
+  // result card — and, later, its share text — has a real streak to show.
+  // Irrelevant to every other mode, so it's fine to leave unset there.
+  dailyStreak = null,
 }) {
   const meta = MODES[mode];
   const questions = useMemo(() => {
@@ -338,6 +343,11 @@ export default function QuizScreen({
                 {score}/{questions.length}
               </Text>
               <Text style={styles.resultPct}>{pct}% correct</Text>
+              {mode === "daily" && Number.isFinite(dailyStreak) && dailyStreak > 0 && (
+                <Text style={styles.resultStreak}>
+                  🔥 {dailyStreak}-day streak
+                </Text>
+              )}
               <View style={styles.xpPill}>
                 {/* The one place a number counts up from zero. Everywhere else
                     AnimatedNumber refuses to animate its first value, because a
@@ -861,6 +871,9 @@ const styles = StyleSheet.create({
   },
   resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
   resultPct: { ...type.h3, color: colors.onFill, opacity: 0.75, marginBottom: spacing(4) },
+  // No alpha on dark, per the brand kit's rule — onFill at full strength,
+  // distinguished from resultPct by size alone.
+  resultStreak: { ...type.label, color: colors.onFill, marginTop: -spacing(3), marginBottom: spacing(4) },
   resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
   xpPill: {
     backgroundColor: colors.brandDeep,
