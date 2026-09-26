@@ -794,9 +794,17 @@ unrelated in-round comparison streak — and the Daily result card shows a "🔥
 whenever it's positive. Verified in a real browser (Playwright/Chromium, static export, placeholder
 Supabase env): seeded a 4-day streak last played yesterday, played a full Daily round, and the
 result card read "🔥 5-day streak", confirming it reflects today's just-applied increment rather
-than yesterday's count. **Next up: sub-step 6.3 — the rank lookup** (fetch the player's own Daily
-rank via `fetchDailyLeaderboard()` + `topWithYou()` after a round finishes, signed-in only, and
-degrade gracefully otherwise) before wiring in a Share button.
+than yesterday's count. **Sub-step 6.3 is also done:** `QuizScreen` now fetches the player's own
+Daily rank the moment a Daily round ends (signed-in only) via `fetchDailyLeaderboard()` +
+`topWithYou()`, reusing M2.6 step 1's already-tested ranking policy rather than adding any new
+logic — a fetch error, a signed-out player, and "no row for this player yet" all already read as
+`topWithYou`'s existing `you === null`/error shapes, so every degrade-gracefully case falls out for
+free. The result card now shows a "Ranked #N today" line under the streak line once it resolves.
+Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env, a spoofed
+signed-in session, and a mocked `leaderboard_daily` response ranking the player 2nd of 3): the
+result card read "Ranked #2 today", with the leaderboard request firing only after the round
+finished; a second signed-out run confirmed no fetch and no rank line. **Next up: sub-step 6.4 —
+the Share button**, reading this rank plus `buildDailyShareText()`.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -39,6 +39,10 @@ import AnimatedNumber from "./AnimatedNumber";
 import { locatorStartView, locatorPresentation } from "../game/locatorTiers";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { COUNTRY_CENTERS } from "../data/worldGeo";
+import { useAuth } from "../auth/AuthProvider";
+import { fetchDailyLeaderboard } from "../storage/cloudLeaderboard";
+import { topWithYou } from "../game/leaderboardPolicy";
+import { dayKey } from "../game/progress";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
@@ -104,6 +108,26 @@ export default function QuizScreen({
   const [done, setDone] = useState(false);
   const [timeLeft, setTimeLeft] = useState(TIMED_SECONDS_PER_QUESTION);
   const [history, setHistory] = useState([]); // per-question record, for the results review
+
+  // M2.6 step 6.3: the player's own rank on today's Daily Challenge board,
+  // fetched once the round is over. Null covers every "don't show a rank"
+  // case at once — signed out, offline, a fetch error, or a genuine board
+  // with no row for this player yet — since fetchDailyLeaderboard() and
+  // topWithYou() already report each of those as "no row," not a value.
+  const { user } = useAuth();
+  const [dailyRank, setDailyRank] = useState(null);
+  useEffect(() => {
+    if (!done || mode !== "daily" || !user?.id) return;
+    let active = true;
+    fetchDailyLeaderboard(user, dayKey(new Date())).then(({ rows, error }) => {
+      if (!active || error) return;
+      const { you } = topWithYou(rows, user.id);
+      if (you) setDailyRank(you.rank);
+    });
+    return () => {
+      active = false;
+    };
+  }, [done, mode, user]);
 
   const q = questions[idx];
   const answered = picked !== null;
@@ -343,10 +367,15 @@ export default function QuizScreen({
                 {score}/{questions.length}
               </Text>
               <Text style={styles.resultPct}>{pct}% correct</Text>
-              {mode === "daily" && Number.isFinite(dailyStreak) && dailyStreak > 0 && (
-                <Text style={styles.resultStreak}>
-                  🔥 {dailyStreak}-day streak
-                </Text>
+              {mode === "daily" && ((Number.isFinite(dailyStreak) && dailyStreak > 0) || dailyRank) && (
+                <View style={styles.resultMetaWrap}>
+                  {Number.isFinite(dailyStreak) && dailyStreak > 0 && (
+                    <Text style={styles.resultStreak}>🔥 {dailyStreak}-day streak</Text>
+                  )}
+                  {dailyRank != null && (
+                    <Text style={styles.resultStreak}>Ranked #{dailyRank} today</Text>
+                  )}
+                </View>
               )}
               <View style={styles.xpPill}>
                 {/* The one place a number counts up from zero. Everywhere else
@@ -872,8 +901,16 @@ const styles = StyleSheet.create({
   resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
   resultPct: { ...type.h3, color: colors.onFill, opacity: 0.75, marginBottom: spacing(4) },
   // No alpha on dark, per the brand kit's rule — onFill at full strength,
-  // distinguished from resultPct by size alone.
-  resultStreak: { ...type.label, color: colors.onFill, marginTop: -spacing(3), marginBottom: spacing(4) },
+  // distinguished from resultPct by size alone. The wrapper (not this style)
+  // owns the spacing, since it may hold the streak line, the rank line, or
+  // both stacked together.
+  resultMetaWrap: {
+    alignItems: "center",
+    gap: spacing(1),
+    marginTop: -spacing(3),
+    marginBottom: spacing(4),
+  },
+  resultStreak: { ...type.label, color: colors.onFill },
   resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
   xpPill: {
     backgroundColor: colors.brandDeep,

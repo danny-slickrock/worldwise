@@ -1678,13 +1678,27 @@ teaching *how the world works*, not just *where things are*.
           `localStorage` with a 4-day streak last played yesterday, played a full Daily Challenge
           round, and the result card read "🔥 5-day streak" — confirming both the render and that
           it picks up today's increment from the same `handleFinish` call, not yesterday's count.
-          No new pure logic here (a prop thread, not a decision), so no new test. *(Next up: step 3
-          — the rank lookup, fetching the player's own Daily rank via `fetchDailyLeaderboard()` +
-          `topWithYou()` after a round finishes, signed-in only.)*
-       3. ☐ **Rank lookup.** After a Daily round finishes (signed-in only), fetch the player's own
-          rank via `fetchDailyLeaderboard()` + `rankLeaderboard()`/`topWithYou()`, feeding
-          `buildDailyShareText()`'s `rank`. Must degrade gracefully (no rank shown) when
-          signed-out, offline, or the player has no row yet.
+          No new pure logic here (a prop thread, not a decision), so no new test.
+       3. ✅ **Rank lookup.** `QuizScreen` now fetches the player's own Daily rank the moment a Daily
+          round ends: a `done && mode === "daily" && user?.id` effect calls
+          `fetchDailyLeaderboard(user, dayKey(new Date()))`, then step 1's `topWithYou(rows, user.id)`
+          to read `.you.rank` off the already-tested ranking policy — no new pure logic, since
+          `topWithYou` already reports "no row for this player" as `you === null` and a fetch error
+          is already `{ rows: [], error }`, so signed-out (the effect's own guard, mirroring
+          `LeaderboardScreen`'s own signed-out short-circuit), offline, and "haven't played" all
+          degrade to the same "don't show a rank" case for free. The result card renders "Ranked #N
+          today" beneath the existing streak line once the rank resolves — both now share a
+          `resultMetaWrap` block so the card doesn't reserve `resultStreak`'s old fixed spacing twice
+          when both lines are showing. Not yet fed into `buildDailyShareText()` — there is no Share
+          button yet for it to feed (that's step 4) — but the rank is now sitting in state exactly
+          where step 4 needs it. **Verified in a real browser** (Playwright/Chromium, static
+          `expo export --platform web` build, placeholder Supabase env via a temporary `.env`, a
+          spoofed signed-in session written into `localStorage`'s `sb-placeholder-auth-token` key,
+          and a mocked `leaderboard_daily` REST response ranking the player 2nd of 3): played a full
+          Daily round and the result card read "Ranked #2 today" under the streak line, with the
+          mocked leaderboard request firing only after the round finished. A second signed-out run
+          confirmed `fetchDailyLeaderboard` is never called and no rank line renders. *(Next up:
+          step 4 — the Share button, reading this rank plus `buildDailyShareText()`.)*
        4. ☐ **Share UI.** A "Share" button on the Daily result card wired to a platform share
           sheet. React Native's built-in `Share` API needs no new dependency and is the likely
           path; `expo-sharing`/`expo-clipboard` are net-new otherwise, since none of the three
