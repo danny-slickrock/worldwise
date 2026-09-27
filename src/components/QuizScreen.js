@@ -10,6 +10,7 @@ import {
   Animated,
   Easing,
   useWindowDimensions,
+  Share,
 } from "react-native";
 import { colors, spacing, radius, type, elevation, constrain, motion, map } from "../theme";
 import Container from "./Container";
@@ -43,6 +44,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { fetchDailyLeaderboard } from "../storage/cloudLeaderboard";
 import { topWithYou } from "../game/leaderboardPolicy";
 import { dayKey } from "../game/progress";
+import { buildDailyShareText } from "../game/shareCard";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
@@ -128,6 +130,39 @@ export default function QuizScreen({
       active = false;
     };
   }, [done, mode, user]);
+
+  // M2.6 step 6.4: the Share button on the Daily result card. RN's Share API
+  // covers native for free; on web, most desktop browsers have no
+  // `navigator.share` and Share.share() rejects immediately rather than
+  // opening a sheet, so that rejection falls back to the clipboard instead of
+  // a dead button. A cancelled native share sheet also rejects (AbortError)
+  // and that's a deliberate no-op, not a failure to fall back from.
+  const [shareStatus, setShareStatus] = useState(null); // null | "shared" | "copied" | "failed"
+  const shareResetRef = useRef(null);
+  useEffect(() => () => clearTimeout(shareResetRef.current), []);
+
+  async function handleShareDaily() {
+    const text = buildDailyShareText({
+      score,
+      total: questions.length,
+      streak: dailyStreak,
+      rank: dailyRank,
+    });
+    try {
+      await Share.share({ message: text });
+      setShareStatus("shared");
+    } catch (err) {
+      if (err?.name === "AbortError") return;
+      try {
+        await navigator.clipboard.writeText(text);
+        setShareStatus("copied");
+      } catch {
+        setShareStatus("failed");
+      }
+    }
+    clearTimeout(shareResetRef.current);
+    shareResetRef.current = setTimeout(() => setShareStatus(null), 2000);
+  }
 
   const q = questions[idx];
   const answered = picked !== null;
@@ -389,6 +424,22 @@ export default function QuizScreen({
                   style={styles.xpPillText}
                 />
               </View>
+              {mode === "daily" && (
+                <Pressable
+                  style={styles.shareBtn}
+                  onPress={handleShareDaily}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel="Share your Daily Challenge result"
+                >
+                  <Text style={styles.shareBtnText}>
+                    {shareStatus === "shared" && "Shared!"}
+                    {shareStatus === "copied" && "Copied!"}
+                    {shareStatus === "failed" && "Couldn't share"}
+                    {!shareStatus && "Share"}
+                  </Text>
+                </Pressable>
+              )}
             </View>
           </FadeInUp>
 
@@ -919,6 +970,18 @@ const styles = StyleSheet.create({
     paddingVertical: spacing(2),
   },
   xpPillText: { color: colors.brand, fontSize: 16 },
+  // Outlined rather than filled, same reasoning as secondaryBtn below the
+  // card: the XP pill is the one loud fill this card gets, so Share reads as
+  // a lighter-weight utility action next to it, not a second reward.
+  shareBtn: {
+    marginTop: spacing(3),
+    borderRadius: radius.pill,
+    borderWidth: 1,
+    borderColor: colors.onFill,
+    paddingVertical: spacing(1.5),
+    paddingHorizontal: spacing(5),
+  },
+  shareBtnText: { ...type.label, color: colors.onFill, fontSize: 14 },
 
   reviewHeading: { ...type.eyebrow, alignSelf: "flex-start", marginBottom: spacing(3) },
   reviewList: { width: "100%", gap: spacing(3), marginBottom: spacing(6) },

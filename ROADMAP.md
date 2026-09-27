@@ -164,10 +164,17 @@ board-aware empty-board and signed-out copy. Verified in a real browser (mocked
 `leaderboard_global`/`leaderboard_daily` responses, a spoofed signed-in session) with the player
 ranked and highlighted on Global, then the "haven't played today" notice after tapping to Daily,
 then the signed-out copy swapping per tab. **Step 6 (the shareable Daily Challenge score card) now
-has its own ordered sub-checklist; sub-step 6.1 — a pure `buildDailyShareText()` text builder
-(`src/game/shareCard.js`) — is done. Next up: sub-step 6.2 — threading the daily login streak down
-into QuizScreen's results view**, so the builder has a real streak to render before rank or a
-Share button get wired in. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+has its own ordered sub-checklist; sub-steps 6.1-6.4 are done.** 6.1 is a pure `buildDailyShareText()`
+text builder (`src/game/shareCard.js`); 6.2 threads `App.js`'s `streakStatus(...).count` down to
+`QuizScreen` as a `dailyStreak` prop, rendered as a "🔥 N-day streak" line on the Daily result card;
+6.3 fetches the player's own rank from `leaderboard_daily` the moment a Daily round ends and renders
+"Ranked #N today" once it resolves; and 6.4 is the actual Share button — an outlined pill on the
+result card wired to RN's `Share` API, feeding it 6.1's builder with 6.2's streak and 6.3's rank.
+The one real wrinkle was web: react-native-web's `Share.share()` rejects outright on any desktop
+browser without `navigator.share`, so that rejection falls back to `navigator.clipboard.writeText`
+and the button reads "Copied!" instead of silently doing nothing — verified in a real browser via
+that exact fallback path. **Next up: sub-step 6.5 — the closing polish + a11y pass**, closing out
+M2.6 step 6. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1699,10 +1706,29 @@ teaching *how the world works*, not just *where things are*.
           mocked leaderboard request firing only after the round finished. A second signed-out run
           confirmed `fetchDailyLeaderboard` is never called and no rank line renders. *(Next up:
           step 4 — the Share button, reading this rank plus `buildDailyShareText()`.)*
-       4. ☐ **Share UI.** A "Share" button on the Daily result card wired to a platform share
-          sheet. React Native's built-in `Share` API needs no new dependency and is the likely
-          path; `expo-sharing`/`expo-clipboard` are net-new otherwise, since none of the three
-          exist in `package.json` today.
+       4. ✅ **Share UI.** A "Share" pill button on the Daily result card (mode === "daily" only,
+          outlined in `colors.onFill` next to the XP pill — a lighter-weight utility action, not a
+          second reward), wired to RN's built-in `Share` API — no new dependency, since
+          `expo-sharing`/`expo-clipboard` were both net-new and `Share` already ships with
+          `react-native`. Feeds `buildDailyShareText()` (M2.6 step 6.1) with the round's own
+          `score`/`questions.length` plus the `dailyStreak` prop (step 6.2) and `dailyRank` state
+          (step 6.3) already sitting in `QuizScreen`. **The web fallback is the real work here**:
+          react-native-web's `Share.share()` calls `navigator.share()` under the hood, which most
+          desktop browsers don't implement — it rejects immediately rather than opening a sheet, so
+          a bare `Share.share()` call would be a dead button on desktop web. The catch path copies
+          the same text to the clipboard instead (`navigator.clipboard.writeText`) and the button
+          label swaps to "Copied!" for two seconds; a genuinely cancelled native share sheet rejects
+          with `AbortError` and is left alone rather than treated as a failure to fall back from,
+          since the player already got what they asked for (out). No new pure logic — the text
+          builder was already tested in step 6.1 — so no new `test/engine.test.js` checks, matching
+          step 6.2's own reasoning for a prop-threading chunk. **Verified in a real browser**
+          (Playwright/Chromium, static `expo export --platform web` build, placeholder Supabase env
+          via a temporary `.env`, clipboard permissions granted): played a full Daily round, tapped
+          Share, and confirmed the button read "Copied!" and the clipboard actually held
+          `"I scored 1/6 on today's Worldwise Daily Challenge 🌍\n🔥 1-day streak"` — the exact
+          `buildDailyShareText()` output for that round, reached through the web fallback path
+          since headless Chromium has no `navigator.share`. *(Next up: step 5 — the polish + a11y
+          pass, closing out M2.6 step 6.)*
        5. ☐ **Polish + a11y pass**, same shape as every other milestone's closing chunk.
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
