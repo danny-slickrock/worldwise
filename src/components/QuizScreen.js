@@ -12,7 +12,7 @@ import {
   useWindowDimensions,
   Share,
 } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion, map } from "../theme";
+import { colors, spacing, radius, type, elevation, constrain, motion, map, onFill } from "../theme";
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
@@ -382,6 +382,13 @@ export default function QuizScreen({
   if (done) {
     const xp = roundXp(score, bestStreak);
     const pct = Math.round((score / questions.length) * 100);
+    // M2.6 step 6.5.1 contrast audit: the result card's ink has to follow the
+    // card's own fill, not assume parchment. Every mode accent clears 4.5:1
+    // with onFill()'s pick already (modeAccents.js's own contract), but
+    // capitalReverse's card is brass — "the one fill that carries ink" — and
+    // parchment on brass measures 1.9:1. This card used to hardcode
+    // colors.onFill, which read fine on every accent except that one.
+    const cardInk = onFill(meta.accent);
     return (
       <ScrollView
         style={styles.resultWrap}
@@ -397,18 +404,22 @@ export default function QuizScreen({
                   recognisable across the app. Brass on the mode's own accent,
                   which stays the card's colour: one warm accent per screen. */}
               <CompassMark size={150} tone="brass" style={styles.resultMark} />
-              <Text style={styles.resultKicker}>{meta.title}</Text>
-              <Text style={styles.resultScore}>
+              <Text style={[styles.resultKicker, { color: cardInk }]}>{meta.title}</Text>
+              <Text style={[styles.resultScore, { color: cardInk }]}>
                 {score}/{questions.length}
               </Text>
-              <Text style={styles.resultPct}>{pct}% correct</Text>
+              <Text style={[styles.resultPct, { color: cardInk }]}>{pct}% correct</Text>
               {mode === "daily" && ((Number.isFinite(dailyStreak) && dailyStreak > 0) || dailyRank) && (
                 <View style={styles.resultMetaWrap}>
                   {Number.isFinite(dailyStreak) && dailyStreak > 0 && (
-                    <Text style={styles.resultStreak}>🔥 {dailyStreak}-day streak</Text>
+                    <Text style={[styles.resultStreak, { color: cardInk }]}>
+                      🔥 {dailyStreak}-day streak
+                    </Text>
                   )}
                   {dailyRank != null && (
-                    <Text style={styles.resultStreak}>Ranked #{dailyRank} today</Text>
+                    <Text style={[styles.resultStreak, { color: cardInk }]}>
+                      Ranked #{dailyRank} today
+                    </Text>
                   )}
                 </View>
               )}
@@ -426,13 +437,13 @@ export default function QuizScreen({
               </View>
               {mode === "daily" && (
                 <Pressable
-                  style={styles.shareBtn}
+                  style={[styles.shareBtn, { borderColor: cardInk }]}
                   onPress={handleShareDaily}
                   hitSlop={8}
                   accessibilityRole="button"
                   accessibilityLabel="Share your Daily Challenge result"
                 >
-                  <Text style={styles.shareBtnText}>
+                  <Text style={[styles.shareBtnText, { color: cardInk }]}>
                     {shareStatus === "shared" && "Shared!"}
                     {shareStatus === "copied" && "Copied!"}
                     {shareStatus === "failed" && "Couldn't share"}
@@ -941,16 +952,21 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     ...elevation(2),
   },
+  // M2.6 step 6.5.1 contrast audit: both of these used to carry opacity —
+  // fine on the daily card's parchment-on-pine, but stacked on top of the
+  // capitalReverse card's brass (nightwood ink, already the thinner-margin
+  // pairing) it dropped the kicker to 3.76:1, under the 4.5:1 small-text
+  // floor. No alpha on dark, per the brand kit's rule — full-strength ink,
+  // hierarchy from size alone, same reasoning resultStreak below already used.
   resultKicker: {
     ...type.label,
     fontSize: 11,
     textTransform: "uppercase",
     letterSpacing: 1.6,
     color: colors.onFill,
-    opacity: 0.7,
   },
   resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
-  resultPct: { ...type.h3, color: colors.onFill, opacity: 0.75, marginBottom: spacing(4) },
+  resultPct: { ...type.h3, color: colors.onFill, marginBottom: spacing(4) },
   // No alpha on dark, per the brand kit's rule — onFill at full strength,
   // distinguished from resultPct by size alone. The wrapper (not this style)
   // owns the spacing, since it may hold the streak line, the rank line, or

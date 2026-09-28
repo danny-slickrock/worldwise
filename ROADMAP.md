@@ -1729,7 +1729,44 @@ teaching *how the world works*, not just *where things are*.
           `buildDailyShareText()` output for that round, reached through the web fallback path
           since headless Chromium has no `navigator.share`. *(Next up: step 5 — the polish + a11y
           pass, closing out M2.6 step 6.)*
-       5. ☐ **Polish + a11y pass**, same shape as every other milestone's closing chunk.
+       5. **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step. Broken into the same
+          four ordered chunks:
+          1. ✅ **WCAG AA contrast audit.** The Daily result card's own new elements (the streak/rank
+             lines, the Share button) were already clean — both were built carrying `colors.onFill`
+             at full strength with no opacity, per the brand kit's "no alpha on dark" rule, and
+             `modeAccents.daily` is pine, which `onFill()` already pairs with parchment. But auditing
+             the card they sit inside surfaced a real, pre-existing bug in the *same* component:
+             `resultKicker`/`resultScore`/`resultPct` hardcoded `colors.onFill` instead of routing
+             through `onFill(meta.accent)` like `modeAccents`' own contract requires (every mode
+             accent is "checked in test/engine.test.js for the contrast its own label needs, through
+             `onFill()` rather than against a hardcoded ink" — this card just never called it). That
+             reads fine on every mode except `capitalReverse`, whose card is brass — "the one fill
+             that carries ink" — where parchment-on-brass measures 1.9:1, the exact pairing CLAUDE.md
+             calls out by name as too low even for large text. `QuizScreen.js` now computes
+             `const cardInk = onFill(meta.accent)` once per result and applies it to every text/border
+             element on the card (kicker, score, percent, the streak/rank lines, the Share button),
+             so capitalReverse's result screen now reads nightwood-on-brass (6.7:1) instead of
+             parchment-on-brass (1.9:1). The audit also caught `resultKicker`/`resultPct` carrying
+             `opacity: 0.7`/`0.75` — alpha on a dark card, which the kit forbids outright and which
+             the M2.6-added `resultStreak` style already deliberately avoided (its own comment says
+             so). Composited, that opacity dragged capitalReverse's kicker to 3.76:1 even after the
+             ink fix — still under the 4.5:1 small-text floor — so both styles dropped the opacity
+             and rely on size alone for hierarchy, the same reasoning `resultStreak` already used.
+             No new `test/engine.test.js` checks: the underlying token math (`onFill(fill)` clearing
+             4.5:1 for every `modeAccents` entry, brass included) was already asserted there before
+             this chunk — the bug was that this one component never called it, which is a
+             component-level fact the pure/tsx suite structurally can't see (`QuizScreen.js` imports
+             React Native). Verification is therefore visual/arithmetic rather than a new pinned
+             test: recomputed the exact ratios by hand (parchment/brandDeep against every current
+             `modeAccents` fill) and confirmed every mode now clears AA on every text element the
+             card renders, small text included. *(Next up: step 5.2 — large tap targets. Auditing
+             the Share button while here found it likely fails the same `hitSlop`-does-nothing-on-web
+             trap M2.5 step 6.4.2 already documented — `shareBtn`'s own padding alone is well under
+             44px and it leans on `hitSlop={8}`, which react-native-web's `Pressable` ignores — but
+             that fix is its own scoped chunk, not bundled into this one.)*
+          2. ☐ **Large tap targets.**
+          3. ☐ **Offline/error states.**
+          4. ☐ **Transitions.**
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
     8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
