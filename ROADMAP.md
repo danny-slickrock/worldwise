@@ -173,8 +173,17 @@ result card wired to RN's `Share` API, feeding it 6.1's builder with 6.2's strea
 The one real wrinkle was web: react-native-web's `Share.share()` rejects outright on any desktop
 browser without `navigator.share`, so that rejection falls back to `navigator.clipboard.writeText`
 and the button reads "Copied!" instead of silently doing nothing — verified in a real browser via
-that exact fallback path. **Next up: sub-step 6.5 — the closing polish + a11y pass**, closing out
-M2.6 step 6. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+that exact fallback path. **Sub-step 6.5 (the closing polish + a11y pass) is underway**, broken
+into the same four chunks M2.4/M2.5 used: 6.5.1 (contrast audit) is done and found a real gap —
+the result card's `resultKicker`/`resultScore`/`resultPct` hardcoded `colors.onFill` instead of
+routing through `onFill(meta.accent)`, which read as parchment-on-brass (1.9:1) on
+`capitalReverse`'s brass card; fixed by computing `cardInk = onFill(meta.accent)` once and
+applying it card-wide, and by dropping two opacity values the kit's "no alpha on dark" rule
+already forbids. 6.5.2 (large tap targets) is also done and also found a real gap: the Share
+button's `paddingVertical` alone gave it a 32px web tap target (react-native-web's `Pressable`
+ignores `hitSlop`, the same M2.5 step 6.4.2 trap), now `spacing(3)` to clear the 44px floor. **Next
+up: sub-step 6.5.3 — offline/error states.** The Phase 1 backlog below gets picked up
+opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1764,7 +1773,14 @@ teaching *how the world works*, not just *where things are*.
              trap M2.5 step 6.4.2 already documented — `shareBtn`'s own padding alone is well under
              44px and it leans on `hitSlop={8}`, which react-native-web's `Pressable` ignores — but
              that fix is its own scoped chunk, not bundled into this one.)*
-          2. ☐ **Large tap targets.**
+          2. ✅ **Large tap targets.** Confirmed the gap step 5.1 flagged: `shareBtn`'s
+             `paddingVertical: spacing(1.5)` plus its 18px line height and 1px border totalled
+             32px — react-native-web's `Pressable` doesn't implement `hitSlop` (M2.5 step 6.4.2),
+             so the 8px `hitSlop` prop was inert on web and the real tap target sat 12px under the
+             44px floor. `paddingVertical` is now `spacing(3)`, landing exactly at 44px
+             (12 + 12 padding + 18 line height + 2 border). No other M2.6 step-6 element (the
+             streak/rank text lines aren't pressable) needed a change. *(Next up: step 5.3 —
+             offline/error states.)*
           3. ☐ **Offline/error states.**
           4. ☐ **Transitions.**
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)

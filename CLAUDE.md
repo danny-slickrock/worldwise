@@ -803,8 +803,20 @@ free. The result card now shows a "Ranked #N today" line under the streak line o
 Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env, a spoofed
 signed-in session, and a mocked `leaderboard_daily` response ranking the player 2nd of 3): the
 result card read "Ranked #2 today", with the leaderboard request firing only after the round
-finished; a second signed-out run confirmed no fetch and no rank line. **Next up: sub-step 6.4 —
-the Share button**, reading this rank plus `buildDailyShareText()`.
+finished; a second signed-out run confirmed no fetch and no rank line. **Sub-step 6.4 (the Share
+button) is also done:** an outlined pill on the Daily result card wired to RN's `Share` API, feeding
+it `buildDailyShareText()` with the round's streak and rank. react-native-web's `Share.share()`
+rejects outright on desktop browsers without `navigator.share`, so that rejection falls back to
+`navigator.clipboard.writeText` and the button reads "Copied!" — verified in a real browser via that
+exact fallback path. **Sub-step 6.5 (the closing polish + a11y pass) is underway**, the same four
+chunks M2.4/M2.5 used: 6.5.1 (contrast audit) found the result card's
+`resultKicker`/`resultScore`/`resultPct` hardcoded `colors.onFill` instead of routing through
+`onFill(meta.accent)`, reading as parchment-on-brass (1.9:1) on `capitalReverse`'s card — fixed by
+computing `cardInk = onFill(meta.accent)` once and applying it card-wide, and dropping two opacity
+values the kit's "no alpha on dark" rule forbids. 6.5.2 (large tap targets) found the Share button's
+web tap target was 32px because react-native-web's `Pressable` ignores `hitSlop` (the same M2.5 step
+6.4.2 trap) — fixed with `paddingVertical: spacing(3)` to clear the 44px floor. **Next up: sub-step
+6.5.3 — offline/error states.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

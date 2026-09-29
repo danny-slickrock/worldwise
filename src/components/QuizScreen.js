@@ -989,12 +989,16 @@ const styles = StyleSheet.create({
   // Outlined rather than filled, same reasoning as secondaryBtn below the
   // card: the XP pill is the one loud fill this card gets, so Share reads as
   // a lighter-weight utility action next to it, not a second reward.
+  // paddingVertical is spacing(3), not spacing(1.5): react-native-web's
+  // Pressable never implements `hitSlop` (M2.5 step 6.4.2's finding), so on
+  // web the real tap target is exactly this box. spacing(1.5) left it at
+  // 32px (12 padding + 18 line height + 2 border), well under the 44px floor.
   shareBtn: {
     marginTop: spacing(3),
     borderRadius: radius.pill,
     borderWidth: 1,
     borderColor: colors.onFill,
-    paddingVertical: spacing(1.5),
+    paddingVertical: spacing(3),
     paddingHorizontal: spacing(5),
   },
   shareBtnText: { ...type.label, color: colors.onFill, fontSize: 14 },
