@@ -42,6 +42,12 @@ const FACTBOOK_FIELDS = {
     "Location", "Area", "Land boundaries", "Coastline", "Climate", "Terrain",
     "Elevation", "Natural resources", "Land use", "Natural hazards",
     "Geography - note",
+    // Added for the physical → human pass (ADR 0003). The water fields are the
+    // spine of Layer A and, through where the water is, most of Layer B: the
+    // Factbook's river list is curated and length-ranked, which is precisely
+    // what a SPARQL "rivers in country X" query is not.
+    "Major rivers (by length in km)", "Major lakes (area sq km)",
+    "Major watersheds (area sq km)", "Major aquifers", "Irrigated land",
   ],
   "People and Society": [
     "Population", "Languages", "Religions", "Ethnic groups", "Urbanization",
@@ -115,7 +121,7 @@ async function wikidata(isoCodes) {
 async function wikidataBatch(isoCodes) {
   const values = isoCodes.map((c) => `"${c.toUpperCase()}"`).join(" ");
   const query = `
-SELECT ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel
+SELECT ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel ?highestPointLabel ?highestPointElevation
   (GROUP_CONCAT(DISTINCT ?langLabel; separator="|") AS ?languages)
   (GROUP_CONCAT(DISTINCT ?currLabel; separator="|") AS ?currencies)
   (GROUP_CONCAT(DISTINCT ?borderIso; separator="|") AS ?bordersAny)
@@ -127,12 +133,22 @@ WHERE {
   OPTIONAL { ?country wdt:P2046 ?area }
   OPTIONAL { ?country wdt:P1082 ?population }
   OPTIONAL { ?country wdt:P30 ?continent . ?continent rdfs:label ?continentLabel . FILTER(lang(?continentLabel)="en") }
+  # P610 highest point, with its P2044 elevation. A cross-check on the Factbook's
+  # own Elevation field rather than a replacement — two independent sources
+  # disagreeing about a country's highest peak is worth seeing in review.
+  # Rivers are deliberately NOT queried here; see ADR 0003 for why the Factbook's
+  # curated, length-ranked list beats an unranked SPARQL result.
+  OPTIONAL {
+    ?country wdt:P610 ?highestPoint .
+    ?highestPoint rdfs:label ?highestPointLabel . FILTER(lang(?highestPointLabel)="en")
+    OPTIONAL { ?highestPoint wdt:P2044 ?highestPointElevation }
+  }
   OPTIONAL { ?country wdt:P37 ?lang . ?lang rdfs:label ?langLabel . FILTER(lang(?langLabel)="en") }
   OPTIONAL { ?country wdt:P38 ?curr . ?curr rdfs:label ?currLabel . FILTER(lang(?currLabel)="en") }
   OPTIONAL { ?country wdt:P47 ?border . ?border wdt:P297 ?borderIso }
   ?country rdfs:label ?countryLabel . FILTER(lang(?countryLabel)="en")
 }
-GROUP BY ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel`;
+GROUP BY ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel ?highestPointLabel ?highestPointElevation`;
 
   const res = await fetch("https://query.wikidata.org/sparql", {
     method: "POST",
@@ -157,6 +173,8 @@ GROUP BY ?iso ?gec ?countryLabel ?capitalLabel ?area ?population ?continentLabel
       areaKm2: v("area") ? Number(v("area")) : null,
       population: v("population") ? Number(v("population")) : null,
       continent: v("continentLabel"),
+      highestPoint: v("highestPointLabel"),
+      highestPointM: v("highestPointElevation") ? Number(v("highestPointElevation")) : null,
       officialLanguages: list("languages"),
       currencies: list("currencies"),
       // NOTE: P47 is "shares border with" and includes MARITIME borders — it

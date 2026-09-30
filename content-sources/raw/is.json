@@ -1,6 +1,6 @@
 {
   "iso": "is",
-  "fetchedAt": "2026-09-04T23:47:38.752Z",
+  "fetchedAt": "2026-09-15T01:58:22.598Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -19,6 +19,8 @@
     "areaKm2": 103004,
     "population": 364260,
     "continent": "Europe",
+    "highestPoint": "Hvannadalshnúkur",
+    "highestPointM": 2110,
     "officialLanguages": [
       "Icelandic"
     ],
@@ -105,6 +107,9 @@
       },
       "Geography - note": {
         "text": "strategic location between Greenland and Europe; westernmost European country; Reykjavik is the northernmost national capital in the world; more land covered by glaciers than in all of continental Europe"
+      },
+      "Irrigated land": {
+        "text": "0.5 sq km (2022)"
       }
     },
     "People and Society": {

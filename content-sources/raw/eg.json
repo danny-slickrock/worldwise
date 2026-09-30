@@ -1,6 +1,6 @@
 {
   "iso": "eg",
-  "fetchedAt": "2026-09-04T23:56:56.911Z",
+  "fetchedAt": "2026-09-15T01:58:21.390Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -19,6 +19,8 @@
     "areaKm2": 1010407.87,
     "population": 114535772,
     "continent": "Africa",
+    "highestPoint": "Mount Catherine",
+    "highestPointM": 2629,
     "officialLanguages": [
       "Arabic"
     ],
@@ -110,6 +112,25 @@
       },
       "Geography - note": {
         "text": "controls Sinai Peninsula, the only land bridge between Africa and remainder of Eastern Hemisphere; controls Suez Canal, a sea link between Indian Ocean and Mediterranean Sea"
+      },
+      "Major rivers (by length in km)": {
+        "text": "An Nīl (Nile) river mouth (shared with Rwanda [s], Tanzania, Uganda, South Sudan, and Sudan) - 6,650 km<br><br><strong>note:</strong> [s] after country name indicates river source; [m] after country name indicates river mouth"
+      },
+      "Major lakes (area sq km)": {
+        "salt water lake(s)": {
+          "text": "Lake Manzala - 1,360 sq km<br>note - largest of Nile Delta lakes"
+        }
+      },
+      "Major watersheds (area sq km)": {
+        "Atlantic Ocean drainage": {
+          "text": "<em>(Mediterranean Sea)</em> Nile (3,254,853 sq km)"
+        }
+      },
+      "Major aquifers": {
+        "text": "Nubian Aquifer System"
+      },
+      "Irrigated land": {
+        "text": "36,500 sq km (2012)"
       }
     },
     "People and Society": {

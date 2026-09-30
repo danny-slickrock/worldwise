@@ -70,6 +70,35 @@ function clean(text) {
 // so the same expression works before and after the multi-entry gather above.
 const t = (node) => (typeof node === "string" ? node : clean(node?.text));
 
+// Factbook nodes come in two shapes and only one of them was ever read.
+//
+// A leaf is `{ text: "..." }`. A NESTED node's value is itself a map of leaves:
+// Elevation is `{ "highest point": {text}, "lowest point": {text}, "mean
+// elevation": {text} }`, and Land use and Major lakes are the same shape. Every
+// excerpt built with `node.text` therefore came out `undefined` for those — so
+// the entire 196-country corpus was drafted without any country's highest
+// point, from a field that was being fetched and cached the whole time.
+//
+// Renders a nested node as "highest point: Mount Catherine 2,629 m; lowest
+// point: Qattara Depression -133 m", which is what the model needs to see.
+function flatten(node) {
+  if (!node) return null;
+  if (typeof node === "string") return clean(node);
+  if (typeof node.text === "string") return clean(node.text);
+  const parts = [];
+  for (const [key, value] of Object.entries(node)) {
+    if (key.startsWith("_")) continue;
+    const text = typeof value === "string" ? clean(value) : clean(value?.text);
+    if (!text) continue;
+    // Several sub-fields repeat their own key in their text ("agricultural
+    // land: arable land" -> "arable land: 3.1%"). Prefixing again would read
+    // "arable land: arable land: 3.1%".
+    const leaf = key.split(":").pop().trim().toLowerCase();
+    parts.push(text.toLowerCase().startsWith(leaf) ? text : `${key}: ${text}`);
+  }
+  return parts.join("; ") || null;
+}
+
 // Land borders, from the Factbook's explicit field rather than Wikidata P47 —
 // which counts maritime borders and would give Japan six neighbours. Absence of
 // the field is meaningful: it means no land border, which is a fact worth
@@ -127,7 +156,7 @@ async function main() {
     const g = (section, field) =>
       entries
         .map(({ label, fb: e }) => {
-          const text = t(e?.[section]?.[field]);
+          const text = flatten(e?.[section]?.[field]);
           if (!text) return null;
           return label ? `[${label}] ${text}` : text;
         })

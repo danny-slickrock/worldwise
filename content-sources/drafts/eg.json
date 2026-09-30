@@ -44,7 +44,7 @@
     "physicalGeography": "Geography > Terrain, Location, Elevation",
     "climate": "Geography > Climate",
     "economy": "Economy > Economic overview, Exports, Industries",
-    "peopleAndCulture": "People and Society > Languages, Religions, Ethnic groups, Urbanization"
+    "peopleAndCulture": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization"
   },
   "_sourceExcerpts": {
     "hook": {
@@ -53,7 +53,7 @@
     },
     "physicalGeography": {
       "from": "Geography > Terrain, Location, Elevation",
-      "excerpt": "vast desert plateau interrupted by Nile valley and delta || Northern Africa, bordering the Mediterranean Sea, between Libya and the Gaza Strip, and the Red Sea north of Sudan, and includes the Asian Sinai Peninsula"
+      "excerpt": "vast desert plateau interrupted by Nile valley and delta || Northern Africa, bordering the Mediterranean Sea, between Libya and the Gaza Strip, and the Red Sea north of Sudan, and includes the Asian Sinai Peninsula || highest point: Mount Catherine 2,629 m; lowest point: Qattara Depression -133 m; mean elevation: 321 m"
     },
     "climate": {
       "from": "Geography > Climate",
@@ -64,10 +64,8 @@
       "excerpt": "Africa&rsquo;s second-largest economy; 2030 Vision to diversify markets and energy infrastructure; improving fiscal, external, and current accounts; underperforming private sector; poor labor force participation; expanded credit access || Exports: refined petroleum, natural gas, fertilizers, garments, crude petroleum (2023) || Industries: textiles, food processing, tourism, chemicals, pharmaceuticals, hydrocarbons, construction, cement, metals, light manufactures"
     },
     "peopleAndCulture": {
-      "from": "People and Society > Languages, Religions, Ethnic groups, Urbanization",
-      "excerpt": "Muslim (predominantly Sunni) 90%, Christian (majority Coptic Orthodox, other Christians include Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican) 10% || Egyptian 99.7%, other 0.3% (2006 est.)"
+      "from": "People and Society > Population, Languages, Religions, Ethnic groups, Urbanization",
+      "excerpt": "total: 112,870,457 (2025 est.); male: 57,960,635; female: 54,909,822 || Languages: Arabic (official); English and French widely understood by educated classes; major-language sample(s): كتاب حقائق العالم، أفضل مصدر للمعلومات الأساسية (Arabic) The World Factbook, the indispensable source for basic information. || Muslim (predominantly Sunni) 90%, Christian (majority Coptic Orthodox, other Christians include Armenian Apostolic, Catholic, Maronite, Orthodox, and Anglican) 10% || Egyptian 99.7%, other 0.3% (2006 est.) || urban population: 43.1% of total population (2023); rate of urbanization: 1.9% annual rate of change (2020-25 est.)"
     }
-  },
-  "draftedAt": "2026-09-05T00:35:02.416Z",
-  "draftModel": "claude-sonnet-5"
+  }
 }

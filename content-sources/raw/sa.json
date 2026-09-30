@@ -1,6 +1,6 @@
 {
   "iso": "sa",
-  "fetchedAt": "2026-09-04T23:56:51.005Z",
+  "fetchedAt": "2026-09-15T01:58:22.224Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -19,6 +19,8 @@
     "areaKm2": 2250000,
     "population": 33000000,
     "continent": "Asia",
+    "highestPoint": "Jabal Sawda",
+    "highestPointM": 3133,
     "officialLanguages": [
       "Arabic"
     ],
@@ -116,6 +118,17 @@
       },
       "Geography - note": {
         "text": "Saudi Arabia is the largest country in the world without a river; extensive coastlines on the Persian Gulf and Red Sea allow&nbsp;for considerable&nbsp;shipping (especially of crude oil) through the Persian Gulf and Suez Canal"
+      },
+      "Major watersheds (area sq km)": {
+        "Indian Ocean drainage": {
+          "text": "<em>(Persian Gulf)</em> Tigris and Euphrates (918,044 sq km)"
+        }
+      },
+      "Major aquifers": {
+        "text": "Arabian Aquifer System"
+      },
+      "Irrigated land": {
+        "text": "7,575 sq km (2022)"
       }
     },
     "People and Society": {

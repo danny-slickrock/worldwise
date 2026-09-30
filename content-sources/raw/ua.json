@@ -1,6 +1,6 @@
 {
   "iso": "ua",
-  "fetchedAt": "2026-09-04T23:56:43.395Z",
+  "fetchedAt": "2026-09-15T01:58:22.414Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -19,6 +19,8 @@
     "areaKm2": 603550,
     "population": 41167335,
     "continent": "Europe",
+    "highestPoint": "Hoverla",
+    "highestPointM": 2061,
     "officialLanguages": [
       "Ukrainian"
     ],
@@ -114,6 +116,17 @@
       },
       "Geography - note": {
         "text": "strategic position at the crossroads between Europe and Asia; second-largest country in Europe after Russia"
+      },
+      "Major rivers (by length in km)": {
+        "text": "Dunay (Danube) (shared with Germany [s], Austria, Slovakia, Hungary, Croatia, Serbia, Bulgaria, Moldova, and Romania [m]) - 2,888 km; Dnipro (Dnieper) river mouth (shared with Russia [s] and Belarus) - 2,287 km; Dnister (Dniester) river source and mouth (shared with Moldova) - 1,411 km; Vistula (shared with Poland [s/m] and Belarus) - 1,213 km<br><br><strong>note:</strong> [s] after country name indicates river source; [m] after country name indicates river mouth"
+      },
+      "Major watersheds (area sq km)": {
+        "Atlantic Ocean drainage": {
+          "text": "<em>(Black Sea)</em> Danube (795,656 sq km), Don (458,694 sq km), Dnieper (533,966 sq km)"
+        }
+      },
+      "Irrigated land": {
+        "text": "1,000 sq km (2022)"
       }
     },
     "People and Society": {

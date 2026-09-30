@@ -1,6 +1,6 @@
 {
   "iso": "np",
-  "fetchedAt": "2026-09-04T23:56:49.794Z",
+  "fetchedAt": "2026-09-15T01:58:21.707Z",
   "sources": {
     "wikidata": {
       "license": "CC0-1.0",
@@ -19,6 +19,8 @@
     "areaKm2": 147181.254346,
     "population": 29164578,
     "continent": "Asia",
+    "highestPoint": "Mount Everest",
+    "highestPointM": 8848.86,
     "officialLanguages": [
       "Nepali"
     ],
@@ -108,6 +110,17 @@
       },
       "Geography - note": {
         "text": "landlocked; strategic location between China and India; contains eight of world's 10 highest peaks, including Mount Everest and Kanchenjunga -- the world's tallest and third-tallest mountains -- on the borders with China and India, respectively"
+      },
+      "Major watersheds (area sq km)": {
+        "Indian Ocean drainage": {
+          "text": "Brahmaputra (651,335 sq km), Ganges (1,016,124 sq km), Indus (1,081,718 sq km)"
+        }
+      },
+      "Major aquifers": {
+        "text": "Indus-Ganges-Brahmaputra Basin"
+      },
+      "Irrigated land": {
+        "text": "12,090 sq km (2022)"
       }
     },
     "People and Society": {

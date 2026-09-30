@@ -75,6 +75,37 @@ apply *regardless of audience*:
   taking a side.
 - **Sourced and citable**, like all content.
 
+## Physical geography and human settlement — the anti-determinism rule
+
+Connecting physical geography to how people settled and built societies is the product's
+whole thesis: geography as the context for everything else. It is also the single place
+where this content can do real harm, because the same connection has a long history of
+being told as a hierarchy — terrain explaining why some peoples were "advanced" and
+others were not. That framing is false, and it is the specific failure mode this section
+exists to prevent. These rules bind authored content and the drafting prompt alike.
+
+- **Possibility, never destiny.** Physical geography *shaped opportunities and
+  constraints*, *made something easier or harder*, *influenced* where people settled.
+  It never *determined*, *dictated*, *ensured* or *explains* an outcome, and there is
+  never a straight line from terrain to result. People made choices inside conditions;
+  the conditions are the subject, the choices are not ours to flatten.
+- **Never rank or compare peoples.** No society is described as superior, inferior, more
+  or less advanced, primitive, backward, or destined for anything. No claim that a
+  place's geography made its people any particular way. This is not a matter of tone —
+  a ranking claim is a factual error about how human societies work, and it is refused
+  at validation rather than softened.
+- **Uncontested connections only, resting on stated physical facts.** The Nile's flood
+  cycle and Egyptian agriculture is well established and is anchored in facts the
+  sources state. A contested or speculative link is either labelled as contested or left
+  out. "Leave it out" is always available and is the right default when a source does
+  not support the connection.
+- **Settlement, not conflict.** This is physical-geography-and-settlement content. Wars,
+  empire, colonial administration and contested sovereignty stay deferred under the
+  rules above; a draft that drifts into them gets cut rather than caveated.
+- **Heavier review than physical facts.** A "why here" claim carries more risk than a
+  mountain's height, so it is reviewed separately and more closely, and is flagged
+  distinctly in the validation report rather than mixed in with the physical fields.
+
 ## Sequencing note
 
 The first content-enrichment pass covers **uncontested factual content only**
@@ -82,3 +113,9 @@ The first content-enrichment pass covers **uncontested factual content only**
 first pass **for sequencing** — to prove the pipeline on easy material first — **not**
 because they are off-limits. They come as a later, deliberately-scoped pass under the
 editorial rules above.
+
+The **second pass** (physical geography → human geography: landforms, water, biomes,
+resources, and the "why here" connection) is the first to touch human outcomes at all.
+It is deliberately scoped to settlement rather than history, and it is governed by the
+anti-determinism rule above. See
+[ADR 0003](adr/0003-physical-to-human-geography.md).
