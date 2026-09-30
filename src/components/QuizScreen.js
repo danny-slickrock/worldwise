@@ -135,8 +135,11 @@ export default function QuizScreen({
   // covers native for free; on web, most desktop browsers have no
   // `navigator.share` and Share.share() rejects immediately rather than
   // opening a sheet, so that rejection falls back to the clipboard instead of
-  // a dead button. A cancelled native share sheet also rejects (AbortError)
-  // and that's a deliberate no-op, not a failure to fall back from.
+  // a dead button. A cancelled web share sheet rejects (AbortError), a
+  // deliberate no-op rather than a failure to fall back from; a cancelled
+  // iOS share sheet instead RESOLVES with `action: dismissedAction` (M2.6
+  // step 6.5.3), which handleShareDaily checks for explicitly so backing out
+  // of the sheet never claims "Shared!" for a share that never happened.
   const [shareStatus, setShareStatus] = useState(null); // null | "shared" | "copied" | "failed"
   const shareResetRef = useRef(null);
   useEffect(() => () => clearTimeout(shareResetRef.current), []);
@@ -149,7 +152,16 @@ export default function QuizScreen({
       rank: dailyRank,
     });
     try {
-      await Share.share({ message: text });
+      const result = await Share.share({ message: text });
+      // iOS resolves (never rejects) when the player backs out of the native
+      // share sheet without picking a target — `action` comes back as
+      // dismissedAction rather than sharedAction. Treating every resolve as
+      // success would show "Shared!" for a share that never happened, the
+      // exact false-success pattern CLAUDE.md's sync-status section warns
+      // against. Android has no such state (its intent always resolves
+      // sharedAction immediately), and web's cancel path already rejects
+      // with AbortError below, so this check is a no-op there.
+      if (result?.action === Share.dismissedAction) return;
       setShareStatus("shared");
     } catch (err) {
       if (err?.name === "AbortError") return;

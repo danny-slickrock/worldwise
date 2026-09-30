@@ -181,9 +181,13 @@ routing through `onFill(meta.accent)`, which read as parchment-on-brass (1.9:1) 
 applying it card-wide, and by dropping two opacity values the kit's "no alpha on dark" rule
 already forbids. 6.5.2 (large tap targets) is also done and also found a real gap: the Share
 button's `paddingVertical` alone gave it a 32px web tap target (react-native-web's `Pressable`
-ignores `hitSlop`, the same M2.5 step 6.4.2 trap), now `spacing(3)` to clear the 44px floor. **Next
-up: sub-step 6.5.3 — offline/error states.** The Phase 1 backlog below gets picked up
-opportunistically, not as a gate.
+ignores `hitSlop`, the same M2.5 step 6.4.2 trap), now `spacing(3)` to clear the 44px floor. 6.5.3
+(offline/error states) is also done and also found a real gap: `handleShareDaily` claimed "Shared!"
+even when the player cancelled iOS's native share sheet, since RN's `Share.share()` resolves (rather
+than rejecting) with `action: Share.dismissedAction` on a dismissed iOS sheet — the exact
+false-success pattern CLAUDE.md's M2.1 section warns against. It now checks for `dismissedAction`
+and leaves the button at rest instead of claiming success. **Next up: sub-step 6.5.4 —
+transitions.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1781,7 +1785,27 @@ teaching *how the world works*, not just *where things are*.
              (12 + 12 padding + 18 line height + 2 border). No other M2.6 step-6 element (the
              streak/rank text lines aren't pressable) needed a change. *(Next up: step 5.3 —
              offline/error states.)*
-          3. ☐ **Offline/error states.**
+          3. ✅ **Offline/error states.** The rank fetch and the Share button's clipboard fallback
+             already degraded gracefully (a failed `fetchDailyLeaderboard` reads as "no rank," and
+             `handleShareDaily`'s clipboard catch already sets `shareStatus = "failed"`), but auditing
+             `handleShareDaily` surfaced a real false-success bug in the same function: RN's
+             `Share.share()` on iOS *resolves* rather than rejects when the player backs out of the
+             native share sheet without picking a target — `action` comes back as
+             `Share.dismissedAction`, not `sharedAction`. The code treated every resolve as success,
+             so cancelling the iOS share sheet showed "Shared!" for a share that never happened —
+             exactly the false-success pattern CLAUDE.md's M2.1 sync-status section calls out by name
+             ("never write a UI string that claims success without checking that something actually
+             succeeded"). `handleShareDaily` now checks `result?.action === Share.dismissedAction` and
+             returns without setting `shareStatus` when the sheet was dismissed, leaving the button at
+             its resting "Share" label — matching how the web path already treats a cancelled
+             `navigator.share()` (which rejects with `AbortError`) as a deliberate no-op. Android has
+             no such state (its share intent always resolves `sharedAction` immediately, unable to
+             report completion), so this is a no-op there. Not testable from `test/engine.test.js`
+             (no RN import reaches this file, and the behaviour is iOS-native-module-specific with no
+             web equivalent to exercise in a browser), so verification is by reasoning against RN's
+             documented `Share` API rather than a new pinned test — consistent with step 5.1's own
+             "arithmetic rather than a new test" note where a browser/tsx check can't reach the bug.
+             *(Next up: step 5.4 — transitions, closing out M2.6 step 6.)*
           4. ☐ **Transitions.**
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.

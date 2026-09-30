@@ -815,8 +815,15 @@ chunks M2.4/M2.5 used: 6.5.1 (contrast audit) found the result card's
 computing `cardInk = onFill(meta.accent)` once and applying it card-wide, and dropping two opacity
 values the kit's "no alpha on dark" rule forbids. 6.5.2 (large tap targets) found the Share button's
 web tap target was 32px because react-native-web's `Pressable` ignores `hitSlop` (the same M2.5 step
-6.4.2 trap) — fixed with `paddingVertical: spacing(3)` to clear the 44px floor. **Next up: sub-step
-6.5.3 — offline/error states.**
+6.4.2 trap) — fixed with `paddingVertical: spacing(3)` to clear the 44px floor. 6.5.3 (offline/error
+states) found a real false-success bug: RN's `Share.share()` on iOS *resolves* (never rejects) with
+`action: Share.dismissedAction` when the player backs out of the native share sheet without picking
+a target, and `handleShareDaily` was treating every resolve as success — showing "Shared!" for a
+share that never happened, exactly the pattern the M2.1 section below warns against by name. It now
+checks for `dismissedAction` and leaves the button at rest instead. Android and the web fallback were
+already correct (Android's intent always resolves immediately with no way to report completion; the
+web path already treats a cancelled `navigator.share()`'s `AbortError` as a no-op). **Next up:
+sub-step 6.5.4 — transitions.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows
