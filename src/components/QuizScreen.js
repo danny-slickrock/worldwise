@@ -111,6 +111,33 @@ export default function QuizScreen({
   const [timeLeft, setTimeLeft] = useState(TIMED_SECONDS_PER_QUESTION);
   const [history, setHistory] = useState([]); // per-question record, for the results review
 
+  // M2.6 step 6.5.4: the result card used to appear with no transition of its
+  // own — the per-block FadeInUp cascade below handled entrance, but tapping
+  // Done or Play again cut straight to the next screen with nothing in
+  // between. Same fade/rise-in, fade/settle-out shape CountryPageScreen
+  // (M2.2 step 6.4), LearningPathScreen (M2.4 step 6.4) and AchievementsScreen
+  // (M2.5 step 6.4.4) already use — the exit callback fires once the
+  // animation finishes, not on tap.
+  const resultAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    if (!done) return;
+    resultAnim.setValue(0);
+    Animated.timing(resultAnim, {
+      toValue: 1,
+      duration: motion.duration.ui,
+      easing: Easing.bezier(...motion.easing),
+      useNativeDriver: true,
+    }).start();
+  }, [done, resultAnim]);
+  function finishResult(callback) {
+    Animated.timing(resultAnim, {
+      toValue: 0,
+      duration: motion.duration.micro,
+      easing: Easing.bezier(...motion.easing),
+      useNativeDriver: true,
+    }).start(callback);
+  }
+
   // M2.6 step 6.3: the player's own rank on today's Daily Challenge board,
   // fetched once the round is over. Null covers every "don't show a rank"
   // case at once — signed out, offline, a fetch error, or a genuine board
@@ -401,121 +428,136 @@ export default function QuizScreen({
     // parchment on brass measures 1.9:1. This card used to hardcode
     // colors.onFill, which read fine on every accent except that one.
     const cardInk = onFill(meta.accent);
+    const resultStyle = {
+      opacity: resultAnim,
+      transform: [
+        {
+          translateY: resultAnim.interpolate({ inputRange: [0, 1], outputRange: [motion.rise, 0] }),
+        },
+      ],
+    };
     return (
-      <ScrollView
-        style={styles.resultWrap}
-        contentContainerStyle={styles.resultContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <Container>
-          <FadeInUp>
-            <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
-              {/* The instrument, oversized and bleeding off the corner — the
+      <Animated.View style={[styles.resultWrap, resultStyle]}>
+        <ScrollView
+          contentContainerStyle={styles.resultContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <Container>
+            {/* Every block below uses rise={0}: the result screen as a whole
+              already rises via resultAnim, so these contribute the stagger
+              and nothing else — stacking transforms would overshoot the
+              8-16px band (the same reasoning CountryPageScreen's own blocks
+              use against its screenAnim). */}
+            <FadeInUp rise={0}>
+              <View style={[styles.resultCard, { backgroundColor: meta.accent }]}>
+                {/* The instrument, oversized and bleeding off the corner — the
                   same brand-in-use treatment as Home's Daily card and the level
                   card on Achievements, so a "you finished something" surface is
                   recognisable across the app. Brass on the mode's own accent,
                   which stays the card's colour: one warm accent per screen. */}
-              <CompassMark size={150} tone="brass" style={styles.resultMark} />
-              <Text style={[styles.resultKicker, { color: cardInk }]}>{meta.title}</Text>
-              <Text style={[styles.resultScore, { color: cardInk }]}>
-                {score}/{questions.length}
-              </Text>
-              <Text style={[styles.resultPct, { color: cardInk }]}>{pct}% correct</Text>
-              {mode === "daily" && ((Number.isFinite(dailyStreak) && dailyStreak > 0) || dailyRank) && (
-                <View style={styles.resultMetaWrap}>
-                  {Number.isFinite(dailyStreak) && dailyStreak > 0 && (
-                    <Text style={[styles.resultStreak, { color: cardInk }]}>
-                      🔥 {dailyStreak}-day streak
-                    </Text>
+                <CompassMark size={150} tone="brass" style={styles.resultMark} />
+                <Text style={[styles.resultKicker, { color: cardInk }]}>{meta.title}</Text>
+                <Text style={[styles.resultScore, { color: cardInk }]}>
+                  {score}/{questions.length}
+                </Text>
+                <Text style={[styles.resultPct, { color: cardInk }]}>{pct}% correct</Text>
+                {mode === "daily" &&
+                  ((Number.isFinite(dailyStreak) && dailyStreak > 0) || dailyRank) && (
+                    <View style={styles.resultMetaWrap}>
+                      {Number.isFinite(dailyStreak) && dailyStreak > 0 && (
+                        <Text style={[styles.resultStreak, { color: cardInk }]}>
+                          🔥 {dailyStreak}-day streak
+                        </Text>
+                      )}
+                      {dailyRank != null && (
+                        <Text style={[styles.resultStreak, { color: cardInk }]}>
+                          Ranked #{dailyRank} today
+                        </Text>
+                      )}
+                    </View>
                   )}
-                  {dailyRank != null && (
-                    <Text style={[styles.resultStreak, { color: cardInk }]}>
-                      Ranked #{dailyRank} today
-                    </Text>
-                  )}
-                </View>
-              )}
-              <View style={styles.xpPill}>
-                {/* The one place a number counts up from zero. Everywhere else
+                <View style={styles.xpPill}>
+                  {/* The one place a number counts up from zero. Everywhere else
                     AnimatedNumber refuses to animate its first value, because a
                     total that merely happens to be on screen shouldn't roll —
                     but arriving at this number is the reward the round is for. */}
-                <AnimatedNumber
-                  from={0}
-                  value={xp}
-                  format={(n) => `+${n} XP`}
-                  style={styles.xpPillText}
-                />
-              </View>
-              {mode === "daily" && (
-                <Pressable
-                  style={[styles.shareBtn, { borderColor: cardInk }]}
-                  onPress={handleShareDaily}
-                  hitSlop={8}
-                  accessibilityRole="button"
-                  accessibilityLabel="Share your Daily Challenge result"
-                >
-                  <Text style={[styles.shareBtnText, { color: cardInk }]}>
-                    {shareStatus === "shared" && "Shared!"}
-                    {shareStatus === "copied" && "Copied!"}
-                    {shareStatus === "failed" && "Couldn't share"}
-                    {!shareStatus && "Share"}
-                  </Text>
-                </Pressable>
-              )}
-            </View>
-          </FadeInUp>
-
-          <FadeInUp index={1}>
-            <Text style={styles.reviewHeading}>Round review</Text>
-          </FadeInUp>
-          <View style={styles.reviewList}>
-            {history.map((entry, i) => (
-              <FadeInUp key={i} delay={motion.stagger * 2 + staggerDelay(i)}>
-                <View style={styles.reviewCard}>
-                  <View style={styles.reviewRow}>
-                    <Text
-                      style={[
-                        styles.reviewMark,
-                        entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong,
-                      ]}
-                    >
-                      {entry.isRight ? "✓" : "✕"}
-                    </Text>
-                    <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
-                  </View>
-                  {!entry.isRight && (
-                    <Text style={styles.reviewAnswer}>
-                      You said {answerLabel(entry.question, entry.picked)} — the answer was{" "}
-                      {entry.question.correct}
-                    </Text>
-                  )}
-                  <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
+                  <AnimatedNumber
+                    from={0}
+                    value={xp}
+                    format={(n) => `+${n} XP`}
+                    style={styles.xpPillText}
+                  />
                 </View>
-              </FadeInUp>
-            ))}
-          </View>
+                {mode === "daily" && (
+                  <Pressable
+                    style={[styles.shareBtn, { borderColor: cardInk }]}
+                    onPress={handleShareDaily}
+                    hitSlop={8}
+                    accessibilityRole="button"
+                    accessibilityLabel="Share your Daily Challenge result"
+                  >
+                    <Text style={[styles.shareBtnText, { color: cardInk }]}>
+                      {shareStatus === "shared" && "Shared!"}
+                      {shareStatus === "copied" && "Copied!"}
+                      {shareStatus === "failed" && "Couldn't share"}
+                      {!shareStatus && "Share"}
+                    </Text>
+                  </Pressable>
+                )}
+              </View>
+            </FadeInUp>
 
-          {/* A finished round used to end on one button back to Home — a dead
+            <FadeInUp rise={0} index={1}>
+              <Text style={styles.reviewHeading}>Round review</Text>
+            </FadeInUp>
+            <View style={styles.reviewList}>
+              {history.map((entry, i) => (
+                <FadeInUp rise={0} key={i} delay={motion.stagger * 2 + staggerDelay(i)}>
+                  <View style={styles.reviewCard}>
+                    <View style={styles.reviewRow}>
+                      <Text
+                        style={[
+                          styles.reviewMark,
+                          entry.isRight ? styles.reviewMarkRight : styles.reviewMarkWrong,
+                        ]}
+                      >
+                        {entry.isRight ? "✓" : "✕"}
+                      </Text>
+                      <Text style={styles.reviewPrompt}>{entry.question.prompt}</Text>
+                    </View>
+                    {!entry.isRight && (
+                      <Text style={styles.reviewAnswer}>
+                        You said {answerLabel(entry.question, entry.picked)} — the answer was{" "}
+                        {entry.question.correct}
+                      </Text>
+                    )}
+                    <Text style={styles.reviewFact}>{whyItMatters(entry.question.country)}</Text>
+                  </View>
+                </FadeInUp>
+              ))}
+            </View>
+
+            {/* A finished round used to end on one button back to Home — a dead
               end at the exact moment momentum is highest. Play again is the
               primary action now, and Done returns to wherever the round was
               started from (a learning path, a country page, Home), which the
               nav stack knows and this screen no longer has to guess. */}
-          <FadeInUp delay={motion.stagger * 3}>
-            {onPlayAgain && (
-              <Pressable
-                style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
-                onPress={onPlayAgain}
-              >
-                <Text style={styles.primaryBtnText}>Play again</Text>
+            <FadeInUp rise={0} delay={motion.stagger * 3}>
+              {onPlayAgain && (
+                <Pressable
+                  style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
+                  onPress={() => finishResult(onPlayAgain)}
+                >
+                  <Text style={styles.primaryBtnText}>Play again</Text>
+                </Pressable>
+              )}
+              <Pressable style={styles.secondaryBtn} onPress={() => finishResult(onExit)}>
+                <Text style={styles.secondaryBtnText}>Done</Text>
               </Pressable>
-            )}
-            <Pressable style={styles.secondaryBtn} onPress={onExit}>
-              <Text style={styles.secondaryBtnText}>Done</Text>
-            </Pressable>
-          </FadeInUp>
-        </Container>
-      </ScrollView>
+            </FadeInUp>
+          </Container>
+        </ScrollView>
+      </Animated.View>
     );
   }
 

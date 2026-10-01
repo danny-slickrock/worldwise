@@ -1805,8 +1805,32 @@ teaching *how the world works*, not just *where things are*.
              web equivalent to exercise in a browser), so verification is by reasoning against RN's
              documented `Share` API rather than a new pinned test — consistent with step 5.1's own
              "arithmetic rather than a new test" note where a browser/tsx check can't reach the bug.
-             *(Next up: step 5.4 — transitions, closing out M2.6 step 6.)*
-          4. ☐ **Transitions.**
+          4. ✅ **Transitions.** The result ("done") screen had no transition of its own — the
+             per-block `FadeInUp` cascade already inside it handled entrance for each piece, but
+             there was nothing between the question view and the result view, and tapping Done or
+             Play again cut away instantly with no animation at all, unlike every other milestone's
+             own closing-step screen (`CountryPageScreen`, `LearningPathScreen`,
+             `AchievementsScreen`). `QuizScreen` now carries a `resultAnim` `Animated.Value`,
+             reset to 0 and animated to 1 whenever `done` flips true, wrapping the whole result
+             view in the same fade/rise-in `Animated.View` those screens use around their own
+             `screenAnim`; every existing `FadeInUp` block inside it now passes `rise={0}`, so the
+             outer rise isn't compounded by the per-block one (the same reasoning
+             `CountryPageScreen`'s own blocks already use). A new `finishResult(callback)` animates
+             `resultAnim` back to 0 and fires the callback only once the fade/settle-out finishes —
+             both the "Done" (`onExit`) and "Play again" (`onPlayAgain`) buttons now route through
+             it, since Play again remounts `QuizScreen` with a fresh round (`App.js` keys it on
+             `attempt`) just as much a screen transition as Done leaving the quiz entirely. No new
+             pure logic (a transition, not a decision), so no new `test/engine.test.js` checks —
+             matching how M2.4/M2.5's own transition chunks were verified. **Verified in a real
+             browser** (Playwright/Chromium, static `expo export --platform web` build, placeholder
+             Supabase env): played a full Daily Challenge round, confirmed the result card eases in
+             fully opaque, tapped Done and captured a genuinely partial, fading/rising mid-transition
+             frame before Home appeared — confirming the exit callback waits for the animation
+             rather than firing on tap — then repeated the round and tapped Play again, capturing
+             the same mid-fade frame before a fresh Question 1 mounted. **M2.6 step 6 (the shareable
+             Daily Challenge score card) is now fully done end to end.**
+             *(Next up: step 7 — Friends, the one M2.6 sub-step this checklist couldn't fully scope
+             ahead of time.)*
     7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
        — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
     8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,

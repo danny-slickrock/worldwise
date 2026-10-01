@@ -822,8 +822,22 @@ a target, and `handleShareDaily` was treating every resolve as success — showi
 share that never happened, exactly the pattern the M2.1 section below warns against by name. It now
 checks for `dismissedAction` and leaves the button at rest instead. Android and the web fallback were
 already correct (Android's intent always resolves immediately with no way to report completion; the
-web path already treats a cancelled `navigator.share()`'s `AbortError` as a no-op). **Next up:
-sub-step 6.5.4 — transitions.**
+web path already treats a cancelled `navigator.share()`'s `AbortError` as a no-op). **Sub-step 6.5.4
+(transitions) is also done, closing out M2.6 step 6 end to end.** The result ("done") screen had no
+transition of its own — the per-block `FadeInUp` cascade inside it handled entrance for each piece,
+but nothing animated between the question view and the result view, and Done/Play again cut away
+instantly, unlike every other milestone's own closing-step screen. `QuizScreen` now carries a
+`resultAnim` value that fades/rises the whole result view in when `done` flips true (every inner
+`FadeInUp` now passes `rise={0}` so the outer rise isn't compounded, the same convention
+`CountryPageScreen`'s blocks use), and a `finishResult(callback)` that fades/settles it back out
+before calling `onExit` or `onPlayAgain` — Play again routes through it too, since remounting
+`QuizScreen` with a fresh round is as much a transition as Done leaving the quiz. Verified in a real
+browser (Playwright/Chromium, static export, placeholder Supabase env): played a full Daily round,
+confirmed the card eases in, tapped Done and captured a genuinely partial fading/rising frame before
+Home appeared, then repeated it for Play again and captured the same mid-fade frame before a fresh
+Question 1 mounted. **M2.6 step 6 (the shareable Daily Challenge score card) is now fully done end
+to end. Next up: M2.6 step 7 — Friends**, the one sub-step this checklist couldn't fully scope ahead
+of time.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows
