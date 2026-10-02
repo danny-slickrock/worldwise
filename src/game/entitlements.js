@@ -38,6 +38,9 @@ export const MODE_TIERS = {
   higherLower: "free",
   daily: "free",
   country: "free",
+  // M2.7 step 1. Breadth games join the free catalog alongside the original
+  // six — M2.7's games were never scoped as a pro shelf.
+  currency: "free",
 
   // Not built yet (steps 7 and 8). Listed now so the catalog is the product's
   // plan rather than a lagging record of it — and so the Home badge and the

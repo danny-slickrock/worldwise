@@ -97,6 +97,10 @@ src/
                            #   superlinear streak bonus, and the value readout
   data/countryMetrics.js   # Bundled comparable numbers (population, area, land borders) derived
                            #   from countryContent.js — synchronous, no network
+  data/currencies.js       # M2.7 step 1: code → { name, iso } currency lookup, sibling to
+                           #   countryMetrics.js/countryTerrain.js rather than a COUNTRIES change.
+                           #   Hand-compiled (no structured currency field in the Factbook/Wikidata
+                           #   pipeline yet), the same way COUNTRIES' own `capital` column was
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -836,8 +840,28 @@ browser (Playwright/Chromium, static export, placeholder Supabase env): played a
 confirmed the card eases in, tapped Done and captured a genuinely partial fading/rising frame before
 Home appeared, then repeated it for Play again and captured the same mid-fade frame before a fresh
 Question 1 mounted. **M2.6 step 6 (the shareable Daily Challenge score card) is now fully done end
-to end. Next up: M2.6 step 7 — Friends**, the one sub-step this checklist couldn't fully scope ahead
-of time.
+to end.** Step 7 — Friends — is next in M2.6's order and is **blocked on a product/privacy decision,
+not a technical one**: a follow/friend model lets one account discover and contact another, a
+materially different exposure than a leaderboard's rank-plus-display-name, and squarely the kind of
+call ROADMAP.md's own DANNY TO DO section already reserves for Danny (see "Decide the under-13
+posture" — the same reasoning applies here, just not yet written down for Friends specifically until
+this pass). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the next
+lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose ordered
+sub-checklist (ordered by data shape: per-country single-fact games first, the Rivers/Mountains/
+Oceans feature-based games last) now has its own step 1 done — **Currency Quiz**. `src/data/
+currencies.js` is a new code → `{ name, iso }` lookup (hand-compiled general knowledge, like
+COUNTRIES' own `capital` column, since the Factbook/Wikidata pipeline carries no structured currency
+field yet); `game/questions.js` gained one `buildOne("currency", …)` branch whose distractors are
+deduped by CURRENCY NAME rather than by country, so two eurozone countries in one round can't offer
+"Euro" twice as if they were different answers — and, for the same reason, there is deliberately no
+`currencyReverse` direction, since two dozen countries sharing the euro means "which country uses
+the Euro?" has no single correct answer. `QuizScreen` needed one line (reusing the `flag` branch's
+flag image for the prompt media); scoring, feedback and the context card were already generic.
+Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env): the new
+Home tile renders with its own accent, a round opens, and a question reads correctly with four
+distinct options including the right answer. See ROADMAP.md's M2.7 entry for the full writeup and
+the remaining ordered steps (Language, National Animal, Food Origin, City, then Rivers/Mountains/
+Oceans).
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

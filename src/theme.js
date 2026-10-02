@@ -149,6 +149,10 @@ export const modeAccents = {
   locator: "#2B5F6B", // lakewater, cooled toward slate
   higherLower: "#7E4720", // ember, deepened
   country: colors.brandDeep,
+  // Ember/brass family, tinted toward olive-gold rather than ember's red —
+  // the kit's "coin" end of the firelight range, and far enough from
+  // higherLower's own ember tint to read as a different tile.
+  currency: "#6B5A2E",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

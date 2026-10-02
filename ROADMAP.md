@@ -186,8 +186,21 @@ ignores `hitSlop`, the same M2.5 step 6.4.2 trap), now `spacing(3)` to clear the
 even when the player cancelled iOS's native share sheet, since RN's `Share.share()` resolves (rather
 than rejecting) with `action: Share.dismissedAction` on a dismissed iOS sheet — the exact
 false-success pattern CLAUDE.md's M2.1 section warns against. It now checks for `dismissedAction`
-and leaves the button at rest instead of claiming success. **Next up: sub-step 6.5.4 —
-transitions.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+and leaves the button at rest instead of claiming success. **6.5.4 (transitions) is also done,
+closing out M2.6 step 6 end to end:** the result screen now fades/rises in on mount and fades/
+settles out before Done or Play again actually navigates, the same `screenAnim`/`handleExit` shape
+`CountryPageScreen`/`LearningPathScreen`/`AchievementsScreen` already use — verified in a real
+browser (Playwright/Chromium, static export): a genuinely partial, mid-fade frame captured after
+tapping Done, before Home appeared. **With step 6 done, step 7 — Friends — is next in order, and
+is blocked**, not on anything technical but on a product/privacy decision (see the sub-checklist
+entry below): a follow/friend model lets one account discover and contact another, which is a
+materially different kind of exposure than a leaderboard's rank-plus-display-name and squarely the
+kind of call ROADMAP's own DANNY TO DO section already reserves for Danny (see "Decide the
+under-13 posture"). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the
+next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose step 1
+(Currency Quiz — a new per-country fact, reusing the exact `capital`/`capitalReverse` question
+shape and the existing flag artwork for its prompt media) is now done; see M2.7's own entry below
+for the full writeup. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1831,8 +1844,17 @@ teaching *how the world works*, not just *where things are*.
              Daily Challenge score card) is now fully done end to end.**
              *(Next up: step 7 — Friends, the one M2.6 sub-step this checklist couldn't fully scope
              ahead of time.)*
-    7. ☐ **Friends.** A follow/friend model is its own schema decision (who can add whom, visibility)
-       — deliberately last, since it's the one sub-step this checklist can't fully scope yet.
+    7. ☐ **Friends — blocked on a product/privacy decision, not a technical one.** A follow/friend
+       model necessarily lets one account discover and contact another — a materially different kind
+       of exposure than anything else M2.6 added (a leaderboard shows a rank and a display name
+       already chosen for public view; Friends would let a stranger find and add a specific player).
+       The repo's own standing precedent (see DANNY TO DO → "Decide the under-13 posture") is that a
+       decision like this — one that touches whether and how a possibly-under-13 audience can be
+       found and contacted by other users — is a product/legal call that has to precede the UI, "one
+       I shouldn't make for you." Scoping who can add whom and what's visible to whom is exactly that
+       call, not a schema detail to default past. Needs Danny's steer before any sub-checklist gets
+       written here; the daily build moves on to the next unblocked milestone (M2.7) rather than
+       guessing.
     8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
        offline/error states, transitions).
 - **M2.12 — Game tiers & difficulty overhaul 🎚️** — the games stop being one-size-fits-all. Two
@@ -1947,6 +1969,58 @@ teaching *how the world works*, not just *where things are*.
 
 - **M2.7 — Game library expansion 🎮** — extend the shared engine to Rivers, Mountains, Oceans,
   Currency, Language, National Animal, Food Origin, and City games — breadth without new bespoke code.
+  - **Ordered sub-checklist** (one scoped chunk per run; top-to-bottom, don't skip). Ordered by data
+    shape rather than by the list above: the first five are all "one new fact per country," the same
+    shape `capital`/`capitalReverse` already proved, so they come first; Rivers/Mountains/Oceans ask
+    about a FEATURE rather than a country (a river touches several countries, not one), which is a
+    genuinely different data model and answer surface, so they are deliberately last, the same reason
+    M2.6's Friends sub-step sits at the end of its own checklist.
+    1. ✅ **Currency Quiz.** `src/data/currencies.js`: a code → `{ name, iso }` lookup, sibling to
+       `countryMetrics.js`/`countryTerrain.js` rather than a change to `COUNTRIES` itself. Unlike
+       `countryContent.js`, this is hand-compiled rather than drafted from the Factbook/Wikidata
+       pipeline (see docs/adr/0001) — there is no structured currency field in that pipeline's source
+       material yet — authored the same way COUNTRIES' own `capital` column was: stable, general-
+       knowledge ISO 4217 fact. Worth a second pair of eyes before a classroom relies on it, same as
+       any other hand-typed fact in this codebase. `game/questions.js` gets one new `buildOne("currency",
+       …)` branch: prompt is "What is the currency of X?", and distractors are deduped by CURRENCY
+       NAME rather than by country — several eurozone or CFA-franc countries would otherwise offer
+       "Euro" or "West African CFA franc" twice, visually identical options where only one could be
+       marked correct. Deliberately ONE direction only (no `currencyReverse`): more than twenty
+       countries share the euro alone, so "which country uses the Euro?" has no single correct answer
+       the way "which country has Nicosia as its capital?" does — the trap `capitalReverse` doesn't
+       have to avoid because capitals are each unique to one country. `MODES.currency` takes a new
+       accent (`"#6B5A2E"`, an olive-gold tint of the ember/brass family, 5.67:1 on parchment, checked
+       by the existing per-accent contrast loop in `test/engine.test.js` — no new test needed there)
+       and joins `MODE_TIERS` as `"free"`, same as the original six. `QuizScreen` needed one line, not
+       a new branch shape: its media box now shows the country's flag for `type === "currency"` too
+       (the same `flagUrl()` call the `flag` branch already makes — no new asset), and scoring/
+       feedback/the context card are all already generic over `q.correct`/`q.options`/`q.country`, so
+       nothing else changed. 13 new checks in `test/engine.test.js`: full code coverage (every
+       `COUNTRIES` code has an entry), shape validation, options always include the correct answer,
+       no duplicate option text anywhere in a full round (the regression this mode's distractor logic
+       exists to prevent), and a Portugal-only round (forcing a eurozone target) to pin that case
+       directly rather than hoping a random round draws two eurozone countries together. **Verified in
+       a real browser** (Playwright/Chromium, static `expo export --platform web` build, placeholder
+       Supabase env): the Home tile renders with its own accent and a `$` glyph (the kit's generic
+       currency sign, `¤` U+00A4, rendered as a tofu box in this environment's font stack — swapped
+       for `$` after catching that on screen, not just in code), tapping it opens a round, and
+       "What is the currency of Kazakhstan?" showed four distinct, correctly-cased options with the
+       right answer among them.
+    2. ☐ **Language Quiz.** Same shape as step 1 — official-language-per-country, forward direction
+       only (languages are shared across far more countries than currencies are, so a reverse
+       direction needs the same multi-correct-answer caution step 1 worked out for Currency, if it's
+       attempted at all).
+    3. ☐ **National Animal Quiz.**
+    4. ☐ **Food Origin Quiz.**
+    5. ☐ **City Quiz.** Needs a city dataset distinct from `capital` — otherwise this is Capital Quiz
+       with extra steps.
+    6. ☐ **Rivers.**
+    7. ☐ **Mountains.**
+    8. ☐ **Oceans.** Rivers/Mountains/Oceans share a planning question worth settling before the
+       first of the three starts: what IS the answer surface for a feature that isn't one country?
+       Multiple choice over feature names is the safe default (mirrors every other mode here), but a
+       map-tap answer surface (closer to Locator) would be more interesting and is a bigger lift —
+       worth deciding deliberately rather than drifting into whichever shape step 6 happens to pick.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*

@@ -17,6 +17,7 @@ import { getCountryPage } from "../data/countryPages";
 import { countryName } from "../data/countries";
 import { effectiveTier } from "../data/difficulties";
 import { lookalikePool } from "./shapeSimilarity";
+import { currencyFor } from "../data/currencies";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -84,6 +85,16 @@ export const MODES = {
     blurb: "A mixed round every day",
     icon: "\u25c9",
     accent: modeAccents.daily,
+  },
+  // M2.7 step 1: the first of the milestone's "extend the engine, no new
+  // bespoke UI" games \u2014 same shape as capital/capitalReverse, one new fact
+  // per country rather than a new answer surface.
+  currency: {
+    key: "currency",
+    title: "Currency Quiz",
+    blurb: "Name the currency",
+    icon: "$",
+    accent: modeAccents.currency,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -215,6 +226,29 @@ function buildOne(type, target, tier = null) {
       // mixes a locator question in among fact questions and passes no tier,
       // so this resolves to the easy presentation there, unchanged.
       locatorTier: tier ?? "easy",
+    };
+  }
+  if (type === "currency") {
+    // Distractors are deduped by CURRENCY NAME, not by country — several
+    // eurozone or CFA-franc countries would otherwise offer "Euro" or "West
+    // African CFA franc" as two visually identical options, one of which the
+    // matcher would silently mark wrong even though it reads as correct.
+    const correct = currencyFor(target.code)?.name ?? null;
+    const seen = new Set(correct ? [correct] : []);
+    const distractors = [];
+    for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
+      const name = currencyFor(c.code)?.name;
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      distractors.push(name);
+      if (distractors.length >= DISTRACTORS) break;
+    }
+    return {
+      type,
+      country: target,
+      prompt: `What is the currency of ${target.name}?`,
+      correct,
+      options: shuffle([correct, ...distractors]),
     };
   }
   // flag & shape both ask "which country?"

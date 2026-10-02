@@ -20,6 +20,7 @@ import {
   MAP_H,
 } from "../src/data/worldMap";
 import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
+import { CURRENCY_BY_CODE, currencyFor, CURRENCY_NAMES } from "../src/data/currencies";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -6736,6 +6737,54 @@ check(
   buildDailyShareText() === "I scored 0/0 on today's Worldwise Daily Challenge 🌍",
   "buildDailyShareText tolerates being called with no arguments at all"
 );
+
+console.log("\nCurrency Quiz (M2.7 step 1)");
+check(
+  COUNTRIES.every((c) => currencyFor(c.code) !== null),
+  "every COUNTRIES code has a currency entry"
+);
+check(
+  Object.values(CURRENCY_BY_CODE).every(
+    (c) => typeof c.name === "string" && c.name.length > 0 && typeof c.iso === "string" && c.iso.length === 3
+  ),
+  "every currency entry carries a non-empty name and a 3-letter ISO code"
+);
+check(CURRENCY_NAMES.length > OPTIONS_PER_QUESTION * 2, "enough distinct currency names to fill a round's distractors");
+check(MODES.currency != null && MODES.currency.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.currency === "free", "Currency Quiz joins the free catalog");
+check(FREE_MODES.includes("currency"), "...and shows up in the derived free-mode list");
+
+const currencyRound = buildRound("currency", "all", ROUND_LENGTH);
+check(currencyRound.length === ROUND_LENGTH, "a currency round is a full round");
+check(
+  currencyRound.every((q) => q.type === "currency" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  currencyRound.every((q) => q.options.includes(q.correct)),
+  "the correct currency is always among the options"
+);
+check(
+  currencyRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a currency name across its own options — a shared currency " +
+    "(Euro, the CFA francs, the East Caribbean dollar) must never show twice as if " +
+    "two different answers were offered"
+);
+check(
+  currencyRound.every((q) => q.correct === currencyFor(q.country.code).name),
+  "the correct answer always matches this country's own currency"
+);
+
+// Portugal shares the euro with two dozen other countries: this is the case
+// the dedup-by-name distractor logic exists for. Narrowing the pool to just
+// Portugal pins the fix rather than hoping a random round happens to draw a
+// eurozone target.
+const ptRound = buildRound("currency", "all", 1, { only: ["pt"] });
+check(
+  ptRound.length === 1 && new Set(ptRound[0].options).size === ptRound[0].options.length,
+  "a eurozone target still gets four visually distinct options"
+);
+check(ptRound[0].correct === "Euro", "...with Euro correctly named as Portugal's currency");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
