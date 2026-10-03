@@ -153,6 +153,10 @@ export const modeAccents = {
   // the kit's "coin" end of the firelight range, and far enough from
   // higherLower's own ember tint to read as a different tile.
   currency: "#6B5A2E",
+  // Ember, deepened and reddened toward rust rather than currency's
+  // olive-gold or higherLower's orange-brown — a third, distinct tint of the
+  // same family rather than a new hue.
+  language: "#6B4035",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

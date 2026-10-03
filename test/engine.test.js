@@ -21,6 +21,7 @@ import {
 } from "../src/data/worldMap";
 import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
 import { CURRENCY_BY_CODE, currencyFor, CURRENCY_NAMES } from "../src/data/currencies";
+import { LANGUAGE_BY_CODE, languageFor, LANGUAGE_NAMES } from "../src/data/languages";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -6785,6 +6786,55 @@ check(
   "a eurozone target still gets four visually distinct options"
 );
 check(ptRound[0].correct === "Euro", "...with Euro correctly named as Portugal's currency");
+
+console.log("\nLanguage Quiz (M2.7 step 2)");
+check(
+  COUNTRIES.every((c) => languageFor(c.code) !== null),
+  "every COUNTRIES code has a language entry"
+);
+check(
+  Object.values(LANGUAGE_BY_CODE).every((name) => typeof name === "string" && name.length > 0),
+  "every language entry carries a non-empty name"
+);
+check(
+  LANGUAGE_NAMES.length > OPTIONS_PER_QUESTION * 2,
+  "enough distinct language names to fill a round's distractors"
+);
+check(MODES.language != null && MODES.language.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.language === "free", "Language Quiz joins the free catalog");
+check(FREE_MODES.includes("language"), "...and shows up in the derived free-mode list");
+
+const languageRound = buildRound("language", "all", ROUND_LENGTH);
+check(languageRound.length === ROUND_LENGTH, "a language round is a full round");
+check(
+  languageRound.every((q) => q.type === "language" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  languageRound.every((q) => q.options.includes(q.correct)),
+  "the correct language is always among the options"
+);
+check(
+  languageRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a language name across its own options — a shared language " +
+    "(English, Arabic, French, Spanish...) must never show twice as if two different " +
+    "answers were offered"
+);
+check(
+  languageRound.every((q) => q.correct === languageFor(q.country.code)),
+  "the correct answer always matches this country's own language"
+);
+
+// French is shared across France plus more than a dozen African states: the
+// case the dedup-by-name distractor logic exists for. Narrowing the pool to
+// just France pins the fix rather than hoping a random round happens to draw
+// a Francophone target.
+const frRound = buildRound("language", "all", 1, { only: ["fr"] });
+check(
+  frRound.length === 1 && new Set(frRound[0].options).size === frRound[0].options.length,
+  "a widely-shared-language target still gets four visually distinct options"
+);
+check(frRound[0].correct === "French", "...with French correctly named as France's language");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

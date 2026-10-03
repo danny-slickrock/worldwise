@@ -18,6 +18,7 @@ import { countryName } from "../data/countries";
 import { effectiveTier } from "../data/difficulties";
 import { lookalikePool } from "./shapeSimilarity";
 import { currencyFor } from "../data/currencies";
+import { languageFor } from "../data/languages";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -95,6 +96,17 @@ export const MODES = {
     blurb: "Name the currency",
     icon: "$",
     accent: modeAccents.currency,
+  },
+  // M2.7 step 2: same shape again — one new per-country fact, reusing the
+  // flag artwork for its prompt media and the currency branch's dedupe-by-
+  // name distractor logic, since a language is shared across even more
+  // countries than a currency is.
+  language: {
+    key: "language",
+    title: "Language Quiz",
+    blurb: "Name the language",
+    icon: "A",
+    accent: modeAccents.language,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -247,6 +259,29 @@ function buildOne(type, target, tier = null) {
       type,
       country: target,
       prompt: `What is the currency of ${target.name}?`,
+      correct,
+      options: shuffle([correct, ...distractors]),
+    };
+  }
+  if (type === "language") {
+    // Same dedupe-by-NAME logic as currency, and needed even more here: a
+    // language is shared across far more countries than any one currency is
+    // (English and Arabic alone cover dozens), so two options reading
+    // identically is the normal case to guard against, not an edge case.
+    const correct = languageFor(target.code);
+    const seen = new Set(correct ? [correct] : []);
+    const distractors = [];
+    for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
+      const name = languageFor(c.code);
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      distractors.push(name);
+      if (distractors.length >= DISTRACTORS) break;
+    }
+    return {
+      type,
+      country: target,
+      prompt: `What is the official language of ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
     };

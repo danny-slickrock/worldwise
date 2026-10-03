@@ -33,8 +33,9 @@ const GAME_GRID = [
   "shape",
   "locator",
   "higherLower",
-  // M2.7 step 1 — the first "extend the engine" breadth game.
+  // M2.7 steps 1-2 — the "extend the engine" breadth games.
   "currency",
+  "language",
   // The two pro marathons. They sit in the same grid rather than in a separate
   // "Pro" shelf: every account is pro today (see game/entitlements.js), so a
   // roped-off section would be selling something the player already has.

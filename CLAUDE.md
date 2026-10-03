@@ -101,6 +101,10 @@ src/
                            #   countryMetrics.js/countryTerrain.js rather than a COUNTRIES change.
                            #   Hand-compiled (no structured currency field in the Factbook/Wikidata
                            #   pipeline yet), the same way COUNTRIES' own `capital` column was
+  data/languages.js        # M2.7 step 2: code → language-name lookup, sibling to currencies.js
+                           #   and hand-compiled the same way — except a language, unlike a
+                           #   currency, often has no single legal answer, so this picks whichever
+                           #   co-official language is most commonly cited as primary
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -859,9 +863,23 @@ the Euro?" has no single correct answer. `QuizScreen` needed one line (reusing t
 flag image for the prompt media); scoring, feedback and the context card were already generic.
 Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env): the new
 Home tile renders with its own accent, a round opens, and a question reads correctly with four
-distinct options including the right answer. See ROADMAP.md's M2.7 entry for the full writeup and
-the remaining ordered steps (Language, National Animal, Food Origin, City, then Rivers/Mountains/
-Oceans).
+distinct options including the right answer. **Step 2 — Language Quiz — is also done.** Same shape:
+`src/data/languages.js`, hand-compiled like `currencies.js`, except a language more often has no
+single legal answer the way a currency does — several states name two or more co-official
+languages with no single "the" one, so this picks whichever is most commonly cited as primary
+(usually the most widely spoken, occasionally a constitutionally "national" language distinct from
+a co-official administrative one, e.g. Ireland's Irish over English) and says so in a comment, the
+same "worth a second pair of eyes" note `currencies.js` itself carries. `game/questions.js` copies
+`currency`'s `buildOne` shape including its dedupe-by-NAME distractor logic, needed even more here
+since a language is shared across far more countries than any currency is. Forward direction only,
+for the same reason `currencyReverse` doesn't exist. `MODES.language` takes a new accent
+(`"#6B4035"`, ember deepened and reddened — a third tint of the ember family, not a new hue) and
+joins `MODE_TIERS` as `"free"`; `QuizScreen` reuses the same flag-image line `flag`/`currency`
+already share. Verified in a real browser the same way: the Home tile renders next to Currency
+Quiz with its own accent and an "A" glyph, and "What is the official language of Kyrgyzstan?"
+showed four distinct options with the right answer (Kyrgyz) among them. See ROADMAP.md's M2.7
+entry for the full writeup and the remaining ordered steps (National Animal, Food Origin, City,
+then Rivers/Mountains/Oceans).
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

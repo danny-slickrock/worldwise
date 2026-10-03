@@ -197,10 +197,11 @@ entry below): a follow/friend model lets one account discover and contact anothe
 materially different kind of exposure than a leaderboard's rank-plus-display-name and squarely the
 kind of call ROADMAP's own DANNY TO DO section already reserves for Danny (see "Decide the
 under-13 posture"). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the
-next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose step 1
-(Currency Quiz — a new per-country fact, reusing the exact `capital`/`capitalReverse` question
-shape and the existing flag artwork for its prompt media) is now done; see M2.7's own entry below
-for the full writeup. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose steps 1
+(Currency Quiz) and 2 (Language Quiz) — both a new per-country fact, reusing the exact
+`capital`/`capitalReverse` question shape and the existing flag artwork for prompt media — are now
+done; see M2.7's own entry below for the full writeup. **Next up: M2.7 step 3, National Animal
+Quiz.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2006,10 +2007,32 @@ teaching *how the world works*, not just *where things are*.
        for `$` after catching that on screen, not just in code), tapping it opens a round, and
        "What is the currency of Kazakhstan?" showed four distinct, correctly-cased options with the
        right answer among them.
-    2. ☐ **Language Quiz.** Same shape as step 1 — official-language-per-country, forward direction
-       only (languages are shared across far more countries than currencies are, so a reverse
-       direction needs the same multi-correct-answer caution step 1 worked out for Currency, if it's
-       attempted at all).
+    2. ✅ **Language Quiz.** Same shape as step 1: `src/data/languages.js`, a code → language-name
+       lookup sibling to `currencies.js`, hand-compiled the same way (and flagged with the same
+       "worth a second pair of eyes" note — a currency has one legal answer, a language often
+       doesn't, since many states name two or more co-official with no single "the" one; where
+       that's true this picks the one most commonly cited as primary, usually the most widely
+       spoken, occasionally a constitutionally "national" language distinct from a co-official
+       administrative one, e.g. Ireland's Irish over English). `game/questions.js` gets one new
+       `buildOne("language", …)` branch, copied from `currency`'s shape including its dedupe-by-NAME
+       distractor logic — needed even more here, since a language is shared across far more
+       countries than any one currency is (English and Arabic alone cover dozens). Forward direction
+       only, for the reason already called out above: no single country is "the" answer to "which
+       country speaks English?" `MODES.language` takes a new accent (`"#6B4035"`, ember deepened and
+       reddened toward rust — a third distinct tint of the ember family alongside currency's
+       olive-gold and higherLower's orange-brown, not a new hue) and joins `MODE_TIERS` as `"free"`.
+       `QuizScreen` reuses the exact same one line the `flag`/`currency` branches already share for
+       prompt media (the country's flag) — no new branch shape, same as step 1. 13 new checks in
+       `test/engine.test.js`, mirroring step 1's: full code coverage (every `COUNTRIES` code has an
+       entry), shape validation, options always include the correct answer, no duplicate option text
+       in a full round, and a France-only round (French is shared with over a dozen African states)
+       pinning the dedupe case directly. **Verified in a real browser** (Playwright/Chromium, static
+       `expo export --platform web` build, placeholder Supabase env): the Home tile renders next to
+       Currency Quiz with its own accent and an "A" glyph (icon, in the same literal-character spirit
+       as Currency's `$`, after `¤`/other Unicode language glyphs risked the same tofu-box problem
+       Currency's own `¤` hit), tapping it opens a round, and "What is the official language of
+       Kyrgyzstan?" showed four distinct options — Montenegrin, Dutch, French, Kyrgyz — with the
+       right answer among them.
     3. ☐ **National Animal Quiz.**
     4. ☐ **Food Origin Quiz.**
     5. ☐ **City Quiz.** Needs a city dataset distinct from `capital` — otherwise this is Capital Quiz
