@@ -19,6 +19,7 @@ import { effectiveTier } from "../data/difficulties";
 import { lookalikePool } from "./shapeSimilarity";
 import { currencyFor } from "../data/currencies";
 import { languageFor } from "../data/languages";
+import { nationalAnimalFor } from "../data/nationalAnimals";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -107,6 +108,20 @@ export const MODES = {
     blurb: "Name the language",
     icon: "A",
     accent: modeAccents.language,
+  },
+  // M2.7 step 3: same shape again. Fewer than half of COUNTRIES have ever
+  // legislated an official national animal (see nationalAnimals.js's own
+  // note), so this is the least-codified of the three "one new per-country
+  // fact" games — the dedupe-by-name distractor logic is copied from
+  // currency/language unchanged, and matters just as much here: the many
+  // shared lions, brown bears, and the three Gulf states' Arabian oryx are
+  // exactly the case it exists for.
+  nationalAnimal: {
+    key: "nationalAnimal",
+    title: "National Animal Quiz",
+    blurb: "Name the national animal",
+    icon: "P",
+    accent: modeAccents.nationalAnimal,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -282,6 +297,28 @@ function buildOne(type, target, tier = null) {
       type,
       country: target,
       prompt: `What is the official language of ${target.name}?`,
+      correct,
+      options: shuffle([correct, ...distractors]),
+    };
+  }
+  if (type === "nationalAnimal") {
+    // Same dedupe-by-NAME logic as currency/language, and for the same
+    // reason: a shared national animal (the many lions, the three Gulf
+    // states' Arabian oryx) is the normal case, not an edge case.
+    const correct = nationalAnimalFor(target.code);
+    const seen = new Set(correct ? [correct] : []);
+    const distractors = [];
+    for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
+      const name = nationalAnimalFor(c.code);
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      distractors.push(name);
+      if (distractors.length >= DISTRACTORS) break;
+    }
+    return {
+      type,
+      country: target,
+      prompt: `What is the national animal of ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
     };

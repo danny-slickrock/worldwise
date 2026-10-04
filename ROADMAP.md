@@ -198,10 +198,11 @@ materially different kind of exposure than a leaderboard's rank-plus-display-nam
 kind of call ROADMAP's own DANNY TO DO section already reserves for Danny (see "Decide the
 under-13 posture"). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the
 next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose steps 1
-(Currency Quiz) and 2 (Language Quiz) — both a new per-country fact, reusing the exact
-`capital`/`capitalReverse` question shape and the existing flag artwork for prompt media — are now
-done; see M2.7's own entry below for the full writeup. **Next up: M2.7 step 3, National Animal
-Quiz.** The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+(Currency Quiz), 2 (Language Quiz), and 3 (National Animal Quiz) — each a new per-country fact,
+reusing the exact `capital`/`capitalReverse` question shape and the existing flag artwork for
+prompt media — are now done; see M2.7's own entry below for the full writeup. **Next up: M2.7
+step 4, Food Origin Quiz.** The Phase 1 backlog below gets picked up opportunistically, not as a
+gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2033,7 +2034,35 @@ teaching *how the world works*, not just *where things are*.
        Currency's own `¤` hit), tapping it opens a round, and "What is the official language of
        Kyrgyzstan?" showed four distinct options — Montenegrin, Dutch, French, Kyrgyz — with the
        right answer among them.
-    3. ☐ **National Animal Quiz.**
+    3. ✅ **National Animal Quiz.** Same shape again: `src/data/nationalAnimals.js`, a code →
+       animal-name lookup sibling to `currencies.js`/`languages.js`, hand-compiled the same way —
+       except a national animal is the LEAST codified of the three facts this milestone has added.
+       Fewer than half of `COUNTRIES` have ever legislated an official one, so where no legal
+       designation exists this picks whichever animal is most commonly cited for that country (a
+       coat-of-arms supporter, a flag motif, a conservation icon, a naming origin), the same
+       "worth a second pair of eyes" judgment call `languages.js` already flags for itself.
+       `game/questions.js` gets one new `buildOne("nationalAnimal", …)` branch, copied from
+       `currency`/`language`'s shape including the dedupe-by-NAME distractor logic — needed even
+       more here, since the catalog leans on a handful of heavily-reused animals (nearly twenty
+       countries' entries read "Lion"; the three Gulf states sharing "Arabian oryx" is the same
+       shape as three Eurozone countries sharing "Euro"). Forward direction only, for the same
+       reason `currencyReverse`/a language-reverse direction don't exist. `MODES.nationalAnimal`
+       takes a new accent (`"#2F5233"`, a tint of pine warmed and yellowed toward forest green,
+       7.46:1 on parchment — distinct from `shape`'s teal-lifted pine and `nameEveryCountry`'s
+       cooled pine, checked by the existing per-accent contrast loop in `test/engine.test.js`, no
+       new test needed there) and joins `MODE_TIERS` as `"free"`. `QuizScreen` needed the same one
+       line `currency`/`language` already share (the country's flag for prompt media) added to its
+       `type` check, not a new branch shape. 13 new checks in `test/engine.test.js`, mirroring
+       steps 1-2's: full code coverage (every `COUNTRIES` code has an entry, verified 196/196 with
+       no stray keys via a standalone script before wiring it in), shape validation, options
+       always include the correct answer, no duplicate option text in a full round, and a
+       UK-only round (the UK is one of nearly twenty "Lion" entries) pinning the dedupe case
+       directly. **Verified in a real browser** (Playwright/Chromium, static
+       `expo export --platform web` build, placeholder Supabase env): the Home tile renders with
+       its own forest-green accent and a "P" glyph (icon, in the same literal-character spirit as
+       Currency's `$`/Language's `A`), tapping it opens a round, and "What is the national animal
+       of Nauru?" showed four distinct options — Doctor bird, Manumea, Nauru reed warbler, Baird's
+       tapir — with the right answer (Nauru reed warbler) among them.
     4. ☐ **Food Origin Quiz.**
     5. ☐ **City Quiz.** Needs a city dataset distinct from `capital` — otherwise this is Capital Quiz
        with extra steps.

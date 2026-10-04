@@ -157,6 +157,10 @@ export const modeAccents = {
   // olive-gold or higherLower's orange-brown — a third, distinct tint of the
   // same family rather than a new hue.
   language: "#6B4035",
+  // M2.7 step 3. A tint of pine rather than a new hue, same rule as every
+  // other mode accent — warmed and yellowed toward forest green, distinct
+  // from shape's teal-lifted pine and nameEveryCountry's cooled pine.
+  nationalAnimal: "#2F5233",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

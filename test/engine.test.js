@@ -22,6 +22,11 @@ import {
 import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
 import { CURRENCY_BY_CODE, currencyFor, CURRENCY_NAMES } from "../src/data/currencies";
 import { LANGUAGE_BY_CODE, languageFor, LANGUAGE_NAMES } from "../src/data/languages";
+import {
+  NATIONAL_ANIMAL_BY_CODE,
+  nationalAnimalFor,
+  NATIONAL_ANIMAL_NAMES,
+} from "../src/data/nationalAnimals";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -6835,6 +6840,57 @@ check(
   "a widely-shared-language target still gets four visually distinct options"
 );
 check(frRound[0].correct === "French", "...with French correctly named as France's language");
+
+console.log("\nNational Animal Quiz (M2.7 step 3)");
+check(
+  COUNTRIES.every((c) => nationalAnimalFor(c.code) !== null),
+  "every COUNTRIES code has a national animal entry"
+);
+check(
+  Object.values(NATIONAL_ANIMAL_BY_CODE).every((name) => typeof name === "string" && name.length > 0),
+  "every national animal entry carries a non-empty name"
+);
+check(
+  NATIONAL_ANIMAL_NAMES.length > OPTIONS_PER_QUESTION * 2,
+  "enough distinct national animal names to fill a round's distractors"
+);
+check(MODES.nationalAnimal != null && MODES.nationalAnimal.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.nationalAnimal === "free", "National Animal Quiz joins the free catalog");
+check(FREE_MODES.includes("nationalAnimal"), "...and shows up in the derived free-mode list");
+
+const nationalAnimalRound = buildRound("nationalAnimal", "all", ROUND_LENGTH);
+check(nationalAnimalRound.length === ROUND_LENGTH, "a national animal round is a full round");
+check(
+  nationalAnimalRound.every(
+    (q) => q.type === "nationalAnimal" && q.options.length === OPTIONS_PER_QUESTION
+  ),
+  "every question has four options"
+);
+check(
+  nationalAnimalRound.every((q) => q.options.includes(q.correct)),
+  "the correct national animal is always among the options"
+);
+check(
+  nationalAnimalRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a national animal name across its own options — a shared animal " +
+    "(the many lions, the three Gulf states' Arabian oryx) must never show twice as if " +
+    "two different answers were offered"
+);
+check(
+  nationalAnimalRound.every((q) => q.correct === nationalAnimalFor(q.country.code)),
+  "the correct answer always matches this country's own national animal"
+);
+
+// The lion is shared across nearly twenty of these entries (Belgium through
+// the UK): the case the dedup-by-name distractor logic exists for. Narrowing
+// the pool to just the UK pins the fix rather than hoping a random round
+// happens to draw a lion-sharing target.
+const gbRound = buildRound("nationalAnimal", "all", 1, { only: ["gb"] });
+check(
+  gbRound.length === 1 && new Set(gbRound[0].options).size === gbRound[0].options.length,
+  "a lion-sharing target still gets four visually distinct options"
+);
+check(gbRound[0].correct === "Lion", "...with Lion correctly named as the UK's national animal");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

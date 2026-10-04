@@ -325,7 +325,13 @@ export default function QuizScreen({
   // Prefetch the next question's flag image so it appears instantly.
   useEffect(() => {
     const nxt = questions[idx + 1];
-    if (nxt && (nxt.type === "flag" || nxt.type === "currency" || nxt.type === "language")) {
+    if (
+      nxt &&
+      (nxt.type === "flag" ||
+        nxt.type === "currency" ||
+        nxt.type === "language" ||
+        nxt.type === "nationalAnimal")
+    ) {
       Image.prefetch(flagUrl(nxt.country.code));
     }
   }, [idx, questions]);
@@ -673,7 +679,10 @@ export default function QuizScreen({
               <>
                 {/* Prompt media */}
                 <View style={styles.media}>
-                  {(q.type === "flag" || q.type === "currency" || q.type === "language") && (
+                  {(q.type === "flag" ||
+                    q.type === "currency" ||
+                    q.type === "language" ||
+                    q.type === "nationalAnimal") && (
                     <Image
                       source={{ uri: flagUrl(q.country.code) }}
                       style={styles.flag}

@@ -105,6 +105,11 @@ src/
                            #   and hand-compiled the same way — except a language, unlike a
                            #   currency, often has no single legal answer, so this picks whichever
                            #   co-official language is most commonly cited as primary
+  data/nationalAnimals.js  # M2.7 step 3: code → national-animal-name lookup, sibling to
+                           #   currencies.js/languages.js, hand-compiled the same way — the LEAST
+                           #   codified of the three, since fewer than half these states have ever
+                           #   legislated one; where none exists this picks whichever animal is
+                           #   most commonly cited (coat of arms, flag motif, naming origin)
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
