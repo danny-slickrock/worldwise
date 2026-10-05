@@ -20,6 +20,7 @@ import { lookalikePool } from "./shapeSimilarity";
 import { currencyFor } from "../data/currencies";
 import { languageFor } from "../data/languages";
 import { nationalAnimalFor } from "../data/nationalAnimals";
+import { foodOriginFor } from "../data/foodOrigin";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -122,6 +123,19 @@ export const MODES = {
     blurb: "Name the national animal",
     icon: "P",
     accent: modeAccents.nationalAnimal,
+  },
+  // M2.7 step 4: same shape again. "Origin" is itself a judgment call for a
+  // lot of these — cuisines cross borders constantly — so, like
+  // nationalAnimal before it, the dedupe-by-name distractor logic isn't a
+  // defensive extra here, it's load-bearing: Jollof rice (Ghana/Nigeria),
+  // pavlova (Australia/New Zealand) and arepas (Colombia/Venezuela) are all
+  // real, well-known shared or disputed claims in this catalog.
+  foodOrigin: {
+    key: "foodOrigin",
+    title: "Food Origin Quiz",
+    blurb: "Name the dish that originated here",
+    icon: "F",
+    accent: modeAccents.foodOrigin,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -319,6 +333,30 @@ function buildOne(type, target, tier = null) {
       type,
       country: target,
       prompt: `What is the national animal of ${target.name}?`,
+      correct,
+      options: shuffle([correct, ...distractors]),
+    };
+  }
+  if (type === "foodOrigin") {
+    // Same dedupe-by-NAME logic as currency/language/nationalAnimal, and for
+    // the same reason: "origin" is itself a judgment call for a lot of these,
+    // and several entries in foodOrigin.js are real, well-known shared or
+    // disputed claims (Jollof rice, pavlova, arepas, couscous) rather than a
+    // coincidence of the catalog.
+    const correct = foodOriginFor(target.code);
+    const seen = new Set(correct ? [correct] : []);
+    const distractors = [];
+    for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
+      const name = foodOriginFor(c.code);
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      distractors.push(name);
+      if (distractors.length >= DISTRACTORS) break;
+    }
+    return {
+      type,
+      country: target,
+      prompt: `Which dish originated in ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
     };

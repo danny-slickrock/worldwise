@@ -198,11 +198,11 @@ materially different kind of exposure than a leaderboard's rank-plus-display-nam
 kind of call ROADMAP's own DANNY TO DO section already reserves for Danny (see "Decide the
 under-13 posture"). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the
 next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose steps 1
-(Currency Quiz), 2 (Language Quiz), and 3 (National Animal Quiz) — each a new per-country fact,
-reusing the exact `capital`/`capitalReverse` question shape and the existing flag artwork for
-prompt media — are now done; see M2.7's own entry below for the full writeup. **Next up: M2.7
-step 4, Food Origin Quiz.** The Phase 1 backlog below gets picked up opportunistically, not as a
-gate.
+(Currency Quiz), 2 (Language Quiz), 3 (National Animal Quiz), and 4 (Food Origin Quiz) — each a new
+per-country fact, reusing the exact `capital`/`capitalReverse` question shape and the existing flag
+artwork for prompt media — are now done; see M2.7's own entry below for the full writeup. **Next up:
+M2.7 step 5, City Quiz** — needs a city dataset distinct from `capital`, otherwise it's Capital Quiz
+with extra steps. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2063,7 +2063,37 @@ teaching *how the world works*, not just *where things are*.
        Currency's `$`/Language's `A`), tapping it opens a round, and "What is the national animal
        of Nauru?" showed four distinct options — Doctor bird, Manumea, Nauru reed warbler, Baird's
        tapir — with the right answer (Nauru reed warbler) among them.
-    4. ☐ **Food Origin Quiz.**
+    4. ✅ **Food Origin Quiz.** Same shape again: `src/data/foodOrigin.js`, a code → dish-name lookup
+       sibling to `currencies.js`/`languages.js`/`nationalAnimals.js`, hand-compiled the same way —
+       except "origin" is itself a judgment call even more often than a national animal is, since
+       cuisines cross borders constantly and several entries here are real, well-known shared or
+       disputed claims rather than a coincidence of the catalog (Jollof rice between Ghana and
+       Nigeria — the actual "Jollof wars" rivalry — pavlova between Australia and New Zealand, arepas
+       between Colombia and Venezuela, couscous across the Maghreb, injera between Ethiopia and
+       Eritrea, kibbeh across the Levant, plov across Central Asia, ugali/nsima/nshima/sadza across
+       East and Southern Africa under several spellings of the same dish). `game/questions.js` gets
+       one new `buildOne("foodOrigin", …)` branch, copied from `nationalAnimal`'s shape including its
+       dedupe-by-NAME distractor logic — load-bearing here, not a defensive extra, given how many
+       real dedupe clusters the catalog contains. Prompt reads "Which dish originated in {country}?"
+       rather than "What is the X of {country}?", to keep the mode's own name ("origin") honest
+       without flipping the question's direction — it is still forward-shaped (country given, dish is
+       the answer), for the same reason `currencyReverse`/a language-reverse/an animal-reverse don't
+       exist: several dedupe clusters mean a dish doesn't identify one country either.
+       `MODES.foodOrigin` takes a new accent (`"#2B5A5F"`, a tint of lakewater cooled toward slate —
+       distinct from `flag`'s deepened teal and `locator`'s own cooled lakewater, checked by the
+       existing per-accent contrast loop in `test/engine.test.js`, no new test needed there) and joins
+       `MODE_TIERS` as `"free"`. `QuizScreen` needed the same one line `currency`/`language`/
+       `nationalAnimal` already share (the country's flag for prompt media) added to its `type` check,
+       not a new branch shape. 13 new checks in `test/engine.test.js`, mirroring steps 1-3's: full
+       code coverage (every `COUNTRIES` code has an entry, verified 196/196 with no stray keys via a
+       standalone script before wiring it in), shape validation, options always include the correct
+       answer, no duplicate option text in a full round, and a Nigeria-only round (one of the two
+       Jollof rice claimants) pinning the dedupe case directly. **Verified in a real browser**
+       (Playwright/Chromium, static `expo export --platform web` build, placeholder Supabase env):
+       the Home tile renders with its own lakewater accent and an "F" glyph (icon, in the same
+       literal-character spirit as Currency's `$`/Language's `A`/National Animal's `P`), tapping it
+       opens a round, and "Which dish originated in Central African Republic?" showed four distinct
+       options — Nshima, Arepa, Al harees, Gozo — with the right answer (Gozo) among them.
     5. ☐ **City Quiz.** Needs a city dataset distinct from `capital` — otherwise this is Capital Quiz
        with extra steps.
     6. ☐ **Rivers.**

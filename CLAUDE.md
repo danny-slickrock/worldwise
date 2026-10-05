@@ -110,6 +110,12 @@ src/
                            #   codified of the three, since fewer than half these states have ever
                            #   legislated one; where none exists this picks whichever animal is
                            #   most commonly cited (coat of arms, flag motif, naming origin)
+  data/foodOrigin.js       # M2.7 step 4: code → dish-name lookup, sibling to currencies.js/
+                           #   languages.js/nationalAnimals.js, hand-compiled the same way — "origin"
+                           #   is a judgment call even more often than a national animal is, since
+                           #   cuisines cross borders constantly (Jollof rice Ghana/Nigeria, pavlova
+                           #   Australia/New Zealand, arepas Colombia/Venezuela, couscous across the
+                           #   Maghreb, and more — real shared/disputed claims, not catalog noise)
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -882,9 +888,21 @@ for the same reason `currencyReverse` doesn't exist. `MODES.language` takes a ne
 joins `MODE_TIERS` as `"free"`; `QuizScreen` reuses the same flag-image line `flag`/`currency`
 already share. Verified in a real browser the same way: the Home tile renders next to Currency
 Quiz with its own accent and an "A" glyph, and "What is the official language of Kyrgyzstan?"
-showed four distinct options with the right answer (Kyrgyz) among them. See ROADMAP.md's M2.7
-entry for the full writeup and the remaining ordered steps (National Animal, Food Origin, City,
-then Rivers/Mountains/Oceans).
+showed four distinct options with the right answer (Kyrgyz) among them. **Step 3 — National Animal
+Quiz — is also done**, same shape again via `src/data/nationalAnimals.js` — the LEAST codified of
+the three per-country facts so far, since fewer than half of `COUNTRIES` have ever legislated an
+official one; where none exists it picks whichever animal is most commonly cited (coat of arms,
+flag motif, naming origin). **Step 4 — Food Origin Quiz — is also done**, via `src/data/
+foodOrigin.js`, copying `nationalAnimal`'s shape including its dedupe-by-NAME distractor logic —
+load-bearing here, since "origin" is itself a judgment call even more often than a national animal
+is (Jollof rice between Ghana and Nigeria — the real "Jollof wars" rivalry — pavlova between
+Australia and New Zealand, arepas between Colombia and Venezuela, couscous across the Maghreb, and
+more). `MODES.foodOrigin` takes a new lakewater-cooled-toward-slate accent and an "F" glyph.
+Verified in a real browser the same way: the Home tile renders with its own accent next to National
+Animal Quiz, and "Which dish originated in Central African Republic?" showed four distinct options
+with the right answer (Gozo) among them. See ROADMAP.md's M2.7 entry for the full writeup and the
+remaining ordered steps (City, then Rivers/Mountains/Oceans). **Next up: M2.7 step 5, City Quiz** —
+needs a city dataset distinct from `capital`, otherwise it's Capital Quiz with extra steps.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

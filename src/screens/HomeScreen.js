@@ -37,6 +37,7 @@ const GAME_GRID = [
   "currency",
   "language",
   "nationalAnimal",
+  "foodOrigin",
   // The two pro marathons. They sit in the same grid rather than in a separate
   // "Pro" shelf: every account is pro today (see game/entitlements.js), so a
   // roped-off section would be selling something the player already has.

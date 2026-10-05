@@ -27,6 +27,7 @@ import {
   nationalAnimalFor,
   NATIONAL_ANIMAL_NAMES,
 } from "../src/data/nationalAnimals";
+import { FOOD_ORIGIN_BY_CODE, foodOriginFor, FOOD_NAMES } from "../src/data/foodOrigin";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -6891,6 +6892,55 @@ check(
   "a lion-sharing target still gets four visually distinct options"
 );
 check(gbRound[0].correct === "Lion", "...with Lion correctly named as the UK's national animal");
+
+console.log("\nFood Origin Quiz (M2.7 step 4)");
+check(
+  COUNTRIES.every((c) => foodOriginFor(c.code) !== null),
+  "every COUNTRIES code has a food origin entry"
+);
+check(
+  Object.values(FOOD_ORIGIN_BY_CODE).every((name) => typeof name === "string" && name.length > 0),
+  "every food origin entry carries a non-empty name"
+);
+check(
+  FOOD_NAMES.length > OPTIONS_PER_QUESTION * 2,
+  "enough distinct dish names to fill a round's distractors"
+);
+check(MODES.foodOrigin != null && MODES.foodOrigin.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.foodOrigin === "free", "Food Origin Quiz joins the free catalog");
+check(FREE_MODES.includes("foodOrigin"), "...and shows up in the derived free-mode list");
+
+const foodOriginRound = buildRound("foodOrigin", "all", ROUND_LENGTH);
+check(foodOriginRound.length === ROUND_LENGTH, "a food origin round is a full round");
+check(
+  foodOriginRound.every((q) => q.type === "foodOrigin" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  foodOriginRound.every((q) => q.options.includes(q.correct)),
+  "the correct dish is always among the options"
+);
+check(
+  foodOriginRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a dish name across its own options — a shared or disputed dish " +
+    "(Jollof rice, pavlova, arepas, couscous) must never show twice as if two different " +
+    "answers were offered"
+);
+check(
+  foodOriginRound.every((q) => q.correct === foodOriginFor(q.country.code)),
+  "the correct answer always matches this country's own dish"
+);
+
+// Jollof rice is claimed by both Ghana and Nigeria — the real, well-known
+// "Jollof wars" rivalry, and the case the dedup-by-name distractor logic
+// exists for. Narrowing the pool to just Nigeria pins the fix rather than
+// hoping a random round happens to draw both claimants together.
+const ngRound = buildRound("foodOrigin", "all", 1, { only: ["ng"] });
+check(
+  ngRound.length === 1 && new Set(ngRound[0].options).size === ngRound[0].options.length,
+  "a jointly-claimed dish target still gets four visually distinct options"
+);
+check(ngRound[0].correct === "Jollof rice", "...with Jollof rice correctly named as Nigeria's dish");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

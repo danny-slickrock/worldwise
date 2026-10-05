@@ -161,6 +161,10 @@ export const modeAccents = {
   // other mode accent — warmed and yellowed toward forest green, distinct
   // from shape's teal-lifted pine and nameEveryCountry's cooled pine.
   nationalAnimal: "#2F5233",
+  // M2.7 step 4. A tint of lakewater rather than a new hue — the kit's
+  // "cooled toward slate" end of that family, distinct from flag's deepened
+  // teal and locator's own cooled lakewater.
+  foodOrigin: "#2B5A5F",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.
