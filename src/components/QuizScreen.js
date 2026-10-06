@@ -331,7 +331,8 @@ export default function QuizScreen({
         nxt.type === "currency" ||
         nxt.type === "language" ||
         nxt.type === "nationalAnimal" ||
-        nxt.type === "foodOrigin")
+        nxt.type === "foodOrigin" ||
+        nxt.type === "city")
     ) {
       Image.prefetch(flagUrl(nxt.country.code));
     }
@@ -684,7 +685,8 @@ export default function QuizScreen({
                     q.type === "currency" ||
                     q.type === "language" ||
                     q.type === "nationalAnimal" ||
-                    q.type === "foodOrigin") && (
+                    q.type === "foodOrigin" ||
+                    q.type === "city") && (
                     <Image
                       source={{ uri: flagUrl(q.country.code) }}
                       style={styles.flag}

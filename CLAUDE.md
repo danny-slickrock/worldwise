@@ -116,6 +116,11 @@ src/
                            #   cuisines cross borders constantly (Jollof rice Ghana/Nigeria, pavlova
                            #   Australia/New Zealand, arepas Colombia/Venezuela, couscous across the
                            #   Maghreb, and more — real shared/disputed claims, not catalog noise)
+  data/cities.js           # M2.7 step 5: code → largest-city-name lookup, sibling to currencies.js/
+                           #   languages.js/nationalAnimals.js/foodOrigin.js, hand-compiled the same
+                           #   way. The dataset that makes City Quiz distinct from Capital Quiz: most
+                           #   countries' largest city IS their capital, but 37 of 196 genuinely
+                           #   diverge (Turkey/Istanbul, Brazil/São Paulo, Nigeria/Lagos, and more)
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -900,9 +905,23 @@ Australia and New Zealand, arepas between Colombia and Venezuela, couscous acros
 more). `MODES.foodOrigin` takes a new lakewater-cooled-toward-slate accent and an "F" glyph.
 Verified in a real browser the same way: the Home tile renders with its own accent next to National
 Animal Quiz, and "Which dish originated in Central African Republic?" showed four distinct options
-with the right answer (Gozo) among them. See ROADMAP.md's M2.7 entry for the full writeup and the
-remaining ordered steps (City, then Rivers/Mountains/Oceans). **Next up: M2.7 step 5, City Quiz** —
-needs a city dataset distinct from `capital`, otherwise it's Capital Quiz with extra steps.
+with the right answer (Gozo) among them. **Step 5 — City Quiz — is also done**, via `src/data/
+cities.js` — a code → largest-city-name lookup, hand-compiled the same way as the other four. This
+is the step the milestone's own warning was about: `capital` already exists on `COUNTRIES`, so a
+dataset that just mirrored it would be Capital Quiz with extra steps. Most countries' largest city
+IS their capital and those entries are left alone, but 37 of 196 are a genuine, well-known split
+(Turkey/Istanbul, Brazil/São Paulo, Nigeria/Lagos, Australia/Sydney, the US/New York City,
+Switzerland/Zürich, and more) — pinned by a test asserting at least 30 such divergences, so a
+regression that quietly collapsed the dataset back onto `capital` fails loudly. `MODES.city` takes
+a greyed, stone-toned tint of pine and a "C" glyph. Verified in a real browser the same way: the
+Home tile renders next to Food Origin Quiz, and "What is the largest city of Congo?" showed four
+distinct options — Tashkent, Muscat, Brazzaville, Bamako — with the right answer (Brazzaville)
+among them. **M2.7's first five steps — the "one new per-country fact" games — are now all done.**
+See ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6, Rivers** — the first of
+the milestone's three feature-based games (a river touches several countries, not one), needing its
+own data model and answer surface rather than reusing the five per-country games' shape.
+Rivers/Mountains/Oceans share a planning question worth settling first: multiple choice over
+feature names (the safe default) vs. a map-tap answer surface (closer to Locator, a bigger lift).
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

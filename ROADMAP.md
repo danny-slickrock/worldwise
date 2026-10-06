@@ -198,11 +198,16 @@ materially different kind of exposure than a leaderboard's rank-plus-display-nam
 kind of call ROADMAP's own DANNY TO DO section already reserves for Danny (see "Decide the
 under-13 posture"). **M2.6 is therefore blocked at step 7**, and the daily build moved on to the
 next lowest-numbered milestone with unblocked work: **M2.7 — Game library expansion**, whose steps 1
-(Currency Quiz), 2 (Language Quiz), 3 (National Animal Quiz), and 4 (Food Origin Quiz) — each a new
-per-country fact, reusing the exact `capital`/`capitalReverse` question shape and the existing flag
-artwork for prompt media — are now done; see M2.7's own entry below for the full writeup. **Next up:
-M2.7 step 5, City Quiz** — needs a city dataset distinct from `capital`, otherwise it's Capital Quiz
-with extra steps. The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+(Currency Quiz), 2 (Language Quiz), 3 (National Animal Quiz), 4 (Food Origin Quiz), and 5 (City
+Quiz) — each a new per-country fact, reusing the exact `capital`/`capitalReverse` question shape and
+the existing flag artwork for prompt media — are now done; see M2.7's own entry below for the full
+writeup. **Next up: M2.7 step 6, Rivers** — the first of the milestone's three feature-based games
+(a river touches several countries, not one), so it needs its own data model and answer surface
+rather than reusing the five "one fact per country" games' shape. Rivers/Mountains/Oceans share a
+planning question worth settling before step 6 starts: multiple choice over feature names (the safe
+default, mirroring every other mode here) vs. a map-tap answer surface (closer to Locator, and a
+bigger lift) — worth deciding deliberately rather than drifting into whichever shape comes first.
+The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2094,8 +2099,38 @@ teaching *how the world works*, not just *where things are*.
        literal-character spirit as Currency's `$`/Language's `A`/National Animal's `P`), tapping it
        opens a round, and "Which dish originated in Central African Republic?" showed four distinct
        options — Nshima, Arepa, Al harees, Gozo — with the right answer (Gozo) among them.
-    5. ☐ **City Quiz.** Needs a city dataset distinct from `capital` — otherwise this is Capital Quiz
-       with extra steps.
+    5. ✅ **City Quiz.** `src/data/cities.js`: a code → largest-city-name lookup, sibling to
+       `currencies.js`/`languages.js`/`nationalAnimals.js`/`foodOrigin.js`, hand-compiled the same
+       way. This is the step the milestone's own warning was about: `capital` already exists on
+       `COUNTRIES`, so a dataset that just mirrored it would make this Capital Quiz with extra
+       steps. Most countries' largest city IS their capital, and those entries are left alone — but
+       37 of 196 are a genuine, well-known split between the seat of government and the most
+       populous city (Turkey/Istanbul, Brazil/São Paulo, Nigeria/Lagos, Australia/Sydney, the
+       US/New York City, Switzerland/Zürich, Liechtenstein/Schaan, and more), which is what makes
+       "largest city" a different question from "capital" rather than a reskin of it; a test pins a
+       floor of 30 such divergences so a regression that quietly collapsed the dataset back onto
+       `capital` would fail loudly. `game/questions.js` gets one new `buildOne("city", …)` branch,
+       copied from `foodOrigin`'s shape including its dedupe-by-NAME distractor logic (no two
+       countries currently share a largest-city name, but the guard costs nothing and keeps the
+       branch the same shape as its siblings). `MODES.city` takes a new accent (`"#4A5A52"`, a
+       greyed, desaturated tint of pine toward stone — distinct from `shape`'s teal-lifted pine,
+       `nationalAnimal`'s forest green and `nameEveryCountry`'s cooled pine, all more saturated
+       greens than this one; checked by the existing per-accent contrast loop in
+       `test/engine.test.js`, no new test needed there) and joins `MODE_TIERS`/`FREE_MODES` as
+       `"free"`. `QuizScreen` needed the same one line `currency`/`language`/`nationalAnimal`/
+       `foodOrigin` already share (the country's flag for prompt media) added to its `type` check,
+       not a new branch shape. 14 new checks in `test/engine.test.js`, mirroring steps 1-4's: full
+       code coverage (every `COUNTRIES` code has an entry, verified 196/196 with no stray keys via
+       a standalone script before wiring it in), shape validation, options always include the
+       correct answer, no duplicate option text in a full round, the capital-divergence floor
+       described above, and a Turkey-only round pinning that the engine surfaces Istanbul rather
+       than silently falling back to the capital field (Ankara). **Verified in a real browser**
+       (Playwright/Chromium, static `expo export --platform web` build, placeholder Supabase env):
+       the Home tile renders with its own stone-pine accent and a "C" glyph (icon, in the same
+       literal-character spirit as Currency's `$`/Language's `A`/National Animal's `P`/Food
+       Origin's `F`), tapping it opens a round, and "What is the largest city of Congo?" showed
+       four distinct options — Tashkent, Muscat, Brazzaville, Bamako — with the right answer
+       (Brazzaville) among them.
     6. ☐ **Rivers.**
     7. ☐ **Mountains.**
     8. ☐ **Oceans.** Rivers/Mountains/Oceans share a planning question worth settling before the

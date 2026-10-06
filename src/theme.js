@@ -165,6 +165,12 @@ export const modeAccents = {
   // "cooled toward slate" end of that family, distinct from flag's deepened
   // teal and locator's own cooled lakewater.
   foodOrigin: "#2B5A5F",
+  // M2.7 step 5. A tint of pine rather than a new hue, same rule as every
+  // other mode accent — greyed and desaturated toward stone, distinct from
+  // shape's teal-lifted pine, nationalAnimal's forest green and
+  // nameEveryCountry's cooled pine, all of which read as more saturated
+  // greens than this one.
+  city: "#4A5A52",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

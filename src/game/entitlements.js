@@ -44,6 +44,7 @@ export const MODE_TIERS = {
   language: "free",
   nationalAnimal: "free",
   foodOrigin: "free",
+  city: "free",
 
   // Not built yet (steps 7 and 8). Listed now so the catalog is the product's
   // plan rather than a lagging record of it — and so the Home badge and the

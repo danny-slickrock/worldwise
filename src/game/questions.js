@@ -21,6 +21,7 @@ import { currencyFor } from "../data/currencies";
 import { languageFor } from "../data/languages";
 import { nationalAnimalFor } from "../data/nationalAnimals";
 import { foodOriginFor } from "../data/foodOrigin";
+import { largestCityFor } from "../data/cities";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -136,6 +137,19 @@ export const MODES = {
     blurb: "Name the dish that originated here",
     icon: "F",
     accent: modeAccents.foodOrigin,
+  },
+  // M2.7 step 5: same shape again, and the last of the milestone's "one new
+  // per-country fact" games before Rivers/Mountains/Oceans switch to a
+  // feature-based data model. A country's largest city is genuinely distinct
+  // from its capital for roughly a third of the catalog (see cities.js) —
+  // that split is the whole reason this mode exists rather than being a
+  // reskin of Capital Quiz.
+  city: {
+    key: "city",
+    title: "City Quiz",
+    blurb: "Name the largest city",
+    icon: "C",
+    accent: modeAccents.city,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -357,6 +371,29 @@ function buildOne(type, target, tier = null) {
       type,
       country: target,
       prompt: `Which dish originated in ${target.name}?`,
+      correct,
+      options: shuffle([correct, ...distractors]),
+    };
+  }
+  if (type === "city") {
+    // Same dedupe-by-NAME logic as currency/language/nationalAnimal/
+    // foodOrigin. No two countries in cities.js currently share a largest
+    // city, but the guard costs nothing and keeps this branch the same
+    // shape as its siblings rather than a special case that trusts the data.
+    const correct = largestCityFor(target.code);
+    const seen = new Set(correct ? [correct] : []);
+    const distractors = [];
+    for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
+      const name = largestCityFor(c.code);
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      distractors.push(name);
+      if (distractors.length >= DISTRACTORS) break;
+    }
+    return {
+      type,
+      country: target,
+      prompt: `What is the largest city of ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
     };

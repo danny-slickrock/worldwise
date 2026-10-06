@@ -28,6 +28,7 @@ import {
   NATIONAL_ANIMAL_NAMES,
 } from "../src/data/nationalAnimals";
 import { FOOD_ORIGIN_BY_CODE, foodOriginFor, FOOD_NAMES } from "../src/data/foodOrigin";
+import { LARGEST_CITY_BY_CODE, largestCityFor, CITY_NAMES } from "../src/data/cities";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -6941,6 +6942,66 @@ check(
   "a jointly-claimed dish target still gets four visually distinct options"
 );
 check(ngRound[0].correct === "Jollof rice", "...with Jollof rice correctly named as Nigeria's dish");
+
+console.log("\nCity Quiz (M2.7 step 5)");
+check(
+  COUNTRIES.every((c) => largestCityFor(c.code) !== null),
+  "every COUNTRIES code has a largest-city entry"
+);
+check(
+  Object.values(LARGEST_CITY_BY_CODE).every((name) => typeof name === "string" && name.length > 0),
+  "every city entry carries a non-empty name"
+);
+check(
+  CITY_NAMES.length > OPTIONS_PER_QUESTION * 2,
+  "enough distinct city names to fill a round's distractors"
+);
+check(MODES.city != null && MODES.city.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.city === "free", "City Quiz joins the free catalog");
+check(FREE_MODES.includes("city"), "...and shows up in the derived free-mode list");
+
+const cityRound = buildRound("city", "all", ROUND_LENGTH);
+check(cityRound.length === ROUND_LENGTH, "a city round is a full round");
+check(
+  cityRound.every((q) => q.type === "city" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  cityRound.every((q) => q.options.includes(q.correct)),
+  "the correct city is always among the options"
+);
+check(
+  cityRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a city name across its own options"
+);
+check(
+  cityRound.every((q) => q.correct === largestCityFor(q.country.code)),
+  "the correct answer always matches this country's own largest city"
+);
+
+// This is the whole reason the mode exists rather than reusing `capital`
+// (see cities.js and ROADMAP.md's own warning on this step): a meaningful
+// chunk of the catalog has to genuinely diverge from COUNTRIES' capital
+// field, or City Quiz is Capital Quiz with extra steps.
+const divergentCities = COUNTRIES.filter((c) => largestCityFor(c.code) !== c.capital);
+check(
+  divergentCities.length >= 30,
+  `at least 30 countries' largest city differs from their capital (found ${divergentCities.length})`
+);
+
+// Turkey is the textbook case: Ankara is the capital, Istanbul is by far the
+// largest city. Narrowing the pool to just Turkey pins that the engine
+// actually surfaces the city fact rather than silently falling back to the
+// capital.
+const trRound = buildRound("city", "all", 1, { only: ["tr"] });
+check(
+  trRound.length === 1 && trRound[0].correct === "Istanbul",
+  "Turkey's largest-city question names Istanbul, not the capital Ankara"
+);
+check(
+  trRound[0].correct !== trRound[0].country.capital,
+  "...and that answer is genuinely distinct from the capital field"
+);
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
