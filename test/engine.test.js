@@ -29,6 +29,7 @@ import {
 } from "../src/data/nationalAnimals";
 import { FOOD_ORIGIN_BY_CODE, foodOriginFor, FOOD_NAMES } from "../src/data/foodOrigin";
 import { LARGEST_CITY_BY_CODE, largestCityFor, CITY_NAMES } from "../src/data/cities";
+import { RIVERS, RIVER_NAMES, countriesForRiver, riversThrough } from "../src/data/rivers";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -7002,6 +7003,46 @@ check(
   trRound[0].correct !== trRound[0].country.capital,
   "...and that answer is genuinely distinct from the capital field"
 );
+
+console.log("\nRivers data model (M2.7 step 6.1)");
+// Step 6.1 only: the pure FEATURE-keyed data model, not yet wired into
+// buildOne()/MODES — that's step 6.2. These checks pin the shape the engine
+// step will rely on, rather than exercising a round.
+check(
+  RIVERS.every((r) => typeof r.name === "string" && r.name.length > 0),
+  "every river carries a non-empty name"
+);
+check(
+  new Set(RIVERS.map((r) => r.name)).size === RIVERS.length,
+  "no two rivers share a name"
+);
+check(
+  RIVERS.every((r) => Array.isArray(r.countries) && r.countries.length >= 2),
+  "every river touches at least two countries — the whole reason this is a feature-keyed file"
+);
+check(
+  RIVERS.every((r) => new Set(r.countries).size === r.countries.length),
+  "no river lists the same country twice"
+);
+const riverValidCodes = new Set(COUNTRIES.map((c) => c.code));
+check(
+  RIVERS.every((r) => r.countries.every((code) => riverValidCodes.has(code))),
+  "every country code named by a river actually exists in COUNTRIES"
+);
+check(
+  RIVER_NAMES.length === RIVERS.length && RIVER_NAMES.includes("Nile"),
+  "RIVER_NAMES mirrors the catalog"
+);
+check(
+  countriesForRiver("Nile").includes("eg") && countriesForRiver("Nile").includes("ug"),
+  "countriesForRiver looks up a river's countries by name"
+);
+check(countriesForRiver("Not A River") === null, "an unknown river name resolves to null");
+check(
+  riversThrough("eg").includes("Nile") && riversThrough("cz").includes("Elbe"),
+  "riversThrough looks up a country's rivers by code"
+);
+check(riversThrough("ws").length === 0, "a country with no catalogued river resolves to an empty list");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

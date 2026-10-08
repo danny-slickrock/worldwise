@@ -121,6 +121,12 @@ src/
                            #   way. The dataset that makes City Quiz distinct from Capital Quiz: most
                            #   countries' largest city IS their capital, but 37 of 196 genuinely
                            #   diverge (Turkey/Istanbul, Brazil/São Paulo, Nigeria/Lagos, and more)
+  data/rivers.js           # M2.7 step 6.1: the first FEATURE-keyed data file (Rivers/Mountains/
+                           #   Oceans), unlike currencies.js/languages.js/nationalAnimals.js/
+                           #   foodOrigin.js/cities.js's per-country shape — keyed by RIVER, each
+                           #   entry carrying every country it flows through, since the question's
+                           #   subject is the river rather than one country. No `buildOne()` branch
+                           #   yet (that's step 6.2) — pure data model + lookups only
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -917,11 +923,17 @@ a greyed, stone-toned tint of pine and a "C" glyph. Verified in a real browser t
 Home tile renders next to Food Origin Quiz, and "What is the largest city of Congo?" showed four
 distinct options — Tashkent, Muscat, Brazzaville, Bamako — with the right answer (Brazzaville)
 among them. **M2.7's first five steps — the "one new per-country fact" games — are now all done.**
-See ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6, Rivers** — the first of
-the milestone's three feature-based games (a river touches several countries, not one), needing its
-own data model and answer surface rather than reusing the five per-country games' shape.
-Rivers/Mountains/Oceans share a planning question worth settling first: multiple choice over
-feature names (the safe default) vs. a map-tap answer surface (closer to Locator, a bigger lift).
+**Step 6, Rivers — the first of the milestone's three feature-based games (a river touches several
+countries, not one) — now has its own ordered sub-checklist, and sub-step 6.1 is done:**
+`src/data/rivers.js`, a FEATURE-keyed data model (26 major rivers, each carrying every country it
+flows through) rather than the per-country shape steps 1-5 used, settling the milestone's own
+planning question — multiple choice over country names, the safe default mirroring every other
+mode, with the river as the question's subject rather than the country. Deliberately no
+`foodOrigin.js`-style disputed "primary" claimant: which countries a river flows through is an
+uncontroversial, verifiable fact, so every country it touches is an equally correct answer. Pure
+data + two lookup helpers (`countriesForRiver`, `riversThrough`) only — no engine wiring yet. See
+ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6.2** — the `buildOne("river",
+…)` branch in `game/questions.js` plus a `MODES.river` entry, now that the data shape is settled.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -201,12 +201,13 @@ next lowest-numbered milestone with unblocked work: **M2.7 — Game library expa
 (Currency Quiz), 2 (Language Quiz), 3 (National Animal Quiz), 4 (Food Origin Quiz), and 5 (City
 Quiz) — each a new per-country fact, reusing the exact `capital`/`capitalReverse` question shape and
 the existing flag artwork for prompt media — are now done; see M2.7's own entry below for the full
-writeup. **Next up: M2.7 step 6, Rivers** — the first of the milestone's three feature-based games
-(a river touches several countries, not one), so it needs its own data model and answer surface
-rather than reusing the five "one fact per country" games' shape. Rivers/Mountains/Oceans share a
-planning question worth settling before step 6 starts: multiple choice over feature names (the safe
-default, mirroring every other mode here) vs. a map-tap answer surface (closer to Locator, and a
-bigger lift) — worth deciding deliberately rather than drifting into whichever shape comes first.
+writeup. **M2.7 step 6, Rivers** — the first of the milestone's three feature-based games (a river
+touches several countries, not one) — now has its own ordered sub-checklist, and sub-step 6.1 (the
+answer-surface decision + the pure `src/data/rivers.js` feature-keyed data model: multiple choice
+over country names, the safe default mirroring every other mode here, with the river itself as the
+question's subject) is done. See M2.7's own entry below for the full writeup. **Next up: M2.7 step
+6.2** — wiring `buildOne("river", …)` into `game/questions.js` plus a `MODES.river` entry, now that
+the data shape is settled.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2131,13 +2132,41 @@ teaching *how the world works*, not just *where things are*.
        Origin's `F`), tapping it opens a round, and "What is the largest city of Congo?" showed
        four distinct options — Tashkent, Muscat, Brazzaville, Bamako — with the right answer
        (Brazzaville) among them.
-    6. ☐ **Rivers.**
+    6. **Rivers.** Genuinely a different data model from steps 1-5 (a river touches several
+       countries, not one), so it gets its own ordered sub-checklist rather than a single step:
+       1. ✅ **Settle the answer surface + the pure data model.** Multiple choice over NAMES stays
+          the safe default (mirrors every other M2.7 mode), but the SUBJECT of the question flips:
+          where steps 1-5 ask "what is this country's X?", a river question has to ask about the
+          river, because a river belongs to several countries at once rather than one country
+          having one river. `src/data/rivers.js` is keyed by RIVER rather than by country code — 26
+          major rivers, each carrying every sovereign state it flows through — the feature-keyed
+          shape the milestone's own planning note called for. Deliberately no `foodOrigin.js`-style
+          `primary` claimant: unlike a disputed dish or an uncodified national animal, which
+          countries a river flows through is a verifiable, uncontroversial geographic fact, so every
+          country a river touches is an equally correct answer rather than a judgment call picking
+          one. Every river touches at least two countries by construction — a single-country river
+          (the Yangtze, the Mississippi) has no "which country" question to ask, so those are left
+          out rather than padding the catalog. 10 new pure checks in `test/engine.test.js`: shape
+          validation (non-empty names, no duplicate river names, every river has ≥2 distinct
+          countries), every named country code actually exists in `COUNTRIES` (catching a typo'd
+          code the way the other four hand-compiled files' full-coverage checks catch a missing
+          one), and the two lookup helpers (`countriesForRiver`, `riversThrough`) round-trip
+          correctly, including their not-found cases. Deliberately pure-data-only: no `buildOne()`
+          branch, `MODES` entry, or `entitlements.js` wiring yet — that's step 6.2, once the data
+          shape is settled and reviewable on its own.
+       2. ☐ **Engine integration.** `game/questions.js` gets a `buildOne("river", …)` branch whose
+          TARGET is a river (not a country) — the prompt names the river and asks which of four
+          countries it flows through, correct drawn from `countries`, distractors sampled from
+          every country NOT in that list. `MODES.river` (new accent, checked by the existing
+          per-accent contrast loop) and `MODE_TIERS.river = "free"`/`FREE_MODES`.
+       3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` media handling (a river has no
+          flag — needs its own prompt treatment, maybe just the river name as text rather than an
+          image, unlike every per-country fact mode so far), the Home tile, and a real-browser check
+          that a round asks a legible river question with four distinct, correct-inclusive options.
     7. ☐ **Mountains.**
-    8. ☐ **Oceans.** Rivers/Mountains/Oceans share a planning question worth settling before the
-       first of the three starts: what IS the answer surface for a feature that isn't one country?
-       Multiple choice over feature names is the safe default (mirrors every other mode here), but a
-       map-tap answer surface (closer to Locator) would be more interesting and is a bigger lift —
-       worth deciding deliberately rather than drifting into whichever shape step 6 happens to pick.
+    8. ☐ **Oceans.** Both share Rivers' feature-based data model and answer-surface decision (step
+       6.1) rather than re-litigating it — a mountain range and an ocean each touch several
+       countries the same way a river does.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*
