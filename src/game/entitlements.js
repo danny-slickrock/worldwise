@@ -45,6 +45,10 @@ export const MODE_TIERS = {
   nationalAnimal: "free",
   foodOrigin: "free",
   city: "free",
+  // M2.7 step 6.2. The first of the milestone's feature-based games — same
+  // free catalog, same reasoning: M2.7's games were never scoped as a pro
+  // shelf.
+  river: "free",
 
   // Not built yet (steps 7 and 8). Listed now so the catalog is the product's
   // plan rather than a lagging record of it — and so the Home badge and the

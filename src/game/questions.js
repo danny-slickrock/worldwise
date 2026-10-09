@@ -22,6 +22,7 @@ import { languageFor } from "../data/languages";
 import { nationalAnimalFor } from "../data/nationalAnimals";
 import { foodOriginFor } from "../data/foodOrigin";
 import { largestCityFor } from "../data/cities";
+import { RIVERS } from "../data/rivers";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -150,6 +151,17 @@ export const MODES = {
     blurb: "Name the largest city",
     icon: "C",
     accent: modeAccents.city,
+  },
+  // M2.7 step 6.2: the first of the milestone's feature-based games (step
+  // 6.1 settled the data model). The TARGET of a question is the river
+  // itself, not a country — a river belongs to several countries at once,
+  // unlike every per-country fact mode above it.
+  river: {
+    key: "river",
+    title: "River Quiz",
+    blurb: "Which country does it flow through?",
+    icon: "R",
+    accent: modeAccents.river,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -398,6 +410,37 @@ function buildOne(type, target, tier = null) {
       options: shuffle([correct, ...distractors]),
     };
   }
+  if (type === "river") {
+    // Unlike every branch above, `target` here is a RIVER (see data/
+    // rivers.js), not a country — the question's subject is the feature
+    // itself, because a river belongs to several countries at once. One of
+    // those countries is sampled fresh per question as `correct`, so repeat
+    // plays of the same river don't always name the same country; `country`
+    // still carries that country's full record so the context card, "learn
+    // more" link and countriesFromHistory() logging all work unchanged.
+    //
+    // Distractors are sampled from countries NOT on the river's own list —
+    // every country the river DOES touch would also be a correct answer, so
+    // including one as a "wrong" option would silently mark a correct guess
+    // wrong. (Rivers.js itself requires every entry to touch at least two
+    // countries, so there is always a real pool of other-river countries to
+    // draw a correct answer AND distractors from — nothing deduped here.)
+    const flowsThrough = new Set(target.countries);
+    const correctCode = sample(target.countries, 1)[0];
+    const correct = COUNTRIES.find((c) => c.code === correctCode);
+    const distractors = sample(
+      COUNTRIES.filter((c) => !flowsThrough.has(c.code)),
+      DISTRACTORS
+    ).map((c) => c.name);
+    return {
+      type,
+      river: target.name,
+      country: correct,
+      prompt: `Which of these countries does the ${target.name} flow through?`,
+      correct: correct.name,
+      options: shuffle([correct.name, ...distractors]),
+    };
+  }
   // flag & shape both ask "which country?"
   const distractors = sample(
     COUNTRIES.filter((c) => c.code !== target.code),
@@ -510,6 +553,9 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   // does — a question is a PAIR, so it is built from the metric pool rather
   // than by sampling one country and decorating it.
   if (mode === "higherLower") return buildHigherLowerRound(count, tier);
+  // Rivers has no country pool to sample a "target" from the usual way — the
+  // target IS the river. See buildRiverRound below.
+  if (mode === "river") return buildRiverRound(count, tier);
 
   const tiered = poolFor(mode, difficulty);
   const wide = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
@@ -526,6 +572,14 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   const pool = expertShapePool(mode, tier, base, count) ?? base;
   const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t, tier));
+}
+
+// A round of river questions. `RIVERS` is a feature catalog, not a country
+// pool, so this bypasses poolFor()/sample-a-target-then-decorate the way
+// every per-country mode works — the round samples RIVERS directly and
+// buildOne("river", …) does the rest per question.
+function buildRiverRound(count, tier = null) {
+  return sample(RIVERS, count).map((r) => buildOne("river", r, tier));
 }
 
 // A round of pair comparisons, cycling the metrics so one round asks about

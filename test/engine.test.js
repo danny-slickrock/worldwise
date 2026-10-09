@@ -7044,6 +7044,64 @@ check(
 );
 check(riversThrough("ws").length === 0, "a country with no catalogued river resolves to an empty list");
 
+console.log("\nRiver Quiz engine integration (M2.7 step 6.2)");
+check(MODES.river != null && MODES.river.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.river === "free", "River Quiz joins the free catalog");
+check(FREE_MODES.includes("river"), "...and shows up in the derived free-mode list");
+
+const riverRound = buildRound("river", "all", ROUND_LENGTH);
+check(riverRound.length === ROUND_LENGTH, "a river round is a full round");
+check(
+  riverRound.every((q) => q.type === "river" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  riverRound.every((q) => q.options.includes(q.correct)),
+  "the correct country is always among the options"
+);
+check(
+  riverRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a country name across its own options"
+);
+check(
+  riverRound.every((q) => countriesForRiver(q.river).includes(q.country.code)),
+  "the correct country is genuinely one the named river flows through"
+);
+check(
+  riverRound.every((q) => {
+    const flowsThrough = new Set(countriesForRiver(q.river));
+    return q.options.every((name) => {
+      const c = COUNTRIES.find((cc) => cc.name === name);
+      return name === q.correct || (c && !flowsThrough.has(c.code));
+    });
+  }),
+  "every distractor is a country the river does NOT flow through — any country it " +
+    "does touch would also be a correct answer"
+);
+check(
+  riverRound.every((q) => RIVER_NAMES.includes(q.river)),
+  "every question's river comes from the catalog"
+);
+
+// The Nile touches ten countries. Building many full-catalog rounds and
+// collecting whichever one happens to ask about the Nile pins that `correct`
+// genuinely varies across plays rather than always naming the same country —
+// without reaching for buildOne() directly, which the engine keeps internal.
+const nileQuestions = [];
+for (let i = 0; i < 60 && nileQuestions.length < 15; i++) {
+  const q = buildRound("river", "all", RIVERS.length).find((q) => q.river === "Nile");
+  if (q) nileQuestions.push(q);
+}
+check(nileQuestions.length > 5, "enough sampled Nile questions to check variation");
+check(
+  nileQuestions.every((q) => countriesForRiver("Nile").includes(q.country.code)),
+  "every Nile question names one of the Nile's own countries"
+);
+check(
+  new Set(nileQuestions.map((q) => q.country.code)).size > 1,
+  "...and which one varies across repeated questions rather than being fixed"
+);
+
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
 contentResolverChecks()

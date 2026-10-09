@@ -205,9 +205,12 @@ writeup. **M2.7 step 6, Rivers** — the first of the milestone's three feature-
 touches several countries, not one) — now has its own ordered sub-checklist, and sub-step 6.1 (the
 answer-surface decision + the pure `src/data/rivers.js` feature-keyed data model: multiple choice
 over country names, the safe default mirroring every other mode here, with the river itself as the
-question's subject) is done. See M2.7's own entry below for the full writeup. **Next up: M2.7 step
-6.2** — wiring `buildOne("river", …)` into `game/questions.js` plus a `MODES.river` entry, now that
-the data shape is settled.
+question's subject) is done, and **sub-step 6.2 (engine integration) is now also done** — the
+`buildOne("river", …)` branch, a dedicated `buildRiverRound()` path, `MODES.river`, and
+`MODE_TIERS.river = "free"` are all wired in and covered by new pure tests. See M2.7's own entry
+below for the full writeup. **Next up: M2.7 step 6.3** — the Home tile, `QuizScreen`'s prompt media
+for a river question (it has no flag), and a real-browser verification, now that the engine itself
+asks a correct, variably-answered river question.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2154,11 +2157,30 @@ teaching *how the world works*, not just *where things are*.
           correctly, including their not-found cases. Deliberately pure-data-only: no `buildOne()`
           branch, `MODES` entry, or `entitlements.js` wiring yet — that's step 6.2, once the data
           shape is settled and reviewable on its own.
-       2. ☐ **Engine integration.** `game/questions.js` gets a `buildOne("river", …)` branch whose
+       2. ✅ **Engine integration.** `game/questions.js` gets a `buildOne("river", …)` branch whose
           TARGET is a river (not a country) — the prompt names the river and asks which of four
-          countries it flows through, correct drawn from `countries`, distractors sampled from
-          every country NOT in that list. `MODES.river` (new accent, checked by the existing
-          per-accent contrast loop) and `MODE_TIERS.river = "free"`/`FREE_MODES`.
+          countries it flows through. `correct` is sampled fresh per question from the river's own
+          `countries` (so repeat plays of the same river don't always name the same one), and
+          `country` carries that country's full record so the context card, "learn more" link and
+          `countriesFromHistory()` logging all work unchanged without any QuizScreen changes.
+          Distractors are sampled from every country NOT on the river's list — any country the
+          river DOES touch would also be a correct answer, so one slipping in as a "wrong" option
+          would silently mark a correct guess wrong. `buildRound()` gets a dedicated
+          `buildRiverRound()` path (mirroring `buildHigherLowerRound`'s own carve-out) rather than
+          going through `poolFor()`, since the round samples directly from the `RIVERS` catalog,
+          not a country pool. `MODES.river` (`modeAccents.river`, a lakewater tint deepened further
+          toward navy than flag/locator/foodOrigin's own teal-leaning tints — the thematic fit for
+          water, checked by the existing per-accent contrast loop, no new test needed there) and
+          `MODE_TIERS.river = "free"`/`FREE_MODES` (same free catalog as every other M2.7 game).
+          12 new checks in `test/engine.test.js`: mode registered/catalogued, a full round's shape,
+          options always including the correct answer, no duplicate option text, every correct
+          answer genuinely drawn from the river's own country list, every distractor genuinely
+          NOT on that list (the inverted dedupe rule this mode needs instead of a by-name one),
+          and — sampling many rounds for the Nile specifically — that the correct country varies
+          across repeat questions rather than being pinned to one. Deliberately NOT wired into
+          `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s media branches yet (both are hardcoded lists,
+          so adding the mode here doesn't surface a tile) — that is step 6.3, since a river has no
+          flag and needs its own prompt treatment.
        3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` media handling (a river has no
           flag — needs its own prompt treatment, maybe just the river name as text rather than an
           image, unlike every per-country fact mode so far), the Home tile, and a real-browser check

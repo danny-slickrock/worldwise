@@ -931,9 +931,20 @@ planning question — multiple choice over country names, the safe default mirro
 mode, with the river as the question's subject rather than the country. Deliberately no
 `foodOrigin.js`-style disputed "primary" claimant: which countries a river flows through is an
 uncontroversial, verifiable fact, so every country it touches is an equally correct answer. Pure
-data + two lookup helpers (`countriesForRiver`, `riversThrough`) only — no engine wiring yet. See
-ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6.2** — the `buildOne("river",
-…)` branch in `game/questions.js` plus a `MODES.river` entry, now that the data shape is settled.
+data + two lookup helpers (`countriesForRiver`, `riversThrough`) only — no engine wiring yet.
+**Sub-step 6.2 (engine integration) is also done:** `game/questions.js` gains a `buildOne("river",
+…)` branch whose target is a river rather than a country — `correct` is sampled fresh per question
+from the river's own country list (so repeat plays don't always name the same one), distractors
+come from every country NOT on that list (the inverse of the other M2.7 games' dedupe-by-name
+rule, since here any country the river touches is also a correct answer), and `country` still
+carries the sampled country's full record so the context card and history logging work unchanged.
+A dedicated `buildRiverRound()` feeds `buildRound()` — mirroring `buildHigherLowerRound`'s own
+carve-out — since a river round samples the `RIVERS` catalog directly rather than going through
+`poolFor()`'s country pool. `MODES.river` takes a lakewater tint deepened toward navy and joins
+`MODE_TIERS`/`FREE_MODES` as `"free"`. Deliberately not yet on Home or in `QuizScreen`'s media
+branches — both are hardcoded lists, so the mode exists without a tile — that's step 6.3. See
+ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6.3** — the Home tile,
+`QuizScreen`'s prompt media for a river question (it has no flag), and a real-browser verification.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

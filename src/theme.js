@@ -171,6 +171,11 @@ export const modeAccents = {
   // nameEveryCountry's cooled pine, all of which read as more saturated
   // greens than this one.
   city: "#4A5A52",
+  // M2.7 step 6.2. A tint of lakewater rather than a new hue, same rule as
+  // every other mode accent — deepened further toward navy than flag's
+  // teal-green, locator's blue-grey or foodOrigin's slate-teal, which is
+  // the thematic fit for a river: water, but the deepest cast of it yet.
+  river: "#1D4E66",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.
