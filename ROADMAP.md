@@ -205,12 +205,13 @@ writeup. **M2.7 step 6, Rivers** — the first of the milestone's three feature-
 touches several countries, not one) — now has its own ordered sub-checklist, and sub-step 6.1 (the
 answer-surface decision + the pure `src/data/rivers.js` feature-keyed data model: multiple choice
 over country names, the safe default mirroring every other mode here, with the river itself as the
-question's subject) is done, and **sub-step 6.2 (engine integration) is now also done** — the
+question's subject) is done, and sub-step 6.2 (engine integration) was also done — the
 `buildOne("river", …)` branch, a dedicated `buildRiverRound()` path, `MODES.river`, and
-`MODE_TIERS.river = "free"` are all wired in and covered by new pure tests. See M2.7's own entry
-below for the full writeup. **Next up: M2.7 step 6.3** — the Home tile, `QuizScreen`'s prompt media
-for a river question (it has no flag), and a real-browser verification, now that the engine itself
-asks a correct, variably-answered river question.
+`MODE_TIERS.river = "free"` are all wired in and covered by new pure tests. **Sub-step 6.3 (the
+Home tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out
+M2.7 step 6 (Rivers) end to end.** See M2.7's own entry below for the full writeup. **Next up: M2.7
+step 7, Mountains** — same feature-based data model and answer-surface decision Rivers already
+settled (step 6.1), applied to a new catalog.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2181,10 +2182,18 @@ teaching *how the world works*, not just *where things are*.
           `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s media branches yet (both are hardcoded lists,
           so adding the mode here doesn't surface a tile) — that is step 6.3, since a river has no
           flag and needs its own prompt treatment.
-       3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` media handling (a river has no
-          flag — needs its own prompt treatment, maybe just the river name as text rather than an
-          image, unlike every per-country fact mode so far), the Home tile, and a real-browser check
-          that a round asks a legible river question with four distinct, correct-inclusive options.
+       3. ✅ **Home tile + screen wiring + verification.** `QuizScreen` gets a `q.type === "river"`
+          media branch reusing the capital/capitalReverse badge shape — a "RIVER" eyebrow over the
+          river's name (`q.river`), no image, since a river has no flag the way every per-country
+          fact mode above it does. `HomeScreen`'s `GAME_GRID` adds `"river"` right after `"city"`,
+          before the two pro marathons. Verified in a real browser (Playwright/Chromium, static
+          `expo export --platform web` build, placeholder Supabase env): the Home tile renders with
+          its own navy accent and "R" glyph, opening a round shows "Which of these countries does
+          the Rio Grande flow through?" in the badge treatment with four distinct options including
+          the correct answer, and answering it renders the right/wrong marks plus a "Why it matters"
+          context card for the sampled country (confirmed on a second round, the Amazon, answering
+          correctly into Bolivia) — the same feedback path every other mode already used, unchanged.
+          **M2.7 step 6 (Rivers) is now fully done end to end.**
     7. ☐ **Mountains.**
     8. ☐ **Oceans.** Both share Rivers' feature-based data model and answer-surface decision (step
        6.1) rather than re-litigating it — a mountain range and an ocean each touch several

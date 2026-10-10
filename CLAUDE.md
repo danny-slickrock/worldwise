@@ -941,10 +941,16 @@ carries the sampled country's full record so the context card and history loggin
 A dedicated `buildRiverRound()` feeds `buildRound()` — mirroring `buildHigherLowerRound`'s own
 carve-out — since a river round samples the `RIVERS` catalog directly rather than going through
 `poolFor()`'s country pool. `MODES.river` takes a lakewater tint deepened toward navy and joins
-`MODE_TIERS`/`FREE_MODES` as `"free"`. Deliberately not yet on Home or in `QuizScreen`'s media
-branches — both are hardcoded lists, so the mode exists without a tile — that's step 6.3. See
-ROADMAP.md's M2.7 entry for the full writeup. **Next up: M2.7 step 6.3** — the Home tile,
-`QuizScreen`'s prompt media for a river question (it has no flag), and a real-browser verification.
+`MODE_TIERS`/`FREE_MODES` as `"free"`. **Sub-step 6.3 is also done, closing out M2.7 step 6 (Rivers)
+end to end:** `QuizScreen` gets a `q.type === "river"` prompt-media branch reusing the
+capital/capitalReverse text-badge treatment — a "RIVER" eyebrow over the river's name (`q.river`),
+since a river has no flag to show — and `HomeScreen`'s `GAME_GRID` adds `"river"` after `"city"`.
+Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env): the Home
+tile renders with its own navy accent and "R" glyph, a round opens with a legible river question in
+the badge treatment and four distinct correct-inclusive options, and answering renders the usual
+right/wrong marks plus a "Why it matters" card for the sampled country. See ROADMAP.md's M2.7 entry
+for the full writeup. **Next up: M2.7 step 7, Mountains** — the same feature-based data model and
+answer-surface decision Rivers already settled, applied to a new catalog.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

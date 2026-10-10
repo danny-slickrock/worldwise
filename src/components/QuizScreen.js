@@ -722,6 +722,21 @@ export default function QuizScreen({
                       <Text style={styles.capitalName}>{q.country.capital}</Text>
                     </View>
                   )}
+                  {/* A river has no flag, unlike every per-country fact mode
+                      above — the question's subject is the river itself
+                      (`q.river`), so it gets the same text-badge treatment
+                      capital/capitalReverse already use rather than an image. */}
+                  {q.type === "river" && (
+                    <View
+                      style={[
+                        styles.capitalBadge,
+                        { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
+                      ]}
+                    >
+                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>River</Text>
+                      <Text style={styles.capitalName}>{q.river}</Text>
+                    </View>
+                  )}
                 </View>
 
                 {/* The answer surface. Branches on the QUESTION's own shape —

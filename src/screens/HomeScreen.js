@@ -39,6 +39,8 @@ const GAME_GRID = [
   "nationalAnimal",
   "foodOrigin",
   "city",
+  // M2.7 step 6.3: the first of the milestone's feature-based games.
+  "river",
   // The two pro marathons. They sit in the same grid rather than in a separate
   // "Pro" shelf: every account is pro today (see game/entitlements.js), so a
   // roped-off section would be selling something the player already has.
