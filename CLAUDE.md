@@ -121,12 +121,16 @@ src/
                            #   way. The dataset that makes City Quiz distinct from Capital Quiz: most
                            #   countries' largest city IS their capital, but 37 of 196 genuinely
                            #   diverge (Turkey/Istanbul, Brazil/São Paulo, Nigeria/Lagos, and more)
-  data/rivers.js           # M2.7 step 6.1: the first FEATURE-keyed data file (Rivers/Mountains/
+  data/rivers.js           # M2.7 step 6: the first FEATURE-keyed data file (Rivers/Mountains/
                            #   Oceans), unlike currencies.js/languages.js/nationalAnimals.js/
                            #   foodOrigin.js/cities.js's per-country shape — keyed by RIVER, each
                            #   entry carrying every country it flows through, since the question's
-                           #   subject is the river rather than one country. No `buildOne()` branch
-                           #   yet (that's step 6.2) — pure data model + lookups only
+                           #   subject is the river rather than one country. Fully wired end to end
+                           #   (buildOne("river", …), buildRiverRound(), MODES.river, the Home tile)
+  data/mountains.js        # M2.7 step 7.1: the second FEATURE-keyed data file, same shape as
+                           #   rivers.js — keyed by RANGE, each entry carrying every sovereign state
+                           #   it crosses. Pure data model + lookups only so far (countriesForRange,
+                           #   rangesThrough) — no buildOne() branch yet (that's step 7.2)
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and

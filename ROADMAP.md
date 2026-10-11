@@ -209,9 +209,12 @@ question's subject) is done, and sub-step 6.2 (engine integration) was also done
 `buildOne("river", …)` branch, a dedicated `buildRiverRound()` path, `MODES.river`, and
 `MODE_TIERS.river = "free"` are all wired in and covered by new pure tests. **Sub-step 6.3 (the
 Home tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out
-M2.7 step 6 (Rivers) end to end.** See M2.7's own entry below for the full writeup. **Next up: M2.7
-step 7, Mountains** — same feature-based data model and answer-surface decision Rivers already
-settled (step 6.1), applied to a new catalog.
+M2.7 step 6 (Rivers) end to end.** See M2.7's own entry below for the full writeup. **M2.7 step 7,
+Mountains** now has its own ordered sub-checklist mirroring Rivers', and sub-step 7.1 (the pure
+`src/data/mountains.js` feature-keyed data model — 20 major ranges, each carrying every sovereign
+state it crosses, reusing Rivers' own answer-surface decision rather than re-litigating it) is
+done. **Next up: M2.7 step 7.2, engine integration** — the `buildOne("mountain", …)` branch and a
+dedicated `buildMountainRound()` path, mirroring `river`'s own shape exactly.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2194,10 +2197,36 @@ teaching *how the world works*, not just *where things are*.
           context card for the sampled country (confirmed on a second round, the Amazon, answering
           correctly into Bolivia) — the same feedback path every other mode already used, unchanged.
           **M2.7 step 6 (Rivers) is now fully done end to end.**
-    7. ☐ **Mountains.**
-    8. ☐ **Oceans.** Both share Rivers' feature-based data model and answer-surface decision (step
-       6.1) rather than re-litigating it — a mountain range and an ocean each touch several
-       countries the same way a river does.
+    7. **Mountains.** Same feature-based data model as Rivers (step 6) — a range crosses several
+       countries at once, not one — so it reuses step 6.1's answer-surface decision rather than
+       re-litigating it, and gets its own ordered sub-checklist the same shape step 6's did:
+       1. ✅ **The pure data model.** `src/data/mountains.js`: keyed by RANGE rather than by country
+          code, mirroring `rivers.js` exactly — 20 major ranges, each carrying every sovereign state
+          it crosses (`countriesForRange`, `rangesThrough`, `MOUNTAIN_RANGE_NAMES`, the same three-
+          helper shape `rivers.js` exports). Deliberately no `primary`-claimant judgment call: which
+          countries a range crosses is as uncontroversial as which countries a river flows through.
+          Every range crosses at least two countries by construction — a single-country range (the
+          Urals sit entirely in Russia; the Ethiopian Highlands entirely in Ethiopia) has no "which
+          country" question to ask, so those are left out rather than padding the catalog. 10 new
+          pure checks in `test/engine.test.js`, mirroring step 6.1's own: shape validation
+          (non-empty names, no duplicate range names, every range has ≥2 distinct countries, no
+          range repeating a country), every named country code actually exists in `COUNTRIES`, and
+          the two lookup helpers round-tripping correctly including their not-found cases.
+          Deliberately pure-data-only: no `buildOne()` branch, `MODES` entry, or `entitlements.js`
+          wiring yet — that's step 7.2, once the data shape is settled and reviewable on its own,
+          the same ordering step 6 used.
+       2. ☐ **Engine integration.** `game/questions.js` gets a `buildOne("mountain", …)` branch
+          mirroring `buildOne("river", …)`'s shape exactly — target is the range, `correct` sampled
+          fresh per question from the range's own `countries`, distractors from every country NOT on
+          that list. `buildRound()` gets a `buildMountainRound()` carve-out the same way
+          `buildRiverRound()` works. New mode accent + `MODE_TIERS`/`FREE_MODES` entry.
+       3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` gets a `q.type === "mountain"`
+          media branch reusing the river branch's eyebrow-badge treatment (a range has no flag
+          either), and `HomeScreen`'s `GAME_GRID` adds `"mountain"` after `"river"`. Verify in a real
+          browser the same way Rivers' step 6.3 did.
+    8. ☐ **Oceans.** Shares the same feature-based data model and answer-surface decision (step
+       6.1/7.1) rather than re-litigating it — an ocean touches several countries the same way a
+       river or a mountain range does.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*

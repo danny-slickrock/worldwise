@@ -30,6 +30,12 @@ import {
 import { FOOD_ORIGIN_BY_CODE, foodOriginFor, FOOD_NAMES } from "../src/data/foodOrigin";
 import { LARGEST_CITY_BY_CODE, largestCityFor, CITY_NAMES } from "../src/data/cities";
 import { RIVERS, RIVER_NAMES, countriesForRiver, riversThrough } from "../src/data/rivers";
+import {
+  MOUNTAIN_RANGES,
+  MOUNTAIN_RANGE_NAMES,
+  countriesForRange,
+  rangesThrough,
+} from "../src/data/mountains";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -7101,6 +7107,46 @@ check(
   new Set(nileQuestions.map((q) => q.country.code)).size > 1,
   "...and which one varies across repeated questions rather than being fixed"
 );
+
+console.log("\nMountains data model (M2.7 step 7.1)");
+// Step 7.1 only: the pure FEATURE-keyed data model, not yet wired into
+// buildOne()/MODES — mirroring Rivers' own step 6.1. These checks pin the
+// shape the engine step (7.2) will rely on, rather than exercising a round.
+check(
+  MOUNTAIN_RANGES.every((r) => typeof r.name === "string" && r.name.length > 0),
+  "every range carries a non-empty name"
+);
+check(
+  new Set(MOUNTAIN_RANGES.map((r) => r.name)).size === MOUNTAIN_RANGES.length,
+  "no two ranges share a name"
+);
+check(
+  MOUNTAIN_RANGES.every((r) => Array.isArray(r.countries) && r.countries.length >= 2),
+  "every range crosses at least two countries — the whole reason this is a feature-keyed file"
+);
+check(
+  MOUNTAIN_RANGES.every((r) => new Set(r.countries).size === r.countries.length),
+  "no range lists the same country twice"
+);
+const rangeValidCodes = new Set(COUNTRIES.map((c) => c.code));
+check(
+  MOUNTAIN_RANGES.every((r) => r.countries.every((code) => rangeValidCodes.has(code))),
+  "every country code named by a range actually exists in COUNTRIES"
+);
+check(
+  MOUNTAIN_RANGE_NAMES.length === MOUNTAIN_RANGES.length && MOUNTAIN_RANGE_NAMES.includes("Andes"),
+  "MOUNTAIN_RANGE_NAMES mirrors the catalog"
+);
+check(
+  countriesForRange("Andes").includes("pe") && countriesForRange("Andes").includes("ar"),
+  "countriesForRange looks up a range's countries by name"
+);
+check(countriesForRange("Not A Range") === null, "an unknown range name resolves to null");
+check(
+  rangesThrough("fr").includes("Alps") && rangesThrough("fr").includes("Pyrenees"),
+  "rangesThrough looks up a country's ranges by code"
+);
+check(rangesThrough("ws").length === 0, "a country with no catalogued range resolves to an empty list");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
