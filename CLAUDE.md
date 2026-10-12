@@ -953,8 +953,12 @@ Verified in a real browser (Playwright/Chromium, static export, placeholder Supa
 tile renders with its own navy accent and "R" glyph, a round opens with a legible river question in
 the badge treatment and four distinct correct-inclusive options, and answering renders the usual
 right/wrong marks plus a "Why it matters" card for the sampled country. See ROADMAP.md's M2.7 entry
-for the full writeup. **Next up: M2.7 step 7, Mountains** — the same feature-based data model and
-answer-surface decision Rivers already settled, applied to a new catalog.
+for the full writeup. **M2.7 step 7, Mountains** — the same feature-based data model and
+answer-surface decision Rivers already settled, applied to a new catalog — has its pure data model
+(7.1) and engine integration (7.2, `buildOne("mountain", …)` + `buildMountainRound()` +
+`MODES.mountain` + `MODE_TIERS.mountain = "free"`) both done, mirroring Rivers' own 6.1/6.2. **Next
+up: M2.7 step 7.3** — the Home tile + `QuizScreen` prompt media + real-browser verification,
+mirroring Rivers' own 6.3.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

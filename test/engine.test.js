@@ -7148,6 +7148,64 @@ check(
 );
 check(rangesThrough("ws").length === 0, "a country with no catalogued range resolves to an empty list");
 
+console.log("\nMountain Quiz engine integration (M2.7 step 7.2)");
+check(MODES.mountain != null && MODES.mountain.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.mountain === "free", "Mountain Quiz joins the free catalog");
+check(FREE_MODES.includes("mountain"), "...and shows up in the derived free-mode list");
+
+const mountainRound = buildRound("mountain", "all", ROUND_LENGTH);
+check(mountainRound.length === ROUND_LENGTH, "a mountain round is a full round");
+check(
+  mountainRound.every((q) => q.type === "mountain" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  mountainRound.every((q) => q.options.includes(q.correct)),
+  "the correct country is always among the options"
+);
+check(
+  mountainRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a country name across its own options"
+);
+check(
+  mountainRound.every((q) => countriesForRange(q.range).includes(q.country.code)),
+  "the correct country is genuinely one the named range crosses"
+);
+check(
+  mountainRound.every((q) => {
+    const crosses = new Set(countriesForRange(q.range));
+    return q.options.every((name) => {
+      const c = COUNTRIES.find((cc) => cc.name === name);
+      return name === q.correct || (c && !crosses.has(c.code));
+    });
+  }),
+  "every distractor is a country the range does NOT cross — any country it " +
+    "does cross would also be a correct answer"
+);
+check(
+  mountainRound.every((q) => MOUNTAIN_RANGE_NAMES.includes(q.range)),
+  "every question's range comes from the catalog"
+);
+
+// The Andes cross seven countries. Building many full-catalog rounds and
+// collecting whichever one happens to ask about the Andes pins that `correct`
+// genuinely varies across plays rather than always naming the same country —
+// without reaching for buildOne() directly, which the engine keeps internal.
+const andesQuestions = [];
+for (let i = 0; i < 60 && andesQuestions.length < 15; i++) {
+  const q = buildRound("mountain", "all", MOUNTAIN_RANGES.length).find((q) => q.range === "Andes");
+  if (q) andesQuestions.push(q);
+}
+check(andesQuestions.length > 5, "enough sampled Andes questions to check variation");
+check(
+  andesQuestions.every((q) => countriesForRange("Andes").includes(q.country.code)),
+  "every Andes question names one of the Andes' own countries"
+);
+check(
+  new Set(andesQuestions.map((q) => q.country.code)).size > 1,
+  "...and which one varies across repeated questions rather than being fixed"
+);
+
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
 contentResolverChecks()

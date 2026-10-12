@@ -176,6 +176,11 @@ export const modeAccents = {
   // teal-green, locator's blue-grey or foodOrigin's slate-teal, which is
   // the thematic fit for a river: water, but the deepest cast of it yet.
   river: "#1D4E66",
+  // M2.7 step 7.2. An ember/brass tint rather than a new hue, deepened and
+  // greyed toward granite — distinct from currency's olive-gold, language's
+  // rust and higherLower's orange-brown (the other three ember-family tints),
+  // and the thematic fit for a mountain range: stone rather than water.
+  mountain: "#5A4632",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

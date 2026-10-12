@@ -213,8 +213,11 @@ M2.7 step 6 (Rivers) end to end.** See M2.7's own entry below for the full write
 Mountains** now has its own ordered sub-checklist mirroring Rivers', and sub-step 7.1 (the pure
 `src/data/mountains.js` feature-keyed data model — 20 major ranges, each carrying every sovereign
 state it crosses, reusing Rivers' own answer-surface decision rather than re-litigating it) is
-done. **Next up: M2.7 step 7.2, engine integration** — the `buildOne("mountain", …)` branch and a
-dedicated `buildMountainRound()` path, mirroring `river`'s own shape exactly.
+done, and sub-step 7.2 (engine integration) is also done — the `buildOne("mountain", …)` branch, a
+dedicated `buildMountainRound()` path, `MODES.mountain`, and `MODE_TIERS.mountain = "free"` are all
+wired in and covered by new pure tests, mirroring Rivers' own 6.2 exactly. **Next up: M2.7 step
+7.3** — the Home tile + `QuizScreen` prompt media (reusing the river branch's eyebrow-badge
+treatment) + real-browser verification, mirroring Rivers' own 6.3.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2215,11 +2218,24 @@ teaching *how the world works*, not just *where things are*.
           Deliberately pure-data-only: no `buildOne()` branch, `MODES` entry, or `entitlements.js`
           wiring yet — that's step 7.2, once the data shape is settled and reviewable on its own,
           the same ordering step 6 used.
-       2. ☐ **Engine integration.** `game/questions.js` gets a `buildOne("mountain", …)` branch
+       2. ✅ **Engine integration.** `game/questions.js` gets a `buildOne("mountain", …)` branch
           mirroring `buildOne("river", …)`'s shape exactly — target is the range, `correct` sampled
           fresh per question from the range's own `countries`, distractors from every country NOT on
           that list. `buildRound()` gets a `buildMountainRound()` carve-out the same way
-          `buildRiverRound()` works. New mode accent + `MODE_TIERS`/`FREE_MODES` entry.
+          `buildRiverRound()` works, sampling `MOUNTAIN_RANGES` directly rather than going through
+          `poolFor()`. `MODES.mountain` takes a new accent (`modeAccents.mountain`, `"#5A4632"` — an
+          ember/brass tint deepened and greyed toward granite, distinct from currency's olive-gold,
+          language's rust and higherLower's orange-brown, the other three ember-family tints; checked
+          by the existing per-accent contrast loop in `test/engine.test.js`, no new test needed there)
+          and joins `MODE_TIERS`/`FREE_MODES` as `"free"` (same free catalog as every other M2.7
+          game). 12 new checks in `test/engine.test.js`, mirroring step 6.2's own: mode
+          registered/catalogued, a full round's shape, options always including the correct answer,
+          no duplicate option text, every correct answer genuinely drawn from the range's own country
+          list, every distractor genuinely NOT on that list, and — sampling many rounds for the Andes
+          specifically — that the correct country varies across repeat questions rather than being
+          pinned to one. Deliberately NOT wired into `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s
+          media branches yet (both are hardcoded lists, so adding the mode here doesn't surface a
+          tile) — that's step 7.3, mirroring step 6.3.
        3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` gets a `q.type === "mountain"`
           media branch reusing the river branch's eyebrow-badge treatment (a range has no flag
           either), and `HomeScreen`'s `GAME_GRID` adds `"mountain"` after `"river"`. Verify in a real

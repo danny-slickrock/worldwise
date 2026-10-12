@@ -23,6 +23,7 @@ import { nationalAnimalFor } from "../data/nationalAnimals";
 import { foodOriginFor } from "../data/foodOrigin";
 import { largestCityFor } from "../data/cities";
 import { RIVERS } from "../data/rivers";
+import { MOUNTAIN_RANGES } from "../data/mountains";
 
 // Countries a given mode is allowed to draw its target from. Shape needs a map
 // outline, and Locator needs a world-map path, so each excludes the countries
@@ -162,6 +163,15 @@ export const MODES = {
     blurb: "Which country does it flow through?",
     icon: "R",
     accent: modeAccents.river,
+  },
+  // M2.7 step 7.2: the second feature-based game, same shape as river — the
+  // TARGET is the range, not a country.
+  mountain: {
+    key: "mountain",
+    title: "Mountain Quiz",
+    blurb: "Which country does it cross?",
+    icon: "M",
+    accent: modeAccents.mountain,
   },
   // Not offered on Home: a country round is meaningless without a country, so
   // it is only ever reached from a country page's "Play with …" button, which
@@ -441,6 +451,29 @@ function buildOne(type, target, tier = null) {
       options: shuffle([correct.name, ...distractors]),
     };
   }
+  if (type === "mountain") {
+    // Mirrors "river"'s shape exactly — `target` is a RANGE (see
+    // data/mountains.js), not a country, for the same reason: a range
+    // crosses several countries at once. `correct` is sampled fresh per
+    // question from the range's own countries; distractors come from every
+    // country NOT on that list, since any country the range DOES cross
+    // would also be a correct answer.
+    const crosses = new Set(target.countries);
+    const correctCode = sample(target.countries, 1)[0];
+    const correct = COUNTRIES.find((c) => c.code === correctCode);
+    const distractors = sample(
+      COUNTRIES.filter((c) => !crosses.has(c.code)),
+      DISTRACTORS
+    ).map((c) => c.name);
+    return {
+      type,
+      range: target.name,
+      country: correct,
+      prompt: `Which of these countries does the ${target.name} cross?`,
+      correct: correct.name,
+      options: shuffle([correct.name, ...distractors]),
+    };
+  }
   // flag & shape both ask "which country?"
   const distractors = sample(
     COUNTRIES.filter((c) => c.code !== target.code),
@@ -556,6 +589,8 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   // Rivers has no country pool to sample a "target" from the usual way — the
   // target IS the river. See buildRiverRound below.
   if (mode === "river") return buildRiverRound(count, tier);
+  // Mountains is the same carve-out, over MOUNTAIN_RANGES instead of RIVERS.
+  if (mode === "mountain") return buildMountainRound(count, tier);
 
   const tiered = poolFor(mode, difficulty);
   const wide = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
@@ -580,6 +615,12 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
 // buildOne("river", …) does the rest per question.
 function buildRiverRound(count, tier = null) {
   return sample(RIVERS, count).map((r) => buildOne("river", r, tier));
+}
+
+// A round of mountain-range questions, mirroring buildRiverRound exactly over
+// MOUNTAIN_RANGES instead of RIVERS.
+function buildMountainRound(count, tier = null) {
+  return sample(MOUNTAIN_RANGES, count).map((r) => buildOne("mountain", r, tier));
 }
 
 // A round of pair comparisons, cycling the metrics so one round asks about
