@@ -215,9 +215,11 @@ Mountains** now has its own ordered sub-checklist mirroring Rivers', and sub-ste
 state it crosses, reusing Rivers' own answer-surface decision rather than re-litigating it) is
 done, and sub-step 7.2 (engine integration) is also done — the `buildOne("mountain", …)` branch, a
 dedicated `buildMountainRound()` path, `MODES.mountain`, and `MODE_TIERS.mountain = "free"` are all
-wired in and covered by new pure tests, mirroring Rivers' own 6.2 exactly. **Next up: M2.7 step
-7.3** — the Home tile + `QuizScreen` prompt media (reusing the river branch's eyebrow-badge
-treatment) + real-browser verification, mirroring Rivers' own 6.3.
+wired in and covered by new pure tests, mirroring Rivers' own 6.2 exactly. **Sub-step 7.3 (the Home
+tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out M2.7
+step 7 (Mountains) end to end.** See M2.7's own entry below for the full writeup. **Next up: M2.7
+step 8, Oceans** — the milestone's third and final feature-based game, sharing Rivers/Mountains'
+own answer-surface decision rather than re-litigating it.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2236,10 +2238,16 @@ teaching *how the world works*, not just *where things are*.
           pinned to one. Deliberately NOT wired into `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s
           media branches yet (both are hardcoded lists, so adding the mode here doesn't surface a
           tile) — that's step 7.3, mirroring step 6.3.
-       3. ☐ **Home tile + screen wiring + verification.** `QuizScreen` gets a `q.type === "mountain"`
-          media branch reusing the river branch's eyebrow-badge treatment (a range has no flag
-          either), and `HomeScreen`'s `GAME_GRID` adds `"mountain"` after `"river"`. Verify in a real
-          browser the same way Rivers' step 6.3 did.
+       3. ✅ **Home tile + screen wiring + verification.** `QuizScreen` gets a `q.type === "mountain"`
+          media branch reusing the river branch's eyebrow-badge treatment exactly (a range has no
+          flag either) — a "Range" eyebrow over `q.range` — and `HomeScreen`'s `GAME_GRID` adds
+          `"mountain"` after `"river"`. Verified in a real browser (Playwright/Chromium, static
+          export, placeholder Supabase env): the Home tile renders with its own granite accent and
+          "M" glyph next to River Quiz, a round opens with a legible "Which of these countries does
+          the Pamir Mountains cross?" question in the badge treatment and four distinct
+          correct-inclusive options, and answering renders the usual right/wrong marks plus a "Why
+          it matters" card for the sampled country (Tajikistan). **M2.7 step 7 (Mountains) is now
+          fully done end to end.**
     8. ☐ **Oceans.** Shares the same feature-based data model and answer-surface decision (step
        6.1/7.1) rather than re-litigating it — an ocean touches several countries the same way a
        river or a mountain range does.

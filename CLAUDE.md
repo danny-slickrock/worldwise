@@ -956,9 +956,18 @@ right/wrong marks plus a "Why it matters" card for the sampled country. See ROAD
 for the full writeup. **M2.7 step 7, Mountains** — the same feature-based data model and
 answer-surface decision Rivers already settled, applied to a new catalog — has its pure data model
 (7.1) and engine integration (7.2, `buildOne("mountain", …)` + `buildMountainRound()` +
-`MODES.mountain` + `MODE_TIERS.mountain = "free"`) both done, mirroring Rivers' own 6.1/6.2. **Next
-up: M2.7 step 7.3** — the Home tile + `QuizScreen` prompt media + real-browser verification,
-mirroring Rivers' own 6.3.
+`MODES.mountain` + `MODE_TIERS.mountain = "free"`) both done, mirroring Rivers' own 6.1/6.2.
+**Sub-step 7.3 is also done, closing out M2.7 step 7 (Mountains) end to end:** `QuizScreen` gets a
+`q.type === "mountain"` prompt-media branch reusing the river branch's text-badge treatment exactly
+— a "Range" eyebrow over the range's name (`q.range`) — and `HomeScreen`'s `GAME_GRID` adds
+`"mountain"` after `"river"`. Verified in a real browser (Playwright/Chromium, static export,
+placeholder Supabase env): the Home tile renders with its own granite accent and "M" glyph next to
+River Quiz, a round opens with a legible "Which of these countries does the Pamir Mountains cross?"
+question in the badge treatment and four distinct correct-inclusive options, and answering renders
+the usual right/wrong marks plus a "Why it matters" card for the sampled country (Tajikistan).
+**M2.7 step 7 (Mountains) is now fully done end to end.** **Next up: M2.7 step 8, Oceans** — the
+milestone's third and final feature-based game, sharing Rivers/Mountains' own answer-surface
+decision rather than re-litigating it.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

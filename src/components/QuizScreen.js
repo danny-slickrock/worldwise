@@ -737,6 +737,20 @@ export default function QuizScreen({
                       <Text style={styles.capitalName}>{q.river}</Text>
                     </View>
                   )}
+                  {/* A mountain range has no flag either, mirroring river's
+                      own text-badge treatment exactly — the question's
+                      subject is the range itself (`q.range`). */}
+                  {q.type === "mountain" && (
+                    <View
+                      style={[
+                        styles.capitalBadge,
+                        { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
+                      ]}
+                    >
+                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Range</Text>
+                      <Text style={styles.capitalName}>{q.range}</Text>
+                    </View>
+                  )}
                 </View>
 
                 {/* The answer surface. Branches on the QUESTION's own shape —
