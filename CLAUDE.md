@@ -131,6 +131,12 @@ src/
                            #   rivers.js — keyed by RANGE, each entry carrying every sovereign state
                            #   it crosses. Pure data model + lookups only so far (countriesForRange,
                            #   rangesThrough) — no buildOne() branch yet (that's step 7.2)
+  data/oceans.js           # M2.7 step 8.1: the third and last FEATURE-keyed data file, same shape
+                           #   as rivers.js/mountains.js — keyed by OCEAN (Pacific/Atlantic/Indian/
+                           #   Arctic only; the Southern Ocean has no sovereign-state entry to ask
+                           #   about), each carrying every state with a coastline on it. Pure data
+                           #   model + lookups only so far (countriesForOcean, oceansThrough) — no
+                           #   buildOne() branch yet (that's step 8.2)
   game/progress.js         # PURE progress/streak logic — no storage, no network
   game/cloudSync.js        # PURE local-shape ⇄ Postgres-row mapping + max-merge
   game/syncStatus.js       # PURE M2.1: sync-health state machine — idle/ok/retrying/failed, and
@@ -965,9 +971,14 @@ placeholder Supabase env): the Home tile renders with its own granite accent and
 River Quiz, a round opens with a legible "Which of these countries does the Pamir Mountains cross?"
 question in the badge treatment and four distinct correct-inclusive options, and answering renders
 the usual right/wrong marks plus a "Why it matters" card for the sampled country (Tajikistan).
-**M2.7 step 7 (Mountains) is now fully done end to end.** **Next up: M2.7 step 8, Oceans** — the
-milestone's third and final feature-based game, sharing Rivers/Mountains' own answer-surface
-decision rather than re-litigating it.
+**M2.7 step 7 (Mountains) is now fully done end to end.** **M2.7 step 8, Oceans** — the
+milestone's third and final feature-based game — now has its own ordered sub-checklist mirroring
+Rivers'/Mountains', and sub-step 8.1 (the pure `src/data/oceans.js` feature-keyed data model —
+Pacific/Atlantic/Indian/Arctic, each carrying every sovereign state with a coastline on it; the
+Southern Ocean is deliberately excluded since Antarctica isn't a sovereign state in `countries.js`,
+so it has no "which country" question to ask) is done, reusing Rivers'/Mountains' own
+answer-surface decision rather than re-litigating it. **Next up: M2.7 sub-step 8.2** — engine
+integration (`buildOne("ocean", …)`, `buildOceanRound()`, `MODES.ocean`), mirroring 6.2/7.2.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

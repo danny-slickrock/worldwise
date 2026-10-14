@@ -36,6 +36,7 @@ import {
   countriesForRange,
   rangesThrough,
 } from "../src/data/mountains";
+import { OCEANS, OCEAN_NAMES, countriesForOcean, oceansThrough } from "../src/data/oceans";
 import { computeXp } from "../src/game/scoring";
 import { WHY_IT_MATTERS, whyItMatters } from "../src/data/whyItMatters";
 import { COUNTRY_PAGES, getCountryPage } from "../src/data/countryPages";
@@ -7205,6 +7206,44 @@ check(
   new Set(andesQuestions.map((q) => q.country.code)).size > 1,
   "...and which one varies across repeated questions rather than being fixed"
 );
+
+console.log("\nOceans data model (M2.7 step 8.1)");
+// Step 8.1 only: the pure FEATURE-keyed data model, not yet wired into
+// buildOne()/MODES — mirroring Rivers' (6.1) and Mountains' (7.1) own first
+// steps. These checks pin the shape the engine step (8.2) will rely on,
+// rather than exercising a round.
+check(
+  OCEANS.every((o) => typeof o.name === "string" && o.name.length > 0),
+  "every ocean carries a non-empty name"
+);
+check(new Set(OCEANS.map((o) => o.name)).size === OCEANS.length, "no two oceans share a name");
+check(
+  OCEANS.every((o) => Array.isArray(o.countries) && o.countries.length >= 2),
+  "every ocean borders at least two countries — the whole reason this is a feature-keyed file"
+);
+check(
+  OCEANS.every((o) => new Set(o.countries).size === o.countries.length),
+  "no ocean lists the same country twice"
+);
+const oceanValidCodes = new Set(COUNTRIES.map((c) => c.code));
+check(
+  OCEANS.every((o) => o.countries.every((code) => oceanValidCodes.has(code))),
+  "every country code named by an ocean actually exists in COUNTRIES"
+);
+check(
+  OCEAN_NAMES.length === OCEANS.length && OCEAN_NAMES.includes("Pacific Ocean"),
+  "OCEAN_NAMES mirrors the catalog"
+);
+check(
+  countriesForOcean("Pacific Ocean").includes("jp") && countriesForOcean("Pacific Ocean").includes("cl"),
+  "countriesForOcean looks up an ocean's countries by name"
+);
+check(countriesForOcean("Not An Ocean") === null, "an unknown ocean name resolves to null");
+check(
+  oceansThrough("za").includes("Atlantic Ocean") && oceansThrough("za").includes("Indian Ocean"),
+  "oceansThrough looks up a country's oceans by code — South Africa borders both"
+);
+check(oceansThrough("ch").length === 0, "a landlocked country resolves to an empty list");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

@@ -217,9 +217,13 @@ done, and sub-step 7.2 (engine integration) is also done — the `buildOne("moun
 dedicated `buildMountainRound()` path, `MODES.mountain`, and `MODE_TIERS.mountain = "free"` are all
 wired in and covered by new pure tests, mirroring Rivers' own 6.2 exactly. **Sub-step 7.3 (the Home
 tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out M2.7
-step 7 (Mountains) end to end.** See M2.7's own entry below for the full writeup. **Next up: M2.7
-step 8, Oceans** — the milestone's third and final feature-based game, sharing Rivers/Mountains'
-own answer-surface decision rather than re-litigating it.
+step 7 (Mountains) end to end.** See M2.7's own entry below for the full writeup. **M2.7 step 8,
+Oceans** — the milestone's third and final feature-based game — now has its own ordered
+sub-checklist mirroring Rivers'/Mountains', and sub-step 8.1 (the pure `src/data/oceans.js`
+feature-keyed data model — four oceans, Pacific/Atlantic/Indian/Arctic, each carrying every
+sovereign state with a coastline on it, reusing Rivers'/Mountains' own answer-surface decision
+rather than re-litigating it) is done. **Next up: M2.7 sub-step 8.2** — engine integration
+(`buildOne("ocean", …)`, `buildOceanRound()`, `MODES.ocean`), mirroring 6.2/7.2.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2248,9 +2252,39 @@ teaching *how the world works*, not just *where things are*.
           correct-inclusive options, and answering renders the usual right/wrong marks plus a "Why
           it matters" card for the sampled country (Tajikistan). **M2.7 step 7 (Mountains) is now
           fully done end to end.**
-    8. ☐ **Oceans.** Shares the same feature-based data model and answer-surface decision (step
-       6.1/7.1) rather than re-litigating it — an ocean touches several countries the same way a
-       river or a mountain range does.
+    8. **Oceans.** Shares the same feature-based data model and answer-surface decision Rivers
+       (step 6.1) and Mountains (step 7.1) already settled — an ocean borders several countries
+       the same way a river or a mountain range does. Its own ordered sub-checklist, the same
+       shape steps 6/7 used:
+       1. ✅ **The pure data model.** `src/data/oceans.js`: keyed by OCEAN rather than by country
+          code, mirroring `rivers.js`/`mountains.js` exactly — four oceans (Pacific, Atlantic,
+          Indian, Arctic), each carrying every sovereign state with a coastline on it
+          (`countriesForOcean`, `oceansThrough`, `OCEAN_NAMES`, the same three-helper shape
+          `rivers.js`/`mountains.js` export). The Southern (Antarctic) Ocean is deliberately NOT
+          an entry: its only landmass is Antarctica, which isn't one of the 196 states in
+          `countries.js`, so unlike every river or range it has no "which country" question to
+          ask at all — the same reason a single-country river/range is left out. Two judgment
+          calls flagged with the same "worth a second pair of eyes" note every hand-compiled file
+          in this directory carries: a country touching only an enclosed/connected sea geographers
+          commonly treat as its own region (the Mediterranean, the Baltic) isn't counted for the
+          open ocean it drains into, only for an ocean it actually has a coastline on; and the
+          Arctic Ocean's list is deliberately short (Russia, Norway, Canada, the US via Alaska
+          only) since Greenland reaches the Arctic but is a `territories.js` entry, not a
+          sovereign state, the same reason Denmark's own mainland (North Sea coast) isn't in it
+          either. 10 new pure checks in `test/engine.test.js`, mirroring steps 6.1/7.1's own: shape
+          validation (non-empty names, no duplicate ocean names, every ocean borders ≥2 countries,
+          no ocean listing the same country twice), every named country code actually exists in
+          `COUNTRIES`, and the two lookup helpers round-tripping correctly including their
+          not-found cases (an unknown ocean name, a landlocked country). Deliberately pure-data-
+          only: no `buildOne()` branch, `MODES` entry, or `entitlements.js` wiring yet — that's
+          step 8.2, once the data shape is settled and reviewable on its own, the same ordering
+          steps 6/7 used.
+       2. ☐ **Engine integration.** Mirrors `buildOne("river"/"mountain", …)`'s shape: a
+          `buildOne("ocean", …)` branch, a `buildOceanRound()` carve-out in `buildRound()`,
+          `MODES.ocean` with its own accent, and `MODE_TIERS`/`FREE_MODES` wiring.
+       3. ☐ **Home tile + screen wiring + verification.** A `q.type === "ocean"` `QuizScreen` media
+          branch reusing the river/mountain eyebrow-badge treatment, `HomeScreen`'s `GAME_GRID`
+          gaining `"ocean"`, and real-browser verification — mirroring steps 6.3/7.3.
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*
