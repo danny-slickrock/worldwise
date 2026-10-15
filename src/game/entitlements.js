@@ -52,10 +52,13 @@ export const MODE_TIERS = {
   // M2.7 step 7.2. The second feature-based game — same free catalog, same
   // reasoning.
   mountain: "free",
+  // M2.7 step 8.2. The third and last feature-based game — same free
+  // catalog, same reasoning.
+  ocean: "free",
 
-  // Not built yet (steps 7 and 8). Listed now so the catalog is the product's
-  // plan rather than a lagging record of it — and so the Home badge and the
-  // tests have something real to assert against before the games exist.
+  // Not built yet. Listed now so the catalog is the product's plan rather
+  // than a lagging record of it — and so the Home badge and the tests have
+  // something real to assert against before the games exist.
   nameEveryCountry: "pro",
   identifyAllFlags: "pro",
 };

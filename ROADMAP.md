@@ -222,8 +222,13 @@ Oceans** — the milestone's third and final feature-based game — now has its 
 sub-checklist mirroring Rivers'/Mountains', and sub-step 8.1 (the pure `src/data/oceans.js`
 feature-keyed data model — four oceans, Pacific/Atlantic/Indian/Arctic, each carrying every
 sovereign state with a coastline on it, reusing Rivers'/Mountains' own answer-surface decision
-rather than re-litigating it) is done. **Next up: M2.7 sub-step 8.2** — engine integration
-(`buildOne("ocean", …)`, `buildOceanRound()`, `MODES.ocean`), mirroring 6.2/7.2.
+rather than re-litigating it) is done. **Sub-step 8.2 (engine integration) is also done** — the
+`buildOne("ocean", …)` branch, `MODES.ocean`, and `MODE_TIERS.ocean = "free"` are all wired in and
+covered by new pure tests, mirroring Rivers'/Mountains' own 6.2/7.2. One real difference from
+those two: `OCEANS` has only four entries, fewer than `ROUND_LENGTH`, so `buildOceanRound()`
+cycles the shuffled catalog to fill a full round rather than sampling it once (see M2.7's own
+entry below for the full writeup). **Next up: M2.7 sub-step 8.3** — the Home tile + `QuizScreen`
+prompt media + real-browser verification, mirroring 6.3/7.3, closing out M2.7 end to end.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2279,12 +2284,29 @@ teaching *how the world works*, not just *where things are*.
           only: no `buildOne()` branch, `MODES` entry, or `entitlements.js` wiring yet — that's
           step 8.2, once the data shape is settled and reviewable on its own, the same ordering
           steps 6/7 used.
-       2. ☐ **Engine integration.** Mirrors `buildOne("river"/"mountain", …)`'s shape: a
-          `buildOne("ocean", …)` branch, a `buildOceanRound()` carve-out in `buildRound()`,
-          `MODES.ocean` with its own accent, and `MODE_TIERS`/`FREE_MODES` wiring.
+       2. ✅ **Engine integration.** Mirrors `buildOne("river"/"mountain", …)`'s shape: a
+          `buildOne("ocean", …)` branch, `MODES.ocean` with its own accent (a further-navy tint of
+          lakewater, distinct from river's own teal-leaning cast), and `MODE_TIERS`/`FREE_MODES`
+          wiring (free, same catalog as every other M2.7 game). One real difference from
+          `buildRiverRound`/`buildMountainRound`, caught before it shipped rather than after:
+          `OCEANS` has only four entries (the Southern Ocean is deliberately excluded — see step
+          8.1), fewer than `ROUND_LENGTH`, so a straight `sample(OCEANS, count)` would silently
+          hand back a 4-question round instead of 8. `buildOceanRound()` instead cycles a freshly
+          shuffled `OCEANS` to fill the round, the same repeat-to-fill approach `narrowToCodes()`
+          already uses elsewhere in `questions.js` for a short weak-spot set. 13 new checks in
+          `test/engine.test.js`, mirroring steps 6.2/7.2's own plus one for the round-length fix:
+          mode registered/catalogued, a full 8-question round despite the 4-entry catalog, options
+          always including the correct answer, no duplicate option text, every correct answer
+          genuinely drawn from the ocean's own country list, every distractor genuinely NOT on that
+          list, and — sampling many rounds for the Pacific specifically — that the correct country
+          varies across repeat questions rather than being pinned to one. Deliberately NOT wired
+          into `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s media branches yet (both are hardcoded
+          lists, so adding the mode here doesn't surface a tile) — that's step 8.3, mirroring steps
+          6.3/7.3.
        3. ☐ **Home tile + screen wiring + verification.** A `q.type === "ocean"` `QuizScreen` media
           branch reusing the river/mountain eyebrow-badge treatment, `HomeScreen`'s `GAME_GRID`
           gaining `"ocean"`, and real-browser verification — mirroring steps 6.3/7.3.
+          *(Next up: M2.7 sub-step 8.3, closing out M2.7 end to end.)*
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*

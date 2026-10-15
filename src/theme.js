@@ -181,6 +181,11 @@ export const modeAccents = {
   // rust and higherLower's orange-brown (the other three ember-family tints),
   // and the thematic fit for a mountain range: stone rather than water.
   mountain: "#5A4632",
+  // M2.7 step 8.2. The third and last feature-based tint of lakewater — cooled
+  // further toward true navy than river's own teal-leaning cast, since the
+  // open ocean is the deepest, bluest water in the catalog rather than a
+  // river's or a coastline's.
+  ocean: "#1A3450",
   // The two pro marathons (M2.12 steps 7-8). Both deepened the same way every
   // other mode accent is, because each carries a body-size label on parchment
   // and a raw brand tint measures 4.28:1.

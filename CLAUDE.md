@@ -977,8 +977,16 @@ Rivers'/Mountains', and sub-step 8.1 (the pure `src/data/oceans.js` feature-keye
 Pacific/Atlantic/Indian/Arctic, each carrying every sovereign state with a coastline on it; the
 Southern Ocean is deliberately excluded since Antarctica isn't a sovereign state in `countries.js`,
 so it has no "which country" question to ask) is done, reusing Rivers'/Mountains' own
-answer-surface decision rather than re-litigating it. **Next up: M2.7 sub-step 8.2** — engine
-integration (`buildOne("ocean", …)`, `buildOceanRound()`, `MODES.ocean`), mirroring 6.2/7.2.
+answer-surface decision rather than re-litigating it. **Sub-step 8.2 (engine integration) is also
+done:** `buildOne("ocean", …)`, `MODES.ocean` (a further-navy tint of lakewater, distinct from
+river's own teal-leaning cast), and `MODE_TIERS.ocean = "free"` are all wired in, mirroring Rivers'/
+Mountains' own 6.2/7.2. One real difference: `OCEANS` has only four entries — fewer than
+`ROUND_LENGTH` — so a straight `sample(OCEANS, count)` would have silently handed back a
+4-question round instead of 8; `buildOceanRound()` instead cycles a freshly shuffled `OCEANS` to
+fill the round, the same repeat-to-fill approach `narrowToCodes()` already uses elsewhere in
+`questions.js` for a short weak-spot set. **Next up: M2.7 sub-step 8.3** — the Home tile +
+`QuizScreen` prompt media + real-browser verification, mirroring 6.3/7.3, closing out M2.7 end to
+end.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

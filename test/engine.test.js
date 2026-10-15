@@ -7245,6 +7245,68 @@ check(
 );
 check(oceansThrough("ch").length === 0, "a landlocked country resolves to an empty list");
 
+console.log("\nOcean Quiz engine integration (M2.7 step 8.2)");
+check(MODES.ocean != null && MODES.ocean.accent != null, "the mode is registered and themed");
+check(MODE_TIERS.ocean === "free", "Ocean Quiz joins the free catalog");
+check(FREE_MODES.includes("ocean"), "...and shows up in the derived free-mode list");
+
+const oceanRound = buildRound("ocean", "all", ROUND_LENGTH);
+check(
+  oceanRound.length === ROUND_LENGTH,
+  "an ocean round is a full round, even though OCEANS has fewer entries than ROUND_LENGTH"
+);
+check(
+  oceanRound.every((q) => q.type === "ocean" && q.options.length === OPTIONS_PER_QUESTION),
+  "every question has four options"
+);
+check(
+  oceanRound.every((q) => q.options.includes(q.correct)),
+  "the correct country is always among the options"
+);
+check(
+  oceanRound.every((q) => new Set(q.options).size === q.options.length),
+  "no question repeats a country name across its own options"
+);
+check(
+  oceanRound.every((q) => countriesForOcean(q.ocean).includes(q.country.code)),
+  "the correct country is genuinely one that borders the named ocean"
+);
+check(
+  oceanRound.every((q) => {
+    const borders = new Set(countriesForOcean(q.ocean));
+    return q.options.every((name) => {
+      const c = COUNTRIES.find((cc) => cc.name === name);
+      return name === q.correct || (c && !borders.has(c.code));
+    });
+  }),
+  "every distractor is a country the ocean does NOT border — any country it " +
+    "does border would also be a correct answer"
+);
+check(
+  oceanRound.every((q) => OCEAN_NAMES.includes(q.ocean)),
+  "every question's ocean comes from the catalog"
+);
+
+// The Pacific borders 40 countries. Building many full-catalog rounds and
+// collecting whichever one happens to ask about the Pacific pins that
+// `correct` genuinely varies across plays rather than always naming the same
+// country — without reaching for buildOne() directly, which the engine keeps
+// internal.
+const pacificQuestions = [];
+for (let i = 0; i < 60 && pacificQuestions.length < 15; i++) {
+  const q = buildRound("ocean", "all", OCEANS.length).find((q) => q.ocean === "Pacific Ocean");
+  if (q) pacificQuestions.push(q);
+}
+check(pacificQuestions.length > 5, "enough sampled Pacific questions to check variation");
+check(
+  pacificQuestions.every((q) => countriesForOcean("Pacific Ocean").includes(q.country.code)),
+  "every Pacific question names one of the Pacific's own countries"
+);
+check(
+  new Set(pacificQuestions.map((q) => q.country.code)).size > 1,
+  "...and which one varies across repeated questions rather than being fixed"
+);
+
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.
 contentResolverChecks()
