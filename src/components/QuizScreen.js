@@ -751,6 +751,20 @@ export default function QuizScreen({
                       <Text style={styles.capitalName}>{q.range}</Text>
                     </View>
                   )}
+                  {/* An ocean has no flag either, mirroring river/mountain's
+                      own text-badge treatment exactly — the question's
+                      subject is the ocean itself (`q.ocean`). */}
+                  {q.type === "ocean" && (
+                    <View
+                      style={[
+                        styles.capitalBadge,
+                        { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
+                      ]}
+                    >
+                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Ocean</Text>
+                      <Text style={styles.capitalName}>{q.ocean}</Text>
+                    </View>
+                  )}
                 </View>
 
                 {/* The answer surface. Branches on the QUESTION's own shape —

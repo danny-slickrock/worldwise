@@ -984,9 +984,21 @@ Mountains' own 6.2/7.2. One real difference: `OCEANS` has only four entries — 
 `ROUND_LENGTH` — so a straight `sample(OCEANS, count)` would have silently handed back a
 4-question round instead of 8; `buildOceanRound()` instead cycles a freshly shuffled `OCEANS` to
 fill the round, the same repeat-to-fill approach `narrowToCodes()` already uses elsewhere in
-`questions.js` for a short weak-spot set. **Next up: M2.7 sub-step 8.3** — the Home tile +
-`QuizScreen` prompt media + real-browser verification, mirroring 6.3/7.3, closing out M2.7 end to
-end.
+`questions.js` for a short weak-spot set. **Sub-step 8.3 is also done, closing out M2.7 step 8
+(Oceans) end to end:** `QuizScreen` gets a `q.type === "ocean"` prompt-media branch reusing the
+river/mountain text-badge treatment exactly — an "OCEAN" eyebrow over the ocean's own name
+(`q.ocean`) — and `HomeScreen`'s `GAME_GRID` adds `"ocean"` after `"mountain"`. Verified in a real
+browser (Playwright/Chromium, static export, placeholder Supabase env): the Home tile renders with
+its own navy accent and "O" glyph next to Mountain Quiz, a round opens with a legible "Which of
+these countries borders the Pacific Ocean?" question in the badge treatment and four distinct
+correct-inclusive options, and answering renders the usual right/wrong marks plus a "Why it
+matters" card for the sampled country. **M2.7 — Game library expansion is now fully done end to
+end**, all eight steps shipped and verified in a real browser.
+
+**Next up:** with M2.3.5, M2.3.7, and M2.9 still blocked on human-only steps and M2.4/M2.5/M2.6
+step 1-6/M2.7 all done, **M2.8 — Personalization** is the lowest-numbered milestone with unblocked
+work. It has no sub-checklist yet; the next daily build should add one and implement only its
+first unchecked step.
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -226,9 +226,13 @@ rather than re-litigating it) is done. **Sub-step 8.2 (engine integration) is al
 `buildOne("ocean", …)` branch, `MODES.ocean`, and `MODE_TIERS.ocean = "free"` are all wired in and
 covered by new pure tests, mirroring Rivers'/Mountains' own 6.2/7.2. One real difference from
 those two: `OCEANS` has only four entries, fewer than `ROUND_LENGTH`, so `buildOceanRound()`
-cycles the shuffled catalog to fill a full round rather than sampling it once (see M2.7's own
-entry below for the full writeup). **Next up: M2.7 sub-step 8.3** — the Home tile + `QuizScreen`
-prompt media + real-browser verification, mirroring 6.3/7.3, closing out M2.7 end to end.
+cycles the shuffled catalog to fill a full round rather than sampling it once. **Sub-step 8.3 (the
+Home tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out
+M2.7 step 8 (Oceans) end to end — and with it, M2.7 — Game library expansion as a whole.** See
+M2.7's own entry below for the full writeup. **Next up:** M2.7 is complete, so the daily build
+moves on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
+which has no sub-checklist yet — its first scoped chunk is to add one, then implement only its
+first unchecked step.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2303,10 +2307,18 @@ teaching *how the world works*, not just *where things are*.
           into `HomeScreen`'s `GAME_GRID` or `QuizScreen`'s media branches yet (both are hardcoded
           lists, so adding the mode here doesn't surface a tile) — that's step 8.3, mirroring steps
           6.3/7.3.
-       3. ☐ **Home tile + screen wiring + verification.** A `q.type === "ocean"` `QuizScreen` media
-          branch reusing the river/mountain eyebrow-badge treatment, `HomeScreen`'s `GAME_GRID`
-          gaining `"ocean"`, and real-browser verification — mirroring steps 6.3/7.3.
-          *(Next up: M2.7 sub-step 8.3, closing out M2.7 end to end.)*
+       3. ✅ **Home tile + screen wiring + verification.** A `q.type === "ocean"` `QuizScreen` media
+          branch reusing the river/mountain eyebrow-badge treatment exactly (an "OCEAN" eyebrow over
+          the ocean's own name, `q.ocean`, since an ocean has no flag any more than a river or range
+          does), and `HomeScreen`'s `GAME_GRID` gaining `"ocean"` right after `"mountain"`. Verified
+          in a real browser (Playwright/Chromium, static export, placeholder Supabase env): the Home
+          tile renders with its own navy accent and "O" glyph next to Mountain Quiz, a round opens
+          with a legible "Which of these countries borders the Pacific Ocean?" question in the badge
+          treatment and four distinct correct-inclusive options (confirmed Singapore — genuinely a
+          Pacific-bordering state in `oceans.js`'s own list, not an obviously "oceanic" country at a
+          glance — read as a valid answer among them), and answering renders the usual right/wrong
+          marks plus a "Why it matters" card for the sampled country. **M2.7 step 8 (Oceans), and
+          M2.7 — Game library expansion as a whole, is now fully done end to end.**
 - **M2.8 — Personalization 💾** — choose regions to focus on, set difficulty and streak goals, and get
   recommendations for weak areas. Builds on M2.3.6's interests rather than restating them: that
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*
