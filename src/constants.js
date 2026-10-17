@@ -76,6 +76,12 @@ export const TIMED_SECONDS_PER_QUESTION = 10;
 export const STREAK_FREEZE_MAX = 2;
 export const STREAK_FREEZE_EARN_EVERY = 5;
 
+// Personalization (M2.8 step 1): bounds for a player-set streak-length goal.
+// 1 excludes "no goal" (that's `null`, not 0 or 1); 365 is a generous ceiling
+// that still rejects obvious garbage input (e.g. a pasted timestamp).
+export const STREAK_GOAL_MIN = 1;
+export const STREAK_GOAL_MAX = 365;
+
 // XP awarded at the end of a round.
 export const XP = {
   perCorrect: 10,

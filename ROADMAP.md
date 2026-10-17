@@ -230,9 +230,10 @@ cycles the shuffled catalog to fill a full round rather than sampling it once. *
 Home tile + `QuizScreen` prompt media + real-browser verification) is now also done, closing out
 M2.7 step 8 (Oceans) end to end — and with it, M2.7 — Game library expansion as a whole.** See
 M2.7's own entry below for the full writeup. **Next up:** M2.7 is complete, so the daily build
-moves on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
-which has no sub-checklist yet — its first scoped chunk is to add one, then implement only its
-first unchecked step.
+moved on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
+which now has an ordered sub-checklist. Step 1 (the pure preferences data model + policy,
+`src/game/practicePrefsPolicy.js`) is done — see M2.8's own entry below. *(Next up: step 2 — the
+offline-first storage/sync seam.)*
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2324,6 +2325,17 @@ teaching *how the world works*, not just *where things are*.
   milestone owns *what you're curious about* (topics), this one owns *how you want to practice*
   (regions, difficulty, goals). Both live behind the same Profile surface so preferences read as one
   thing to the learner, not two systems.
+  1. ✅ **Pure data model + policy.** `src/game/practicePrefsPolicy.js`: the preferences shape
+     (`focusRegions`, `difficulty`, `streakGoal`) plus `normalizePracticePrefs()`/validators, the
+     same defensive shape `interestPolicy.js`/`progress.js` already use — unrecognized input falls
+     back to a field's own default rather than crashing or carrying garbage through. Deliberately
+     reuses existing catalogs instead of inventing new ones: regions come from `learningPaths.js`'s
+     `LEARNING_PATH_REGIONS`, difficulty from `constants.js`'s `DIFFICULTIES`. `streakGoal` is the
+     one genuinely new value, so it gets new bounds — `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX` in
+     `constants.js` — rather than an unbounded number. No storage, no UI, no schema yet; this is the
+     same "pure model first" order M2.4/M2.5/M2.6/M2.7 all started with. *(Next up: step 2 — the
+     offline-first storage/sync seam, mirroring M2.3.6's `storage/interests.js` →
+     `storage/cloudInterests.js` → `game/interestSync.js` shape.)*
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`

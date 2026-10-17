@@ -160,6 +160,9 @@ src/
   game/layout.js           # PURE responsive-chrome policy: bottom bar vs side rail, rail width,
                            #   whether the rail spells out its labels. One breakpoint decision
   game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
+  game/practicePrefsPolicy.js # PURE M2.8 step 1: practice-preferences shape (focusRegions/difficulty/
+                           #   streakGoal) + normalizePracticePrefs(). Reuses learningPaths.js's
+                           #   regions and constants.js's DIFFICULTIES rather than new catalogs
   game/interestPrompt.js   # PURE M2.3.6 step 6: the sign-up prompt gate — asked once, a skip counts
                            #   as answered, never re-nagged. Also owns Skip-vs-Cancel for the screen's
                            #   two contexts (step 7)
@@ -997,8 +1000,13 @@ end**, all eight steps shipped and verified in a real browser.
 
 **Next up:** with M2.3.5, M2.3.7, and M2.9 still blocked on human-only steps and M2.4/M2.5/M2.6
 step 1-6/M2.7 all done, **M2.8 — Personalization** is the lowest-numbered milestone with unblocked
-work. It has no sub-checklist yet; the next daily build should add one and implement only its
-first unchecked step.
+work. It now has an ordered sub-checklist, and step 1 — the pure preferences data model + policy,
+`src/game/practicePrefsPolicy.js`'s `normalizePracticePrefs()` over `{ focusRegions, difficulty,
+streakGoal }`, reusing `learningPaths.js`'s regions and `constants.js`'s `DIFFICULTIES` rather than
+new catalogs, with new `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX` bounds in `constants.js` for the one
+genuinely new value — is done, mirroring the "pure model first" order M2.4/M2.5/M2.6/M2.7 each
+started with. *(Next up: step 2 — the offline-first storage/sync seam, mirroring M2.3.6's
+`storage/interests.js` → `storage/cloudInterests.js` → `game/interestSync.js` shape.)*
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

@@ -175,6 +175,14 @@ import {
   diffInterestRows,
 } from "../src/game/interestSync";
 import { LEARNING_PATH_REGIONS, LEARNING_PATHS, getLearningPath } from "../src/data/learningPaths";
+import {
+  DEFAULT_PRACTICE_PREFS,
+  isValidFocusRegion,
+  isValidPracticeDifficulty,
+  isValidStreakGoal,
+  normalizePracticePrefs,
+} from "../src/game/practicePrefsPolicy";
+import { STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../src/constants";
 import { computeNodeStates } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
@@ -7305,6 +7313,82 @@ check(
 check(
   new Set(pacificQuestions.map((q) => q.country.code)).size > 1,
   "...and which one varies across repeated questions rather than being fixed"
+);
+
+console.log("Practice preferences policy (M2.8 step 1)");
+check(
+  isValidFocusRegion("Africa") && isValidFocusRegion("Oceania"),
+  "isValidFocusRegion accepts every learning-path region"
+);
+check(
+  !isValidFocusRegion("Antarctica") && !isValidFocusRegion(""),
+  "isValidFocusRegion rejects an unknown or empty region"
+);
+check(
+  DIFFICULTIES.every((d) => isValidPracticeDifficulty(d.key)),
+  "isValidPracticeDifficulty accepts every difficulty tier's key"
+);
+check(!isValidPracticeDifficulty("extreme"), "isValidPracticeDifficulty rejects an unknown tier");
+check(
+  isValidStreakGoal(STREAK_GOAL_MIN) && isValidStreakGoal(STREAK_GOAL_MAX),
+  "isValidStreakGoal accepts its own min/max bounds"
+);
+check(
+  !isValidStreakGoal(STREAK_GOAL_MIN - 1) && !isValidStreakGoal(STREAK_GOAL_MAX + 1),
+  "isValidStreakGoal rejects just outside its bounds"
+);
+check(
+  !isValidStreakGoal(0) &&
+    !isValidStreakGoal(7.5) &&
+    !isValidStreakGoal("7") &&
+    !isValidStreakGoal(null),
+  "isValidStreakGoal rejects zero, a fraction, a string, and null"
+);
+check(
+  JSON.stringify(normalizePracticePrefs(undefined)) === JSON.stringify(DEFAULT_PRACTICE_PREFS),
+  "normalizePracticePrefs(undefined) falls back to the defaults"
+);
+check(
+  JSON.stringify(normalizePracticePrefs(null)) === JSON.stringify(DEFAULT_PRACTICE_PREFS),
+  "normalizePracticePrefs(null) falls back to the defaults"
+);
+check(
+  JSON.stringify(normalizePracticePrefs({}).focusRegions) === "[]",
+  "a missing focusRegions normalizes to an empty (no-focus) selection"
+);
+check(
+  JSON.stringify(normalizePracticePrefs({ focusRegions: ["Oceania", "Africa"] }).focusRegions) ===
+    JSON.stringify(["Africa", "Oceania"]),
+  "normalizePracticePrefs orders focusRegions by the catalog's own display order"
+);
+check(
+  JSON.stringify(normalizePracticePrefs({ focusRegions: ["Africa", "Atlantis"] }).focusRegions) ===
+    JSON.stringify(["Africa"]),
+  "normalizePracticePrefs drops an unknown region (e.g. a retired one from an old client)"
+);
+check(
+  JSON.stringify(normalizePracticePrefs({ focusRegions: ["Africa", "Africa"] }).focusRegions) ===
+    JSON.stringify(["Africa"]),
+  "normalizePracticePrefs dedupes a repeated region"
+);
+check(
+  normalizePracticePrefs({ difficulty: "hard" }).difficulty === "hard",
+  "normalizePracticePrefs accepts a valid difficulty"
+);
+check(
+  normalizePracticePrefs({ difficulty: "extreme" }).difficulty ===
+    DEFAULT_PRACTICE_PREFS.difficulty,
+  "normalizePracticePrefs falls back to the default difficulty on an unknown value"
+);
+check(
+  normalizePracticePrefs({ streakGoal: 30 }).streakGoal === 30,
+  "normalizePracticePrefs accepts a valid streak goal"
+);
+check(
+  normalizePracticePrefs({ streakGoal: -5 }).streakGoal === null &&
+    normalizePracticePrefs({ streakGoal: "30" }).streakGoal === null &&
+    normalizePracticePrefs({ streakGoal: 9999 }).streakGoal === null,
+  "normalizePracticePrefs falls back to no goal on an invalid streak goal"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on
