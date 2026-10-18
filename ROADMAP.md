@@ -232,8 +232,9 @@ M2.7 step 8 (Oceans) end to end — and with it, M2.7 — Game library expansion
 M2.7's own entry below for the full writeup. **Next up:** M2.7 is complete, so the daily build
 moved on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
 which now has an ordered sub-checklist. Step 1 (the pure preferences data model + policy,
-`src/game/practicePrefsPolicy.js`) is done — see M2.8's own entry below. *(Next up: step 2 — the
-offline-first storage/sync seam.)*
+`src/game/practicePrefsPolicy.js`) is done, and **step 2 (the offline-first storage/sync seam) is
+now also done** — see M2.8's own entry below. *(Next up: step 3 — the Profile UI to actually set
+focus regions/difficulty/streak goal, which is what finally calls the step 2 plumbing.)*
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2333,9 +2334,33 @@ teaching *how the world works*, not just *where things are*.
      `LEARNING_PATH_REGIONS`, difficulty from `constants.js`'s `DIFFICULTIES`. `streakGoal` is the
      one genuinely new value, so it gets new bounds — `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX` in
      `constants.js` — rather than an unbounded number. No storage, no UI, no schema yet; this is the
-     same "pure model first" order M2.4/M2.5/M2.6/M2.7 all started with. *(Next up: step 2 — the
-     offline-first storage/sync seam, mirroring M2.3.6's `storage/interests.js` →
-     `storage/cloudInterests.js` → `game/interestSync.js` shape.)*
+     same "pure model first" order M2.4/M2.5/M2.6/M2.7 all started with.
+  2. ✅ **Offline-first storage/sync seam**, mirroring M2.3.6's `storage/interests.js` →
+     `storage/cloudInterests.js` → `game/interestSync.js` shape — with one real difference from
+     that mirror, found while laying out the schema: `profiles` already carries
+     `difficulty_pref`/`focus_regions` columns, seeded all the way back in the M2.1 migration as a
+     deliberate seam for this exact milestone (see `docs/phase-2-data-model.md`), so this needs no
+     new join table the way `profile_interests` was. Only `streak_goal` is genuinely new, added via
+     `supabase/migrations/20261018130615_add_profile_streak_goal.sql` — one nullable column with a
+     1–365 check constraint, matching `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX`. No new grants or RLS: the
+     M2.1 migration's existing `authenticated` CRUD grant and "own profile" `auth.uid() = id` policy
+     on `profiles` already cover a new column on that same table.
+     `src/game/practicePrefsSync.js` is the pure translation (`practicePrefsPatchFromPrefs()` /
+     `practicePrefsFromProfileRow()`), plus `mergePracticePrefs()` for first sign-in — deliberately
+     *not* one blanket rule like `mergeProgress`'s "max" or `mergeInterests`'s "union", since the
+     three fields don't share a shape: `focusRegions` unions (a set either device can add to),
+     `streakGoal` takes the higher of the two (a goal, not a total, but still "never lose the more
+     ambitious pick"), and `difficulty` has no bigger-is-better direction at all, so whichever side
+     actually chose one away from the default wins, and an existing cloud choice wins a genuine
+     conflict. `src/storage/practicePrefs.js` (the local AsyncStorage cache) and
+     `src/storage/cloudPracticePrefs.js` (`fetchPracticePrefs()`/`pushPracticePrefs()`/
+     `migrateLocalPracticePrefsToCloud()`) are the IO, reading/writing the profile row's own three
+     columns rather than a second table. Nothing calls any of this yet — there is still no settings
+     UI — so it's covered by pure unit tests only (`test/engine.test.js`), not a browser check; the
+     migration adds a column with no grant/RLS change, so it carries no privilege-escalation risk
+     for `supabase db reset` to catch the way a new table's RLS would. *(Next up: step 3 — the
+     Profile UI to actually set focus regions/difficulty/streak goal, which is what finally wires
+     this plumbing to a player's taps.)*
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`

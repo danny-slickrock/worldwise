@@ -163,6 +163,13 @@ src/
   game/practicePrefsPolicy.js # PURE M2.8 step 1: practice-preferences shape (focusRegions/difficulty/
                            #   streakGoal) + normalizePracticePrefs(). Reuses learningPaths.js's
                            #   regions and constants.js's DIFFICULTIES rather than new catalogs
+  game/practicePrefsSync.js # PURE M2.8 step 2: practice prefs ⇄ the profiles row's own
+                           #   difficulty_pref/focus_regions/streak_goal columns (no new join
+                           #   table — difficulty_pref/focus_regions were seeded into profiles back
+                           #   in M2.1 for this exact milestone). mergePracticePrefs() gives each
+                           #   field its own merge rule rather than one blanket policy: focusRegions
+                           #   unions, streakGoal takes the higher value, difficulty keeps whichever
+                           #   side actually chose one away from the default
   game/interestPrompt.js   # PURE M2.3.6 step 6: the sign-up prompt gate — asked once, a skip counts
                            #   as answered, never re-nagged. Also owns Skip-vs-Cancel for the screen's
                            #   two contexts (step 7)
@@ -250,6 +257,12 @@ src/
   storage/cloudProgress.js # Cloud IO: upsert stats, log results, migrateLocalToCloud()
   storage/interests.js     # M2.3.6: AsyncStorage interest-selection cache
   storage/cloudInterests.js # M2.3.6 IO: fetch/push profile_interests rows, migrateLocalInterestsToCloud()
+  storage/practicePrefs.js # M2.8 step 2: AsyncStorage practice-preferences cache (focusRegions/
+                           #   difficulty/streakGoal), same shape as storage/interests.js
+  storage/cloudPracticePrefs.js # M2.8 step 2 IO: fetchPracticePrefs()/pushPracticePrefs() read/
+                           #   update the signed-in player's own profiles row (difficulty_pref/
+                           #   focus_regions/streak_goal) — never a second table — plus
+                           #   migrateLocalPracticePrefsToCloud() for first sign-in
   storage/cloudLeaderboard.js # M2.6 step 3 IO: fetchGlobalLeaderboard(user, client) reads
                            #   public.leaderboard_global — signed-in only, the view grants
                            #   `authenticated` alone. Read by LeaderboardScreen (M2.6 step 4).
@@ -1005,8 +1018,21 @@ work. It now has an ordered sub-checklist, and step 1 — the pure preferences d
 streakGoal }`, reusing `learningPaths.js`'s regions and `constants.js`'s `DIFFICULTIES` rather than
 new catalogs, with new `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX` bounds in `constants.js` for the one
 genuinely new value — is done, mirroring the "pure model first" order M2.4/M2.5/M2.6/M2.7 each
-started with. *(Next up: step 2 — the offline-first storage/sync seam, mirroring M2.3.6's
-`storage/interests.js` → `storage/cloudInterests.js` → `game/interestSync.js` shape.)*
+started with. **Step 2 — the offline-first storage/sync seam — is also done.** It mirrors M2.3.6's
+`storage/interests.js` → `storage/cloudInterests.js` → `game/interestSync.js` shape, but with one
+real difference the schema work turned up: `profiles` already carries `difficulty_pref`/
+`focus_regions` columns, seeded in the M2.1 migration as a deliberate seam for this exact
+milestone, so there's no new join table the way `profile_interests` was — only `streak_goal` is
+genuinely new (`supabase/migrations/20261018130615_add_profile_streak_goal.sql`, a nullable column
+with a 1–365 check constraint; no new grants/RLS needed, since the M2.1 migration's existing
+`authenticated` CRUD grant and "own profile" policy on `profiles` already cover it).
+`src/game/practicePrefsSync.js` is the pure translation plus `mergePracticePrefs()`, which gives
+each field its own first-sign-in merge rule rather than one blanket policy (focusRegions unions,
+streakGoal takes the higher value, difficulty keeps whichever side chose one away from the
+default); `src/storage/practicePrefs.js`/`src/storage/cloudPracticePrefs.js` are the IO. Nothing
+calls any of it yet — there's still no settings UI, so this is pure-unit-tested only, not a
+browser check. *(Next up: step 3 — the Profile UI that actually sets focus regions/difficulty/
+streak goal.)*
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

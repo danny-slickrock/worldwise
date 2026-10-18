@@ -183,6 +183,11 @@ import {
   normalizePracticePrefs,
 } from "../src/game/practicePrefsPolicy";
 import { STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../src/constants";
+import {
+  practicePrefsPatchFromPrefs,
+  practicePrefsFromProfileRow,
+  mergePracticePrefs,
+} from "../src/game/practicePrefsSync";
 import { computeNodeStates } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
@@ -7389,6 +7394,78 @@ check(
     normalizePracticePrefs({ streakGoal: "30" }).streakGoal === null &&
     normalizePracticePrefs({ streakGoal: 9999 }).streakGoal === null,
   "normalizePracticePrefs falls back to no goal on an invalid streak goal"
+);
+
+console.log("Practice preferences cloud sync (M2.8 step 2)");
+check(
+  JSON.stringify(
+    practicePrefsPatchFromPrefs({ focusRegions: ["Oceania", "Africa"], difficulty: "hard", streakGoal: 30 })
+  ) ===
+    JSON.stringify({ difficulty_pref: "hard", focus_regions: ["Africa", "Oceania"], streak_goal: 30 }),
+  "practicePrefsPatchFromPrefs maps to the profiles row's own column names, normalized"
+);
+check(
+  JSON.stringify(practicePrefsPatchFromPrefs({ difficulty: "extreme", streakGoal: -5 })) ===
+    JSON.stringify({
+      difficulty_pref: DEFAULT_PRACTICE_PREFS.difficulty,
+      focus_regions: [],
+      streak_goal: null,
+    }),
+  "practicePrefsPatchFromPrefs falls back to defaults for invalid input, like normalizePracticePrefs"
+);
+
+check(
+  JSON.stringify(practicePrefsFromProfileRow(null)) === JSON.stringify(DEFAULT_PRACTICE_PREFS),
+  "practicePrefsFromProfileRow(null) falls back to the defaults (no profile row read yet)"
+);
+check(
+  JSON.stringify(
+    practicePrefsFromProfileRow({ difficulty_pref: "easy", focus_regions: ["Asia"], streak_goal: 7 })
+  ) === JSON.stringify({ focusRegions: ["Asia"], difficulty: "easy", streakGoal: 7 }),
+  "practicePrefsFromProfileRow reads the profiles row's own columns back into the prefs shape"
+);
+{
+  const prefs = { focusRegions: ["Europe", "Asia"], difficulty: "medium", streakGoal: 14 };
+  check(
+    JSON.stringify(practicePrefsFromProfileRow(practicePrefsPatchFromPrefs(prefs))) ===
+      JSON.stringify(normalizePracticePrefs(prefs)),
+    "a patch built from prefs reads back to the same normalized prefs (round-trip)"
+  );
+}
+
+check(
+  JSON.stringify(mergePracticePrefs({ focusRegions: ["Africa"] }, null)) ===
+    JSON.stringify(normalizePracticePrefs({ focusRegions: ["Africa"] })),
+  "mergePracticePrefs with no cloud row keeps local prefs as-is"
+);
+check(
+  JSON.stringify(mergePracticePrefs({ focusRegions: ["Africa"] }, { focusRegions: ["Asia"] }).focusRegions) ===
+    JSON.stringify(["Africa", "Asia"]),
+  "mergePracticePrefs unions focusRegions from both sides rather than picking one"
+);
+check(
+  mergePracticePrefs({ streakGoal: 10 }, { streakGoal: 30 }).streakGoal === 30,
+  "mergePracticePrefs takes the higher streakGoal when both sides set one"
+);
+check(
+  mergePracticePrefs({ streakGoal: 30 }, { streakGoal: null }).streakGoal === 30,
+  "mergePracticePrefs keeps local's streakGoal when the cloud has none"
+);
+check(
+  mergePracticePrefs({ streakGoal: null }, { streakGoal: 10 }).streakGoal === 10,
+  "mergePracticePrefs takes the cloud's streakGoal when local has none"
+);
+check(
+  mergePracticePrefs({ difficulty: "easy" }, { difficulty: "hard" }).difficulty === "hard",
+  "mergePracticePrefs prefers the cloud's difficulty when both sides chose a non-default one"
+);
+check(
+  mergePracticePrefs({ difficulty: "easy" }, {}).difficulty === "easy",
+  "mergePracticePrefs keeps local's difficulty when the cloud is still at the default"
+);
+check(
+  mergePracticePrefs({}, { difficulty: "hard" }).difficulty === "hard",
+  "mergePracticePrefs takes the cloud's difficulty when local is still at the default"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on
