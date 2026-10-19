@@ -66,6 +66,10 @@ export const ROUTES = {
   countryIndex: { tab: "explore", root: false, chrome: true },
   interests: { tab: "profile", root: false, chrome: true },
   achievements: { tab: "profile", root: false, chrome: true },
+  // M2.8 step 3: the practice-preferences editor (focus regions/difficulty/
+  // streak goal). Owned by Profile, same shape as Interests — a settings
+  // surface reached from a Profile row, not a tab root.
+  practicePrefs: { tab: "profile", root: false, chrome: true },
   // The leaderboard (M2.6 step 4). Owned by Profile like Achievements — both
   // are about where you stand, one against your own history, one against
   // everyone else's.
@@ -234,6 +238,8 @@ export function routeToPath(route) {
       return "/countries";
     case "interests":
       return "/interests";
+    case "practicePrefs":
+      return "/practice-prefs";
     case "achievements":
       return "/achievements";
     case "leaderboard":
@@ -299,6 +305,8 @@ export function pathToRoute(path) {
       return { name: "countryIndex" };
     case "interests":
       return { name: "interests" };
+    case "practice-prefs":
+      return { name: "practicePrefs" };
     case "achievements":
       return { name: "achievements" };
     case "leaderboard":

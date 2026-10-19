@@ -46,6 +46,13 @@ import {
 import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloudInterests";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
+import { DEFAULT_PRACTICE_PREFS } from "./src/game/practicePrefsPolicy";
+import { loadPracticePrefs, savePracticePrefs } from "./src/storage/practicePrefs";
+import {
+  pushPracticePrefs,
+  migrateLocalPracticePrefsToCloud,
+} from "./src/storage/cloudPracticePrefs";
+import PracticePrefsScreen from "./src/screens/PracticePrefsScreen";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
 import { hasTiers } from "./src/data/difficulties";
 import { isProMode } from "./src/game/entitlements";
@@ -128,6 +135,7 @@ function AppShell() {
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
   const [interests, setInterests] = useState([]);
+  const [practicePrefs, setPracticePrefs] = useState(DEFAULT_PRACTICE_PREFS);
   // M2.3.6 prompt gate. `askedAt` is the persisted "we've asked once" flag;
   // `interestsSettled` says the cloud merge below has finished, so the gate
   // judges a real selection rather than the empty array it starts as.
@@ -176,17 +184,22 @@ function AppShell() {
 
   useEffect(() => {
     let active = true;
-    Promise.all([loadProgress(), loadSettings(), loadInterests(), loadInterestsAskedAt()]).then(
-      ([savedProgress, savedSettings, savedInterests, savedAskedAt]) => {
-        if (active) {
-          setProgress(savedProgress);
-          setSettings(savedSettings);
-          setInterests(savedInterests);
-          setAskedAt(savedAskedAt);
-          setHydrated(true);
-        }
+    Promise.all([
+      loadProgress(),
+      loadSettings(),
+      loadInterests(),
+      loadInterestsAskedAt(),
+      loadPracticePrefs(),
+    ]).then(([savedProgress, savedSettings, savedInterests, savedAskedAt, savedPracticePrefs]) => {
+      if (active) {
+        setProgress(savedProgress);
+        setSettings(savedSettings);
+        setInterests(savedInterests);
+        setAskedAt(savedAskedAt);
+        setPracticePrefs(savedPracticePrefs);
+        setHydrated(true);
       }
-    );
+    });
     return () => {
       active = false;
     };
@@ -207,6 +220,11 @@ function AppShell() {
   useEffect(() => {
     if (hydrated) saveInterests(interests);
   }, [hydrated, interests]);
+
+  // Same offline-first rule again: local is the cache signed in or out.
+  useEffect(() => {
+    if (hydrated) savePracticePrefs(practicePrefs);
+  }, [hydrated, practicePrefs]);
 
   // On sign-in, fold this device's progress into the cloud once (max-merge, so
   // a returning player can't lose their higher totals), then adopt what comes
@@ -236,6 +254,20 @@ function AppShell() {
       // Whether or not it returned anything, the selection is now as complete
       // as it's going to get — the prompt gate below can safely judge it.
       setInterestsSettled(true);
+    });
+    return () => {
+      active = false;
+    };
+  }, [user, hydrated]);
+
+  // Same merge-once-on-sign-in seam for practice preferences (M2.8 step 2's
+  // own migrated flag), independent of the interests/progress migrations —
+  // a player can set practice preferences long before touching either.
+  useEffect(() => {
+    if (!user || !hydrated) return undefined;
+    let active = true;
+    migrateLocalPracticePrefsToCloud(user).then((result) => {
+      if (active && result?.prefs) setPracticePrefs(result.prefs);
     });
     return () => {
       active = false;
@@ -301,6 +333,14 @@ function AppShell() {
       setInterests([]);
       if (roundSinks(user).cloud) pushInterests(user, []);
     }
+    goBack();
+  }
+
+  // Same sink rule as interests: local always gets the write, cloud only
+  // when there's a signed-in owner for the row.
+  function handlePracticePrefsSave(next) {
+    setPracticePrefs(next);
+    if (roundSinks(user).cloud) pushPracticePrefs(user, next);
     goBack();
   }
 
@@ -510,6 +550,18 @@ function AppShell() {
           />
         );
 
+      // M2.8 step 3 — the practice-preferences editor, reached from a
+      // "Practice" row on Profile, seeded with whatever's already set so it
+      // doubles as the edit surface for a returning player.
+      case "practicePrefs":
+        return (
+          <PracticePrefsScreen
+            prefs={practicePrefs}
+            onExit={goBack}
+            onSave={handlePracticePrefsSave}
+          />
+        );
+
       // M2.5 step 3 — the hero screen: locked/unlocked state + progress bars
       // via achievementPolicy.js, fed by local progress (streak) and cloud
       // round history (rounds/perfect/modes), same as ProfileScreen/HomeScreen.
@@ -526,10 +578,12 @@ function AppShell() {
           <ProfileScreen
             progress={progress}
             interests={interests}
+            practicePrefs={practicePrefs}
             onOpenInterests={() => {
               setInterestsOrigin(ORIGIN_EDIT);
               go({ name: "interests" });
             }}
+            onOpenPracticePrefs={() => go({ name: "practicePrefs" })}
             onOpenAchievements={() => go({ name: "achievements" })}
             onOpenLeaderboard={() => go({ name: "leaderboard" })}
             onOpenReview={() => go({ name: "review" })}

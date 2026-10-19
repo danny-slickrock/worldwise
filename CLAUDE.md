@@ -316,6 +316,12 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
   screens/ProfileScreen.js # Signed-in identity + synced stats
   screens/SignInScreen.js  # Magic link + Continue with Google
   screens/InterestsScreen.js # M2.3.6 step 1: "what are you curious about?" multi-select + Skip
+  screens/PracticePrefsScreen.js # M2.8 step 3: "how do you want to practice?" — focus-region chips,
+                           #   a difficulty chip row, and a streak-goal stepper, reached from a
+                           #   "Practice" row on Profile. Sibling to InterestsScreen.js (same
+                           #   pick/Done shape) but a separate screen and route — regions/difficulty/
+                           #   goal are a distinct system from topic interests, per CLAUDE.md's M2.8
+                           #   framing, even though both are chip pickers over a catalog
   screens/CountryPageScreen.js # M2.2 country page: outline hero, facts, neighbors, related games
   screens/CountryIndexScreen.js # M2.2 browsable/searchable country index
   screens/WorldMapScreen.js # M2.3: tap-to-explore world map with pinch/scroll-zoom + drag-to-pan

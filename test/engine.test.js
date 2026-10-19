@@ -3026,6 +3026,7 @@ const roundTrips = [
   { name: "country", code: "BRA" },
   { name: "countryIndex" },
   { name: "interests" },
+  { name: "practicePrefs" },
   { name: "achievements" },
   { name: "leaderboard" },
   { name: "quiz", mode: "shape", difficulty: "easy", timed: true },

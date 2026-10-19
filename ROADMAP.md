@@ -232,9 +232,12 @@ M2.7 step 8 (Oceans) end to end — and with it, M2.7 — Game library expansion
 M2.7's own entry below for the full writeup. **Next up:** M2.7 is complete, so the daily build
 moved on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
 which now has an ordered sub-checklist. Step 1 (the pure preferences data model + policy,
-`src/game/practicePrefsPolicy.js`) is done, and **step 2 (the offline-first storage/sync seam) is
-now also done** — see M2.8's own entry below. *(Next up: step 3 — the Profile UI to actually set
-focus regions/difficulty/streak goal, which is what finally calls the step 2 plumbing.)*
+`src/game/practicePrefsPolicy.js`) is done, step 2 (the offline-first storage/sync seam) is done,
+and **step 3 (the Profile UI — `src/screens/PracticePrefsScreen.js` — that actually sets focus
+regions/difficulty/streak goal) is now also done**, verified in a real browser — see M2.8's own
+entry below. *(Next up: nothing in the engine reads these preferences yet, so wiring
+`focusRegions`/`difficulty` into round-building — and `streakGoal` into the streak UI as a target —
+is the milestone's next scoped chunk.)*
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2358,9 +2361,35 @@ teaching *how the world works*, not just *where things are*.
      columns rather than a second table. Nothing calls any of this yet — there is still no settings
      UI — so it's covered by pure unit tests only (`test/engine.test.js`), not a browser check; the
      migration adds a column with no grant/RLS change, so it carries no privilege-escalation risk
-     for `supabase db reset` to catch the way a new table's RLS would. *(Next up: step 3 — the
-     Profile UI to actually set focus regions/difficulty/streak goal, which is what finally wires
-     this plumbing to a player's taps.)*
+     for `supabase db reset` to catch the way a new table's RLS would.
+  3. ✅ **The Profile UI.** `src/screens/PracticePrefsScreen.js` — focus-region chips (multi-select,
+     `LEARNING_PATH_REGIONS`), a difficulty chip row (`constants.js`'s `DIFFICULTIES`), and a streak-
+     goal stepper (±1, clamped to `STREAK_GOAL_MIN`/`STREAK_GOAL_MAX`, with a "no goal set" entry
+     state and a Clear action), reached from a new "Practice" row on Profile — deliberately separate
+     from the existing "Interests" row even though both are chip pickers over a catalog, because
+     CLAUDE.md draws the same line M2.3.6 already established: Interests is *what you're curious
+     about*, this is *how you want to practice*. Edits are local state until "Done" commits them,
+     the same "pick, then Continue" shape `InterestsScreen` uses; Back discards without saving, the
+     same "Cancel leaves existing picks alone" contract `resolveSecondaryAction()` gives the
+     Interests edit surface. A new `practicePrefs` route (`src/game/navigation.js`, owned by the
+     Profile tab, same shape as `interests`/`achievements`) wires `App.js`'s already-built offline-
+     first plumbing to it: hydrate from `storage/practicePrefs.js` on load, migrate-once into the
+     cloud on sign-in via `migrateLocalPracticePrefsToCloud()`, and push on save via
+     `pushPracticePrefs()` — all three following the exact pattern the interests seam already uses,
+     since steps 1-2 built every piece this needed. The Profile row shows a live one-line summary
+     ("2 regions · Medium · 9-day goal", each clause only appearing when it differs from the
+     default) rather than a static label, mirroring the Interests row's own "N selected" readout.
+     Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env, a
+     spoofed signed-in session in `localStorage`): the Profile row read "Not set — tap to choose",
+     opening it rendered the three pickers, selecting two regions/Medium/a 9-day goal and tapping
+     Done returned to Profile reading "2 regions · Medium · 9-day goal", and the local cache held
+     `{"focusRegions":["Africa","Asia"],"difficulty":"medium","streakGoal":9}`. *(Next up: nothing
+     in the engine actually reads these preferences yet — `buildRound()` still always draws from
+     every region at whatever difficulty a caller passes it. Wiring `focusRegions`/`difficulty` into
+     round-building, and `streakGoal` into the streak UI as a target rather than just a stored
+     number, is the milestone's next scoped chunk; "recommendations for weak areas" in M2.8's own
+     one-line pitch is `ReviewScreen` (M2.12 step 9), already shipped, so that may already satisfy
+     it rather than needing new work.)*
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`

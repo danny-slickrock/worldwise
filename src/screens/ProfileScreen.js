@@ -12,6 +12,7 @@ import { fetchProgress, fetchRoundResults } from "../storage/cloudProgress";
 import { getSyncState, subscribeSyncState } from "../game/syncStore";
 import { describeSyncState } from "../game/syncStatus";
 import { streakStatus, dayKey } from "../game/progress";
+import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { computeAchievements } from "../game/achievementPolicy";
 import { reviewSummary } from "../game/reviewPolicy";
 import SignInScreen from "./SignInScreen";
@@ -19,7 +20,9 @@ import SignInScreen from "./SignInScreen";
 export default function ProfileScreen({
   progress,
   interests,
+  practicePrefs,
   onOpenInterests,
+  onOpenPracticePrefs,
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
@@ -39,8 +42,10 @@ export default function ProfileScreen({
       user={user}
       localProgress={progress}
       interests={interests}
+      practicePrefs={practicePrefs}
       onSignOut={signOut}
       onOpenInterests={onOpenInterests}
+      onOpenPracticePrefs={onOpenPracticePrefs}
       onOpenAchievements={onOpenAchievements}
       onOpenLeaderboard={onOpenLeaderboard}
       onOpenReview={onOpenReview}
@@ -52,8 +57,10 @@ function SignedIn({
   user,
   localProgress,
   interests = [],
+  practicePrefs,
   onSignOut,
   onOpenInterests,
+  onOpenPracticePrefs,
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
@@ -165,6 +172,20 @@ function SignedIn({
             </>
           )}
 
+          {/* Practice preferences (M2.8 step 3) — regions/difficulty/streak
+              goal, sitting beside Interests because both live on this one
+              "preferences" surface, but they're separate systems: Interests
+              is what you're curious about, this is how you want to practice. */}
+          {onOpenPracticePrefs && (
+            <Pressable onPress={onOpenPracticePrefs} style={styles.interestsRow} hitSlop={4}>
+              <View style={styles.interestsBody}>
+                <Text style={styles.interestsLabel}>Practice</Text>
+                <Text style={styles.interestsValue}>{summarizePracticePrefs(practicePrefs)}</Text>
+              </View>
+              <Text style={styles.interestsChevron}>›</Text>
+            </Pressable>
+          )}
+
           {onOpenAchievements && (
             <Pressable onPress={onOpenAchievements} style={styles.interestsRow} hitSlop={4}>
               <View style={styles.interestsBody}>
@@ -252,6 +273,24 @@ function SyncNotice({ state }) {
       )}
     </View>
   );
+}
+
+// A one-line readout of the three practice fields, each only shown when it
+// differs from "unset" — an empty focus list, the default difficulty, and no
+// streak goal all collapse to the same "tap to choose" invitation the
+// Interests row already uses for its own empty state.
+function summarizePracticePrefs(prefs) {
+  if (!prefs) return "Not set — tap to choose";
+  const parts = [];
+  if (prefs.focusRegions?.length) {
+    parts.push(`${prefs.focusRegions.length} region${prefs.focusRegions.length === 1 ? "" : "s"}`);
+  }
+  if (prefs.difficulty && prefs.difficulty !== DEFAULT_DIFFICULTY) {
+    const label = DIFFICULTIES.find((d) => d.key === prefs.difficulty)?.label;
+    if (label) parts.push(label);
+  }
+  if (prefs.streakGoal) parts.push(`${prefs.streakGoal}-day goal`);
+  return parts.length ? parts.join(" · ") : "Not set — tap to choose";
 }
 
 function Stat({ label, value, animated = false }) {
