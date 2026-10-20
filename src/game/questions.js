@@ -548,6 +548,24 @@ function narrowToCodes(pool, only, count) {
   return filled;
 }
 
+// M2.8 step 4: narrow a pool to the player's chosen focus regions.
+//
+// A PREFERENCE, not a filter the player explicitly asked this one round to
+// obey the way `only` (Review's weak-spot practice) is — so it falls back to
+// the untouched pool whenever the focus can't fill a round, rather than
+// repeating a short list the way narrowToCodes() does for an explicit "only
+// these" request. A country.region miss (a region picked that this mode's
+// own pool excludes every country from — not reachable with today's data,
+// since every LEARNING_PATH_REGIONS value has far more than ROUND_LENGTH
+// countries in every mode's pool, but still the honest fallback) reads the
+// same way: play the full pool rather than fail the round.
+function narrowToRegions(pool, regions, count) {
+  if (!Array.isArray(regions) || regions.length === 0) return pool;
+  const wanted = new Set(regions);
+  const narrowed = pool.filter((c) => wanted.has(c.region));
+  return narrowed.length >= count ? narrowed : pool;
+}
+
 // Shape Expert's target pool: countries that are BOTH obscure and genuinely
 // confusable by outline — the tier's own promise, "Lookalike shapes, obscure
 // countries, blind."
@@ -607,6 +625,9 @@ const CAPITAL_NAMES = COUNTRIES.map((c) => c.capital);
 // different axes and this signature is where that stays visible: a round can
 // be "type it blind" over famous countries, or "pick from four" over obscure
 // ones, and neither implies the other.
+// `opts.regions` (M2.8 step 4) is a third, orthogonal axis again: the
+// player's own practice-preferences focus (practicePrefsPolicy.js), applied
+// as a soft preference rather than a hard filter — see narrowToRegions().
 //
 // The tier is resolved through effectiveTier(), so a tier whose interaction
 // isn't built yet quietly produces the multiple-choice question shape rather
@@ -630,6 +651,13 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
 
   const tiered = poolFor(mode, difficulty);
   const wide = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  // M2.8 step 4: the player's own focus-region preference (practicePrefsPolicy.js).
+  // Skipped entirely when `only` is also set — "practice your weak spots" is
+  // an explicit, complete request from the caller (Review), and a passive
+  // preference set elsewhere should never silently drop a weak country for
+  // sitting outside the player's focus regions.
+  const hasOnly = Array.isArray(opts.only) && opts.only.length > 0;
+  const regioned = hasOnly ? wide : narrowToRegions(wide, opts.regions, count);
   // M2.12 step 9: "practice your weak spots" hands in the codes the Review
   // surface decided need work, and the round is built from those alone.
   //
@@ -639,7 +667,7 @@ export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_
   // about is dropped here rather than producing an unanswerable question. Too
   // few survivors falls back to the full pool — a round slightly off-target
   // beats a round with holes in it.
-  const base = narrowToCodes(wide, opts.only, count);
+  const base = narrowToCodes(regioned, opts.only, count);
   const pool = expertShapePool(mode, tier, base, count) ?? base;
   const targets = sample(pool, count);
   return targets.map((t) => buildOne(mode, t, tier));

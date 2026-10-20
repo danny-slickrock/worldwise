@@ -233,11 +233,12 @@ M2.7's own entry below for the full writeup. **Next up:** M2.7 is complete, so t
 moved on to the next lowest-numbered milestone with unblocked work: **M2.8 — Personalization**,
 which now has an ordered sub-checklist. Step 1 (the pure preferences data model + policy,
 `src/game/practicePrefsPolicy.js`) is done, step 2 (the offline-first storage/sync seam) is done,
-and **step 3 (the Profile UI — `src/screens/PracticePrefsScreen.js` — that actually sets focus
-regions/difficulty/streak goal) is now also done**, verified in a real browser — see M2.8's own
-entry below. *(Next up: nothing in the engine reads these preferences yet, so wiring
-`focusRegions`/`difficulty` into round-building — and `streakGoal` into the streak UI as a target —
-is the milestone's next scoped chunk.)*
+step 3 (the Profile UI — `src/screens/PracticePrefsScreen.js` — that actually sets focus
+regions/difficulty/streak goal) is done, and **step 4 (wiring `focusRegions`/`difficulty` into
+round-building — `buildRound()`'s new `narrowToRegions()`, threaded from `App.js`'s `practicePrefs`
+through `QuizScreen`) is now also done**, verified in a real browser — see M2.8's own entry below.
+*(Next up: `streakGoal` still has no UI reading it as a target, which is the milestone's last
+scoped chunk.)*
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -2383,13 +2384,30 @@ teaching *how the world works*, not just *where things are*.
      spoofed signed-in session in `localStorage`): the Profile row read "Not set — tap to choose",
      opening it rendered the three pickers, selecting two regions/Medium/a 9-day goal and tapping
      Done returned to Profile reading "2 regions · Medium · 9-day goal", and the local cache held
-     `{"focusRegions":["Africa","Asia"],"difficulty":"medium","streakGoal":9}`. *(Next up: nothing
-     in the engine actually reads these preferences yet — `buildRound()` still always draws from
-     every region at whatever difficulty a caller passes it. Wiring `focusRegions`/`difficulty` into
-     round-building, and `streakGoal` into the streak UI as a target rather than just a stored
-     number, is the milestone's next scoped chunk; "recommendations for weak areas" in M2.8's own
-     one-line pitch is `ReviewScreen` (M2.12 step 9), already shipped, so that may already satisfy
-     it rather than needing new work.)*
+     `{"focusRegions":["Africa","Asia"],"difficulty":"medium","streakGoal":9}`.
+  4. ✅ **Wire `focusRegions`/`difficulty` into round-building.** Until now nothing in the engine
+     actually read these preferences — `buildRound()` always drew from every region at whatever
+     difficulty a caller passed it, so the screen built in step 3 had no effect on an actual round.
+     `src/game/questions.js` gains `narrowToRegions(pool, regions, count)`, the same shape
+     `narrowToCodes()` (Review's weak-spot practice) already uses, but a soft PREFERENCE rather than
+     an explicit request: it falls back to the untouched pool whenever the focus can't fill a round,
+     rather than repeating a short list the way `narrowToCodes()` does. It's skipped entirely when
+     `only` is also set, so a passive region preference can never silently drop a weak country Review
+     explicitly asked to practice for sitting outside it. `buildRound()`'s `opts` gains a third,
+     orthogonal `regions` field alongside `tier`/`difficulty`. `App.js`'s `openGame()` (a plain round
+     from Home) and `startTieredRound()` (the tier-menu path) both now pass `practicePrefs.difficulty`/
+     `practicePrefs.focusRegions` through `openQuiz()`'s new `regions` parameter into the `quiz`
+     route, and `QuizScreen` gets a new `regions` prop threaded straight into `buildRound()`'s opts —
+     "Play with X" and Review's practice-weak-spots round are unaffected, since neither calls
+     `openGame`/`startTieredRound`. Pure unit tests cover the preference, the fallback-when-too-thin
+     case, the no-focus case, and the `only`-wins-over-`regions` interaction. Verified in a real
+     browser (Playwright/Chromium, static export, placeholder Supabase env): seeded
+     `worldwise.practicePrefs.v1` with an Africa-only focus, started a plain Flag Guesser round, and
+     every flag request the round made (Seychelles, Gambia) was genuinely African; the same run with
+     no focus set spanned Europe and Oceania, confirming the default (unfocused) behavior is
+     unchanged. *(Next up: `streakGoal` still has no UI reading it as a target — the streak display
+     only shows the current count, never "3 of your 9-day goal". That's the milestone's next scoped
+     chunk, closing out M2.8 end to end.)*
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`

@@ -59,6 +59,10 @@ export default function QuizScreen({
   // M2.12 step 9: restrict the round to these country codes ("practice your
   // weak spots"). Null means the ordinary pool.
   only = null,
+  // M2.8 step 4: the player's own focus-region preference
+  // (practicePrefsPolicy.js), threaded through to buildRound()'s
+  // narrowToRegions(). Null/empty means every region, today's behavior.
+  regions = null,
   timed = false,
   soundEnabled = true,
   onToggleSound,
@@ -82,8 +86,8 @@ export default function QuizScreen({
     // than the mode itself, so it takes the subject rather than the difficulty
     // tier — "hard mode Brazil" isn't a thing; Brazil is the whole pool.
     if (mode === "country") return countryCode ? buildCountryRound(countryCode) : [];
-    return buildRound(mode, difficulty, ROUND_LENGTH, { tier, only });
-  }, [mode, difficulty, countryCode, tier, only]);
+    return buildRound(mode, difficulty, ROUND_LENGTH, { tier, only, regions });
+  }, [mode, difficulty, countryCode, tier, only, regions]);
   const difficultyLabel = DIFFICULTIES.find((d) => d.key === difficulty)?.label;
   // What the player PICKED, not what the round fell back to — a tier whose
   // interaction isn't built yet still reads as the tier they chose, because

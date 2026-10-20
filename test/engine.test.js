@@ -5464,6 +5464,49 @@ check(
   "when there ARE enough weak countries, the round is drawn only from them"
 );
 
+console.log("\nFocus-region preferences in round-building (M2.8 step 4)");
+
+// A focus-region round draws only from the chosen regions — practicePrefs'
+// soft preference, not Review's explicit "only these codes" request, but the
+// same buildRound() opts seam.
+const europeOnly = buildRound("flag", "all", ROUND_LENGTH, { regions: ["Europe"] });
+check(
+  europeOnly.every((q) => q.country.region === "Europe"),
+  "a one-region focus draws only from that region"
+);
+const twoRegions = buildRound("flag", "all", ROUND_LENGTH, { regions: ["Europe", "Oceania"] });
+check(
+  twoRegions.every((q) => ["Europe", "Oceania"].includes(q.country.region)),
+  "a multi-region focus draws only from those regions"
+);
+const manyRuns = Array.from({ length: 20 }, () =>
+  buildRound("flag", "all", ROUND_LENGTH, { regions: [] })
+).flat();
+check(
+  new Set(manyRuns.map((q) => q.country.region)).size > 1,
+  "an empty focus draws from every region, unchanged from today's behavior"
+);
+// A region focus too narrow for this MODE's own pool (Oceania has fewer
+// shape-outline countries than a round needs) falls back to the full pool
+// rather than failing the round — the same honest fallback narrowToCodes()
+// uses for an unaskable weak set, just triggered by a preference instead of
+// an explicit request.
+check(
+  buildRound("shape", "all", ROUND_LENGTH, { regions: ["Oceania"] }).length === ROUND_LENGTH,
+  "a focus region too thin for this mode's pool falls back to the full pool"
+);
+// Region focus and the Review surface's `only` can both be set at once
+// without crashing — `only`'s own codes win when the two disagree, since it
+// is the more specific, explicit request.
+const regionAndOnly = buildRound("flag", "all", ROUND_LENGTH, {
+  regions: ["Europe"],
+  only: ["jp"], // Japan is Asia, outside the region focus
+});
+check(
+  regionAndOnly.every((q) => q.country.code === "jp"),
+  "an explicit `only` set wins over a broader region focus"
+);
+
 // --- summary ---
 check(reviewSummary([], { now: NOW }).state === "empty", "no history reads as empty");
 check(

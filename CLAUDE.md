@@ -1035,10 +1035,22 @@ with a 1–365 check constraint; no new grants/RLS needed, since the M2.1 migrat
 `src/game/practicePrefsSync.js` is the pure translation plus `mergePracticePrefs()`, which gives
 each field its own first-sign-in merge rule rather than one blanket policy (focusRegions unions,
 streakGoal takes the higher value, difficulty keeps whichever side chose one away from the
-default); `src/storage/practicePrefs.js`/`src/storage/cloudPracticePrefs.js` are the IO. Nothing
-calls any of it yet — there's still no settings UI, so this is pure-unit-tested only, not a
-browser check. *(Next up: step 3 — the Profile UI that actually sets focus regions/difficulty/
-streak goal.)*
+default); `src/storage/practicePrefs.js`/`src/storage/cloudPracticePrefs.js` are the IO.
+**Step 3 — the Profile UI, `src/screens/PracticePrefsScreen.js` — is also done**: focus-region
+chips, a difficulty chip row, and a streak-goal stepper, reached from a "Practice" row on Profile,
+verified in a real browser. **Step 4 is now also done: `buildRound()` actually reads these
+preferences.** `src/game/questions.js` gains `narrowToRegions(pool, regions, count)` — a soft
+PREFERENCE, unlike Review's `only` (an explicit "these exact codes" request), so it falls back to
+the untouched pool rather than repeating a thin focus, and is skipped outright whenever `only` is
+also set so a passive focus can never swallow a weak-spot practice request. `App.js`'s `openGame()`
+and `startTieredRound()` now pass `practicePrefs.difficulty`/`practicePrefs.focusRegions` through a
+new `regions` parameter on `openQuiz()` into the `quiz` route, and `QuizScreen` threads a new
+`regions` prop straight into `buildRound()`'s opts. Verified in a real browser (Playwright,
+static export): seeding `worldwise.practicePrefs.v1` with an Africa-only focus and starting a plain
+Flag Guesser round made only African flag requests (Seychelles, Gambia); the same run with no
+focus set spanned Europe and Oceania, confirming the default is unchanged. *(Next up: `streakGoal`
+still has no UI reading it as a target — the streak display only shows the current count, never "3
+of your 9-day goal" — which is the milestone's last scoped chunk.)*
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

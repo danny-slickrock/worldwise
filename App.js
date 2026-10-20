@@ -358,15 +358,29 @@ function AppShell() {
   }
 
   const openCountry = (code) => go({ name: "country", code });
-  const openQuiz = (mode, difficulty, timed, countryCode = null, tier = null) =>
-    go({ name: "quiz", mode, difficulty, timed, countryCode, tier, attempt: 0 });
+  // M2.8 step 4: `regions` threads the player's own focus-region preference
+  // (practicePrefsPolicy.js) through to QuizScreen → buildRound()'s
+  // narrowToRegions(). Defaults to null (every region) for the one caller
+  // that intentionally bypasses it — "Play with X" always asks about the
+  // subject country regardless of focus.
+  const openQuiz = (mode, difficulty, timed, countryCode = null, tier = null, regions = null) =>
+    go({ name: "quiz", mode, difficulty, timed, countryCode, tier, regions, attempt: 0 });
 
   // M2.12 step 2: picking a game from Home now opens its difficulty menu
   // rather than starting a round. A mode with no menu (Daily, a country
   // round) still goes straight to the quiz — hasTiers() is the one place that
   // decides, so neither caller carries a list of exceptions.
-  const openGame = (mode, difficulty, timed) =>
-    hasTiers(mode) ? go({ name: "gameSetup", mode }) : openQuiz(mode, difficulty, timed);
+  //
+  // M2.8 step 4: the pool difficulty and focus regions a plain round draws
+  // from are now the player's own practice preferences rather than always
+  // "all regions, all difficulties" — HomeScreen still passes its own
+  // `difficulty` argument (always DEFAULT_DIFFICULTY today, since it has no
+  // per-mode difficulty UI of its own), but practicePrefs.difficulty is the
+  // one that actually reaches the round.
+  const openGame = (mode, _difficulty, timed) =>
+    hasTiers(mode)
+      ? go({ name: "gameSetup", mode })
+      : openQuiz(mode, practicePrefs.difficulty, timed, null, null, practicePrefs.focusRegions);
 
   // Chosen from the tier menu. `replace`, not push: the menu is a step on the
   // way into the round, so Back from the round should return to Home rather
@@ -383,7 +397,11 @@ function AppShell() {
           : {
               name: "quiz",
               mode,
-              difficulty: DEFAULT_DIFFICULTY,
+              // M2.8 step 4: same practice-preferences wiring as openGame
+              // above — the tier menu picks the INTERACTION tier only, never
+              // the pool difficulty/focus.
+              difficulty: practicePrefs.difficulty,
+              regions: practicePrefs.focusRegions,
               timed: false,
               countryCode: null,
               tier,
@@ -409,6 +427,7 @@ function AppShell() {
             difficulty={route.difficulty}
             tier={route.tier ?? null}
             only={route.only ?? null}
+            regions={route.regions ?? null}
             timed={route.timed}
             soundEnabled={settings.soundEnabled}
             onToggleSound={toggleSound}
