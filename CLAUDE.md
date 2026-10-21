@@ -1048,9 +1048,19 @@ new `regions` parameter on `openQuiz()` into the `quiz` route, and `QuizScreen` 
 `regions` prop straight into `buildRound()`'s opts. Verified in a real browser (Playwright,
 static export): seeding `worldwise.practicePrefs.v1` with an Africa-only focus and starting a plain
 Flag Guesser round made only African flag requests (Seychelles, Gambia); the same run with no
-focus set spanned Europe and Oceania, confirming the default is unchanged. *(Next up: `streakGoal`
-still has no UI reading it as a target — the streak display only shows the current count, never "3
-of your 9-day goal" — which is the milestone's last scoped chunk.)*
+focus set spanned Europe and Oceania, confirming the default is unchanged. **Step 5 — reading
+`streakGoal` as a target — is now also done, closing out M2.8 end to end.** `src/game/progress.js`
+gains a pure `streakGoalProgress(count, goal)`: `null` when no goal is set (so a player who never
+opened Practice sees nothing added, rather than a bogus "0 of 0"), otherwise `{ goal, met, ratio }`
+with `ratio` clamped to 1 so an overshot streak still reads as a full bar. `HomeScreen` takes a new
+`streakGoal` prop (`App.js` passes `practicePrefs.streakGoal` straight through) and renders a second
+line in the streak banner only when a goal is set — "3 of your 9-day goal" over a `ProgressTrack`
+bar, or "🎉 9-day goal reached!" over a full `success`-tinted bar once met — reusing
+`AchievementsScreen`'s own `ProgressTrack` + `colors.brand` convention for the in-progress bar.
+Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env): seeded a
+3-day streak played today with a 9-day goal and confirmed the banner read "3 of your 9-day goal"
+over a partial bar, then bumped the seeded streak to 9 and confirmed it switched to "🎉 9-day goal
+reached!" over a full bar. **M2.8 — Personalization is now fully done end to end.**
 
 **M2.3.5 — content backend is done end to end in production** (2026-09-04). The migration is
 applied, `content` is exposed in the Dashboard, and the seed has run: `content_version` 5, 196 rows

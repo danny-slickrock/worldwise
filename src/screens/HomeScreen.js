@@ -19,10 +19,11 @@ import CompassMark from "../components/CompassMark";
 import Material from "../components/Material";
 import PressableTint from "../components/PressableTint";
 import AnimatedNumber from "../components/AnimatedNumber";
+import ProgressTrack from "../components/ProgressTrack";
 import { MODES } from "../game/questions";
 import { isProMode } from "../game/entitlements";
 import { DEFAULT_DIFFICULTY } from "../constants";
-import { streakStatus, dayKey } from "../game/progress";
+import { streakStatus, streakGoalProgress, dayKey } from "../game/progress";
 
 // Daily leads as a full-width hero; the rest tile two-up underneath.
 const FEATURED = "daily";
@@ -68,6 +69,10 @@ export default function HomeScreen({
   onOpenReview,
   basemap,
   onChangeBasemap,
+  // M2.8 step 5: the goal set on PracticePrefsScreen, or null if the player
+  // never set one — streakGoalProgress() itself treats null as "render
+  // nothing", so a caller with no goal needn't branch before passing it.
+  streakGoal,
 }) {
   // The pool filter defaults to "all" under the tier menu and is no longer
   // player-facing here; it stays a named constant rather than an inline "all"
@@ -83,6 +88,12 @@ export default function HomeScreen({
       : streak.atRisk
         ? `${streak.count}-day streak — play today to keep it going.`
         : "Your streak lapsed — start a new one today.";
+  const goalProgress = streakGoalProgress(streak.count, streakGoal);
+  const goalMsg = goalProgress
+    ? goalProgress.met
+      ? `🎉 ${goalProgress.goal}-day goal reached!`
+      : `${streak.count} of your ${goalProgress.goal}-day goal`
+    : null;
 
   const featured = MODES[FEATURED];
 
@@ -142,10 +153,26 @@ export default function HomeScreen({
           <Text style={styles.tagline}>Learn the world through curiosity.</Text>
 
           <View style={styles.streakBanner}>
-            <Text style={styles.streakMsg}>{streakMsg}</Text>
-            <Text style={styles.streakBest}>
-              Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
-            </Text>
+            <View style={styles.streakRow}>
+              <Text style={styles.streakMsg}>{streakMsg}</Text>
+              <Text style={styles.streakBest}>
+                Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
+              </Text>
+            </View>
+            {/* Only a player who has actually set a goal (PracticePrefsScreen)
+                sees this — streakGoalProgress() returns null otherwise, so
+                there is nothing to show someone who never opened Practice. */}
+            {goalProgress && (
+              <View style={styles.goalRow}>
+                <Text style={styles.goalMsg}>{goalMsg}</Text>
+                <ProgressTrack
+                  value={goalProgress.ratio}
+                  fill={goalProgress.met ? colors.success : colors.brand}
+                  style={styles.goalTrack}
+                  label={goalMsg}
+                />
+              </View>
+            )}
           </View>
         </FadeInUp>
 
@@ -330,10 +357,6 @@ const styles = StyleSheet.create({
   tagline: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
 
   streakBanner: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: spacing(3),
     backgroundColor: colors.surfaceRaised,
     borderRadius: radius.sheet,
     paddingVertical: spacing(3.5),
@@ -341,6 +364,12 @@ const styles = StyleSheet.create({
     marginBottom: spacing(7),
     ...hairline,
     ...elevation(1),
+  },
+  streakRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: spacing(3),
   },
   streakMsg: { ...type.body, flexShrink: 1, color: colors.text },
   streakBest: {
@@ -350,6 +379,11 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 0.8,
   },
+  // The goal line + bar only render once a player has set a streak goal
+  // (PracticePrefsScreen) — see streakGoal/goalProgress above.
+  goalRow: { marginTop: spacing(3) },
+  goalMsg: { ...type.caption, fontSize: 12, color: colors.textMuted, marginBottom: spacing(1.5) },
+  goalTrack: { width: "100%" },
 
   section: { ...type.eyebrow, marginBottom: spacing(3) },
   hint: { ...type.caption, fontSize: 12, marginTop: spacing(2.5), marginBottom: spacing(6) },

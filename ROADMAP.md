@@ -234,9 +234,14 @@ moved on to the next lowest-numbered milestone with unblocked work: **M2.8 — P
 which now has an ordered sub-checklist. Step 1 (the pure preferences data model + policy,
 `src/game/practicePrefsPolicy.js`) is done, step 2 (the offline-first storage/sync seam) is done,
 step 3 (the Profile UI — `src/screens/PracticePrefsScreen.js` — that actually sets focus
-regions/difficulty/streak goal) is done, and **step 4 (wiring `focusRegions`/`difficulty` into
+regions/difficulty/streak goal) is done, step 4 (wiring `focusRegions`/`difficulty` into
 round-building — `buildRound()`'s new `narrowToRegions()`, threaded from `App.js`'s `practicePrefs`
-through `QuizScreen`) is now also done**, verified in a real browser — see M2.8's own entry below.
+through `QuizScreen`) is done, and **step 5 (reading `streakGoal` as a target — a "3 of your 9-day
+goal" line + progress bar on Home's streak banner, via a new pure `streakGoalProgress()` in
+`game/progress.js`) is now also done, closing out M2.8 — Personalization end to end.** See M2.8's
+own entry below for the full writeup. With M2.3.5, M2.3.7, and M2.9 still blocked on human-only
+steps (see DANNY TO DO) and M2.4 through M2.8 all done, the next daily build should re-check which
+milestone is now the lowest-numbered one with unblocked work.
 *(Next up: `streakGoal` still has no UI reading it as a target, which is the milestone's last
 scoped chunk.)*
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
@@ -2405,9 +2410,26 @@ teaching *how the world works*, not just *where things are*.
      `worldwise.practicePrefs.v1` with an Africa-only focus, started a plain Flag Guesser round, and
      every flag request the round made (Seychelles, Gambia) was genuinely African; the same run with
      no focus set spanned Europe and Oceania, confirming the default (unfocused) behavior is
-     unchanged. *(Next up: `streakGoal` still has no UI reading it as a target — the streak display
-     only shows the current count, never "3 of your 9-day goal". That's the milestone's next scoped
-     chunk, closing out M2.8 end to end.)*
+     unchanged.
+  5. ✅ **Read `streakGoal` as a target, closing out M2.8 end to end.** Until now `streakGoal` was
+     stored but nothing displayed it — the streak nudge on Home only ever showed the current count.
+     `src/game/progress.js` gains a pure `streakGoalProgress(count, goal)`: `null` when no goal is
+     set (the common case for anyone who hasn't opened Practice, so the caller renders nothing
+     rather than a bogus "0 of 0"), otherwise `{ goal, met, ratio }` with `ratio` clamped to 1 so an
+     overshot streak still shows a full bar rather than overflowing it. `HomeScreen` takes a new
+     `streakGoal` prop (`App.js` passes `practicePrefs.streakGoal` straight through, the same
+     pattern `regions`/`difficulty` already use) and renders a second line in the streak banner only
+     when a goal is set: "3 of your 9-day goal" with a `ProgressTrack` bar beneath it, or "🎉 9-day
+     goal reached!" with a full `success`-tinted bar once the streak meets or passes it — mirroring
+     `AchievementsScreen`'s own `ProgressTrack` + `colors.brand` convention for an in-progress bar.
+     Pure unit tests cover no-goal (null), partway, met-exactly, overshoot (ratio still clamps to 1),
+     and a zero streak. Verified in a real browser (Playwright/Chromium, static export, placeholder
+     Supabase env): seeded a 3-day streak played today with a 9-day goal, confirmed the banner read
+     "3 of your 9-day goal" over a partial bar, then bumped the seeded streak to 9 and confirmed it
+     switched to "🎉 9-day goal reached!" over a full, success-colored bar.
+
+**M2.8 — Personalization is now fully done end to end**, all five steps shipped and verified in a
+real browser.
 
 **Architecture shifts:** introduce the API-first backend, authentication, a user/progress data model,
 and a content model for country pages and learning paths; move content into a public-read `content.*`

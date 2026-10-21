@@ -44,6 +44,7 @@ import {
   applyRoundResult,
   normalizeProgress,
   streakStatus,
+  streakGoalProgress,
   dayKey,
   DEFAULT_PROGRESS,
 } from "../src/game/progress";
@@ -856,6 +857,23 @@ check(
   streakStatus(DEFAULT_PROGRESS, "2026-03-01").alive === false,
   "streakStatus: never played is not alive"
 );
+
+// M2.8 step 5: streak-goal progress (practicePrefs.streakGoal → "N of your
+// M-day goal" on Home). null is "no goal set" — the common case for anyone
+// who hasn't opened Practice — so it must render as "nothing", not 0/0.
+check(streakGoalProgress(3, null) === null, "streakGoalProgress: no goal set is null");
+const inProgress = streakGoalProgress(3, 9);
+check(
+  inProgress.goal === 9 && inProgress.met === false && inProgress.ratio === 3 / 9,
+  "streakGoalProgress: partway to goal"
+);
+check(streakGoalProgress(9, 9).met === true, "streakGoalProgress: met exactly at the goal");
+const overshoot = streakGoalProgress(12, 9);
+check(
+  overshoot.met === true && overshoot.ratio === 1,
+  "streakGoalProgress: overshooting the goal still clamps the ratio to 1"
+);
+check(streakGoalProgress(0, 9).ratio === 0, "streakGoalProgress: zero streak is zero progress");
 
 console.log("Settings");
 check(DEFAULT_SETTINGS.soundEnabled === true, "DEFAULT_SETTINGS starts with sound on");

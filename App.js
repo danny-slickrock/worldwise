@@ -619,6 +619,7 @@ function AppShell() {
             onOpenExplore={() => go({ name: "explore" })}
             basemap={settings.basemap}
             onChangeBasemap={setBasemap}
+            streakGoal={practicePrefs.streakGoal}
           />
         );
     }

@@ -107,3 +107,14 @@ export function streakStatus(progress, today) {
   const alive = gap - 1 <= freezes; // freezes can still bridge the missed day(s)
   return { count: alive ? streak : 0, alive, playedToday: false, atRisk: alive, freezes };
 }
+
+// Progress toward a player-set streak GOAL (M2.8's `practicePrefs.streakGoal`
+// — a target length to reach, not a running total). `goal` is either a
+// validated positive integer or `null` ("no goal set"); callers check for
+// `null` before rendering anything, the same way `streakGoal` itself reads
+// as "not set" rather than 0.
+export function streakGoalProgress(count, goal) {
+  if (!goal) return null;
+  const met = count >= goal;
+  return { goal, met, ratio: met ? 1 : Math.max(0, count) / goal };
+}
