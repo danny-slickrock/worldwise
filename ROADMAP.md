@@ -78,12 +78,21 @@ might be on the hidden hemisphere; step 3 (device verification) stays blocked on
 this environment doesn't have. With step 4 fully done, M2.3.7 has no unblocked work left until
 one of those two lands.
 **M2.10 — navigation & user flow** landed out of numeric order, as a floor rather than a feature:
-the app had grown to nine surfaces on a navigation model built for three. It is done — four tabs
-(Home · Learn · Explore · Profile) with a real per-tab route stack in `src/game/navigation.js`, a
-desktop side rail beside the mobile bottom bar via `src/game/layout.js`, real URLs and working
-browser Back on web, and a Play-again/Done ending to a round instead of a dead end — **except for a
-browser pass**, which the session it was built in couldn't run (Metro wouldn't bind a port). Do that
-before building on it.
+the app had grown to nine surfaces on a navigation model built for three. It is now done end to
+end, including the real-browser pass — four tabs (Home · Learn · Explore · Profile) with a real
+per-tab route stack in `src/game/navigation.js`, a desktop side rail beside the mobile bottom bar
+via `src/game/layout.js`, real URLs and working browser Back on web, and a Play-again/Done ending
+to a round instead of a dead end. The browser pass a previous session couldn't run (Metro wouldn't
+bind a port) is now done (2026-10-22): a static export served and driven with Playwright/Chromium
+at desktop width confirmed the labeled side rail with Home active and the correct active-tab
+highlight; at a 390px mobile width confirmed the four-icon bottom tab bar and no side rail; a
+tab-to-tab click (Home → Learn → Explore) updated the URL to `/learn` and `/explore` with no full
+reload; browser Back/Forward over those real URLs round-tripped correctly; and a cold deep link to
+a nested path (`/learn/africa`, served through the SPA rewrite `vercel.json` already configures in
+production) landed directly on the Learn tab's root with the tab shell underneath and correctly
+drew no dead Back button there (it's a `root: true` route), while pushing a country page on top of
+it (Learning Path → Egypt) did draw a working Back that returned to `/learn/africa` — exactly the
+two-hop case this milestone replaced the old `returnTo` field to fix. No bugs found; nothing to fix.
 **M2.9 — the AI knowledge hub** is next in milestone order but still
 blocked on its own DANNY TO DO lead-time items (Anthropic API key, spend cap, Supabase plan/pgvector
 confirmation, embedding model pick) — check that section before starting its sub-checklist. With
@@ -240,10 +249,17 @@ through `QuizScreen`) is done, and **step 5 (reading `streakGoal` as a target �
 goal" line + progress bar on Home's streak banner, via a new pure `streakGoalProgress()` in
 `game/progress.js`) is now also done, closing out M2.8 — Personalization end to end.** See M2.8's
 own entry below for the full writeup. With M2.3.5, M2.3.7, and M2.9 still blocked on human-only
-steps (see DANNY TO DO) and M2.4 through M2.8 all done, the next daily build should re-check which
-milestone is now the lowest-numbered one with unblocked work.
-*(Next up: `streakGoal` still has no UI reading it as a target, which is the milestone's last
-scoped chunk.)*
+steps (see DANNY TO DO) and M2.4 through M2.8 all done, the daily build re-checked which milestone
+was the lowest-numbered one with unblocked work (2026-10-22) and found none: M2.3.5's only open
+item is Danny's production run for country photos, M2.3.7 is blocked on a product call + a real
+device, M2.6 is blocked at step 7 (Friends) on a product/privacy call, and M2.9 is blocked on its
+own DANNY TO DO lead-time items — all human-only. The two remaining non-human gaps in the backlog,
+M2.10's real-browser pass and M2.11's unseen mobile bottom bar, were both closed instead (see each
+milestone's entry below) since they were genuinely unblocked, scoped, and verification-only — no
+code changes were needed, both passed clean. **There is currently no unblocked Phase 2 work**;
+Danny needs to clear one of the DANNY TO DO items, or make one of the pending product/privacy
+calls (the under-13 posture, Friends' exposure model, or the Country Locator globe/hidden-hemisphere
+question), before the next daily build has anything left to pick up.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1496,9 +1512,9 @@ teaching *how the world works*, not just *where things are*.
              M2.5 — Achievements, collections & deeper gamification — end to end**, aside from the
              two flagged app-wide follow-ups noted in 6.4.1/6.4.2 above (out of scope for this
              milestone).
-- **M2.10 — Navigation & user flow 🧭** — ✅ **done (web-verified pending, see below).** Not a
-  feature so much as the floor every feature stands on: by M2.5 the app had nine surfaces and a
-  navigation model built for three. Replaced wholesale.
+- **M2.10 — Navigation & user flow 🧭** — ✅ **done end to end, including the real-browser pass
+  (2026-10-22).** Not a feature so much as the floor every feature stands on: by M2.5 the app had
+  nine surfaces and a navigation model built for three. Replaced wholesale.
   - **What was wrong.** `App.js` carried a `screen` object with a `returnTo` (and, by M2.4, a
     `returnPathId`) field — one step of history, stored on the destination. It could not express a
     second hop, so Learning Path → Country → Play → exit landed on Home with the path gone, and a
@@ -1530,10 +1546,17 @@ teaching *how the world works*, not just *where things are*.
     re-aims the explore route beneath it first, so Back returns to the globe looking where you were.
     Tab roots no longer draw a Back button that does nothing.
   - 49 checks in `test/engine.test.js` covering the stack, tab isolation, the depth cap, URL
-    round-tripping, deep links and popstate reconciliation. **Still to do: drive it in a real
-    browser.** Metro would not bind a port in the session this was built in, so desktop rail,
-    mobile bar, and browser Back/Forward are verified by test but not yet by eye — do that before
-    trusting it, per the repo's own standing rule about auth/nav changes tests can't see.
+    round-tripping, deep links and popstate reconciliation. **The real-browser pass is now also
+    done (2026-10-22).** A static export (`npm run build`, placeholder Supabase env) served over
+    HTTP and driven with Playwright/Chromium confirmed: the desktop side rail at 1400px, labeled,
+    with the right tab highlighted; the mobile bottom tab bar (and no rail) at a 390px viewport;
+    clicking Home → Learn → Explore updates the URL to `/learn` / `/explore` without a full
+    reload; browser Back/Forward over those URLs round-trips to the exact prior/next state; and a
+    cold deep link to `/learn/africa` (through the same SPA-rewrite shape `vercel.json` already
+    configures for production) lands directly on the Learn tab's root with the shell underneath,
+    correctly drawing no Back button there since it's a `root: true` route — while pushing a
+    country page on top of it (tapping Egypt) draws a working Back that returns to `/learn/africa`,
+    the exact two-hop case the old `returnTo` field couldn't express. No bugs found.
 - **M2.11 — Brand system adoption 🎨** — ✅ **done, verified in a browser.** Adopted the Slickrock
   **Brand Identity Kit v1.1 / UI Kit v1.0** (`WW Design.pdf`). This inverts the prototype's look:
   the app was a dark navy-charcoal base with extruded slabs; the kit is "warm off-white is the page
@@ -1569,9 +1592,11 @@ teaching *how the world works*, not just *where things are*.
     body copy on `--ww-text`, which is what the kit's own examples do anyway — but if muted is ever
     meant for body copy on the page background, the token needs to darken by a hair.
   - **Verified in a real browser** at desktop width: Home, the globe (`/explore`), a learning path,
-    the country index, a country page and a quiz round, plus the deep links that reach them. **Not
-    yet seen: the mobile bottom bar** — the breakpoint swap is unit-tested but the browser window
-    would not resize below the rail breakpoint in that session.
+    the country index, a country page and a quiz round, plus the deep links that reach them. **The
+    mobile bottom bar is now also seen (2026-10-22)**, as part of M2.10's real-browser pass: a
+    390px-wide Playwright/Chromium window renders the four-icon bottom tab bar (no side rail) in
+    the current v3 palette, confirming the breakpoint swap outside the unit tests that had been
+    its only coverage.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
