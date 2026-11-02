@@ -219,10 +219,14 @@ export default function HomeScreen({
                 as a coloured rectangle. */}
             <CompassMark size={190} tone="brass" style={styles.heroMark} />
 
-            {/* Brass, not parchment-at-70%. The old kicker carried an alpha,
-                which over a gradient has no knowable contrast ratio at all —
-                the one rule the kit repeats twice. A brass eyebrow on a dark
-                ground is its own sanctioned pattern (kit §DIVE DEEPER CARD). */}
+            {/* Parchment, not brass. The old kicker carried an alpha, which
+                over a gradient has no knowable contrast ratio at all — the
+                one rule the kit repeats twice. Brass looked like the kit's
+                eyebrow-on-dark pattern but measures ~2.6:1 at this card's lit
+                top-right corner, where the oversized CompassMark also bleeds
+                off (M2.5 step 6.4.1's contrast audit, pinned in
+                test/engine.test.js) — well under even the 3:1 UI floor.
+                Parchment is the ink that actually clears AA there. */}
             <Text style={styles.heroKicker}>Daily challenge</Text>
             <Text style={styles.heroTitle}>
               {featured.icon} A mixed round,{"\n"}every day
@@ -405,7 +409,7 @@ const styles = StyleSheet.create({
   },
   heroKicker: {
     ...type.eyebrow,
-    color: colors.brass,
+    color: colors.onFill,
   },
   heroTitle: {
     ...type.h2,

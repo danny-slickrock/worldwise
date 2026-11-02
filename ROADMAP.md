@@ -259,7 +259,12 @@ milestone's entry below) since they were genuinely unblocked, scoped, and verifi
 code changes were needed, both passed clean. **There is currently no unblocked Phase 2 work**;
 Danny needs to clear one of the DANNY TO DO items, or make one of the pending product/privacy
 calls (the under-13 posture, Friends' exposure model, or the Country Locator globe/hidden-hemisphere
-question), before the next daily build has anything left to pick up.
+question), before the next daily build has anything left to pick up. That held true again on
+2026-11-02 — no DANNY TO DO item had moved — so the daily build closed out the one remaining
+flagged, non-human-blocked gap from the backlog instead: `HomeScreen`'s "Daily challenge" kicker
+had the same `colors.brass`-on-`dusk` contrast bug M2.5 step 6.4.1 already found and fixed on
+`AchievementsScreen`, flagged there as a follow-up rather than fixed in that milestone's own run.
+See M2.11's entry below for the fix. **Phase 2 remains blocked on Danny** for any further progress.
 The Phase 1 backlog below gets picked up opportunistically, not as a gate.
 
 ### Deferred to the Phase 1 backlog (not a gate)
@@ -1597,6 +1602,18 @@ teaching *how the world works*, not just *where things are*.
     390px-wide Playwright/Chromium window renders the four-icon bottom tab bar (no side rail) in
     the current v3 palette, confirming the breakpoint swap outside the unit tests that had been
     its only coverage.
+  - **Flagged follow-up closed (2026-11-02):** M2.5 step 6.4.1's contrast audit had already found
+    that `colors.brass` as an eyebrow ink over the `dusk` material's lit top-right corner measures
+    ~2.6:1 — well under the 3:1 UI floor — and fixed it on `AchievementsScreen`'s level card, but
+    flagged `HomeScreen`'s identical "Daily challenge" kicker as sharing the same gap, out of scope
+    for that milestone. With every numbered Phase 2 milestone done or blocked on a DANNY TO DO item
+    (see the note above), the daily build picked up this already-diagnosed, non-human-blocked gap
+    instead. `heroKicker` now uses `colors.onFill` (parchment) instead of `colors.brass`, matching
+    `AchievementsScreen`'s fix exactly — no new test needed, since `test/engine.test.js` already
+    pins the general "brass fails / onFill clears" composite at that corner, and nothing else in
+    `HomeScreen` uses `colors.brass` as a dark-ground label. Verified in a real browser (Playwright/
+    Chromium, static export, placeholder Supabase env): the Daily Challenge card's "DAILY CHALLENGE"
+    kicker now renders in legible parchment rather than low-contrast brass.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
