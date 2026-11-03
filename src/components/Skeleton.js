@@ -16,12 +16,12 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import Svg, { Defs, LinearGradient, Rect, Stop } from "react-native-svg";
-import { colors, radius as radii, spacing } from "../theme";
+import { colors, radius as radii, spacing, themed } from "../theme";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 // 10% brand, per the kit. Written as an rgba of pine rather than a mixed hex so
-// it sits correctly on parchment and on cream alike.
-const TINT = "rgba(33,64,60,0.10)";
+// it sits correctly on parchment and on cream alike — and read from the
+// `tint` token, which turns to 10% parchment over bark in the dark scheme.
 const SHEEN = "ww-sheen";
 const SWEEP_PERIOD = 1400;
 // The band is wider than the block so its soft edges are always outside it —
@@ -54,7 +54,11 @@ export default function Skeleton({
 
   return (
     <View
-      style={[{ width, height, borderRadius: radius, backgroundColor: TINT }, styles.clip, style]}
+      style={[
+        { width, height, borderRadius: radius, backgroundColor: colors.tint },
+        styles.clip,
+        style,
+      ]}
       // A skeleton is a placeholder for content that isn't there; announcing it
       // would read a row of nothing to a screen reader. BrandLoader's live
       // region is what says "loading".
@@ -113,7 +117,9 @@ export function SkeletonText({ lines = 3, style }) {
   );
 }
 
-const styles = StyleSheet.create({
-  clip: { overflow: "hidden" },
-  stack: { gap: spacing(2.5) },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    clip: { overflow: "hidden" },
+    stack: { gap: spacing(2.5) },
+  })
+);

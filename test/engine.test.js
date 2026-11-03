@@ -300,7 +300,22 @@ import {
   materialInk,
   gradientVector,
   MATERIALS,
+  DARK_GROUNDS,
+  themeFor,
+  setActiveScheme,
+  activeScheme,
+  themed,
+  elevation,
+  hairline,
+  accentInk,
 } from "../src/theme";
+import {
+  COLOR_SCHEME_PREFS,
+  DEFAULT_COLOR_SCHEME,
+  normalizeColorSchemePref,
+  resolveColorScheme,
+  statusBarStyle,
+} from "../src/game/colorScheme";
 import {
   MARK_VIEWBOX,
   MARK_MIN_SIZE,
@@ -6733,9 +6748,8 @@ check(
 
 console.log("\nLeaderboard row mapping (M2.6 step 3)");
 check(
-  JSON.stringify(
-    entryFromLeaderboardRow({ user_id: "u1", display_name: "Amara", xp: 420 })
-  ) === JSON.stringify({ userId: "u1", displayName: "Amara", value: 420 }),
+  JSON.stringify(entryFromLeaderboardRow({ user_id: "u1", display_name: "Amara", xp: 420 })) ===
+    JSON.stringify({ userId: "u1", displayName: "Amara", value: 420 }),
   "entryFromLeaderboardRow maps a leaderboard_global row to the ranking policy's entry shape"
 );
 check(
@@ -6817,11 +6831,13 @@ check(
   "a zero streak or rank is omitted rather than printed as '0-day streak'/'Ranked #0'"
 );
 check(
-  buildDailyShareText({ score: -3, total: 6 }) === "I scored 0/6 on today's Worldwise Daily Challenge 🌍",
+  buildDailyShareText({ score: -3, total: 6 }) ===
+    "I scored 0/6 on today's Worldwise Daily Challenge 🌍",
   "a negative score clamps to 0 rather than printing"
 );
 check(
-  buildDailyShareText({ score: 9, total: 6 }) === "I scored 6/6 on today's Worldwise Daily Challenge 🌍",
+  buildDailyShareText({ score: 9, total: 6 }) ===
+    "I scored 6/6 on today's Worldwise Daily Challenge 🌍",
   "a score above total clamps to total rather than overrunning it"
 );
 check(
@@ -6836,11 +6852,18 @@ check(
 );
 check(
   Object.values(CURRENCY_BY_CODE).every(
-    (c) => typeof c.name === "string" && c.name.length > 0 && typeof c.iso === "string" && c.iso.length === 3
+    (c) =>
+      typeof c.name === "string" &&
+      c.name.length > 0 &&
+      typeof c.iso === "string" &&
+      c.iso.length === 3
   ),
   "every currency entry carries a non-empty name and a 3-letter ISO code"
 );
-check(CURRENCY_NAMES.length > OPTIONS_PER_QUESTION * 2, "enough distinct currency names to fill a round's distractors");
+check(
+  CURRENCY_NAMES.length > OPTIONS_PER_QUESTION * 2,
+  "enough distinct currency names to fill a round's distractors"
+);
 check(MODES.currency != null && MODES.currency.accent != null, "the mode is registered and themed");
 check(MODE_TIERS.currency === "free", "Currency Quiz joins the free catalog");
 check(FREE_MODES.includes("currency"), "...and shows up in the derived free-mode list");
@@ -6932,14 +6955,19 @@ check(
   "every COUNTRIES code has a national animal entry"
 );
 check(
-  Object.values(NATIONAL_ANIMAL_BY_CODE).every((name) => typeof name === "string" && name.length > 0),
+  Object.values(NATIONAL_ANIMAL_BY_CODE).every(
+    (name) => typeof name === "string" && name.length > 0
+  ),
   "every national animal entry carries a non-empty name"
 );
 check(
   NATIONAL_ANIMAL_NAMES.length > OPTIONS_PER_QUESTION * 2,
   "enough distinct national animal names to fill a round's distractors"
 );
-check(MODES.nationalAnimal != null && MODES.nationalAnimal.accent != null, "the mode is registered and themed");
+check(
+  MODES.nationalAnimal != null && MODES.nationalAnimal.accent != null,
+  "the mode is registered and themed"
+);
 check(MODE_TIERS.nationalAnimal === "free", "National Animal Quiz joins the free catalog");
 check(FREE_MODES.includes("nationalAnimal"), "...and shows up in the derived free-mode list");
 
@@ -6990,14 +7018,19 @@ check(
   FOOD_NAMES.length > OPTIONS_PER_QUESTION * 2,
   "enough distinct dish names to fill a round's distractors"
 );
-check(MODES.foodOrigin != null && MODES.foodOrigin.accent != null, "the mode is registered and themed");
+check(
+  MODES.foodOrigin != null && MODES.foodOrigin.accent != null,
+  "the mode is registered and themed"
+);
 check(MODE_TIERS.foodOrigin === "free", "Food Origin Quiz joins the free catalog");
 check(FREE_MODES.includes("foodOrigin"), "...and shows up in the derived free-mode list");
 
 const foodOriginRound = buildRound("foodOrigin", "all", ROUND_LENGTH);
 check(foodOriginRound.length === ROUND_LENGTH, "a food origin round is a full round");
 check(
-  foodOriginRound.every((q) => q.type === "foodOrigin" && q.options.length === OPTIONS_PER_QUESTION),
+  foodOriginRound.every(
+    (q) => q.type === "foodOrigin" && q.options.length === OPTIONS_PER_QUESTION
+  ),
   "every question has four options"
 );
 check(
@@ -7024,7 +7057,10 @@ check(
   ngRound.length === 1 && new Set(ngRound[0].options).size === ngRound[0].options.length,
   "a jointly-claimed dish target still gets four visually distinct options"
 );
-check(ngRound[0].correct === "Jollof rice", "...with Jollof rice correctly named as Nigeria's dish");
+check(
+  ngRound[0].correct === "Jollof rice",
+  "...with Jollof rice correctly named as Nigeria's dish"
+);
 
 console.log("\nCity Quiz (M2.7 step 5)");
 check(
@@ -7094,10 +7130,7 @@ check(
   RIVERS.every((r) => typeof r.name === "string" && r.name.length > 0),
   "every river carries a non-empty name"
 );
-check(
-  new Set(RIVERS.map((r) => r.name)).size === RIVERS.length,
-  "no two rivers share a name"
-);
+check(new Set(RIVERS.map((r) => r.name)).size === RIVERS.length, "no two rivers share a name");
 check(
   RIVERS.every((r) => Array.isArray(r.countries) && r.countries.length >= 2),
   "every river touches at least two countries — the whole reason this is a feature-keyed file"
@@ -7124,7 +7157,10 @@ check(
   riversThrough("eg").includes("Nile") && riversThrough("cz").includes("Elbe"),
   "riversThrough looks up a country's rivers by code"
 );
-check(riversThrough("ws").length === 0, "a country with no catalogued river resolves to an empty list");
+check(
+  riversThrough("ws").length === 0,
+  "a country with no catalogued river resolves to an empty list"
+);
 
 console.log("\nRiver Quiz engine integration (M2.7 step 6.2)");
 check(MODES.river != null && MODES.river.accent != null, "the mode is registered and themed");
@@ -7222,7 +7258,10 @@ check(
   rangesThrough("fr").includes("Alps") && rangesThrough("fr").includes("Pyrenees"),
   "rangesThrough looks up a country's ranges by code"
 );
-check(rangesThrough("ws").length === 0, "a country with no catalogued range resolves to an empty list");
+check(
+  rangesThrough("ws").length === 0,
+  "a country with no catalogued range resolves to an empty list"
+);
 
 console.log("\nMountain Quiz engine integration (M2.7 step 7.2)");
 check(MODES.mountain != null && MODES.mountain.accent != null, "the mode is registered and themed");
@@ -7310,7 +7349,8 @@ check(
   "OCEAN_NAMES mirrors the catalog"
 );
 check(
-  countriesForOcean("Pacific Ocean").includes("jp") && countriesForOcean("Pacific Ocean").includes("cl"),
+  countriesForOcean("Pacific Ocean").includes("jp") &&
+    countriesForOcean("Pacific Ocean").includes("cl"),
   "countriesForOcean looks up an ocean's countries by name"
 );
 check(countriesForOcean("Not An Ocean") === null, "an unknown ocean name resolves to null");
@@ -7461,9 +7501,17 @@ check(
 console.log("Practice preferences cloud sync (M2.8 step 2)");
 check(
   JSON.stringify(
-    practicePrefsPatchFromPrefs({ focusRegions: ["Oceania", "Africa"], difficulty: "hard", streakGoal: 30 })
+    practicePrefsPatchFromPrefs({
+      focusRegions: ["Oceania", "Africa"],
+      difficulty: "hard",
+      streakGoal: 30,
+    })
   ) ===
-    JSON.stringify({ difficulty_pref: "hard", focus_regions: ["Africa", "Oceania"], streak_goal: 30 }),
+    JSON.stringify({
+      difficulty_pref: "hard",
+      focus_regions: ["Africa", "Oceania"],
+      streak_goal: 30,
+    }),
   "practicePrefsPatchFromPrefs maps to the profiles row's own column names, normalized"
 );
 check(
@@ -7482,7 +7530,11 @@ check(
 );
 check(
   JSON.stringify(
-    practicePrefsFromProfileRow({ difficulty_pref: "easy", focus_regions: ["Asia"], streak_goal: 7 })
+    practicePrefsFromProfileRow({
+      difficulty_pref: "easy",
+      focus_regions: ["Asia"],
+      streak_goal: 7,
+    })
   ) === JSON.stringify({ focusRegions: ["Asia"], difficulty: "easy", streakGoal: 7 }),
   "practicePrefsFromProfileRow reads the profiles row's own columns back into the prefs shape"
 );
@@ -7501,8 +7553,9 @@ check(
   "mergePracticePrefs with no cloud row keeps local prefs as-is"
 );
 check(
-  JSON.stringify(mergePracticePrefs({ focusRegions: ["Africa"] }, { focusRegions: ["Asia"] }).focusRegions) ===
-    JSON.stringify(["Africa", "Asia"]),
+  JSON.stringify(
+    mergePracticePrefs({ focusRegions: ["Africa"] }, { focusRegions: ["Asia"] }).focusRegions
+  ) === JSON.stringify(["Africa", "Asia"]),
   "mergePracticePrefs unions focusRegions from both sides rather than picking one"
 );
 check(
@@ -7529,6 +7582,248 @@ check(
   mergePracticePrefs({}, { difficulty: "hard" }).difficulty === "hard",
   "mergePracticePrefs takes the cloud's difficulty when local is still at the default"
 );
+
+console.log("\nDark scheme (colour-scheme setting + the lamp-turned-low palette)");
+
+// --- the resolver: preference × OS → scheme ---
+check(DEFAULT_COLOR_SCHEME === "system", "the default preference follows the OS");
+check(
+  COLOR_SCHEME_PREFS.join() === "system,light,dark",
+  "the preference is exactly system | light | dark"
+);
+check(resolveColorScheme("system", "dark") === "dark", "system + OS dark → dark");
+check(resolveColorScheme("system", "light") === "light", "system + OS light → light");
+check(
+  resolveColorScheme("system", null) === "light" &&
+    resolveColorScheme("system", undefined) === "light" &&
+    resolveColorScheme("system", "no-preference") === "light",
+  "an OS that reports nothing resolves to light"
+);
+check(resolveColorScheme("light", "dark") === "light", "a manual light override beats a dark OS");
+check(resolveColorScheme("dark", "light") === "dark", "a manual dark override beats a light OS");
+check(resolveColorScheme("sepia", "dark") === "dark", "an unknown preference behaves as system");
+check(normalizeColorSchemePref("dusk") === "system", "an unknown stored preference falls back");
+check(normalizeColorSchemePref("dark") === "dark", "a known preference is kept");
+check(
+  statusBarStyle("dark") === "light" && statusBarStyle("light") === "dark",
+  "status-bar glyphs contrast with the page"
+);
+check(normalizeSettings(null).colorScheme === "system", "settings default colorScheme to system");
+check(
+  normalizeSettings({ colorScheme: "dark" }).colorScheme === "dark" &&
+    normalizeSettings({ colorScheme: 7 }).colorScheme === "system",
+  "settings keep a valid colorScheme and reject junk"
+);
+
+// --- every semantic token resolves by scheme ---
+const LIGHT = themeFor("light");
+const DARK = themeFor("dark");
+check(
+  Object.keys(LIGHT.colors).sort().join() === Object.keys(DARK.colors).sort().join(),
+  "the dark palette defines exactly the same semantic tokens as the light one"
+);
+check(
+  Object.keys(LIGHT.topicAccents).sort().join() === Object.keys(DARK.topicAccents).sort().join(),
+  "...and the same topic accents"
+);
+check(
+  MATERIALS.every((n) => DARK.materials[n] != null),
+  "...and a dark variant of every material"
+);
+check(activeScheme() === "light", "the suite (and a first render) starts in light");
+check(colors.surface === LIGHT.colors.surface, "the live colors view reads light by default");
+setActiveScheme("dark");
+check(
+  colors.surface === DARK.colors.surface &&
+    type.h1.color === DARK.colors.brand &&
+    hairline.borderColor === DARK.colors.border &&
+    materials.paper.base === DARK.colors.surface &&
+    topicAccents.climate === DARK.topicAccents.climate &&
+    elevation(2).shadowColor === DARK.colors.shadow,
+  "switching scheme re-resolves colors, type, hairline, materials, topics and elevation"
+);
+check(
+  Object.keys({ ...colors }).length === Object.keys(DARK.colors).length,
+  "the live view spreads and enumerates like a plain object"
+);
+setActiveScheme("light");
+let themedBuilds = 0;
+const themedProbe = themed(() => {
+  themedBuilds++;
+  return { ground: colors.surface };
+});
+const probeLight = themedProbe.ground;
+setActiveScheme("dark");
+const probeDark = themedProbe.ground;
+void themedProbe.ground;
+setActiveScheme("light");
+void themedProbe.ground;
+check(
+  probeLight === LIGHT.colors.surface && probeDark === DARK.colors.surface,
+  "themed() styles resolve against the active scheme"
+);
+check(themedBuilds === 2, "...built once per scheme, then cached");
+check(setActiveScheme("nope") === "light", "an unknown scheme falls back to light");
+
+// Mode accents used as type (the quiz badge eyebrow) must read in both schemes.
+for (const scheme of ["light", "dark"]) {
+  setActiveScheme(scheme);
+  for (const [mode, accent] of Object.entries(modeAccents)) {
+    check(
+      contrastRatio(accentInk(accent), colors.surfaceRaised) >= CONTRAST.body,
+      `${scheme}: the ${mode} badge label reads on the card (accentInk)`
+    );
+  }
+}
+setActiveScheme("light");
+check(
+  accentInk(modeAccents.flag) === modeAccents.flag,
+  "a mode accent that reads keeps its own hue"
+);
+check(
+  accentInk(modeAccents.capitalReverse) === colors.emberInk,
+  "brass never becomes type on light — it falls back to the eyebrow ink"
+);
+
+// --- warm-biased, not neutral grey ---
+const rgbOf = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+for (const name of ["surface", "surfaceRaised", "surfaceSunken", "text", "textMuted"]) {
+  const [r, , b] = rgbOf(DARK.colors[name]);
+  check(r > b, `dark ${name} is warm-biased (red over blue), not neutral grey`);
+}
+for (const ground of DARK_GROUNDS) {
+  check(
+    contrastRatio(ground, "#000000") < 1.6,
+    `dark ground ${ground} is genuinely dark — the lamp is low, not off`
+  );
+}
+
+// --- the contrast suite, re-run on DARK_GROUNDS ---
+// Same contract as LIGHT_GROUNDS: both grounds, every ink, no picking the one
+// that passes. Run through the active-scheme functions, so onFill() is tested
+// the way the components call it.
+setActiveScheme("dark");
+const dc = DARK.colors;
+check(DARK_GROUNDS.length === 2, "there are two dark grounds, and both get checked");
+for (const bg of ["surface", "surfaceRaised", "surfaceSunken"]) {
+  check(contrastRatio(dc.text, dc[bg]) >= CONTRAST.body, `dark: body text on ${bg} meets 4.5:1`);
+}
+for (const ground of DARK_GROUNDS) {
+  for (const ink of [
+    "text",
+    "textSecondary",
+    "textMuted",
+    "textFaint",
+    "brand",
+    "link",
+    "accent",
+    "emberInk",
+    "successInk",
+    "danger",
+  ]) {
+    check(
+      contrastRatio(dc[ink], ground) >= CONTRAST.body,
+      `dark: ${ink} clears body contrast on ${ground}`
+    );
+  }
+  check(
+    contrastRatio(dc.success, ground) >= CONTRAST.large,
+    `dark: success status clears UI contrast on ${ground}`
+  );
+  for (const [topic, tint] of Object.entries(DARK.topicAccents)) {
+    check(
+      contrastRatio(tint, ground) >= CONTRAST.body,
+      `dark: the ${topic} topic label clears body contrast on ${ground}`
+    );
+  }
+}
+// Labels on fills: the lifted dark fills take nightwood, and onFill() knows.
+for (const name of [
+  "brand",
+  "brandDeep",
+  "accent",
+  "emberInk",
+  "success",
+  "danger",
+  "brass",
+  "accentLight",
+]) {
+  const fill = dc[name];
+  check(
+    contrastRatio(onFill(fill), fill) >= CONTRAST.body,
+    `dark: a ${name} fill carries its label at 4.5:1 (through onFill)`
+  );
+}
+check(onFill(dc.brand) === dc.brandDeep, "dark: sage pine fills take nightwood ink");
+check(
+  onFill(dc.success) === onFill(dc.danger),
+  "dark: success and danger take the same ink, so one resolved-answer style covers both"
+);
+for (const [mode, fill] of Object.entries(modeAccents)) {
+  check(
+    contrastRatio(onFill(fill), fill) >= CONTRAST.body,
+    `dark: the ${mode} tile still carries its label at 4.5:1`
+  );
+}
+check(
+  contrastRatio(dc.successInk, dc.successSurface) >= CONTRAST.body &&
+    contrastRatio(dc.danger, dc.dangerSurface) >= CONTRAST.body &&
+    contrastRatio(dc.emberInk, dc.emberSurface) >= CONTRAST.body,
+  "dark: each status ink clears body contrast on its own wash"
+);
+check(
+  !String(dc.onFill).includes("rgba") && !String(dc.onFillQuiet).includes("rgba"),
+  "dark: neither ink on a dark fill carries alpha"
+);
+// Materials: dark variants keep every material rule, and type on them still
+// clears contrast at the dusk wash's brightest corner.
+const darkDuskCorner = compositeOverGlow(
+  DARK.materials.dusk.ramp.stops[0].color,
+  DARK.materials.dusk.glow[0]
+);
+check(
+  contrastRatio(dc.onFill, darkDuskCorner) >= CONTRAST.body,
+  "dark: parchment ink clears body contrast at the dark dusk wash's brightest corner"
+);
+check(
+  materialInk("paper").primary === dc.text &&
+    contrastRatio(materialInk("paper").quiet, dc.surface) >= CONTRAST.body,
+  "dark: paper (now bark) carries parchment ink, and its quiet ink still reads"
+);
+for (const name of MATERIALS) {
+  const m = DARK.materials[name];
+  const glow = m.glow ?? [];
+  if (glow.length > 1) {
+    const corners = new Set(glow.map((g) => `${Math.round(g.cx)},${Math.round(g.cy)}`));
+    check(corners.size === 1, `dark ${name}: light still enters from one corner`);
+  }
+  const stripes = [...(m.weave ?? []), ...(m.grain ?? [])];
+  const periods = stripes.map((s) => s.period);
+  check(new Set(periods).size === periods.length, `dark ${name}: no two stripe periods are equal`);
+}
+check(
+  DARK.materials.paper.weave.every((w) => w.opacity <= 0.04),
+  "dark: the paper weave stays at or under 4%"
+);
+check(
+  MATERIALS.filter((n) => n !== "lantern").every((n) =>
+    /^#[0-9A-Fa-f]{6}$/.test(DARK.materials[n].base)
+  ),
+  "dark: every ground material has an opaque base colour"
+);
+// The map is already the dark stage: identical in both schemes, and it reads
+// against both page grounds by hue and frame rather than needing to change.
+const mapSnapshot = JSON.stringify(map);
+setActiveScheme("light");
+check(JSON.stringify(map) === mapSnapshot, "the map tokens are identical in both schemes");
+check(map.stage === LIGHT.colors.brand, "the map stage stays pine even when brand lifts to sage");
+for (const ink of [map.onMap, map.onMapQuiet]) {
+  check(
+    contrastRatio(ink, map.ocean) >= CONTRAST.body && contrastRatio(ink, map.land) >= CONTRAST.body,
+    `map ink ${ink} reads on ocean and land, in either scheme`
+  );
+}
+setActiveScheme("light");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

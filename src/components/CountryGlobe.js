@@ -20,7 +20,7 @@ import BasemapToggle from "./BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { groupSpin, countryAngularRadius, zoomForRadius } from "../game/globeMotion";
 import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
-import { colors, spacing, radius as radii, type, map } from "../theme";
+import { colors, spacing, radius as radii, type, map, themed } from "../theme";
 
 const HAS_GEOMETRY = new Set(GLOBE_COUNTRY_CODES);
 
@@ -76,33 +76,38 @@ export default function CountryGlobe({ code, name, framing, basemap, onChangeBas
   );
 }
 
-const styles = StyleSheet.create({
-  // No padding: the globe is the card, edge to edge, the way the Explore map's
-  // stage is. The outline hero needed padding because a flat silhouette floating
-  // on navy needs a margin; a sphere brings its own.
-  stage: {
-    width: "100%",
-    height: 260,
-    backgroundColor: colors.brandDeep,
-    borderRadius: radii.sheet,
-    overflow: "hidden",
-    justifyContent: "flex-end",
-  },
-  hint: {
-    ...type.data,
-    alignSelf: "center",
-    marginBottom: spacing(3),
-    color: map.onMapMuted,
-  },
-  basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
-  pill: {
-    position: "absolute",
-    right: spacing(3),
-    bottom: spacing(3),
-    backgroundColor: "rgba(22,41,63,0.82)",
-    borderRadius: radii.pill,
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(3.5),
-  },
-  pillText: { ...type.label, fontSize: 12, color: map.onMap },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    // No padding: the globe is the card, edge to edge, the way the Explore map's
+    // stage is. The outline hero needed padding because a flat silhouette floating
+    // on navy needs a margin; a sphere brings its own.
+    stage: {
+      width: "100%",
+      height: 260,
+      backgroundColor: colors.brandDeep,
+      borderRadius: radii.sheet,
+      overflow: "hidden",
+      justifyContent: "flex-end",
+    },
+    hint: {
+      ...type.data,
+      alignSelf: "center",
+      marginBottom: spacing(3),
+      // `map.onMapMuted` never existed, so this fell through to type.data's
+      // dark ink — dark on the dark stage, in both schemes. Parchment, per the
+      // map's two permitted inks (lichen needs 14px+; this is 11px).
+      color: map.onMap,
+    },
+    basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
+    pill: {
+      position: "absolute",
+      right: spacing(3),
+      bottom: spacing(3),
+      backgroundColor: "rgba(22,41,63,0.82)",
+      borderRadius: radii.pill,
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3.5),
+    },
+    pillText: { ...type.label, fontSize: 12, color: map.onMap },
+  })
+);

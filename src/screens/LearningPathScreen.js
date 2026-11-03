@@ -15,7 +15,17 @@
 // nav-seam call, not new screen state.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  themed,
+  onFill,
+} from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
@@ -189,77 +199,79 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  back: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(2) },
-  // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
-  // inset moves to the wrapper instead of vanishing with it.
-  wrapNoBack: { paddingTop: spacing(8) },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
-  regionRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: spacing(2),
-    paddingHorizontal: spacing(5),
-    paddingBottom: spacing(2),
-  },
-  regionChip: {
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(3.5),
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceRaised,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
-  regionChipText: { ...type.label, color: colors.textMuted },
-  regionChipTextActive: { color: colors.onFill },
-  content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
-  kicker: { ...type.eyebrow },
-  title: { ...type.h1, fontSize: 34, marginTop: spacing(1) },
-  subtitle: { ...type.caption, fontSize: 14, marginTop: spacing(1), marginBottom: spacing(5) },
-  noticeText: {
-    ...type.caption,
-    fontSize: 13,
-    color: colors.danger,
-    marginBottom: spacing(4),
-  },
-  row: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(2.5),
-    ...elevation(1),
-  },
-  rowLocked: { opacity: 0.5 },
-  skeletonSub: { marginTop: 6 },
-  rowBody: { flex: 1 },
-  rowName: { ...type.body, color: colors.brand },
-  rowNameLocked: { color: colors.textMuted },
-  rowDifficulty: {
-    ...type.label,
-    fontSize: 11,
-    color: colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginTop: 2,
-  },
-  rowState: {
-    ...type.label,
-    fontSize: 12,
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginLeft: spacing(3),
-  },
-  rowState_locked: { color: colors.textMuted },
-  rowState_unlocked: { color: colors.link },
-  rowState_mastered: { color: colors.successInk },
-  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
-  emptyText: { ...type.caption },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    back: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(2) },
+    // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
+    // inset moves to the wrapper instead of vanishing with it.
+    wrapNoBack: { paddingTop: spacing(8) },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
+    regionRow: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: spacing(2),
+      paddingHorizontal: spacing(5),
+      paddingBottom: spacing(2),
+    },
+    regionChip: {
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3.5),
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceRaised,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+    regionChipText: { ...type.label, color: colors.textMuted },
+    regionChipTextActive: { color: onFill(colors.brand) },
+    content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
+    kicker: { ...type.eyebrow },
+    title: { ...type.h1, fontSize: 34, marginTop: spacing(1) },
+    subtitle: { ...type.caption, fontSize: 14, marginTop: spacing(1), marginBottom: spacing(5) },
+    noticeText: {
+      ...type.caption,
+      fontSize: 13,
+      color: colors.danger,
+      marginBottom: spacing(4),
+    },
+    row: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(2.5),
+      ...elevation(1),
+    },
+    rowLocked: { opacity: 0.5 },
+    skeletonSub: { marginTop: 6 },
+    rowBody: { flex: 1 },
+    rowName: { ...type.body, color: colors.brand },
+    rowNameLocked: { color: colors.textMuted },
+    rowDifficulty: {
+      ...type.label,
+      fontSize: 11,
+      color: colors.textMuted,
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginTop: 2,
+    },
+    rowState: {
+      ...type.label,
+      fontSize: 12,
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginLeft: spacing(3),
+    },
+    rowState_locked: { color: colors.textMuted },
+    rowState_unlocked: { color: colors.link },
+    rowState_mastered: { color: colors.successInk },
+    empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
+    emptyText: { ...type.caption },
+  })
+);

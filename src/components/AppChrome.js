@@ -21,7 +21,7 @@ import { View, StyleSheet, useWindowDimensions } from "react-native";
 import TabBar from "./TabBar";
 import NavRail from "./NavRail";
 import Material from "./Material";
-import { colors } from "../theme";
+import { colors, themed } from "../theme";
 import { chromeLayout } from "../game/layout";
 
 // The page ground, owned here rather than by each screen.
@@ -77,9 +77,11 @@ export default function AppChrome({ tabs, active, onSelect, chrome = true, child
   );
 }
 
-const styles = StyleSheet.create({
-  // `surface` under the material, so the very first frame — and any platform
-  // that fails to draw the SVG — is still parchment rather than a hole.
-  fill: { flex: 1, backgroundColor: colors.surface },
-  row: { flex: 1, flexDirection: "row" },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    // `surface` under the material, so the very first frame — and any platform
+    // that fails to draw the SVG — is still parchment rather than a hole.
+    fill: { flex: 1, backgroundColor: colors.surface },
+    row: { flex: 1, flexDirection: "row" },
+  })
+);

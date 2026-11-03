@@ -2,7 +2,7 @@
 // and what the cloud has for you.
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation } from "../theme";
+import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import BrandLoader from "../components/BrandLoader";
@@ -16,6 +16,7 @@ import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { computeAchievements } from "../game/achievementPolicy";
 import { reviewSummary } from "../game/reviewPolicy";
 import SignInScreen from "./SignInScreen";
+import AppearanceSetting from "../components/AppearanceSetting";
 
 export default function ProfileScreen({
   progress,
@@ -26,6 +27,8 @@ export default function ProfileScreen({
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
+  colorScheme,
+  onChangeColorScheme,
 }) {
   const { user, loading, signOut } = useAuth();
 
@@ -35,7 +38,15 @@ export default function ProfileScreen({
   // platform spinner borrowed from another product.
   if (loading) return <BrandLoader label="Finding your place" />;
 
-  if (!user) return <SignInScreen />;
+  const appearance = onChangeColorScheme ? (
+    <AppearanceSetting
+      value={colorScheme}
+      onChange={onChangeColorScheme}
+      style={styles.appearance}
+    />
+  ) : null;
+
+  if (!user) return <SignInScreen footer={appearance} />;
 
   return (
     <SignedIn
@@ -49,6 +60,7 @@ export default function ProfileScreen({
       onOpenAchievements={onOpenAchievements}
       onOpenLeaderboard={onOpenLeaderboard}
       onOpenReview={onOpenReview}
+      appearance={appearance}
     />
   );
 }
@@ -64,6 +76,7 @@ function SignedIn({
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
+  appearance = null,
 }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
@@ -232,6 +245,8 @@ function SignedIn({
             </Pressable>
           )}
 
+          {appearance}
+
           <Pressable onPress={onSignOut} style={styles.signOutBtn}>
             <Text style={styles.signOutText}>Sign out</Text>
           </Pressable>
@@ -252,11 +267,11 @@ function SignedIn({
 // stays pure and importable by the test suite. Each tone carries a glyph as
 // well as a colour: the kit's rule is that status colour is never the only
 // signal.
-const SYNC_TONES = {
+const SYNC_TONES = themed(() => ({
   ok: { color: colors.successInk, glyph: "\u2713" },
   warning: { color: colors.emberInk, glyph: "\u21BB" },
   error: { color: colors.danger, glyph: "\u26A0" },
-};
+}));
 
 function SyncNotice({ state }) {
   const notice = describeSyncState(state, { signedIn: true });
@@ -306,87 +321,90 @@ function Stat({ label, value, animated = false }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
-  kicker: { ...type.eyebrow, fontSize: 12, marginBottom: spacing(4) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+    kicker: { ...type.eyebrow, fontSize: 12, marginBottom: spacing(4) },
 
-  identity: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(4),
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    marginBottom: spacing(7),
-    ...elevation(1),
-  },
-  // Avatar sits on a warm disc, the way the reference profile does — a
-  // photo-less account still gets a piece of colour rather than a grey circle.
-  avatarDisc: {
-    width: 64,
-    height: 64,
-    borderRadius: radius.pill,
-    backgroundColor: colors.brass,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  avatar: { width: "100%", height: "100%" },
-  avatarInitial: { fontSize: 26, color: colors.onFill },
-  identityBody: { flex: 1 },
-  name: { ...type.h3, fontSize: 20, marginBottom: 2 },
-  email: { ...type.caption, fontSize: 13 },
-  emailOnly: { ...type.h3, fontSize: 16 },
+    identity: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(4),
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      marginBottom: spacing(7),
+      ...elevation(1),
+    },
+    // Avatar sits on a warm disc, the way the reference profile does — a
+    // photo-less account still gets a piece of colour rather than a grey circle.
+    avatarDisc: {
+      width: 64,
+      height: 64,
+      borderRadius: radius.pill,
+      backgroundColor: colors.brass,
+      alignItems: "center",
+      justifyContent: "center",
+      overflow: "hidden",
+    },
+    avatar: { width: "100%", height: "100%" },
+    avatarInitial: { fontSize: 26, color: onFill(colors.brass) },
+    identityBody: { flex: 1 },
+    name: { ...type.h3, fontSize: 20, marginBottom: 2 },
+    email: { ...type.caption, fontSize: 13 },
+    emailOnly: { ...type.h3, fontSize: 16 },
 
-  section: { ...type.eyebrow, marginBottom: spacing(3) },
-  stats: { flexDirection: "row", gap: spacing(2.5), marginBottom: spacing(3) },
-  stat: {
-    flex: 1,
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4.5),
-    alignItems: "center",
-    ...elevation(1),
-  },
-  statValue: { fontSize: 26, color: colors.brand },
-  statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
+    section: { ...type.eyebrow, marginBottom: spacing(3) },
+    stats: { flexDirection: "row", gap: spacing(2.5), marginBottom: spacing(3) },
+    stat: {
+      flex: 1,
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4.5),
+      alignItems: "center",
+      ...elevation(1),
+    },
+    statValue: { fontSize: 26, color: colors.brand },
+    statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
 
-  syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(7) },
-  // Colour is applied per tone by SyncNotice — the base style stays neutral.
-  syncText: { ...type.caption, fontSize: 13 },
-  syncDetail: { ...type.caption, fontSize: 12, color: colors.textMuted, marginTop: spacing(1) },
+    syncRow: { minHeight: 22, justifyContent: "center", marginBottom: spacing(7) },
+    // Colour is applied per tone by SyncNotice — the base style stays neutral.
+    syncText: { ...type.caption, fontSize: 13 },
+    syncDetail: { ...type.caption, fontSize: 12, color: colors.textMuted, marginTop: spacing(1) },
 
-  interestsRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    marginBottom: spacing(7),
-    ...elevation(1),
-  },
-  interestsBody: { flex: 1 },
-  interestsLabel: { ...type.body, color: colors.brand },
-  interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
-  interestsChevron: { fontSize: 20, color: colors.link, marginLeft: spacing(2) },
+    interestsRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      marginBottom: spacing(7),
+      ...elevation(1),
+    },
+    interestsBody: { flex: 1 },
+    interestsLabel: { ...type.body, color: colors.brand },
+    interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
+    interestsChevron: { fontSize: 20, color: colors.link, marginLeft: spacing(2) },
 
-  signOutBtn: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    alignItems: "center",
-    ...elevation(1),
-  },
-  signOutText: {
-    ...type.label,
-    fontSize: 14,
-    color: colors.danger,
-    letterSpacing: 1,
-    textTransform: "uppercase",
-  },
+    signOutBtn: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      alignItems: "center",
+      ...elevation(1),
+    },
+    signOutText: {
+      ...type.label,
+      fontSize: 14,
+      color: colors.danger,
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
 
-  footer: { ...type.caption, textAlign: "center", marginTop: spacing(4), fontSize: 12 },
-});
+    footer: { ...type.caption, textAlign: "center", marginTop: spacing(4), fontSize: 12 },
+    appearance: { marginBottom: spacing(7) },
+  })
+);

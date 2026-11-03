@@ -31,7 +31,7 @@
 // already a 1600px rendition rather than a full-resolution original.
 import React, { useEffect, useState } from "react";
 import { View, Text, Image, Pressable, Linking, StyleSheet, PixelRatio } from "react-native";
-import { colors, spacing, radius, type, elevation } from "../theme";
+import { colors, spacing, radius, type, elevation, themed } from "../theme";
 import Skeleton from "./Skeleton";
 import { imageVariantUrl, heroImageWidth } from "../game/mediaPolicy";
 
@@ -122,26 +122,28 @@ function Credit({ hero }) {
   );
 }
 
-const styles = StyleSheet.create({
-  wrap: { marginBottom: spacing(5) },
-  frame: {
-    width: "100%",
-    aspectRatio: ASPECT,
-    borderRadius: radius.sheet,
-    overflow: "hidden",
-    // The placeholder tone. `surfaceSunken` is the app's recessed-well colour,
-    // so an image still loading reads as part of the page rather than as a
-    // missing asset.
-    backgroundColor: colors.surfaceSunken,
-    ...elevation(2),
-  },
-  credit: {
-    ...type.caption,
-    fontSize: 12,
-    marginTop: spacing(2),
-    paddingHorizontal: spacing(0.5),
-  },
-  // Teal is the one accent safe at body size (5.8:1 on white), which is why the
-  // link colour is `accent` and not `earth`.
-  creditLink: { color: colors.link },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    wrap: { marginBottom: spacing(5) },
+    frame: {
+      width: "100%",
+      aspectRatio: ASPECT,
+      borderRadius: radius.sheet,
+      overflow: "hidden",
+      // The placeholder tone. `surfaceSunken` is the app's recessed-well colour,
+      // so an image still loading reads as part of the page rather than as a
+      // missing asset.
+      backgroundColor: colors.surfaceSunken,
+      ...elevation(2),
+    },
+    credit: {
+      ...type.caption,
+      fontSize: 12,
+      marginTop: spacing(2),
+      paddingHorizontal: spacing(0.5),
+    },
+    // Teal is the one accent safe at body size (5.8:1 on white), which is why the
+    // link colour is `accent` and not `earth`.
+    creditLink: { color: colors.link },
+  })
+);

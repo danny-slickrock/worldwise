@@ -1,5 +1,6 @@
 // Pure settings logic — no React or storage imports, mirrors game/progress.js.
 import { DEFAULT_TIER, normalizeTier } from "./entitlements";
+import { DEFAULT_COLOR_SCHEME, normalizeColorSchemePref } from "./colorScheme";
 
 // How the globes draw their land. "terrain" is the realistic basemap (climate
 // and landform, per game/terrainTint.js); "simple" is the kit's flat map layer,
@@ -20,6 +21,8 @@ export const DEFAULT_SETTINGS = {
   soundEnabled: true,
   basemap: DEFAULT_BASEMAP,
   tier: DEFAULT_TIER,
+  // system | light | dark. See game/colorScheme.js.
+  colorScheme: DEFAULT_COLOR_SCHEME,
 };
 
 // Coerce anything read back from storage into a valid settings object, so a
@@ -35,6 +38,7 @@ export function normalizeSettings(raw) {
     // Same rule, and it matters more here: an unrecognised tier decides what
     // someone is allowed to play, so it falls back rather than being trusted.
     tier: normalizeTier(raw.tier),
+    colorScheme: normalizeColorSchemePref(raw.colorScheme),
   };
 }
 

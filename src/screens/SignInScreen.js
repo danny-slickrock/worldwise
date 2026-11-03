@@ -2,14 +2,14 @@
 // so the pitch is what an account gets you, not a wall in front of the games.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation } from "../theme";
+import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import Wordmark from "../components/Wordmark";
 import SpinningMark from "../components/SpinningMark";
 import { useAuth } from "../auth/AuthProvider";
 
-export default function SignInScreen() {
+export default function SignInScreen({ footer = null }) {
   const { signInWithEmail, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState("");
   // 'idle' | 'sending' | 'sent' | 'error' — one state, so the button, the
@@ -135,81 +135,85 @@ export default function SignInScreen() {
           <Text style={styles.footer}>
             No password to forget. We only use your email to sign you in.
           </Text>
+          {footer ? <View style={styles.extra}>{footer}</View> : null}
         </FadeInUp>
       </Container>
     </ScrollView>
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
-  lockup: { marginBottom: spacing(5) },
-  kicker: { ...type.eyebrow, fontSize: 12 },
-  title: { ...type.h1, fontSize: 32, marginTop: spacing(1), lineHeight: 38 },
-  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+    lockup: { marginBottom: spacing(5) },
+    kicker: { ...type.eyebrow, fontSize: 12 },
+    title: { ...type.h1, fontSize: 32, marginTop: spacing(1), lineHeight: 38 },
+    tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
 
-  card: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(5),
-    ...elevation(1),
-  },
-  label: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
-  // Kit §Text field: a white field with a hairline, not a recess. The border
-  // is what reads as an editable box on paper.
-  input: {
-    backgroundColor: colors.surfaceRaised,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.card,
-    paddingHorizontal: spacing(3.5),
-    paddingVertical: spacing(3.5),
-    ...type.body,
-    marginBottom: spacing(4),
-  },
+    card: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(5),
+      ...elevation(1),
+    },
+    label: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
+    // Kit §Text field: a white field with a hairline, not a recess. The border
+    // is what reads as an editable box on paper.
+    input: {
+      backgroundColor: colors.surfaceRaised,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.card,
+      paddingHorizontal: spacing(3.5),
+      paddingVertical: spacing(3.5),
+      ...type.body,
+      marginBottom: spacing(4),
+    },
 
-  primaryBtn: {
-    backgroundColor: colors.brand,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: 54,
-    ...elevation(2),
-  },
-  primaryBtnText: { ...type.body, color: colors.onFill },
-  btnDisabled: { opacity: 0.5 },
+    primaryBtn: {
+      backgroundColor: colors.brand,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: 54,
+      ...elevation(2),
+    },
+    primaryBtnText: { ...type.body, color: onFill(colors.brand) },
+    btnDisabled: { opacity: 0.5 },
+    extra: { marginTop: spacing(10) },
 
-  dividerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(3),
-    marginVertical: spacing(4),
-  },
-  dividerLine: { flex: 1, height: 1, backgroundColor: colors.border },
-  dividerText: { ...type.eyebrow, fontSize: 11 },
+    dividerRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(3),
+      marginVertical: spacing(4),
+    },
+    dividerLine: { flex: 1, height: 1, backgroundColor: colors.border },
+    dividerText: { ...type.eyebrow, fontSize: 11 },
 
-  googleBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: spacing(2),
-    backgroundColor: colors.surfaceSunken,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    minHeight: 54,
-    ...elevation(1),
-  },
-  googleMark: { fontSize: 17, color: colors.link },
-  googleBtnText: { ...type.body, color: colors.brand },
+    googleBtn: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: spacing(2),
+      backgroundColor: colors.surfaceSunken,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      minHeight: 54,
+      ...elevation(1),
+    },
+    googleMark: { fontSize: 17, color: colors.link },
+    googleBtnText: { ...type.body, color: colors.brand },
 
-  note: { marginTop: spacing(4), borderRadius: radius.card, padding: spacing(3.5) },
-  noteOk: { backgroundColor: colors.successSurface },
-  noteOkText: { ...type.body, color: colors.successInk },
-  noteBad: { backgroundColor: colors.dangerSurface },
-  noteBadText: { ...type.body, color: colors.danger },
+    note: { marginTop: spacing(4), borderRadius: radius.card, padding: spacing(3.5) },
+    noteOk: { backgroundColor: colors.successSurface },
+    noteOkText: { ...type.body, color: colors.successInk },
+    noteBad: { backgroundColor: colors.dangerSurface },
+    noteBadText: { ...type.body, color: colors.danger },
 
-  footer: { ...type.caption, textAlign: "center", marginTop: spacing(6), fontSize: 12 },
-});
+    footer: { ...type.caption, textAlign: "center", marginTop: spacing(6), fontSize: 12 },
+  })
+);

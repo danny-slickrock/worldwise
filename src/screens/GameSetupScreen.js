@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation, hairline, onFill } from "../theme";
+import { colors, spacing, radius, type, elevation, hairline, onFill, themed } from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import PressableTint from "../components/PressableTint";
@@ -97,51 +97,53 @@ export default function GameSetupScreen({ mode, onExit, onStart }) {
   );
 }
 
-const styles = StyleSheet.create({
-  wrap: { paddingVertical: spacing(6), paddingBottom: spacing(12) },
-  back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+const styles = themed(() =>
+  StyleSheet.create({
+    wrap: { paddingVertical: spacing(6), paddingBottom: spacing(12) },
+    back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  header: { marginTop: spacing(2), marginBottom: spacing(6) },
-  titleRow: { flexDirection: "row", alignItems: "center", gap: spacing(2) },
-  icon: {
-    width: 44,
-    height: 44,
-    borderRadius: radius.card,
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: spacing(3),
-  },
-  glyph: { fontSize: 20 },
-  proBadge: {
-    backgroundColor: colors.emberSurface,
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing(2),
-    paddingVertical: 3,
-    marginBottom: spacing(3),
-  },
-  proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
-  eyebrow: { ...type.eyebrow },
-  title: { ...type.h1, marginTop: spacing(1) },
-  blurb: { ...type.body, color: colors.textSecondary, marginTop: spacing(1) },
+    header: { marginTop: spacing(2), marginBottom: spacing(6) },
+    titleRow: { flexDirection: "row", alignItems: "center", gap: spacing(2) },
+    icon: {
+      width: 44,
+      height: 44,
+      borderRadius: radius.card,
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: spacing(3),
+    },
+    glyph: { fontSize: 20 },
+    proBadge: {
+      backgroundColor: colors.emberSurface,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(2),
+      paddingVertical: 3,
+      marginBottom: spacing(3),
+    },
+    proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
+    eyebrow: { ...type.eyebrow },
+    title: { ...type.h1, marginTop: spacing(1) },
+    blurb: { ...type.body, color: colors.textSecondary, marginTop: spacing(1) },
 
-  list: { gap: spacing(3) },
-  // 76px+ from padding alone. hitSlop is a no-op on Pressable in
-  // react-native-web (M2.5 step 6.4.2), so the target has to BE the box.
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(5),
-    ...hairline,
-    ...elevation(1),
-  },
-  rowText: { flex: 1, paddingRight: spacing(3) },
-  rowLabel: { ...type.h3, fontSize: 18 },
-  rowDesc: { ...type.body, color: colors.textSecondary, marginTop: 2, lineHeight: 20 },
-  rowSoon: { ...type.caption, color: colors.textFaint, marginTop: spacing(1) },
-  chevron: { ...type.h2, color: colors.textFaint },
-});
+    list: { gap: spacing(3) },
+    // 76px+ from padding alone. hitSlop is a no-op on Pressable in
+    // react-native-web (M2.5 step 6.4.2), so the target has to BE the box.
+    row: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(5),
+      ...hairline,
+      ...elevation(1),
+    },
+    rowText: { flex: 1, paddingRight: spacing(3) },
+    rowLabel: { ...type.h3, fontSize: 18 },
+    rowDesc: { ...type.body, color: colors.textSecondary, marginTop: 2, lineHeight: 20 },
+    rowSoon: { ...type.caption, color: colors.textFaint, marginTop: spacing(1) },
+    chevron: { ...type.h2, color: colors.textFaint },
+  })
+);

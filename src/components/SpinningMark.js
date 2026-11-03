@@ -29,7 +29,7 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
 import CompassMark from "./CompassMark";
-import { colors, motion } from "../theme";
+import { colors, motion, themed, pageMarkTone } from "../theme";
 import { markDetail, hasRing } from "../game/brandMark";
 import useReducedMotion from "../hooks/useReducedMotion";
 
@@ -97,7 +97,8 @@ function useTurn(active, duration, { settle = false } = {}) {
 
 export default function SpinningMark({
   size = 56,
-  tone = "pine",
+  // Defaults to the page ground's tone: pine on parchment, cream on bark.
+  tone: toneProp,
   // False renders the identical mark at rest. If it was spinning, it settles.
   spinning = true,
   // The breathing halo. Off inside dense layouts, where it would collide.
@@ -105,6 +106,7 @@ export default function SpinningMark({
   style,
   ...rest
 }) {
+  const tone = toneProp ?? pageMarkTone();
   const reduceMotion = useReducedMotion();
   const active = spinning && !reduceMotion;
 
@@ -175,6 +177,8 @@ function Halo({ size, progress, tone }) {
   );
 }
 
-const styles = StyleSheet.create({
-  halo: { borderWidth: 1.5 },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    halo: { borderWidth: 1.5 },
+  })
+);

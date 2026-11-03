@@ -17,7 +17,7 @@
 // resolveSecondaryAction() gives the Interests edit surface.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation } from "../theme";
+import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import { LEARNING_PATH_REGIONS } from "../data/learningPaths";
@@ -65,8 +65,8 @@ export default function PracticePrefsScreen({ prefs, onExit, onSave }) {
           <Text style={styles.kicker}>Practice preferences</Text>
           <Text style={styles.title}>How do you want to practice?</Text>
           <Text style={styles.tagline}>
-            These shape which countries show up and how hard your rounds are. Your
-            interests — what you're curious about — are a separate setting.
+            These shape which countries show up and how hard your rounds are. Your interests — what
+            you're curious about — are a separate setting.
           </Text>
         </FadeInUp>
 
@@ -128,7 +128,10 @@ export default function PracticePrefsScreen({ prefs, onExit, onSave }) {
                 onPress={() => adjustStreakGoal(-1)}
                 hitSlop={8}
                 disabled={streakGoal <= STREAK_GOAL_MIN}
-                style={[styles.stepperBtn, streakGoal <= STREAK_GOAL_MIN && styles.stepperBtnDisabled]}
+                style={[
+                  styles.stepperBtn,
+                  streakGoal <= STREAK_GOAL_MIN && styles.stepperBtnDisabled,
+                ]}
               >
                 <Text style={styles.stepperText}>−</Text>
               </Pressable>
@@ -137,11 +140,18 @@ export default function PracticePrefsScreen({ prefs, onExit, onSave }) {
                 onPress={() => adjustStreakGoal(1)}
                 hitSlop={8}
                 disabled={streakGoal >= STREAK_GOAL_MAX}
-                style={[styles.stepperBtn, streakGoal >= STREAK_GOAL_MAX && styles.stepperBtnDisabled]}
+                style={[
+                  styles.stepperBtn,
+                  streakGoal >= STREAK_GOAL_MAX && styles.stepperBtnDisabled,
+                ]}
               >
                 <Text style={styles.stepperText}>+</Text>
               </Pressable>
-              <Pressable onPress={() => setStreakGoal(null)} hitSlop={8} style={styles.clearGoalBtn}>
+              <Pressable
+                onPress={() => setStreakGoal(null)}
+                hitSlop={8}
+                style={styles.clearGoalBtn}
+              >
                 <Text style={styles.clearGoalText}>Clear</Text>
               </Pressable>
             </View>
@@ -156,69 +166,71 @@ export default function PracticePrefsScreen({ prefs, onExit, onSave }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
 
-  back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+    back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  kicker: { ...type.eyebrow, fontSize: 12, marginTop: spacing(3) },
-  title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
-  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
+    kicker: { ...type.eyebrow, fontSize: 12, marginTop: spacing(3) },
+    title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
+    tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
 
-  section: { ...type.eyebrow, marginBottom: spacing(1.5) },
-  sectionHint: { ...type.caption, fontSize: 13, marginBottom: spacing(3) },
+    section: { ...type.eyebrow, marginBottom: spacing(1.5) },
+    sectionHint: { ...type.caption, fontSize: 13, marginBottom: spacing(3) },
 
-  grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2.5), marginBottom: spacing(7) },
-  chip: {
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4),
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceRaised,
-    ...elevation(1),
-  },
-  chipActive: { backgroundColor: colors.brand, ...elevation(2) },
-  chipText: { ...type.body, color: colors.text },
-  chipTextActive: { color: colors.onFill },
+    grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2.5), marginBottom: spacing(7) },
+    chip: {
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(4),
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceRaised,
+      ...elevation(1),
+    },
+    chipActive: { backgroundColor: colors.brand, ...elevation(2) },
+    chipText: { ...type.body, color: colors.text },
+    chipTextActive: { color: onFill(colors.brand) },
 
-  noGoalRow: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    marginBottom: spacing(7),
-    ...elevation(1),
-  },
-  goalRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(3),
-    marginBottom: spacing(7),
-    ...elevation(1),
-  },
-  stepperBtn: {
-    width: 40,
-    height: 40,
-    borderRadius: radius.pill,
-    backgroundColor: colors.brand,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  stepperBtnDisabled: { opacity: 0.4 },
-  stepperText: { ...type.h3, fontSize: 20, color: colors.onFill, lineHeight: 22 },
-  goalValue: { ...type.body, color: colors.text, flex: 1, textAlign: "center" },
-  clearGoalBtn: { paddingHorizontal: spacing(3), paddingVertical: spacing(2) },
-  clearGoalText: { ...type.label, fontSize: 13, color: colors.danger },
+    noGoalRow: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      marginBottom: spacing(7),
+      ...elevation(1),
+    },
+    goalRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(3),
+      marginBottom: spacing(7),
+      ...elevation(1),
+    },
+    stepperBtn: {
+      width: 40,
+      height: 40,
+      borderRadius: radius.pill,
+      backgroundColor: colors.brand,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    stepperBtnDisabled: { opacity: 0.4 },
+    stepperText: { ...type.h3, fontSize: 20, color: onFill(colors.brand), lineHeight: 22 },
+    goalValue: { ...type.body, color: colors.text, flex: 1, textAlign: "center" },
+    clearGoalBtn: { paddingHorizontal: spacing(3), paddingVertical: spacing(2) },
+    clearGoalText: { ...type.label, fontSize: 13, color: colors.danger },
 
-  doneBtn: {
-    backgroundColor: colors.brand,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    alignItems: "center",
-    ...elevation(2),
-  },
-  doneText: { ...type.body, color: colors.onFill },
-});
+    doneBtn: {
+      backgroundColor: colors.brand,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      alignItems: "center",
+      ...elevation(2),
+    },
+    doneText: { ...type.body, color: onFill(colors.brand) },
+  })
+);

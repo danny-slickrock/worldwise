@@ -39,7 +39,7 @@
 //   · **Newsreader is never used below 17px.** Below that the serif detail
 //     muddies; drop to Instrument Sans. `type.h3` at 21 is the floor.
 
-export const colors = {
+const lightColors = {
   // --- Brand -------------------------------------------------------------
   // Pine: the walls of the room. Carries authority and holds every map.
   // 10.45:1 on cream, 9.52:1 on parchment — safe for anything.
@@ -117,6 +117,12 @@ export const colors = {
   // Opaque twin of `border`, for the places RN can't composite an rgba edge
   // predictably (SVG strokes, Android borders under elevation).
   borderSolid: "#DED2BA",
+
+  // The press tint PressableTint lays over whatever was touched, and the colour
+  // every elevation() shadow is cast in. Tokens rather than literals in those
+  // components because each one inverts in the dark scheme.
+  tint: "rgba(33,64,60,0.10)",
+  shadow: "#2A2320",
 };
 
 // Which label colour a filled surface takes.
@@ -128,10 +134,29 @@ export const colors = {
 //
 // One function, so no component has to remember, and the tests drive their
 // checks through the same call the components make.
-const INK_ON_FILL = new Set([colors.brass, colors.accentLight]);
+//
+// In the dark scheme the rule is the same idea run the other way: pine, lake-
+// water, ember and the status colours are LIFTED so they can be type on a dark
+// ground, and a lifted fill is too light for parchment. So the dark set is
+// every lifted fill, and they take nightwood exactly as brass always has. The
+// tests drive both schemes through this one function.
+const LIGHT_INK_ON_FILL = ["brass", "accentLight"];
+const DARK_INK_ON_FILL = [
+  "brass",
+  "accentLight",
+  "brand",
+  "accent",
+  "link",
+  "ember",
+  "emberInk",
+  "success",
+  "successInk",
+  "danger",
+];
 
 export function onFill(fill) {
-  return INK_ON_FILL.has(fill) ? colors.brandDeep : colors.onFill;
+  const t = THEMES[active];
+  return t.inkOnFill.has(fill) ? t.colors.brandDeep : t.colors.onFill;
 }
 
 // Game-mode accents. The kit forbids inventing hues — extend by tinting pine,
@@ -141,14 +166,14 @@ export function onFill(fill) {
 //
 // Daily takes pine because it is the hero card.
 export const modeAccents = {
-  daily: colors.brand,
+  daily: lightColors.brand,
   flag: "#256760", // lakewater, deepened for a parchment label
-  capital: colors.emberInk,
-  capitalReverse: colors.brass, // the one fill that carries ink
+  capital: lightColors.emberInk,
+  capitalReverse: lightColors.brass, // the one fill that carries ink
   shape: "#2E5A52", // pine, lifted and greened
   locator: "#2B5F6B", // lakewater, cooled toward slate
   higherLower: "#7E4720", // ember, deepened
-  country: colors.brandDeep,
+  country: lightColors.brandDeep,
   // Ember/brass family, tinted toward olive-gold rather than ember's red —
   // the kit's "coin" end of the firelight range, and far enough from
   // higherLower's own ember tint to read as a different tile.
@@ -203,13 +228,13 @@ export const modeAccents = {
 // All six clear 4.5:1 on `surfaceRaised`, because they colour the section
 // label, which is 11px mono — small text, so AA body contrast, not large.
 // `brass` is deliberately absent: at 1.90:1 it is never text on light.
-export const topicAccents = {
-  physical_geography: colors.emberInk, // 5.40:1 — terrain warmth
-  climate: colors.accent, // 4.70:1 — lakewater
-  economy: colors.brand, // 10.45:1 — pine
+const lightTopicAccents = {
+  physical_geography: lightColors.emberInk, // 5.40:1 — terrain warmth
+  climate: lightColors.accent, // 4.70:1 — lakewater
+  economy: lightColors.brand, // 10.45:1 — pine
   people_and_culture: "#7E4720", // 6.93:1 — ember, deepened
   trade: "#2B5F6B", // 6.60:1 — lakewater, cooled
-  culture: colors.successInk, // 5.52:1
+  culture: lightColors.successInk, // 5.52:1
 };
 
 // --- Spacing ---------------------------------------------------------------
@@ -239,12 +264,11 @@ export const radius = { sharp: 2, sm: 6, card: 8, md: 8, sheet: 14, icon: 23, pi
 //
 // The shadow colour is BARK, not black and not navy: "even the shadows are
 // warm-biased". A neutral shadow on parchment goes grey and dirty.
-const SHADOW = "#2A2320";
 export function elevation(level = 1) {
   switch (level) {
     case 3:
       return {
-        shadowColor: SHADOW,
+        shadowColor: colors.shadow,
         shadowOffset: { width: 0, height: 14 },
         shadowOpacity: 0.18,
         shadowRadius: 34,
@@ -252,7 +276,7 @@ export function elevation(level = 1) {
       };
     case 2:
       return {
-        shadowColor: SHADOW,
+        shadowColor: colors.shadow,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.1,
         shadowRadius: 12,
@@ -262,7 +286,7 @@ export function elevation(level = 1) {
       return {};
     default:
       return {
-        shadowColor: SHADOW,
+        shadowColor: colors.shadow,
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.08,
         shadowRadius: 2,
@@ -273,7 +297,7 @@ export function elevation(level = 1) {
 
 // The hairline that does most of the structural work now that cards are cream
 // on parchment and the shadow at e1 is deliberately faint.
-export const hairline = { borderWidth: 1, borderColor: colors.border };
+const buildHairline = (c) => ({ borderWidth: 1, borderColor: c.border });
 
 // --- Typography ------------------------------------------------------------
 // Newsreader (display) · Instrument Sans (body/UI) · IBM Plex Mono (utility).
@@ -306,57 +330,59 @@ export const fonts = {
 // The kit's scale, verbatim. Tracking is given there as a fraction of size; RN
 // wants absolute points, so it is multiplied out (-1.2% of 60 = -0.72, -0.6% of
 // 40 = -0.24, 12% of 11 = 1.32). Line-heights likewise.
-export const type = {
-  display: {
-    fontFamily: fonts.display,
-    fontSize: 60,
-    letterSpacing: -0.72,
-    lineHeight: 64,
-    color: colors.brand,
-  },
-  h1: {
-    fontFamily: fonts.display,
-    fontSize: 40,
-    letterSpacing: -0.24,
-    lineHeight: 46,
-    color: colors.brand,
-  },
-  h2: {
-    fontFamily: fonts.displayBold,
-    fontSize: 28,
-    letterSpacing: -0.11,
-    lineHeight: 34,
-    color: colors.brand,
-  },
-  // The kit's H3, and the floor for the serif: Newsreader is never used below
-  // 17px, so anything smaller than this drops to Instrument Sans.
-  h3: { fontFamily: fonts.displayBold, fontSize: 21, lineHeight: 26, color: colors.brand },
-  bodyLarge: { fontFamily: fonts.body, fontSize: 18, lineHeight: 30, color: colors.text },
-  body: { fontFamily: fonts.body, fontSize: 15, lineHeight: 24, color: colors.text },
-  label: { fontFamily: fonts.bodySemi, fontSize: 13, lineHeight: 18, color: colors.text },
-  // Secondary body text — captions, metadata, blurbs.
-  caption: { fontFamily: fonts.body, fontSize: 13, lineHeight: 20, color: colors.textMuted },
-  // Mono, tracked 12%. The structural voice of the app: section headers,
-  // kickers, anything that labels rather than speaks. Ember-ink, because every
-  // warm type in this system is emberInk and never ember.
-  eyebrow: {
-    fontFamily: fonts.monoMedium,
-    fontSize: 11,
-    letterSpacing: 1.32,
-    lineHeight: 15,
-    textTransform: "uppercase",
-    color: colors.emberInk,
-  },
-  // Same mono voice, untransformed — coordinates and figures are already
-  // correctly cased and would be mangled by uppercasing.
-  data: {
-    fontFamily: fonts.mono,
-    fontSize: 11,
-    letterSpacing: 1.32,
-    lineHeight: 15,
-    color: colors.textFaint,
-  },
-};
+function buildType(colors) {
+  return {
+    display: {
+      fontFamily: fonts.display,
+      fontSize: 60,
+      letterSpacing: -0.72,
+      lineHeight: 64,
+      color: colors.brand,
+    },
+    h1: {
+      fontFamily: fonts.display,
+      fontSize: 40,
+      letterSpacing: -0.24,
+      lineHeight: 46,
+      color: colors.brand,
+    },
+    h2: {
+      fontFamily: fonts.displayBold,
+      fontSize: 28,
+      letterSpacing: -0.11,
+      lineHeight: 34,
+      color: colors.brand,
+    },
+    // The kit's H3, and the floor for the serif: Newsreader is never used below
+    // 17px, so anything smaller than this drops to Instrument Sans.
+    h3: { fontFamily: fonts.displayBold, fontSize: 21, lineHeight: 26, color: colors.brand },
+    bodyLarge: { fontFamily: fonts.body, fontSize: 18, lineHeight: 30, color: colors.text },
+    body: { fontFamily: fonts.body, fontSize: 15, lineHeight: 24, color: colors.text },
+    label: { fontFamily: fonts.bodySemi, fontSize: 13, lineHeight: 18, color: colors.text },
+    // Secondary body text — captions, metadata, blurbs.
+    caption: { fontFamily: fonts.body, fontSize: 13, lineHeight: 20, color: colors.textMuted },
+    // Mono, tracked 12%. The structural voice of the app: section headers,
+    // kickers, anything that labels rather than speaks. Ember-ink, because every
+    // warm type in this system is emberInk and never ember.
+    eyebrow: {
+      fontFamily: fonts.monoMedium,
+      fontSize: 11,
+      letterSpacing: 1.32,
+      lineHeight: 15,
+      textTransform: "uppercase",
+      color: colors.emberInk,
+    },
+    // Same mono voice, untransformed — coordinates and figures are already
+    // correctly cased and would be mangled by uppercasing.
+    data: {
+      fontFamily: fonts.mono,
+      fontSize: 11,
+      letterSpacing: 1.32,
+      lineHeight: 15,
+      color: colors.textFaint,
+    },
+  };
+}
 
 // --- Layout ----------------------------------------------------------------
 export const breakpoints = { sm: 480, md: 768, lg: 1024, xl: 1280 };
@@ -432,7 +458,7 @@ export const motion = {
 // Grain periods are deliberately co-prime-ish (9/17/29/43/97). Beaten against
 // each other they never line up inside a viewport, so the desk reads as figure
 // rather than as corduroy — a single 9px stripe would visibly tile.
-export const materials = {
+const lightMaterials = {
   // Dusk wash — brass and ember falling from the top-right over a
   // pine-to-nightwood ramp. The only sanctioned gradient in the system.
   dusk: {
@@ -447,8 +473,8 @@ export const materials = {
       ],
     },
     glow: [
-      { color: colors.brass, opacity: 0.3, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
-      { color: colors.ember, opacity: 0.26, cx: 0.86, cy: 0.1, rx: 0.9, ry: 0.7, fade: 0.62 },
+      { color: lightColors.brass, opacity: 0.3, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: lightColors.ember, opacity: 0.26, cx: 0.86, cy: 0.1, rx: 0.9, ry: 0.7, fade: 0.62 },
     ],
   },
   // The same wash on a darker ramp, for a panel inside an already-lit page.
@@ -463,28 +489,30 @@ export const materials = {
       ],
     },
     glow: [
-      { color: colors.brass, opacity: 0.24, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
-      { color: colors.ember, opacity: 0.22, cx: 0.88, cy: 0.08, rx: 0.9, ry: 0.7, fade: 0.62 },
+      { color: lightColors.brass, opacity: 0.24, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: lightColors.ember, opacity: 0.22, cx: 0.88, cy: 0.08, rx: 0.9, ry: 0.7, fade: 0.62 },
     ],
   },
   // Paper fibre — a 3-4px weave at ~3% ink plus a brass wash from the top edge.
   // The default page ground, and the quietest material by a wide margin: at 3%
   // it is felt rather than seen, which is exactly the brief.
   paper: {
-    base: colors.surface,
+    base: lightColors.surface,
     weave: [
       { axis: "horizontal", color: "#7A6A58", opacity: 0.032, thickness: 1, period: 3 },
       { axis: "vertical", color: "#7A6A58", opacity: 0.026, thickness: 1, period: 4 },
     ],
-    glow: [{ color: colors.brass, opacity: 0.11, cx: 0.5, cy: 0, rx: 1.3, ry: 0.9, fade: 0.72 }],
+    glow: [
+      { color: lightColors.brass, opacity: 0.11, cx: 0.5, cy: 0, rx: 1.3, ry: 0.9, fade: 0.72 },
+    ],
   },
   // Pine grain — the wall. Vertical stripes in nightwood with a brass fleck.
   // Layer OVER a dark base or over duskDeep.
   pineGrain: {
-    base: colors.brand,
+    base: lightColors.brand,
     grain: [
       { axis: "vertical", color: "#0B1614", opacity: 0.2, thickness: 2, period: 9 },
-      { axis: "vertical", color: colors.brass, opacity: 0.045, thickness: 1, period: 17 },
+      { axis: "vertical", color: lightColors.brass, opacity: 0.045, thickness: 1, period: 17 },
       { axis: "vertical", color: "#0B1614", opacity: 0.11, thickness: 4, period: 29 },
     ],
   },
@@ -503,16 +531,18 @@ export const materials = {
     grain: [
       { axis: "horizontal", color: "#281509", opacity: 0.15, thickness: 1, period: 9 },
       { axis: "horizontal", color: "#1E0F06", opacity: 0.11, thickness: 1, period: 17 },
-      { axis: "horizontal", color: colors.brass, opacity: 0.05, thickness: 1, period: 29 },
+      { axis: "horizontal", color: lightColors.brass, opacity: 0.05, thickness: 1, period: 29 },
       { axis: "horizontal", color: "#281509", opacity: 0.09, thickness: 2, period: 43 },
       { axis: "horizontal", color: "#1E0F06", opacity: 0.13, thickness: 4, period: 97 },
     ],
-    glow: [{ color: colors.brass, opacity: 0.15, cx: 0.2, cy: 0, rx: 1.4, ry: 1, fade: 0.64 }],
+    glow: [{ color: lightColors.brass, opacity: 0.15, cx: 0.2, cy: 0, rx: 1.4, ry: 1, fade: 0.64 }],
   },
   // Lantern — a warm glow from the lower left, for a dark panel that needs
   // warmth without a full wash. Composable on top of any of the above.
   lantern: {
-    glow: [{ color: colors.brass, opacity: 0.16, cx: 0.1, cy: 1, rx: 0.75, ry: 0.65, fade: 0.62 }],
+    glow: [
+      { color: lightColors.brass, opacity: 0.16, cx: 0.1, cy: 1, rx: 0.75, ry: 0.65, fade: 0.62 },
+    ],
   },
 };
 
@@ -538,7 +568,7 @@ export function gradientVector(angle) {
   };
 }
 
-export const MATERIALS = Object.keys(materials);
+export const MATERIALS = Object.keys(lightMaterials);
 
 // A material's flat fallback. Every Material draws over this as a plain
 // background colour, so a platform that can't render a pattern degrades to the
@@ -564,11 +594,15 @@ export function materialInk(name) {
 // deliberately entering the dark stage, not accidentally using a dark token on
 // a light page.
 export const map = {
-  ocean: colors.brandDeep,
+  // The pine wall a map panel sits in (outline boxes, the country hero, the
+  // Explore frame). Pinned to the light palette's pine on purpose: `brand`
+  // lifts to sage in the dark scheme, and the map stage must not.
+  stage: lightColors.brand,
+  ocean: lightColors.brandDeep,
   // "land --ww-brand at 88%" — pre-composited against the ocean rather than
   // left as an opacity, so SVG fills stay flat and predictable across renderers.
   land: "#203D3A",
-  landActive: colors.accent,
+  landActive: lightColors.accent,
   // "borders 1px brass at 35%"
   border: "rgba(216,164,74,0.35)",
   // Over the photographic basemap the same brass at 35% disappears into bright
@@ -577,12 +611,12 @@ export const map = {
   borderOnRaster: "rgba(216,164,74,0.62)",
   graticule: "rgba(216,164,74,0.22)",
   // "Selected place: ember dot + halo; related places: lakewater diamonds."
-  selected: colors.ember,
-  related: colors.accent,
-  label: colors.brass,
+  selected: lightColors.ember,
+  related: lightColors.accent,
+  label: lightColors.brass,
   // The two permitted inks on the dark stage. Neither carries alpha.
-  onMap: colors.onFill,
-  onMapQuiet: colors.onFillQuiet,
+  onMap: lightColors.onFill,
+  onMapQuiet: lightColors.onFillQuiet,
   // A plate for a map label, per the kit: "parchment on a 72% nightwood plate".
   labelPlate: "rgba(22,41,42,0.72)",
 
@@ -638,6 +672,261 @@ export function contrastRatio(hexA, hexB) {
 
 export const CONTRAST = { body: 4.5, large: 3 };
 
+// A mode accent used AS TYPE — the small "Capital"/"River" eyebrow on a quiz
+// badge. Mode accents are fills, deep enough for a parchment label; as type
+// they read on parchment but sink into bark, and brass (capitalReverse) never
+// reads on light at all. So: the accent itself when it clears body contrast on
+// the card in the active scheme, otherwise the eyebrow ink — the badge keeps
+// the mode's colour in its border either way.
+export function accentInk(accent) {
+  const card = colors.surfaceRaised;
+  return /^#[0-9A-Fa-f]{6}$/.test(accent) && contrastRatio(accent, card) >= CONTRAST.body
+    ? accent
+    : colors.emberInk;
+}
+
 // The two light grounds, so a check can assert against both rather than
 // picking whichever one happens to pass.
-export const LIGHT_GROUNDS = [colors.surface, colors.surfaceRaised];
+export const LIGHT_GROUNDS = [lightColors.surface, lightColors.surfaceRaised];
+
+// ===========================================================================
+// THE DARK SCHEME — "the cartography room with the lamp turned low"
+//
+// Not a neutral grey dark mode. The page is deep bark and charcoal (warm, the
+// same family as the light scheme's ink, not #121212), the inks are parchment,
+// and pine, lakewater and ember are carried through — LIFTED, because a colour
+// that is ink on parchment is invisible on bark. Three consequences worth
+// knowing before touching a value:
+//
+//   · Lifted brand colours are too light to carry parchment, so in this scheme
+//     they carry nightwood instead. That is `onFill()`'s job, which is why a
+//     label on a fill must always go through it rather than naming `onFill`.
+//   · The MAP DOES NOT CHANGE. It was already the dark stage; `map.*` is built
+//     from the light palette and is identical in both schemes. So is
+//     `modeAccents`: those are tile fills with parchment labels, and a deep
+//     tinted tile reads on bark as well as on parchment.
+//   · Materials get dark variants rather than inversions: the paper weave
+//     becomes a parchment fibre at a few percent over bark, and the dusk wash
+//     sinks a step so it stays a lit panel rather than the brightest thing on
+//     the page. Light still enters from one corner.
+// ===========================================================================
+const darkColors = {
+  // Sage pine — the walls of the room, read by lamplight. Headings, active nav,
+  // primary fills (which take nightwood ink, via onFill()).
+  brand: "#9CC3B1",
+  brandDeep: "#16292A",
+  accent: "#6DB3A5",
+  accentLight: "#8FC4B4",
+  link: "#80C4B6",
+  ember: "#C8743C",
+  brass: "#D8A44A",
+  emberInk: "#E39D68",
+  success: "#6FAE6B",
+  successInk: "#94CB8F",
+  danger: "#E0866E",
+  successSurface: "#1F2A1D",
+  dangerSurface: "#34201A",
+  emberSurface: "#33251A",
+
+  // Bark and charcoal. The page is the darkest ground, the card sits half a
+  // stop above it, a well sinks below — the same three-level ladder as light.
+  surface: "#1C1815",
+  surfaceRaised: "#27211C",
+  surfaceSunken: "#141110",
+
+  // Parchment ink, ramped down the same four steps as bark ink is in light.
+  text: "#EFE6D3",
+  textSecondary: "#D6CBB6",
+  textMuted: "#BAAC95",
+  textFaint: "#A49580",
+
+  onFill: "#F4EBD9",
+  onFillQuiet: "#C9BFA8",
+
+  border: "rgba(244,235,217,0.12)",
+  borderStrong: "rgba(244,235,217,0.2)",
+  borderSolid: "#3B332B",
+
+  tint: "rgba(244,235,217,0.10)",
+  // Still warm, never neutral black: a shadow that goes blue-grey on bark looks
+  // as dirty as a neutral one on parchment.
+  shadow: "#0B0806",
+};
+
+// Every topic label is 11px mono on cream — so on bark each one is lifted to
+// clear body contrast there instead. Same hues, same keys.
+const darkTopicAccents = {
+  physical_geography: darkColors.emberInk,
+  climate: darkColors.accent,
+  economy: darkColors.brand,
+  people_and_culture: "#D9A27A",
+  trade: "#8BBCC6",
+  culture: darkColors.successInk,
+};
+
+const darkMaterials = {
+  dusk: {
+    base: "#1A3532",
+    ramp: {
+      angle: 168,
+      stops: [
+        { offset: 0, color: "#223F3B" },
+        { offset: 0.44, color: "#1A3532" },
+        { offset: 1, color: "#10201F" },
+      ],
+    },
+    glow: [
+      { color: darkColors.brass, opacity: 0.24, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: darkColors.ember, opacity: 0.2, cx: 0.86, cy: 0.1, rx: 0.9, ry: 0.7, fade: 0.62 },
+    ],
+  },
+  duskDeep: {
+    base: "#142826",
+    ramp: {
+      angle: 168,
+      stops: [
+        { offset: 0, color: "#1A302F" },
+        { offset: 0.46, color: "#142826" },
+        { offset: 1, color: "#0C1817" },
+      ],
+    },
+    glow: [
+      { color: darkColors.brass, opacity: 0.2, cx: 1, cy: 0, rx: 1.2, ry: 0.9, fade: 0.58 },
+      { color: darkColors.ember, opacity: 0.18, cx: 0.88, cy: 0.08, rx: 0.9, ry: 0.7, fade: 0.62 },
+    ],
+  },
+  // Paper by lamplight: the same weave, now parchment fibre over bark, and the
+  // brass wash from the top edge turned down to a glimmer.
+  paper: {
+    base: darkColors.surface,
+    weave: [
+      { axis: "horizontal", color: "#F4EBD9", opacity: 0.022, thickness: 1, period: 3 },
+      { axis: "vertical", color: "#F4EBD9", opacity: 0.018, thickness: 1, period: 4 },
+    ],
+    glow: [
+      { color: darkColors.brass, opacity: 0.06, cx: 0.5, cy: 0, rx: 1.3, ry: 0.9, fade: 0.72 },
+    ],
+  },
+  pineGrain: {
+    base: "#1B3633",
+    grain: [
+      { axis: "vertical", color: "#0B1614", opacity: 0.22, thickness: 2, period: 9 },
+      { axis: "vertical", color: darkColors.brass, opacity: 0.035, thickness: 1, period: 17 },
+      { axis: "vertical", color: "#0B1614", opacity: 0.12, thickness: 4, period: 29 },
+    ],
+  },
+  walnut: {
+    base: "#432B16",
+    ramp: {
+      angle: 176,
+      stops: [
+        { offset: 0, color: "#50341C" },
+        { offset: 1, color: "#352211" },
+      ],
+    },
+    grain: lightMaterials.walnut.grain,
+    glow: [{ color: darkColors.brass, opacity: 0.11, cx: 0.2, cy: 0, rx: 1.4, ry: 1, fade: 0.64 }],
+  },
+  lantern: {
+    glow: [
+      { color: darkColors.brass, opacity: 0.12, cx: 0.1, cy: 1, rx: 0.75, ry: 0.65, fade: 0.62 },
+    ],
+  },
+};
+
+export const DARK_GROUNDS = [darkColors.surface, darkColors.surfaceRaised];
+
+// ---------------------------------------------------------------------------
+// Scheme resolution.
+//
+// Every themed export below is a LIVE VIEW onto the active scheme's tokens, so
+// `colors.surface` reads bark or parchment depending on which is active at the
+// moment it is read. That is what keeps dark mode a theming change rather than
+// a component rewrite: a component that reads tokens at render time is already
+// correct. The one thing it cannot fix is a value captured ONCE at module load
+// — a `StyleSheet.create({...})` at the top of a file — which is what
+// `themed()` is for: it defers the factory and caches one result per scheme.
+//
+// Which scheme is active is decided by App.js (game/colorScheme.js resolves
+// the setting against the OS; lib/appearance.js reads the OS). This module
+// only holds the answer, so it stays free of React Native and testable here.
+export const SCHEMES = ["light", "dark"];
+
+function buildTheme(c, topics, mats, inkNames) {
+  return {
+    colors: c,
+    topicAccents: topics,
+    materials: mats,
+    type: buildType(c),
+    hairline: buildHairline(c),
+    inkOnFill: new Set(inkNames.map((n) => c[n])),
+  };
+}
+
+const THEMES = {
+  light: buildTheme(lightColors, lightTopicAccents, lightMaterials, LIGHT_INK_ON_FILL),
+  dark: buildTheme(darkColors, darkTopicAccents, darkMaterials, DARK_INK_ON_FILL),
+};
+
+let active = "light";
+
+export function setActiveScheme(scheme) {
+  active = SCHEMES.includes(scheme) ? scheme : "light";
+  return active;
+}
+
+export function activeScheme() {
+  return active;
+}
+
+// A scheme's tokens, read directly — for tests, and for the few places that
+// must name a scheme explicitly rather than follow the active one.
+export function themeFor(scheme) {
+  const t = THEMES[scheme] ?? THEMES.light;
+  return {
+    colors: t.colors,
+    topicAccents: t.topicAccents,
+    materials: t.materials,
+    type: t.type,
+    hairline: t.hairline,
+  };
+}
+
+function liveView(resolve) {
+  return new Proxy(
+    {},
+    {
+      get: (_, key) => resolve()[key],
+      has: (_, key) => key in resolve(),
+      ownKeys: () => Reflect.ownKeys(resolve()),
+      getOwnPropertyDescriptor: (_, key) => {
+        const d = Reflect.getOwnPropertyDescriptor(resolve(), key);
+        return d && { ...d, configurable: true };
+      },
+    }
+  );
+}
+
+export const colors = liveView(() => THEMES[active].colors);
+export const topicAccents = liveView(() => THEMES[active].topicAccents);
+export const materials = liveView(() => THEMES[active].materials);
+export const type = liveView(() => THEMES[active].type);
+export const hairline = liveView(() => THEMES[active].hairline);
+
+// Defer a module-level style object (or any token-derived lookup) until it is
+// read, building it once per scheme. Wrap a top-of-file StyleSheet:
+//
+//   const styles = themed(() => StyleSheet.create({ ... }));
+//
+// `styles.foo` then resolves against whichever scheme is active at render.
+export function themed(factory) {
+  const cache = {};
+  return liveView(() => (cache[active] ??= factory()));
+}
+
+// The CompassMark tone for the page ground. Pine on bark disappears, so the
+// dark scheme asks for the kit's own cream mark — the brand artwork itself is
+// untouched; only which of its sanctioned tones a page picks changes.
+export function pageMarkTone() {
+  return active === "dark" ? "cream" : "pine";
+}

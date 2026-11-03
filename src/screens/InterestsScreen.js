@@ -17,7 +17,7 @@
 // The screen renders that decision; it doesn't make it.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation } from "../theme";
+import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
 import { INTERESTS } from "../data/interests";
 import { normalizeInterests } from "../game/interestPolicy";
 
@@ -34,7 +34,11 @@ export default function InterestsScreen({
   }
 
   return (
-    <ScrollView style={styles.wrap} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+    <ScrollView
+      style={styles.wrap}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={styles.kicker}>Your interests</Text>
       <Text style={styles.title}>What are you curious about?</Text>
       <Text style={styles.tagline}>
@@ -51,7 +55,9 @@ export default function InterestsScreen({
               hitSlop={8}
               style={[styles.chip, active && styles.chipActive]}
             >
-              <Text style={[styles.chipText, active && styles.chipTextActive]}>{interest.label}</Text>
+              <Text style={[styles.chipText, active && styles.chipTextActive]}>
+                {interest.label}
+              </Text>
             </Pressable>
           );
         })}
@@ -61,7 +67,10 @@ export default function InterestsScreen({
         <Pressable onPress={onSecondary} style={styles.secondaryBtn}>
           <Text style={styles.secondaryText}>{secondaryLabel}</Text>
         </Pressable>
-        <Pressable onPress={() => onContinue(normalizeInterests(selected))} style={styles.continueBtn}>
+        <Pressable
+          onPress={() => onContinue(normalizeInterests(selected))}
+          style={styles.continueBtn}
+        >
           <Text style={styles.continueText}>Continue</Text>
         </Pressable>
       </View>
@@ -69,46 +78,48 @@ export default function InterestsScreen({
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
-  kicker: { ...type.eyebrow, fontSize: 12 },
-  title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
-  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    content: { padding: spacing(5), paddingTop: spacing(10), paddingBottom: spacing(12) },
+    kicker: { ...type.eyebrow, fontSize: 12 },
+    title: { ...type.h1, fontSize: 30, marginTop: spacing(1), lineHeight: 36 },
+    tagline: { ...type.caption, fontSize: 15, marginTop: spacing(2), marginBottom: spacing(6) },
 
-  grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2.5), marginBottom: spacing(8) },
-  chip: {
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4),
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceRaised,
-    ...elevation(1),
-  },
-  chipActive: { backgroundColor: colors.brand, ...elevation(2) },
-  chipText: { ...type.body, color: colors.text },
-  chipTextActive: { color: colors.onFill },
+    grid: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2.5), marginBottom: spacing(8) },
+    chip: {
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(4),
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceRaised,
+      ...elevation(1),
+    },
+    chipActive: { backgroundColor: colors.brand, ...elevation(2) },
+    chipText: { ...type.body, color: colors.text },
+    chipTextActive: { color: onFill(colors.brand) },
 
-  // The secondary button and Continue are the same size and weight on purpose
-  // — see the file header note on why Skip must never read as the lesser
-  // option. Cancel inherits the same treatment.
-  actions: { flexDirection: "row", gap: spacing(3) },
-  secondaryBtn: {
-    flex: 1,
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    alignItems: "center",
-    ...elevation(1),
-  },
-  secondaryText: { ...type.body, color: colors.brand },
-  continueBtn: {
-    flex: 1,
-    backgroundColor: colors.brand,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    alignItems: "center",
-    ...elevation(2),
-  },
-  continueText: { ...type.body, color: colors.onFill },
-});
+    // The secondary button and Continue are the same size and weight on purpose
+    // — see the file header note on why Skip must never read as the lesser
+    // option. Cancel inherits the same treatment.
+    actions: { flexDirection: "row", gap: spacing(3) },
+    secondaryBtn: {
+      flex: 1,
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      alignItems: "center",
+      ...elevation(1),
+    },
+    secondaryText: { ...type.body, color: colors.brand },
+    continueBtn: {
+      flex: 1,
+      backgroundColor: colors.brand,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      alignItems: "center",
+      ...elevation(2),
+    },
+    continueText: { ...type.body, color: onFill(colors.brand) },
+  })
+);

@@ -30,7 +30,17 @@
 // so the screen's own rise isn't compounded with each group's.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  themed,
+  materialBase,
+} from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
 import { computeAchievements } from "../game/achievementPolicy";
@@ -251,114 +261,116 @@ export default function AchievementsScreen({ onExit, progress }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  // paddingBottom is spacing(3), not spacing(2): react-native-web's Pressable
-  // never implements `hitSlop` (it's a Touchable-only concept there, wired to
-  // the responder system rather than to browser hit-testing), so on web the
-  // real tap target is exactly this box, not the 12px-larger one the prop
-  // implies. spacing(2) left it at 42px, 2px under the 44px floor.
-  back: {
-    ...constrain.content,
-    paddingHorizontal: spacing(5),
-    paddingTop: spacing(4),
-    paddingBottom: spacing(3),
-  },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    // paddingBottom is spacing(3), not spacing(2): react-native-web's Pressable
+    // never implements `hitSlop` (it's a Touchable-only concept there, wired to
+    // the responder system rather than to browser hit-testing), so on web the
+    // real tap target is exactly this box, not the 12px-larger one the prop
+    // implies. spacing(2) left it at 42px, 2px under the 44px floor.
+    back: {
+      ...constrain.content,
+      paddingHorizontal: spacing(5),
+      paddingTop: spacing(4),
+      paddingBottom: spacing(3),
+    },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  content: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
-  header: { ...constrain.content, marginBottom: spacing(4) },
-  title: { ...type.h1, fontSize: 34 },
-  subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
-  noticeText: { ...type.caption, fontSize: 13, color: colors.danger, marginTop: spacing(2) },
+    content: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
+    header: { ...constrain.content, marginBottom: spacing(4) },
+    title: { ...type.h1, fontSize: 34 },
+    subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
+    noticeText: { ...type.caption, fontSize: 13, color: colors.danger, marginTop: spacing(2) },
 
-  levelCard: {
-    ...constrain.content,
-    backgroundColor: colors.brand,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(4),
-    // Clips the wash and the oversized mark to the card.
-    overflow: "hidden",
-    ...elevation(2),
-  },
-  levelMark: { position: "absolute", top: -30, right: -34, opacity: 0.16 },
-  levelHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between",
-    marginBottom: spacing(2),
-  },
-  // Parchment for both. `onFillQuiet` would need 16px over a material and the
-  // XP readout is 11px mono, so lichen is out; brass looked like the kit's
-  // eyebrow-on-dark pattern but measures ~2.6:1 at this card's lit corner
-  // (M2.5 step 6.4.1's contrast audit, pinned in test/engine.test.js) — well
-  // under even the 3:1 UI floor. Parchment is the only ink left that clears
-  // AA there, so hierarchy comes from the mono/uppercase eyebrow face alone.
-  levelLabel: { ...type.h3, fontSize: 18, color: colors.onFill },
-  levelXpText: { ...type.eyebrow, fontSize: 11, color: colors.onFill },
+    levelCard: {
+      ...constrain.content,
+      backgroundColor: materialBase("dusk"),
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(4),
+      // Clips the wash and the oversized mark to the card.
+      overflow: "hidden",
+      ...elevation(2),
+    },
+    levelMark: { position: "absolute", top: -30, right: -34, opacity: 0.16 },
+    levelHeader: {
+      flexDirection: "row",
+      alignItems: "baseline",
+      justifyContent: "space-between",
+      marginBottom: spacing(2),
+    },
+    // Parchment for both. `onFillQuiet` would need 16px over a material and the
+    // XP readout is 11px mono, so lichen is out; brass looked like the kit's
+    // eyebrow-on-dark pattern but measures ~2.6:1 at this card's lit corner
+    // (M2.5 step 6.4.1's contrast audit, pinned in test/engine.test.js) — well
+    // under even the 3:1 UI floor. Parchment is the only ink left that clears
+    // AA there, so hierarchy comes from the mono/uppercase eyebrow face alone.
+    levelLabel: { ...type.h3, fontSize: 18, color: colors.onFill },
+    levelXpText: { ...type.eyebrow, fontSize: 11, color: colors.onFill },
 
-  row: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(2.5),
-    ...elevation(1),
-  },
-  rowLocked: { opacity: 0.75 },
-  skeletonSub: { marginTop: spacing(1) },
-  skeletonBar: { marginTop: spacing(2) },
-  sectionTitle: {
-    ...constrain.content,
-    ...type.eyebrow,
-    marginTop: spacing(2),
-    marginBottom: spacing(3),
-  },
-  collectionHeader: {
-    flexDirection: "row",
-    alignItems: "baseline",
-    justifyContent: "space-between",
-    marginBottom: spacing(2),
-  },
-  collectionStatus: { marginTop: 0, marginLeft: spacing(2) },
-  glyph: {
-    fontSize: 26,
-    color: colors.brand,
-    marginRight: spacing(3.5),
-    width: 32,
-    textAlign: "center",
-  },
-  glyphLocked: { color: colors.textMuted },
-  rowBody: { flex: 1 },
-  rowLabel: { ...type.body, color: colors.brand },
-  rowLabelLocked: { color: colors.text },
-  rowDescription: { ...type.caption, fontSize: 13, marginTop: 2 },
-  unlockedText: {
-    ...type.label,
-    fontSize: 11,
-    color: colors.successInk,
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    marginTop: spacing(1.5),
-  },
-  progressRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginTop: spacing(2),
-  },
-  // ProgressTrack owns height, radius, fill and track colour; this only says
-  // how much of the row it may take.
-  progressTrack: { flex: 1 },
-  progressText: {
-    ...type.label,
-    fontSize: 11,
-    color: colors.textMuted,
-    marginLeft: spacing(2),
-  },
-});
+    row: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(2.5),
+      ...elevation(1),
+    },
+    rowLocked: { opacity: 0.75 },
+    skeletonSub: { marginTop: spacing(1) },
+    skeletonBar: { marginTop: spacing(2) },
+    sectionTitle: {
+      ...constrain.content,
+      ...type.eyebrow,
+      marginTop: spacing(2),
+      marginBottom: spacing(3),
+    },
+    collectionHeader: {
+      flexDirection: "row",
+      alignItems: "baseline",
+      justifyContent: "space-between",
+      marginBottom: spacing(2),
+    },
+    collectionStatus: { marginTop: 0, marginLeft: spacing(2) },
+    glyph: {
+      fontSize: 26,
+      color: colors.brand,
+      marginRight: spacing(3.5),
+      width: 32,
+      textAlign: "center",
+    },
+    glyphLocked: { color: colors.textMuted },
+    rowBody: { flex: 1 },
+    rowLabel: { ...type.body, color: colors.brand },
+    rowLabelLocked: { color: colors.text },
+    rowDescription: { ...type.caption, fontSize: 13, marginTop: 2 },
+    unlockedText: {
+      ...type.label,
+      fontSize: 11,
+      color: colors.successInk,
+      textTransform: "uppercase",
+      letterSpacing: 1,
+      marginTop: spacing(1.5),
+    },
+    progressRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginTop: spacing(2),
+    },
+    // ProgressTrack owns height, radius, fill and track colour; this only says
+    // how much of the row it may take.
+    progressTrack: { flex: 1 },
+    progressText: {
+      ...type.label,
+      fontSize: 11,
+      color: colors.textMuted,
+      marginLeft: spacing(2),
+    },
+  })
+);

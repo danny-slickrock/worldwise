@@ -4,7 +4,17 @@
 // link and (later) the interactive map.
 import React, { useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, FlatList } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  themed,
+  onFill,
+} from "../theme";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { PLACES } from "../data/countries";
 import { searchCountries, INDEX_FILTERS } from "../game/countryIndex";
@@ -102,91 +112,93 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  // Every element carries the cap itself: a FlatList has no single content
-  // wrapper to hang it on, so the chrome and the rows each center independently
-  // and end up sharing one column edge.
-  back: {
-    ...constrain.content,
-    paddingHorizontal: spacing(5),
-    paddingTop: spacing(4),
-    paddingBottom: spacing(2),
-  },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    // Every element carries the cap itself: a FlatList has no single content
+    // wrapper to hang it on, so the chrome and the rows each center independently
+    // and end up sharing one column edge.
+    back: {
+      ...constrain.content,
+      paddingHorizontal: spacing(5),
+      paddingTop: spacing(4),
+      paddingBottom: spacing(2),
+    },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
-  title: { ...type.h1, fontSize: 34 },
-  subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
+    header: { ...constrain.content, paddingHorizontal: spacing(5), marginBottom: spacing(4) },
+    title: { ...type.h1, fontSize: 34 },
+    subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
 
-  // Inset field: darker than the card layer, so it reads as carved in rather
-  // than sitting on top like the slabs around it.
-  // Cap lives on inputOuter: `width: 100%` plus `marginHorizontal` makes the
-  // browser drop the margin, so the field would run edge-to-edge on a phone.
-  inputOuter: { ...constrain.content },
-  input: {
-    marginHorizontal: spacing(5),
-    backgroundColor: colors.surfaceRaised,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: radius.card,
-    paddingHorizontal: spacing(3.5),
-    paddingVertical: spacing(3.5),
-    ...type.body,
-    marginBottom: spacing(3),
-  },
+    // Inset field: darker than the card layer, so it reads as carved in rather
+    // than sitting on top like the slabs around it.
+    // Cap lives on inputOuter: `width: 100%` plus `marginHorizontal` makes the
+    // browser drop the margin, so the field would run edge-to-edge on a phone.
+    inputOuter: { ...constrain.content },
+    input: {
+      marginHorizontal: spacing(5),
+      backgroundColor: colors.surfaceRaised,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.card,
+      paddingHorizontal: spacing(3.5),
+      paddingVertical: spacing(3.5),
+      ...type.body,
+      marginBottom: spacing(3),
+    },
 
-  regionRow: {
-    ...constrain.content,
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: spacing(2),
-    paddingHorizontal: spacing(5),
-    marginBottom: spacing(4),
-  },
-  regionChip: {
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(3.5),
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceRaised,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
-  regionChipText: { ...type.label, color: colors.textMuted },
-  regionChipTextActive: { color: colors.onFill },
+    regionRow: {
+      ...constrain.content,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: spacing(2),
+      paddingHorizontal: spacing(5),
+      marginBottom: spacing(4),
+    },
+    regionChip: {
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3.5),
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceRaised,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    regionChipActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+    regionChipText: { ...type.label, color: colors.textMuted },
+    regionChipTextActive: { color: onFill(colors.brand) },
 
-  list: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
-  row: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(2.5),
-    ...elevation(1),
-  },
-  rowBody: { flex: 1 },
-  rowTitle: { flexDirection: "row", alignItems: "center", gap: spacing(2) },
-  rowName: { ...type.body, color: colors.brand },
-  // The kit's eyebrow voice at its smallest: mono, tracked, uppercase. On
-  // surfaceSunken rather than a brand fill, because this classifies a row
-  // rather than calling for attention.
-  tag: {
-    ...type.eyebrow,
-    fontSize: 9,
-    color: colors.textMuted,
-    backgroundColor: colors.surfaceSunken,
-    borderRadius: radius.sm,
-    paddingHorizontal: spacing(2),
-    paddingVertical: 2,
-    overflow: "hidden",
-  },
-  rowCapital: { ...type.caption, fontSize: 13, marginTop: 2 },
-  chev: { fontSize: 24, color: colors.textMuted },
+    list: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
+    row: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(2.5),
+      ...elevation(1),
+    },
+    rowBody: { flex: 1 },
+    rowTitle: { flexDirection: "row", alignItems: "center", gap: spacing(2) },
+    rowName: { ...type.body, color: colors.brand },
+    // The kit's eyebrow voice at its smallest: mono, tracked, uppercase. On
+    // surfaceSunken rather than a brand fill, because this classifies a row
+    // rather than calling for attention.
+    tag: {
+      ...type.eyebrow,
+      fontSize: 9,
+      color: colors.textMuted,
+      backgroundColor: colors.surfaceSunken,
+      borderRadius: radius.sm,
+      paddingHorizontal: spacing(2),
+      paddingVertical: 2,
+      overflow: "hidden",
+    },
+    rowCapital: { ...type.caption, fontSize: 13, marginTop: 2 },
+    chev: { fontSize: 24, color: colors.textMuted },
 
-  empty: { ...type.caption, textAlign: "center", marginTop: spacing(8) },
-});
+    empty: { ...type.caption, textAlign: "center", marginTop: spacing(8) },
+  })
+);

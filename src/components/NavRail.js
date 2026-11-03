@@ -12,7 +12,7 @@
 import React, { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Pressable, Animated, Easing } from "react-native";
 import Wordmark from "./Wordmark";
-import { colors, spacing, radius, type, hitTarget, motion } from "../theme";
+import { colors, spacing, radius, type, hitTarget, motion, themed, onFill } from "../theme";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 export default function NavRail({ tabs, active, onSelect, width, showLabels }) {
@@ -98,50 +98,52 @@ function RailItem({ tab, isActive, showLabels, onPress }) {
   );
 }
 
-const styles = StyleSheet.create({
-  rail: {
-    backgroundColor: colors.surfaceRaised,
-    paddingTop: spacing(8),
-    paddingHorizontal: spacing(3),
-    gap: spacing(8),
-  },
-  edge: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 1,
-    backgroundColor: colors.brass,
-    opacity: 0.35,
-  },
-  brandRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: spacing(2),
-  },
-  brandRowCompact: { justifyContent: "center", paddingHorizontal: 0 },
-  group: { gap: spacing(1) },
-  item: {
-    borderRadius: radius.card,
-    minHeight: hitTarget.touch,
-    overflow: "hidden",
-  },
-  fill: { backgroundColor: colors.brand, borderRadius: radius.card },
-  itemFull: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(3),
-    paddingHorizontal: spacing(3),
-  },
-  itemCompact: {
-    alignItems: "center",
-    justifyContent: "center",
-    gap: spacing(0.5),
-    paddingVertical: spacing(1.5),
-  },
-  icon: { fontSize: 19, color: colors.textMuted },
-  iconActive: { color: colors.onFill },
-  label: { ...type.label, fontSize: 15, color: colors.textMuted },
-  microLabel: { ...type.label, fontSize: 10, color: colors.textMuted },
-  labelActive: { color: colors.onFill },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    rail: {
+      backgroundColor: colors.surfaceRaised,
+      paddingTop: spacing(8),
+      paddingHorizontal: spacing(3),
+      gap: spacing(8),
+    },
+    edge: {
+      position: "absolute",
+      top: 0,
+      bottom: 0,
+      right: 0,
+      width: 1,
+      backgroundColor: colors.brass,
+      opacity: 0.35,
+    },
+    brandRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingHorizontal: spacing(2),
+    },
+    brandRowCompact: { justifyContent: "center", paddingHorizontal: 0 },
+    group: { gap: spacing(1) },
+    item: {
+      borderRadius: radius.card,
+      minHeight: hitTarget.touch,
+      overflow: "hidden",
+    },
+    fill: { backgroundColor: colors.brand, borderRadius: radius.card },
+    itemFull: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(3),
+      paddingHorizontal: spacing(3),
+    },
+    itemCompact: {
+      alignItems: "center",
+      justifyContent: "center",
+      gap: spacing(0.5),
+      paddingVertical: spacing(1.5),
+    },
+    icon: { fontSize: 19, color: colors.textMuted },
+    iconActive: { color: onFill(colors.brand) },
+    label: { ...type.label, fontSize: 15, color: colors.textMuted },
+    microLabel: { ...type.label, fontSize: 10, color: colors.textMuted },
+    labelActive: { color: onFill(colors.brand) },
+  })
+);

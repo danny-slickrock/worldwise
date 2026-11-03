@@ -1,6 +1,16 @@
 import React, { useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, StyleSheet, Pressable, Platform } from "react-native";
-import { colors, spacing, radius, type, elevation, hairline, buttonHeight, onFill } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  hairline,
+  buttonHeight,
+  onFill,
+  themed,
+} from "../theme";
 import PressableTint from "./PressableTint";
 import { suggestAnswers } from "../game/answerMatch";
 import { ANSWER_SUGGESTION_LIMIT } from "../constants";
@@ -115,56 +125,58 @@ export default function TypeAnswer({
   );
 }
 
-const styles = StyleSheet.create({
-  wrap: { marginTop: spacing(2) },
-  input: {
-    ...type.body,
-    fontSize: 17,
-    height: buttonHeight,
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingHorizontal: spacing(4),
-    ...hairline,
-    ...elevation(1),
-  },
+const styles = themed(() =>
+  StyleSheet.create({
+    wrap: { marginTop: spacing(2) },
+    input: {
+      ...type.body,
+      fontSize: 17,
+      height: buttonHeight,
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingHorizontal: spacing(4),
+      ...hairline,
+      ...elevation(1),
+    },
 
-  // Suggestions are a list of real answers, so they get the card treatment
-  // rather than a floating dropdown — on a phone a dropdown would cover the
-  // flag the question is about.
-  suggestions: { marginTop: spacing(2), gap: spacing(1) },
-  suggestion: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.card,
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4),
-    ...hairline,
-  },
-  suggestionText: { ...type.body },
+    // Suggestions are a list of real answers, so they get the card treatment
+    // rather than a floating dropdown — on a phone a dropdown would cover the
+    // flag the question is about.
+    suggestions: { marginTop: spacing(2), gap: spacing(1) },
+    suggestion: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.card,
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(4),
+      ...hairline,
+    },
+    suggestionText: { ...type.body },
 
-  submit: {
-    marginTop: spacing(3),
-    height: buttonHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.brand,
-    borderRadius: radius.pill,
-  },
-  // Quieted rather than greyed — the kit has no disabled grey.
-  submitIdle: { opacity: 0.45 },
-  submitText: { ...type.label, fontSize: 15, color: onFill(colors.brand) },
+    submit: {
+      marginTop: spacing(3),
+      height: buttonHeight,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.brand,
+      borderRadius: radius.pill,
+    },
+    // Quieted rather than greyed — the kit has no disabled grey.
+    submitIdle: { opacity: 0.45 },
+    submitText: { ...type.label, fontSize: 15, color: onFill(colors.brand) },
 
-  resolved: {
-    marginTop: spacing(2),
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(4),
-    ...hairline,
-  },
-  // The kit shows a resolved answer as a tinted card with a coloured label,
-  // not a saturated fill.
-  resolvedRight: { backgroundColor: colors.successSurface },
-  resolvedClose: { backgroundColor: colors.emberSurface },
-  resolvedWrong: { backgroundColor: colors.dangerSurface },
-  resolvedTyped: { ...type.h3, fontSize: 18 },
-  resolvedNote: { ...type.caption, marginTop: spacing(1) },
-});
+    resolved: {
+      marginTop: spacing(2),
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(4),
+      ...hairline,
+    },
+    // The kit shows a resolved answer as a tinted card with a coloured label,
+    // not a saturated fill.
+    resolvedRight: { backgroundColor: colors.successSurface },
+    resolvedClose: { backgroundColor: colors.emberSurface },
+    resolvedWrong: { backgroundColor: colors.dangerSurface },
+    resolvedTyped: { ...type.h3, fontSize: 18 },
+    resolvedNote: { ...type.caption, marginTop: spacing(1) },
+  })
+);

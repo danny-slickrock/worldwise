@@ -12,7 +12,19 @@ import {
   useWindowDimensions,
   Share,
 } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion, map, onFill } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  map,
+  onFill,
+  accentInk,
+  themed,
+} from "../theme";
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
@@ -709,7 +721,7 @@ export default function QuizScreen({
                         { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
-                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>
+                      <Text style={[styles.capitalGlyph, { color: accentInk(meta.accent) }]}>
                         {q.country.region}
                       </Text>
                       <Text style={styles.capitalName}>{q.country.name}</Text>
@@ -722,7 +734,9 @@ export default function QuizScreen({
                         { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
-                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Capital</Text>
+                      <Text style={[styles.capitalGlyph, { color: accentInk(meta.accent) }]}>
+                        Capital
+                      </Text>
                       <Text style={styles.capitalName}>{q.country.capital}</Text>
                     </View>
                   )}
@@ -737,7 +751,9 @@ export default function QuizScreen({
                         { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
-                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>River</Text>
+                      <Text style={[styles.capitalGlyph, { color: accentInk(meta.accent) }]}>
+                        River
+                      </Text>
                       <Text style={styles.capitalName}>{q.river}</Text>
                     </View>
                   )}
@@ -751,7 +767,9 @@ export default function QuizScreen({
                         { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
-                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Range</Text>
+                      <Text style={[styles.capitalGlyph, { color: accentInk(meta.accent) }]}>
+                        Range
+                      </Text>
                       <Text style={styles.capitalName}>{q.range}</Text>
                     </View>
                   )}
@@ -765,7 +783,9 @@ export default function QuizScreen({
                         { borderColor: meta.accent, borderBottomColor: colors.brandDeep },
                       ]}
                     >
-                      <Text style={[styles.capitalGlyph, { color: meta.accent }]}>Ocean</Text>
+                      <Text style={[styles.capitalGlyph, { color: accentInk(meta.accent) }]}>
+                        Ocean
+                      </Text>
                       <Text style={styles.capitalName}>{q.ocean}</Text>
                     </View>
                   )}
@@ -820,7 +840,7 @@ export default function QuizScreen({
                                   // Resolved options fill with a bright success/error — dark
                                   // ink on top, not white, or the label washes out.
                                   (isCorrect || isWrong) && {
-                                    color: colors.onFill,
+                                    color: onFill(isCorrect ? colors.success : colors.danger),
                                   },
                                 ]}
                               >
@@ -887,280 +907,282 @@ export default function QuizScreen({
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre), and
-  // it is drawn in focus mode too.
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  // Constrained like the question body, so the progress bar tracks the column
-  // instead of stretching the full width of a desktop window above it.
-  topBar: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(2.5),
-    paddingHorizontal: spacing(4),
-    paddingTop: spacing(2),
-    paddingBottom: spacing(3),
-  },
-  exit: { fontSize: 22, color: colors.textMuted, width: 28 },
-  progressTrack: {
-    flex: 1,
-    height: 8,
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceSunken,
-    overflow: "hidden",
-  },
-  progressFill: { height: "100%", borderRadius: radius.pill },
-  streakPill: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing(3),
-    paddingVertical: spacing(1.5),
-    ...elevation(1),
-  },
-  streakText: { color: colors.brand, fontSize: 13 },
-  soundPill: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    width: 34,
-    height: 34,
-    alignItems: "center",
-    justifyContent: "center",
-    ...elevation(1),
-  },
-  soundText: { fontSize: 14 },
-  timerPill: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing(3),
-    paddingVertical: spacing(1.5),
-    ...elevation(1),
-  },
-  timerPillLow: { backgroundColor: colors.dangerSurface },
-  timerText: { color: colors.brand, fontSize: 13 },
-  timerTextLow: { color: colors.danger },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre), and
+    // it is drawn in focus mode too.
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    // Constrained like the question body, so the progress bar tracks the column
+    // instead of stretching the full width of a desktop window above it.
+    topBar: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(2.5),
+      paddingHorizontal: spacing(4),
+      paddingTop: spacing(2),
+      paddingBottom: spacing(3),
+    },
+    exit: { fontSize: 22, color: colors.textMuted, width: 28 },
+    progressTrack: {
+      flex: 1,
+      height: 8,
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceSunken,
+      overflow: "hidden",
+    },
+    progressFill: { height: "100%", borderRadius: radius.pill },
+    streakPill: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(3),
+      paddingVertical: spacing(1.5),
+      ...elevation(1),
+    },
+    streakText: { color: colors.brand, fontSize: 13 },
+    soundPill: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      width: 34,
+      height: 34,
+      alignItems: "center",
+      justifyContent: "center",
+      ...elevation(1),
+    },
+    soundText: { fontSize: 14 },
+    timerPill: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(3),
+      paddingVertical: spacing(1.5),
+      ...elevation(1),
+    },
+    timerPillLow: { backgroundColor: colors.dangerSurface },
+    timerText: { color: colors.brand, fontSize: 13 },
+    timerTextLow: { color: colors.danger },
 
-  body: { padding: spacing(5), paddingBottom: spacing(12) },
-  counter: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
-  prompt: { ...type.h2, fontSize: 24, lineHeight: 30, marginBottom: spacing(5) },
+    body: { padding: spacing(5), paddingBottom: spacing(12) },
+    counter: { ...type.eyebrow, fontSize: 11, marginBottom: spacing(1.5) },
+    prompt: { ...type.h2, fontSize: 24, lineHeight: 30, marginBottom: spacing(5) },
 
-  media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(6) },
-  flag: {
-    width: 260,
-    height: 164,
-    borderRadius: radius.sheet,
-    backgroundColor: colors.surfaceRaised,
-    ...elevation(2),
-  },
-  // The map stage is deep navy on every media type, so outlines and the world
-  // map read as the lit subject rather than as chrome.
-  shapeBox: {
-    width: 260,
-    height: 210,
-    backgroundColor: colors.brand,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    ...elevation(2),
-  },
-  // Square: the globe's SVG fits its square viewBox to the shorter side, so a
-  // 300px-tall box on a 680px column was throwing away most of the width. The
-  // globe IS the question here — it is the answer surface, not an illustration.
-  mapBox: {
-    width: "100%",
-    aspectRatio: 1,
-    backgroundColor: colors.brand,
-    borderRadius: radius.sheet,
-    overflow: "hidden",
-    marginBottom: spacing(4),
-    ...elevation(2),
-  },
-  mapHint: { ...type.caption, fontSize: 12, marginBottom: spacing(3) },
-  // Sits on the dark globe stage, so it takes the map's own on-dark tokens
-  // rather than the page's ink.
-  basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
-  recenterPill: {
-    position: "absolute",
-    right: spacing(3),
-    bottom: spacing(3),
-    backgroundColor: "rgba(22,41,63,0.82)",
-    borderRadius: radius.pill,
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(3.5),
-  },
-  recenterText: { ...type.label, fontSize: 12, color: map.onMap },
-  // The accent border is applied per-mode at the call site, which restates
-  // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
-  // flatten this depth edge back to the accent.
-  capitalBadge: {
-    borderWidth: 2,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(6),
-    paddingHorizontal: spacing(8),
-    backgroundColor: colors.surfaceRaised,
-    alignItems: "center",
-    ...elevation(2),
-  },
-  capitalGlyph: {
-    fontSize: 11,
-    letterSpacing: 1.4,
-    textTransform: "uppercase",
-    marginBottom: 6,
-  },
-  capitalName: { fontSize: 30, color: colors.brand },
+    media: { alignItems: "center", justifyContent: "center", marginBottom: spacing(6) },
+    flag: {
+      width: 260,
+      height: 164,
+      borderRadius: radius.sheet,
+      backgroundColor: colors.surfaceRaised,
+      ...elevation(2),
+    },
+    // The map stage is deep navy on every media type, so outlines and the world
+    // map read as the lit subject rather than as chrome.
+    shapeBox: {
+      width: 260,
+      height: 210,
+      backgroundColor: map.stage,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      ...elevation(2),
+    },
+    // Square: the globe's SVG fits its square viewBox to the shorter side, so a
+    // 300px-tall box on a 680px column was throwing away most of the width. The
+    // globe IS the question here — it is the answer surface, not an illustration.
+    mapBox: {
+      width: "100%",
+      aspectRatio: 1,
+      backgroundColor: map.stage,
+      borderRadius: radius.sheet,
+      overflow: "hidden",
+      marginBottom: spacing(4),
+      ...elevation(2),
+    },
+    mapHint: { ...type.caption, fontSize: 12, marginBottom: spacing(3) },
+    // Sits on the dark globe stage, so it takes the map's own on-dark tokens
+    // rather than the page's ink.
+    basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
+    recenterPill: {
+      position: "absolute",
+      right: spacing(3),
+      bottom: spacing(3),
+      backgroundColor: "rgba(22,41,63,0.82)",
+      borderRadius: radius.pill,
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3.5),
+    },
+    recenterText: { ...type.label, fontSize: 12, color: map.onMap },
+    // The accent border is applied per-mode at the call site, which restates
+    // borderBottomColor alongside it: the `borderColor` shorthand would otherwise
+    // flatten this depth edge back to the accent.
+    capitalBadge: {
+      borderWidth: 2,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(6),
+      paddingHorizontal: spacing(8),
+      backgroundColor: colors.surfaceRaised,
+      alignItems: "center",
+      ...elevation(2),
+    },
+    capitalGlyph: {
+      fontSize: 11,
+      letterSpacing: 1.4,
+      textTransform: "uppercase",
+      marginBottom: 6,
+    },
+    capitalName: { fontSize: 30, color: colors.brand },
 
-  options: { gap: spacing(3) },
-  // Capped and centered: a full-column answer row on desktop puts the label far
-  // from where the eye lands and makes four options read as a wall.
-  option: {
-    ...constrain.action,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(4),
-    ...elevation(1),
-  },
-  optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.brandDeep },
-  optionWrong: { backgroundColor: colors.danger, borderBottomColor: colors.brandDeep },
-  optionText: { ...type.body, fontSize: 17, flexShrink: 1 },
-  optionMark: { color: colors.onFill, fontSize: 18, marginLeft: spacing(2) },
+    options: { gap: spacing(3) },
+    // Capped and centered: a full-column answer row on desktop puts the label far
+    // from where the eye lands and makes four options read as a wall.
+    option: {
+      ...constrain.action,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(4),
+      ...elevation(1),
+    },
+    optionCorrect: { backgroundColor: colors.success, borderBottomColor: colors.brandDeep },
+    optionWrong: { backgroundColor: colors.danger, borderBottomColor: colors.brandDeep },
+    optionText: { ...type.body, fontSize: 17, flexShrink: 1 },
+    optionMark: { color: onFill(colors.success), fontSize: 18, marginLeft: spacing(2) },
 
-  feedback: { marginTop: spacing(5), gap: spacing(3) },
-  feedbackText: { ...type.h3, color: colors.textMuted },
-  // The context card leads with the earth accent rather than the mode's colour:
-  // the fact is about the place, and reads the same in every game.
-  contextCard: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    borderLeftWidth: 4,
-    borderLeftColor: colors.ember,
-    padding: spacing(4),
-    ...elevation(1),
-  },
-  contextKicker: { ...type.eyebrow },
-  contextCountry: { ...type.h3, marginTop: spacing(1), marginBottom: spacing(1.5) },
-  contextFact: { ...type.body, fontSize: 14, color: colors.textMuted, lineHeight: 21 },
-  contextLink: { ...type.label, fontSize: 13, color: colors.link, marginTop: spacing(2.5) },
-  nextBtn: {
-    ...constrain.action,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    alignItems: "center",
-    ...elevation(2),
-  },
-  nextBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
+    feedback: { marginTop: spacing(5), gap: spacing(3) },
+    feedbackText: { ...type.h3, color: colors.textMuted },
+    // The context card leads with the earth accent rather than the mode's colour:
+    // the fact is about the place, and reads the same in every game.
+    contextCard: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      borderLeftWidth: 4,
+      borderLeftColor: colors.ember,
+      padding: spacing(4),
+      ...elevation(1),
+    },
+    contextKicker: { ...type.eyebrow },
+    contextCountry: { ...type.h3, marginTop: spacing(1), marginBottom: spacing(1.5) },
+    contextFact: { ...type.body, fontSize: 14, color: colors.textMuted, lineHeight: 21 },
+    contextLink: { ...type.label, fontSize: 13, color: colors.link, marginTop: spacing(2.5) },
+    nextBtn: {
+      ...constrain.action,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      alignItems: "center",
+      ...elevation(2),
+    },
+    nextBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
 
-  resultWrap: { flex: 1, backgroundColor: "transparent" },
-  resultContent: { alignItems: "center", padding: spacing(5), paddingBottom: spacing(12) },
-  // The score sits on the mode's accent as one solid slab — the payoff moment
-  // gets the loudest surface in the app.
-  resultCard: {
-    width: "100%",
-    alignItems: "center",
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(7),
-    marginBottom: spacing(7),
-    // Clips the oversized mark to the card.
-    overflow: "hidden",
-    ...elevation(2),
-  },
-  // M2.6 step 6.5.1 contrast audit: both of these used to carry opacity —
-  // fine on the daily card's parchment-on-pine, but stacked on top of the
-  // capitalReverse card's brass (nightwood ink, already the thinner-margin
-  // pairing) it dropped the kicker to 3.76:1, under the 4.5:1 small-text
-  // floor. No alpha on dark, per the brand kit's rule — full-strength ink,
-  // hierarchy from size alone, same reasoning resultStreak below already used.
-  resultKicker: {
-    ...type.label,
-    fontSize: 11,
-    textTransform: "uppercase",
-    letterSpacing: 1.6,
-    color: colors.onFill,
-  },
-  resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
-  resultPct: { ...type.h3, color: colors.onFill, marginBottom: spacing(4) },
-  // No alpha on dark, per the brand kit's rule — onFill at full strength,
-  // distinguished from resultPct by size alone. The wrapper (not this style)
-  // owns the spacing, since it may hold the streak line, the rank line, or
-  // both stacked together.
-  resultMetaWrap: {
-    alignItems: "center",
-    gap: spacing(1),
-    marginTop: -spacing(3),
-    marginBottom: spacing(4),
-  },
-  resultStreak: { ...type.label, color: colors.onFill },
-  resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
-  xpPill: {
-    backgroundColor: colors.brandDeep,
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing(5),
-    paddingVertical: spacing(2),
-  },
-  xpPillText: { color: colors.brand, fontSize: 16 },
-  // Outlined rather than filled, same reasoning as secondaryBtn below the
-  // card: the XP pill is the one loud fill this card gets, so Share reads as
-  // a lighter-weight utility action next to it, not a second reward.
-  // paddingVertical is spacing(3), not spacing(1.5): react-native-web's
-  // Pressable never implements `hitSlop` (M2.5 step 6.4.2's finding), so on
-  // web the real tap target is exactly this box. spacing(1.5) left it at
-  // 32px (12 padding + 18 line height + 2 border), well under the 44px floor.
-  shareBtn: {
-    marginTop: spacing(3),
-    borderRadius: radius.pill,
-    borderWidth: 1,
-    borderColor: colors.onFill,
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(5),
-  },
-  shareBtnText: { ...type.label, color: colors.onFill, fontSize: 14 },
+    resultWrap: { flex: 1, backgroundColor: "transparent" },
+    resultContent: { alignItems: "center", padding: spacing(5), paddingBottom: spacing(12) },
+    // The score sits on the mode's accent as one solid slab — the payoff moment
+    // gets the loudest surface in the app.
+    resultCard: {
+      width: "100%",
+      alignItems: "center",
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(7),
+      marginBottom: spacing(7),
+      // Clips the oversized mark to the card.
+      overflow: "hidden",
+      ...elevation(2),
+    },
+    // M2.6 step 6.5.1 contrast audit: both of these used to carry opacity —
+    // fine on the daily card's parchment-on-pine, but stacked on top of the
+    // capitalReverse card's brass (nightwood ink, already the thinner-margin
+    // pairing) it dropped the kicker to 3.76:1, under the 4.5:1 small-text
+    // floor. No alpha on dark, per the brand kit's rule — full-strength ink,
+    // hierarchy from size alone, same reasoning resultStreak below already used.
+    resultKicker: {
+      ...type.label,
+      fontSize: 11,
+      textTransform: "uppercase",
+      letterSpacing: 1.6,
+      color: colors.onFill,
+    },
+    resultScore: { fontSize: 68, color: colors.onFill, marginTop: spacing(1) },
+    resultPct: { ...type.h3, color: colors.onFill, marginBottom: spacing(4) },
+    // No alpha on dark, per the brand kit's rule — onFill at full strength,
+    // distinguished from resultPct by size alone. The wrapper (not this style)
+    // owns the spacing, since it may hold the streak line, the rank line, or
+    // both stacked together.
+    resultMetaWrap: {
+      alignItems: "center",
+      gap: spacing(1),
+      marginTop: -spacing(3),
+      marginBottom: spacing(4),
+    },
+    resultStreak: { ...type.label, color: colors.onFill },
+    resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
+    xpPill: {
+      backgroundColor: colors.brandDeep,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(5),
+      paddingVertical: spacing(2),
+    },
+    xpPillText: { color: colors.brand, fontSize: 16 },
+    // Outlined rather than filled, same reasoning as secondaryBtn below the
+    // card: the XP pill is the one loud fill this card gets, so Share reads as
+    // a lighter-weight utility action next to it, not a second reward.
+    // paddingVertical is spacing(3), not spacing(1.5): react-native-web's
+    // Pressable never implements `hitSlop` (M2.5 step 6.4.2's finding), so on
+    // web the real tap target is exactly this box. spacing(1.5) left it at
+    // 32px (12 padding + 18 line height + 2 border), well under the 44px floor.
+    shareBtn: {
+      marginTop: spacing(3),
+      borderRadius: radius.pill,
+      borderWidth: 1,
+      borderColor: colors.onFill,
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(5),
+    },
+    shareBtnText: { ...type.label, color: colors.onFill, fontSize: 14 },
 
-  reviewHeading: { ...type.eyebrow, alignSelf: "flex-start", marginBottom: spacing(3) },
-  reviewList: { width: "100%", gap: spacing(3), marginBottom: spacing(6) },
-  reviewCard: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    gap: spacing(2),
-    ...elevation(1),
-  },
-  reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(2) },
-  reviewMark: { fontSize: 16, width: 20 },
-  reviewMarkRight: { color: colors.successInk },
-  reviewMarkWrong: { color: colors.danger },
-  reviewPrompt: { ...type.body, flex: 1, color: colors.brand },
-  reviewAnswer: { ...type.caption, fontSize: 13 },
-  reviewFact: {
-    ...type.body,
-    fontSize: 14,
-    color: colors.textMuted,
-    fontStyle: "italic",
-    lineHeight: 20,
-  },
+    reviewHeading: { ...type.eyebrow, alignSelf: "flex-start", marginBottom: spacing(3) },
+    reviewList: { width: "100%", gap: spacing(3), marginBottom: spacing(6) },
+    reviewCard: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      gap: spacing(2),
+      ...elevation(1),
+    },
+    reviewRow: { flexDirection: "row", alignItems: "flex-start", gap: spacing(2) },
+    reviewMark: { fontSize: 16, width: 20 },
+    reviewMarkRight: { color: colors.successInk },
+    reviewMarkWrong: { color: colors.danger },
+    reviewPrompt: { ...type.body, flex: 1, color: colors.brand },
+    reviewAnswer: { ...type.caption, fontSize: 13 },
+    reviewFact: {
+      ...type.body,
+      fontSize: 14,
+      color: colors.textMuted,
+      fontStyle: "italic",
+      lineHeight: 20,
+    },
 
-  primaryBtn: {
-    ...constrain.action,
-    alignItems: "center",
-    borderRadius: radius.pill,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(10),
-    ...elevation(2),
-  },
-  primaryBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
-  // Outline rather than a second fill: two slabs of equal weight would make
-  // the player choose between them instead of reading one as the obvious next
-  // move and the other as the way out.
-  secondaryBtn: {
-    ...constrain.action,
-    alignItems: "center",
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(10),
-    marginTop: spacing(3),
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  secondaryBtnText: { color: colors.textMuted, fontSize: 16, letterSpacing: 0.4 },
-});
+    primaryBtn: {
+      ...constrain.action,
+      alignItems: "center",
+      borderRadius: radius.pill,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(10),
+      ...elevation(2),
+    },
+    primaryBtnText: { color: colors.onFill, fontSize: 17, letterSpacing: 0.4 },
+    // Outline rather than a second fill: two slabs of equal weight would make
+    // the player choose between them instead of reading one as the obvious next
+    // move and the other as the way out.
+    secondaryBtn: {
+      ...constrain.action,
+      alignItems: "center",
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(10),
+      marginTop: spacing(3),
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    secondaryBtnText: { color: colors.textMuted, fontSize: 16, letterSpacing: 0.4 },
+  })
+);

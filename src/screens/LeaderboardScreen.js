@@ -23,7 +23,17 @@
 // message says why, the way ReviewScreen's own signed-out notice does.
 import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, elevation, constrain, motion } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  constrain,
+  motion,
+  themed,
+  onFill,
+} from "../theme";
 import { DAILY_LENGTH } from "../constants";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
@@ -211,82 +221,84 @@ function LeaderboardRow({ entry, board }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  // paddingBottom is spacing(3), not spacing(2): react-native-web's Pressable
-  // never implements `hitSlop` (M2.5 step 6.4.2), so the real tap target is
-  // exactly this box.
-  back: {
-    ...constrain.content,
-    paddingHorizontal: spacing(5),
-    paddingTop: spacing(4),
-    paddingBottom: spacing(3),
-  },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    // paddingBottom is spacing(3), not spacing(2): react-native-web's Pressable
+    // never implements `hitSlop` (M2.5 step 6.4.2), so the real tap target is
+    // exactly this box.
+    back: {
+      ...constrain.content,
+      paddingHorizontal: spacing(5),
+      paddingTop: spacing(4),
+      paddingBottom: spacing(3),
+    },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  content: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
-  header: { ...constrain.content, marginBottom: spacing(4) },
-  title: { ...type.h1, fontSize: 34 },
-  subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
-  noticeText: { ...type.caption, fontSize: 13, color: colors.danger, marginTop: spacing(2) },
+    content: { paddingHorizontal: spacing(5), paddingBottom: spacing(12) },
+    header: { ...constrain.content, marginBottom: spacing(4) },
+    title: { ...type.h1, fontSize: 34 },
+    subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
+    noticeText: { ...type.caption, fontSize: 13, color: colors.danger, marginTop: spacing(2) },
 
-  notice: {
-    ...constrain.content,
-    backgroundColor: colors.surfaceSunken,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-  },
-  noticeBodyText: { ...type.caption },
+    notice: {
+      ...constrain.content,
+      backgroundColor: colors.surfaceSunken,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+    },
+    noticeBodyText: { ...type.caption },
 
-  // Same chip shape as the World Map's region pills (surfaceRaised + brand
-  // fill when active), sized down to sit as a toggle rather than a row of
-  // filters.
-  boardToggle: {
-    ...constrain.content,
-    flexDirection: "row",
-    gap: spacing(2),
-    marginBottom: spacing(4),
-  },
-  boardOption: {
-    paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(4),
-    borderRadius: radius.pill,
-    backgroundColor: colors.surfaceRaised,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  boardOptionActive: { backgroundColor: colors.brand, borderColor: colors.brand },
-  boardOptionText: { ...type.label, fontSize: 13, color: colors.textMuted },
-  boardOptionTextActive: { color: colors.onFill },
+    // Same chip shape as the World Map's region pills (surfaceRaised + brand
+    // fill when active), sized down to sit as a toggle rather than a row of
+    // filters.
+    boardToggle: {
+      ...constrain.content,
+      flexDirection: "row",
+      gap: spacing(2),
+      marginBottom: spacing(4),
+    },
+    boardOption: {
+      paddingVertical: spacing(1.5),
+      paddingHorizontal: spacing(4),
+      borderRadius: radius.pill,
+      backgroundColor: colors.surfaceRaised,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    boardOptionActive: { backgroundColor: colors.brand, borderColor: colors.brand },
+    boardOptionText: { ...type.label, fontSize: 13, color: colors.textMuted },
+    boardOptionTextActive: { color: onFill(colors.brand) },
 
-  row: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(2.5),
-    ...elevation(1),
-  },
-  // A left rule rather than a filled background: a filled "you" row over
-  // XP-value text would need its own onFill() contrast check, and a rule
-  // says "this one is different" without touching any text colour but the
-  // label itself.
-  rowYou: { borderLeftWidth: 3, borderLeftColor: colors.brand, paddingLeft: spacing(3.5) - 3 },
-  separator: { ...constrain.content, height: spacing(3) },
-  rank: {
-    ...type.eyebrow,
-    fontSize: 14,
-    width: 28,
-    textAlign: "center",
-    color: colors.textMuted,
-  },
-  rankYou: { color: colors.brand },
-  rowBody: { flex: 1, marginHorizontal: spacing(3.5) },
-  rowLabel: { ...type.body },
-  rowLabelYou: { color: colors.brand },
-  rowValue: { ...type.label, fontSize: 14, color: colors.text },
-});
+    row: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(2.5),
+      ...elevation(1),
+    },
+    // A left rule rather than a filled background: a filled "you" row over
+    // XP-value text would need its own onFill() contrast check, and a rule
+    // says "this one is different" without touching any text colour but the
+    // label itself.
+    rowYou: { borderLeftWidth: 3, borderLeftColor: colors.brand, paddingLeft: spacing(3.5) - 3 },
+    separator: { ...constrain.content, height: spacing(3) },
+    rank: {
+      ...type.eyebrow,
+      fontSize: 14,
+      width: 28,
+      textAlign: "center",
+      color: colors.textMuted,
+    },
+    rankYou: { color: colors.brand },
+    rowBody: { flex: 1, marginHorizontal: spacing(3.5) },
+    rowLabel: { ...type.body },
+    rowLabelYou: { color: colors.brand },
+    rowValue: { ...type.label, fontSize: 14, color: colors.text },
+  })
+);

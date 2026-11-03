@@ -18,7 +18,7 @@
 // destination lifting toward you.
 import React, { useEffect, useRef } from "react";
 import { View, Text, StyleSheet, Pressable, Platform, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, hitTarget, motion } from "../theme";
+import { colors, spacing, radius, type, hitTarget, motion, themed, onFill } from "../theme";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 export default function TabBar({ tabs, active, onSelect }) {
@@ -104,40 +104,42 @@ function Tab({ tab, isActive, onPress }) {
   );
 }
 
-const styles = StyleSheet.create({
-  bar: {
-    flexDirection: "row",
-    backgroundColor: colors.surfaceRaised,
-    // Breathing room for the iOS home indicator without pulling in safe-area context.
-    paddingBottom: Platform.OS === "ios" ? spacing(4) : spacing(2),
-    paddingTop: spacing(2),
-  },
-  rule: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 1,
-    backgroundColor: colors.brass,
-    opacity: 0.35,
-  },
-  tab: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    gap: spacing(1),
-    minHeight: hitTarget.touch,
-  },
-  tile: {
-    width: 48,
-    height: 32,
-    borderRadius: radius.pill,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  pill: { backgroundColor: colors.brand, borderRadius: radius.pill },
-  icon: { fontSize: 19, color: colors.textMuted },
-  iconActive: { color: colors.onFill },
-  label: { ...type.label, fontSize: 11, color: colors.textMuted },
-  labelActive: { color: colors.brand },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    bar: {
+      flexDirection: "row",
+      backgroundColor: colors.surfaceRaised,
+      // Breathing room for the iOS home indicator without pulling in safe-area context.
+      paddingBottom: Platform.OS === "ios" ? spacing(4) : spacing(2),
+      paddingTop: spacing(2),
+    },
+    rule: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      height: 1,
+      backgroundColor: colors.brass,
+      opacity: 0.35,
+    },
+    tab: {
+      flex: 1,
+      alignItems: "center",
+      justifyContent: "center",
+      gap: spacing(1),
+      minHeight: hitTarget.touch,
+    },
+    tile: {
+      width: 48,
+      height: 32,
+      borderRadius: radius.pill,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    pill: { backgroundColor: colors.brand, borderRadius: radius.pill },
+    icon: { fontSize: 19, color: colors.textMuted },
+    iconActive: { color: onFill(colors.brand) },
+    label: { ...type.label, fontSize: 11, color: colors.textMuted },
+    labelActive: { color: colors.brand },
+  })
+);

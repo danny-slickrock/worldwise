@@ -15,6 +15,8 @@ import {
   constrain,
   motion,
   topicAccents,
+  themed,
+  map,
 } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
@@ -313,116 +315,118 @@ function Stat({ value, label }) {
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  // Constrained like the content below it, so Back and "View on map" sit at the
-  // column's edges on a wide screen rather than drifting out to the viewport's.
-  topBar: {
-    ...constrain.content,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: spacing(5),
-    paddingTop: spacing(4),
-    paddingBottom: spacing(2),
-  },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
-  viewMapText: { ...type.label, fontSize: 14, color: colors.link },
-  content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    // Constrained like the content below it, so Back and "View on map" sit at the
+    // column's edges on a wide screen rather than drifting out to the viewport's.
+    topBar: {
+      ...constrain.content,
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingHorizontal: spacing(5),
+      paddingTop: spacing(4),
+      paddingBottom: spacing(2),
+    },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
+    viewMapText: { ...type.label, fontSize: 14, color: colors.link },
+    content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
 
-  heroStage: { marginBottom: spacing(5) },
-  hero: {
-    backgroundColor: colors.brand,
-    borderRadius: radius.sheet,
-    padding: spacing(6),
-    alignItems: "center",
-    marginBottom: spacing(5),
-    ...elevation(2),
-  },
-  outlineBox: { width: "100%", height: 200 },
-  outlineFallback: { flex: 1, alignItems: "center", justifyContent: "center" },
-  outlineFallbackGlyph: { fontSize: 56, color: colors.surfaceSunken },
-  outlineFallbackText: { ...type.caption, fontSize: 13, marginTop: spacing(2) },
+    heroStage: { marginBottom: spacing(5) },
+    hero: {
+      backgroundColor: map.stage,
+      borderRadius: radius.sheet,
+      padding: spacing(6),
+      alignItems: "center",
+      marginBottom: spacing(5),
+      ...elevation(2),
+    },
+    outlineBox: { width: "100%", height: 200 },
+    outlineFallback: { flex: 1, alignItems: "center", justifyContent: "center" },
+    outlineFallbackGlyph: { fontSize: 56, color: colors.surfaceSunken },
+    outlineFallbackText: { ...type.caption, fontSize: 13, marginTop: spacing(2) },
 
-  kicker: { ...type.eyebrow, fontSize: 12 },
-  name: { ...type.h1, fontSize: 38, marginTop: spacing(1) },
-  subtitle: { marginBottom: spacing(5) },
-  capital: { ...type.caption, fontSize: 15, marginTop: spacing(1) },
-  // Quieter than the capital and a size down: it classifies the place rather
-  // than telling you something about it. textFaint is the bottom of the v3 ink
-  // ramp and still clears body contrast on both light grounds.
-  status: { ...type.caption, fontSize: 13, color: colors.textFaint, marginTop: spacing(1) },
+    kicker: { ...type.eyebrow, fontSize: 12 },
+    name: { ...type.h1, fontSize: 38, marginTop: spacing(1) },
+    subtitle: { marginBottom: spacing(5) },
+    capital: { ...type.caption, fontSize: 15, marginTop: spacing(1) },
+    // Quieter than the capital and a size down: it classifies the place rather
+    // than telling you something about it. textFaint is the bottom of the v3 ink
+    // ramp and still clears body contrast on both light grounds.
+    status: { ...type.caption, fontSize: 13, color: colors.textFaint, marginTop: spacing(1) },
 
-  statsRow: { flexDirection: "row", gap: spacing(3), marginBottom: spacing(5) },
-  stat: {
-    flex: 1,
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    alignItems: "center",
-    ...elevation(1),
-  },
-  statValue: { fontSize: 22, color: colors.brand },
-  statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
+    statsRow: { flexDirection: "row", gap: spacing(3), marginBottom: spacing(5) },
+    stat: {
+      flex: 1,
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      alignItems: "center",
+      ...elevation(1),
+    },
+    statValue: { fontSize: 22, color: colors.brand },
+    statLabel: { ...type.eyebrow, fontSize: 10, marginTop: spacing(1) },
 
-  card: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(5),
-    marginBottom: spacing(5),
-    ...elevation(1),
-  },
-  summary: { ...type.body, lineHeight: 24 },
+    card: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(5),
+      marginBottom: spacing(5),
+      ...elevation(1),
+    },
+    summary: { ...type.body, lineHeight: 24 },
 
-  factRow: { paddingVertical: spacing(2.5) },
-  factRowDivider: { borderTopWidth: 1, borderTopColor: colors.border, marginTop: spacing(0.5) },
-  factHead: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(2),
-    marginBottom: spacing(1.5),
-  },
-  // A wash, not a fill: the kit asks for "line and texture more often than
-  // fill", and a solid badge six times over would shout. The glyph carries the
-  // colour; the disc only holds it.
-  factBadge: {
-    width: 24,
-    height: 24,
-    borderRadius: radius.pill,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  factGlyph: { fontSize: 12 },
-  factLabel: { ...type.eyebrow, marginBottom: 0 },
-  factText: { ...type.body, fontSize: 14, color: colors.text, lineHeight: 20 },
+    factRow: { paddingVertical: spacing(2.5) },
+    factRowDivider: { borderTopWidth: 1, borderTopColor: colors.border, marginTop: spacing(0.5) },
+    factHead: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(2),
+      marginBottom: spacing(1.5),
+    },
+    // A wash, not a fill: the kit asks for "line and texture more often than
+    // fill", and a solid badge six times over would shout. The glyph carries the
+    // colour; the disc only holds it.
+    factBadge: {
+      width: 24,
+      height: 24,
+      borderRadius: radius.pill,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    factGlyph: { fontSize: 12 },
+    factLabel: { ...type.eyebrow, marginBottom: 0 },
+    factText: { ...type.body, fontSize: 14, color: colors.text, lineHeight: 20 },
 
-  section: { ...type.eyebrow, marginBottom: spacing(3) },
-  chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2), marginBottom: spacing(5) },
-  chip: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(2),
-    paddingHorizontal: spacing(3.5),
-    ...elevation(1),
-  },
-  chipText: { ...type.label, color: colors.text },
+    section: { ...type.eyebrow, marginBottom: spacing(3) },
+    chipWrap: { flexDirection: "row", flexWrap: "wrap", gap: spacing(2), marginBottom: spacing(5) },
+    chip: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3.5),
+      ...elevation(1),
+    },
+    chipText: { ...type.label, color: colors.text },
 
-  // Filled with the mode's accent rather than outlined in it: on the dark base a
-  // 1.5px tinted border is too faint to read as a button.
-  gameBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(2),
-    borderRadius: radius.pill,
-    paddingVertical: spacing(3),
-    paddingHorizontal: spacing(4.5),
-    ...elevation(2),
-  },
-  gameIcon: { fontSize: 18, color: colors.onFill },
-  gameBtnText: { ...type.body, color: colors.onFill },
-  gameBtnSub: { ...type.caption, fontSize: 12, color: "rgba(255,255,255,0.78)", marginTop: 2 },
+    // Filled with the mode's accent rather than outlined in it: on the dark base a
+    // 1.5px tinted border is too faint to read as a button.
+    gameBtn: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(2),
+      borderRadius: radius.pill,
+      paddingVertical: spacing(3),
+      paddingHorizontal: spacing(4.5),
+      ...elevation(2),
+    },
+    gameIcon: { fontSize: 18, color: colors.onFill },
+    gameBtnText: { ...type.body, color: colors.onFill },
+    gameBtnSub: { ...type.caption, fontSize: 12, color: "rgba(255,255,255,0.78)", marginTop: 2 },
 
-  empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
-  emptyText: { ...type.caption },
-});
+    empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
+    emptyText: { ...type.caption },
+  })
+);

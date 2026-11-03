@@ -1,6 +1,16 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation, hairline, buttonHeight, onFill } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  elevation,
+  hairline,
+  buttonHeight,
+  onFill,
+  themed,
+} from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import PressableTint from "../components/PressableTint";
@@ -27,11 +37,11 @@ const REASON_LABEL = {
   "low-accuracy": "Keeps slipping",
   stale: `Not seen in ${REVIEW_STALE_DAYS}+ days`,
 };
-const REASON_TONE = {
+const REASON_TONE = themed(() => ({
   "recent-miss": { backgroundColor: colors.dangerSurface, color: colors.danger },
   "low-accuracy": { backgroundColor: colors.emberSurface, color: colors.emberInk },
   stale: { backgroundColor: colors.surfaceSunken, color: colors.textMuted },
-};
+}));
 
 export default function ReviewScreen({ onExit, onPractice, onOpenCountry }) {
   const { user } = useAuth();
@@ -192,72 +202,74 @@ export default function ReviewScreen({ onExit, onPractice, onOpenCountry }) {
 
 const describeAge = (days) => (days <= 0 ? "today" : days === 1 ? "yesterday" : `${days} days ago`);
 
-const styles = StyleSheet.create({
-  wrap: { paddingVertical: spacing(6), paddingBottom: spacing(12) },
-  back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
-  backText: { ...type.label, fontSize: 14, color: colors.link },
+const styles = themed(() =>
+  StyleSheet.create({
+    wrap: { paddingVertical: spacing(6), paddingBottom: spacing(12) },
+    back: { alignSelf: "flex-start", paddingVertical: spacing(2), paddingRight: spacing(4) },
+    backText: { ...type.label, fontSize: 14, color: colors.link },
 
-  eyebrow: { ...type.eyebrow, marginTop: spacing(2) },
-  title: { ...type.h1, marginTop: spacing(1) },
-  lede: { ...type.body, color: colors.textSecondary, marginTop: spacing(2), lineHeight: 24 },
+    eyebrow: { ...type.eyebrow, marginTop: spacing(2) },
+    title: { ...type.h1, marginTop: spacing(1) },
+    lede: { ...type.body, color: colors.textSecondary, marginTop: spacing(2), lineHeight: 24 },
 
-  notice: {
-    marginTop: spacing(4),
-    backgroundColor: colors.surfaceSunken,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-  },
-  noticeText: { ...type.caption },
+    notice: {
+      marginTop: spacing(4),
+      backgroundColor: colors.surfaceSunken,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+    },
+    noticeText: { ...type.caption },
 
-  loadingWrap: { marginTop: spacing(6), gap: spacing(3) },
-  loadingRow: { marginBottom: spacing(1) },
+    loadingWrap: { marginTop: spacing(6), gap: spacing(3) },
+    loadingRow: { marginBottom: spacing(1) },
 
-  practice: {
-    marginTop: spacing(6),
-    height: buttonHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: colors.brand,
-    borderRadius: radius.pill,
-  },
-  practiceText: { ...type.label, fontSize: 15, color: onFill(colors.brand) },
+    practice: {
+      marginTop: spacing(6),
+      height: buttonHeight,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: colors.brand,
+      borderRadius: radius.pill,
+    },
+    practiceText: { ...type.label, fontSize: 15, color: onFill(colors.brand) },
 
-  section: { ...type.eyebrow, marginTop: spacing(8), marginBottom: spacing(3) },
+    section: { ...type.eyebrow, marginTop: spacing(8), marginBottom: spacing(3) },
 
-  regionRow: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(4),
-    marginBottom: spacing(3),
-    ...hairline,
-    ...elevation(1),
-  },
-  regionHead: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "baseline",
-    marginBottom: spacing(2),
-  },
-  regionName: { ...type.h3, fontSize: 17 },
-  regionCount: { ...type.caption },
-  regionSub: { ...type.caption, marginTop: spacing(2) },
+    regionRow: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      marginBottom: spacing(3),
+      ...hairline,
+      ...elevation(1),
+    },
+    regionHead: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "baseline",
+      marginBottom: spacing(2),
+    },
+    regionName: { ...type.h3, fontSize: 17 },
+    regionCount: { ...type.caption },
+    regionSub: { ...type.caption, marginTop: spacing(2) },
 
-  // 68px+ from padding alone; hitSlop is a no-op on Pressable in
-  // react-native-web (M2.5 step 6.4.2), so the target has to BE the box.
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(2),
-    ...hairline,
-  },
-  rowText: { flex: 1, paddingRight: spacing(3) },
-  rowName: { ...type.body, fontSize: 16 },
-  rowMeta: { ...type.caption, marginTop: 2 },
-  tag: { borderRadius: radius.pill, paddingHorizontal: spacing(3), paddingVertical: 4 },
-  tagText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.8 },
-});
+    // 68px+ from padding alone; hitSlop is a no-op on Pressable in
+    // react-native-web (M2.5 step 6.4.2), so the target has to BE the box.
+    row: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(2),
+      ...hairline,
+    },
+    rowText: { flex: 1, paddingRight: spacing(3) },
+    rowName: { ...type.body, fontSize: 16 },
+    rowMeta: { ...type.caption, marginTop: 2 },
+    tag: { borderRadius: radius.pill, paddingHorizontal: spacing(3), paddingVertical: 4 },
+    tagText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.8 },
+  })
+);

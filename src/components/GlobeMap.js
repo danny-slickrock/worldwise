@@ -12,7 +12,7 @@ import Svg, {
 } from "react-native-svg";
 import { COUNTRY_RINGS, COUNTRY_CENTERS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
 import { countryName } from "../data/countries";
-import { colors, map, fonts } from "../theme";
+import { colors, map, fonts, themed } from "../theme";
 import {
   orientation,
   rotate,
@@ -146,12 +146,12 @@ const landFill = (code, basemap, raster) => {
 //
 // An unpicked wrong candidate stays `candidate` rather than turning red: only
 // the choice actually made deserves to be marked wrong.
-const LOCATOR_FILLS = {
+const LOCATOR_FILLS = themed(() => ({
   inert: map.land,
   candidate: map.landActive,
   correct: colors.success,
   wrong: colors.danger,
-};
+}));
 
 // One surface, two jobs. Passing `locator` turns the globe into the Country
 // Locator's answer surface: candidates are highlighted and tappable, everything

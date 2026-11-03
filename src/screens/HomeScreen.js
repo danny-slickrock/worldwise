@@ -10,6 +10,8 @@ import {
   buttonHeight,
   motion,
   onFill,
+  themed,
+  materialBase,
 } from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
@@ -334,205 +336,209 @@ export default function HomeScreen({
   );
 }
 
-const styles = StyleSheet.create({
-  // Transparent: AppChrome owns the page ground (the kit's paper fibre).
-  wrap: { flex: 1, backgroundColor: "transparent" },
-  content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
+const styles = themed(() =>
+  StyleSheet.create({
+    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
+    wrap: { flex: 1, backgroundColor: "transparent" },
+    content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
 
-  statusRow: { flexDirection: "row", gap: spacing(2), marginBottom: spacing(6) },
-  statusPill: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: spacing(1.5),
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(1.5),
-    paddingHorizontal: spacing(3),
-    ...elevation(1),
-  },
-  statusGlyph: { fontSize: 15 },
-  statusValue: { ...type.h3, fontSize: 16 },
-  statusUnit: { ...type.label, fontSize: 10, color: colors.textMuted, letterSpacing: 1 },
+    statusRow: { flexDirection: "row", gap: spacing(2), marginBottom: spacing(6) },
+    statusPill: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(1.5),
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(1.5),
+      paddingHorizontal: spacing(3),
+      ...elevation(1),
+    },
+    statusGlyph: { fontSize: 15 },
+    statusValue: { ...type.h3, fontSize: 16 },
+    statusUnit: { ...type.label, fontSize: 10, color: colors.textMuted, letterSpacing: 1 },
 
-  brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
-  // emberInk, not lakewater: this sits on parchment, where lakewater is
-  // large-text-only (4.28:1) and this is 15px.
-  brandTag: { ...type.label, fontSize: 15, color: colors.emberInk, letterSpacing: -0.2 },
-  tagline: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
+    brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
+    // emberInk, not lakewater: this sits on parchment, where lakewater is
+    // large-text-only (4.28:1) and this is 15px.
+    brandTag: { ...type.label, fontSize: 15, color: colors.emberInk, letterSpacing: -0.2 },
+    tagline: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
 
-  streakBanner: {
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(4),
-    marginBottom: spacing(7),
-    ...hairline,
-    ...elevation(1),
-  },
-  streakRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: spacing(3),
-  },
-  streakMsg: { ...type.body, flexShrink: 1, color: colors.text },
-  streakBest: {
-    ...type.label,
-    fontSize: 11,
-    color: colors.textMuted,
-    textTransform: "uppercase",
-    letterSpacing: 0.8,
-  },
-  // The goal line + bar only render once a player has set a streak goal
-  // (PracticePrefsScreen) — see streakGoal/goalProgress above.
-  goalRow: { marginTop: spacing(3) },
-  goalMsg: { ...type.caption, fontSize: 12, color: colors.textMuted, marginBottom: spacing(1.5) },
-  goalTrack: { width: "100%" },
+    streakBanner: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(4),
+      marginBottom: spacing(7),
+      ...hairline,
+      ...elevation(1),
+    },
+    streakRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: spacing(3),
+    },
+    streakMsg: { ...type.body, flexShrink: 1, color: colors.text },
+    streakBest: {
+      ...type.label,
+      fontSize: 11,
+      color: colors.textMuted,
+      textTransform: "uppercase",
+      letterSpacing: 0.8,
+    },
+    // The goal line + bar only render once a player has set a streak goal
+    // (PracticePrefsScreen) — see streakGoal/goalProgress above.
+    goalRow: { marginTop: spacing(3) },
+    goalMsg: { ...type.caption, fontSize: 12, color: colors.textMuted, marginBottom: spacing(1.5) },
+    goalTrack: { width: "100%" },
 
-  section: { ...type.eyebrow, marginBottom: spacing(3) },
-  hint: { ...type.caption, fontSize: 12, marginTop: spacing(2.5), marginBottom: spacing(6) },
+    section: { ...type.eyebrow, marginBottom: spacing(3) },
+    hint: { ...type.caption, fontSize: 12, marginTop: spacing(2.5), marginBottom: spacing(6) },
 
-  heroCard: {
-    borderRadius: radius.sheet,
-    padding: spacing(5),
-    marginBottom: spacing(7),
-    // Clips the wash, the oversized mark and the press tint to the card.
-    overflow: "hidden",
-    backgroundColor: colors.brand,
-    ...elevation(2),
-  },
-  heroMark: {
-    position: "absolute",
-    top: -46,
-    right: -52,
-    opacity: 0.16,
-  },
-  heroKicker: {
-    ...type.eyebrow,
-    color: colors.onFill,
-  },
-  heroTitle: {
-    ...type.h2,
-    fontSize: 26,
-    color: colors.onFill,
-    lineHeight: 32,
-    marginTop: spacing(1.5),
-    marginBottom: spacing(4),
-  },
-  heroCta: {
-    alignSelf: "flex-start",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.pill,
-    height: buttonHeight.md,
-    justifyContent: "center",
-    paddingHorizontal: spacing(7),
-  },
-  heroCtaText: { ...type.label, fontSize: 14, color: colors.brand, letterSpacing: 1.2 },
+    heroCard: {
+      borderRadius: radius.sheet,
+      padding: spacing(5),
+      marginBottom: spacing(7),
+      // Clips the wash, the oversized mark and the press tint to the card.
+      overflow: "hidden",
+      // The dusk wash's own base, not `brand`: brand lifts to sage in the dark
+      // scheme, and this card is a lit panel in both.
+      backgroundColor: materialBase("dusk"),
+      ...elevation(2),
+    },
+    heroMark: {
+      position: "absolute",
+      top: -46,
+      right: -52,
+      opacity: 0.16,
+    },
+    heroKicker: {
+      ...type.eyebrow,
+      color: colors.onFill,
+    },
+    heroTitle: {
+      ...type.h2,
+      fontSize: 26,
+      color: colors.onFill,
+      lineHeight: 32,
+      marginTop: spacing(1.5),
+      marginBottom: spacing(4),
+    },
+    heroCta: {
+      alignSelf: "flex-start",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      height: buttonHeight.md,
+      justifyContent: "center",
+      paddingHorizontal: spacing(7),
+    },
+    heroCtaText: { ...type.label, fontSize: 14, color: colors.brand, letterSpacing: 1.2 },
 
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    marginBottom: spacing(4),
-  },
-  // The FadeInUp wrapper is the flex item now, so the cell owns the grid
-  // geometry and the Pressable just fills it. Keeping width on the Pressable
-  // would size it against the wrapper instead of the grid and break the row.
-  tileCell: { width: "48.5%", marginBottom: spacing(4) },
-  tile: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    padding: spacing(5),
-    minHeight: 132,
-    overflow: "hidden",
-    ...hairline,
-    ...elevation(1),
-  },
-  // The icon row. The badge is pinned opposite the glyph rather than beside
-  // it, so a two-line title underneath can never push it around.
-  tileTop: {
-    flexDirection: "row",
-    alignItems: "flex-start",
-    justifyContent: "space-between",
-    marginBottom: spacing(3),
-  },
-  tileIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: radius.card,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  // PRO badge. Two kit rules decide every value here:
-  //   · Brass is DECORATIVE ONLY — 1.9:1 on parchment — so the word cannot be
-  //     brass type, and a parchment label on a brass fill is no better. The
-  //     badge is emberInk type on a tinted ground, the same pairing every
-  //     warm label in this app uses.
-  //   · `type.eyebrow` is already the structural voice for a small mono
-  //     all-caps marker, so this borrows it wholesale instead of inventing an
-  //     11px mono style beside it. Tracking comes down slightly: eyebrow
-  //     tracking is tuned for a word in open space, not inside a pill.
-  proBadge: {
-    backgroundColor: colors.emberSurface,
-    borderRadius: radius.pill,
-    paddingHorizontal: spacing(2),
-    paddingVertical: 3,
-  },
-  proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
-  // Quieted, not greyed: the kit has no disabled grey, and the tile still has
-  // to read as a real game that is on its way rather than as broken chrome.
-  tileSoon: { opacity: 0.68 },
-  reviewRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(4),
-    paddingHorizontal: spacing(5),
-    ...hairline,
-    ...elevation(1),
-  },
-  reviewBody: { flex: 1 },
-  reviewLabel: { ...type.h3, fontSize: 16 },
-  reviewValue: { ...type.caption, marginTop: 2 },
-  reviewChevron: { ...type.h2, color: colors.textFaint },
-  tileGlyph: { fontSize: 20 },
-  tileTitle: { ...type.h3, fontSize: 16 },
-  tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },
+    grid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      marginBottom: spacing(4),
+    },
+    // The FadeInUp wrapper is the flex item now, so the cell owns the grid
+    // geometry and the Pressable just fills it. Keeping width on the Pressable
+    // would size it against the wrapper instead of the grid and break the row.
+    tileCell: { width: "48.5%", marginBottom: spacing(4) },
+    tile: {
+      width: "100%",
+      height: "100%",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(5),
+      minHeight: 132,
+      overflow: "hidden",
+      ...hairline,
+      ...elevation(1),
+    },
+    // The icon row. The badge is pinned opposite the glyph rather than beside
+    // it, so a two-line title underneath can never push it around.
+    tileTop: {
+      flexDirection: "row",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      marginBottom: spacing(3),
+    },
+    tileIcon: {
+      width: 44,
+      height: 44,
+      borderRadius: radius.card,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    // PRO badge. Two kit rules decide every value here:
+    //   · Brass is DECORATIVE ONLY — 1.9:1 on parchment — so the word cannot be
+    //     brass type, and a parchment label on a brass fill is no better. The
+    //     badge is emberInk type on a tinted ground, the same pairing every
+    //     warm label in this app uses.
+    //   · `type.eyebrow` is already the structural voice for a small mono
+    //     all-caps marker, so this borrows it wholesale instead of inventing an
+    //     11px mono style beside it. Tracking comes down slightly: eyebrow
+    //     tracking is tuned for a word in open space, not inside a pill.
+    proBadge: {
+      backgroundColor: colors.emberSurface,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(2),
+      paddingVertical: 3,
+    },
+    proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
+    // Quieted, not greyed: the kit has no disabled grey, and the tile still has
+    // to read as a real game that is on its way rather than as broken chrome.
+    tileSoon: { opacity: 0.68 },
+    reviewRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(5),
+      ...hairline,
+      ...elevation(1),
+    },
+    reviewBody: { flex: 1 },
+    reviewLabel: { ...type.h3, fontSize: 16 },
+    reviewValue: { ...type.caption, marginTop: 2 },
+    reviewChevron: { ...type.h2, color: colors.textFaint },
+    tileGlyph: { fontSize: 20 },
+    tileTitle: { ...type.h3, fontSize: 16 },
+    tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },
 
-  toggle: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: colors.surfaceRaised,
-    borderRadius: radius.sheet,
-    paddingVertical: spacing(3.5),
-    paddingHorizontal: spacing(4),
-    ...elevation(1),
-  },
-  toggleActive: { backgroundColor: colors.brand },
-  toggleText: { ...type.body, color: colors.text },
-  toggleTextActive: { color: colors.onFill },
-  toggleState: {
-    backgroundColor: colors.surfaceSunken,
-    borderRadius: radius.pill,
-    paddingVertical: spacing(1),
-    paddingHorizontal: spacing(2.5),
-  },
-  toggleStateActive: { backgroundColor: colors.brandDeep },
-  toggleStateText: { ...type.label, fontSize: 11, color: colors.textMuted, letterSpacing: 1 },
-  toggleStateTextActive: { color: colors.brand },
+    toggle: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(3.5),
+      paddingHorizontal: spacing(4),
+      ...elevation(1),
+    },
+    toggleActive: { backgroundColor: colors.brand },
+    toggleText: { ...type.body, color: colors.text },
+    toggleTextActive: { color: onFill(colors.brand) },
+    toggleState: {
+      backgroundColor: colors.surfaceSunken,
+      borderRadius: radius.pill,
+      paddingVertical: spacing(1),
+      paddingHorizontal: spacing(2.5),
+    },
+    toggleStateActive: { backgroundColor: colors.brandDeep },
+    toggleStateText: { ...type.label, fontSize: 11, color: colors.textMuted, letterSpacing: 1 },
+    toggleStateTextActive: { color: colors.brand },
 
-  footer: {
-    ...type.label,
-    fontSize: 11,
-    color: colors.textMuted,
-    textAlign: "center",
-    marginTop: spacing(2),
-    letterSpacing: 1,
-    textTransform: "uppercase",
-  },
-});
+    footer: {
+      ...type.label,
+      fontSize: 11,
+      color: colors.textMuted,
+      textAlign: "center",
+      marginTop: spacing(2),
+      letterSpacing: 1,
+      textTransform: "uppercase",
+    },
+  })
+);

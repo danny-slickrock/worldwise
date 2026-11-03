@@ -9,7 +9,7 @@ import {
   InstrumentSans_600SemiBold,
 } from "@expo-google-fonts/instrument-sans";
 import { IBMPlexMono_400Regular, IBMPlexMono_500Medium } from "@expo-google-fonts/ibm-plex-mono";
-import { colors } from "./src/theme";
+import { colors, themed } from "./src/theme";
 import HomeScreen from "./src/screens/HomeScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import CountryPageScreen from "./src/screens/CountryPageScreen";
@@ -46,6 +46,8 @@ import {
 import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloudInterests";
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
+import { DEFAULT_COLOR_SCHEME, statusBarStyle } from "./src/game/colorScheme";
+import { useAppliedColorScheme, useOsColorScheme } from "./src/lib/appearance";
 import { DEFAULT_PRACTICE_PREFS } from "./src/game/practicePrefsPolicy";
 import { loadPracticePrefs, savePracticePrefs } from "./src/storage/practicePrefs";
 import {
@@ -77,7 +79,6 @@ import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history
 // game cannot forget to route it.
 const isMarathonMode = (mode) => isProMode(mode);
 
-
 // The safe-area inset takes `surface` — the page the world is printed on — so
 // the notch area reads as more page rather than as a band of chrome.
 
@@ -96,6 +97,10 @@ const FONTS = {
 
 export default function App() {
   const [fontsLoaded] = useFonts(FONTS);
+  // The splash follows the OS — settings have not loaded yet. Once the shell
+  // mounts it owns the scheme (and the saved override), so this stands down.
+  const osScheme = useOsColorScheme();
+  const splashScheme = useAppliedColorScheme(DEFAULT_COLOR_SCHEME, osScheme, !fontsLoaded);
 
   // The launch state. It used to be one flat parchment frame — correct, and
   // completely mute. Now it is the mark, hunting, on the paper ground: the same
@@ -112,7 +117,7 @@ export default function App() {
   if (!fontsLoaded) {
     return (
       <MaterialSurface name="paper" style={styles.splash}>
-        <StatusBar style="dark" />
+        <StatusBar style={statusBarStyle(splashScheme)} />
         <BrandLoader delay={0} size={72} />
       </MaterialSurface>
     );
@@ -120,12 +125,12 @@ export default function App() {
 
   return (
     <AuthProvider>
-      <AppShell />
+      <AppShell osScheme={osScheme} />
     </AuthProvider>
   );
 }
 
-function AppShell() {
+function AppShell({ osScheme }) {
   const { user } = useAuth();
   // One nav object replaces the old `tab` + `screen` pair. They used to be two
   // independent states that had to be kept consistent by hand — which is how
@@ -134,6 +139,11 @@ function AppShell() {
   const [nav, setNav] = useState(() => navFromPath(currentPath()));
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  // Resolved against the OS and applied to the tokens before anything below
+  // renders. Every token is a live view and every module-level style is
+  // themed(), so a scheme change is an ordinary re-render — no remount, and a
+  // round in progress survives the OS flipping to dark at sunset.
+  const scheme = useAppliedColorScheme(settings.colorScheme, osScheme);
   const [interests, setInterests] = useState([]);
   const [practicePrefs, setPracticePrefs] = useState(DEFAULT_PRACTICE_PREFS);
   // M2.3.6 prompt gate. `askedAt` is the persisted "we've asked once" flag;
@@ -308,6 +318,7 @@ function AppShell() {
   // on the Explore map and finding the country page still flat would read as a
   // bug. Every globe in the app reads the same value.
   const setBasemap = (basemap) => setSettings((s) => ({ ...s, basemap }));
+  const setColorScheme = (colorScheme) => setSettings((s) => ({ ...s, colorScheme }));
 
   function toggleSound() {
     setSettings((s) => ({ ...s, soundEnabled: !s.soundEnabled }));
@@ -606,6 +617,8 @@ function AppShell() {
             onOpenAchievements={() => go({ name: "achievements" })}
             onOpenLeaderboard={() => go({ name: "leaderboard" })}
             onOpenReview={() => go({ name: "review" })}
+            colorScheme={settings.colorScheme}
+            onChangeColorScheme={setColorScheme}
           />
         );
 
@@ -627,8 +640,8 @@ function AppShell() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      {/* Dark glyphs: the chrome is white and the page off-white now. */}
-      <StatusBar style="dark" />
+      {/* Glyphs contrast with the page: dark on parchment, light on bark. */}
+      <StatusBar style={statusBarStyle(scheme)} />
       <AppChrome tabs={TABS} active={nav.tab} onSelect={selectTab} chrome={showsChrome(nav)}>
         <View style={styles.body}>{renderScreen()}</View>
       </AppChrome>
@@ -636,12 +649,14 @@ function AppShell() {
   );
 }
 
-const styles = StyleSheet.create({
-  safe: {
-    flex: 1,
-    backgroundColor: colors.surface,
-    paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
-  },
-  splash: { flex: 1 },
-  body: { flex: 1 },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    safe: {
+      flex: 1,
+      backgroundColor: colors.surface,
+      paddingTop: Platform.OS === "android" ? RNStatusBar.currentHeight : 0,
+    },
+    splash: { flex: 1 },
+    body: { flex: 1 },
+  })
+);

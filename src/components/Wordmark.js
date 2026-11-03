@@ -23,7 +23,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import CompassMark from "./CompassMark";
 import SpinningMark from "./SpinningMark";
-import { colors, fonts, type } from "../theme";
+import { colors, fonts, type, themed, activeScheme } from "../theme";
 import { clearSpace } from "../game/brandMark";
 
 // Kit §LOGO: "Minimum sizes: lockup 28px mark height."
@@ -34,10 +34,14 @@ export const LOCKUP_MIN_MARK = 28;
 // look aligned rather than merely centred.
 const NAME_RATIO = 1.02;
 
-const TONES = {
-  light: { mark: "pine", world: colors.brand, wise: colors.accent },
-  dark: { mark: "cream", world: colors.onFill, wise: colors.accentLight },
-};
+// `light` means "the page ground". In the dark scheme the page IS dark, so it
+// takes the kit's own on-dark lockup — cream mark, parchment "World", lichen
+// "wise" — rather than pine on bark. Still two-tone, still the sanctioned art.
+const TONES = themed(() => {
+  const dark = { mark: "cream", world: colors.onFill, wise: colors.accentLight };
+  const light = { mark: "pine", world: colors.brand, wise: colors.accent };
+  return { light: activeScheme() === "dark" ? dark : light, dark };
+});
 
 export default function Wordmark({
   // Mark height in px. The name and the clear space both derive from it.
@@ -87,7 +91,9 @@ export default function Wordmark({
   );
 }
 
-const styles = StyleSheet.create({
-  row: { flexDirection: "row", alignItems: "center" },
-  name: { ...type.h1, fontFamily: fonts.displayBold },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    row: { flexDirection: "row", alignItems: "center" },
+    name: { ...type.h1, fontFamily: fonts.displayBold },
+  })
+);

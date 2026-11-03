@@ -21,12 +21,13 @@
 // or a globe — anything a background colour would have to paint over.
 import React, { useEffect, useRef, useState } from "react";
 import { Animated, Easing, Pressable, StyleSheet } from "react-native";
-import { colors, motion } from "../theme";
+import { colors, motion, themed } from "../theme";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 // Pine on light, parchment on dark: a press should read as the surface being
-// pushed toward its own ink, not as a grey wash.
-const TINTS = { light: "rgba(33,64,60,0.10)", dark: "rgba(244,235,217,0.12)" };
+// pushed toward its own ink, not as a grey wash. `light` is the page ground, so
+// it follows the scheme (colors.tint); `dark` is a fixed dark surface.
+const TINTS = themed(() => ({ light: colors.tint, dark: "rgba(244,235,217,0.12)" }));
 
 export default function PressableTint({
   // Which ground this sits on, so the tint darkens or lightens accordingly.
@@ -112,7 +113,9 @@ export default function PressableTint({
   );
 }
 
-const styles = StyleSheet.create({
-  // Kit §CARD: "hover --ww-e2 and a 1px --ww-accent border."
-  hovered: { borderColor: colors.accent },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    // Kit §CARD: "hover --ww-e2 and a 1px --ww-accent border."
+    hovered: { borderColor: colors.accent },
+  })
+);

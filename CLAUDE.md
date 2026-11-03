@@ -157,6 +157,10 @@ src/
   game/navigation.js       # PURE nav core: per-tab stacks (push/pop/switch/replace), route⇄URL
                            #   serialization, and popstate reconciliation. The single source of
                            #   truth for where you are and what Back means
+  game/colorScheme.js      # PURE: system|light|dark preference x OS -> the scheme drawn
+  lib/appearance.js        # IO beside it: reads the OS (useColorScheme), applies the scheme
+                           #   to theme.js during render, syncs the web document/theme-color
+  components/AppearanceSetting.js # System · Light · Dark, on Profile signed in AND signed out
   game/layout.js           # PURE responsive-chrome policy: bottom bar vs side rail, rail width,
                            #   whether the rail spells out its labels. One breakpoint decision
   game/interestPolicy.js   # PURE M2.3.6: validate/normalize an interest selection against the catalog
@@ -407,6 +411,22 @@ order base → ramp → grain → glow: light falls *across* a surface, not unde
 - `walnut` is drawn and tested but deliberately **unused in the app**: the kit restricts it to "the
   ground *beneath* a device, card or artefact, never behind type", and no current surface is that.
   Reach for it in marketing and mockups, not to fill space.
+
+**Dark mode is "the cartography room with the lamp turned low", and the tokens are LIVE.**
+`theme.js` holds a light and a dark palette; `colors`, `type`, `hairline`, `materials` and
+`topicAccents` are live views onto whichever scheme `setActiveScheme()` last chose, so reading a
+token at render is already scheme-correct. Rules that are easy to break:
+- **Never capture a token at module load.** A top-of-file `StyleSheet.create` or lookup table
+  must be wrapped `themed(() => ...)`, which builds once per scheme. A bare one silently stays
+  light forever. A scheme change is then an ordinary re-render — no remount, a round survives.
+- **In dark, pine/lakewater/ember/status LIFT, so their fills carry nightwood, not parchment.**
+  A label on a fill must go through `onFill(fill)` — `color: colors.onFill` on a `brand` fill is
+  parchment on sage. A map panel's pine wall is `map.stage`, not `brand`.
+- **`map.*` and `modeAccents` are identical in both schemes** — the map was already the dark stage.
+  A mode accent used as TYPE goes through `accentInk()`.
+- **Read the OS once, at the root** (`useOsColorScheme()` in App.js, passed down). Two
+  `useColorScheme()` subscribers dropped a live OS flip on web.
+- `DARK_GROUNDS` pins the dark contrast suite exactly as `LIGHT_GROUNDS` pins the light one.
 
 **Motion has a vocabulary, and "no bounce" is part of it.** Everything animated runs on `theme.js`'s
 `motion` durations and the kit's one easing curve, and every piece of it drops to its resting state

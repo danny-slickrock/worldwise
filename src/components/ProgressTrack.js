@@ -18,7 +18,7 @@
 // ellipses, which is visibly wrong at the pill radius the kit specifies.
 import React, { useEffect, useRef } from "react";
 import { Animated, Easing, StyleSheet, View } from "react-native";
-import { colors, motion, radius } from "../theme";
+import { colors, motion, radius, themed } from "../theme";
 import useReducedMotion from "../hooks/useReducedMotion";
 
 export default function ProgressTrack({
@@ -78,7 +78,9 @@ export default function ProgressTrack({
   );
 }
 
-const styles = StyleSheet.create({
-  track: { width: "100%", overflow: "hidden" },
-  fill: { height: "100%" },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    track: { width: "100%", overflow: "hidden" },
+    fill: { height: "100%" },
+  })
+);

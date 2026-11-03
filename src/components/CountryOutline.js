@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Platform, View, Text, Image, StyleSheet } from "react-native";
 import { SvgUri } from "react-native-svg";
 import { outlineUrl } from "../data/countries";
-import { colors, radius, spacing } from "../theme";
+import { colors, radius, spacing, themed } from "../theme";
 
 // Renders a country's map outline as a solid sand-coloured silhouette.
 //
@@ -55,17 +55,19 @@ export default function CountryOutline({ code }) {
         />
         {/* A CSS mask has no load-failure signal of its own, so probe the same
             URL with a plain <Image> purely to detect a failed/missing SVG. */}
-        <Image
-          source={{ uri }}
-          style={styles.probe}
-          onError={() => setFailed(true)}
-        />
+        <Image source={{ uri }} style={styles.probe} onError={() => setFailed(true)} />
       </View>
     );
   }
 
   return (
-    <SvgUri uri={uri} width="100%" height="100%" fill={colors.brass} onError={() => setFailed(true)} />
+    <SvgUri
+      uri={uri}
+      width="100%"
+      height="100%"
+      fill={colors.brass}
+      onError={() => setFailed(true)}
+    />
   );
 }
 
@@ -78,15 +80,17 @@ function Fallback() {
   );
 }
 
-const styles = StyleSheet.create({
-  webWrap: { width: "100%", height: "100%" },
-  probe: { position: "absolute", width: "100%", height: "100%", opacity: 0 },
-  fallback: {
-    flex: 1,
-    borderRadius: radius.sheet,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  fallbackGlyph: { fontSize: 40, color: colors.surfaceSunken },
-  fallbackText: { fontSize: 12, color: colors.textMuted, marginTop: spacing(2) },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    webWrap: { width: "100%", height: "100%" },
+    probe: { position: "absolute", width: "100%", height: "100%", opacity: 0 },
+    fallback: {
+      flex: 1,
+      borderRadius: radius.sheet,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    fallbackGlyph: { fontSize: 40, color: colors.surfaceSunken },
+    fallbackText: { fontSize: 12, color: colors.textMuted, marginTop: spacing(2) },
+  })
+);

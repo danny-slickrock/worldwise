@@ -16,7 +16,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import SpinningMark from "./SpinningMark";
 import { MaterialSurface } from "./Material";
-import { colors, materialInk, spacing, type } from "../theme";
+import { colors, materialInk, spacing, type, themed, pageMarkTone } from "../theme";
 
 // Kit §MOTION / §FIVE STATES.
 export const SPINNER_DELAY = 1000;
@@ -67,7 +67,7 @@ export default function BrandLoader({
       style={[styles.fill, styles.center, style]}
       {...a11y}
     >
-      <SpinningMark size={size} tone={dark ? "cream" : "pine"} />
+      <SpinningMark size={size} tone={dark ? "cream" : pageMarkTone()} />
       {label ? (
         <Text
           style={[
@@ -85,10 +85,12 @@ export default function BrandLoader({
   );
 }
 
-const styles = StyleSheet.create({
-  fill: { flex: 1 },
-  center: { alignItems: "center", justifyContent: "center", gap: spacing(5) },
-  label: { ...type.eyebrow, color: colors.textMuted },
-  inline: { flexDirection: "row", alignItems: "center", gap: spacing(3) },
-  inlineLabel: { ...type.caption },
-});
+const styles = themed(() =>
+  StyleSheet.create({
+    fill: { flex: 1 },
+    center: { alignItems: "center", justifyContent: "center", gap: spacing(5) },
+    label: { ...type.eyebrow, color: colors.textMuted },
+    inline: { flexDirection: "row", alignItems: "center", gap: spacing(3) },
+    inlineLabel: { ...type.caption },
+  })
+);
