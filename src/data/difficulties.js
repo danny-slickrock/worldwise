@@ -70,6 +70,18 @@ const MODE_TIERS = {
     { key: "hard", label: "Hard", description: "Spin to find it, borders only." },
     { key: "expert", label: "Expert", description: "No borders — read the land itself." },
   ],
+  // The type-in family, extended to Currency Quiz. Same three tiers and the
+  // same meaning as Flag/Capital: past "type it blind" there is no further
+  // interaction to remove, so no Expert.
+  currency: [
+    { key: "easy", label: "Easy", description: "Pick the currency from four." },
+    { key: "medium", label: "Medium", description: "Type the currency, with suggestions." },
+    {
+      key: "hard",
+      label: "Hard",
+      description: "Type it blind — close spelling, and “yen” for “Japanese yen”, count.",
+    },
+  ],
   higherLower: [
     { key: "easy", label: "Easy", description: "Famous countries, clear gaps." },
     { key: "medium", label: "Medium", description: "Closer calls, less-familiar places." },
@@ -140,6 +152,7 @@ const BUILT_TIERS = {
   flag: ["easy", "medium", "hard"],
   capital: ["easy", "medium", "hard"],
   capitalReverse: ["easy", "medium", "hard"],
+  currency: ["easy", "medium", "hard"],
   shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy", "medium", "hard", "expert"],
   higherLower: ["easy", "medium", "hard"],

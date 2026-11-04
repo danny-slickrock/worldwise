@@ -238,3 +238,24 @@ export function currencyFor(code) {
 // here rather than recomputed at every call site, the same convention
 // COUNTRY_NAMES/CAPITAL_NAMES use in questions.js.
 export const CURRENCY_NAMES = [...new Set(Object.values(CURRENCY_BY_CODE).map((c) => c.name))];
+
+// The bare noun a player would actually type — "yen", "real", "rupiah" — for a
+// currency whose full name carries a qualifier ("Japanese yen"). Typed tiers
+// (Currency Quiz Medium/Hard) accept it as well as the full name.
+//
+// ONLY when that noun is unique across the whole catalog. "dollar", "franc",
+// "dinar", "peso" and friends each end a dozen names, so typing "dollar" for
+// Australia is a guess that happens to share a word, not knowing the answer,
+// and must stay a miss. A one-word name ("Euro") has nothing to shorten.
+const lastWord = (name) => name.trim().split(/\s+/).pop().toLowerCase();
+const LAST_WORD_COUNTS = CURRENCY_NAMES.reduce((acc, name) => {
+  const w = lastWord(name);
+  acc[w] = (acc[w] ?? 0) + 1;
+  return acc;
+}, {});
+
+export function currencyShortNames(name) {
+  if (!name || !/\s/.test(name.trim())) return [];
+  const w = lastWord(name);
+  return LAST_WORD_COUNTS[w] === 1 ? [w] : [];
+}

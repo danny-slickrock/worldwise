@@ -174,6 +174,21 @@ export function matchAnswer(input, correct, alternatives = []) {
 // can say "close enough: it's spelled …" rather than a silent tick.
 export const isCorrectAnswer = (result) => result === "match" || result === "close";
 
+// matchAnswer, plus ACCEPTED SHORT FORMS for this one question — "yen" for
+// "Japanese yen". The full answer is tried first; a short form only rescues a
+// miss, and goes through the same matcher (so it gets the same typo tolerance
+// and the same refusal of a different real answer). The caller decides which
+// short forms are safe; see data/currencies.js's uniqueness rule.
+export function matchAnswerAccepting(input, correct, alternatives = [], accept = []) {
+  const primary = matchAnswer(input, correct, alternatives);
+  if (primary !== "miss" || !accept?.length) return primary;
+  for (const alt of accept) {
+    const r = matchAnswer(input, alt, alternatives);
+    if (r !== "miss") return r;
+  }
+  return "miss";
+}
+
 // Autocomplete for the Medium tier: the answers worth offering for what has
 // been typed so far.
 //

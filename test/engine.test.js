@@ -20,7 +20,12 @@ import {
   MAP_H,
 } from "../src/data/worldMap";
 import { buildRound, buildDaily, buildCountryRound, MODES, poolFor } from "../src/game/questions";
-import { CURRENCY_BY_CODE, currencyFor, CURRENCY_NAMES } from "../src/data/currencies";
+import {
+  CURRENCY_BY_CODE,
+  currencyFor,
+  CURRENCY_NAMES,
+  currencyShortNames,
+} from "../src/data/currencies";
 import { LANGUAGE_BY_CODE, languageFor, LANGUAGE_NAMES } from "../src/data/languages";
 import {
   NATIONAL_ANIMAL_BY_CODE,
@@ -280,6 +285,7 @@ import {
   levenshtein,
   similarity,
   matchAnswer,
+  matchAnswerAccepting,
   isCorrectAnswer,
   suggestAnswers,
 } from "../src/game/answerMatch";
@@ -6656,13 +6662,14 @@ check(
   ["flag", "capital", "capitalReverse", "shape", "locator", "higherLower"].every((m) =>
     TIERED_MODES.includes(m)
   ),
-  "all six free games carry a tier menu"
+  "the original six games carry a tier menu"
 );
 check(
   ["nameEveryCountry", "identifyAllFlags"].every((m) => TIERED_MODES.includes(m)),
   "...and so do the two pro marathons — a marathon is a different run length, not a different kind of choice"
 );
-check(TIERED_MODES.length === 8, "eight tiered modes in total, and nothing else");
+check(TIERED_MODES.includes("currency"), "...and Currency Quiz joins the type-in family");
+check(TIERED_MODES.length === 9, "nine tiered modes in total, and nothing else");
 check(
   !hasTiers("daily") && !hasTiers("country"),
   "Daily and a country round have no tier menu — a Daily with difficulty would be incomparable between players"
@@ -8262,6 +8269,71 @@ check(
 check(
   compareRuns(fast, slow) < 0,
   "between two complete runs, the faster completion time ranks first"
+);
+
+console.log("\nCurrency Quiz — tiered, with typed answers");
+check(
+  tiersFor("currency")
+    .map((t) => t.key)
+    .join() === "easy,medium,hard",
+  "Currency Quiz offers Easy, Medium and Hard"
+);
+check(
+  ["easy", "medium", "hard"].every((t) => isTierBuilt("currency", t)),
+  "...and every one is built, so none falls back"
+);
+const curEasy = buildRound("currency", "all", ROUND_LENGTH, { tier: "easy" });
+check(
+  curEasy.length === ROUND_LENGTH && curEasy.every((q) => !q.answer && q.options.length === 4),
+  "Easy: four options, no typed surface"
+);
+const curMed = buildRound("currency", "all", ROUND_LENGTH, { tier: "medium" });
+check(
+  curMed.every((q) => q.answer === "type" && q.suggest === true && q.answerPool === CURRENCY_NAMES),
+  "Medium: typed, with suggestions drawn from every currency name"
+);
+const curHard = buildRound("currency", "all", ROUND_LENGTH, { tier: "hard" });
+check(
+  curHard.every((q) => q.answer === "type" && q.suggest === false),
+  "Hard: typed, blind"
+);
+check(
+  curHard.every((q) => q.correct && CURRENCY_NAMES.includes(q.correct)),
+  "every typed question's answer is a real catalog name"
+);
+// The bare noun is accepted only when unique.
+check(
+  currencyShortNames("Japanese yen").join() === "yen",
+  "'yen' is accepted for 'Japanese yen' — no other currency ends in yen"
+);
+check(currencyShortNames("Australian dollar").length === 0, "'dollar' is never accepted alone");
+check(currencyShortNames("Swiss franc").length === 0, "...nor is 'franc'");
+check(currencyShortNames("Euro").length === 0, "a one-word name has nothing to shorten");
+const yenQ = { correct: "Japanese yen", answerPool: CURRENCY_NAMES, accept: ["yen"] };
+check(
+  isCorrectAnswer(matchAnswerAccepting("yen", yenQ.correct, yenQ.answerPool, yenQ.accept)),
+  "typing 'yen' scores Japanese yen"
+);
+check(
+  isCorrectAnswer(matchAnswerAccepting("japanese yen", yenQ.correct, yenQ.answerPool, [])),
+  "the full name always scores"
+);
+check(
+  !isCorrectAnswer(
+    matchAnswerAccepting("Chinese renminbi", yenQ.correct, yenQ.answerPool, yenQ.accept)
+  ),
+  "a DIFFERENT real currency is still a miss"
+);
+check(
+  !isCorrectAnswer(
+    matchAnswerAccepting(
+      "dollar",
+      "Australian dollar",
+      CURRENCY_NAMES,
+      currencyShortNames("Australian dollar")
+    )
+  ),
+  "'dollar' for the Australian dollar is a miss — a shared word is a guess"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

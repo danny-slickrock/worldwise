@@ -29,7 +29,7 @@ import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
 import { tierFor } from "../data/difficulties";
-import { matchAnswer, isCorrectAnswer } from "../game/answerMatch";
+import { matchAnswerAccepting, isCorrectAnswer } from "../game/answerMatch";
 import TypeAnswer from "./TypeAnswer";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
@@ -370,7 +370,12 @@ export default function QuizScreen({
   function resultFor(question, value) {
     if (value === TIMEOUT) return "miss";
     if (question.answer === "type") {
-      return matchAnswer(value, question.correct, question.answerPool ?? []);
+      return matchAnswerAccepting(
+        value,
+        question.correct,
+        question.answerPool ?? [],
+        question.accept ?? []
+      );
     }
     return value === question.correct ? "match" : "miss";
   }

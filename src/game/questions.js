@@ -17,7 +17,7 @@ import { getCountryPage } from "../data/countryPages";
 import { countryName } from "../data/countries";
 import { effectiveTier } from "../data/difficulties";
 import { lookalikePool } from "./shapeSimilarity";
-import { currencyFor } from "../data/currencies";
+import { currencyFor, currencyShortNames, CURRENCY_NAMES } from "../data/currencies";
 import { languageFor } from "../data/languages";
 import { nationalAnimalFor } from "../data/nationalAnimals";
 import { foodOriginFor } from "../data/foodOrigin";
@@ -336,6 +336,11 @@ function buildOne(type, target, tier = null) {
       prompt: `What is the currency of ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
+      // Medium/Hard type the answer. Several names carry a qualifier
+      // ("Japanese yen"), so the bare noun is accepted too — but only where
+      // it is unique in the catalog (see currencyShortNames).
+      ...typedAnswer(tier, CURRENCY_NAMES),
+      ...(typedAnswer(tier, CURRENCY_NAMES) ? { accept: currencyShortNames(correct) } : null),
     };
   }
   if (type === "language") {
