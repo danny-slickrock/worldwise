@@ -18,7 +18,7 @@ import { countryName } from "../data/countries";
 import { effectiveTier } from "../data/difficulties";
 import { lookalikePool } from "./shapeSimilarity";
 import { currencyFor, currencyShortNames, CURRENCY_NAMES } from "../data/currencies";
-import { languageFor } from "../data/languages";
+import { languageFor, alsoOfficialFor, LANGUAGE_NAMES } from "../data/languages";
 import { nationalAnimalFor } from "../data/nationalAnimals";
 import { foodOriginFor } from "../data/foodOrigin";
 import { largestCityFor } from "../data/cities";
@@ -349,7 +349,10 @@ function buildOne(type, target, tier = null) {
     // (English and Arabic alone cover dozens), so two options reading
     // identically is the normal case to guard against, not an edge case.
     const correct = languageFor(target.code);
-    const seen = new Set(correct ? [correct] : []);
+    // A co-official language is never offered as a WRONG option: "French"
+    // as a distractor for Canada would be marked wrong while being true.
+    const alsoOfficial = alsoOfficialFor(target.code);
+    const seen = new Set([...(correct ? [correct] : []), ...alsoOfficial]);
     const distractors = [];
     for (const c of shuffle(COUNTRIES.filter((c) => c.code !== target.code))) {
       const name = languageFor(c.code);
@@ -358,12 +361,18 @@ function buildOne(type, target, tier = null) {
       distractors.push(name);
       if (distractors.length >= DISTRACTORS) break;
     }
+    const typed = typedAnswer(tier, LANGUAGE_NAMES);
     return {
       type,
       country: target,
       prompt: `What is the official language of ${target.name}?`,
       correct,
       options: shuffle([correct, ...distractors]),
+      // Medium/Hard type it. Any co-official language counts too — typed,
+      // "English" for Ireland is a true answer the matcher would otherwise
+      // refuse as a different real one. The reveal still names the primary.
+      ...typed,
+      ...(typed ? { accept: alsoOfficial } : null),
     };
   }
   if (type === "nationalAnimal") {

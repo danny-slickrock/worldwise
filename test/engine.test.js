@@ -26,7 +26,13 @@ import {
   CURRENCY_NAMES,
   currencyShortNames,
 } from "../src/data/currencies";
-import { LANGUAGE_BY_CODE, languageFor, LANGUAGE_NAMES } from "../src/data/languages";
+import {
+  LANGUAGE_BY_CODE,
+  languageFor,
+  LANGUAGE_NAMES,
+  ALSO_OFFICIAL,
+  alsoOfficialFor,
+} from "../src/data/languages";
 import {
   NATIONAL_ANIMAL_BY_CODE,
   nationalAnimalFor,
@@ -6669,7 +6675,8 @@ check(
   "...and so do the two pro marathons — a marathon is a different run length, not a different kind of choice"
 );
 check(TIERED_MODES.includes("currency"), "...and Currency Quiz joins the type-in family");
-check(TIERED_MODES.length === 9, "nine tiered modes in total, and nothing else");
+check(TIERED_MODES.includes("language"), "...and so does Language Quiz");
+check(TIERED_MODES.length === 10, "ten tiered modes in total, and nothing else");
 check(
   !hasTiers("daily") && !hasTiers("country"),
   "Daily and a country round have no tier menu — a Daily with difficulty would be incomparable between players"
@@ -8335,6 +8342,64 @@ check(
   ),
   "'dollar' for the Australian dollar is a miss — a shared word is a guess"
 );
+
+console.log("\nLanguage Quiz — tiered, with typed answers");
+check(
+  tiersFor("language")
+    .map((t) => t.key)
+    .join() === "easy,medium,hard" &&
+    ["easy", "medium", "hard"].every((t) => isTierBuilt("language", t)),
+  "Language Quiz offers Easy, Medium and Hard, all built"
+);
+const langEasy = buildRound("language", "all", ROUND_LENGTH, { tier: "easy" });
+check(
+  langEasy.length === ROUND_LENGTH && langEasy.every((q) => !q.answer && q.options.length === 4),
+  "Easy: four options, no typed surface"
+);
+const langMed = buildRound("language", "all", ROUND_LENGTH, { tier: "medium" });
+check(
+  langMed.every(
+    (q) => q.answer === "type" && q.suggest === true && q.answerPool === LANGUAGE_NAMES
+  ),
+  "Medium: typed, with suggestions from every language name"
+);
+check(
+  buildRound("language", "all", ROUND_LENGTH, { tier: "hard" }).every(
+    (q) => q.answer === "type" && q.suggest === false
+  ),
+  "Hard: typed, blind"
+);
+check(
+  Object.keys(ALSO_OFFICIAL).every((code) => COUNTRIES.some((c) => c.code === code)),
+  "every co-official entry is a real country code"
+);
+check(
+  Object.entries(ALSO_OFFICIAL).every(([code, langs]) => !langs.includes(languageFor(code))),
+  "no co-official list repeats the country's own primary"
+);
+// Canada: primary English, French co-official.
+const caLang = { correct: languageFor("ca"), pool: LANGUAGE_NAMES, accept: alsoOfficialFor("ca") };
+check(
+  isCorrectAnswer(matchAnswerAccepting("French", caLang.correct, caLang.pool, caLang.accept)),
+  "typing French for Canada scores — it is co-official"
+);
+check(
+  !isCorrectAnswer(matchAnswerAccepting("Spanish", caLang.correct, caLang.pool, caLang.accept)),
+  "typing Spanish for Canada does not"
+);
+check(
+  isCorrectAnswer(
+    matchAnswerAccepting("English", languageFor("ie"), LANGUAGE_NAMES, alsoOfficialFor("ie"))
+  ),
+  "English for Ireland scores, although the catalog's primary is Irish"
+);
+// Easy never offers a true co-official language as a wrong option.
+let coOfficialLeak = false;
+for (let i = 0; i < 300; i++) {
+  const q = buildRound("language", "all", 1, { tier: "easy", only: ["ca"] })[0];
+  if (q.options.includes("French")) coOfficialLeak = true;
+}
+check(!coOfficialLeak, "Easy never offers French as a wrong answer for Canada");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

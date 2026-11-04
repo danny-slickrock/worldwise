@@ -82,6 +82,15 @@ const MODE_TIERS = {
       description: "Type it blind — close spelling, and “yen” for “Japanese yen”, count.",
     },
   ],
+  language: [
+    { key: "easy", label: "Easy", description: "Pick the language from four." },
+    { key: "medium", label: "Medium", description: "Type the language, with suggestions." },
+    {
+      key: "hard",
+      label: "Hard",
+      description: "Type it blind — any official language of the country counts.",
+    },
+  ],
   higherLower: [
     { key: "easy", label: "Easy", description: "Famous countries, clear gaps." },
     { key: "medium", label: "Medium", description: "Closer calls, less-familiar places." },
@@ -153,6 +162,7 @@ const BUILT_TIERS = {
   capital: ["easy", "medium", "hard"],
   capitalReverse: ["easy", "medium", "hard"],
   currency: ["easy", "medium", "hard"],
+  language: ["easy", "medium", "hard"],
   shape: ["easy", "medium", "hard", "expert"],
   locator: ["easy", "medium", "hard", "expert"],
   higherLower: ["easy", "medium", "hard"],

@@ -104,7 +104,9 @@ src/
   data/languages.js        # M2.7 step 2: code → language-name lookup, sibling to currencies.js
                            #   and hand-compiled the same way — except a language, unlike a
                            #   currency, often has no single legal answer, so this picks whichever
-                           #   co-official language is most commonly cited as primary
+                           #   co-official language is most commonly cited as primary. ALSO_OFFICIAL
+                           #   lists the other co-official ones: accepted when TYPED (Medium/
+                           #   Hard), never offered as a wrong option on Easy
   data/nationalAnimals.js  # M2.7 step 3: code → national-animal-name lookup, sibling to
                            #   currencies.js/languages.js, hand-compiled the same way — the LEAST
                            #   codified of the three, since fewer than half these states have ever

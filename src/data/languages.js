@@ -275,3 +275,56 @@ export function languageFor(code) {
 // unused by the easy multiple-choice round today, kept for a future typed
 // tier's autocomplete pool.
 export const LANGUAGE_NAMES = [...new Set(Object.values(LANGUAGE_BY_CODE))];
+
+// Other languages that are CONSTITUTIONALLY co-official (or, for Eritrea,
+// working languages with no single official one), accepted as correct when a
+// player TYPES the answer (Language Quiz Medium/Hard).
+//
+// Why this exists: LANGUAGE_BY_CODE holds ONE primary per country (see the
+// header — often a judgment call). On multiple choice that is harmless, since
+// the four options are deduped and rarely include a second co-official
+// language. Typed, it is not: "English" for Ireland, or "French" for Canada,
+// is a real official language of that country, and the matcher would refuse
+// it as "a different real answer". So these are accepted; the primary stays
+// what the reveal shows and what Easy asks for.
+//
+// Deliberately limited to the countries the header names as contested plus
+// the well-known multilingual constitutions. Hand-compiled like the rest of
+// this file, and worth the same second pair of eyes.
+export const ALSO_OFFICIAL = {
+  ie: ["English"],
+  bw: ["English"],
+  ht: ["French"],
+  ke: ["English"],
+  sg: ["English", "Mandarin", "Tamil"],
+  za: ["English", "Afrikaans", "Xhosa"],
+  vu: ["English", "French"],
+  zw: ["English", "Ndebele"],
+  ca: ["French"],
+  be: ["French", "German"],
+  ch: ["French", "Italian", "Romansh"],
+  fi: ["Swedish"],
+  lu: ["French", "German"],
+  cy: ["Turkish"],
+  in: ["English"],
+  ph: ["English"],
+  pk: ["English"],
+  mt: ["English"],
+  nz: ["Māori"],
+  rw: ["English", "French", "Swahili"],
+  tz: ["English"],
+  bi: ["French", "English"],
+  km: ["Arabic", "French"],
+  dj: ["Arabic"],
+  er: ["Arabic", "English"],
+  sc: ["English", "French"],
+  cm: ["English"],
+  td: ["Arabic"],
+  lk: ["Tamil"],
+  af: ["Dari"],
+  by: ["Russian"],
+  kg: ["Russian"],
+  kz: ["Russian"],
+};
+
+export const alsoOfficialFor = (code) => ALSO_OFFICIAL[code] ?? [];
