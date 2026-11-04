@@ -234,6 +234,7 @@ import {
   marathonHighlights,
   marathonIsRecall,
   marathonHint,
+  marathonClock,
 } from "../src/game/marathonTiers";
 import {
   runShape,
@@ -248,7 +249,11 @@ import {
   elapsedMs,
   marathonScore,
   compareRuns,
+  isStopwatch,
+  marathonResultCountries,
+  marathonRoundResult,
 } from "../src/game/marathon";
+import { MARATHON_STOPWATCH_PAR_MS } from "../src/constants";
 import { MARATHON_POINTS_PER_FIND } from "../src/constants";
 import { higherLowerBand } from "../src/game/higherLower";
 import { HIGHER_LOWER_TIERS } from "../src/constants";
@@ -8171,6 +8176,92 @@ check(
 check(
   buildRound("flag", "all", Infinity, { only: ["fr", "de", "jp"] }).length === 3,
   "unlimited Review practice is exactly the weak set, once each"
+);
+
+console.log("\nName Every Country — stopwatch");
+check(marathonClock("nameEveryCountry") === "stopwatch", "Name Every Country runs on a stopwatch");
+check(marathonClock("identifyAllFlags") === "countdown", "Identify All Flags keeps its countdown");
+
+const SW_TARGETS = ["fr", "de", "jp", "br", "kE"];
+const codeMatch = (v, code) => v === code;
+let sw = startRun({ tier: "easy", targets: SW_TARGETS, now: 1000, durationMs: null });
+check(isStopwatch(sw) && sw.durationMs === null, "durationMs: null starts a stopwatch run");
+check(
+  !isStopwatch(startRun({ tier: "easy", targets: SW_TARGETS, now: 0 })),
+  "an omitted duration is still the default countdown — existing callers unchanged"
+);
+check(remainingMs(sw, 10_000_000) === Infinity, "a stopwatch never runs out of time");
+check(!isOver(sw, 1000 + 60 * 60 * 1000), "...so an hour in, the run is still going");
+check(elapsedMs(sw, 1000 + 42_000) === 42_000, "elapsed counts up from the start");
+check(
+  elapsedMs(sw, 1000 + 2 * 60 * 60 * 1000) === 2 * 60 * 60 * 1000,
+  "...uncapped — there is no duration to clamp to"
+);
+
+sw = submitAnswer(sw, "fr", { now: 2000, isMatch: codeMatch }).run;
+sw = submitAnswer(sw, "nope", { now: 3000, isMatch: codeMatch }).run; // de wrong
+sw = skipTarget(sw, 4000); // jp skipped
+sw = endRun(sw, 61_000); // stopped by hand before br/kE were shown
+check(isOver(sw, 61_000), "ending a stopwatch run by hand ends it");
+check(elapsedMs(sw, 999_999) === 60_000, "the completion time is frozen at the stop");
+const swCountries = marathonResultCountries(sw);
+check(
+  JSON.stringify(swCountries) ===
+    JSON.stringify([
+      { code: "fr", correct: true },
+      { code: "de", correct: false },
+      { code: "jp", correct: false },
+    ]),
+  "prompted: named + shown-and-missed (wrong or skipped); never-shown targets are NOT misses"
+);
+const swRound = marathonRoundResult(sw, { mode: "nameEveryCountry", now: 61_000 });
+check(
+  swRound.mode === "nameEveryCountry" &&
+    swRound.score === 1 &&
+    swRound.total === SW_TARGETS.length &&
+    swRound.timed === true &&
+    swRound.xp === 0 &&
+    swRound.elapsedMs === 60_000,
+  "the round result is 'X of N named', timed, with its completion time and no round XP"
+);
+check(
+  swRound.difficulty === "all",
+  "a marathon writes difficulty 'all', so learning-path mastery ignores it"
+);
+check(
+  resultRowFromRound("u1", swRound, "2026-11-03").countries === swRound.countries,
+  "it persists through the same game_results.countries capture as a quiz round"
+);
+
+// Free recall: the whole set is the question, so an unnamed country is a miss.
+let rc = startRun({ tier: "expert", targets: ["fr", "de", "jp"], now: 0, durationMs: null });
+rc = submitAnswer(rc, "jp", { now: 500, isMatch: codeMatch }).run;
+rc = submitAnswer(rc, "atlantis", { now: 600, isMatch: codeMatch }).run;
+rc = endRun(rc, 90_000);
+check(
+  JSON.stringify(marathonResultCountries(rc)) ===
+    JSON.stringify([
+      { code: "jp", correct: true },
+      { code: "fr", correct: false },
+      { code: "de", correct: false },
+    ]),
+  "recall: named + every country left unnamed; a wrong guess ('atlantis') is not a country"
+);
+
+// Naming every one ends it, and the speed bonus is against par, not a clock.
+let swFull = startRun({ tier: "easy", targets: ["fr", "de"], now: 0, durationMs: null });
+swFull = submitAnswer(swFull, "fr", { now: 1, isMatch: codeMatch }).run;
+swFull = submitAnswer(swFull, "de", { now: 2, isMatch: codeMatch }).run;
+check(isOver(swFull, 3), "a stopwatch run ends when every target is done");
+const fast = marathonScore(endRun(swFull, MARATHON_STOPWATCH_PAR_MS / 2), 0);
+const slow = marathonScore(endRun(swFull, MARATHON_STOPWATCH_PAR_MS * 3), 0);
+check(
+  fast.completedAll && fast.speedBonus > 0 && slow.speedBonus === 0,
+  "finishing under par earns a speed bonus; at par or slower earns none"
+);
+check(
+  compareRuns(fast, slow) < 0,
+  "between two complete runs, the faster completion time ranks first"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

@@ -496,6 +496,17 @@ function AppShell({ osScheme }) {
             tier={route.tier ?? "easy"}
             onExit={backHandler}
             onFinish={backHandler}
+            // A finished sitting is persisted like any round — same
+            // game_results row, same countries capture — so Review and the
+            // collections see what was named and missed. Cloud only (the same
+            // sink rule as a round), and it does NOT touch local progress: a
+            // marathon awards its own score, not round XP or a "best round".
+            onComplete={(round) => {
+              if (roundSinks(user).cloud) saveRoundResult(user, round, progress);
+            }}
+            // Replace, not push: Back from Review should not remount a finished
+            // marathon (which would start a fresh run).
+            onOpenReview={() => swap({ name: "review" })}
           />
         );
 

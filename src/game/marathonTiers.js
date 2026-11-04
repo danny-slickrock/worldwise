@@ -96,3 +96,10 @@ const HINTS = {
 };
 
 export const marathonHint = (mode, tier) => HINTS[mode]?.[tier] ?? HINTS.nameEveryCountry.easy;
+
+// Which clock a marathon runs on. Name Every Country is a STOPWATCH — the
+// question is "can you name them all, and how long did it take?", so there is
+// no time limit and the elapsed time is the result. Identify All Flags keeps
+// its countdown: "how many in five minutes?".
+const CLOCKS = { nameEveryCountry: "stopwatch", identifyAllFlags: "countdown" };
+export const marathonClock = (mode) => CLOCKS[mode] ?? "countdown";

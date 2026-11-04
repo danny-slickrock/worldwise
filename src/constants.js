@@ -54,6 +54,11 @@ export const SHAPE_MIN_SIMILARITY = 0.7;
 export const MARATHON_DURATION_MS = 5 * 60 * 1000;
 export const MARATHON_POINTS_PER_FIND = 10;
 export const MARATHON_SPEED_BONUS_MAX = 250;
+// Name Every Country runs on a STOPWATCH (counts up, no time limit). Its speed
+// bonus for naming every one is measured against this par instead of against
+// a countdown's remaining time: finish at 0 and earn it all, at par or slower
+// earn none.
+export const MARATHON_STOPWATCH_PAR_MS = 15 * 60 * 1000;
 
 // The Review surface (M2.12 step 9). Three different things mean "needs
 // study" — a recent miss, poor accuracy, and decay — and each gets its own

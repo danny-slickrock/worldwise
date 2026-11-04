@@ -239,7 +239,10 @@ src/
                            #   restrictToCandidates move TOGETHER; borders-off implies terrain
   game/marathon.js         # PURE M2.12 step 7: the timed-run engine behind both pro games.
                            #   NEVER reads the clock — `now` is a parameter, and `isMatch` is
-                           #   injected, which is why step 8 reused it untouched
+                           #   injected, which is why step 8 reused it untouched. Two clocks:
+                           #   `durationMs: null` is a STOPWATCH (Name Every Country — counts
+                           #   up, ends when done or on Finish); otherwise a countdown (Flags).
+                           #   marathonRoundResult() persists a sitting via game_results.countries
   game/marathonTiers.js    # PURE M2.12 steps 7-8: a marathon tier as (prompt, answer) rather
                            #   than as branches — which is why the flag game needed no new UI
   game/reviewPolicy.js     # PURE M2.12 step 9: per-country accuracy/recency -> a REASON

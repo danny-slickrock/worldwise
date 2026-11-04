@@ -1,0 +1,274 @@
+import { COUNTRY_PATHS } from "./worldMap.js";
+import { TERRITORIES } from "./territories.js";
+
+// Full country dataset: the 196 sovereign states of the world
+// (193 UN members + Taiwan, Vatican City, and Palestine).
+//
+// code = ISO 3166-1 alpha-2 (lowercase). Used for both flag and outline image URLs.
+// Flags:    https://flagcdn.com/w320/{code}.png              (covers all ISO codes)
+// Outlines: https://raw.githubusercontent.com/djaiss/mapsicon/master/all/{code}/vector.svg
+//
+// noOutline: true  → mapsicon has no outline for this code, so the Shape game skips it.
+//   These four still work in Flag/Capital/Daily. See src/game/questions.js.
+//   (ps, fm, mh, tv — verified 404 in mapsicon on 2026-07-10.)
+//
+// difficulty: "easy" | "medium" | "hard" — rough global-recognizability tier (size,
+//   prominence in media/history/trade), used to let players pick a challenge level.
+//   Not scientific — a curiosity-first heuristic, not a ranking of countries' worth.
+//
+// A few capitals are official-but-contested or have a separate seat of government;
+// noted inline. Regions use a simple 5-bucket scheme (Europe/Asia/Africa/Americas/Oceania).
+export const COUNTRIES = [
+  // ── Europe ──────────────────────────────────────────────
+  { code: "al", name: "Albania", capital: "Tirana", region: "Europe", difficulty: "medium" },
+  { code: "ad", name: "Andorra", capital: "Andorra la Vella", region: "Europe", difficulty: "hard" },
+  { code: "at", name: "Austria", capital: "Vienna", region: "Europe", difficulty: "medium" },
+  { code: "by", name: "Belarus", capital: "Minsk", region: "Europe", difficulty: "medium" },
+  { code: "be", name: "Belgium", capital: "Brussels", region: "Europe", difficulty: "medium" },
+  { code: "ba", name: "Bosnia and Herzegovina", capital: "Sarajevo", region: "Europe", difficulty: "medium" },
+  { code: "bg", name: "Bulgaria", capital: "Sofia", region: "Europe", difficulty: "medium" },
+  { code: "hr", name: "Croatia", capital: "Zagreb", region: "Europe", difficulty: "medium" },
+  { code: "cy", name: "Cyprus", capital: "Nicosia", region: "Europe", difficulty: "hard" },
+  { code: "cz", name: "Czechia", capital: "Prague", region: "Europe", difficulty: "medium" },
+  { code: "dk", name: "Denmark", capital: "Copenhagen", region: "Europe", difficulty: "medium" },
+  { code: "ee", name: "Estonia", capital: "Tallinn", region: "Europe", difficulty: "medium" },
+  { code: "fi", name: "Finland", capital: "Helsinki", region: "Europe", difficulty: "medium" },
+  { code: "fr", name: "France", capital: "Paris", region: "Europe", difficulty: "easy" },
+  { code: "de", name: "Germany", capital: "Berlin", region: "Europe", difficulty: "easy" },
+  { code: "gr", name: "Greece", capital: "Athens", region: "Europe", difficulty: "easy" },
+  { code: "hu", name: "Hungary", capital: "Budapest", region: "Europe", difficulty: "medium" },
+  { code: "is", name: "Iceland", capital: "Reykjavík", region: "Europe", difficulty: "medium" },
+  { code: "ie", name: "Ireland", capital: "Dublin", region: "Europe", difficulty: "easy" },
+  { code: "it", name: "Italy", capital: "Rome", region: "Europe", difficulty: "easy" },
+  { code: "lv", name: "Latvia", capital: "Riga", region: "Europe", difficulty: "medium" },
+  { code: "li", name: "Liechtenstein", capital: "Vaduz", region: "Europe", difficulty: "hard" },
+  { code: "lt", name: "Lithuania", capital: "Vilnius", region: "Europe", difficulty: "medium" },
+  { code: "lu", name: "Luxembourg", capital: "Luxembourg", region: "Europe", difficulty: "hard" },
+  { code: "mt", name: "Malta", capital: "Valletta", region: "Europe", difficulty: "hard" },
+  { code: "md", name: "Moldova", capital: "Chișinău", region: "Europe", difficulty: "hard" },
+  { code: "mc", name: "Monaco", capital: "Monaco", region: "Europe", difficulty: "hard" },
+  { code: "me", name: "Montenegro", capital: "Podgorica", region: "Europe", difficulty: "hard" },
+  { code: "nl", name: "Netherlands", capital: "Amsterdam", region: "Europe", difficulty: "easy" }, // seat of gov: The Hague
+  { code: "mk", name: "North Macedonia", capital: "Skopje", region: "Europe", difficulty: "hard" },
+  { code: "no", name: "Norway", capital: "Oslo", region: "Europe", difficulty: "easy" },
+  { code: "pl", name: "Poland", capital: "Warsaw", region: "Europe", difficulty: "easy" },
+  { code: "pt", name: "Portugal", capital: "Lisbon", region: "Europe", difficulty: "easy" },
+  { code: "ro", name: "Romania", capital: "Bucharest", region: "Europe", difficulty: "medium" },
+  { code: "ru", name: "Russia", capital: "Moscow", region: "Europe", difficulty: "easy" },
+  { code: "sm", name: "San Marino", capital: "San Marino", region: "Europe", difficulty: "hard" },
+  { code: "rs", name: "Serbia", capital: "Belgrade", region: "Europe", difficulty: "medium" },
+  { code: "sk", name: "Slovakia", capital: "Bratislava", region: "Europe", difficulty: "medium" },
+  { code: "si", name: "Slovenia", capital: "Ljubljana", region: "Europe", difficulty: "medium" },
+  { code: "es", name: "Spain", capital: "Madrid", region: "Europe", difficulty: "easy" },
+  { code: "se", name: "Sweden", capital: "Stockholm", region: "Europe", difficulty: "easy" },
+  { code: "ch", name: "Switzerland", capital: "Bern", region: "Europe", difficulty: "easy" },
+  { code: "ua", name: "Ukraine", capital: "Kyiv", region: "Europe", difficulty: "easy" },
+  { code: "gb", name: "United Kingdom", capital: "London", region: "Europe", difficulty: "easy" },
+  { code: "va", name: "Vatican City", capital: "Vatican City", region: "Europe", difficulty: "hard" },
+
+  // ── Asia ────────────────────────────────────────────────
+  { code: "af", name: "Afghanistan", capital: "Kabul", region: "Asia", difficulty: "medium" },
+  { code: "am", name: "Armenia", capital: "Yerevan", region: "Asia", difficulty: "medium" },
+  { code: "az", name: "Azerbaijan", capital: "Baku", region: "Asia", difficulty: "medium" },
+  { code: "bh", name: "Bahrain", capital: "Manama", region: "Asia", difficulty: "hard" },
+  { code: "bd", name: "Bangladesh", capital: "Dhaka", region: "Asia", difficulty: "medium" },
+  { code: "bt", name: "Bhutan", capital: "Thimphu", region: "Asia", difficulty: "hard" },
+  { code: "bn", name: "Brunei", capital: "Bandar Seri Begawan", region: "Asia", difficulty: "hard" },
+  { code: "kh", name: "Cambodia", capital: "Phnom Penh", region: "Asia", difficulty: "medium" },
+  { code: "cn", name: "China", capital: "Beijing", region: "Asia", difficulty: "easy" },
+  { code: "ge", name: "Georgia", capital: "Tbilisi", region: "Asia", difficulty: "medium" },
+  { code: "in", name: "India", capital: "New Delhi", region: "Asia", difficulty: "easy" },
+  { code: "id", name: "Indonesia", capital: "Jakarta", region: "Asia", difficulty: "easy" },
+  { code: "ir", name: "Iran", capital: "Tehran", region: "Asia", difficulty: "easy" },
+  { code: "iq", name: "Iraq", capital: "Baghdad", region: "Asia", difficulty: "easy" },
+  { code: "il", name: "Israel", capital: "Jerusalem", region: "Asia", difficulty: "easy" }, // internationally contested
+  { code: "jp", name: "Japan", capital: "Tokyo", region: "Asia", difficulty: "easy" },
+  { code: "jo", name: "Jordan", capital: "Amman", region: "Asia", difficulty: "medium" },
+  { code: "kz", name: "Kazakhstan", capital: "Astana", region: "Asia", difficulty: "medium" },
+  { code: "kw", name: "Kuwait", capital: "Kuwait City", region: "Asia", difficulty: "medium" },
+  { code: "kg", name: "Kyrgyzstan", capital: "Bishkek", region: "Asia", difficulty: "hard" },
+  { code: "la", name: "Laos", capital: "Vientiane", region: "Asia", difficulty: "medium" },
+  { code: "lb", name: "Lebanon", capital: "Beirut", region: "Asia", difficulty: "medium" },
+  { code: "my", name: "Malaysia", capital: "Kuala Lumpur", region: "Asia", difficulty: "medium" },
+  { code: "mv", name: "Maldives", capital: "Malé", region: "Asia", difficulty: "hard" },
+  { code: "mn", name: "Mongolia", capital: "Ulaanbaatar", region: "Asia", difficulty: "medium" },
+  { code: "mm", name: "Myanmar", capital: "Naypyidaw", region: "Asia", difficulty: "medium" },
+  { code: "np", name: "Nepal", capital: "Kathmandu", region: "Asia", difficulty: "medium" },
+  { code: "kp", name: "North Korea", capital: "Pyongyang", region: "Asia", difficulty: "easy" },
+  { code: "om", name: "Oman", capital: "Muscat", region: "Asia", difficulty: "medium" },
+  { code: "pk", name: "Pakistan", capital: "Islamabad", region: "Asia", difficulty: "easy" },
+  { code: "ps", name: "Palestine", capital: "Ramallah", region: "Asia", difficulty: "medium", noOutline: true }, // declared: East Jerusalem
+  { code: "ph", name: "Philippines", capital: "Manila", region: "Asia", difficulty: "easy" },
+  { code: "qa", name: "Qatar", capital: "Doha", region: "Asia", difficulty: "medium" },
+  { code: "sa", name: "Saudi Arabia", capital: "Riyadh", region: "Asia", difficulty: "easy" },
+  { code: "sg", name: "Singapore", capital: "Singapore", region: "Asia", difficulty: "easy" },
+  { code: "kr", name: "South Korea", capital: "Seoul", region: "Asia", difficulty: "easy" },
+  { code: "lk", name: "Sri Lanka", capital: "Sri Jayawardenepura Kotte", region: "Asia", difficulty: "medium" }, // commercial: Colombo
+  { code: "sy", name: "Syria", capital: "Damascus", region: "Asia", difficulty: "medium" },
+  { code: "tw", name: "Taiwan", capital: "Taipei", region: "Asia", difficulty: "medium" },
+  { code: "tj", name: "Tajikistan", capital: "Dushanbe", region: "Asia", difficulty: "hard" },
+  { code: "th", name: "Thailand", capital: "Bangkok", region: "Asia", difficulty: "easy" },
+  { code: "tl", name: "Timor-Leste", capital: "Dili", region: "Asia", difficulty: "hard" },
+  { code: "tr", name: "Turkey", capital: "Ankara", region: "Asia", difficulty: "easy" },
+  { code: "tm", name: "Turkmenistan", capital: "Ashgabat", region: "Asia", difficulty: "hard" },
+  { code: "ae", name: "United Arab Emirates", capital: "Abu Dhabi", region: "Asia", difficulty: "easy" },
+  { code: "uz", name: "Uzbekistan", capital: "Tashkent", region: "Asia", difficulty: "medium" },
+  { code: "vn", name: "Vietnam", capital: "Hanoi", region: "Asia", difficulty: "easy" },
+  { code: "ye", name: "Yemen", capital: "Sanaa", region: "Asia", difficulty: "medium" },
+
+  // ── Africa ──────────────────────────────────────────────
+  { code: "dz", name: "Algeria", capital: "Algiers", region: "Africa", difficulty: "medium" },
+  { code: "ao", name: "Angola", capital: "Luanda", region: "Africa", difficulty: "medium" },
+  { code: "bj", name: "Benin", capital: "Porto-Novo", region: "Africa", difficulty: "hard" }, // seat of gov: Cotonou
+  { code: "bw", name: "Botswana", capital: "Gaborone", region: "Africa", difficulty: "medium" },
+  { code: "bf", name: "Burkina Faso", capital: "Ouagadougou", region: "Africa", difficulty: "hard" },
+  { code: "bi", name: "Burundi", capital: "Gitega", region: "Africa", difficulty: "hard" },
+  { code: "cv", name: "Cabo Verde", capital: "Praia", region: "Africa", difficulty: "hard" },
+  { code: "cm", name: "Cameroon", capital: "Yaoundé", region: "Africa", difficulty: "medium" },
+  { code: "cf", name: "Central African Republic", capital: "Bangui", region: "Africa", difficulty: "hard" },
+  { code: "td", name: "Chad", capital: "N'Djamena", region: "Africa", difficulty: "medium" },
+  { code: "km", name: "Comoros", capital: "Moroni", region: "Africa", difficulty: "hard" },
+  { code: "cg", name: "Congo", capital: "Brazzaville", region: "Africa", difficulty: "hard" },
+  { code: "cd", name: "DR Congo", capital: "Kinshasa", region: "Africa", difficulty: "medium" },
+  { code: "ci", name: "Côte d'Ivoire", capital: "Yamoussoukro", region: "Africa", difficulty: "medium" }, // economic hub: Abidjan
+  { code: "dj", name: "Djibouti", capital: "Djibouti", region: "Africa", difficulty: "hard" },
+  { code: "eg", name: "Egypt", capital: "Cairo", region: "Africa", difficulty: "easy" },
+  { code: "gq", name: "Equatorial Guinea", capital: "Malabo", region: "Africa", difficulty: "hard" },
+  { code: "er", name: "Eritrea", capital: "Asmara", region: "Africa", difficulty: "hard" },
+  { code: "sz", name: "Eswatini", capital: "Mbabane", region: "Africa", difficulty: "hard" },
+  { code: "et", name: "Ethiopia", capital: "Addis Ababa", region: "Africa", difficulty: "easy" },
+  { code: "ga", name: "Gabon", capital: "Libreville", region: "Africa", difficulty: "hard" },
+  { code: "gm", name: "Gambia", capital: "Banjul", region: "Africa", difficulty: "hard" },
+  { code: "gh", name: "Ghana", capital: "Accra", region: "Africa", difficulty: "medium" },
+  { code: "gn", name: "Guinea", capital: "Conakry", region: "Africa", difficulty: "hard" },
+  { code: "gw", name: "Guinea-Bissau", capital: "Bissau", region: "Africa", difficulty: "hard" },
+  { code: "ke", name: "Kenya", capital: "Nairobi", region: "Africa", difficulty: "easy" },
+  { code: "ls", name: "Lesotho", capital: "Maseru", region: "Africa", difficulty: "hard" },
+  { code: "lr", name: "Liberia", capital: "Monrovia", region: "Africa", difficulty: "medium" },
+  { code: "ly", name: "Libya", capital: "Tripoli", region: "Africa", difficulty: "medium" },
+  { code: "mg", name: "Madagascar", capital: "Antananarivo", region: "Africa", difficulty: "medium" },
+  { code: "mw", name: "Malawi", capital: "Lilongwe", region: "Africa", difficulty: "medium" },
+  { code: "ml", name: "Mali", capital: "Bamako", region: "Africa", difficulty: "medium" },
+  { code: "mr", name: "Mauritania", capital: "Nouakchott", region: "Africa", difficulty: "hard" },
+  { code: "mu", name: "Mauritius", capital: "Port Louis", region: "Africa", difficulty: "medium" },
+  { code: "ma", name: "Morocco", capital: "Rabat", region: "Africa", difficulty: "easy" },
+  { code: "mz", name: "Mozambique", capital: "Maputo", region: "Africa", difficulty: "medium" },
+  { code: "na", name: "Namibia", capital: "Windhoek", region: "Africa", difficulty: "medium" },
+  { code: "ne", name: "Niger", capital: "Niamey", region: "Africa", difficulty: "medium" },
+  { code: "ng", name: "Nigeria", capital: "Abuja", region: "Africa", difficulty: "easy" },
+  { code: "rw", name: "Rwanda", capital: "Kigali", region: "Africa", difficulty: "medium" },
+  { code: "st", name: "São Tomé and Príncipe", capital: "São Tomé", region: "Africa", difficulty: "hard" },
+  { code: "sn", name: "Senegal", capital: "Dakar", region: "Africa", difficulty: "medium" },
+  { code: "sc", name: "Seychelles", capital: "Victoria", region: "Africa", difficulty: "hard" },
+  { code: "sl", name: "Sierra Leone", capital: "Freetown", region: "Africa", difficulty: "medium" },
+  { code: "so", name: "Somalia", capital: "Mogadishu", region: "Africa", difficulty: "medium" },
+  { code: "za", name: "South Africa", capital: "Pretoria", region: "Africa", difficulty: "easy" }, // also Cape Town & Bloemfontein
+  { code: "ss", name: "South Sudan", capital: "Juba", region: "Africa", difficulty: "medium" },
+  { code: "sd", name: "Sudan", capital: "Khartoum", region: "Africa", difficulty: "medium" },
+  { code: "tz", name: "Tanzania", capital: "Dodoma", region: "Africa", difficulty: "medium" },
+  { code: "tg", name: "Togo", capital: "Lomé", region: "Africa", difficulty: "hard" },
+  { code: "tn", name: "Tunisia", capital: "Tunis", region: "Africa", difficulty: "medium" },
+  { code: "ug", name: "Uganda", capital: "Kampala", region: "Africa", difficulty: "medium" },
+  { code: "zm", name: "Zambia", capital: "Lusaka", region: "Africa", difficulty: "medium" },
+  { code: "zw", name: "Zimbabwe", capital: "Harare", region: "Africa", difficulty: "medium" },
+
+  // ── Americas ────────────────────────────────────────────
+  { code: "ag", name: "Antigua and Barbuda", capital: "Saint John's", region: "Americas", difficulty: "hard" },
+  { code: "ar", name: "Argentina", capital: "Buenos Aires", region: "Americas", difficulty: "easy" },
+  { code: "bs", name: "Bahamas", capital: "Nassau", region: "Americas", difficulty: "medium" },
+  { code: "bb", name: "Barbados", capital: "Bridgetown", region: "Americas", difficulty: "medium" },
+  { code: "bz", name: "Belize", capital: "Belmopan", region: "Americas", difficulty: "hard" },
+  { code: "bo", name: "Bolivia", capital: "Sucre", region: "Americas", difficulty: "medium" }, // seat of gov: La Paz
+  { code: "br", name: "Brazil", capital: "Brasília", region: "Americas", difficulty: "easy" },
+  { code: "ca", name: "Canada", capital: "Ottawa", region: "Americas", difficulty: "easy" },
+  { code: "cl", name: "Chile", capital: "Santiago", region: "Americas", difficulty: "easy" },
+  { code: "co", name: "Colombia", capital: "Bogotá", region: "Americas", difficulty: "easy" },
+  { code: "cr", name: "Costa Rica", capital: "San José", region: "Americas", difficulty: "medium" },
+  { code: "cu", name: "Cuba", capital: "Havana", region: "Americas", difficulty: "easy" },
+  { code: "dm", name: "Dominica", capital: "Roseau", region: "Americas", difficulty: "hard" },
+  { code: "do", name: "Dominican Republic", capital: "Santo Domingo", region: "Americas", difficulty: "medium" },
+  { code: "ec", name: "Ecuador", capital: "Quito", region: "Americas", difficulty: "medium" },
+  { code: "sv", name: "El Salvador", capital: "San Salvador", region: "Americas", difficulty: "medium" },
+  { code: "gd", name: "Grenada", capital: "Saint George's", region: "Americas", difficulty: "hard" },
+  { code: "gt", name: "Guatemala", capital: "Guatemala City", region: "Americas", difficulty: "medium" },
+  { code: "gy", name: "Guyana", capital: "Georgetown", region: "Americas", difficulty: "hard" },
+  { code: "ht", name: "Haiti", capital: "Port-au-Prince", region: "Americas", difficulty: "medium" },
+  { code: "hn", name: "Honduras", capital: "Tegucigalpa", region: "Americas", difficulty: "medium" },
+  { code: "jm", name: "Jamaica", capital: "Kingston", region: "Americas", difficulty: "easy" },
+  { code: "mx", name: "Mexico", capital: "Mexico City", region: "Americas", difficulty: "easy" },
+  { code: "ni", name: "Nicaragua", capital: "Managua", region: "Americas", difficulty: "medium" },
+  { code: "pa", name: "Panama", capital: "Panama City", region: "Americas", difficulty: "medium" },
+  { code: "py", name: "Paraguay", capital: "Asunción", region: "Americas", difficulty: "medium" },
+  { code: "pe", name: "Peru", capital: "Lima", region: "Americas", difficulty: "easy" },
+  { code: "kn", name: "Saint Kitts and Nevis", capital: "Basseterre", region: "Americas", difficulty: "hard" },
+  { code: "lc", name: "Saint Lucia", capital: "Castries", region: "Americas", difficulty: "hard" },
+  { code: "vc", name: "Saint Vincent and the Grenadines", capital: "Kingstown", region: "Americas", difficulty: "hard" },
+  { code: "sr", name: "Suriname", capital: "Paramaribo", region: "Americas", difficulty: "hard" },
+  { code: "tt", name: "Trinidad and Tobago", capital: "Port of Spain", region: "Americas", difficulty: "medium" },
+  { code: "us", name: "United States", capital: "Washington, D.C.", region: "Americas", difficulty: "easy" },
+  { code: "uy", name: "Uruguay", capital: "Montevideo", region: "Americas", difficulty: "medium" },
+  { code: "ve", name: "Venezuela", capital: "Caracas", region: "Americas", difficulty: "easy" },
+
+  // ── Oceania ─────────────────────────────────────────────
+  { code: "au", name: "Australia", capital: "Canberra", region: "Oceania", difficulty: "easy" },
+  { code: "fj", name: "Fiji", capital: "Suva", region: "Oceania", difficulty: "medium" },
+  { code: "ki", name: "Kiribati", capital: "South Tarawa", region: "Oceania", difficulty: "hard" },
+  { code: "mh", name: "Marshall Islands", capital: "Majuro", region: "Oceania", difficulty: "hard", noOutline: true },
+  { code: "fm", name: "Micronesia", capital: "Palikir", region: "Oceania", difficulty: "hard", noOutline: true },
+  { code: "nr", name: "Nauru", capital: "Yaren", region: "Oceania", difficulty: "hard" }, // no official capital; de facto
+  { code: "nz", name: "New Zealand", capital: "Wellington", region: "Oceania", difficulty: "easy" },
+  { code: "pw", name: "Palau", capital: "Ngerulmud", region: "Oceania", difficulty: "hard" },
+  { code: "pg", name: "Papua New Guinea", capital: "Port Moresby", region: "Oceania", difficulty: "medium" },
+  { code: "ws", name: "Samoa", capital: "Apia", region: "Oceania", difficulty: "hard" },
+  { code: "sb", name: "Solomon Islands", capital: "Honiara", region: "Oceania", difficulty: "hard" },
+  { code: "to", name: "Tonga", capital: "Nuku'alofa", region: "Oceania", difficulty: "hard" },
+  { code: "tv", name: "Tuvalu", capital: "Funafuti", region: "Oceania", difficulty: "hard", noOutline: true },
+  { code: "vu", name: "Vanuatu", capital: "Port Vila", region: "Oceania", difficulty: "hard" },
+];
+
+// Every place the app can show a page for: the 196 countries plus the
+// non-sovereign territories the map has to draw to not have holes in it.
+//
+// The split matters and is the whole reason TERRITORIES is a separate module.
+// COUNTRIES is the gameplay dataset — quiz pools, learning paths and region
+// collections are all built from it, and "196" is asserted by the test suite.
+// PLACES is the *atlas*: what the map draws, what search can find, and what
+// getCountryPage can resolve. Reach for COUNTRIES when something is a country
+// question and PLACES when it is a place question; the bug this prevents is
+// Greenland turning up as an answer in the Flag Guesser.
+export const PLACES = [...COUNTRIES, ...TERRITORIES];
+
+// Countries with a usable map outline (Shape game draws only from these).
+export const OUTLINE_COUNTRIES = COUNTRIES.filter((c) => !c.noOutline);
+
+// Countries that have a real drawn shape on the world map (Country Locator
+// draws only from these).
+//
+// Deliberately COUNTRY_PATHS rather than MAP_PATHS. The 29 micro-states now
+// appear on every map, but as point symbols — a dot carries position and no
+// shape at all, so "find Tuvalu" would offer four identical Pacific dots and
+// test nothing but memory of the answer's pixel. They stay explorable and
+// unaskable. See scripts/build-worldmap.mjs.
+export const LOCATOR_COUNTRIES = COUNTRIES.filter((c) => COUNTRY_PATHS[c.code]);
+
+export const flagUrl = (code) => `https://flagcdn.com/w320/${code}.png`;
+export const outlineUrl = (code) =>
+  `https://raw.githubusercontent.com/djaiss/mapsicon/master/all/${code}/vector.svg`;
+
+// Shared code → display-name lookup, used anywhere a place needs to show as
+// text rather than a shape (neighbor chips, the map's tap label, the globe's
+// hover tooltip, …).
+//
+// Resolves against PLACES, not COUNTRIES: every one of these callers sits on a
+// map surface, and a map surface draws territories too. Before that, hovering
+// Greenland on the globe produced the tooltip "GL".
+export const countryName = (code) => PLACES.find((c) => c.code === code)?.name ?? code.toUpperCase();
+
+// The full record for a place, country or territory. Returns null for an
+// unknown code rather than a blank shell, so a caller can tell "not a place"
+// from "a place with nothing filled in".
+export const placeFor = (code) => PLACES.find((c) => c.code === code) ?? null;
+
+// Is this code a non-sovereign territory? One predicate, so no surface has to
+// remember that the marker is a `territory` flag rather than, say, a region.
+export const isTerritory = (code) => Boolean(placeFor(code)?.territory);

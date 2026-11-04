@@ -43,6 +43,10 @@ import {
   remainingMs,
   remaining,
   marathonScore,
+  elapsedMs,
+  isStopwatch,
+  marathonResultCountries,
+  marathonRoundResult,
 } from "../game/marathon";
 import {
   marathonPresentation,
@@ -50,6 +54,7 @@ import {
   marathonHighlights,
   marathonIsRecall,
   marathonHint,
+  marathonClock,
 } from "../game/marathonTiers";
 import { MARATHON_DURATION_MS, OPTIONS_PER_QUESTION } from "../constants";
 
@@ -80,7 +85,18 @@ const formatClock = (ms) => {
 // Every country name, for the typed tiers' matcher and suggestions.
 const ALL_NAMES = COUNTRIES.map((c) => c.name);
 
-export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }) {
+// `onComplete(round)` fires ONCE when a sitting ends, with the round object
+// game/marathon.js's marathonRoundResult builds — App persists it the same way
+// a quiz round is persisted. `onOpenReview` is the end screen's "study what you
+// missed" link.
+export default function MarathonScreen({
+  mode,
+  tier = "easy",
+  onExit,
+  onFinish,
+  onComplete,
+  onOpenReview,
+}) {
   const meta = MODES[mode];
   const tierMeta = tierFor(mode, tier);
   const look = marathonPresentation(mode, tier);
@@ -90,15 +106,26 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
 
   // Which countries can be asked about at all.
   //
-  // A globe tier can only use countries with a drawn outline — you cannot
-  // highlight, or tap, a country that has no shape. A flag tier has no such
-  // limit, since every country has a flag.
+  // A tier that HIGHLIGHTS or TAPS the globe can only use countries with a
+  // drawn outline — you cannot light up, or tap, a country that has no shape.
+  // A flag tier has no such limit, and nor does free recall: its globe is a
+  // blank backdrop and its answers are typed, so it asks for all 196.
+  const needsOutline = usesGlobe && !isRecall;
   const targets = useMemo(
-    () => sample((usesGlobe ? LOCATOR_COUNTRIES : COUNTRIES).map((c) => c.code)),
-    [usesGlobe]
+    () => sample((needsOutline ? LOCATOR_COUNTRIES : COUNTRIES).map((c) => c.code)),
+    [needsOutline]
   );
+  const stopwatch = marathonClock(mode) === "stopwatch";
 
-  const [run, setRun] = useState(() => startRun({ tier, targets, now: Date.now() }));
+  const [run, setRun] = useState(() =>
+    startRun({
+      tier,
+      targets,
+      now: Date.now(),
+      // null = no limit: the clock counts UP and the time taken is the result.
+      durationMs: stopwatch ? null : MARATHON_DURATION_MS,
+    })
+  );
   const [now, setNow] = useState(() => Date.now());
   const [picked, setPicked] = useState(null);
   const [lastOutcome, setLastOutcome] = useState(null); // recall's running feedback
@@ -123,6 +150,25 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
   }, [over, run.endedAt]);
 
   useEffect(() => () => clearTimeout(advanceTimer.current), []);
+
+  // Report the finished sitting exactly once — the run is stamped once
+  // (endRun is idempotent), and a ref guards against a re-render re-firing.
+  const reported = useRef(false);
+  useEffect(() => {
+    if (run.endedAt === null || reported.current) return;
+    reported.current = true;
+    onComplete?.(marathonRoundResult(run, { mode, now: run.endedAt }));
+    // onComplete is an inline prop; the run's end is the only trigger.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [run.endedAt]);
+
+  // Stop a stopwatch run by hand — the "I'm done" a run with no time limit
+  // needs, especially free recall, which otherwise only ends at all 196.
+  const finishNow = useCallback(() => {
+    clearTimeout(advanceTimer.current);
+    setPicked(null);
+    setRun((r) => endRun(r, Date.now()));
+  }, []);
 
   // Four names, one right. Rebuilt per target rather than per render, or they
   // would reshuffle under the player's thumb.
@@ -197,19 +243,28 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
 
   const score = marathonScore(run, now);
   const left = remainingMs(run, now);
+  const spent = elapsedMs(run, now);
   const { height } = useWindowDimensions();
   const stageHeight = Math.min(460, height * (isRecall ? 0.34 : 0.42));
 
   if (over) {
-    const unfound = remaining(run);
+    // Missed = what the run actually got wrong or never named (see
+    // marathonResultCountries) — the same list that was just persisted.
+    const missedCodes = marathonResultCountries(run)
+      .filter((c) => !c.correct)
+      .map((c) => c.code);
+    const unfound = isStopwatch(run) ? missedCodes : remaining(run);
     return (
       <ScrollView contentContainerStyle={styles.resultWrap}>
         <FadeInUp>
           <Text style={styles.eyebrow}>{tierMeta?.label ?? "Run"} complete</Text>
           <Text style={styles.resultCount}>{score.found}</Text>
           <Text style={styles.resultLabel}>
-            {score.found === 1 ? "country named" : "countries named"}
-            {score.total ? ` of ${score.total}` : ""}
+            {score.total
+              ? `of ${score.total} ${score.total === 1 ? "country" : "countries"} named`
+              : score.found === 1
+                ? "country named"
+                : "countries named"}
           </Text>
           <View style={styles.resultRow}>
             <View style={styles.resultStat}>
@@ -231,13 +286,26 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
             </Text>
           )}
           {/* The teaching half. A count alone says how you did; this says what
-              to go and learn, which is the only part that improves the next run. */}
-          {unfound.length > 0 && unfound.length <= 60 && (
+              to go and learn, which is the only part that improves the next run.
+              A stopwatch run lists EVERY miss (it was persisted for Review, so
+              hiding most of it here would be the odd one out). */}
+          {unfound.length > 0 && (isStopwatch(run) || unfound.length <= 60) && (
             <View style={styles.missedCard}>
-              <Text style={styles.missedKicker}>STILL TO LEARN</Text>
+              <Text style={styles.missedKicker}>
+                {isStopwatch(run) ? `MISSED · ${unfound.length}` : "STILL TO LEARN"}
+              </Text>
               <Text style={styles.missedList}>
                 {unfound.map((code) => countryName(code)).join(" · ")}
               </Text>
+              {isStopwatch(run) && onOpenReview && (
+                <Pressable
+                  onPress={onOpenReview}
+                  style={styles.reviewLink}
+                  accessibilityRole="link"
+                >
+                  <Text style={styles.reviewLinkText}>Study these in Review ›</Text>
+                </Pressable>
+              )}
             </View>
           )}
           <PressableTint
@@ -259,17 +327,36 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
         <Pressable onPress={onExit} style={styles.close} accessibilityLabel="End run">
           <Text style={styles.closeText}>✕</Text>
         </Pressable>
-        <Text style={styles.clock}>{formatClock(left)}</Text>
+        {/* A stopwatch counts up from 0:00; a countdown shows what is left. */}
+        <Text
+          style={styles.clock}
+          accessibilityLabel={stopwatch ? "Time elapsed" : "Time remaining"}
+        >
+          {formatClock(stopwatch ? spent : left)}
+        </Text>
         <View style={styles.counter}>
           <Text style={styles.counterText}>{score.found}</Text>
         </View>
       </View>
 
+      {/* The bar tracks the thing that ends the run: the countdown's clock, or
+          a stopwatch run's progress through every country. */}
       <ProgressTrack
-        value={1 - left / MARATHON_DURATION_MS}
+        value={
+          stopwatch
+            ? score.total
+              ? score.found / score.total
+              : 0
+            : 1 - left / MARATHON_DURATION_MS
+        }
         style={styles.track}
-        accessibilityLabel="Time remaining"
+        accessibilityLabel={stopwatch ? "Countries named" : "Time remaining"}
       />
+      {stopwatch && (
+        <Text style={styles.namedReadout}>
+          {score.found} of {score.total} named
+        </Text>
+      )}
 
       <Text style={styles.prompt}>{meta?.title ?? "Marathon"}</Text>
       <Text style={styles.sub}>{marathonHint(mode, tier)}</Text>
@@ -395,6 +482,18 @@ export default function MarathonScreen({ mode, tier = "easy", onExit, onFinish }
           <Text style={styles.skipText}>Skip ›</Text>
         </Pressable>
       )}
+
+      {stopwatch && (
+        <PressableTint
+          onPress={finishNow}
+          radius={radius.pill}
+          style={styles.finish}
+          accessibilityRole="button"
+          accessibilityLabel="Finish — stop the clock and see your result"
+        >
+          <Text style={styles.finishText}>Finish</Text>
+        </PressableTint>
+      )}
     </ScrollView>
   );
 }
@@ -417,6 +516,20 @@ const styles = themed(() =>
     },
     counterText: { ...type.label, color: colors.successInk },
     track: { marginTop: spacing(2) },
+    namedReadout: { ...type.label, color: colors.textSecondary, marginTop: spacing(2) },
+    finish: {
+      alignSelf: "center",
+      marginTop: spacing(2),
+      minHeight: buttonHeight.md,
+      paddingHorizontal: spacing(8),
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: radius.pill,
+      ...hairline,
+    },
+    finishText: { ...type.label, fontSize: 15, color: colors.text },
+    reviewLink: { marginTop: spacing(4), minHeight: 44, justifyContent: "center" },
+    reviewLinkText: { ...type.label, fontSize: 14, color: colors.link },
 
     prompt: { ...type.eyebrow, marginTop: spacing(4) },
     sub: { ...type.h3, marginTop: spacing(1) },
@@ -434,7 +547,7 @@ const styles = themed(() =>
 
     options: { marginTop: spacing(4), gap: spacing(2) },
     option: {
-      minHeight: buttonHeight,
+      minHeight: buttonHeight.md,
       justifyContent: "center",
       paddingHorizontal: spacing(4),
       borderRadius: radius.sheet,
@@ -494,7 +607,7 @@ const styles = themed(() =>
     },
     primary: {
       marginTop: spacing(8),
-      height: buttonHeight,
+      height: buttonHeight.md,
       minWidth: 200,
       alignItems: "center",
       justifyContent: "center",

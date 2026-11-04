@@ -30,7 +30,15 @@ import {
   MARATHON_DURATION_MS,
   MARATHON_POINTS_PER_FIND,
   MARATHON_SPEED_BONUS_MAX,
+  MARATHON_STOPWATCH_PAR_MS,
 } from "../constants";
+
+// TWO CLOCKS. A countdown run (Identify All Flags) ends when its duration runs
+// out. A STOPWATCH run (Name Every Country) has no duration — `durationMs:
+// null` — and counts up: it ends when every target is done or the player
+// stops, and the time it took is the result. Nothing below reads which game
+// it is; it reads whether the run has a duration.
+export const isStopwatch = (run) => run?.durationMs == null;
 
 export const RUN_SHAPES = { prompted: "prompted", recall: "recall" };
 
@@ -66,21 +74,30 @@ export function startRun({
     found: [],
     missed: [],
     startedAt: now,
-    durationMs,
+    // null = stopwatch. `undefined` (an omitted argument) still means the
+    // default countdown, so existing callers are unchanged.
+    durationMs: durationMs === null ? null : durationMs,
     endedAt: null,
   };
 }
 
+// Time left on a countdown. A stopwatch has no limit, so this is Infinity —
+// which keeps every "has the clock run out?" comparison correct without a
+// special case.
 export function remainingMs(run, now) {
   if (!run) return 0;
+  if (isStopwatch(run)) return Infinity;
   if (run.endedAt !== null) return Math.max(0, run.startedAt + run.durationMs - run.endedAt);
   return Math.max(0, run.startedAt + run.durationMs - now);
 }
 
+// Time spent. Capped at the duration on a countdown; uncapped on a stopwatch,
+// where the elapsed time IS the result.
 export function elapsedMs(run, now) {
   if (!run) return 0;
   const end = run.endedAt ?? now;
-  return Math.max(0, Math.min(end - run.startedAt, run.durationMs));
+  const spent = Math.max(0, end - run.startedAt);
+  return isStopwatch(run) ? spent : Math.min(spent, run.durationMs);
 }
 
 // Is the sitting over? Two ways, and both matter:
@@ -188,9 +205,11 @@ export function marathonScore(run, now = 0) {
   const completedAll = total > 0 && found === total;
 
   // Proportional to how much of the clock was left, capped. A run that ends on
-  // the buzzer earns none of it.
+  // the buzzer earns none of it. A stopwatch has no clock to have left, so it
+  // is measured against a par time instead.
+  const budget = isStopwatch(run) ? MARATHON_STOPWATCH_PAR_MS : run.durationMs;
   const speedBonus = completedAll
-    ? Math.round(MARATHON_SPEED_BONUS_MAX * (1 - Math.min(1, elapsed / run.durationMs)))
+    ? Math.round(MARATHON_SPEED_BONUS_MAX * (1 - Math.min(1, elapsed / budget)))
     : 0;
 
   return {
@@ -210,4 +229,55 @@ export function marathonScore(run, now = 0) {
 export function compareRuns(a, b) {
   if (a.found !== b.found) return b.found - a.found;
   return a.elapsedMs - b.elapsedMs;
+}
+
+// Which countries a finished sitting NAMED and which it MISSED, as the
+// { code, correct } pairs game_results.countries stores (the same capture
+// QuizScreen's rounds use — see cloudSync.countriesFromHistory), so Review
+// and the collections read a marathon exactly like any other round.
+//
+// What counts as a miss depends on the run's shape, deliberately:
+//   prompted  only targets actually SHOWN and got wrong or skipped. Stopping
+//             early is not 150 misses — those countries were never asked.
+//   recall    every country left unnamed. On a free-recall run the whole set
+//             IS the question, so not producing one is the miss.
+// Found first, in the order named, then the misses in target order.
+export function marathonResultCountries(run) {
+  if (!run) return [];
+  const found = run.found.map((code) => ({ code, correct: true }));
+  const missedCodes =
+    run.shape === RUN_SHAPES.recall ? remaining(run) : run.missed.filter((m) => m != null);
+  const named = new Set(run.found);
+  const seen = new Set();
+  const missed = [];
+  for (const code of missedCodes) {
+    if (named.has(code) || seen.has(code)) continue;
+    seen.add(code);
+    missed.push({ code, correct: false });
+  }
+  return [...found, ...missed];
+}
+
+// A finished sitting as the round object cloudSync.resultRowFromRound writes.
+//
+//   score/total  found / every target in the run — "X of N named".
+//   difficulty   "all", NOT the tier: learning-path mastery reads per-round
+//                difficulty, and a marathon tier ("easy") is an interaction
+//                tier, not the pool tier mastery means. "all" is the value
+//                mastery deliberately ignores.
+//   xp           0. A marathon awards its own score, not round XP; folding a
+//                196-country sitting into the XP curve would swamp it.
+//   timed        true — it is a timed sitting either way.
+export function marathonRoundResult(run, { mode, now = 0 } = {}) {
+  const s = marathonScore(run, now);
+  return {
+    mode,
+    difficulty: "all",
+    timed: true,
+    score: s.found,
+    total: s.total,
+    xp: 0,
+    elapsedMs: s.elapsedMs,
+    countries: marathonResultCountries(run),
+  };
 }
