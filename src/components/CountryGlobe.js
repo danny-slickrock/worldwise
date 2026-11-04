@@ -104,7 +104,9 @@ const styles = themed(() =>
       color: map.onMap,
     },
     basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
-    zoomControls: { top: spacing(3), bottom: undefined },
+    // "auto", not undefined: undefined does not unset the base `bottom` on
+    // web, and the pane stretched the globe's full height.
+    zoomControls: { top: spacing(3), bottom: "auto" },
     pill: {
       position: "absolute",
       right: spacing(3),
