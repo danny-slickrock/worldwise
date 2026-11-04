@@ -119,3 +119,19 @@ licence. Do not leave the Commons attribution on a file that is no longer the Co
 
 A re-run of `media:photos` will not clobber it unless the upstream `P18` has also changed
 (matched on `source_url`); pass `--force` only when you mean to discard local overrides.
+
+## Gallery (landmark photos) — ADR 0006
+
+Same review and gate as the hero, over many photos per country:
+
+```bash
+SUPABASE_SERVICE_ROLE_KEY=... npm run media:gallery -- pe eg jp       # draft (pending)
+SUPABASE_SERVICE_ROLE_KEY=... npm run media:approve -- --gallery --list
+SUPABASE_SERVICE_ROLE_KEY=... npm run media:approve -- --gallery --id 12 15   # approve specific photos
+SUPABASE_SERVICE_ROLE_KEY=... npm run media:approve -- --gallery pe           # approve all of Peru's
+```
+
+Look at each image AND its title: the ingest takes World Heritage Sites as Wikidata files them,
+which occasionally means an administrative area ("Kyoto Prefecture") rather than a place to see.
+Reject those with `--revoke --id`, or leave them pending. A gallery needs migration
+`20261104150000` applied first (`supabase db push`).

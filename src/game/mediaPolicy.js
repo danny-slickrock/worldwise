@@ -16,6 +16,15 @@
 // migration enforces that with a partial unique index.
 export const HERO_KIND = "hero";
 
+// Gallery images are the many-per-country 'landmark' kind: notable places in
+// the country (ingested from UNESCO World Heritage Sites with a Wikidata P18
+// image — see scripts/fetch-country-gallery.js and ADR 0006). Same pipeline,
+// same guarantees as the hero: re-hosted, licensed, pending until approved.
+export const GALLERY_KIND = "landmark";
+// The most landmarks drafted per country. Each is a human review, so the cap
+// is a review-volume decision as much as a layout one.
+export const GALLERY_MAX = 6;
+
 // Width we ask Commons for. Big enough to look right on a desktop hero, small
 // enough that 196 of them is a modest bucket — and it means the stored object
 // is already a thumbnail, so the page is not dependent on Storage transforms
@@ -127,6 +136,14 @@ function upperSlug(slug) {
 // The extension comes from the source URL rather than being assumed .jpg:
 // Commons thumbnails of a PNG are PNGs, and a mislabelled object gets served
 // with the wrong Content-Type.
+// A gallery image's object key: one per landmark (the Wikidata Q-id), so a
+// re-run overwrites that landmark's object instead of accumulating copies.
+export function galleryObjectPath(code, entityId, sourceUrl) {
+  if (typeof code !== "string" || !/^[a-z]{2}$/.test(code)) return null;
+  if (typeof entityId !== "string" || !/^Q\d+$/.test(entityId)) return null;
+  return `${GALLERY_KIND}/${code}/${entityId}.${extensionFor(sourceUrl)}`;
+}
+
 export function storageObjectPath(code, sourceUrl, kind = HERO_KIND) {
   if (typeof code !== "string" || !/^[a-z]{2}$/.test(code)) return null;
   return `${kind}/${code}.${extensionFor(sourceUrl)}`;
@@ -168,10 +185,24 @@ export function mediaRowFromCommons({
   width = null,
   height = null,
   kind = HERO_KIND,
+  title = null,
+  position = null,
+  sourceEntity = null,
 }) {
+  const gallery = kind === GALLERY_KIND;
   return {
     country_code: code,
     kind,
+    // Gallery-only facts. Left off a hero row entirely, so a hero ingest's
+    // payload is unchanged (and works against a database without the
+    // gallery migration).
+    ...(gallery
+      ? {
+          title: nonEmpty(title) ? title.trim() : null,
+          position: Number.isInteger(position) && position >= 0 ? position : null,
+          source_entity: sourceEntity ?? null,
+        }
+      : null),
     url,
     storage_path: storagePath,
     source_url: sourceUrl ?? null,
@@ -248,6 +279,33 @@ export function heroFromMediaRows(rows) {
     // everywhere the photo appears.
     credit: formatPhotoCredit(row),
   };
+}
+
+// The approved gallery, in display order, reshaped for the UI. The same
+// defensive status check as heroFromMediaRows: RLS already hides pending rows
+// from the app, but the review script reads every row.
+export function galleryFromMediaRows(rows) {
+  if (!Array.isArray(rows)) return [];
+  return rows
+    .filter(
+      (r) => r && r.kind === GALLERY_KIND && r.url && (r.status == null || r.status === "approved")
+    )
+    .sort(
+      (a, b) =>
+        (a.position ?? 1e9) - (b.position ?? 1e9) || String(a.title).localeCompare(String(b.title))
+    )
+    .slice(0, GALLERY_MAX)
+    .map((r) => ({
+      url: r.url,
+      title: nonEmpty(r.title) ? r.title.trim() : null,
+      author: r.author ?? null,
+      license: r.license ?? null,
+      licenseUrl: r.license_url ?? null,
+      sourceUrl: r.source_url ?? null,
+      width: positiveInt(r.width),
+      height: positiveInt(r.height),
+      credit: formatPhotoCredit(r),
+    }));
 }
 
 // Supabase Storage can resize and re-encode on the fly, which is how one stored

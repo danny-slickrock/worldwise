@@ -27,6 +27,7 @@ import { MODES } from "../game/questions";
 import { topicsPresent } from "../data/countryTopics";
 import CountryOutline from "../components/CountryOutline";
 import CountryPhoto from "../components/CountryPhoto";
+import CountryGallery from "../components/CountryGallery";
 import CountryGlobe, { framingFor } from "../components/CountryGlobe";
 import { ChromeSpacer } from "../components/AppChrome";
 
@@ -219,6 +220,14 @@ export default function CountryPageScreen({
             <View style={styles.card}>
               <Text style={styles.summary}>{page.summary}</Text>
             </View>
+          </FadeInUp>
+
+          {/* The gallery (ADR 0006): approved landmark photos, swipeable —
+              after the place has been introduced (name, numbers, summary), so
+              it reads as "places to see in Peru" rather than as a header.
+              Renders nothing until a country has approved ones. */}
+          <FadeInUp rise={0} index={3}>
+            <CountryGallery gallery={page.gallery} name={page.name} />
           </FadeInUp>
 
           {/* Climate / trade / culture */}

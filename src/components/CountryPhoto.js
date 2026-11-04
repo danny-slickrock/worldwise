@@ -40,7 +40,18 @@ import { imageVariantUrl, heroImageWidth } from "../game/mediaPolicy";
 // layout can't disagree about aspect ratio.
 const ASPECT = 16 / 9;
 
-export default function CountryPhoto({ hero, name }) {
+// `aspect` and `title` let the GALLERY reuse every guarantee here (reserved
+// frame, placeholder, transform fallback, credit) for its landmark cards:
+// 4:3 and captioned with what the photo is of. `deferImage` holds the network
+// request back (the gallery's lazy-load) while still reserving the frame.
+export default function CountryPhoto({
+  hero,
+  name,
+  aspect = ASPECT,
+  title = null,
+  deferImage = false,
+  style,
+}) {
   // Measured rather than assumed: the same page is a phone column and a 680px
   // constrained column, and asking for a 1600px variant on a phone is the
   // whole cost this component exists to avoid.
@@ -71,8 +82,11 @@ export default function CountryPhoto({ hero, name }) {
   }
 
   return (
-    <View style={styles.wrap}>
-      <View style={styles.frame} onLayout={(e) => setBoxWidth(e.nativeEvent.layout.width)}>
+    <View style={[styles.wrap, style]}>
+      <View
+        style={[styles.frame, { aspectRatio: aspect }]}
+        onLayout={(e) => setBoxWidth(e.nativeEvent.layout.width)}
+      >
         {/* The placeholder is the frame's own background and the image is
             drawn straight over it, so there is never a flash of empty page —
             and never a loaded image held invisible by a callback that didn't
@@ -87,7 +101,7 @@ export default function CountryPhoto({ hero, name }) {
             image simply covers this when it paints. */}
         <Skeleton width="100%" height="100%" radius={0} style={StyleSheet.absoluteFill} />
 
-        {boxWidth > 0 && (
+        {boxWidth > 0 && !deferImage && (
           <Image
             // Keyed by URI so switching to the fallback URL remounts rather
             // than re-rendering: react-native-web's Image keeps its own load
@@ -99,10 +113,15 @@ export default function CountryPhoto({ hero, name }) {
             resizeMode="cover"
             onError={handleError}
             accessible
-            accessibilityLabel={`Photograph of ${name}`}
+            accessibilityLabel={title ? `Photograph of ${title}, ${name}` : `Photograph of ${name}`}
           />
         )}
       </View>
+      {title ? (
+        <Text style={styles.title} numberOfLines={2}>
+          {title}
+        </Text>
+      ) : null}
       {hero.credit ? <Credit hero={hero} /> : null}
     </View>
   );
@@ -145,5 +164,6 @@ const styles = themed(() =>
     // Teal is the one accent safe at body size (5.8:1 on white), which is why the
     // link colour is `accent` and not `earth`.
     creditLink: { color: colors.link },
+    title: { ...type.label, fontSize: 14, marginTop: spacing(2), color: colors.text },
   })
 );

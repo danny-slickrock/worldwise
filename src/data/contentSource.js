@@ -18,7 +18,7 @@ import {
   contentCacheKey,
   resolveCountryContent,
 } from "../game/contentPolicy";
-import { HERO_KIND } from "../game/mediaPolicy";
+import { HERO_KIND, GALLERY_KIND } from "../game/mediaPolicy";
 
 // content.* is a separate schema from the user domain, so every query goes
 // through .schema() — and the schema must also be listed under the project's
@@ -36,12 +36,17 @@ const CONTENT_SCHEMA = "content";
 // country-media review migration), which is the whole review gate.
 const COUNTRY_MEDIA_COLUMNS =
   "kind, url, author, license, license_url, source_url, width, height, status";
+// The gallery adds what a landmark photo needs (ADR 0006). Kept as a separate
+// select so a database WITHOUT the gallery migration still gets its hero:
+// asking for a missing column fails the whole request.
+const GALLERY_MEDIA_COLUMNS = `${COUNTRY_MEDIA_COLUMNS}, title, position`;
 
 const COUNTRY_COLUMNS_NO_MEDIA =
   "code, name, capital, region, difficulty, summary, population, area_km2, " +
   "lat, lng, has_outline, neighbors, related_game_modes, facts";
 
 const COUNTRY_COLUMNS = `${COUNTRY_COLUMNS_NO_MEDIA}, country_media(${COUNTRY_MEDIA_COLUMNS})`;
+const COUNTRY_COLUMNS_WITH_GALLERY = `${COUNTRY_COLUMNS_NO_MEDIA}, country_media(${GALLERY_MEDIA_COLUMNS})`;
 
 // The content version is process-wide, not per country: one read serves every
 // country page opened this session. Memoized as a promise so concurrent opens
@@ -75,9 +80,29 @@ async function fetchContentVersion(client) {
   return version;
 }
 
-// Read one country row. Returns null on any error so the resolver falls through
-// to its next source rather than surfacing a Postgres error to a learner.
+// Read one country row — hero AND gallery on one request, so a cached page can
+// never hold a hero from one content version and a gallery from another.
+// Falls back to hero-only (database without the gallery migration), then to
+// no media at all. Pending gallery rows are not filtered here either: RLS
+// refuses to return them, which is the whole review gate.
 async function fetchCountryRow(code, client) {
+  try {
+    const { data, error } = await client
+      .schema(CONTENT_SCHEMA)
+      .from("countries")
+      .select(COUNTRY_COLUMNS_WITH_GALLERY)
+      .eq("code", code)
+      .in("country_media.kind", [HERO_KIND, GALLERY_KIND])
+      .maybeSingle();
+    if (!error) return data;
+  } catch {
+    /* fall through to the hero-only read */
+  }
+  return fetchCountryRowHeroOnly(code, client);
+}
+
+// Hero-only: the pre-gallery read, unchanged.
+async function fetchCountryRowHeroOnly(code, client) {
   try {
     const { data, error } = await client
       .schema(CONTENT_SCHEMA)

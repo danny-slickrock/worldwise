@@ -11,6 +11,14 @@
 //   npm run media:approve -- br cl jp          publish these countries
 //   npm run media:approve -- --revoke br       send one back to pending
 //
+// GALLERY (ADR 0006) — the same gate, the same licence rule, the same
+// content_version bump, over the many-per-country 'landmark' rows:
+//
+//   npm run media:approve -- --gallery --list            pending landmark photos
+//   npm run media:approve -- --gallery pe                approve all of Peru's pending
+//   npm run media:approve -- --gallery --id 12 15        approve specific photos
+//   npm run media:approve -- --gallery --revoke --id 12  send one back
+//
 // Approving is an UPDATE, and the statement-level trigger from the M2.3.5
 // migration turns any country_media write into a content_version bump — so
 // every client refetches and sees the new photo. That is deliberate and is the
@@ -22,7 +30,12 @@
 // content.country_media → set `status`. The bucket's objects are browsable
 // under Storage → country-media → hero/. This script exists because it also
 // enforces the licensing rule below, which the Table Editor will not.
-import { HERO_KIND, isPublishable, formatPhotoCredit } from "../src/game/mediaPolicy.js";
+import {
+  HERO_KIND,
+  GALLERY_KIND,
+  isPublishable,
+  formatPhotoCredit,
+} from "../src/game/mediaPolicy.js";
 import { requireServiceConfig } from "./lib/env.mjs";
 import { announceTarget } from "./lib/target-banner.mjs";
 
@@ -30,7 +43,11 @@ const args = process.argv.slice(2);
 const list = args.includes("--list");
 const all = args.includes("--all");
 const revoke = args.includes("--revoke");
-const codes = args.filter((a) => !a.startsWith("--")).map((c) => c.toLowerCase());
+const gallery = args.includes("--gallery");
+const KIND = gallery ? GALLERY_KIND : HERO_KIND;
+const idMode = args.includes("--id");
+const ids = idMode ? args.filter((a) => /^\d+$/.test(a)) : [];
+const codes = idMode ? [] : args.filter((a) => !a.startsWith("--")).map((c) => c.toLowerCase());
 
 const { url, serviceKey } = requireServiceConfig("npm run media:approve");
 const restUrl = `${url}/rest/v1`;
@@ -43,9 +60,9 @@ const headers = {
 
 async function fetchRows(filter) {
   const res = await fetch(
-    `${restUrl}/country_media?kind=eq.${HERO_KIND}${filter}` +
-      "&select=id,country_code,url,author,license,license_url,source_url,status" +
-      "&order=country_code",
+    `${restUrl}/country_media?kind=eq.${KIND}${filter}` +
+      `&select=id,country_code,url,author,license,license_url,source_url,status${gallery ? ",title,position" : ""}` +
+      `&order=country_code${gallery ? ",position" : ""}`,
     { headers }
   );
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
@@ -84,7 +101,10 @@ async function main() {
     }
     for (const row of rows) {
       const mark = row.status === "approved" ? "✓" : isPublishable(row) ? "·" : "!";
-      console.log(`${mark} ${row.country_code}  [${row.status}]`);
+      console.log(
+        `${mark} ${row.country_code}  [${row.status}]` +
+          (gallery ? `  #${row.id}  ${(row.position ?? 0) + 1}. ${row.title ?? "(untitled)"}` : "")
+      );
       console.log(`    ${formatPhotoCredit(row) ?? "NO CREDIT — cannot be approved"}`);
       console.log(`    image:  ${row.url}`);
       console.log(`    source: ${row.source_url ?? "—"}`);
@@ -94,7 +114,7 @@ async function main() {
     return;
   }
 
-  if (!codes.length) {
+  if (!codes.length && !ids.length) {
     console.error(
       "usage:\n" +
         "  npm run media:approve -- --list            what's waiting, with its credit\n" +
@@ -105,9 +125,11 @@ async function main() {
     process.exit(1);
   }
 
-  const rows = await fetchRows(`&country_code=in.(${codes.join(",")})`);
+  const rows = ids.length
+    ? await fetchRows(`&id=in.(${ids.join(",")})`)
+    : await fetchRows(`&country_code=in.(${codes.join(",")})`);
   const found = new Set(rows.map((r) => r.country_code));
-  for (const code of codes) if (!found.has(code)) console.warn(`  ! no hero row for ${code}`);
+  for (const code of codes) if (!found.has(code)) console.warn(`  ! no ${KIND} row for ${code}`);
 
   if (revoke) {
     if (!rows.length) return;
@@ -142,7 +164,9 @@ async function main() {
     "approved"
   );
   for (const row of publishable) {
-    console.log(`  ✓ ${row.country_code} — ${formatPhotoCredit(row)}`);
+    console.log(
+      `  ✓ ${row.country_code}${gallery ? ` #${row.id} ${row.title ?? ""}` : ""} — ${formatPhotoCredit(row)}`
+    );
   }
   console.log(`\nApproved ${publishable.length}.`);
   console.log(`content_version is now ${await contentVersion()} — clients refetch on next launch.`);

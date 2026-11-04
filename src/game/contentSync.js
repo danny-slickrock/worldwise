@@ -19,7 +19,7 @@
 // (content.country_media, embedded into the countries select by the fetch
 // layer), so it is read here but never written back — seeding a country and
 // ingesting its photo are separate pipelines on purpose.
-import { heroFromMediaRows } from "./mediaPolicy";
+import { heroFromMediaRows, galleryFromMediaRows } from "./mediaPolicy";
 import { TERRITORIES } from "../data/territories";
 
 // What a place IS — a country, or a territory and whose — is classification,
@@ -107,6 +107,9 @@ export function pageFromCountryRow(row) {
     // draft hasn't been reviewed yet reads as null too, because RLS hides
     // pending rows from the app entirely.
     hero: heroFromMediaRows(row.country_media),
+    // The approved gallery (ADR 0006), in display order. [] is the normal
+    // case for the same reasons the hero is usually null.
+    gallery: galleryFromMediaRows(row.country_media),
     ...classify(row.code),
   };
 }

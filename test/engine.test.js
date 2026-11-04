@@ -145,6 +145,10 @@ import {
   isPublishable,
   formatPhotoCredit,
   heroFromMediaRows,
+  galleryFromMediaRows,
+  galleryObjectPath,
+  GALLERY_KIND,
+  GALLERY_MAX,
   imageVariantUrl,
   heroImageWidth,
   IMAGE_WIDTH_LADDER,
@@ -8945,6 +8949,92 @@ check(
     !isPromotable({ status: "contested", review: "approved" }),
   "only usable AND human-approved values may be promoted"
 );
+
+console.log("\nCountry photo gallery (ADR 0006)");
+check(GALLERY_KIND === "landmark", "gallery rows are the many-per-country 'landmark' kind");
+check(
+  galleryObjectPath("pe", "Q676203", "https://upload/x/Machu.JPG") === "landmark/pe/Q676203.jpg",
+  "a gallery object key is per landmark (Q-id), so a re-run overwrites rather than accumulates"
+);
+check(
+  galleryObjectPath("pe", "not-a-qid", "x.jpg") === null &&
+    galleryObjectPath("PER", "Q1", "x.jpg") === null,
+  "a malformed country or entity yields no key rather than a wrong one"
+);
+const gRow = mediaRowFromCommons({
+  code: "pe",
+  kind: GALLERY_KIND,
+  url: "https://x/landmark/pe/Q1.jpg",
+  storagePath: "landmark/pe/Q1.jpg",
+  sourceUrl: "https://commons.wikimedia.org/wiki/File:A.jpg",
+  author: "A",
+  license: "CC BY-SA 4.0",
+  title: " Nazca Lines ",
+  position: 1,
+  sourceEntity: "Q1",
+});
+check(
+  gRow.status === "pending" &&
+    gRow.title === "Nazca Lines" &&
+    gRow.position === 1 &&
+    gRow.source_entity === "Q1",
+  "an ingested gallery row is pending, titled, ordered and keyed by its Wikidata entity"
+);
+const hRow = mediaRowFromCommons({ code: "pe", url: "u", storagePath: "p", sourceUrl: "s" });
+check(
+  !("title" in hRow) && !("position" in hRow) && !("source_entity" in hRow),
+  "a HERO row's payload is unchanged — it works against a database without the gallery migration"
+);
+const g = galleryFromMediaRows([
+  {
+    kind: "landmark",
+    url: "b",
+    title: "Second",
+    position: 1,
+    status: "approved",
+    author: "x",
+    license: "CC BY 4.0",
+  },
+  {
+    kind: "landmark",
+    url: "a",
+    title: "First",
+    position: 0,
+    status: "approved",
+    author: "y",
+    license: "CC0",
+  },
+  {
+    kind: "landmark",
+    url: "p",
+    title: "Draft",
+    position: 2,
+    status: "pending",
+    author: "z",
+    license: "CC0",
+  },
+  { kind: "hero", url: "h", status: "approved" },
+]);
+check(
+  JSON.stringify(g.map((x) => x.title)) === JSON.stringify(["First", "Second"]),
+  "the gallery is the APPROVED landmark rows only, in position order — never a pending one, never the hero"
+);
+check(
+  g[0].credit === "Photo: y / Wikimedia (CC0)",
+  "each gallery item carries the same composed credit as the hero"
+);
+check(
+  galleryFromMediaRows(
+    Array.from({ length: 9 }, (_, i) => ({
+      kind: "landmark",
+      url: `u${i}`,
+      position: i,
+      status: "approved",
+    }))
+  ).length === GALLERY_MAX,
+  "never more than GALLERY_MAX photos"
+);
+check(galleryFromMediaRows(null).length === 0, "no rows is an empty gallery");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

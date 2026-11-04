@@ -304,6 +304,8 @@ src/
                            #   the SVG. Native has no canvas, so it falls back to classified fills
 assets/globe/earth-relief.jpg # NASA Blue Marble, 2048x1024, PUBLIC DOMAIN. Bundled, not fetched
 scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run build:globe-texture)
+  components/CountryGallery.js # ADR 0006: approved landmark photos as a swipeable strip of
+                           #   CountryPhoto cards, lazy-loaded as it scrolls, never gated on onLoad
   components/CountryPhoto.js # The approved hero photograph on a country page: reserved aspect
                            #   ratio, theme-toned placeholder, transform-URL fallback, credit caption
   components/CompassMark.js # The mark, DRAWN (not a PNG): crisp at 1024, legible at 16, and
