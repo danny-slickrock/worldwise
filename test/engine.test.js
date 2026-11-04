@@ -6789,24 +6789,40 @@ check(
 );
 check(DEFAULT_TIER === "pro", "every account is pro by default — the paywall is a later step");
 
-// The six free games named in the milestone, exactly.
-const EXPECTED_FREE_GAMES = [
-  "flag",
-  "capital",
+// The free four, exactly — plus Daily and a country round, which have their
+// own entry points. Everything else is Pro.
+const EXPECTED_FREE_GAMES = ["flag", "capital", "shape", "locator"];
+check(
+  JSON.stringify(FREE_MODES.filter((m) => m !== "daily" && m !== "country")) ===
+    JSON.stringify(EXPECTED_FREE_GAMES),
+  "the free games are exactly Flag, Capital, Shape and Locator, in Home's order"
+);
+const EXPECTED_PRO_GAMES = [
   "capitalReverse",
-  "shape",
-  "locator",
   "higherLower",
+  "nameEveryCountry",
+  "identifyAllFlags",
+  "currency",
+  "language",
+  "nationalAnimal",
+  "foodOrigin",
+  "city",
+  "river",
+  "mountain",
+  "ocean",
 ];
 check(
-  EXPECTED_FREE_GAMES.every((m) => MODE_TIERS[m] === "free"),
-  "the six free games are all tagged free"
+  JSON.stringify(PRO_MODES) === JSON.stringify(EXPECTED_PRO_GAMES),
+  "Pro is Capital Reverse, Higher or Lower, the two marathons and M2.7's eight games"
+);
+check(MODE_TIERS.higherLower === "pro", "Higher or Lower moved to Pro");
+check(
+  MODE_TIERS.capitalReverse === "pro" && MODES.capitalReverse != null,
+  "Capital Reverse is kept as its own Pro game, not folded or retired"
 );
 check(
-  PRO_MODES.length === 2 &&
-    PRO_MODES.includes("nameEveryCountry") &&
-    PRO_MODES.includes("identifyAllFlags"),
-  "exactly two pro games: Name Every Country and Identify All Flags"
+  PRO_MODES.every((m) => MODES[m] && !MODES[m].comingSoon),
+  "every Pro game is built and playable — none is a 'coming' placeholder"
 );
 check(
   MODE_TIERS.daily === "free" && MODE_TIERS.country === "free",
@@ -6840,7 +6856,7 @@ check(
 // The question itself.
 check(
   EXPECTED_FREE_GAMES.every((m) => isUnlocked(m, "free")),
-  "free unlocks all six free games"
+  "free unlocks all four free games"
 );
 check(
   PRO_MODES.every((m) => !isUnlocked(m, "free")),
@@ -7103,8 +7119,8 @@ check(
   "enough distinct currency names to fill a round's distractors"
 );
 check(MODES.currency != null && MODES.currency.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.currency === "free", "Currency Quiz joins the free catalog");
-check(FREE_MODES.includes("currency"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.currency === "pro", "Currency Quiz is a Pro game");
+check(PRO_MODES.includes("currency"), "...and shows up in the derived Pro list");
 
 const currencyRound = buildRound("currency", "all", ROUND_LENGTH);
 check(currencyRound.length === ROUND_LENGTH, "a currency round is a full round");
@@ -7152,8 +7168,8 @@ check(
   "enough distinct language names to fill a round's distractors"
 );
 check(MODES.language != null && MODES.language.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.language === "free", "Language Quiz joins the free catalog");
-check(FREE_MODES.includes("language"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.language === "pro", "Language Quiz is a Pro game");
+check(PRO_MODES.includes("language"), "...and shows up in the derived Pro list");
 
 const languageRound = buildRound("language", "all", ROUND_LENGTH);
 check(languageRound.length === ROUND_LENGTH, "a language round is a full round");
@@ -7206,8 +7222,8 @@ check(
   MODES.nationalAnimal != null && MODES.nationalAnimal.accent != null,
   "the mode is registered and themed"
 );
-check(MODE_TIERS.nationalAnimal === "free", "National Animal Quiz joins the free catalog");
-check(FREE_MODES.includes("nationalAnimal"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.nationalAnimal === "pro", "National Animal Quiz is a Pro game");
+check(PRO_MODES.includes("nationalAnimal"), "...and shows up in the derived Pro list");
 
 const nationalAnimalRound = buildRound("nationalAnimal", "all", ROUND_LENGTH);
 check(nationalAnimalRound.length === ROUND_LENGTH, "a national animal round is a full round");
@@ -7260,8 +7276,8 @@ check(
   MODES.foodOrigin != null && MODES.foodOrigin.accent != null,
   "the mode is registered and themed"
 );
-check(MODE_TIERS.foodOrigin === "free", "Food Origin Quiz joins the free catalog");
-check(FREE_MODES.includes("foodOrigin"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.foodOrigin === "pro", "Food Origin Quiz is a Pro game");
+check(PRO_MODES.includes("foodOrigin"), "...and shows up in the derived Pro list");
 
 const foodOriginRound = buildRound("foodOrigin", "all", ROUND_LENGTH);
 check(foodOriginRound.length === ROUND_LENGTH, "a food origin round is a full round");
@@ -7314,8 +7330,8 @@ check(
   "enough distinct city names to fill a round's distractors"
 );
 check(MODES.city != null && MODES.city.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.city === "free", "City Quiz joins the free catalog");
-check(FREE_MODES.includes("city"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.city === "pro", "City Quiz is a Pro game");
+check(PRO_MODES.includes("city"), "...and shows up in the derived Pro list");
 
 const cityRound = buildRound("city", "all", ROUND_LENGTH);
 check(cityRound.length === ROUND_LENGTH, "a city round is a full round");
@@ -7402,8 +7418,8 @@ check(
 
 console.log("\nRiver Quiz engine integration (M2.7 step 6.2)");
 check(MODES.river != null && MODES.river.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.river === "free", "River Quiz joins the free catalog");
-check(FREE_MODES.includes("river"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.river === "pro", "River Quiz is a Pro game");
+check(PRO_MODES.includes("river"), "...and shows up in the derived Pro list");
 
 const riverRound = buildRound("river", "all", ROUND_LENGTH);
 check(riverRound.length === ROUND_LENGTH, "a river round is a full round");
@@ -7503,8 +7519,8 @@ check(
 
 console.log("\nMountain Quiz engine integration (M2.7 step 7.2)");
 check(MODES.mountain != null && MODES.mountain.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.mountain === "free", "Mountain Quiz joins the free catalog");
-check(FREE_MODES.includes("mountain"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.mountain === "pro", "Mountain Quiz is a Pro game");
+check(PRO_MODES.includes("mountain"), "...and shows up in the derived Pro list");
 
 const mountainRound = buildRound("mountain", "all", ROUND_LENGTH);
 check(mountainRound.length === ROUND_LENGTH, "a mountain round is a full round");
@@ -7600,8 +7616,8 @@ check(oceansThrough("ch").length === 0, "a landlocked country resolves to an emp
 
 console.log("\nOcean Quiz engine integration (M2.7 step 8.2)");
 check(MODES.ocean != null && MODES.ocean.accent != null, "the mode is registered and themed");
-check(MODE_TIERS.ocean === "free", "Ocean Quiz joins the free catalog");
-check(FREE_MODES.includes("ocean"), "...and shows up in the derived free-mode list");
+check(MODE_TIERS.ocean === "pro", "Ocean Quiz is a Pro game");
+check(PRO_MODES.includes("ocean"), "...and shows up in the derived Pro list");
 
 const oceanRound = buildRound("ocean", "all", ROUND_LENGTH);
 check(

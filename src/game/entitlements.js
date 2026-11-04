@@ -1,10 +1,11 @@
 // PURE entitlements — which games a given account tier may play.
 //
-// The product shape (M2.12 step 1): six free games, and two "pro" marathon
-// games still to be built. What this module is NOT, yet, is a paywall. Every
-// account is created `pro`, so `isUnlocked` answers `true` for everything a
-// real player will ask it about today; the gating is cosmetic this pass —
-// a PRO badge on Home — and the switch that makes it real is DEFAULT_TIER.
+// The product shape: four free games — Flag Guesser, Capital Quiz, Shape
+// Guesser, Country Locator — plus Daily and a country round, and everything
+// else Pro. What this module is NOT, yet, is a paywall. Every account is
+// created `pro`, so `isUnlocked` answers `true` for everything a real player
+// will ask it about today; the gating is cosmetic this pass — Home's "Unlock
+// Pro" shelf and PRO badges — and the switch that makes it real is DEFAULT_TIER.
 //
 // Building the seam before the wall is deliberate. A tier check retrofitted
 // later has to be threaded through every play entry point at once, which is
@@ -30,37 +31,38 @@ export const DEFAULT_TIER = "pro";
 // Daily is the app's habit loop and a country round is reached from a country
 // page, so neither is ever a thing you buy.
 export const MODE_TIERS = {
+  // The free four. Ordered as Home lists them: the free games render as one
+  // full-width card each, in this order.
   flag: "free",
   capital: "free",
-  capitalReverse: "free",
   shape: "free",
   locator: "free",
-  higherLower: "free",
+  // The habit loop, and the round reached from a country page. Free, never
+  // listed on Home's game stack (each has its own entry point).
   daily: "free",
   country: "free",
-  // M2.7 step 1-2. Breadth games join the free catalog alongside the
-  // original six — M2.7's games were never scoped as a pro shelf.
-  currency: "free",
-  language: "free",
-  nationalAnimal: "free",
-  foodOrigin: "free",
-  city: "free",
-  // M2.7 step 6.2. The first of the milestone's feature-based games — same
-  // free catalog, same reasoning: M2.7's games were never scoped as a pro
-  // shelf.
-  river: "free",
-  // M2.7 step 7.2. The second feature-based game — same free catalog, same
-  // reasoning.
-  mountain: "free",
-  // M2.7 step 8.2. The third and last feature-based game — same free
-  // catalog, same reasoning.
-  ocean: "free",
 
-  // Not built yet. Listed now so the catalog is the product's plan rather
-  // than a lagging record of it — and so the Home badge and the tests have
-  // something real to assert against before the games exist.
+  // Pro. Ordered as Home's "Unlock Pro" grid lists them. Every one of these is
+  // a built, playable game — the pro shelf is a commercial split, not a
+  // roadmap, so none is flagged "coming".
+  //
+  // Capital Reverse stays its own game rather than folding into Capital Quiz:
+  // "which country has this capital?" is a different recall direction, and it
+  // is one of the cheapest Pro games to keep.
+  capitalReverse: "pro",
+  higherLower: "pro",
   nameEveryCountry: "pro",
   identifyAllFlags: "pro",
+  // M2.7's breadth games (per-country facts), then its feature-based games
+  // (a river/range/ocean touches several countries).
+  currency: "pro",
+  language: "pro",
+  nationalAnimal: "pro",
+  foodOrigin: "pro",
+  city: "pro",
+  river: "pro",
+  mountain: "pro",
+  ocean: "pro",
 };
 
 // The two lists, derived rather than retyped. A mode added to MODE_TIERS shows
