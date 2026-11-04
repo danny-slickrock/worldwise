@@ -14,40 +14,41 @@
 // which is a real map rather than a broken one. Doing better on native means a
 // GL surface, and that is a bigger change than this is worth until the globe
 // has been checked on a device at all.
-/* global document, setTimeout, clearTimeout */
+/* global document, setTimeout, clearTimeout, performance */
 import React, { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import { Asset } from "expo-asset";
-import { renderGlobeRaster } from "../game/globeRaster";
-import { GLOBE_BASE_RADIUS, GLOBE_VIEW_SIZE } from "../constants";
+import {
+  renderGlobeRaster,
+  adaptMotionBudget,
+  buildMipChain,
+  mipLevelFor,
+} from "../game/globeRaster";
+import {
+  GLOBE_BASE_RADIUS,
+  GLOBE_VIEW_SIZE,
+  GLOBE_RASTER_MOTION_PIXELS,
+  GLOBE_RASTER_MOTION_MIN_PIXELS,
+  GLOBE_RASTER_MOTION_MAX_PIXELS,
+  GLOBE_RASTER_MOTION_TARGET_MS,
+  GLOBE_RASTER_MOTION_SMOOTH,
+  GLOBE_RASTER_SETTLED_PIXELS,
+  GLOBE_RASTER_SETTLE_MS,
+  GLOBE_RASTER_MAX_SCALE,
+} from "../constants";
 
-// While the globe is moving, redraw small and let the browser scale it up; once
-// it settles, redraw at full size.
+// While the globe is moving, redraw at the ADAPTIVE motion budget, bilinearly;
+// once it settles, redraw at full size. The budgets, and why they adapt, live
+// in constants.js beside the measurements.
 //
-// Measured on the pure renderer (2048x1024 source): a 256-long-edge frame is
-// ~2ms, a 900-long-edge frame ~23ms, and 1280 is ~46ms. So a draft frame holds
-// 60fps through a drag while a settled frame is a single barely-perceptible
-// hitch — and FULL_SIZE is a CAP rather than a target, because without one a
-// desktop-sized container would put a 46ms frame on every wheel tick.
-//
-// Nobody can see the detail on a spinning globe anyway, which is why this
-// trade is free rather than a compromise.
-// Budgets in PIXELS, not edge lengths. The container's aspect ratio varies a
-// lot — a square card on Home, a wide stage on Explore — and it is the pixel
-// COUNT that costs, so capping an edge either wastes detail on a tall box or
-// blows the frame time on a wide one.
-//
-// Measured on the pure renderer against the 4096x2048 source: ~2.8ms for a
-// 55k-pixel nearest-neighbour draft, ~36ms for a 700k-pixel bilinear settled
-// frame, ~60ms at 1.2M. So the draft holds 60fps through a drag and settling
-// costs one frame nobody will catch.
-const DRAFT_PIXELS = 60 * 1000;
-const SETTLED_PIXELS = 700 * 1000;
-// Rendering past the device's own pixels buys nothing but heat. Capped below
-// DPR3 anyway: on a phone the container is small enough that the pixel budget
-// already lands well above 1:1.
-const MAX_SCALE = 2.5;
-const SETTLE_MS = 160;
+// The motion budget is module-level, not per component: it describes the
+// DEVICE, so every globe on screen shares what the last one learned.
+let motionBudget = GLOBE_RASTER_MOTION_PIXELS;
+const MOTION_LIMITS = {
+  targetMs: GLOBE_RASTER_MOTION_TARGET_MS,
+  min: GLOBE_RASTER_MOTION_MIN_PIXELS,
+  max: GLOBE_RASTER_MOTION_MAX_PIXELS,
+};
 
 // One decode for the whole app, shared by every globe on screen. Resolves to
 // null if the asset can't be read, which is a clean fall back to flat fills.
@@ -82,7 +83,9 @@ function loadTexture() {
           const ctx = canvas.getContext("2d", { willReadFrequently: true });
           ctx.drawImage(img, 0, 0);
           const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          resolve({ data, width: canvas.width, height: canvas.height });
+          // Built once per app (~50ms, at load): every level a frame might
+          // sample, so no frame ever pays for a downsample.
+          resolve({ levels: buildMipChain(data, canvas.width, canvas.height) });
         } catch (err) {
           warn("could not read the texture's pixels", err);
           resolve(null);
@@ -137,7 +140,10 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
       // Spend the budget over the container's actual shape, then let CSS
       // stretch the result back to layout size.
       const dpr = typeof window !== "undefined" ? (window.devicePixelRatio ?? 1) : 1;
-      const k = Math.min(Math.sqrt(budget / (box.width * box.height)), Math.min(dpr, MAX_SCALE));
+      const k = Math.min(
+        Math.sqrt(budget / (box.width * box.height)),
+        Math.min(dpr, GLOBE_RASTER_MAX_SCALE)
+      );
       const w = Math.max(1, Math.round(box.width * k));
       const h = Math.max(1, Math.round(box.height * k));
 
@@ -145,23 +151,24 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
       if (!buffers.current[key]) buffers.current[key] = new Uint8ClampedArray(w * h * 4);
       const bytes = buffers.current[key];
 
+      const radius = (GLOBE_BASE_RADIUS * zoom * Math.min(w, h)) / GLOBE_VIEW_SIZE;
+      const level = texture.levels[mipLevelFor(texture.levels, radius)];
       renderGlobeRaster({
         dest: bytes,
         width: w,
         height: h,
-        src: texture.data,
-        srcWidth: texture.width,
-        srcHeight: texture.height,
+        src: level.data,
+        srcWidth: level.width,
+        srcHeight: level.height,
         spin,
         // Exactly what preserveAspectRatio="xMidYMid meet" does with a square
         // viewBox: centre the viewBox in the box, scale by the shorter side.
         centerX: w / 2,
         centerY: h / 2,
-        radius: (GLOBE_BASE_RADIUS * zoom * Math.min(w, h)) / GLOBE_VIEW_SIZE,
-        // Bilinear only once the globe has settled. It is four texel reads
-        // instead of one, and it is also the whole reason a 4096-wide source
-        // is worth its bytes — with nearest-neighbour, zooming in just shows
-        // smaller rectangles.
+        radius,
+        // Bilinear is the whole reason a 4096-wide source is worth its bytes —
+        // with nearest-neighbour, zooming in just shows smaller rectangles,
+        // and a moving globe shimmers at every texel seam.
         smooth,
       });
 
@@ -174,9 +181,16 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
       ctx.putImageData(new window.ImageData(bytes, w, h), 0, 0);
     };
 
-    draw(DRAFT_PIXELS, false);
+    // Time the whole motion frame — reprojection AND the canvas upload — and
+    // steer the next one's budget toward the target.
+    const t0 = performance.now();
+    draw(motionBudget, GLOBE_RASTER_MOTION_SMOOTH);
+    motionBudget = adaptMotionBudget(motionBudget, performance.now() - t0, MOTION_LIMITS);
     clearTimeout(settleTimer.current);
-    settleTimer.current = setTimeout(() => draw(SETTLED_PIXELS, true), SETTLE_MS);
+    settleTimer.current = setTimeout(
+      () => draw(GLOBE_RASTER_SETTLED_PIXELS, true),
+      GLOBE_RASTER_SETTLE_MS
+    );
     return () => clearTimeout(settleTimer.current);
     // Depending on spin's FIELDS rather than the object: callers rebuild
     // `spin` every render, so an object dep would redraw the globe on every
@@ -191,9 +205,8 @@ export default function GlobeTexture({ spin, zoom = 1, box, style, onReady }) {
     style: {
       position: "absolute",
       ...style,
-      // The canvas is drawn at DRAFT_SIZE or FULL_SIZE and stretched to the
-      // layout box; the browser's own filtering is what makes a 256px draft
-      // frame look like motion blur rather than like pixels.
+      // The canvas is drawn at the motion or settled budget and stretched to
+      // the layout box by the browser.
       width: "100%",
       height: "100%",
       display: "block",

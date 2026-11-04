@@ -152,6 +152,36 @@ export const MAP_REGION_ANIMATION_MS = 320;
 // at every zoom level instead of fattening as you go in.
 export const GLOBE_VIEW_SIZE = 400;
 export const GLOBE_BASE_RADIUS = 190; // radius at zoom 1, inside GLOBE_VIEW_SIZE
+
+// The terrain basemap's raster budgets (components/GlobeTexture.js), in PIXELS
+// rather than edge lengths — it is the pixel count that costs, and container
+// aspect ratios vary a lot.
+//
+// IN MOTION the budget ADAPTS to the measured frame time, between MIN and MAX,
+// aiming for TARGET_MS per redraw. One fixed number cannot be right for both a
+// desktop and a mid-range phone (roughly 3-4x slower), and the old fixed 60k
+// nearest-neighbour draft — below 1:1 on every screen — is what made terrain
+// smear while spinning. Measured on the pure renderer (desktop V8, 4096x2048
+// source, after the inner loop stopped allocating): bilinear ~2.7ms at 60k,
+// ~5ms at 120k, ~7.4ms at 180k, ~10ms at 250k. So a desktop settles near 200k
+// and a phone near 60-80k — which on a phone's small card is still ~1:1, sharp
+// where the old draft was a 4x upscale. The 8ms target leaves half the 60fps
+// frame for the SVG borders drawn on top.
+//
+// Motion samples BILINEARLY too. It is ~20% dearer than nearest-neighbour
+// now, and nearest-neighbour is what made a moving globe shimmer at the seams
+// of every texel.
+export const GLOBE_RASTER_MOTION_PIXELS = 120 * 1000; // starting point, before any measurement
+export const GLOBE_RASTER_MOTION_MIN_PIXELS = 60 * 1000; // never worse than the old draft
+export const GLOBE_RASTER_MOTION_MAX_PIXELS = 300 * 1000;
+export const GLOBE_RASTER_MOTION_TARGET_MS = 8;
+export const GLOBE_RASTER_MOTION_SMOOTH = true;
+// Settled: one full-quality frame once motion stops (~27ms at 700k — a single
+// frame nobody catches). A cap, not a target.
+export const GLOBE_RASTER_SETTLED_PIXELS = 700 * 1000;
+export const GLOBE_RASTER_SETTLE_MS = 160;
+// Rendering past the device's own pixels buys nothing but heat.
+export const GLOBE_RASTER_MAX_SCALE = 2.5;
 // Country borders, in viewBox units. Constant on screen at any zoom (see
 // above), so this is a true hairline rather than a value that needs scaling.
 export const GLOBE_BORDER_WIDTH = 0.5;

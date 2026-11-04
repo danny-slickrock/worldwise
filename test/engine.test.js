@@ -90,6 +90,9 @@ import {
   texelCoords,
   sampleSmooth,
   renderGlobeRaster,
+  adaptMotionBudget,
+  buildMipChain,
+  mipLevelFor,
 } from "../src/game/globeRaster";
 import { COUNTRY_TERRAIN, terrainClass } from "../src/data/countryTerrain";
 import {
@@ -184,6 +187,12 @@ import {
   normalizePracticePrefs,
 } from "../src/game/practicePrefsPolicy";
 import { STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../src/constants";
+import {
+  GLOBE_RASTER_MOTION_PIXELS,
+  GLOBE_RASTER_MOTION_MIN_PIXELS,
+  GLOBE_RASTER_MOTION_MAX_PIXELS,
+  GLOBE_RASTER_SETTLED_PIXELS,
+} from "../src/constants";
 import {
   practicePrefsPatchFromPrefs,
   practicePrefsFromProfileRow,
@@ -4980,6 +4989,184 @@ const renderAt = (dest, spin, zoom = 1, w = SIZE, h = SIZE, smooth = false) =>
     radius: RADIUS * zoom,
     smooth,
   });
+
+// The render loop INLINES viewToWorld → vecToLonLat → texelIndex/sampleSmooth
+// for speed (that is what pays for bilinear while moving). Inlined code drifts,
+// and drift here is imagery sliding off the borders — so every pixel of a
+// rendered frame is re-derived through the reference helpers and must match.
+{
+  const big = new Uint8Array(64 * 32 * 4);
+  for (let i = 0; i < big.length; i++) big[i] = (i * 2654435761) >>> 24;
+  const W = 41;
+  const H = 29;
+  const cx = 19.3;
+  const cy = 15.1;
+  const r = 13.7;
+  for (const smooth of [false, true]) {
+    for (const spin of [
+      { lng: 0, lat: 0 },
+      { lng: 137, lat: -42 },
+      { lng: -179.5, lat: 71 },
+    ]) {
+      const out = new Uint8Array(W * H * 4);
+      renderGlobeRaster({
+        dest: out,
+        width: W,
+        height: H,
+        src: big,
+        srcWidth: 64,
+        srcHeight: 32,
+        spin,
+        centerX: cx,
+        centerY: cy,
+        radius: r,
+        smooth,
+      });
+      const o = orientation(spin.lng, spin.lat);
+      let mismatches = 0;
+      const rgb = [0, 0, 0];
+      for (let py = 0; py < H; py++) {
+        for (let px = 0; px < W; px++) {
+          const vx = (px + 0.5 - cx) / r;
+          const vy = (cy - py + 0.5) / r;
+          const vz2 = 1 - vx * vx - vy * vy;
+          const di = (py * W + px) * 4;
+          if (vz2 < 0 && Math.abs(vz2) > 1e-9) {
+            if (out[di + 3] !== 0) mismatches++;
+            continue;
+          }
+          const [lon, lat] = vecToLonLat(viewToWorld(vx, vy, vz2 > 0 ? Math.sqrt(vz2) : 0, o));
+          let ref;
+          if (smooth) {
+            sampleSmooth(big, lon, lat, 64, 32, rgb);
+            ref = rgb.map((c) => Math.round(Math.min(255, Math.max(0, c))));
+          } else {
+            const si = texelIndex(lon, lat, 64, 32);
+            ref = [big[si], big[si + 1], big[si + 2]];
+          }
+          // Uint8Array truncates and Uint8ClampedArray rounds; allow 1.
+          for (let c = 0; c < 3; c++) if (Math.abs(out[di + c] - ref[c]) > 1) mismatches++;
+          if (out[di + 3] !== 255) mismatches++;
+        }
+      }
+      check(
+        mismatches === 0,
+        `the inlined render loop matches the reference helpers (${smooth ? "bilinear" : "nearest"}, spin ${spin.lng}/${spin.lat})`
+      );
+    }
+  }
+}
+
+// Mip chain: each level is a 2x2 box average of the one above, down to the
+// floor; the level picker never goes coarser than a texel per screen pixel.
+{
+  const W = 16;
+  const H = 8;
+  const base = new Uint8ClampedArray(W * H * 4);
+  for (let i = 0; i < base.length; i++) base[i] = (i * 37) % 256;
+  const chain = buildMipChain(base, W, H, 4);
+  check(
+    chain.map((l) => l.width).join() === "16,8,4" && chain[0].data === base,
+    "the chain halves down to the floor, and level 0 is the source itself"
+  );
+  const avg = (x, y, c) =>
+    Math.round(
+      (base[(y * W + x) * 4 + c] +
+        base[(y * W + x + 1) * 4 + c] +
+        base[((y + 1) * W + x) * 4 + c] +
+        base[((y + 1) * W + x + 1) * 4 + c]) /
+        4
+    );
+  check(
+    [0, 1, 2].every((c) => Math.abs(chain[1].data[(1 * 8 + 3) * 4 + c] - avg(6, 2, c)) <= 1),
+    "a coarse texel is the average of the four fine texels it replaces"
+  );
+  const levels = [{ width: 4096 }, { width: 2048 }, { width: 1024 }, { width: 512 }];
+  check(
+    mipLevelFor(levels, 150) === 2,
+    "a 150px-radius globe (942px equator) samples the 1024 level"
+  );
+  check(
+    mipLevelFor(levels, 400) === 0,
+    "a 400px-radius globe (2513px equator) keeps the full source"
+  );
+  check(
+    levels[mipLevelFor(levels, 300)].width >= 2 * Math.PI * 300,
+    "the chosen level never has fewer texels than the equator has pixels"
+  );
+  check(mipLevelFor(levels, 10) === 3, "a tiny globe takes the coarsest level");
+
+  // Registration survives a level change: a smooth east-west ramp sampled at
+  // level 1 lands on the same longitude as at level 0, within half a coarse
+  // texel's value step — the imagery does not slide off the borders.
+  const RW = 64;
+  const RH = 32;
+  const ramp = new Uint8ClampedArray(RW * RH * 4);
+  for (let y = 0; y < RH; y++)
+    for (let x = 0; x < RW; x++) {
+      const i = (y * RW + x) * 4;
+      ramp[i] = x * 4;
+      ramp[i + 1] = y * 8;
+      ramp[i + 3] = 255;
+    }
+  const rampChain = buildMipChain(ramp, RW, RH, 16);
+  const drawLevel = (L) => {
+    const out = new Uint8ClampedArray(30 * 30 * 4);
+    renderGlobeRaster({
+      dest: out,
+      width: 30,
+      height: 30,
+      src: L.data,
+      srcWidth: L.width,
+      srcHeight: L.height,
+      spin: { lng: -40, lat: 10 },
+      radius: 14,
+      smooth: true,
+    });
+    return out;
+  };
+  const f0 = drawLevel(rampChain[0]);
+  const f1 = drawLevel(rampChain[1]);
+  let worst = 0;
+  for (let py = 8; py < 22; py++)
+    for (let px = 8; px < 22; px++) {
+      const i = (py * 30 + px) * 4;
+      worst = Math.max(worst, Math.abs(f0[i] - f1[i]), Math.abs(f0[i + 1] - f1[i + 1]));
+    }
+  check(worst <= 2, `a coarser mip level stays registered with the source (worst Δ ${worst})`);
+}
+
+// The in-motion budget adapts to measured frame time, damped and bounded.
+{
+  const lim = { targetMs: 8, min: 60000, max: 300000 };
+  check(
+    adaptMotionBudget(120000, 16, lim) === 84000,
+    "a frame at twice the target cuts the budget, but by at most 30%"
+  );
+  check(
+    adaptMotionBudget(120000, 2, lim) === 138000,
+    "a fast frame grows the budget, but by at most 15%"
+  );
+  check(adaptMotionBudget(100000, 8, lim) === 100000, "a frame on target holds the budget");
+  check(adaptMotionBudget(62000, 200, lim) === 60000, "the budget never drops below the floor");
+  check(adaptMotionBudget(290000, 1, lim) === 300000, "...or rises past the cap");
+  check(
+    adaptMotionBudget(100000, 0, lim) === 115000,
+    "a frame too fast for the timer to see counts as headroom"
+  );
+  let b = 300000;
+  for (let i = 0; i < 40; i++) b = adaptMotionBudget(b, b / 15000, lim); // a 15k-px/ms device
+  check(
+    Math.abs(b - 120000) < 12000,
+    `a device converges near its target-time budget (${b} px ≈ 8ms)`
+  );
+  check(
+    GLOBE_RASTER_MOTION_MIN_PIXELS <= GLOBE_RASTER_MOTION_PIXELS &&
+      GLOBE_RASTER_MOTION_PIXELS <= GLOBE_RASTER_MOTION_MAX_PIXELS &&
+      GLOBE_RASTER_MOTION_MAX_PIXELS < GLOBE_RASTER_SETTLED_PIXELS,
+    "motion budgets are ordered: floor ≤ start ≤ cap < settled"
+  );
+}
 
 const frame = new Uint8Array(SIZE * SIZE * 4);
 renderAt(frame, { lng: 0, lat: 0 });

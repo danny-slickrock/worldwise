@@ -136,10 +136,19 @@ export function renderGlobeRaster({
   smooth = false,
 }) {
   const o = orientation(spin.lng, spin.lat);
+  const { cosP, sinP, cosL, sinL } = o;
   const invRadius = 1 / radius;
-  // Reused across every pixel: allocating a three-element array 700,000 times
-  // a frame is exactly the kind of garbage this loop cannot afford.
-  const rgb = smooth ? [0, 0, 0] : null;
+  // Everything per-pixel below is viewToWorld → vecToLonLat → texelCoords →
+  // sampleSmooth/texelIndex, INLINED. Those helpers stay exported (and tested)
+  // as the reference; this loop must agree with them exactly, and a test pins
+  // that. Inlining is what pays for bilinear sampling while the globe moves:
+  // the helpers return a fresh array per call, and three short-lived arrays
+  // per pixel at 200k pixels per frame is ~600k allocations a frame — which
+  // costs more than the extra three texel reads bilinear needs.
+  const lonScale = srcWidth / 360;
+  const vMax = srcHeight - 1;
+  const latScale = vMax / 180;
+  const rowBytes = srcWidth * 4;
 
   for (let py = 0; py < height; py++) {
     // View-space y grows up while canvas y grows down.
@@ -154,6 +163,9 @@ export function renderGlobeRaster({
       continue;
     }
     const halfWidth = Math.sqrt(1 - vy2) * radius;
+    // The parts of viewToWorld that depend only on the row.
+    const zRow = cosP * vy;
+    const frontRow = -sinP * vy;
 
     for (let px = 0; px < width; px++) {
       const dx = px + 0.5 - centerX;
@@ -168,16 +180,54 @@ export function renderGlobeRaster({
       // edge, which would make vz NaN and sample garbage.
       const vz = vz2 > 0 ? Math.sqrt(vz2) : 0;
 
-      const world = viewToWorld(vx, vy, vz, o);
-      const [lon, lat] = vecToLonLat(world);
+      // viewToWorld
+      let z = zRow + sinP * vz;
+      const front = cosP * vz + frontRow;
+      const wx = front * cosL - vx * sinL;
+      const wy = front * sinL + vx * cosL;
+      // vecToLonLat (clamped: asin(1.0000001) is NaN — a hole at the sub-viewer
+      // point, the one pixel a reader is most likely to be looking at)
+      if (z > 1) z = 1;
+      else if (z < -1) z = -1;
+      const lon = Math.atan2(wy, wx) * DEG;
+      const lat = Math.asin(z) * DEG;
+
+      // texelCoords — longitude wraps, latitude clamps.
+      let u = (lon + 180) * lonScale;
+      u = ((u % srcWidth) + srcWidth) % srcWidth;
+      let v = (90 - lat) * latScale;
+      if (v < 0) v = 0;
+      else if (v > vMax) v = vMax;
 
       if (smooth) {
-        sampleSmooth(src, lon, lat, srcWidth, srcHeight, rgb);
-        dest[di] = rgb[0];
-        dest[di + 1] = rgb[1];
-        dest[di + 2] = rgb[2];
+        // sampleSmooth: shift u to texel centres (see its note), wrap x.
+        const t = u - 0.5;
+        const x0 = Math.floor(t);
+        const y0 = Math.floor(v);
+        const fx = t - x0;
+        const fy = v - y0;
+        const xa = x0 < 0 ? x0 + srcWidth : x0;
+        const x1 = xa + 1 === srcWidth ? 0 : xa + 1;
+        const r0 = y0 * rowBytes;
+        const r1 = (y0 + 1 > vMax ? vMax : y0 + 1) * rowBytes;
+        const i00 = r0 + xa * 4;
+        const i10 = r0 + x1 * 4;
+        const i01 = r1 + xa * 4;
+        const i11 = r1 + x1 * 4;
+        const w00 = (1 - fx) * (1 - fy);
+        const w10 = fx * (1 - fy);
+        const w01 = (1 - fx) * fy;
+        const w11 = fx * fy;
+        dest[di] = src[i00] * w00 + src[i10] * w10 + src[i01] * w01 + src[i11] * w11;
+        dest[di + 1] =
+          src[i00 + 1] * w00 + src[i10 + 1] * w10 + src[i01 + 1] * w01 + src[i11 + 1] * w11;
+        dest[di + 2] =
+          src[i00 + 2] * w00 + src[i10 + 2] * w10 + src[i01 + 2] * w01 + src[i11 + 2] * w11;
       } else {
-        const si = texelIndex(lon, lat, srcWidth, srcHeight);
+        // texelIndex
+        let tx = Math.floor(u);
+        if (tx > srcWidth - 1) tx = srcWidth - 1;
+        const si = Math.round(v) * rowBytes + tx * 4;
         dest[di] = src[si];
         dest[di + 1] = src[si + 1];
         dest[di + 2] = src[si + 2];
@@ -186,4 +236,72 @@ export function renderGlobeRaster({
     }
   }
   return dest;
+}
+
+// The in-motion pixel budget, steered by how long the last motion frame took.
+//
+// Cost is linear in pixels, so target/measured is the right correction — but
+// it is DAMPED (at most -30% / +15% per frame) so one GC pause or a cold first
+// frame cannot slam the quality down, and the budget eases back up rather than
+// oscillating. A non-positive measurement (a timer too coarse to see the
+// frame) counts as "plenty of headroom".
+export function adaptMotionBudget(budget, measuredMs, { targetMs, min, max }) {
+  const ratio = measuredMs > 0 ? targetMs / measuredMs : Infinity;
+  const step = ratio < 0.7 ? 0.7 : ratio > 1.15 ? 1.15 : ratio;
+  const next = Math.round(budget * step);
+  return next < min ? min : next > max ? max : next;
+}
+
+// A mip chain: the source halved repeatedly with a 2x2 box filter, down to
+// `minWidth`. Level 0 is the source itself (not copied).
+//
+// Why: on a phone-sized globe the 4096-wide source puts several texels under
+// every screen pixel. Sampling it point-wise both SHIMMERS (each frame lands on
+// a different one of those texels) and is slow — the loop is bound by cache
+// misses into a 32 MB texture, not by arithmetic. A level whose texel density
+// matches the screen fixes both at once.
+//
+// Registration is unchanged by construction: every level is the whole
+// equirectangular Earth, so lon/lat → u/v is the same normalised mapping, and
+// a 2x2 box average puts each coarse texel's centre exactly between the four
+// fine ones it replaces.
+export function buildMipChain(src, width, height, minWidth = 256) {
+  const levels = [{ data: src, width, height }];
+  let cur = levels[0];
+  while (cur.width / 2 >= minWidth && cur.height % 2 === 0 && cur.width % 2 === 0) {
+    const w = cur.width / 2;
+    const h = cur.height / 2;
+    const out = new Uint8ClampedArray(w * h * 4);
+    const s = cur.data;
+    const row = cur.width * 4;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const i = (y * 2 * cur.width + x * 2) * 4;
+        const o = (y * w + x) * 4;
+        for (let c = 0; c < 4; c++) {
+          out[o + c] = (s[i + c] + s[i + 4 + c] + s[i + row + c] + s[i + row + 4 + c] + 2) >> 2;
+        }
+      }
+    }
+    cur = { data: out, width: w, height: h };
+    levels.push(cur);
+  }
+  return levels;
+}
+
+// Which level of a chain to sample for a globe of `radius` destination pixels.
+//
+// The equator is 2πr pixels long on screen and `width` texels long in a level,
+// so pick the coarsest level that still has at least one texel per pixel
+// (times `oversample`). Never coarser than that: a texel per pixel is the
+// point past which a coarser level reads as soft, which is the bug this
+// whole change is about.
+export function mipLevelFor(levels, radius, oversample = 1) {
+  const need = 2 * Math.PI * radius * oversample;
+  let pick = 0;
+  for (let i = 1; i < levels.length; i++) {
+    if (levels[i].width >= need) pick = i;
+    else break;
+  }
+  return pick;
 }

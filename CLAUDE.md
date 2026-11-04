@@ -508,14 +508,23 @@ Four things to know before touching it:
   zoomed, and a square photograph leaves two visible seams.
 - **Countries draw `fill="transparent"`, not `fill="none"`,** when the raster is up. A none-filled
   path is not hit-testable, and every country has to stay tappable over the imagery.
-- **Draft while moving, full size when settled**, budgeted in PIXELS rather than edge length —
-  container aspect ratios vary a lot and it is the pixel count that costs. ~2.8ms for a 60k-pixel
-  nearest-neighbour draft against ~36ms for a 700k-pixel bilinear settled frame.
-- **The settled frame samples bilinearly; the draft does not.** That is the whole reason a
-  4096-wide source is worth its 800 KB: with nearest-neighbour, zooming in only shows bigger
-  rectangles. `texelCoords` returns EDGE space (`floor` = "which texel contains this longitude"),
-  so the smooth sampler shifts by half a texel to reach centres — without that the two paths
-  disagree and the imagery sits half a texel off the borders drawn on it.
+- **Motion frames are adaptive and bilinear; settled frames are full size.** The motion budget
+  (`GLOBE_RASTER_MOTION_*` in constants.js) steers itself toward ~8ms a redraw via the pure
+  `adaptMotionBudget()`, between a 60k floor (the old fixed draft) and a 300k cap, shared by every
+  globe on the page because it describes the device. Desktop settles near 250k; a phone near
+  60-100k. Below that, phones are limited by the SVG borders' own per-frame cost, not the raster —
+  measured: an old-build low-end phone redraws ~32/s at 60k nearest too. Going meaningfully further
+  on a phone means reprojecting on the GPU (WebGL), not a bigger CPU budget.
+- **The render loop is hand-inlined and allocates nothing per pixel.** `viewToWorld`/`vecToLonLat`/
+  `sampleSmooth`/`texelIndex` stay exported as the reference, and a test re-derives every pixel of
+  a rendered frame through them — inlined code drifts, and drift is imagery sliding off the borders.
+- **Sample from a mip chain.** `buildMipChain()` box-halves the source once at load and
+  `mipLevelFor()` picks the coarsest level with at least a texel per screen pixel. Pointwise
+  sampling a 4096-wide source on a small globe shimmers in motion and is cache-miss-bound.
+- **Bilinear is why a 4096-wide source is worth its 800 KB**: with nearest-neighbour, zooming in
+  only shows bigger rectangles. `texelCoords` returns EDGE space (`floor` = "which texel contains
+  this longitude"), so the smooth sampler shifts by half a texel to reach centres — without that the
+  imagery sits half a texel off the borders drawn on it.
 - **WEB ONLY, deliberately.** Reprojecting needs a writable pixel buffer and React Native has no
   canvas, so on native `terrain` falls back to the per-country classified fills — a real map rather
   than a broken one. Doing better means a GL surface.
