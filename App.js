@@ -55,6 +55,7 @@ import {
   migrateLocalPracticePrefsToCloud,
 } from "./src/storage/cloudPracticePrefs";
 import PracticePrefsScreen from "./src/screens/PracticePrefsScreen";
+import SettingsScreen from "./src/screens/SettingsScreen";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
 import { hasTiers } from "./src/data/difficulties";
 import { isProMode } from "./src/game/entitlements";
@@ -399,7 +400,7 @@ function AppShell({ osScheme }) {
   const startTieredRound = (mode, tier) =>
     setNav((n) =>
       navigate(
-        replace(n, { name: "home" }),
+        replace(n, { name: "play" }),
         // A marathon is its own route and its own screen: a timed sitting is
         // not an 8-question round with a bigger number, and QuizScreen has no
         // concept of a clock that ends the whole game.
@@ -603,10 +604,23 @@ function AppShell({ osScheme }) {
       case "leaderboard":
         return <LeaderboardScreen onExit={backHandler} />;
 
-      case "profile":
+      case "account":
         return (
           <ProfileScreen
             progress={progress}
+            onOpenAchievements={() => go({ name: "achievements" })}
+            onOpenLeaderboard={() => go({ name: "leaderboard" })}
+            onOpenReview={() => go({ name: "review" })}
+          />
+        );
+
+      case "settings":
+        return (
+          <SettingsScreen
+            settings={settings}
+            onChangeColorScheme={setColorScheme}
+            onChangeSound={(soundEnabled) => setSettings((s) => ({ ...s, soundEnabled }))}
+            onChangeBasemap={setBasemap}
             interests={interests}
             practicePrefs={practicePrefs}
             onOpenInterests={() => {
@@ -614,11 +628,6 @@ function AppShell({ osScheme }) {
               go({ name: "interests" });
             }}
             onOpenPracticePrefs={() => go({ name: "practicePrefs" })}
-            onOpenAchievements={() => go({ name: "achievements" })}
-            onOpenLeaderboard={() => go({ name: "leaderboard" })}
-            onOpenReview={() => go({ name: "review" })}
-            colorScheme={settings.colorScheme}
-            onChangeColorScheme={setColorScheme}
           />
         );
 
@@ -628,10 +637,7 @@ function AppShell({ osScheme }) {
             progress={progress}
             onPlay={openGame}
             onOpenReview={() => go({ name: "review" })}
-            onOpenCountry={openCountry}
-            onOpenExplore={() => go({ name: "explore" })}
-            basemap={settings.basemap}
-            onChangeBasemap={setBasemap}
+            onOpenLearningPaths={() => go({ name: "learn", pathId: null })}
             streakGoal={practicePrefs.streakGoal}
           />
         );

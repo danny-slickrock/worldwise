@@ -1,5 +1,6 @@
-// Profile tab. Signed out it pitches an account; signed in it shows who you are
-// and what the cloud has for you.
+// The Account tab (was Profile). Signed out it pitches an account; signed in it
+// shows who you are, your record, and where you stand. How the app BEHAVES —
+// appearance, sound, map style, interests, practice — moved to Settings.
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Image, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
@@ -12,23 +13,15 @@ import { fetchProgress, fetchRoundResults } from "../storage/cloudProgress";
 import { getSyncState, subscribeSyncState } from "../game/syncStore";
 import { describeSyncState } from "../game/syncStatus";
 import { streakStatus, dayKey } from "../game/progress";
-import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
 import { computeAchievements } from "../game/achievementPolicy";
 import { reviewSummary } from "../game/reviewPolicy";
 import SignInScreen from "./SignInScreen";
-import AppearanceSetting from "../components/AppearanceSetting";
 
 export default function ProfileScreen({
   progress,
-  interests,
-  practicePrefs,
-  onOpenInterests,
-  onOpenPracticePrefs,
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
-  colorScheme,
-  onChangeColorScheme,
 }) {
   const { user, loading, signOut } = useAuth();
 
@@ -38,29 +31,16 @@ export default function ProfileScreen({
   // platform spinner borrowed from another product.
   if (loading) return <BrandLoader label="Finding your place" />;
 
-  const appearance = onChangeColorScheme ? (
-    <AppearanceSetting
-      value={colorScheme}
-      onChange={onChangeColorScheme}
-      style={styles.appearance}
-    />
-  ) : null;
-
-  if (!user) return <SignInScreen footer={appearance} />;
+  if (!user) return <SignInScreen />;
 
   return (
     <SignedIn
       user={user}
       localProgress={progress}
-      interests={interests}
-      practicePrefs={practicePrefs}
       onSignOut={signOut}
-      onOpenInterests={onOpenInterests}
-      onOpenPracticePrefs={onOpenPracticePrefs}
       onOpenAchievements={onOpenAchievements}
       onOpenLeaderboard={onOpenLeaderboard}
       onOpenReview={onOpenReview}
-      appearance={appearance}
     />
   );
 }
@@ -68,15 +48,10 @@ export default function ProfileScreen({
 function SignedIn({
   user,
   localProgress,
-  interests = [],
-  practicePrefs,
   onSignOut,
-  onOpenInterests,
-  onOpenPracticePrefs,
   onOpenAchievements,
   onOpenLeaderboard,
   onOpenReview,
-  appearance = null,
 }) {
   // Cloud is the source of truth once signed in; local is the offline cache we
   // show until it answers, so the numbers never flash through zero.
@@ -130,7 +105,7 @@ function SignedIn({
     >
       <Container>
         <FadeInUp>
-          <Text style={styles.kicker}>Your profile</Text>
+          <Text style={styles.kicker}>Your account</Text>
 
           <View style={styles.identity}>
             <View style={styles.avatarDisc}>
@@ -170,44 +145,16 @@ function SignedIn({
             )}
           </View>
 
-          {onOpenInterests && (
-            <>
-              <Text style={styles.section}>Preferences</Text>
-              <Pressable onPress={onOpenInterests} style={styles.interestsRow} hitSlop={4}>
-                <View style={styles.interestsBody}>
-                  <Text style={styles.interestsLabel}>Interests</Text>
-                  <Text style={styles.interestsValue}>
-                    {interests.length ? `${interests.length} selected` : "Not set — tap to choose"}
-                  </Text>
-                </View>
-                <Text style={styles.interestsChevron}>›</Text>
-              </Pressable>
-            </>
-          )}
-
-          {/* Practice preferences (M2.8 step 3) — regions/difficulty/streak
-              goal, sitting beside Interests because both live on this one
-              "preferences" surface, but they're separate systems: Interests
-              is what you're curious about, this is how you want to practice. */}
-          {onOpenPracticePrefs && (
-            <Pressable onPress={onOpenPracticePrefs} style={styles.interestsRow} hitSlop={4}>
-              <View style={styles.interestsBody}>
-                <Text style={styles.interestsLabel}>Practice</Text>
-                <Text style={styles.interestsValue}>{summarizePracticePrefs(practicePrefs)}</Text>
-              </View>
-              <Text style={styles.interestsChevron}>›</Text>
-            </Pressable>
-          )}
-
+          <Text style={styles.section}>Where you stand</Text>
           {onOpenAchievements && (
-            <Pressable onPress={onOpenAchievements} style={styles.interestsRow} hitSlop={4}>
-              <View style={styles.interestsBody}>
-                <Text style={styles.interestsLabel}>Achievements</Text>
-                <Text style={styles.interestsValue}>
+            <Pressable onPress={onOpenAchievements} style={styles.navRow} hitSlop={4}>
+              <View style={styles.navRowBody}>
+                <Text style={styles.navRowLabel}>Achievements</Text>
+                <Text style={styles.navRowValue}>
                   {unlockedCount} of {badges.length} unlocked
                 </Text>
               </View>
-              <Text style={styles.interestsChevron}>›</Text>
+              <Text style={styles.navRowChevron}>›</Text>
             </Pressable>
           )}
 
@@ -216,12 +163,12 @@ function SignedIn({
               M2.6 step 2), which this row doesn't need in order to just open
               the screen that does it. */}
           {onOpenLeaderboard && (
-            <Pressable onPress={onOpenLeaderboard} style={styles.interestsRow} hitSlop={4}>
-              <View style={styles.interestsBody}>
-                <Text style={styles.interestsLabel}>Leaderboard</Text>
-                <Text style={styles.interestsValue}>See where your XP ranks</Text>
+            <Pressable onPress={onOpenLeaderboard} style={styles.navRow} hitSlop={4}>
+              <View style={styles.navRowBody}>
+                <Text style={styles.navRowLabel}>Leaderboard</Text>
+                <Text style={styles.navRowValue}>See where your XP ranks</Text>
               </View>
-              <Text style={styles.interestsChevron}>›</Text>
+              <Text style={styles.navRowChevron}>›</Text>
             </Pressable>
           )}
 
@@ -230,10 +177,10 @@ function SignedIn({
               questions: that one says how you are doing, this says what to go
               and learn. Reuses roundResults rather than fetching again. */}
           {onOpenReview && (
-            <Pressable onPress={onOpenReview} style={styles.interestsRow} hitSlop={4}>
-              <View style={styles.interestsBody}>
-                <Text style={styles.interestsLabel}>Review</Text>
-                <Text style={styles.interestsValue}>
+            <Pressable onPress={onOpenReview} style={styles.navRow} hitSlop={4}>
+              <View style={styles.navRowBody}>
+                <Text style={styles.navRowLabel}>Review</Text>
+                <Text style={styles.navRowValue}>
                   {reviewState.state === "empty"
                     ? "Play a few rounds to build this"
                     : reviewState.state === "clear"
@@ -241,11 +188,9 @@ function SignedIn({
                       : `${reviewState.weak} places to revisit`}
                 </Text>
               </View>
-              <Text style={styles.interestsChevron}>›</Text>
+              <Text style={styles.navRowChevron}>›</Text>
             </Pressable>
           )}
-
-          {appearance}
 
           <Pressable onPress={onSignOut} style={styles.signOutBtn}>
             <Text style={styles.signOutText}>Sign out</Text>
@@ -294,20 +239,6 @@ function SyncNotice({ state }) {
 // differs from "unset" — an empty focus list, the default difficulty, and no
 // streak goal all collapse to the same "tap to choose" invitation the
 // Interests row already uses for its own empty state.
-function summarizePracticePrefs(prefs) {
-  if (!prefs) return "Not set — tap to choose";
-  const parts = [];
-  if (prefs.focusRegions?.length) {
-    parts.push(`${prefs.focusRegions.length} region${prefs.focusRegions.length === 1 ? "" : "s"}`);
-  }
-  if (prefs.difficulty && prefs.difficulty !== DEFAULT_DIFFICULTY) {
-    const label = DIFFICULTIES.find((d) => d.key === prefs.difficulty)?.label;
-    if (label) parts.push(label);
-  }
-  if (prefs.streakGoal) parts.push(`${prefs.streakGoal}-day goal`);
-  return parts.length ? parts.join(" · ") : "Not set — tap to choose";
-}
-
 function Stat({ label, value, animated = false }) {
   return (
     <View style={styles.stat}>
@@ -374,7 +305,7 @@ const styles = themed(() =>
     syncText: { ...type.caption, fontSize: 13 },
     syncDetail: { ...type.caption, fontSize: 12, color: colors.textMuted, marginTop: spacing(1) },
 
-    interestsRow: {
+    navRow: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
@@ -384,10 +315,10 @@ const styles = themed(() =>
       marginBottom: spacing(7),
       ...elevation(1),
     },
-    interestsBody: { flex: 1 },
-    interestsLabel: { ...type.body, color: colors.brand },
-    interestsValue: { ...type.caption, fontSize: 13, marginTop: 2 },
-    interestsChevron: { fontSize: 20, color: colors.link, marginLeft: spacing(2) },
+    navRowBody: { flex: 1 },
+    navRowLabel: { ...type.body, color: colors.brand },
+    navRowValue: { ...type.caption, fontSize: 13, marginTop: 2 },
+    navRowChevron: { fontSize: 20, color: colors.link, marginLeft: spacing(2) },
 
     signOutBtn: {
       backgroundColor: colors.surfaceRaised,
@@ -405,6 +336,5 @@ const styles = themed(() =>
     },
 
     footer: { ...type.caption, textAlign: "center", marginTop: spacing(4), fontSize: 12 },
-    appearance: { marginBottom: spacing(7) },
   })
 );

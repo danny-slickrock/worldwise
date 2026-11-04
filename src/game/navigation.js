@@ -30,22 +30,24 @@ import { tiersFor, normalizeTier } from "../data/difficulties";
 // and top→bottom in the desktop rail — one source of truth for both, so the
 // two chrome variants can never drift apart.
 //
-// Home is play (daily + the game grid), Learn is the mastery paths, Explore is
-// the globe and the country index. Before this, Learn and Explore were tiles
-// buried inside Home's grid: two taps and a full-screen takeover away, with no
-// way back except unwinding. Promoting them is the point of the change.
+// Play is the game hub (and, one push down, the learning paths); Explore is the
+// globe and the country index; Settings is how the app behaves on this device;
+// Account is who you are and where you stand. Learning paths moved under Play
+// rather than keeping a tab: a path is structured play, and the footer has
+// room for four destinations, not five.
 // Glyphs are monoline, matching the kit's iconography (graticule, compass
 // point, plotted point) — never emoji, which arrive full-colour and drag a
-// second, un-branded palette onto the screen.
+// second, un-branded palette onto the screen. The gear carries U+FE0E, the
+// text-presentation selector, for exactly that reason.
 export const TABS = [
-  { key: "home", label: "Home", icon: "◈" },
-  { key: "learn", label: "Learn", icon: "◎" },
+  { key: "play", label: "Play", icon: "◈" },
   { key: "explore", label: "Explore", icon: "⊕" },
-  { key: "profile", label: "Profile", icon: "◍" },
+  { key: "settings", label: "Settings", icon: "⚙\uFE0E" },
+  { key: "account", label: "Account", icon: "◍" },
 ];
 
 export const TAB_KEYS = TABS.map((t) => t.key);
-export const DEFAULT_TAB = "home";
+export const DEFAULT_TAB = "play";
 
 // Route table. `tab` is the owning tab — it only decides where a *deep link*
 // lands (and therefore what sits underneath it in the stack); a route pushed
@@ -58,34 +60,34 @@ export const DEFAULT_TAB = "home";
 // persistent nav, which is the other half of the fix — a country page used to
 // be a full takeover with no tabs at all.
 export const ROUTES = {
-  home: { tab: "home", root: true, chrome: true },
-  learn: { tab: "learn", root: true, chrome: true },
+  play: { tab: "play", root: true, chrome: true },
   explore: { tab: "explore", root: true, chrome: true },
-  profile: { tab: "profile", root: true, chrome: true },
+  settings: { tab: "settings", root: true, chrome: true },
+  account: { tab: "account", root: true, chrome: true },
+  // Learning paths: no longer a tab, pushed from Play. Pushed (not a root) so
+  // Back from a path returns to the game hub, and so a path opened from the
+  // globe's region label stays inside Explore's stack.
+  learn: { tab: "play", root: false, chrome: true },
   country: { tab: "explore", root: false, chrome: true },
   countryIndex: { tab: "explore", root: false, chrome: true },
-  interests: { tab: "profile", root: false, chrome: true },
-  achievements: { tab: "profile", root: false, chrome: true },
-  // M2.8 step 3: the practice-preferences editor (focus regions/difficulty/
-  // streak goal). Owned by Profile, same shape as Interests — a settings
-  // surface reached from a Profile row, not a tab root.
-  practicePrefs: { tab: "profile", root: false, chrome: true },
-  // The leaderboard (M2.6 step 4). Owned by Profile like Achievements — both
-  // are about where you stand, one against your own history, one against
-  // everyone else's.
-  leaderboard: { tab: "profile", root: false, chrome: true },
-  // Review (M2.12 step 9). Owned by the Profile tab — it is about YOUR
-  // history, like Achievements — but reachable from Home too, which the
+  // Interests and practice preferences are SETTINGS — how the app behaves for
+  // you — so they live under Settings rather than Account.
+  interests: { tab: "settings", root: false, chrome: true },
+  practicePrefs: { tab: "settings", root: false, chrome: true },
+  // Achievements, the leaderboard and Review are about where YOU stand, so
+  // they live under Account. Review is reachable from Play too, which the
   // per-tab stacks handle without a returnTo field.
-  review: { tab: "profile", root: false, chrome: true },
+  achievements: { tab: "account", root: false, chrome: true },
+  leaderboard: { tab: "account", root: false, chrome: true },
+  review: { tab: "account", root: false, chrome: true },
   // The pre-game difficulty menu (M2.12 step 2). Keeps its chrome, unlike the
   // quiz: you are still choosing, not yet playing, so wandering off is a
   // perfectly reasonable thing to want to do.
-  gameSetup: { tab: "home", root: false, chrome: true },
-  quiz: { tab: "home", root: false, chrome: false },
+  gameSetup: { tab: "play", root: false, chrome: true },
+  quiz: { tab: "play", root: false, chrome: false },
   // The pro marathons (M2.12 step 7). Focus mode like the quiz: a timed
   // sitting with a clock running should have exactly one way out.
-  marathon: { tab: "home", root: false, chrome: false },
+  marathon: { tab: "play", root: false, chrome: false },
 };
 
 // A stack can't grow forever. Bouncing country → map → country → map is a
@@ -104,14 +106,14 @@ export function isTab(key) {
 // to know which region comes first.
 export function rootRoute(tab) {
   switch (tab) {
-    case "learn":
-      return { name: "learn", pathId: null };
     case "explore":
       return { name: "explore", focusCountry: null };
-    case "profile":
-      return { name: "profile" };
+    case "settings":
+      return { name: "settings" };
+    case "account":
+      return { name: "account" };
     default:
-      return { name: "home" };
+      return { name: "play" };
   }
 }
 
@@ -168,12 +170,9 @@ function capped(stack) {
   return [stack[0], ...stack.slice(stack.length - (MAX_STACK_DEPTH - 1))];
 }
 
-// Pushing a tab ROOT is a tab switch, not a push. This matters because the
-// same call sites are reached both ways: the World Map's region pills open a
-// learning path (`navigate`), and so does the Learn tab (`switchTab`). Routing
-// both through one rule means a "learn" route can never end up stacked on top
-// of the Learn tab's own root, which would render the identical screen twice
-// with a Back button between them.
+// Pushing a tab ROOT is a tab switch, not a push. Routing both through one rule
+// means a root can never end up stacked on top of its own tab, which would
+// render the identical screen twice with a Back button between them.
 export function navigate(nav, route) {
   if (!route || !ROUTES[route.name]) return nav;
   if (ROUTES[route.name].root) return switchTab(nav, ROUTES[route.name].tab, route);
@@ -224,14 +223,16 @@ export function switchTab(nav, tab, route = null) {
 export function routeToPath(route) {
   if (!route) return "/";
   switch (route.name) {
-    case "home":
+    case "play":
       return "/";
+    case "settings":
+      return "/settings";
+    case "account":
+      return "/account";
     case "learn":
       return route.pathId ? `/learn/${route.pathId}` : "/learn";
     case "explore":
       return route.focusCountry ? `/explore/${route.focusCountry}` : "/explore";
-    case "profile":
-      return "/profile";
     case "country":
       return `/country/${route.code}`;
     case "countryIndex":
@@ -292,15 +293,21 @@ export function pathToRoute(path) {
     query[decodeURIComponent(k)] = decodeURIComponent(v);
   }
 
-  if (segments.length === 0) return { name: "home" };
+  if (segments.length === 0) return { name: "play" };
   const [head, second] = segments;
   switch (head) {
     case "learn":
       return { name: "learn", pathId: second ?? null };
     case "explore":
       return { name: "explore", focusCountry: second ?? null };
+    case "settings":
+      return { name: "settings" };
+    case "account":
+    // `/profile` is the pre-restructure URL for the same screen; links to it
+    // already exist in the wild (bookmarks, shared sign-in pages), so it keeps
+    // resolving rather than 404-ing to Play.
     case "profile":
-      return { name: "profile" };
+      return { name: "account" };
     case "countries":
       return { name: "countryIndex" };
     case "interests":

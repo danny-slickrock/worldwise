@@ -107,8 +107,9 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
 
   return (
     <Animated.View style={[styles.wrap, !onExit && styles.wrapNoBack, screenStyle]}>
-      {/* Only when there's something underneath. As the Learn tab's root this
-          screen is usually the bottom of its stack. */}
+      {/* Only when there's something underneath — always, now that paths are
+          pushed from Play rather than being a tab root; kept conditional so a
+          stack that somehow starts here still renders cleanly. */}
       {onExit && (
         <Pressable onPress={handleExit} hitSlop={12} style={styles.back}>
           <Text style={styles.backText}>‹ Back</Text>
@@ -204,7 +205,7 @@ const styles = themed(() =>
     // Transparent: AppChrome owns the page ground (the kit's paper fibre).
     wrap: { flex: 1, backgroundColor: "transparent" },
     back: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(2) },
-    // Back carries the top inset; at the Learn tab's root it isn't drawn, so the
+    // Back carries the top inset; when it isn't drawn, the
     // inset moves to the wrapper instead of vanishing with it.
     wrapNoBack: { paddingTop: spacing(8) },
     backText: { ...type.label, fontSize: 14, color: colors.link },

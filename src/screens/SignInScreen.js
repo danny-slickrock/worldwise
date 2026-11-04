@@ -1,4 +1,4 @@
-// Signed-out half of the Profile tab. Sign-in is a means, not the destination —
+// Signed-out half of the Account tab. Sign-in is a means, not the destination —
 // so the pitch is what an account gets you, not a wall in front of the games.
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable, TextInput, ScrollView } from "react-native";
@@ -9,7 +9,7 @@ import Wordmark from "../components/Wordmark";
 import SpinningMark from "../components/SpinningMark";
 import { useAuth } from "../auth/AuthProvider";
 
-export default function SignInScreen({ footer = null }) {
+export default function SignInScreen() {
   const { signInWithEmail, signInWithGoogle } = useAuth();
   const [email, setEmail] = useState("");
   // 'idle' | 'sending' | 'sent' | 'error' — one state, so the button, the
@@ -61,7 +61,7 @@ export default function SignInScreen({ footer = null }) {
           {/* The one screen a signed-out visitor may see first, so it is the
               one screen that leads with the lockup rather than with a kicker. */}
           <Wordmark size={36} style={styles.lockup} />
-          <Text style={styles.kicker}>Your profile</Text>
+          <Text style={styles.kicker}>Your account</Text>
           <Text style={styles.title}>Take your progress with you</Text>
           <Text style={styles.tagline}>
             Sign in to keep your XP, streak, and best round safe — on every device you play from.
@@ -135,7 +135,6 @@ export default function SignInScreen({ footer = null }) {
           <Text style={styles.footer}>
             No password to forget. We only use your email to sign you in.
           </Text>
-          {footer ? <View style={styles.extra}>{footer}</View> : null}
         </FadeInUp>
       </Container>
     </ScrollView>
@@ -183,7 +182,6 @@ const styles = themed(() =>
     },
     primaryBtnText: { ...type.body, color: onFill(colors.brand) },
     btnDisabled: { opacity: 0.5 },
-    extra: { marginTop: spacing(10) },
 
     dividerRow: {
       flexDirection: "row",

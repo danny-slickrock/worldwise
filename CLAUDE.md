@@ -316,8 +316,10 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
                            #   TabBar↔NavRail on layout.js's breakpoint. chrome={false} = focus mode
   components/TabBar.js      # Bottom tabs (mobile) — takes tabs as data, so it's extensible
   components/NavRail.js     # Left rail (desktop) — same data contract as TabBar, icons-only when narrow
-  screens/HomeScreen.js    # Game hub
-  screens/ProfileScreen.js # Signed-in identity + synced stats
+  screens/HomeScreen.js    # The Play tab: the game hub
+  screens/SettingsScreen.js # The Settings tab: appearance, sound, map style, interests, practice
+  components/SegmentedSetting.js # One labelled segmented row — every Settings choice
+  screens/ProfileScreen.js # The Account tab: signed-in identity, synced stats, where you stand
   screens/SignInScreen.js  # Magic link + Continue with Google
   screens/InterestsScreen.js # M2.3.6 step 1: "what are you curious about?" multi-select + Skip
   screens/PracticePrefsScreen.js # M2.8 step 3: "how do you want to practice?" — focus-region chips,
@@ -449,8 +451,10 @@ preference to shorten.
   lag a frame behind the tap. Each tab owns its own pill instead; they cross-fade, and the tapped tab
   responds on the same frame.
 
-**Navigation is a real stack, per tab.** `src/game/navigation.js` holds four tabs (Home · Learn ·
-Explore · Profile), each with its own route stack; everything else is pushed onto the active one.
+**Navigation is a real stack, per tab.** `src/game/navigation.js` holds four tabs (Play · Explore ·
+Settings · Account), each with its own route stack; everything else is pushed onto the active one.
+Learning paths are a route PUSHED from Play (not a tab); interests/practice live under Settings;
+achievements/leaderboard/review under Account. `/profile` still resolves, to Account.
 Switching tabs preserves the others, so a detour costs nothing. This replaced a hand-rolled
 `returnTo`/`returnPathId` field that could only ever describe one hop back — which is why
 Learning Path → Country → Play → exit used to land on Home. Three rules worth keeping:

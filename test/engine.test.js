@@ -359,6 +359,7 @@ import {
 import {
   TABS,
   TAB_KEYS,
+  isTab,
   ROUTES,
   MAX_STACK_DEPTH,
   initialNav,
@@ -2924,7 +2925,11 @@ check(
 console.log("Navigation stack (nav rework)");
 
 const nav0 = initialNav();
-check(nav0.tab === "home", "a fresh nav starts on Home");
+check(nav0.tab === "play", "a fresh nav starts on Play");
+check(
+  TABS.map((t) => t.label).join(" · ") === "Play · Explore · Settings · Account",
+  "the footer is Play · Explore · Settings · Account, in that order"
+);
 check(
   TAB_KEYS.every((t) => nav0.stacks[t].length === 1),
   "every tab starts at its own root"
@@ -2934,26 +2939,43 @@ check(
   TABS.every((t) => ROUTES[t.key] && ROUTES[t.key].root),
   "every tab has a root route"
 );
+check(
+  TABS.every((t) => !/\p{Extended_Pictographic}/u.test(t.icon) || t.icon.includes("︎")),
+  "tab glyphs are monoline text, never full-colour emoji"
+);
+
+// Learning paths live under Play now: pushed, not a tab.
+check(!isTab("learn"), "Learn is no longer a tab");
+check(ROUTES.learn.tab === "play" && !ROUTES.learn.root, "...it is a route pushed from Play");
+check(
+  ROUTES.interests.tab === "settings" && ROUTES.practicePrefs.tab === "settings",
+  "interests and practice preferences live under Settings"
+);
+check(
+  ["achievements", "leaderboard", "review"].every((r) => ROUTES[r].tab === "account"),
+  "achievements, leaderboard and review live under Account"
+);
 
 // The bug the old returnTo/returnPathId could not express: more than one hop.
-const deep = navigate(navigate(switchTab(nav0, "learn"), { name: "country", code: "BRA" }), {
-  name: "quiz",
-  mode: "flag",
-  difficulty: "all",
-  timed: false,
-});
-check(stackDepth(deep) === 3, "learn → country → quiz is three deep in one stack");
+const deep = navigate(
+  navigate(navigate(nav0, { name: "learn", pathId: "africa" }), { name: "country", code: "BRA" }),
+  { name: "quiz", mode: "flag", difficulty: "all", timed: false }
+);
+check(stackDepth(deep) === 4, "play → learn → country → quiz is four deep in one stack");
 check(currentRoute(deep).name === "quiz", "the quiz is on top");
 check(currentRoute(back(deep)).name === "country", "back from the quiz lands on the country page");
 check(
   currentRoute(back(back(deep))).name === "learn",
-  "back again lands on the learning path, not Home"
+  "back again lands on the learning path, not the game hub"
 );
-check(!canGoBack(back(back(deep))), "and that's the root, so Back stops being offered");
+check(
+  currentRoute(back(back(back(deep)))).name === "play" && !canGoBack(back(back(back(deep)))),
+  "and once more is Play's root, where Back stops being offered"
+);
 
 // Tabs keep their own stacks. This is what makes a detour non-destructive.
-const detoured = switchTab(switchTab(deep, "explore"), "learn");
-check(stackDepth(detoured) === 3, "leaving a tab and coming back preserves its stack");
+const detoured = switchTab(switchTab(deep, "explore"), "play");
+check(stackDepth(detoured) === 4, "leaving a tab and coming back preserves its stack");
 check(currentRoute(detoured).name === "quiz", "...including exactly where you were");
 check(
   stackDepth(switchTab(deep, "explore")) === 1,
@@ -2962,22 +2984,24 @@ check(
 
 // Re-selecting the active tab is the standard "get me out of here".
 check(
-  stackDepth(switchTab(deep, "learn")) === 1,
+  stackDepth(switchTab(deep, "play")) === 1,
   "re-selecting the active tab resets it to its root"
 );
 
 // A root route can never stack on itself.
-const learnTwice = navigate(switchTab(nav0, "learn"), { name: "learn", pathId: "africa" });
+const accountTwice = navigate(switchTab(nav0, "account"), { name: "account" });
 check(
-  learnTwice.tab === "learn" && stackDepth(learnTwice) === 1,
+  accountTwice.tab === "account" && stackDepth(accountTwice) === 1,
   "navigating to a tab root switches instead of pushing"
 );
-check(currentRoute(learnTwice).pathId === "africa", "...while still carrying its params");
 
-// Cross-tab jump: the World Map's region pill opens a learning path.
+// The globe's region label opens a learning path — pushed inside Explore.
 const fromMap = navigate(switchTab(nav0, "explore"), { name: "learn", pathId: "europe" });
-check(fromMap.tab === "learn", "opening a learning path from Explore switches tabs");
-check(fromMap.stacks.explore.length === 1, "and leaves Explore's stack alone");
+check(
+  fromMap.tab === "explore" && currentRoute(fromMap).name === "learn",
+  "a path opened from the globe stays in Explore's stack"
+);
+check(currentRoute(back(fromMap)).name === "explore", "...so Back returns to the globe");
 
 check(
   currentRoute(navigate(deep, currentRoute(deep))) === currentRoute(deep),
@@ -2992,7 +3016,7 @@ const replaced = replace(deep, {
   timed: false,
   attempt: 1,
 });
-check(stackDepth(replaced) === 3, "replace swaps the top without deepening the stack");
+check(stackDepth(replaced) === 4, "replace swaps the top without deepening the stack");
 check(currentRoute(replaced).attempt === 1, "...and the new params take effect");
 
 let grown = switchTab(nav0, "explore");
@@ -3010,7 +3034,13 @@ check(!showsChrome(deep), "a quiz in progress is focus mode — no tab bar, no r
 
 console.log("Navigation URLs");
 
-check(routeToPath({ name: "home" }) === "/", "home is /");
+check(routeToPath({ name: "play" }) === "/", "Play is /");
+check(routeToPath({ name: "settings" }) === "/settings", "Settings is /settings");
+check(routeToPath({ name: "account" }) === "/account", "Account is /account");
+check(
+  pathToRoute("/profile").name === "account",
+  "the old /profile URL still resolves — to Account"
+);
 check(
   routeToPath({ name: "learn", pathId: "africa" }) === "/learn/africa",
   "a learning path carries its region"
@@ -3061,10 +3091,11 @@ check(
 
 // Round-trip: every route the app can reach must survive path serialization.
 const roundTrips = [
-  { name: "home" },
+  { name: "play" },
+  { name: "settings" },
+  { name: "account" },
   { name: "learn", pathId: "asia" },
   { name: "explore", focusCountry: "FRA" },
-  { name: "profile" },
   { name: "country", code: "BRA" },
   { name: "countryIndex" },
   { name: "interests" },
@@ -3085,9 +3116,9 @@ check(
   "every route in the table has URL coverage — a new route without a path is a visible gap"
 );
 
-check(pathToRoute("/nope") === null, "an unknown path is null, not a silent redirect to Home");
+check(pathToRoute("/nope") === null, "an unknown path is null, not a silent redirect to Play");
 check(pathToRoute("/country") === null, "a country page with no code is not a route");
-check(pathToRoute("").name === "home", "the empty path is Home");
+check(pathToRoute("").name === "play", "the empty path is Play");
 check(pathToRoute("/learn/").pathId === null, "a trailing slash doesn't invent an empty region id");
 
 // A deep link needs something underneath it, or Back strands the visitor.
@@ -3098,19 +3129,21 @@ check(
   "...with its tab root underneath, so Back works"
 );
 check(navToPath(linked) === "/country/BRA", "and the URL it renders back is the one we arrived on");
+const linkedPath = navFromPath("/learn/africa");
 check(
-  navToPath(navFromPath("/learn/africa")) === "/learn/africa",
-  "a deep-linked root route doesn't double up"
+  linkedPath.tab === "play" && stackDepth(linkedPath) === 2,
+  "a deep-linked learning path opens under Play, with the hub beneath it"
 );
-check(navToPath(navFromPath("/garbage")) === "/", "an unparseable URL falls back to Home");
+check(navToPath(linkedPath) === "/learn/africa", "...and renders its own URL back");
+check(navToPath(navFromPath("/garbage")) === "/", "an unparseable URL falls back to Play");
 
 // Browser Back must cost no more state than in-app Back.
 const beforeBack = navigate(switchTab(deep, "explore"), { name: "country", code: "PER" });
 const afterBack = syncToPath(beforeBack, "/explore");
 check(currentRoute(afterBack).name === "explore", "browser Back pops to the route underneath");
-check(afterBack.stacks.learn.length === 3, "...and does NOT flatten the other tabs' stacks");
+check(afterBack.stacks.play.length === 4, "...and does NOT flatten the other tabs' stacks");
 check(
-  navToPath(syncToPath(nav0, "/profile")) === "/profile",
+  navToPath(syncToPath(nav0, "/account")) === "/account",
   "an edited URL navigates rather than being ignored"
 );
 check(syncToPath(nav0, "/") === nav0, "syncing to the path we're already on is a no-op");

@@ -1,5 +1,5 @@
 // Achievements screen (M2.5 step 3 hero pass) — reachable at /achievements,
-// owned by the Profile tab, same Back behavior as every other pushed route.
+// owned by the Account tab, same Back behavior as every other pushed route.
 //
 // Step 2 rendered the badge catalog as-is with no unlocked state. This wires
 // in computeAchievements() (src/game/achievementPolicy.js, built in step 1)

@@ -15,7 +15,6 @@ import {
 } from "../theme";
 import Container from "../components/Container";
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
-import GlobeCard from "../components/GlobeCard";
 import Wordmark from "../components/Wordmark";
 import CompassMark from "../components/CompassMark";
 import Material from "../components/Material";
@@ -66,11 +65,8 @@ const TILE_BASE_DELAY = motion.stagger * 2;
 export default function HomeScreen({
   progress,
   onPlay,
-  onOpenCountry,
-  onOpenExplore,
   onOpenReview,
-  basemap,
-  onChangeBasemap,
+  onOpenLearningPaths,
   // M2.8 step 5: the goal set on PracticePrefsScreen, or null if the player
   // never set one — streakGoalProgress() itself treats null as "render
   // nothing", so a caller with no goal needn't branch before passing it.
@@ -178,23 +174,6 @@ export default function HomeScreen({
           </View>
         </FadeInUp>
 
-        {/* The world, before the games.
-            Home used to open on a grid of buttons, which is a fine games menu
-            and a poor front door for a product whose premise is that maps are
-            the hero. This is the same globe as the Explore tab — same gestures,
-            same terrain, same tap-to-open — not a picture of one. */}
-        {onOpenCountry && (
-          <FadeInUp index={2}>
-            <Text style={styles.section}>The world</Text>
-            <GlobeCard
-              onOpenCountry={onOpenCountry}
-              onOpenExplore={onOpenExplore}
-              basemap={basemap}
-              onChangeBasemap={onChangeBasemap}
-            />
-          </FadeInUp>
-        )}
-
         {/* Today */}
         <FadeInUp index={3}>
           <Text style={styles.section}>Today</Text>
@@ -293,12 +272,31 @@ export default function HomeScreen({
             and the learning paths lean on; buildRound still accepts it. */}
 
         {/* Review (M2.12 step 9). Home is the second doorway — the surface is
-            owned by the Profile tab, but "what should I study?" is a question
+            owned by the Account tab, but "what should I study?" is a question
             you ask on your way INTO a session, not while looking at your
             profile. The per-tab stacks make two entry points free. */}
-        {onOpenReview && (
+        {/* Learning paths moved under Play when the footer became Play ·
+            Explore · Settings · Account — a path is structured play. */}
+        {onOpenLearningPaths && (
           <FadeInUp index={2} rise={0}>
             <Text style={styles.section}>Study</Text>
+            <PressableTint
+              onPress={onOpenLearningPaths}
+              radius={radius.sheet}
+              style={styles.reviewRow}
+              accessibilityRole="button"
+              accessibilityLabel="Learning paths — five regions, easiest to hardest"
+            >
+              <View style={styles.reviewBody}>
+                <Text style={styles.reviewLabel}>Learning paths</Text>
+                <Text style={styles.reviewValue}>Five regions, easiest to hardest</Text>
+              </View>
+              <Text style={styles.reviewChevron}>›</Text>
+            </PressableTint>
+          </FadeInUp>
+        )}
+        {onOpenReview && (
+          <FadeInUp index={2} rise={0}>
             <PressableTint
               onPress={onOpenReview}
               radius={radius.sheet}

@@ -1,5 +1,5 @@
 // Leaderboard screen (M2.6 step 4) — reachable at /leaderboard, owned by the
-// Profile tab, same Back behavior as every other pushed route.
+// Account tab, same Back behavior as every other pushed route.
 //
 // All the deciding is already done by the time this file runs: step 1's
 // topWithYou() ranks whatever rows step 3/5.3's fetch*Leaderboard() hands
