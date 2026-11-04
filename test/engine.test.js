@@ -19,7 +19,7 @@ import {
   MAP_W,
   MAP_H,
 } from "../src/data/worldMap";
-import { buildRound, buildDaily, buildCountryRound, MODES } from "../src/game/questions";
+import { buildRound, buildDaily, buildCountryRound, MODES, poolFor } from "../src/game/questions";
 import { CURRENCY_BY_CODE, currencyFor, CURRENCY_NAMES } from "../src/data/currencies";
 import { LANGUAGE_BY_CODE, languageFor, LANGUAGE_NAMES } from "../src/data/languages";
 import {
@@ -187,6 +187,15 @@ import {
   normalizePracticePrefs,
 } from "../src/game/practicePrefsPolicy";
 import { STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../src/constants";
+import { QUESTION_COUNT_MIN, QUESTION_COUNT_STEPS, DAILY_LENGTH } from "../src/constants";
+import {
+  UNLIMITED,
+  normalizeQuestionCount,
+  roundLengthFor,
+  stepQuestionCount,
+  describeQuestionCount,
+} from "../src/game/questionCount";
+import { hasFeature, FEATURE_TIERS } from "../src/game/entitlements";
 import {
   GLOBE_RASTER_MOTION_PIXELS,
   GLOBE_RASTER_MOTION_MIN_PIXELS,
@@ -378,13 +387,7 @@ import {
   pathToRoute,
   syncToPath,
 } from "../src/game/navigation";
-import {
-  BREAKPOINTS,
-  RAIL_WIDTH,
-  navMode,
-  chromeLayout,
-  gridColumns,
-} from "../src/game/layout";
+import { BREAKPOINTS, RAIL_WIDTH, navMode, chromeLayout, gridColumns } from "../src/game/layout";
 import {
   INITIAL_SYNC_STATE,
   FAILURE_ESCALATION,
@@ -504,7 +507,7 @@ for (const tier of ["easy", "medium", "hard"]) {
 console.log("Rounds");
 for (const mode of ["flag", "capital", "capitalReverse", "shape"]) {
   const round = buildRound(mode);
-  check(round.length === 8, `${mode}: default round length is 8`);
+  check(round.length === ROUND_LENGTH, `${mode}: default round length is ${ROUND_LENGTH}`);
   for (const q of round) {
     check(q.options.length === OPTIONS_PER_QUESTION, `${mode}: ${OPTIONS_PER_QUESTION} options`);
     check(new Set(q.options).size === q.options.length, `${mode}: options are unique`);
@@ -4865,7 +4868,10 @@ check(
 
 // End to end against the real dataset.
 const brRound = buildCountryRound("br");
-check(brRound.length > 0 && brRound.length <= 8, "a real country round is non-empty and capped");
+check(
+  brRound.length > 0 && brRound.length <= ROUND_LENGTH,
+  "a real country round is non-empty and capped"
+);
 check(
   brRound.every((q) => q.country.code === "br"),
   "every question in it is about Brazil"
@@ -8056,6 +8062,100 @@ for (const ink of [map.onMap, map.onMapQuiet]) {
   );
 }
 setActiveScheme("light");
+
+console.log("\nQuestions per game (10 by default, Pro chooses 2 to unlimited)");
+check(ROUND_LENGTH === 10, "a round is 10 questions by default");
+check(DAILY_LENGTH === 6, "...while the Daily Challenge keeps its own length");
+check(buildDaily().length === DAILY_LENGTH, "...and the Daily really is built at that length");
+
+// Validation / clamping.
+check(normalizeQuestionCount(undefined) === ROUND_LENGTH, "no stored value → the default");
+check(normalizeQuestionCount("lots") === ROUND_LENGTH, "junk → the default");
+check(normalizeQuestionCount(NaN) === ROUND_LENGTH, "NaN → the default");
+check(normalizeQuestionCount(1) === QUESTION_COUNT_MIN, "below the minimum clamps up to 2");
+check(normalizeQuestionCount(-40) === QUESTION_COUNT_MIN, "negative clamps up to 2");
+check(
+  normalizeQuestionCount(10000) === QUESTION_COUNT_STEPS[QUESTION_COUNT_STEPS.length - 1],
+  "above the top rung clamps down to it (unlimited is chosen explicitly, not by overflow)"
+);
+check(normalizeQuestionCount(7.6) === 8, "fractions round to a whole question count");
+check(normalizeQuestionCount("15") === 15, "a numeric string from storage is accepted");
+check(normalizeQuestionCount(UNLIMITED) === UNLIMITED, "unlimited survives");
+check(
+  normalizeSettings({}).questionCount === ROUND_LENGTH &&
+    normalizeSettings({ questionCount: UNLIMITED }).questionCount === UNLIMITED &&
+    normalizeSettings({ questionCount: 0 }).questionCount === QUESTION_COUNT_MIN,
+  "settings normalize the stored question count"
+);
+
+// The gate: free plays the fixed length whatever the preference says.
+check(FEATURE_TIERS.questionCount === "pro", "choosing the question count is a Pro feature");
+check(
+  !hasFeature("questionCount", "free") && hasFeature("questionCount", "pro"),
+  "...free lacks it"
+);
+check(!hasFeature("nonsense", "pro"), "an uncatalogued feature is never granted, even to pro");
+check(roundLengthFor(25, "free") === ROUND_LENGTH, "free: a stored 25 still plays 10");
+check(
+  roundLengthFor(UNLIMITED, "free") === ROUND_LENGTH,
+  "free: a stored unlimited still plays 10"
+);
+check(roundLengthFor(25, "pro") === 25, "pro: the chosen length is used");
+check(roundLengthFor(1, "pro") === QUESTION_COUNT_MIN, "pro: still clamped to the minimum");
+check(
+  roundLengthFor(UNLIMITED, "pro") === Infinity,
+  "pro: unlimited reaches buildRound as Infinity"
+);
+
+// The stepper ladder.
+check(
+  stepQuestionCount(10, 1) === 15 && stepQuestionCount(10, -1) === 8,
+  "the stepper walks rungs"
+);
+check(
+  stepQuestionCount(7, 1) === 8 && stepQuestionCount(7, -1) === 5,
+  "an off-ladder value steps to the next rung"
+);
+check(stepQuestionCount(100, 1) === UNLIMITED, "one step past the top rung is unlimited");
+check(stepQuestionCount(UNLIMITED, 1) === UNLIMITED, "...and unlimited is the ceiling");
+check(
+  stepQuestionCount(UNLIMITED, -1) === 100,
+  "stepping down from unlimited lands on the top rung"
+);
+check(stepQuestionCount(2, -1) === 2, "2 is the floor");
+check(
+  describeQuestionCount(UNLIMITED) === "Unlimited" && describeQuestionCount(5) === "5 questions",
+  "the readout names the length"
+);
+
+// The setting reaches buildRound, finite counts and unlimited alike.
+check(buildRound("flag", "all", 3).length === 3, "a 3-question round is 3 questions");
+check(buildRound("capital", "all", 25).length === 25, "a 25-question round is 25 questions");
+for (const mode of ["flag", "capital", "shape", "locator"]) {
+  const pool = poolFor(mode, "all");
+  const r = buildRound(mode, "all", Infinity);
+  check(
+    r.length === pool.length && new Set(r.map((q) => q.country.code)).size === r.length,
+    `${mode}: unlimited is every country in the pool once (${r.length}), never an endless repeat`
+  );
+}
+for (const mode of ["river", "mountain", "ocean", "higherLower", "currency"]) {
+  const r = buildRound(mode, "all", Infinity);
+  check(
+    Number.isFinite(r.length) && r.length >= ROUND_LENGTH,
+    `${mode}: unlimited resolves to a finite, full-sized round (${r.length})`
+  );
+}
+check(
+  buildRound("flag", "all", Infinity, { regions: ["Europe"] }).every(
+    (q) => q.country.region === "Europe"
+  ),
+  "unlimited respects the player's focus regions"
+);
+check(
+  buildRound("flag", "all", Infinity, { only: ["fr", "de", "jp"] }).length === 3,
+  "unlimited Review practice is exactly the weak set, once each"
+);
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

@@ -5,12 +5,19 @@
 // always, cloud when signed in). Who you are and where you stand is Account.
 import React from "react";
 import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
-import { colors, spacing, radius, type, elevation, themed } from "../theme";
+import { colors, spacing, radius, type, elevation, themed, onFill, hitTarget } from "../theme";
 import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import SegmentedSetting from "../components/SegmentedSetting";
 import AppearanceSetting from "../components/AppearanceSetting";
-import { DIFFICULTIES, DEFAULT_DIFFICULTY } from "../constants";
+import { DIFFICULTIES, DEFAULT_DIFFICULTY, ROUND_LENGTH } from "../constants";
+import { hasFeature } from "../game/entitlements";
+import {
+  stepQuestionCount,
+  describeQuestionCount,
+  normalizeQuestionCount,
+  UNLIMITED,
+} from "../game/questionCount";
 
 const SOUND_OPTIONS = [
   { value: true, label: "On" },
@@ -26,6 +33,7 @@ export default function SettingsScreen({
   onChangeColorScheme,
   onChangeSound,
   onChangeBasemap,
+  onChangeQuestionCount,
   interests = [],
   practicePrefs,
   onOpenInterests,
@@ -64,6 +72,12 @@ export default function SettingsScreen({
             style={styles.block}
           />
 
+          <QuestionCountSetting
+            tier={settings.tier}
+            value={settings.questionCount}
+            onChange={onChangeQuestionCount}
+          />
+
           <Text style={styles.section}>Learning</Text>
           <Row
             label="Interests"
@@ -78,6 +92,61 @@ export default function SettingsScreen({
         </FadeInUp>
       </Container>
     </ScrollView>
+  );
+}
+
+// Questions per game. Pro steps it from 2 up to unlimited; free sees the
+// fixed length and why. Layout only on the Pro side of that — no purchase
+// flow yet, and every account is pro today (entitlements.DEFAULT_TIER).
+function QuestionCountSetting({ tier, value, onChange }) {
+  const unlocked = hasFeature("questionCount", tier);
+  const v = normalizeQuestionCount(value);
+  const atMin = v !== UNLIMITED && v <= 2;
+  return (
+    <View style={styles.block}>
+      <View style={styles.labelRow}>
+        <Text style={styles.sectionInline}>Questions per game</Text>
+        <View style={styles.proBadge}>
+          <Text style={styles.proBadgeText}>PRO</Text>
+        </View>
+      </View>
+      {unlocked ? (
+        <View style={styles.stepper}>
+          <Pressable
+            onPress={() => onChange?.(stepQuestionCount(v, -1))}
+            disabled={atMin}
+            style={[styles.stepBtn, atMin && styles.stepBtnOff]}
+            accessibilityRole="button"
+            accessibilityLabel="Fewer questions"
+          >
+            <Text style={styles.stepBtnText}>−</Text>
+          </Pressable>
+          <Text style={styles.stepValue} accessibilityLiveRegion="polite">
+            {describeQuestionCount(v)}
+          </Text>
+          <Pressable
+            onPress={() => onChange?.(stepQuestionCount(v, 1))}
+            disabled={v === UNLIMITED}
+            style={[styles.stepBtn, v === UNLIMITED && styles.stepBtnOff]}
+            accessibilityRole="button"
+            accessibilityLabel="More questions"
+          >
+            <Text style={styles.stepBtnText}>+</Text>
+          </Pressable>
+        </View>
+      ) : (
+        <View style={styles.stepper}>
+          <Text style={styles.stepValue}>{ROUND_LENGTH} questions</Text>
+        </View>
+      )}
+      <Text style={styles.hint}>
+        {unlocked
+          ? v === UNLIMITED
+            ? "Every country in the game, once each. Daily stays at its own length."
+            : "Daily Challenge keeps its own length."
+          : `Free rounds are ${ROUND_LENGTH} questions. Pro lets you pick 2 to unlimited.`}
+      </Text>
+    </View>
   );
 }
 
@@ -116,6 +185,42 @@ const styles = themed(() =>
     title: { ...type.h1, fontSize: 34, marginBottom: spacing(7) },
     block: { marginBottom: spacing(7) },
     section: { ...type.eyebrow, marginBottom: spacing(3) },
+    labelRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(2),
+      marginBottom: spacing(3),
+    },
+    sectionInline: { ...type.eyebrow },
+    proBadge: {
+      backgroundColor: colors.emberSurface,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(2),
+      paddingVertical: 2,
+    },
+    proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
+    stepper: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.pill,
+      padding: spacing(1),
+      minHeight: hitTarget.touch + spacing(2),
+      ...elevation(1),
+    },
+    stepBtn: {
+      width: hitTarget.touch,
+      height: hitTarget.touch,
+      borderRadius: radius.pill,
+      backgroundColor: colors.brand,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    stepBtnOff: { opacity: 0.35 },
+    stepBtnText: { ...type.h3, fontSize: 22, lineHeight: 24, color: onFill(colors.brand) },
+    stepValue: { ...type.label, fontSize: 15, color: colors.text, flex: 1, textAlign: "center" },
+    hint: { ...type.caption, fontSize: 12, marginTop: spacing(2) },
     row: {
       flexDirection: "row",
       alignItems: "center",

@@ -128,10 +128,12 @@ function SignedIn({
             {/* These two are the numbers the cloud can move under you — local
                 paints first, then the fetched totals land. Rolling to the new
                 value shows that something arrived; snapping looks like a
-                glitch. Best round stays plain: it's "7/8", not a quantity. */}
+                glitch. Best round stays plain: it's a best, not a running total. */}
             <Stat label="XP" value={stats.xp} animated />
             <Stat label="Day streak" value={streak.count} animated />
-            <Stat label="Best round" value={stats.bestScore ? `${stats.bestScore}/8` : "—"} />
+            {/* A bare count: rounds are no longer all the same length (10 by
+                default, any length on Pro), so "x/8" would be a lie. */}
+            <Stat label="Best round" value={stats.bestScore ? `${stats.bestScore} ✓` : "—"} />
           </View>
 
           <View style={styles.syncRow}>

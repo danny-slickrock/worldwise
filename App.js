@@ -47,6 +47,7 @@ import { pushInterests, migrateLocalInterestsToCloud } from "./src/storage/cloud
 import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_COLOR_SCHEME, statusBarStyle } from "./src/game/colorScheme";
+import { roundLengthFor } from "./src/game/questionCount";
 import { useAppliedColorScheme, useOsColorScheme } from "./src/lib/appearance";
 import { DEFAULT_PRACTICE_PREFS } from "./src/game/practicePrefsPolicy";
 import { loadPracticePrefs, savePracticePrefs } from "./src/storage/practicePrefs";
@@ -455,6 +456,7 @@ function AppShell({ osScheme }) {
             // memoized value) keeps it in step with `progress` the instant
             // handleFinish's setProgress lands, same tick as this re-render.
             dailyStreak={streakStatus(progress, dayKey(new Date())).count}
+            roundLength={roundLengthFor(settings.questionCount, settings.tier)}
           />
         );
 
@@ -621,6 +623,7 @@ function AppShell({ osScheme }) {
             onChangeColorScheme={setColorScheme}
             onChangeSound={(soundEnabled) => setSettings((s) => ({ ...s, soundEnabled }))}
             onChangeBasemap={setBasemap}
+            onChangeQuestionCount={(questionCount) => setSettings((s) => ({ ...s, questionCount }))}
             interests={interests}
             practicePrefs={practicePrefs}
             onOpenInterests={() => {

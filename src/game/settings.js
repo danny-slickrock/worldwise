@@ -1,6 +1,8 @@
 // Pure settings logic — no React or storage imports, mirrors game/progress.js.
 import { DEFAULT_TIER, normalizeTier } from "./entitlements";
 import { DEFAULT_COLOR_SCHEME, normalizeColorSchemePref } from "./colorScheme";
+import { normalizeQuestionCount } from "./questionCount";
+import { ROUND_LENGTH } from "../constants";
 
 // How the globes draw their land. "terrain" is the realistic basemap (climate
 // and landform, per game/terrainTint.js); "simple" is the kit's flat map layer,
@@ -23,6 +25,11 @@ export const DEFAULT_SETTINGS = {
   tier: DEFAULT_TIER,
   // system | light | dark. See game/colorScheme.js.
   colorScheme: DEFAULT_COLOR_SCHEME,
+  // Questions per round — a number or "unlimited". Stored for everyone, but
+  // only honoured for Pro (game/questionCount.js's roundLengthFor); a free
+  // account plays ROUND_LENGTH whatever this says, so a downgrade needs no
+  // migration.
+  questionCount: ROUND_LENGTH,
 };
 
 // Coerce anything read back from storage into a valid settings object, so a
@@ -39,6 +46,7 @@ export function normalizeSettings(raw) {
     // someone is allowed to play, so it falls back rather than being trusted.
     tier: normalizeTier(raw.tier),
     colorScheme: normalizeColorSchemePref(raw.colorScheme),
+    questionCount: normalizeQuestionCount(raw.questionCount),
   };
 }
 

@@ -96,3 +96,22 @@ export function isUnlocked(mode, tier = DEFAULT_TIER) {
 export function unlockedModes(tier = DEFAULT_TIER) {
   return Object.keys(MODE_TIERS).filter((mode) => isUnlocked(mode, tier));
 }
+
+// Features, as opposed to games, that a tier unlocks. Same catalog idea as
+// MODE_TIERS: the one place that knows a feature's commercial status.
+//
+//   questionCount — choosing how many questions a round has (2 to unlimited).
+//                   The free tier plays the fixed ROUND_LENGTH.
+export const FEATURE_TIERS = {
+  questionCount: "pro",
+};
+
+// May an account on `tier` use `feature`? An UNKNOWN feature answers false —
+// the opposite of isProMode's unknown-mode rule, deliberately: an unknown game
+// is a catalog bug that should fail open (let them play), but an unknown
+// feature is something nobody has decided to give away.
+export function hasFeature(feature, tier = DEFAULT_TIER) {
+  const needs = FEATURE_TIERS[feature];
+  if (!needs) return false;
+  return needs === "free" || normalizeTier(tier) === "pro";
+}

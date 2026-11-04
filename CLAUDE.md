@@ -217,6 +217,10 @@ src/
   game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
                            #   game_results.countries into per-region collected/total/progress,
                            #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
+  game/questionCount.js    # PURE: questions per round — 10 for free, 2..unlimited for Pro
+                           #   (hasFeature("questionCount")). Unlimited reaches buildRound as
+                           #   Infinity and is resolved THERE to "the whole pool, once" —
+                           #   never passed on to a helper that fills by repeating
   game/entitlements.js     # PURE M2.12 step 1: free|pro catalog + isUnlocked(mode, tier).
                            #   DEFAULT_TIER is "pro" — flipping that one constant is the
                            #   whole paywall; every call site already exists

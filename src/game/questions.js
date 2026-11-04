@@ -30,7 +30,7 @@ import { OCEANS } from "../data/oceans";
 // outline, and Locator needs a world-map path, so each excludes the countries
 // that lack its asset. A difficulty tier (see constants.js) further narrows the
 // pool; "all" leaves it untouched.
-const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
+export const poolFor = (mode, difficulty = DEFAULT_DIFFICULTY) => {
   const base =
     mode === "shape" ? OUTLINE_COUNTRIES : mode === "locator" ? LOCATOR_COUNTRIES : COUNTRIES;
   return difficulty === DEFAULT_DIFFICULTY ? base : base.filter((c) => c.difficulty === difficulty);
@@ -635,22 +635,56 @@ const CAPITAL_NAMES = COUNTRIES.map((c) => c.capital);
 // family at a time.
 export function buildRound(mode, difficulty = DEFAULT_DIFFICULTY, count = ROUND_LENGTH, opts = {}) {
   const tier = effectiveTier(mode, opts.tier);
+  // A Pro player's "unlimited" arrives as Infinity (game/questionCount.js).
+  // Every branch below resolves it to a FINITE pool size before any helper
+  // sees it — several of them fill a short pool by repeating it, and "repeat
+  // until Infinity" never returns.
+  const unlimited = count === Infinity;
 
   // Higher or Lower does not have a "target" country the way every other mode
   // does — a question is a PAIR, so it is built from the metric pool rather
-  // than by sampling one country and decorating it.
-  if (mode === "higherLower") return buildHigherLowerRound(count, tier);
+  // than by sampling one country and decorating it. Unlimited: one pass
+  // through the pool's countries, in pairs.
+  if (mode === "higherLower") {
+    const n = unlimited ? Math.floor(metricPool(HIGHER_LOWER_METRICS[0].field).length / 2) : count;
+    return buildHigherLowerRound(n, tier);
+  }
   // Rivers has no country pool to sample a "target" from the usual way — the
   // target IS the river. See buildRiverRound below.
-  if (mode === "river") return buildRiverRound(count, tier);
+  if (mode === "river") return buildRiverRound(unlimited ? RIVERS.length : count, tier);
   // Mountains is the same carve-out, over MOUNTAIN_RANGES instead of RIVERS.
-  if (mode === "mountain") return buildMountainRound(count, tier);
+  if (mode === "mountain") {
+    return buildMountainRound(unlimited ? MOUNTAIN_RANGES.length : count, tier);
+  }
   // Oceans is the same carve-out again, over OCEANS instead of RIVERS/
-  // MOUNTAIN_RANGES.
-  if (mode === "ocean") return buildOceanRound(count, tier);
+  // MOUNTAIN_RANGES. Four oceans can't be "every target once" in any useful
+  // sense — each question samples a fresh coastline country — so unlimited
+  // is a fixed generous run instead.
+  if (mode === "ocean") {
+    return buildOceanRound(unlimited ? OCEANS.length * ROUND_LENGTH : count, tier);
+  }
 
   const tiered = poolFor(mode, difficulty);
   const wide = tiered.length >= count ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+  if (unlimited) {
+    // Every country the round may ask about, once: the tiered pool (unless it
+    // is empty), narrowed by Review's explicit set or the player's regions.
+    const hasOnlyU = Array.isArray(opts.only) && opts.only.length > 0;
+    const base = tiered.length ? tiered : poolFor(mode, DEFAULT_DIFFICULTY);
+    let pool = base;
+    if (hasOnlyU) {
+      const want = new Set(opts.only);
+      const hits = base.filter((c) => want.has(c.code));
+      if (hits.length) pool = hits;
+    } else {
+      pool = narrowToRegions(base, opts.regions, 1);
+    }
+    return buildRound(mode, difficulty, pool.length, {
+      ...opts,
+      only: pool === base ? opts.only : pool.map((c) => c.code),
+      regions: null,
+    });
+  }
   // M2.8 step 4: the player's own focus-region preference (practicePrefsPolicy.js).
   // Skipped entirely when `only` is also set — "practice your weak spots" is
   // an explicit, complete request from the caller (Review), and a passive

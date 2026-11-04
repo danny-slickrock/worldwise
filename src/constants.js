@@ -1,5 +1,10 @@
 // Central place for tunable game parameters — keep gameplay numbers out of components.
-export const ROUND_LENGTH = 8; // questions per single-mode round
+export const ROUND_LENGTH = 10; // questions per single-mode round (and the free tier's fixed length)
+// Pro players choose their own round length (game/questionCount.js), from
+// QUESTION_COUNT_MIN up the ladder below to "unlimited" — which means every
+// target in the mode's pool once, never an endless repeat.
+export const QUESTION_COUNT_MIN = 2;
+export const QUESTION_COUNT_STEPS = [2, 3, 5, 8, 10, 15, 20, 25, 30, 40, 50, 75, 100];
 export const DAILY_LENGTH = 6; // questions in the Daily Challenge
 export const OPTIONS_PER_QUESTION = 4; // total answer choices (1 correct + distractors)
 
