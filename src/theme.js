@@ -123,6 +123,13 @@ const lightColors = {
   // components because each one inverts in the dark scheme.
   tint: "rgba(33,64,60,0.10)",
   shadow: "#2A2320",
+
+  // Glass chrome (see `glass` below). Cream at 86% — warm, and opaque enough
+  // that the chrome's own inks clear contrast whatever scrolls behind it.
+  glassTint: "rgba(251,246,234,0.86)",
+  // The lit top edge that makes a pane read as glass rather than as a tint.
+  glassHighlight: "rgba(255,255,255,0.65)",
+  glassBorder: "rgba(42,35,32,0.10)",
 };
 
 // Which label colour a filled surface takes.
@@ -414,16 +421,62 @@ export const buttonHeight = { sm: 32, md: 44, lg: 56 };
 export const z = { map: 0, chrome: 10, sheet: 20, modal: 30, toast: 40 };
 
 // --- Motion ----------------------------------------------------------------
-// Kit §MOTION: 120ms micro · 200ms UI · 320ms sheets · 600ms map fly-to, all on
-// cubic-bezier(.2,.7,.2,1). Stored as control points, not an RN `Easing`
-// object, because test/engine.test.js imports this file in plain Node — a
-// `react-native` import here would break the whole suite.
+// SLOWER AND SPRINGIER than the kit's original figures (120/200/320/600ms on
+// cubic-bezier(.2,.7,.2,1), no bounce) — a deliberate product decision, Nov
+// 2026, toward a modern Apple feel: roughly 1.7x the durations, three times the
+// entrance travel, and spring physics that overshoot a little and settle.
+//
+// Stored as plain numbers, not RN `Easing`/spring objects, because
+// test/engine.test.js imports this file in plain Node — a `react-native`
+// import here would break the whole suite.
+//
+// Reduce-motion still drops every one of these to its resting state. That is an
+// explicit request from someone who may get physically ill, and "more
+// dramatic" makes honouring it matter more, not less.
 export const motion = {
-  duration: { micro: 120, ui: 200, sheet: 320, mapFly: 600 },
-  easing: [0.2, 0.7, 0.2, 1],
-  rise: 8,
-  stagger: 40,
+  duration: { micro: 200, ui: 340, sheet: 540, mapFly: 960 },
+  // Apple's own deceleration curve (fast start, very long soft landing).
+  easing: [0.32, 0.72, 0, 1],
+  rise: 24,
+  stagger: 70,
   maxStaggerSteps: 6,
+  // Spring configs for Animated.spring. Each is UNDERDAMPED (damping ratio
+  // under 1), so it overshoots slightly and settles, but never rings: the
+  // ratio stays above 0.5. A test pins both bounds.
+  //   entrance — content arriving: a soft rise with a gentle overshoot
+  //   press    — a card under the thumb: quick to sink, springy to return
+  //   bloom    — the nav pill growing into place
+  spring: {
+    entrance: { stiffness: 120, damping: 14, mass: 1 },
+    press: { stiffness: 420, damping: 22, mass: 1 },
+    bloom: { stiffness: 220, damping: 18, mass: 1 },
+  },
+  // How far a pressed card sinks, and how small content starts on entrance.
+  pressScale: 0.96,
+  entranceScale: 0.94,
+};
+
+// The damping ratio of a spring config: < 1 overshoots, 1 is critical, > 1 is
+// sluggish. Pure, so the "springy but never ringing" contract is testable.
+export function dampingRatio({ stiffness, damping, mass = 1 }) {
+  return damping / (2 * Math.sqrt(stiffness * mass));
+}
+
+// --- Glass -----------------------------------------------------------------
+// Frosted, translucent CHROME — the tab bar, the side rail, sheets and map
+// overlays — in the modern Apple manner. Chrome only, by decision: cards that
+// carry reading text stay opaque cream, so body contrast stays knowable.
+//
+// The tint is warm (cream / bark), never the neutral white or grey of a stock
+// blur: everything in this system is warm-biased. It is opaque ENOUGH that a
+// label on it clears contrast over the worst thing that could be behind it — a
+// test composites the tint over pure black and pure white and checks the
+// chrome's inks against both.
+export const glass = {
+  blur: 28, // px, web backdrop-filter
+  saturate: 1.7, // web: the vibrancy that makes glass read as glass
+  nativeIntensity: 70, // expo-blur intensity, 0-100
+  radius: 28, // the floating tab bar's corner
 };
 
 // --- Materials -------------------------------------------------------------
@@ -751,6 +804,11 @@ const darkColors = {
   // Still warm, never neutral black: a shadow that goes blue-grey on bark looks
   // as dirty as a neutral one on parchment.
   shadow: "#0B0806",
+
+  // Smoked bark glass, with a faint parchment rim.
+  glassTint: "rgba(39,33,28,0.88)",
+  glassHighlight: "rgba(244,235,217,0.14)",
+  glassBorder: "rgba(244,235,217,0.10)",
 };
 
 // Every topic label is 11px mono on cream — so on bark each one is lifted to

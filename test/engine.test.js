@@ -343,6 +343,8 @@ import {
   elevation,
   hairline,
   accentInk,
+  dampingRatio,
+  glass,
 } from "../src/theme";
 import {
   COLOR_SCHEME_PREFS,
@@ -2061,31 +2063,80 @@ function maxKey(k) {
   return `max${k[0].toUpperCase()}${k.slice(1)}Width`;
 }
 
+// Motion: slower and springier than the kit's original figures, by product
+// decision (Nov 2026) — but still a bounded vocabulary, not a free-for-all.
 check(
-  Object.values(motion.duration).every((d) => d >= 120 && d <= 600),
-  "every duration sits in the kit's 120ms micro - 600ms map fly-to band"
-);
-check(motion.rise >= 4 && motion.rise <= 16, "the entrance rise stays in the 4-16px band");
-check(
-  motion.duration.micro === 120 &&
-    motion.duration.ui === 200 &&
-    motion.duration.sheet === 320 &&
-    motion.duration.mapFly === 600,
-  "the four durations are the kit's exact figures"
+  Object.values(motion.duration).every((d) => d >= 160 && d <= 1000),
+  "every duration sits in the 160ms-1s band — slower, never sluggish"
 );
 check(
-  motion.stagger * motion.maxStaggerSteps <= 320,
-  "a full cascade finishes within one slow-duration window, so groups read as one gesture"
+  motion.duration.micro < motion.duration.ui &&
+    motion.duration.ui < motion.duration.sheet &&
+    motion.duration.sheet < motion.duration.mapFly,
+  "the four durations keep their order: micro < ui < sheet < map fly-to"
+);
+check(
+  motion.rise >= 16 && motion.rise <= 32,
+  "the entrance rise is dramatic but bounded (16-32px)"
+);
+check(
+  motion.stagger * motion.maxStaggerSteps <= motion.duration.sheet,
+  "a full cascade finishes within one sheet duration, so groups read as one gesture"
 );
 // theme.js is imported by this suite in plain Node. An RN Easing object here
 // would mean a `react-native` import in theme.js and take the whole suite down.
 check(
-  Array.isArray(motion.easing) && motion.easing.length === 4,
+  Array.isArray(motion.easing) &&
+    motion.easing.length === 4 &&
+    motion.easing.every((n) => typeof n === "number"),
   "easing is stored as bezier control points, keeping theme.js free of RN imports"
 );
 check(
-  motion.easing.every((n) => typeof n === "number") && motion.easing[3] <= 1,
-  "the easing curve decelerates without overshooting (no bounce)"
+  motion.easing[3] <= 1,
+  "the timed curve itself never overshoots — overshoot is the springs' job, and only theirs"
+);
+for (const [name, cfg] of Object.entries(motion.spring)) {
+  const zeta = dampingRatio(cfg);
+  check(
+    zeta < 1,
+    `the ${name} spring is underdamped — it overshoots and settles (ζ=${zeta.toFixed(2)})`
+  );
+  check(zeta > 0.5, `...but never rings: ζ stays above 0.5`);
+}
+check(
+  motion.pressScale >= 0.9 && motion.pressScale < 1,
+  "a pressed card sinks, but by no more than 10%"
+);
+check(
+  motion.entranceScale >= 0.9 && motion.entranceScale < 1,
+  "entrances grow in from slightly small, never from nothing"
+);
+
+// Glass chrome: whatever scrolls behind it, the chrome's own inks must read.
+// Composite each scheme's tint over the two extremes and check the tab bar's
+// label inks at body contrast.
+function compositeRgba(rgba, behindHex) {
+  const [r, g, b, a] = rgba.match(/[\d.]+/g).map(Number);
+  const bh = behindHex.replace("#", "");
+  const under = [0, 2, 4].map((i) => parseInt(bh.slice(i, i + 2), 16));
+  const mixed = [r, g, b].map((c, i) => Math.round(c * a + under[i] * (1 - a)));
+  return "#" + mixed.map((v) => v.toString(16).padStart(2, "0")).join("");
+}
+for (const scheme of ["light", "dark"]) {
+  const c = themeFor(scheme).colors;
+  for (const behind of ["#000000", "#FFFFFF"]) {
+    const ground = compositeRgba(c.glassTint, behind);
+    for (const ink of ["text", "textMuted", "brand"]) {
+      check(
+        contrastRatio(c[ink], ground) >= CONTRAST.body,
+        `${scheme} glass over ${behind}: ${ink} still clears body contrast (${contrastRatio(c[ink], ground).toFixed(2)})`
+      );
+    }
+  }
+}
+check(
+  glass.blur >= 16 && glass.saturate > 1 && glass.nativeIntensity > 0,
+  "glass actually frosts — a blur, a vibrancy boost, and a native intensity"
 );
 
 console.log("Globe projection (M2.3.7)");

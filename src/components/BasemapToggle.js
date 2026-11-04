@@ -13,13 +13,14 @@ import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import { radius, spacing, type, map, colors, themed } from "../theme";
 import { BASEMAPS } from "../game/settings";
+import Glass from "./Glass";
 
 const LABELS = { terrain: "Terrain", simple: "Map" };
 
 export default function BasemapToggle({ value, onChange, style }) {
   if (!onChange) return null;
   return (
-    <View style={[styles.wrap, style]}>
+    <Glass tone="map" highlight={false} style={[styles.wrap, style]}>
       {BASEMAPS.map((key) => {
         const active = key === value;
         return (
@@ -36,7 +37,7 @@ export default function BasemapToggle({ value, onChange, style }) {
           </Pressable>
         );
       })}
-    </View>
+    </Glass>
   );
 }
 
@@ -47,7 +48,8 @@ const styles = themed(() =>
     // desert and ice alike.
     wrap: {
       flexDirection: "row",
-      backgroundColor: map.labelPlate,
+      // Frosted over the globe; the tint is still the map's 72% nightwood
+      // plate, so the labels' contrast is unchanged.
       borderRadius: radius.pill,
       padding: 3,
       gap: 2,

@@ -33,6 +33,7 @@ import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
 import { computeNodeStates } from "../game/masteryPolicy";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
+import { ChromeSpacer } from "../components/AppChrome";
 
 const STATE_LABEL = { locked: "Locked", unlocked: "Start", mastered: "Mastered" };
 
@@ -194,6 +195,7 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
                   })}
             </FadeInUp>
           </Container>
+          <ChromeSpacer />
         </ScrollView>
       )}
     </Animated.View>

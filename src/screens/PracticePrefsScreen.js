@@ -23,6 +23,7 @@ import FadeInUp from "../components/FadeInUp";
 import { LEARNING_PATH_REGIONS } from "../data/learningPaths";
 import { DIFFICULTIES, STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../constants";
 import { normalizePracticePrefs } from "../game/practicePrefsPolicy";
+import { ChromeSpacer } from "../components/AppChrome";
 
 // Where a freshly-turned-on goal starts: the bottom of a week, not the
 // bound's own floor of one day, which would read as a goal nobody could miss.
@@ -162,6 +163,7 @@ export default function PracticePrefsScreen({ prefs, onExit, onSave }) {
           <Text style={styles.doneText}>Done</Text>
         </Pressable>
       </Container>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

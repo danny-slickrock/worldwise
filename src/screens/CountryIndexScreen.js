@@ -18,6 +18,7 @@ import {
 import FadeInUp, { staggerDelay } from "../components/FadeInUp";
 import { PLACES } from "../data/countries";
 import { searchCountries, INDEX_FILTERS } from "../game/countryIndex";
+import { ChromeSpacer } from "../components/AppChrome";
 
 export default function CountryIndexScreen({ onExit, onOpenCountry }) {
   const [query, setQuery] = useState("");
@@ -78,6 +79,7 @@ export default function CountryIndexScreen({ onExit, onOpenCountry }) {
         contentContainerStyle={styles.list}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
+        ListFooterComponent={<ChromeSpacer />}
         ListEmptyComponent={<Text style={styles.empty}>No places match "{query}".</Text>}
         renderItem={({ item, index }) => {
           const row = (

@@ -28,6 +28,7 @@ import { topicsPresent } from "../data/countryTopics";
 import CountryOutline from "../components/CountryOutline";
 import CountryPhoto from "../components/CountryPhoto";
 import CountryGlobe, { framingFor } from "../components/CountryGlobe";
+import { ChromeSpacer } from "../components/AppChrome";
 
 // A topic accent at ~10%, for the glyph badge behind it. RN has no colour-mix,
 // and the badge sits on white in every case (the fact card), so an rgba wash is
@@ -286,6 +287,7 @@ export default function CountryPageScreen({
             </FadeInUp>
           )}
         </Container>
+        <ChromeSpacer />
       </ScrollView>
     </Animated.View>
   );

@@ -7,6 +7,7 @@ import PressableTint from "../components/PressableTint";
 import { MODES } from "../game/questions";
 import { tiersFor, isTierBuilt } from "../data/difficulties";
 import { isProMode } from "../game/entitlements";
+import { ChromeSpacer } from "../components/AppChrome";
 
 // The pre-game difficulty menu (M2.12 step 2).
 //
@@ -92,6 +93,7 @@ export default function GameSetupScreen({ mode, onExit, onStart }) {
             );
           })}
         </View>
+        <ChromeSpacer />
       </ScrollView>
     </Container>
   );

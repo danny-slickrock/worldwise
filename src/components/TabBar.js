@@ -17,18 +17,33 @@
 // asks for, done with motion instead of a second icon set: it reads as the
 // destination lifting toward you.
 import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, Pressable, Platform, Animated, Easing } from "react-native";
-import { colors, spacing, radius, type, hitTarget, motion, themed, onFill } from "../theme";
+import { View, Text, StyleSheet, Pressable, Platform, Animated } from "react-native";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  hitTarget,
+  motion,
+  themed,
+  onFill,
+  glass,
+  elevation,
+} from "../theme";
+import Glass from "./Glass";
 import useReducedMotion from "../hooks/useReducedMotion";
+
+// The bar FLOATS: a frosted glass pane inset from the screen edges, with the
+// page scrolling behind it — the modern Apple tab bar. AppChrome positions it
+// and tells each screen how much bottom inset to leave (ChromeSpacer), so the
+// last item can still scroll clear of it.
+export const TAB_BAR_HEIGHT = 64;
+export const TAB_BAR_MARGIN = spacing(3);
+export const TAB_BAR_BOTTOM = TAB_BAR_MARGIN + (Platform.OS === "ios" ? spacing(4) : 0);
 
 export default function TabBar({ tabs, active, onSelect }) {
   return (
-    <View style={styles.bar}>
-      {/* A brass hairline above the bar — the kit's "ember and brass appear as
-          line and rule far more often than as fill". It is what separates the
-          chrome from the page now that a heavy border would read as a rule
-          drawn on paper. */}
-      <View style={styles.rule} />
+    <Glass style={styles.bar}>
       {tabs.map((tab) => (
         <Tab
           key={tab.key}
@@ -37,7 +52,7 @@ export default function TabBar({ tabs, active, onSelect }) {
           onPress={() => onSelect(tab.key)}
         />
       ))}
-    </View>
+    </Glass>
   );
 }
 
@@ -50,10 +65,10 @@ function Tab({ tab, isActive, onPress }) {
       anim.setValue(isActive ? 1 : 0);
       return undefined;
     }
-    const run = Animated.timing(anim, {
+    // A spring, so the pill blooms past full width a touch and settles.
+    const run = Animated.spring(anim, {
       toValue: isActive ? 1 : 0,
-      duration: motion.duration.ui,
-      easing: Easing.bezier(...motion.easing),
+      ...motion.spring.bloom,
       useNativeDriver: true,
     });
     run.start();
@@ -75,7 +90,12 @@ function Tab({ tab, isActive, onPress }) {
             StyleSheet.absoluteFill,
             styles.pill,
             {
-              opacity: anim,
+              // Clamped: the spring overshoots 1, and opacity past 1 is noise.
+              opacity: anim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [0, 1],
+                extrapolate: "clamp",
+              }),
               // scaleX only: a uniform scale would make the pill grow taller
               // as well, which reads as a bubble rather than as a pill sliding
               // into place.
@@ -107,20 +127,17 @@ function Tab({ tab, isActive, onPress }) {
 const styles = themed(() =>
   StyleSheet.create({
     bar: {
-      flexDirection: "row",
-      backgroundColor: colors.surfaceRaised,
-      // Breathing room for the iOS home indicator without pulling in safe-area context.
-      paddingBottom: Platform.OS === "ios" ? spacing(4) : spacing(2),
-      paddingTop: spacing(2),
-    },
-    rule: {
       position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      height: 1,
-      backgroundColor: colors.brass,
-      opacity: 0.35,
+      left: TAB_BAR_MARGIN,
+      right: TAB_BAR_MARGIN,
+      bottom: TAB_BAR_BOTTOM,
+      height: TAB_BAR_HEIGHT,
+      flexDirection: "row",
+      alignItems: "center",
+      borderRadius: glass.radius,
+      borderWidth: 1,
+      borderColor: colors.glassBorder,
+      ...elevation(3),
     },
     tab: {
       flex: 1,

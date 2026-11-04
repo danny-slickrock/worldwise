@@ -20,6 +20,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
 import { colors, spacing, radius, type, elevation, themed, onFill } from "../theme";
 import { INTERESTS } from "../data/interests";
 import { normalizeInterests } from "../game/interestPolicy";
+import { ChromeSpacer } from "../components/AppChrome";
 
 export default function InterestsScreen({
   initialSelected = [],
@@ -74,6 +75,7 @@ export default function InterestsScreen({
           <Text style={styles.continueText}>Continue</Text>
         </Pressable>
       </View>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

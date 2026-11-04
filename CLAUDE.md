@@ -318,9 +318,9 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
   components/AnimatedNumber.js # A number that counts to its new value. Never animates its
                            #   FIRST value; `from` is the one exception (a round's XP award)
   components/ProgressTrack.js  # The kit's 8px pill, animated, reduce-motion aware
-  components/PressableTint.js  # The kit's press/hover vocabulary and nothing else: a 120ms
-                           #   tint on touch, an e2 lift + lakewater border on pointer, and
-                           #   deliberately NO scale bounce
+  components/PressableTint.js  # The press/hover vocabulary: tint + a spring sink on touch,
+                           #   an e2 lift + lakewater border on pointer
+  components/Glass.js      # Frosted glass chrome: web backdrop-filter / native expo-blur
   components/AppChrome.js   # The persistent nav shell: wraps the current screen, swaps
                            #   TabBar↔NavRail on layout.js's breakpoint. chrome={false} = focus mode
   components/TabBar.js      # Bottom tabs (mobile) — takes tabs as data, so it's extensible
@@ -398,6 +398,16 @@ nothing. Four rules, all pinned by tests:
   Node rasterizer cannot reach theme.js's neighbours. That duplication is the risk, so a test
   asserts every value still equals its token.
 
+**The chrome is GLASS; content is not.** `components/Glass.js` is a frosted pane — backdrop-filter
+blur on web, expo-blur's BlurView on iOS/Android — under a warm tint (`colors.glassTint`, cream or
+bark, never stock neutral) and a lit top edge. It is used for the CHROME only: the floating tab bar,
+the floating desktop rail, and map overlays (`tone="map"`, which keeps the map's own 72% nightwood
+plate). Cards that carry reading text stay opaque cream, by decision. The tint is opaque enough that
+the chrome's inks clear 4.5:1 composited over pure black AND pure white — a test pins it, so raise
+the tint before you lower it. The bar floats over the page, so every tabbed screen ends its scroll
+content with `<ChromeSpacer />` (or reads `useChromeInset()` if it fills the viewport); a new tabbed
+screen without one has its last row trapped under the glass.
+
 **Materials are the cozy layer, and they have rules that are easy to break.** `theme.js`'s
 `materials` holds the kit's four composite grounds as platform-neutral stops; `components/Material.js`
 draws them with react-native-svg (which has linear gradients, radial gradients *and* patterns on web,
@@ -439,23 +449,30 @@ token at render is already scheme-correct. Rules that are easy to break:
   `useColorScheme()` subscribers dropped a live OS flip on web.
 - `DARK_GROUNDS` pins the dark contrast suite exactly as `LIGHT_GROUNDS` pins the light one.
 
-**Motion has a vocabulary, and "no bounce" is part of it.** Everything animated runs on `theme.js`'s
-`motion` durations and the kit's one easing curve, and every piece of it drops to its resting state
-under reduce-motion — that is an explicit request from someone who may get physically ill, not a
-preference to shorten.
+**Motion has a vocabulary: slow, springy, Apple-like (Nov 2026).** Everything animated runs on
+`theme.js`'s `motion` — durations ~1.7x the kit's originals (200/340/540/960ms), Apple's easing,
+a 24px rise, and three SPRING configs (`entrance`, `press`, `bloom`) that overshoot slightly and
+settle. The kit's original "no bounce" rule was retired by product decision; what replaced it is
+pinned by tests: every spring is underdamped (ζ < 1) but never rings (ζ > 0.5), and the timed curve
+itself never overshoots — overshoot belongs to springs only. Every piece still drops to its resting
+state under reduce-motion — an explicit request from someone who may get physically ill, and more
+dramatic motion makes honouring it matter more.
 - **The loading indicator is the mark, and the needle hunts.** `SpinningMark` varies its rate across
   the turn (via a multi-stop interpolation, not a bezier — an ease-in-out across one revolution has
   zero velocity at both ends, so a loop visibly *stops* every turn). When loading ends it finishes
   the revolution and settles on north rather than vanishing mid-spin.
 - **A known shape gets a `Skeleton`, not a spinner**, and `BrandLoader` enforces the kit's "no
   spinners under 1s" itself so callers cannot forget. There is no `ActivityIndicator` left in the app.
-- **`PressableTint` is the whole press/hover vocabulary**: a 120ms tint on touch, an e2 lift plus a
-  lakewater border on pointer, and **no scale bounce** — the kit forbids it outright, and a card that
-  squashes under the thumb is some other product's house style.
+- **`PressableTint` is the whole press/hover vocabulary**: a tint plus a spring SINK to
+  `motion.pressScale` (0.96) on touch that springs back with a slight overshoot, and an e2 lift plus a
+  lakewater border on pointer. No sink under reduce-motion.
+- **`FadeInUp` entrances spring**: opacity on a timed curve (a spring would flash past 100%), rise
+  and scale (`entranceScale` 0.94 → 1) on the entrance spring. `rise={0}` also drops the scale, so a
+  block inside a screen that itself rises never compounds into a wobble.
 - **`AnimatedNumber` never animates its first value.** A total that merely happens to be on screen
   should not roll every time you open Profile. `from={0}` is the single exception, for the round's XP
   award, where arriving at the number *is* the event.
-- **The nav pill blooms rather than travels.** A pill that slides between tabs has to measure them —
+- **The nav pill blooms rather than travels** — on the `bloom` spring now. A pill that slides between tabs has to measure them —
   an onLayout pass per tab, re-measured on every rotation and font-scale change — to make the chrome
   lag a frame behind the tap. Each tab owns its own pill instead; they cross-fade, and the tapped tab
   responds on the same frame.

@@ -10,14 +10,30 @@
 // column needs. The lockup collapses with it: mark only, name dropped, which is
 // exactly the case the kit's clear-space rule is written for.
 import React, { useEffect, useRef } from "react";
-import { View, Text, StyleSheet, Pressable, Animated, Easing } from "react-native";
+import { View, Text, StyleSheet, Pressable, Animated } from "react-native";
 import Wordmark from "./Wordmark";
-import { colors, spacing, radius, type, hitTarget, motion, themed, onFill } from "../theme";
+import {
+  colors,
+  spacing,
+  radius,
+  type,
+  hitTarget,
+  motion,
+  themed,
+  onFill,
+  glass,
+  elevation,
+} from "../theme";
+import Glass from "./Glass";
 import useReducedMotion from "../hooks/useReducedMotion";
+
+// The rail floats `RAIL_MARGIN` in from the window's edges; AppChrome offsets
+// the page by railWidth + 2 x this so content never slides under it.
+export const RAIL_MARGIN = spacing(3);
 
 export default function NavRail({ tabs, active, onSelect, width, showLabels }) {
   return (
-    <View style={[styles.rail, { width }]}>
+    <Glass style={[styles.rail, { width }]}>
       {/* The lockup moves up here on desktop. On a phone it sits inside the
           Home screen, where it can afford the vertical space; in a rail it
           doubles as the anchor that stops the tab group floating at the top
@@ -41,11 +57,7 @@ export default function NavRail({ tabs, active, onSelect, width, showLabels }) {
           />
         ))}
       </View>
-
-      {/* A brass rule down the rail's edge. Line, not fill — the one way brass
-          is allowed to appear on a light ground. */}
-      <View style={styles.edge} />
-    </View>
+    </Glass>
   );
 }
 
@@ -58,10 +70,10 @@ function RailItem({ tab, isActive, showLabels, onPress }) {
       anim.setValue(isActive ? 1 : 0);
       return undefined;
     }
-    const run = Animated.timing(anim, {
+    // A spring, so the pill blooms past full width a touch and settles.
+    const run = Animated.spring(anim, {
       toValue: isActive ? 1 : 0,
-      duration: motion.duration.ui,
-      easing: Easing.bezier(...motion.easing),
+      ...motion.spring.bloom,
       useNativeDriver: true,
     });
     run.start();
@@ -81,7 +93,11 @@ function RailItem({ tab, isActive, showLabels, onPress }) {
           StyleSheet.absoluteFill,
           styles.fill,
           {
-            opacity: anim,
+            opacity: anim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+              extrapolate: "clamp",
+            }),
             // A rail item is wide, so the pill grows along its length — the
             // destination filling in from its own centre.
             transform: [
@@ -100,20 +116,20 @@ function RailItem({ tab, isActive, showLabels, onPress }) {
 
 const styles = themed(() =>
   StyleSheet.create({
+    // A floating glass pane inset from the window edge, over the page's paper
+    // ground — the desktop counterpart of the floating tab bar.
     rail: {
-      backgroundColor: colors.surfaceRaised,
-      paddingTop: spacing(8),
+      position: "absolute",
+      top: RAIL_MARGIN,
+      bottom: RAIL_MARGIN,
+      left: RAIL_MARGIN,
+      paddingTop: spacing(7),
       paddingHorizontal: spacing(3),
       gap: spacing(8),
-    },
-    edge: {
-      position: "absolute",
-      top: 0,
-      bottom: 0,
-      right: 0,
-      width: 1,
-      backgroundColor: colors.brass,
-      opacity: 0.35,
+      borderRadius: glass.radius,
+      borderWidth: 1,
+      borderColor: colors.glassBorder,
+      ...elevation(3),
     },
     brandRow: {
       flexDirection: "row",

@@ -30,52 +30,61 @@ export function staggerDelay(index = 0) {
 
 export default function FadeInUp({
   children,
-  // Position in a group. Sugar for delay={staggerDelay(index)}.
   index = 0,
-  // Explicit delay in ms; wins over `index` when both are given.
   delay = null,
   duration = motion.duration.ui,
-  // Travel distance. `0` fades with no movement — useful for something already
-  // in place, like a hero swapping content.
   rise = motion.rise,
   style,
   ...rest
 }) {
   const reduceMotion = useReducedMotion();
 
-  // Start at the resting state when motion is off so the very first frame is
-  // already correct — no flash of transparent content before the effect runs.
-  const anim = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
+  // Two drivers: opacity fades on a timed curve (a spring's overshoot would
+  // flash past 100%), while position and scale SPRING — a soft rise that
+  // overshoots a touch and settles, which is where the drama comes from.
+  const fade = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
+  const lift = useRef(new Animated.Value(reduceMotion ? 1 : 0)).current;
 
   useEffect(() => {
     if (reduceMotion) {
-      // Covers the case where the preference resolves (or is toggled) after
-      // mount: jump to the final state rather than animating toward it.
-      anim.setValue(1);
+      fade.setValue(1);
+      lift.setValue(1);
       return undefined;
     }
-
-    const animation = Animated.timing(anim, {
-      toValue: 1,
-      duration,
-      delay: delay ?? staggerDelay(index),
-      easing: Easing.bezier(...motion.easing),
-      // Opacity and translateY are both transform-family properties, so this
-      // runs off the JS thread on native and as a compositor animation on web.
-      useNativeDriver: true,
-    });
-
+    const wait = delay ?? staggerDelay(index);
+    const animation = Animated.parallel([
+      Animated.timing(fade, {
+        toValue: 1,
+        duration,
+        delay: wait,
+        easing: Easing.bezier(...motion.easing),
+        useNativeDriver: true,
+      }),
+      Animated.spring(lift, {
+        toValue: 1,
+        delay: wait,
+        ...motion.spring.entrance,
+        useNativeDriver: true,
+      }),
+    ]);
     animation.start();
-    // Stop on unmount so a navigation mid-cascade can't set state on a gone view.
     return () => animation.stop();
-  }, [anim, delay, index, duration, reduceMotion]);
+  }, [fade, lift, delay, index, duration, reduceMotion]);
 
+  // `rise={0}` (a block inside a screen that itself rises) also opts out of
+  // the scale, so nested entrances never compound into a wobble.
   const animatedStyle = reduceMotion
     ? null
     : {
-        opacity: anim,
+        opacity: fade,
         transform: [
-          { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [rise, 0] }) },
+          { translateY: lift.interpolate({ inputRange: [0, 1], outputRange: [rise, 0] }) },
+          {
+            scale: lift.interpolate({
+              inputRange: [0, 1],
+              outputRange: [rise ? motion.entranceScale : 1, 1],
+            }),
+          },
         ],
       };
 

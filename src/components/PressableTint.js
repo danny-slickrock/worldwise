@@ -1,15 +1,18 @@
 // A Pressable that responds the way the kit says it should, and no other way.
 //
 // Kit §INTERACTIONS: "Hover only on pointer devices (@media (hover:hover));
-// touch uses a 120ms pressed tint." And, under §BUTTON, the rule that is
-// easiest to break because every UI kit on earth breaks it: **"No scale
-// bounce."** A card that shrinks under the thumb is the house style of a dozen
-// other apps; this one is a cartography room, and its surfaces do not squash.
+// touch uses a pressed tint." The kit's original §BUTTON rule — "no scale
+// bounce" — was retired by product decision (Nov 2026) for a modern Apple
+// feel: a pressed surface now SINKS (motion.pressScale) on a stiff spring and
+// springs back with a slight overshoot on release.
 //
-// So the entire interaction vocabulary here is LIGHT:
+// The interaction vocabulary:
 //
-//   press  — a 120ms tint over the surface, and nothing else
+//   press  — a tint over the surface, plus the spring sink
 //   hover  — the kit's e1→e2 lift plus a 1px lakewater border, pointer only
+//
+// Reduce-motion drops the sink entirely (the tint still shows): movement is
+// exactly what that setting asks us not to do.
 //
 // Hover is bound through Pressable's onHoverIn/onHoverOut, which react-native-
 // web only ever fires for real pointer devices — so the media query the kit
@@ -28,6 +31,8 @@ import useReducedMotion from "../hooks/useReducedMotion";
 // pushed toward its own ink, not as a grey wash. `light` is the page ground, so
 // it follows the scheme (colors.tint); `dark` is a fixed dark surface.
 const TINTS = themed(() => ({ light: colors.tint, dark: "rgba(244,235,217,0.12)" }));
+
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export default function PressableTint({
   // Which ground this sits on, so the tint darkens or lightens accordingly.
@@ -53,6 +58,15 @@ export default function PressableTint({
 }) {
   const reduceMotion = useReducedMotion();
   const tint = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(1)).current;
+  const sink = (down) => {
+    if (reduceMotion || rest.disabled) return;
+    Animated.spring(scale, {
+      toValue: down ? motion.pressScale : 1,
+      ...motion.spring.press,
+      useNativeDriver: true,
+    }).start();
+  };
   const [hovered, setHovered] = useState(false);
   const pressed = useRef(false);
 
@@ -75,19 +89,24 @@ export default function PressableTint({
   useEffect(() => {
     // A press that ends because the component unmounted (navigating away on
     // tap) must not leave an animation running against a gone view.
-    return () => tint.stopAnimation();
-  }, [tint]);
+    return () => {
+      tint.stopAnimation();
+      scale.stopAnimation();
+    };
+  }, [tint, scale]);
 
   return (
-    <Pressable
+    <AnimatedPressable
       onPressIn={(e) => {
         pressed.current = true;
         to(1);
+        sink(true);
         onPressIn?.(e);
       }}
       onPressOut={(e) => {
         pressed.current = false;
         to(0);
+        sink(false);
         onPressOut?.(e);
       }}
       onHoverIn={(e) => {
@@ -98,7 +117,11 @@ export default function PressableTint({
         setHovered(false);
         onHoverOut?.(e);
       }}
-      style={[style, hover && hovered && styles.hovered]}
+      style={[
+        style,
+        hover && hovered && styles.hovered,
+        reduceMotion ? null : { transform: [{ scale }] },
+      ]}
       {...rest}
     >
       {children}
@@ -109,7 +132,7 @@ export default function PressableTint({
           { backgroundColor: TINTS[tone], borderRadius: radius, opacity: tint },
         ]}
       />
-    </Pressable>
+    </AnimatedPressable>
   );
 }
 

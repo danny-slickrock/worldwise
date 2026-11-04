@@ -8,6 +8,7 @@ import FadeInUp from "../components/FadeInUp";
 import Wordmark from "../components/Wordmark";
 import SpinningMark from "../components/SpinningMark";
 import { useAuth } from "../auth/AuthProvider";
+import { ChromeSpacer } from "../components/AppChrome";
 
 export default function SignInScreen() {
   const { signInWithEmail, signInWithGoogle } = useAuth();
@@ -137,6 +138,7 @@ export default function SignInScreen() {
           </Text>
         </FadeInUp>
       </Container>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

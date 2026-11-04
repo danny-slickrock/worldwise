@@ -26,6 +26,7 @@ import { FREE_MODES, PRO_MODES } from "../game/entitlements";
 import { gridColumns, CARD_GRID } from "../game/layout";
 import { DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, streakGoalProgress, dayKey } from "../game/progress";
+import { ChromeSpacer } from "../components/AppChrome";
 
 // The Play hub, per the wireframe: the FREE games as a vertical stack of
 // full-width cards, then "Unlock Pro" with the PRO games in a grid. Both lists
@@ -280,6 +281,7 @@ export default function HomeScreen({
         </Pressable>
         <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
       </Container>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

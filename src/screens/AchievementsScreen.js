@@ -52,6 +52,7 @@ import ProgressTrack from "../components/ProgressTrack";
 import AnimatedNumber from "../components/AnimatedNumber";
 import CompassMark from "../components/CompassMark";
 import Material from "../components/Material";
+import { ChromeSpacer } from "../components/AppChrome";
 
 export default function AchievementsScreen({ onExit, progress }) {
   const { user } = useAuth();
@@ -256,6 +257,7 @@ export default function AchievementsScreen({ onExit, progress }) {
                 </View>
               </FadeInUp>
             ))}
+        <ChromeSpacer />
       </ScrollView>
     </Animated.View>
   );

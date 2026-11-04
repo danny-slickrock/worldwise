@@ -16,10 +16,10 @@
 // `chrome={false}` drops the navigation entirely for focus mode — a quiz in
 // progress. That is a deliberate exception, not an oversight: mid-round, the
 // only way out should be the round's own ✕.
-import React from "react";
+import React, { createContext, useContext } from "react";
 import { View, StyleSheet, useWindowDimensions } from "react-native";
-import TabBar from "./TabBar";
-import NavRail from "./NavRail";
+import TabBar, { TAB_BAR_HEIGHT, TAB_BAR_BOTTOM } from "./TabBar";
+import NavRail, { RAIL_MARGIN } from "./NavRail";
 import Material from "./Material";
 import { colors, themed } from "../theme";
 import { chromeLayout } from "../game/layout";
@@ -33,9 +33,9 @@ import { chromeLayout } from "../game/layout";
 // eight places for one to drift. They are transparent now and this is the
 // single sheet they are all printed on.
 //
-// It sits behind the screen slot and NOT behind the chrome: the tab bar and the
-// rail are cream, and the kit is explicit that chrome sits above the page
-// rather than being part of it.
+// It now sits behind the chrome too: the tab bar and rail are frosted GLASS
+// panes floating above the page, so the page has to be there for them to
+// frost. (They used to be opaque cream beside it.)
 //
 // Screens with their own ground still win — the quiz and the globe paint over
 // this, which is correct: those are the dark stage, not the page.
@@ -48,15 +48,36 @@ function Page({ children }) {
   );
 }
 
+// How much of the bottom edge the floating chrome covers. Screens read it via
+// <ChromeSpacer /> at the end of their scroll content, so the last item can
+// scroll clear of the glass tab bar instead of stopping underneath it.
+const ChromeInsetContext = createContext({ bottom: 0 });
+
+// The same inset as a number, for a screen that fills the viewport rather than
+// scrolling (the Explore globe), so it can stop above the floating bar.
+export const useChromeInset = () => useContext(ChromeInsetContext);
+
+export function ChromeSpacer() {
+  const { bottom } = useContext(ChromeInsetContext);
+  return bottom ? <View style={{ height: bottom }} pointerEvents="none" /> : null;
+}
+
 export default function AppChrome({ tabs, active, onSelect, chrome = true, children }) {
   const { width } = useWindowDimensions();
   const { mode, railWidth, showLabels } = chromeLayout(width);
 
   if (!chrome) return <Page>{children}</Page>;
 
+  // Both chromes FLOAT over the page as glass. The rail never has content
+  // under it (the page is offset past it); the bar does — content scrolls
+  // behind it, which is what the frosting is for.
   if (mode === "rail") {
     return (
-      <View style={styles.row}>
+      <View style={styles.fill}>
+        <Material name="paper" />
+        <View style={[styles.fill, { marginLeft: railWidth + RAIL_MARGIN * 2 }]}>
+          <View style={styles.fill}>{children}</View>
+        </View>
         <NavRail
           tabs={tabs}
           active={active}
@@ -64,16 +85,17 @@ export default function AppChrome({ tabs, active, onSelect, chrome = true, child
           width={railWidth}
           showLabels={showLabels}
         />
-        <Page>{children}</Page>
       </View>
     );
   }
 
   return (
-    <View style={styles.fill}>
-      <Page>{children}</Page>
-      <TabBar tabs={tabs} active={active} onSelect={onSelect} />
-    </View>
+    <ChromeInsetContext.Provider value={{ bottom: TAB_BAR_HEIGHT + TAB_BAR_BOTTOM }}>
+      <View style={styles.fill}>
+        <Page>{children}</Page>
+        <TabBar tabs={tabs} active={active} onSelect={onSelect} />
+      </View>
+    </ChromeInsetContext.Provider>
   );
 }
 
@@ -82,6 +104,5 @@ const styles = themed(() =>
     // `surface` under the material, so the very first frame — and any platform
     // that fails to draw the SVG — is still parchment rather than a hole.
     fill: { flex: 1, backgroundColor: colors.surface },
-    row: { flex: 1, flexDirection: "row" },
   })
 );

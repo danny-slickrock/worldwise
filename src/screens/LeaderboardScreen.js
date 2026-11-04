@@ -41,6 +41,7 @@ import { topWithYou } from "../game/leaderboardPolicy";
 import { dayKey } from "../game/progress";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchGlobalLeaderboard, fetchDailyLeaderboard } from "../storage/cloudLeaderboard";
+import { ChromeSpacer } from "../components/AppChrome";
 
 const BOARDS = ["global", "daily"];
 const BOARD_LABELS = { global: "Global", daily: "Daily" };
@@ -199,6 +200,7 @@ export default function LeaderboardScreen({ onExit }) {
             )}
           </>
         )}
+        <ChromeSpacer />
       </ScrollView>
     </Animated.View>
   );

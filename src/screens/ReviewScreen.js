@@ -20,6 +20,7 @@ import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
 import { needsStudy, studyByRegion, practiceSet, reviewSummary } from "../game/reviewPolicy";
 import { REVIEW_STALE_DAYS } from "../constants";
+import { ChromeSpacer } from "../components/AppChrome";
 
 // The Review surface (M2.12 step 9) — study analytics, not another scoreboard.
 //
@@ -195,6 +196,7 @@ export default function ReviewScreen({ onExit, onPractice, onOpenCountry }) {
             )}
           </>
         )}
+        <ChromeSpacer />
       </ScrollView>
     </Container>
   );

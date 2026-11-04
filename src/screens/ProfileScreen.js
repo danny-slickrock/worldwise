@@ -16,6 +16,7 @@ import { streakStatus, dayKey } from "../game/progress";
 import { computeAchievements } from "../game/achievementPolicy";
 import { reviewSummary } from "../game/reviewPolicy";
 import SignInScreen from "./SignInScreen";
+import { ChromeSpacer } from "../components/AppChrome";
 
 export default function ProfileScreen({
   progress,
@@ -203,6 +204,7 @@ function SignedIn({
           </Text>
         </FadeInUp>
       </Container>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

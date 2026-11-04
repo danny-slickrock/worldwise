@@ -18,6 +18,7 @@ import {
   normalizeQuestionCount,
   UNLIMITED,
 } from "../game/questionCount";
+import { ChromeSpacer } from "../components/AppChrome";
 
 const SOUND_OPTIONS = [
   { value: true, label: "On" },
@@ -91,6 +92,7 @@ export default function SettingsScreen({
           />
         </FadeInUp>
       </Container>
+      <ChromeSpacer />
     </ScrollView>
   );
 }

@@ -37,6 +37,7 @@ import {
   clampSpin,
 } from "../game/globeMotion";
 import useGlobeGestures from "../hooks/useGlobeGestures";
+import { useChromeInset } from "../components/AppChrome";
 
 // Each region's rotation target, resolved once at module load from its own
 // countries' center vectors — same precompute-from-static-data pattern the
@@ -68,6 +69,8 @@ export default function WorldMapScreen({
   basemap,
   onChangeBasemap,
 }) {
+  // The globe fills to the floating glass tab bar, not under it.
+  const chromeInset = useChromeInset();
   const [activeRegion, setActiveRegion] = useState(null);
 
   // Every drag, pinch, wheel and flick on this globe. onManualChange drops the
@@ -182,7 +185,10 @@ export default function WorldMapScreen({
       </View>
 
       <FadeInUp index={1} rise={0} style={styles.mapOuter}>
-        <View style={styles.mapWrap} {...surfaceProps}>
+        <View
+          style={[styles.mapWrap, { marginBottom: spacing(6) + chromeInset.bottom }]}
+          {...surfaceProps}
+        >
           {/* Pine grain behind the globe, same as the Home card: the dark stage
               is a wall in the cartography room rather than a flat pine fill. */}
           <Material name="pineGrain" />
