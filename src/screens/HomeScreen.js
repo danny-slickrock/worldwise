@@ -22,35 +22,23 @@ import PressableTint from "../components/PressableTint";
 import AnimatedNumber from "../components/AnimatedNumber";
 import ProgressTrack from "../components/ProgressTrack";
 import { MODES } from "../game/questions";
-import { isProMode } from "../game/entitlements";
+import { FREE_MODES, PRO_MODES } from "../game/entitlements";
+import { gridColumns, CARD_GRID } from "../game/layout";
 import { DEFAULT_DIFFICULTY } from "../constants";
 import { streakStatus, streakGoalProgress, dayKey } from "../game/progress";
 
-// Daily leads as a full-width hero; the rest tile two-up underneath.
+// The Play hub, per the wireframe: the FREE games as a vertical stack of
+// full-width cards, then "Unlock Pro" with the PRO games in a grid. Both lists
+// come straight from the entitlements catalog, so moving a game between free
+// and Pro is a one-line change in entitlements.js and Home follows.
+//
+// Daily and a country round are catalogued free but are not "games you pick
+// from a list" — Daily has its own card further down, and a country round is
+// meaningless without a subject — so they are left out of the stack.
+const NOT_LISTED = new Set(["daily", "country"]);
+const FREE_GAMES = FREE_MODES.filter((m) => !NOT_LISTED.has(m));
+const PRO_GAMES = PRO_MODES.filter((m) => !NOT_LISTED.has(m));
 const FEATURED = "daily";
-const GAME_GRID = [
-  "flag",
-  "capital",
-  "capitalReverse",
-  "shape",
-  "locator",
-  "higherLower",
-  // M2.7 steps 1-5 — the "extend the engine" breadth games.
-  "currency",
-  "language",
-  "nationalAnimal",
-  "foodOrigin",
-  "city",
-  // M2.7 steps 6.3/7.3/8.3: the milestone's feature-based games.
-  "river",
-  "mountain",
-  "ocean",
-  // The two pro marathons. They sit in the same grid rather than in a separate
-  // "Pro" shelf: every account is pro today (see game/entitlements.js), so a
-  // roped-off section would be selling something the player already has.
-  "nameEveryCountry",
-  "identifyAllFlags",
-];
 
 // The tiles cascade among themselves, but only after the header and hero above
 // them have landed — otherwise the page assembles bottom-up, which reads as a
@@ -94,72 +82,46 @@ export default function HomeScreen({
     : null;
 
   const featured = MODES[FEATURED];
+  // The Pro grid's columns follow the measured content column (layout.js owns
+  // the threshold), so a phone gets the wireframe's 2-up and a desktop gains
+  // a column instead of stretching two cards into slabs.
+  const [gridWidth, setGridWidth] = useState(0);
+  const columns = gridColumns(gridWidth);
+  const cellWidth =
+    gridWidth > 0 ? (gridWidth - CARD_GRID.gap * (columns - 1)) / columns : undefined;
+  const play = (key) => onPlay(key, difficulty, timed);
 
   return (
-    // The page ground is AppChrome's now — the kit's paper fibre, under every
-    // screen rather than under this one. See its Page().
+    // The page ground is AppChrome's — the kit's paper fibre under every screen.
     <ScrollView
       style={styles.wrap}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
     >
       <Container>
-        {/* Status strip — the numbers worth glancing at, above everything else.
-            Freezes only earn a pill when you actually have one. */}
+        {/* Header band — the wireframe's "Worldwise" block. Identity, the two
+            numbers worth glancing at, and the streak call-back, in one card,
+            so the games start as high on a phone screen as possible. */}
         <FadeInUp>
-          <View style={styles.statusRow}>
-            <View style={styles.statusPill}>
-              <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
-              {/* Both numbers roll rather than snap. Coming back to Home after
-                  a round is the moment the totals change, and a number that
-                  counts to its new value is the whole reward — it costs one
-                  component and it is the difference between a receipt and a
-                  result. AnimatedNumber never animates its FIRST value, so
-                  opening Home cold still just shows the totals. */}
-              <AnimatedNumber value={streak.count} style={styles.statusValue} />
-            </View>
-            <View style={styles.statusPill}>
-              {/* The mark itself, not a ✦ standing in for it. At 15px it is
-                  under the kit's 16px icon floor, so it renders at micro
-                  detail — star and pivot, no ring — which is exactly what that
-                  rule is for. */}
-              <CompassMark size={16} tone={colors.brass} />
-              <AnimatedNumber value={progress.xp} style={styles.statusValue} />
-              <Text style={styles.statusUnit}>XP</Text>
-            </View>
-            {streak.freezes > 0 && (
-              <View style={styles.statusPill}>
-                <Text style={styles.statusGlyph}>❄️</Text>
-                <Text style={styles.statusValue}>{streak.freezes}</Text>
+          <View style={styles.header}>
+            <View style={styles.headerTop}>
+              <Wordmark size={30} />
+              <View style={styles.statusRow}>
+                <View style={styles.statusPill} accessibilityLabel={`${streak.count}-day streak`}>
+                  <Text style={styles.statusGlyph}>{streak.alive ? "🔥" : "🌙"}</Text>
+                  {/* Both numbers roll rather than snap; AnimatedNumber never
+                      animates its FIRST value, so a cold open just shows them. */}
+                  <AnimatedNumber value={streak.count} style={styles.statusValue} />
+                </View>
+                <View style={styles.statusPill} accessibilityLabel={`${progress.xp} XP`}>
+                  <CompassMark size={16} tone={colors.brass} />
+                  <AnimatedNumber value={progress.xp} style={styles.statusValue} />
+                </View>
               </View>
-            )}
-          </View>
-        </FadeInUp>
-
-        {/* Wordmark + streak nudge — one group: they're the page's identity and
-            its call-back, and splitting them would stagger two lines of text. */}
-        <FadeInUp index={1}>
-          <View style={styles.brandRow}>
-            {/* The real lockup — mark plus two-tone name — rather than the
-                name alone. Every brand rule it has to keep (Newsreader 600,
-                "World" in pine and "wise" in lakewater, tracking, clear space
-                at 0.5x the mark, the 28px floor) now lives in one component
-                instead of being retyped here and in the rail. */}
-            <Wordmark size={34} />
-            <Text style={styles.brandTag}>geography</Text>
-          </View>
-          <Text style={styles.tagline}>Learn the world through curiosity.</Text>
-
-          <View style={styles.streakBanner}>
-            <View style={styles.streakRow}>
-              <Text style={styles.streakMsg}>{streakMsg}</Text>
-              <Text style={styles.streakBest}>
-                Best round {progress.bestScore ? `${progress.bestScore}/8` : "—"}
-              </Text>
             </View>
-            {/* Only a player who has actually set a goal (PracticePrefsScreen)
-                sees this — streakGoalProgress() returns null otherwise, so
-                there is nothing to show someone who never opened Practice. */}
+            <Text style={styles.streakMsg}>{streakMsg}</Text>
+            {/* Only a player who set a goal (Settings → Practice) sees this —
+                streakGoalProgress() returns null otherwise. */}
             {goalProgress && (
               <View style={styles.goalRow}>
                 <Text style={styles.goalMsg}>{goalMsg}</Text>
@@ -174,150 +136,140 @@ export default function HomeScreen({
           </View>
         </FadeInUp>
 
-        {/* Today */}
-        <FadeInUp index={3}>
-          <Text style={styles.section}>Today</Text>
-          {/* The kit's dusk wash — brass and ember falling from the top right
-              over a pine-to-nightwood ramp, and "the only sanctioned gradient
-              in the system". The Daily card is the one hero on Home, so it is
-              the one place on this screen that earns it: a lit panel on a paper
-              page is exactly the two-material composition the kit permits.
-
-              The flat pine fill it replaces was correct and inert. This is the
-              same colour with a light source. */}
-          <PressableTint
-            tone="dark"
-            radius={radius.sheet}
-            onPress={() => onPlay(FEATURED, difficulty, timed)}
-            style={styles.heroCard}
-            accessibilityRole="button"
-            accessibilityLabel={`Daily challenge — ${featured.title}`}
-          >
-            <Material name="dusk" />
-            {/* The instrument, oversized and bleeding off the corner the light
-                comes from. Brass on nightwood, well under the "5% firelight"
-                budget, and the reason the card reads as an artefact rather than
-                as a coloured rectangle. */}
-            <CompassMark size={190} tone="brass" style={styles.heroMark} />
-
-            {/* Parchment, not brass. The old kicker carried an alpha, which
-                over a gradient has no knowable contrast ratio at all — the
-                one rule the kit repeats twice. Brass looked like the kit's
-                eyebrow-on-dark pattern but measures ~2.6:1 at this card's lit
-                top-right corner, where the oversized CompassMark also bleeds
-                off (M2.5 step 6.4.1's contrast audit, pinned in
-                test/engine.test.js) — well under even the 3:1 UI floor.
-                Parchment is the ink that actually clears AA there. */}
-            <Text style={styles.heroKicker}>Daily challenge</Text>
-            <Text style={styles.heroTitle}>
-              {featured.icon} A mixed round,{"\n"}every day
-            </Text>
-            <View style={styles.heroCta}>
-              <Text style={styles.heroCtaText}>PLAY</Text>
-            </View>
-          </PressableTint>
-        </FadeInUp>
-
-        {/* Games */}
-        <Text style={styles.section}>All games</Text>
-        <View style={styles.grid}>
-          {GAME_GRID.map((key, i) => {
+        {/* The free games: one full-width card each, stacked. Big targets, one
+            decision per row — the Duolingo/Puzzlit shape. */}
+        <View style={styles.freeStack}>
+          {FREE_GAMES.map((key, i) => {
             const m = MODES[key];
-            // Kept as a seam rather than deleted: the next unbuilt game gets a
-            // badged, honest tile for free instead of a tile that launches a
-            // round with no answer surface. No mode sets it today.
-            const soon = Boolean(m.comingSoon);
             return (
-              <FadeInUp key={key} style={styles.tileCell} delay={TILE_BASE_DELAY + staggerDelay(i)}>
-                {/* PressableTint, not Pressable: the kit gives touch a 120ms
-                    pressed tint and pointer devices a hover lift, and forbids a
-                    scale bounce outright. These tiles previously had no press
-                    feedback at all. */}
+              <FadeInUp key={key} delay={TILE_BASE_DELAY + staggerDelay(i)}>
+                {/* PressableTint: a 120ms tint on touch, an e2 lift on
+                    pointer, and no scale bounce — the kit forbids it. */}
                 <PressableTint
-                  onPress={soon ? undefined : () => onPlay(key, difficulty, timed)}
-                  disabled={soon}
+                  onPress={() => play(key)}
                   radius={radius.sheet}
-                  style={[styles.tile, soon && styles.tileSoon]}
+                  style={styles.freeCard}
                   accessibilityRole="button"
-                  accessibilityState={{ disabled: soon }}
-                  accessibilityLabel={soon ? `${m.title} — coming soon` : m.title}
+                  accessibilityLabel={`${m.title} — ${m.blurb}`}
                 >
-                  <View style={styles.tileTop}>
-                    <View style={[styles.tileIcon, { backgroundColor: m.accent }]}>
-                      <Text style={[styles.tileGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
-                    </View>
-                    {/* Cosmetic this pass: every account is pro, so the badge
-                        marks what WILL cost rather than what is locked, and the
-                        tile stays fully playable. */}
-                    {isProMode(key) && (
-                      <View style={styles.proBadge}>
-                        <Text style={styles.proBadgeText}>PRO</Text>
-                      </View>
-                    )}
+                  <View style={[styles.freeIcon, { backgroundColor: m.accent }]}>
+                    <Text style={[styles.freeGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
                   </View>
-                  <Text style={styles.tileTitle}>{m.title}</Text>
-                  <Text style={styles.tileBlurb}>{soon ? "Coming soon" : m.blurb}</Text>
+                  <View style={styles.freeBody}>
+                    <Text style={styles.freeTitle}>{m.title}</Text>
+                    <Text style={styles.freeBlurb}>{m.blurb}</Text>
+                  </View>
+                  <Text style={styles.chevron}>›</Text>
                 </PressableTint>
               </FadeInUp>
             );
           })}
         </View>
 
-        {/* M2.12 step 2: the pool-difficulty segmented control used to live
-            here. It is retired from the primary flow rather than deleted —
-            each game now asks for its INTERACTION tier on its own menu, and
-            two "Difficulty" controls meaning different things on one screen is
-            exactly the confusion the two axes were separated to avoid. The
-            pool filter still exists (constants.js) and is still what the Daily
-            and the learning paths lean on; buildRound still accepts it. */}
+        {/* Unlock Pro. Layout only this pass — no purchase flow and no ads
+            yet, and every account is still pro (entitlements.DEFAULT_TIER), so
+            these cards stay playable; the badge marks what WILL cost. */}
+        {PRO_GAMES.length > 0 && (
+          <FadeInUp delay={TILE_BASE_DELAY + staggerDelay(FREE_GAMES.length)}>
+            <View style={styles.proHeader}>
+              <Text style={styles.proTitle}>Unlock Pro</Text>
+              <Text style={styles.proSub}>More games, no ads.</Text>
+            </View>
+            <View style={styles.proGrid} onLayout={(e) => setGridWidth(e.nativeEvent.layout.width)}>
+              {PRO_GAMES.map((key) => {
+                const m = MODES[key];
+                const soon = Boolean(m.comingSoon);
+                return (
+                  <PressableTint
+                    key={key}
+                    onPress={soon ? undefined : () => play(key)}
+                    disabled={soon}
+                    radius={radius.sheet}
+                    style={[styles.proCard, { width: cellWidth ?? "48%" }, soon && styles.soon]}
+                    accessibilityRole="button"
+                    accessibilityState={{ disabled: soon }}
+                    accessibilityLabel={`${m.title}, Pro${soon ? " — coming soon" : ""}`}
+                  >
+                    <View style={styles.proTop}>
+                      <View style={[styles.proIcon, { backgroundColor: m.accent }]}>
+                        <Text style={[styles.proGlyph, { color: onFill(m.accent) }]}>{m.icon}</Text>
+                      </View>
+                      <View style={styles.proBadge}>
+                        <Text style={styles.proBadgeText}>{soon ? "SOON" : "PRO"}</Text>
+                      </View>
+                    </View>
+                    <Text style={styles.proCardTitle} numberOfLines={2}>
+                      {m.title}
+                    </Text>
+                  </PressableTint>
+                );
+              })}
+            </View>
+          </FadeInUp>
+        )}
 
-        {/* Review (M2.12 step 9). Home is the second doorway — the surface is
-            owned by the Account tab, but "what should I study?" is a question
-            you ask on your way INTO a session, not while looking at your
-            profile. The per-tab stacks make two entry points free. */}
-        {/* Learning paths moved under Play when the footer became Play ·
-            Explore · Settings · Account — a path is structured play. */}
+        {/* More ways to play — the habit loop and the structured paths, below
+            the game list the wireframe leads with. */}
+        <Text style={styles.section}>Every day</Text>
+        {/* The kit's dusk wash — "the only sanctioned gradient in the system" —
+            on a paper page: the two-material composition the kit permits. */}
+        <PressableTint
+          tone="dark"
+          radius={radius.sheet}
+          onPress={() => play(FEATURED)}
+          style={styles.heroCard}
+          accessibilityRole="button"
+          accessibilityLabel={`Daily challenge — ${featured.title}`}
+        >
+          <Material name="dusk" />
+          <CompassMark size={150} tone="brass" style={styles.heroMark} />
+          {/* Parchment, never brass: brass measures ~2.6:1 at this card's lit
+              corner (pinned in test/engine.test.js). */}
+          <Text style={styles.heroKicker}>Daily challenge</Text>
+          <Text style={styles.heroTitle}>A mixed round, every day</Text>
+          <View style={styles.heroCta}>
+            <Text style={styles.heroCtaText}>PLAY</Text>
+          </View>
+        </PressableTint>
+
         {onOpenLearningPaths && (
-          <FadeInUp index={2} rise={0}>
-            <Text style={styles.section}>Study</Text>
-            <PressableTint
-              onPress={onOpenLearningPaths}
-              radius={radius.sheet}
-              style={styles.reviewRow}
-              accessibilityRole="button"
-              accessibilityLabel="Learning paths — five regions, easiest to hardest"
-            >
-              <View style={styles.reviewBody}>
-                <Text style={styles.reviewLabel}>Learning paths</Text>
-                <Text style={styles.reviewValue}>Five regions, easiest to hardest</Text>
-              </View>
-              <Text style={styles.reviewChevron}>›</Text>
-            </PressableTint>
-          </FadeInUp>
+          <PressableTint
+            onPress={onOpenLearningPaths}
+            radius={radius.sheet}
+            style={styles.row}
+            accessibilityRole="button"
+            accessibilityLabel="Learning paths — five regions, easiest to hardest"
+          >
+            <View style={styles.rowBody}>
+              <Text style={styles.rowLabel}>Learning paths</Text>
+              <Text style={styles.rowValue}>Five regions, easiest to hardest</Text>
+            </View>
+            <Text style={styles.chevron}>›</Text>
+          </PressableTint>
         )}
+        {/* Review is owned by Account, but "what should I study?" is asked on
+            the way INTO a session; per-tab stacks make two doorways free. */}
         {onOpenReview && (
-          <FadeInUp index={2} rise={0}>
-            <PressableTint
-              onPress={onOpenReview}
-              radius={radius.sheet}
-              style={styles.reviewRow}
-              accessibilityRole="button"
-              accessibilityLabel="Review — the places worth another look"
-            >
-              <View style={styles.reviewBody}>
-                <Text style={styles.reviewLabel}>Review</Text>
-                <Text style={styles.reviewValue}>The places worth another look</Text>
-              </View>
-              <Text style={styles.reviewChevron}>›</Text>
-            </PressableTint>
-          </FadeInUp>
+          <PressableTint
+            onPress={onOpenReview}
+            radius={radius.sheet}
+            style={styles.row}
+            accessibilityRole="button"
+            accessibilityLabel="Review — the places worth another look"
+          >
+            <View style={styles.rowBody}>
+              <Text style={styles.rowLabel}>Review</Text>
+              <Text style={styles.rowValue}>The places worth another look</Text>
+            </View>
+            <Text style={styles.chevron}>›</Text>
+          </PressableTint>
         )}
 
-        {/* Timed mode */}
-        <Text style={styles.section}>Options</Text>
         <Pressable
           onPress={() => setTimed((t) => !t)}
           style={[styles.toggle, timed && styles.toggleActive]}
+          accessibilityRole="switch"
+          accessibilityState={{ checked: timed }}
         >
           <Text style={[styles.toggleText, timed && styles.toggleTextActive]}>⏱ Timed mode</Text>
           <View style={[styles.toggleState, timed && styles.toggleStateActive]}>
@@ -327,8 +279,6 @@ export default function HomeScreen({
           </View>
         </Pressable>
         <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
-
-        <Text style={styles.footer}>Slickrock Studio · Phase 1 prototype</Text>
       </Container>
     </ScrollView>
   );
@@ -336,59 +286,113 @@ export default function HomeScreen({
 
 const styles = themed(() =>
   StyleSheet.create({
-    // Transparent: AppChrome owns the page ground (the kit's paper fibre).
     wrap: { flex: 1, backgroundColor: "transparent" },
     content: { padding: spacing(5), paddingTop: spacing(6), paddingBottom: spacing(12) },
 
-    statusRow: { flexDirection: "row", gap: spacing(2), marginBottom: spacing(6) },
+    header: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(5),
+      marginBottom: spacing(6),
+      ...hairline,
+      ...elevation(1),
+    },
+    headerTop: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+      gap: spacing(3),
+      marginBottom: spacing(3),
+    },
+    statusRow: { flexDirection: "row", gap: spacing(2) },
     statusPill: {
       flexDirection: "row",
       alignItems: "center",
       gap: spacing(1.5),
-      backgroundColor: colors.surfaceRaised,
+      backgroundColor: colors.surface,
       borderRadius: radius.pill,
       paddingVertical: spacing(1.5),
       paddingHorizontal: spacing(3),
-      ...elevation(1),
     },
-    statusGlyph: { fontSize: 15 },
-    statusValue: { ...type.h3, fontSize: 16 },
-    statusUnit: { ...type.label, fontSize: 10, color: colors.textMuted, letterSpacing: 1 },
-
-    brandRow: { flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" },
-    // emberInk, not lakewater: this sits on parchment, where lakewater is
-    // large-text-only (4.28:1) and this is 15px.
-    brandTag: { ...type.label, fontSize: 15, color: colors.emberInk, letterSpacing: -0.2 },
-    tagline: { ...type.caption, fontSize: 15, marginTop: spacing(1), marginBottom: spacing(5) },
-
-    streakBanner: {
-      backgroundColor: colors.surfaceRaised,
-      borderRadius: radius.sheet,
-      paddingVertical: spacing(3.5),
-      paddingHorizontal: spacing(4),
-      marginBottom: spacing(7),
-      ...hairline,
-      ...elevation(1),
-    },
-    streakRow: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: spacing(3),
-    },
-    streakMsg: { ...type.body, flexShrink: 1, color: colors.text },
-    streakBest: {
-      ...type.label,
-      fontSize: 11,
-      color: colors.textMuted,
-      textTransform: "uppercase",
-      letterSpacing: 0.8,
-    },
-    // The goal line + bar only render once a player has set a streak goal
-    // (PracticePrefsScreen) — see streakGoal/goalProgress above.
+    statusGlyph: { fontSize: 14 },
+    statusValue: { ...type.label, fontSize: 15, color: colors.text },
+    streakMsg: { ...type.body, color: colors.textSecondary },
     goalRow: { marginTop: spacing(3) },
     goalMsg: { ...type.caption, fontSize: 12, color: colors.textMuted, marginBottom: spacing(1.5) },
     goalTrack: { width: "100%" },
+
+    freeStack: { gap: spacing(3), marginBottom: spacing(10) },
+    freeCard: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing(4),
+      minHeight: 80,
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      paddingVertical: spacing(4),
+      paddingHorizontal: spacing(5),
+      overflow: "hidden",
+      ...hairline,
+      ...elevation(1),
+    },
+    freeIcon: {
+      width: 48,
+      height: 48,
+      borderRadius: radius.card,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    freeGlyph: { fontSize: 22 },
+    freeBody: { flex: 1 },
+    freeTitle: { ...type.h3, fontSize: 19, lineHeight: 24 },
+    freeBlurb: { ...type.caption, fontSize: 13, marginTop: 2 },
+    chevron: { ...type.h2, color: colors.textFaint },
+
+    proHeader: { marginBottom: spacing(4) },
+    proTitle: { ...type.h2, fontSize: 24, lineHeight: 30 },
+    proSub: { ...type.caption, fontSize: 14, marginTop: 2 },
+    proGrid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: CARD_GRID.gap,
+      marginBottom: spacing(10),
+    },
+    proCard: {
+      backgroundColor: colors.surfaceRaised,
+      borderRadius: radius.sheet,
+      padding: spacing(4),
+      minHeight: 112,
+      overflow: "hidden",
+      ...hairline,
+      ...elevation(1),
+    },
+    proTop: {
+      flexDirection: "row",
+      alignItems: "flex-start",
+      justifyContent: "space-between",
+      marginBottom: spacing(3),
+    },
+    proIcon: {
+      width: 36,
+      height: 36,
+      borderRadius: radius.card,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    proGlyph: { fontSize: 17 },
+    proCardTitle: { ...type.label, fontSize: 15, lineHeight: 20, color: colors.text },
+    // PRO badge: brass is decorative only (1.9:1 on parchment), so the word is
+    // emberInk on its own warm wash — real AA body text (4.64:1).
+    proBadge: {
+      backgroundColor: colors.emberSurface,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(2),
+      paddingVertical: 3,
+    },
+    proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
+    // Quieted, not greyed: the kit has no disabled grey.
+    soon: { opacity: 0.68 },
 
     section: { ...type.eyebrow, marginBottom: spacing(3) },
     hint: { ...type.caption, fontSize: 12, marginTop: spacing(2.5), marginBottom: spacing(6) },
@@ -396,29 +400,20 @@ const styles = themed(() =>
     heroCard: {
       borderRadius: radius.sheet,
       padding: spacing(5),
-      marginBottom: spacing(7),
-      // Clips the wash, the oversized mark and the press tint to the card.
+      marginBottom: spacing(3),
       overflow: "hidden",
       // The dusk wash's own base, not `brand`: brand lifts to sage in the dark
       // scheme, and this card is a lit panel in both.
       backgroundColor: materialBase("dusk"),
-      ...elevation(2),
+      ...elevation(1),
     },
-    heroMark: {
-      position: "absolute",
-      top: -46,
-      right: -52,
-      opacity: 0.16,
-    },
-    heroKicker: {
-      ...type.eyebrow,
-      color: colors.onFill,
-    },
+    heroMark: { position: "absolute", top: -36, right: -40, opacity: 0.16 },
+    heroKicker: { ...type.eyebrow, color: colors.onFill },
     heroTitle: {
       ...type.h2,
-      fontSize: 26,
+      fontSize: 22,
       color: colors.onFill,
-      lineHeight: 32,
+      lineHeight: 28,
       marginTop: spacing(1.5),
       marginBottom: spacing(4),
     },
@@ -432,62 +427,7 @@ const styles = themed(() =>
     },
     heroCtaText: { ...type.label, fontSize: 14, color: colors.brand, letterSpacing: 1.2 },
 
-    grid: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-between",
-      marginBottom: spacing(4),
-    },
-    // The FadeInUp wrapper is the flex item now, so the cell owns the grid
-    // geometry and the Pressable just fills it. Keeping width on the Pressable
-    // would size it against the wrapper instead of the grid and break the row.
-    tileCell: { width: "48.5%", marginBottom: spacing(4) },
-    tile: {
-      width: "100%",
-      height: "100%",
-      backgroundColor: colors.surfaceRaised,
-      borderRadius: radius.sheet,
-      padding: spacing(5),
-      minHeight: 132,
-      overflow: "hidden",
-      ...hairline,
-      ...elevation(1),
-    },
-    // The icon row. The badge is pinned opposite the glyph rather than beside
-    // it, so a two-line title underneath can never push it around.
-    tileTop: {
-      flexDirection: "row",
-      alignItems: "flex-start",
-      justifyContent: "space-between",
-      marginBottom: spacing(3),
-    },
-    tileIcon: {
-      width: 44,
-      height: 44,
-      borderRadius: radius.card,
-      alignItems: "center",
-      justifyContent: "center",
-    },
-    // PRO badge. Two kit rules decide every value here:
-    //   · Brass is DECORATIVE ONLY — 1.9:1 on parchment — so the word cannot be
-    //     brass type, and a parchment label on a brass fill is no better. The
-    //     badge is emberInk type on a tinted ground, the same pairing every
-    //     warm label in this app uses.
-    //   · `type.eyebrow` is already the structural voice for a small mono
-    //     all-caps marker, so this borrows it wholesale instead of inventing an
-    //     11px mono style beside it. Tracking comes down slightly: eyebrow
-    //     tracking is tuned for a word in open space, not inside a pill.
-    proBadge: {
-      backgroundColor: colors.emberSurface,
-      borderRadius: radius.pill,
-      paddingHorizontal: spacing(2),
-      paddingVertical: 3,
-    },
-    proBadgeText: { ...type.eyebrow, fontSize: 10, letterSpacing: 0.9, lineHeight: 13 },
-    // Quieted, not greyed: the kit has no disabled grey, and the tile still has
-    // to read as a real game that is on its way rather than as broken chrome.
-    tileSoon: { opacity: 0.68 },
-    reviewRow: {
+    row: {
       flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-between",
@@ -495,16 +435,13 @@ const styles = themed(() =>
       borderRadius: radius.sheet,
       paddingVertical: spacing(4),
       paddingHorizontal: spacing(5),
+      marginBottom: spacing(3),
       ...hairline,
       ...elevation(1),
     },
-    reviewBody: { flex: 1 },
-    reviewLabel: { ...type.h3, fontSize: 16 },
-    reviewValue: { ...type.caption, marginTop: 2 },
-    reviewChevron: { ...type.h2, color: colors.textFaint },
-    tileGlyph: { fontSize: 20 },
-    tileTitle: { ...type.h3, fontSize: 16 },
-    tileBlurb: { ...type.caption, fontSize: 12, marginTop: 2, lineHeight: 16 },
+    rowBody: { flex: 1 },
+    rowLabel: { ...type.h3, fontSize: 17 },
+    rowValue: { ...type.caption, marginTop: 2 },
 
     toggle: {
       flexDirection: "row",
@@ -514,6 +451,7 @@ const styles = themed(() =>
       borderRadius: radius.sheet,
       paddingVertical: spacing(3.5),
       paddingHorizontal: spacing(4),
+      marginTop: spacing(4),
       ...elevation(1),
     },
     toggleActive: { backgroundColor: colors.brand },
@@ -528,15 +466,5 @@ const styles = themed(() =>
     toggleStateActive: { backgroundColor: colors.brandDeep },
     toggleStateText: { ...type.label, fontSize: 11, color: colors.textMuted, letterSpacing: 1 },
     toggleStateTextActive: { color: colors.brand },
-
-    footer: {
-      ...type.label,
-      fontSize: 11,
-      color: colors.textMuted,
-      textAlign: "center",
-      marginTop: spacing(2),
-      letterSpacing: 1,
-      textTransform: "uppercase",
-    },
   })
 );

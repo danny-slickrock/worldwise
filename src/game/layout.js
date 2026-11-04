@@ -54,3 +54,15 @@ export function chromeLayout(width) {
   };
 }
 
+// How many columns a card grid gets inside a content column `width` px wide.
+// The wireframe's Pro shelf is 2-up on a phone; on a wider column it should
+// gain columns rather than stretch two cards into slabs. Decided here, from
+// the measured column width, so no screen carries its own breakpoint.
+export const CARD_GRID = { minCell: 200, gap: 12, minColumns: 2, maxColumns: 4 };
+
+export function gridColumns(width, opts = CARD_GRID) {
+  const { minCell, gap, minColumns, maxColumns } = { ...CARD_GRID, ...opts };
+  if (!(width > 0)) return minColumns;
+  const fit = Math.floor((width + gap) / (minCell + gap));
+  return Math.max(minColumns, Math.min(maxColumns, fit));
+}

@@ -378,7 +378,13 @@ import {
   pathToRoute,
   syncToPath,
 } from "../src/game/navigation";
-import { BREAKPOINTS, RAIL_WIDTH, navMode, chromeLayout } from "../src/game/layout";
+import {
+  BREAKPOINTS,
+  RAIL_WIDTH,
+  navMode,
+  chromeLayout,
+  gridColumns,
+} from "../src/game/layout";
 import {
   INITIAL_SYNC_STATE,
   FAILURE_ESCALATION,
@@ -3152,6 +3158,12 @@ check(syncToPath(nav0, "/nonsense") === nav0, "an unparseable popstate leaves th
 console.log("Responsive chrome");
 
 check(navMode(390) === "bar", "a phone gets the bottom tab bar");
+// The Pro grid on Home: the wireframe's 2-up on a phone, more on a wider column.
+check(gridColumns(350) === 2, "a phone-width column gets the wireframe's 2-up Pro grid");
+check(gridColumns(680) === 3, "a desktop-width content column gains a third column");
+check(gridColumns(0) === 2 && gridColumns(undefined) === 2, "before layout is measured, 2-up");
+check(gridColumns(5000) === 4, "the grid never exceeds four columns");
+check(gridColumns(120) === 2, "...and never drops below two, even when squeezed");
 check(navMode(834) === "bar", "a portrait tablet still gets the bar");
 check(navMode(1440) === "rail", "a desktop gets the side rail");
 check(navMode(BREAKPOINTS.rail) === "rail", "the rail breakpoint is inclusive");
