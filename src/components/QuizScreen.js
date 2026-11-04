@@ -59,6 +59,7 @@ import { fetchDailyLeaderboard } from "../storage/cloudLeaderboard";
 import { topWithYou } from "../game/leaderboardPolicy";
 import { dayKey } from "../game/progress";
 import { buildDailyShareText } from "../game/shareCard";
+import GlobeZoomControls from "./GlobeZoomControls";
 
 const TIMEOUT = "__timeout__"; // sentinel "picked" value for an unanswered, expired question
 
@@ -300,6 +301,8 @@ export default function QuizScreen({
     // answer surface fills the screen on a phone, so claiming every vertical
     // swipe would trap the page.
     axisLock: true,
+    // The quiz body scrolls: a plain wheel is the page's.
+    wheelZoomEnabled: "modifier",
     onManualChange: () => setGlobeMoved(true),
   });
 
@@ -752,6 +755,7 @@ export default function QuizScreen({
                     restrictToCandidates: locatorLook.restrictToCandidates,
                   }}
                 />
+                <GlobeZoomControls globe={globe} />
                 {locatorLook.showBorders && (
                   <BasemapToggle
                     value={locatorMapName}

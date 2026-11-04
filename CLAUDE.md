@@ -520,8 +520,13 @@ you could tap. Three rules:
   an effect must list them in its deps; with fresh identities every render that effect re-ran on
   every render, and since every drag frame is a `setState`, each frame snapped the globe back. The
   gestures fired perfectly and the globe looked completely inert.
-- **`wheelZoomEnabled: false` for a globe inside a scrolling page.** Zooming has to `preventDefault`,
-  so an embedded globe otherwise traps the page's scroll whenever the pointer crosses it.
+- **Every globe zooms, and an EMBEDDED one never fights the page.** Pinch on touch everywhere. On
+  web, an embedded globe uses `wheelZoomEnabled: "modifier"` (mapZoom.wheelShouldZoom): a plain
+  wheel scrolls the page, ⌘/ctrl+wheel zooms — and a trackpad pinch arrives as ctrl+wheel, so it
+  just works. Every globe also carries `GlobeZoomControls` (+/−), the discoverable affordance.
+  Only the full-screen Explore globe takes the plain wheel. Zoom runs to `GLOBE_ZOOM_MAX` (32x);
+  wheel zoom is multiplicative so the deep end doesn't crawl; one country frames with
+  `zoomForCountry` (proportional margin — the old fixed 12° margin capped everything at ~4.8x).
 
 **Terrain is derived from content, not from a formula.** `game/terrainTint.js` classifies each
 country from the CIA World Factbook climate and landform lines already in `data/countryContent.js` —

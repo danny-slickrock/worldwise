@@ -111,6 +111,22 @@ export function zoomForRadius(radiusDegrees, { margin = 12, min = 1, max = 8 } =
   return Math.max(min, Math.min(max, 1 / Math.sin((alpha * Math.PI) / 180)));
 }
 
+// How far to zoom to frame ONE country — "View on map", the country hero.
+//
+// zoomForRadius's fixed 12° margin caps any single country at ~4.8x no matter
+// how small it is, which made the deep zoom pointless for exactly the places
+// it is for. Here the margin is PROPORTIONAL (a third again of the country's
+// own extent, plus a degree), with a floor so a city-state still shows its
+// neighbourhood. A country with no outline at all — the micro-states are
+// point symbols with no rings — reads as radius 0 and gets that tight floor
+// rather than the whole-world view.
+export const COUNTRY_FRAME_MIN_DEG = 2;
+export function zoomForCountry(radiusDegrees, { min = 1, max = 8 } = {}) {
+  const r = Number.isFinite(radiusDegrees) && radiusDegrees > 0 ? radiusDegrees : 0;
+  const alpha = Math.min(90, Math.max(COUNTRY_FRAME_MIN_DEG, r * 1.35 + 1));
+  return Math.max(min, Math.min(max, 1 / Math.sin((alpha * Math.PI) / 180)));
+}
+
 // How far to zoom so a group of countries' CENTERS all fit the view —
 // e.g. the region pills, which frame how far apart a region's countries sit
 // from one another, not any one country's own outline.

@@ -94,6 +94,8 @@ import {
   clampScale,
   pinchScale,
   wheelZoom,
+  wheelShouldZoom,
+  stepZoom,
   touchDistance,
   dragPan,
   clampPan,
@@ -182,6 +184,7 @@ import {
   groupSpin,
   groupZoom,
   zoomForRadius,
+  zoomForCountry,
   countryAngularRadius,
   spinVelocityFromDrag,
   decayVelocity,
@@ -208,6 +211,7 @@ import {
   normalizePracticePrefs,
 } from "../src/game/practicePrefsPolicy";
 import { STREAK_GOAL_MIN, STREAK_GOAL_MAX } from "../src/constants";
+import { GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX, GLOBE_ZOOM_STEP } from "../src/constants";
 import { QUESTION_COUNT_MIN, QUESTION_COUNT_STEPS, DAILY_LENGTH } from "../src/constants";
 import {
   UNLIMITED,
@@ -1608,7 +1612,14 @@ check(
   pinchScale(0, 20, 1, 1, 4) === 1,
   "pinchScale ignores a degenerate zero start-distance instead of dividing by zero"
 );
-check(wheelZoom(1, -100, 0.01, 1, 4) === 2, "wheelZoom zooms in (scrolling up) by deltaY * speed");
+check(
+  Math.abs(wheelZoom(1, -100, 0.01, 1, 4) - Math.E) < 1e-9,
+  "wheelZoom zooms in (scrolling up) MULTIPLICATIVELY — e^(deltaY * speed)"
+);
+check(
+  Math.abs(wheelZoom(16, -10, 0.01, 1, 32) / 16 - wheelZoom(2, -10, 0.01, 1, 32) / 2) < 1e-9,
+  "...so one tick is the same zoom factor at 2x as at 16x — the deep end never crawls"
+);
 check(
   wheelZoom(2, 500, 0.01, 1, 4) === 1,
   "wheelZoom zooms back out (scrolling down), clamped at the minimum"
@@ -1617,6 +1628,47 @@ check(
   wheelZoom(1, -10000, 0.01, 1, 4) === 4,
   "wheelZoom clamps at the maximum however far the wheel scrolls"
 );
+
+// The scroll-trap rule for globes (mapZoom.wheelShouldZoom).
+check(
+  wheelShouldZoom(true, {}) && !wheelShouldZoom(false, { ctrlKey: true }),
+  "true/false mean always/never"
+);
+check(
+  !wheelShouldZoom("modifier", { ctrlKey: false, metaKey: false }),
+  "an embedded globe leaves a plain wheel to the page"
+);
+check(
+  wheelShouldZoom("modifier", { ctrlKey: true }),
+  "...but ctrl+wheel — which is how a trackpad pinch arrives — zooms it"
+);
+check(wheelShouldZoom("modifier", { metaKey: true }), "...and so does ⌘+wheel");
+check(
+  stepZoom(4, GLOBE_ZOOM_STEP, GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX) === 8,
+  "a + press doubles the zoom"
+);
+check(
+  stepZoom(1, 1 / GLOBE_ZOOM_STEP, GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX) === GLOBE_ZOOM_MIN,
+  "− clamps at the minimum"
+);
+check(
+  stepZoom(30, GLOBE_ZOOM_STEP, GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX) === GLOBE_ZOOM_MAX,
+  "+ clamps at the new maximum"
+);
+check(GLOBE_ZOOM_MAX >= 24, "the globe zooms far deeper than the flat maps' 4x");
+
+// Single-country framing goes deep for small places (zoomForCountry).
+check(
+  zoomForCountry(0, { min: 1, max: 32 }) > 20,
+  "a micro-state (no outline) frames tight, not at the world view"
+);
+check(
+  zoomForCountry(0.4, { min: 1, max: 32 }) > zoomForCountry(3, { min: 1, max: 32 }) &&
+    zoomForCountry(3, { min: 1, max: 32 }) > zoomForCountry(25, { min: 1, max: 32 }),
+  "smaller countries frame deeper — Luxembourg > Ireland > Brazil"
+);
+check(zoomForCountry(25, { min: 1, max: 32 }) < 3, "a big country still frames wide");
+check(zoomForCountry(0, { min: 1, max: 8 }) === 8, "...and the caller's max is respected");
 
 console.log("World Map pan (M2.3 step 2b)");
 check(

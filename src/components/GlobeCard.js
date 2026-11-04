@@ -15,6 +15,7 @@ import GlobeMap from "./GlobeMap";
 import BasemapToggle from "./BasemapToggle";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { colors, spacing, radius, type, elevation, map, themed } from "../theme";
+import GlobeZoomControls from "./GlobeZoomControls";
 
 // Past this the globe stops being a front door and becomes the whole page.
 const STAGE_MAX = 560;
@@ -27,7 +28,7 @@ export default function GlobeCard({ onOpenCountry, onOpenExplore, basemap, onCha
   // time the pointer crossed the globe. Zooming is what the Explore tab is for,
   // and the link below goes there.
   const globe = useGlobeGestures({
-    wheelZoomEnabled: false,
+    wheelZoomEnabled: "modifier",
     // A finger on an embedded globe is ambiguous. Horizontal spins it,
     // vertical scrolls the page — without this the globe eats every scroll
     // that starts on it, which on a phone is most of them.
@@ -52,6 +53,7 @@ export default function GlobeCard({ onOpenCountry, onOpenExplore, basemap, onCha
       <View style={[styles.stage, { maxHeight: stageHeight }]} {...globe.surfaceProps}>
         <GlobeMap spin={globe.spin} zoom={globe.zoom} onSelect={onOpenCountry} basemap={basemap} />
         <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.toggle} />
+        <GlobeZoomControls globe={globe} />
         {/* The hint retires the moment it has been obeyed — a permanent
             instruction on a control you have already used is clutter. */}
         {!moved && (

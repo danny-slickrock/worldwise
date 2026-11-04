@@ -58,6 +58,7 @@ import {
 } from "../game/marathonTiers";
 import { MARATHON_DURATION_MS, OPTIONS_PER_QUESTION } from "../constants";
 import { bestKey, recordResult, formatElapsed } from "../game/bestTimePolicy";
+import GlobeZoomControls from "../components/GlobeZoomControls";
 
 // The two pro marathons (M2.12 steps 7-8) — one screen, because the tiers
 // differ only in how a target is prompted and how it is answered, and
@@ -210,6 +211,7 @@ export default function MarathonScreen({
     initialSpin: { lng: -20, lat: 15 },
     initialZoom: 1,
     axisLock: true,
+    wheelZoomEnabled: "modifier",
   });
   const { snapTo } = globe;
   useEffect(() => {
@@ -411,6 +413,7 @@ export default function MarathonScreen({
             highlightCode={highlightsTarget ? target : null}
             onSelect={look.answer === "globe" ? answerGlobe : undefined}
           />
+          <GlobeZoomControls globe={globe} />
         </View>
       )}
 

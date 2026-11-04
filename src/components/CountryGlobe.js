@@ -18,9 +18,10 @@ import GlobeMap from "./GlobeMap";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import BasemapToggle from "./BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS, GLOBE_COUNTRY_CODES } from "../data/worldGeo";
-import { groupSpin, countryAngularRadius, zoomForRadius } from "../game/globeMotion";
-import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
+import { groupSpin, countryAngularRadius, zoomForCountry } from "../game/globeMotion";
+import { GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX } from "../constants";
 import { colors, spacing, radius as radii, type, map, themed } from "../theme";
+import GlobeZoomControls from "./GlobeZoomControls";
 
 const HAS_GEOMETRY = new Set(GLOBE_COUNTRY_CODES);
 
@@ -32,7 +33,7 @@ export function framingFor(code) {
   const spin = groupSpin([code], COUNTRY_CENTERS);
   if (!spin) return null;
   const angular = countryAngularRadius(COUNTRY_RINGS[code], COUNTRY_CENTERS[code]);
-  return { spin, zoom: zoomForRadius(angular, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX }) };
+  return { spin, zoom: zoomForCountry(angular, { min: GLOBE_ZOOM_MIN, max: GLOBE_ZOOM_MAX }) };
 }
 
 export default function CountryGlobe({ code, name, framing, basemap, onChangeBasemap }) {
@@ -43,7 +44,9 @@ export default function CountryGlobe({ code, name, framing, basemap, onChangeBas
   const globe = useGlobeGestures({
     initialSpin: framing.spin,
     initialZoom: framing.zoom,
-    wheelZoomEnabled: false,
+    // Embedded in a scrolling article: ⌘/ctrl+wheel or a trackpad pinch zooms,
+    // a plain wheel scrolls the page.
+    wheelZoomEnabled: "modifier",
     // Horizontal spins, vertical scrolls the page. This globe sits partway down
     // a long article; eating every vertical swipe that lands on it would make
     // the page feel broken on a phone.
@@ -59,6 +62,8 @@ export default function CountryGlobe({ code, name, framing, basemap, onChangeBas
           GlobeMap treats a missing handler as scenery. */}
       <GlobeMap spin={globe.spin} zoom={globe.zoom} highlightCode={code} basemap={basemap} />
       <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.basemapToggle} />
+      {/* Top-right: the bottom-right corner belongs to "Back to …". */}
+      <GlobeZoomControls globe={globe} style={styles.zoomControls} />
       {moved ? (
         <Pressable
           onPress={() => globe.animateTo(framing.zoom, framing.spin)}
@@ -99,6 +104,7 @@ const styles = themed(() =>
       color: map.onMap,
     },
     basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
+    zoomControls: { top: spacing(3), bottom: undefined },
     pill: {
       position: "absolute",
       right: spacing(3),

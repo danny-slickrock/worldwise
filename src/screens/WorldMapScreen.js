@@ -26,18 +26,19 @@ import GlobeMap from "../components/GlobeMap";
 import BasemapToggle from "../components/BasemapToggle";
 import { COUNTRY_CENTERS, COUNTRY_RINGS } from "../data/worldGeo";
 import { COUNTRIES, PLACES } from "../data/countries";
-import { MAP_ZOOM_MIN, MAP_ZOOM_MAX } from "../constants";
+import { GLOBE_ZOOM_MIN, GLOBE_ZOOM_MAX } from "../constants";
 import { MAP_REGIONS } from "../game/mapRegions";
 import {
   DEFAULT_SPIN,
   groupSpin,
   groupZoom,
-  zoomForRadius,
+  zoomForCountry,
   countryAngularRadius,
   clampSpin,
 } from "../game/globeMotion";
 import useGlobeGestures from "../hooks/useGlobeGestures";
 import { useChromeInset } from "../components/AppChrome";
+import GlobeZoomControls from "../components/GlobeZoomControls";
 
 // Each region's rotation target, resolved once at module load from its own
 // countries' center vectors — same precompute-from-static-data pattern the
@@ -51,7 +52,10 @@ const REGION_TARGETS = Object.fromEntries(
       spin
         ? {
             spin,
-            zoom: groupZoom(codes, COUNTRY_CENTERS, spin, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX }),
+            zoom: groupZoom(codes, COUNTRY_CENTERS, spin, {
+              min: GLOBE_ZOOM_MIN,
+              max: GLOBE_ZOOM_MAX,
+            }),
           }
         : null,
     ];
@@ -76,9 +80,10 @@ export default function WorldMapScreen({
   // Every drag, pinch, wheel and flick on this globe. onManualChange drops the
   // active region pill: once the player has moved the view themselves, the pill
   // would be claiming a framing it no longer has.
-  const { spin, zoom, animateTo, surfaceProps } = useGlobeGestures({
+  const globe = useGlobeGestures({
     onManualChange: () => setActiveRegion(null),
   });
+  const { spin, zoom, animateTo, surfaceProps } = globe;
 
   // Opened from a country page's "View on map" link (M2.3.7 step 4): spin
   // straight to that country instead of leaving the globe at DEFAULT_SPIN.
@@ -96,7 +101,7 @@ export default function WorldMapScreen({
     const targetSpin = groupSpin([focusCountry], COUNTRY_CENTERS);
     if (!targetSpin) return;
     const radius = countryAngularRadius(COUNTRY_RINGS[focusCountry], COUNTRY_CENTERS[focusCountry]);
-    const targetZoom = zoomForRadius(radius, { min: MAP_ZOOM_MIN, max: MAP_ZOOM_MAX });
+    const targetZoom = zoomForCountry(radius, { min: GLOBE_ZOOM_MIN, max: GLOBE_ZOOM_MAX });
     animateTo(targetZoom, targetSpin);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -197,6 +202,9 @@ export default function WorldMapScreen({
           <GlobeMap spin={spin} zoom={zoom} onSelect={onOpenCountry} basemap={basemap} />
 
           <BasemapToggle value={basemap} onChange={onChangeBasemap} style={styles.basemapToggle} />
+          {/* Full-screen: the wheel is the map's anyway. The buttons are for
+              anyone without a wheel or a pinch — and they are discoverable. */}
+          <GlobeZoomControls globe={globe} style={styles.zoomControls} />
 
           {activeRegion !== null && (
             // M2.4 step 5: the same region pill that framed the globe doubles
@@ -289,6 +297,8 @@ const styles = themed(() =>
       ...elevation(2),
     },
 
+    // Clear of the floating glass tab bar inset already applied to mapWrap.
+    zoomControls: { right: spacing(3), bottom: spacing(3) },
     resetPill: {
       position: "absolute",
       top: spacing(4),

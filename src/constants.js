@@ -105,6 +105,16 @@ export const MAP_ZOOM_MIN = 1;
 export const MAP_ZOOM_MAX = 4;
 export const MAP_WHEEL_ZOOM_SPEED = 0.0016;
 
+// The GLOBE's zoom range, deeper than the flat maps' 4x. Zoom multiplies the
+// sphere's radius, so 32x is a field of view of roughly 4 degrees — Luxembourg
+// fills a good part of the view and Malta is readable, which is what makes the
+// small countries actually reachable. (Finer coastlines at that depth are a
+// separate milestone: see docs/adr/0003-globe-level-of-detail.md.)
+export const GLOBE_ZOOM_MIN = 1;
+export const GLOBE_ZOOM_MAX = 32;
+// One tap of a + / − zoom button.
+export const GLOBE_ZOOM_STEP = 2;
+
 // World Map screen (M2.3 step 2b): a single-finger/mouse press only becomes a
 // pan once it moves this many screen pixels — below that, it's left alone as
 // a tap so it still reaches ExploreMap's country shapes.

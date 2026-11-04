@@ -13,8 +13,30 @@ export function pinchScale(startDistance, currentDistance, startScale, min, max)
 }
 
 // Mouse-wheel/trackpad zoom (web): scrolling up (negative deltaY) zooms in.
+//
+// MULTIPLICATIVE, not additive: a tick scales by the same FACTOR at any
+// depth. Additive was fine for a 1-4x map, but at 32x it takes ~200 ticks to
+// travel the range and the first ticks lurch while the last ones crawl.
 export function wheelZoom(currentScale, deltaY, speed, min, max) {
-  return clampScale(currentScale - deltaY * speed, min, max);
+  return clampScale(currentScale * Math.exp(-deltaY * speed), min, max);
+}
+
+// Should this wheel event zoom the globe? The scroll-trap rule in one place:
+//   true        a full-screen map — the wheel is always the map's
+//   false       never (the page keeps every wheel)
+//   "modifier"  an EMBEDDED globe in a scrolling page: a plain wheel scrolls
+//               the page; ⌘/ctrl + wheel zooms. A trackpad pinch arrives as a
+//               ctrl+wheel event in every desktop browser, so pinching an
+//               embedded globe zooms it while two-finger scrolling still
+//               scrolls the page.
+export function wheelShouldZoom(mode, event) {
+  if (mode === "modifier") return Boolean(event?.ctrlKey || event?.metaKey);
+  return Boolean(mode);
+}
+
+// One zoom-button press: multiply, clamped.
+export function stepZoom(currentScale, factor, min, max) {
+  return clampScale(currentScale * factor, min, max);
 }
 
 // Distance between two RN touch points ({ pageX, pageY }), for pinchScale.

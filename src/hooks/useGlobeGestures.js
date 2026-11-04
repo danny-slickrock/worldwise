@@ -20,15 +20,16 @@
 import { useEffect, useRef, useState } from "react";
 import { PanResponder, Platform, Animated } from "react-native";
 import {
-  MAP_ZOOM_MIN,
-  MAP_ZOOM_MAX,
+  GLOBE_ZOOM_MIN,
+  GLOBE_ZOOM_MAX,
+  GLOBE_ZOOM_STEP,
   MAP_WHEEL_ZOOM_SPEED,
   MAP_DRAG_THRESHOLD,
   GLOBE_VIEW_SIZE,
   GLOBE_BASE_RADIUS,
   GLOBE_SPIN_ANIMATION_MS,
 } from "../constants";
-import { pinchScale, touchDistance, wheelZoom } from "../game/mapZoom";
+import { pinchScale, touchDistance, wheelZoom, wheelShouldZoom, stepZoom } from "../game/mapZoom";
 import {
   DEFAULT_SPIN,
   spinFromDrag,
@@ -48,7 +49,11 @@ import {
 //   enabled                    false freezes the globe (still tappable). The
 //                              listeners stay bound and simply do nothing, so
 //                              toggling it can't leak or double-bind.
-//   wheelZoomEnabled           false leaves the wheel to the page. The handler
+//   wheelZoomEnabled           true | false | "modifier" (game/mapZoom.js's
+//                              wheelShouldZoom). "modifier" is the embedded
+//                              answer: ⌘/ctrl+wheel and trackpad pinch zoom,
+//                              a plain wheel scrolls the page.
+//                              false leaves the wheel to the page. The handler
 //                              calls preventDefault to zoom, so a globe embedded
 //                              in a scrolling page would otherwise trap the
 //                              scroll whenever the pointer crossed it — the
@@ -66,8 +71,8 @@ import {
 export default function useGlobeGestures({
   initialSpin = DEFAULT_SPIN,
   initialZoom = 1,
-  minZoom = MAP_ZOOM_MIN,
-  maxZoom = MAP_ZOOM_MAX,
+  minZoom = GLOBE_ZOOM_MIN,
+  maxZoom = GLOBE_ZOOM_MAX,
   enabled = true,
   wheelZoomEnabled = true,
   axisLock = false,
@@ -319,7 +324,9 @@ export default function useGlobeGestures({
     node.style.touchAction = axisLockRef.current ? "pan-y" : "none";
 
     const handleWheel = (e) => {
-      if (!enabledRef.current || !wheelRef.current) return;
+      // Not ours (wheelShouldZoom): return WITHOUT preventDefault, so the
+      // page scrolls exactly as if the globe weren't there.
+      if (!enabledRef.current || !wheelShouldZoom(wheelRef.current, e)) return;
       e.preventDefault();
       const { minZoom: lo, maxZoom: hi } = boundsRef.current;
       applyZoom(wheelZoom(zoomRef.current, e.deltaY, MAP_WHEEL_ZOOM_SPEED, lo, hi));
@@ -536,12 +543,22 @@ export default function useGlobeGestures({
   // over other per-render helpers (applySpin, screenRadius); those only ever
   // touch refs and setState, so calling last render's copy is correct, but
   // spelling that out as a useCallback dep list would be a lie.
+  // A zoom-button press: one GLOBE_ZOOM_STEP, animated, keeping the current
+  // orientation — the globe zooms toward what you are looking at.
+  const zoomBy = (direction) => {
+    const { minZoom: lo, maxZoom: hi } = boundsRef.current;
+    const factor = direction > 0 ? GLOBE_ZOOM_STEP : 1 / GLOBE_ZOOM_STEP;
+    animateTo(stepZoom(zoomRef.current, factor, lo, hi), spinRef.current);
+    onManualChangeRef.current?.();
+  };
+
   const latest = useRef(null);
-  latest.current = { animateTo, snapTo, stopMomentum };
+  latest.current = { animateTo, snapTo, stopMomentum, zoomBy };
   const stable = useRef({
     animateTo: (...args) => latest.current.animateTo(...args),
     snapTo: (...args) => latest.current.snapTo(...args),
     stopMomentum: (...args) => latest.current.stopMomentum(...args),
+    zoomBy: (...args) => latest.current.zoomBy(...args),
   }).current;
 
   return {
@@ -549,6 +566,11 @@ export default function useGlobeGestures({
     zoom,
     animateTo: stable.animateTo,
     snapTo: stable.snapTo,
+    // The deliberate zoom affordance (GlobeZoomControls): one press, one step,
+    // animated. Identity-stable like the rest.
+    zoomBy: stable.zoomBy,
+    canZoomIn: zoom < maxZoom - 1e-6,
+    canZoomOut: zoom > minZoom + 1e-6,
     stopMomentum: stable.stopMomentum,
     // Spread onto the View that wraps <GlobeMap>. It must be the view that
     // actually sizes the globe: the ref binds the web listeners and onLayout
