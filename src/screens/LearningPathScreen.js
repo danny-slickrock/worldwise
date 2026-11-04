@@ -1,27 +1,33 @@
-// Learning path screen (M2.4) — a guided, mastery-based sequence through one
-// region's countries, broad to specific.
+// Learning path screen — an OPEN map of one region's countries.
 //
-// Step 4 was the hero: node states come from masteryPolicy.js's
-// computeNodeStates(), mined from the player's real round history, and
-// tapping an unlocked or mastered node opens that country's page — which
-// already has its own Play buttons per game mode, so this screen doesn't
-// need to know how to start a round.
+// It used to be a gated ladder: medium countries locked until the easy tier
+// was mastered, hard until medium. Now nothing is ever locked. Every country
+// is a tappable tile from the first visit; mastery (game/masteryPolicy.js) is
+// shown as a FILLED-IN state — a tile that has taken on its colour — so the
+// path reads as "look how much of Africa you know" rather than "you may not
+// go there yet". The point is encouragement and orientation, not permission.
 //
-// Step 5 generalizes the entry point: rather than one Home tile per region
-// (which would crowd Home's grid with five near-identical tiles), a single
-// pill row here — same pattern as the World Map's region row — switches
-// between all five paths without leaving the screen. `onSwitchPath` just
-// re-runs App.js's own openLearningPath(pathId), so switching is a normal
-// nav-seam call, not new screen state.
+// Layout, mobile-first: the region pills (unchanged), a progress card with a
+// Play button for a round from this region, then the countries as a grid in
+// three bands — Famous, Familiar, Deep cuts — so the region still reads from
+// broad to specific without anything being withheld.
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Easing } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Animated,
+  Easing,
+} from "react-native";
 import {
   colors,
   spacing,
   radius,
   type,
   elevation,
-  constrain,
   motion,
   themed,
   onFill,
@@ -30,19 +36,37 @@ import Container from "../components/Container";
 import FadeInUp from "../components/FadeInUp";
 import Skeleton from "../components/Skeleton";
 import { getLearningPath, LEARNING_PATH_REGIONS } from "../data/learningPaths";
-import { computeNodeStates } from "../game/masteryPolicy";
+import { computeNodeStates, pathProgress } from "../game/masteryPolicy";
+import { gridColumns } from "../game/layout";
+import { flagUrl } from "../data/countries";
+import PressableTint from "../components/PressableTint";
+import ProgressTrack from "../components/ProgressTrack";
 import { useAuth } from "../auth/AuthProvider";
 import { fetchRoundResults } from "../storage/cloudProgress";
 import { ChromeSpacer } from "../components/AppChrome";
 
-const STATE_LABEL = { locked: "Locked", unlocked: "Start", mastered: "Mastered" };
+// The three bands a region reads through, broad to specific. Labels, not
+// gates: every band is open.
+const BANDS = [
+  { difficulty: "easy", label: "Famous" },
+  { difficulty: "medium", label: "Familiar" },
+  { difficulty: "hard", label: "Deep cuts" },
+];
+// Tiles are small cells — three across on a phone, more on a wide column.
+const TILE_GRID = { minCell: 100, gap: 10, minColumns: 3, maxColumns: 6 };
 
-export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSwitchPath }) {
+export default function LearningPathScreen({
+  pathId,
+  onExit,
+  onOpenCountry,
+  onSwitchPath,
+  onPlayRegion,
+}) {
   const path = getLearningPath(pathId);
   const { user } = useAuth();
   // Local storage keeps no per-round history (only aggregated totals), so
-  // results start empty — signed-out players see every tier but the first
-  // locked until they sign in, same offline-first trade-off as Profile's stats.
+  // results start empty — a signed-out player sees every country as "new",
+  // and every one is still open.
   const [results, setResults] = useState([]);
   // A failed fetch (offline, backend down) also resolves to an empty results
   // array, which looks identical to "no history yet" and would otherwise
@@ -77,6 +101,11 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
   }, [user]);
 
   const nodes = path ? computeNodeStates(path, results) : [];
+  const progress = pathProgress(nodes);
+  const [gridWidth, setGridWidth] = useState(0);
+  const columns = gridColumns(gridWidth, TILE_GRID);
+  const tileWidth =
+    gridWidth > 0 ? (gridWidth - TILE_GRID.gap * (columns - 1)) / columns : undefined;
 
   // Fade/rise-in on open, fade/settle-out on close — same shape as
   // CountryPageScreen (M2.2 step 6.4). A node tap skips the defer: it opens a
@@ -152,53 +181,119 @@ export default function LearningPathScreen({ pathId, onExit, onOpenCountry, onSw
             <FadeInUp rise={0}>
               <Text style={styles.kicker}>Learning path</Text>
               <Text style={styles.title}>{path.region}</Text>
-              <Text style={styles.subtitle}>{path.nodes.length} countries, easiest to hardest</Text>
+
+              {/* Where you stand in this region — the encouragement half. */}
+              <View style={styles.progressCard}>
+                {loadingResults ? (
+                  <>
+                    <Skeleton width="62%" height={15} />
+                    <Skeleton width="100%" height={8} style={styles.skeletonSub} />
+                  </>
+                ) : (
+                  <>
+                    <Text style={styles.progressHeadline}>
+                      {progress.mastered > 0
+                        ? `${progress.mastered} of ${progress.total} mastered`
+                        : progress.explored > 0
+                          ? `${progress.explored} of ${progress.total} explored`
+                          : `${progress.total} countries to explore`}
+                    </Text>
+                    <ProgressTrack
+                      value={progress.ratio}
+                      style={styles.progressTrack}
+                      label={`${progress.mastered} of ${progress.total} mastered`}
+                    />
+                    <Text style={styles.progressSub}>
+                      {progress.inProgress > 0
+                        ? `${progress.inProgress} in progress · tap any country to dive in`
+                        : "Every country is open — tap any one to dive in"}
+                    </Text>
+                  </>
+                )}
+                {onPlayRegion && (
+                  <PressableTint
+                    onPress={() => onPlayRegion(path.region)}
+                    radius={radius.pill}
+                    style={styles.playBtn}
+                    accessibilityRole="button"
+                    accessibilityLabel={`Play a round from ${path.region}`}
+                  >
+                    <Text style={styles.playBtnText}>Play {path.region}</Text>
+                  </PressableTint>
+                )}
+              </View>
 
               {resultsError && user && (
                 <Text style={styles.noticeText}>
-                  ⚠ Couldn't load your progress — showing offline defaults.
+                  ⚠ Couldn't load your progress — every country is still open.
                 </Text>
               )}
             </FadeInUp>
 
-            <FadeInUp rise={0} index={1}>
-              {loadingResults
-                ? path.nodes.map((node) => (
-                    <View key={node.code} style={styles.row}>
-                      <View style={styles.rowBody}>
-                        <Skeleton width="58%" height={15} />
-                        <Skeleton width="34%" height={11} style={styles.skeletonSub} />
-                      </View>
-                      <Skeleton width={64} height={11} />
-                    </View>
-                  ))
-                : nodes.map((node) => {
-                    const locked = node.state === "locked";
-                    return (
-                      <Pressable
+            {BANDS.map((band, bi) => {
+              const bandNodes = (loadingResults ? path.nodes : nodes).filter(
+                (n) => n.difficulty === band.difficulty
+              );
+              if (!bandNodes.length) return null;
+              return (
+                <FadeInUp key={band.difficulty} rise={0} index={bi + 1}>
+                  <Text style={styles.band}>
+                    {band.label} · {bandNodes.length}
+                  </Text>
+                  <View
+                    style={styles.grid}
+                    onLayout={
+                      bi === 0 ? (e) => setGridWidth(e.nativeEvent.layout.width) : undefined
+                    }
+                  >
+                    {bandNodes.map((node) => (
+                      <CountryTile
                         key={node.code}
-                        disabled={locked}
+                        node={node}
+                        width={tileWidth}
+                        loading={loadingResults}
                         onPress={() => onOpenCountry?.(node.code)}
-                        style={[styles.row, locked && styles.rowLocked]}
-                      >
-                        <View style={styles.rowBody}>
-                          <Text style={[styles.rowName, locked && styles.rowNameLocked]}>
-                            {node.name}
-                          </Text>
-                          <Text style={styles.rowDifficulty}>{node.difficulty}</Text>
-                        </View>
-                        <Text style={[styles.rowState, styles[`rowState_${node.state}`]]}>
-                          {STATE_LABEL[node.state]}
-                        </Text>
-                      </Pressable>
-                    );
-                  })}
-            </FadeInUp>
+                      />
+                    ))}
+                  </View>
+                </FadeInUp>
+              );
+            })}
           </Container>
           <ChromeSpacer />
         </ScrollView>
       )}
     </Animated.View>
+  );
+}
+
+// One country. Mastered = the tile fills with brand colour and carries a ✓;
+// in progress = a fill bar along the foot; new = a plain cream card. Every
+// state is tappable — the state is a reward to look at, not a key.
+function CountryTile({ node, width, loading, onPress }) {
+  const mastered = !loading && node.state === "mastered";
+  const inProgress = !loading && node.state === "inProgress";
+  const stateLabel = mastered ? "mastered" : inProgress ? "in progress" : "new";
+  return (
+    <PressableTint
+      onPress={onPress}
+      radius={radius.sheet}
+      tone={mastered ? "dark" : "light"}
+      style={[styles.tile, { width: width ?? "31%" }, mastered && styles.tileMastered]}
+      accessibilityRole="button"
+      accessibilityLabel={`${node.name}, ${stateLabel}`}
+    >
+      <Image source={{ uri: flagUrl(node.code) }} style={styles.tileFlag} resizeMode="cover" />
+      <Text style={[styles.tileName, mastered && styles.tileNameMastered]} numberOfLines={2}>
+        {node.name}
+      </Text>
+      {mastered && <Text style={styles.tileCheck}>✓</Text>}
+      {inProgress && (
+        <View style={styles.tileBar}>
+          <View style={[styles.tileBarFill, { width: `${Math.round(node.progress * 100)}%` }]} />
+        </View>
+      )}
+    </PressableTint>
   );
 }
 
@@ -232,48 +327,78 @@ const styles = themed(() =>
     content: { padding: spacing(5), paddingTop: spacing(2), paddingBottom: spacing(12) },
     kicker: { ...type.eyebrow },
     title: { ...type.h1, fontSize: 34, marginTop: spacing(1) },
-    subtitle: { ...type.caption, fontSize: 14, marginTop: spacing(1), marginBottom: spacing(5) },
     noticeText: {
       ...type.caption,
       fontSize: 13,
       color: colors.danger,
       marginBottom: spacing(4),
     },
-    row: {
-      ...constrain.content,
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
+    skeletonSub: { marginTop: spacing(2) },
+
+    progressCard: {
       backgroundColor: colors.surfaceRaised,
       borderRadius: radius.sheet,
-      paddingVertical: spacing(3),
-      paddingHorizontal: spacing(4),
-      marginBottom: spacing(2.5),
+      padding: spacing(5),
+      marginTop: spacing(4),
+      marginBottom: spacing(6),
       ...elevation(1),
     },
-    rowLocked: { opacity: 0.5 },
-    skeletonSub: { marginTop: 6 },
-    rowBody: { flex: 1 },
-    rowName: { ...type.body, color: colors.brand },
-    rowNameLocked: { color: colors.textMuted },
-    rowDifficulty: {
-      ...type.label,
-      fontSize: 11,
-      color: colors.textMuted,
-      textTransform: "uppercase",
-      letterSpacing: 1,
-      marginTop: 2,
+    progressHeadline: { ...type.h3, fontSize: 20 },
+    progressTrack: { marginTop: spacing(3) },
+    progressSub: { ...type.caption, marginTop: spacing(2) },
+    playBtn: {
+      marginTop: spacing(4),
+      minHeight: 48,
+      borderRadius: radius.pill,
+      backgroundColor: colors.brand,
+      alignItems: "center",
+      justifyContent: "center",
     },
-    rowState: {
-      ...type.label,
-      fontSize: 12,
-      textTransform: "uppercase",
-      letterSpacing: 1,
-      marginLeft: spacing(3),
+    playBtnText: { ...type.label, fontSize: 15, color: onFill(colors.brand) },
+
+    band: { ...type.eyebrow, marginBottom: spacing(3) },
+    grid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: TILE_GRID.gap,
+      marginBottom: spacing(7),
     },
-    rowState_locked: { color: colors.textMuted },
-    rowState_unlocked: { color: colors.link },
-    rowState_mastered: { color: colors.successInk },
+    tile: {
+      minHeight: 104,
+      padding: spacing(2.5),
+      borderRadius: radius.sheet,
+      backgroundColor: colors.surfaceRaised,
+      overflow: "hidden",
+      ...elevation(1),
+    },
+    // Mastered: the tile takes on the brand fill — "filled in" is the reward.
+    tileMastered: { backgroundColor: colors.brand },
+    tileFlag: {
+      width: 36,
+      height: 24,
+      borderRadius: 3,
+      backgroundColor: colors.surfaceSunken,
+      marginBottom: spacing(2),
+    },
+    tileName: { ...type.label, fontSize: 13, lineHeight: 17, color: colors.text },
+    tileNameMastered: { color: onFill(colors.brand) },
+    tileCheck: {
+      position: "absolute",
+      top: spacing(2),
+      right: spacing(2.5),
+      ...type.label,
+      fontSize: 14,
+      color: onFill(colors.brand),
+    },
+    tileBar: {
+      position: "absolute",
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: 4,
+      backgroundColor: colors.surfaceSunken,
+    },
+    tileBarFill: { height: 4, backgroundColor: colors.accent },
     empty: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing(6) },
     emptyText: { ...type.caption },
   })

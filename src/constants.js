@@ -228,12 +228,11 @@ export const GLOBE_SPIN_ANIMATION_MS = 520;
 export const LEVEL_XP_BASE = 100;
 export const LEVEL_XP_GROWTH = 1.35;
 
-// Learning paths (M2.4 step 2): a node "demonstrates mastery" once the player
-// has shown sustained accuracy at its difficulty tier — the finest signal
-// game_results tracks today (per-round score/total tagged by mode +
-// difficulty, not per-country). MASTERY_MIN_ROUNDS keeps one lucky round from
-// counting; MASTERY_ACCURACY is the bar a tier's rounds have to clear.
-export const MASTERY_MIN_ROUNDS = 3;
+// Learning-path mastery (game/masteryPolicy.js) is per COUNTRY and an
+// indicator only — nothing is ever locked. A country is mastered once it has
+// been answered right MASTERY_MIN_CORRECT times at MASTERY_ACCURACY or better;
+// the minimum keeps one lucky guess from counting.
+export const MASTERY_MIN_CORRECT = 3;
 export const MASTERY_ACCURACY = 0.8;
 
 // Graticule (M2.3.7 step 4.2): the lat/lng grid, drawn under the land so it

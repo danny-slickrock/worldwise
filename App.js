@@ -639,6 +639,11 @@ function AppShell({ osScheme }) {
             // Switching region re-aims this screen rather than opening a new
             // one, so Back still means "leave the path", not "undo a pill tap".
             onSwitchPath={(pathId) => swap({ name: "learn", pathId })}
+            // "Play Africa": a Flag Guesser round drawn from this region —
+            // the same soft regions focus practice preferences use.
+            onPlayRegion={(region) =>
+              openQuiz("flag", DEFAULT_DIFFICULTY, false, null, null, [region])
+            }
           />
         );
 

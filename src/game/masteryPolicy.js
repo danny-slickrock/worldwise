@@ -1,61 +1,62 @@
-// M2.4 step 2: mastery policy — the pure decision layer over what
-// "demonstrates mastery" means, mined entirely from data game_results
-// already tracks today.
+// PURE learning-path mastery — an earned-progress INDICATOR, never a gate.
 //
-// game_results logs per-round score/total tagged by mode + difficulty
-// (cloudSync.js's resultRowFromRound), not per-country accuracy, so a
-// learning-path node can't ask "did you get Brazil right" — the finest signal
-// available is "how has this player performed at this difficulty tier
-// lately". A node's difficulty tier (learningPaths.js, mirroring
-// countries.js) stands in for the node itself: perform well enough across a
-// tier's rounds, and every node at that tier counts as demonstrated. No new
-// per-country stat, no new migration — this is the "mine it from existing
-// round history" branch the roadmap allows.
+// Learning paths used to be a ladder: a region's medium countries stayed
+// LOCKED until its easy tier was mastered, and hard until medium. That made a
+// path a permission system, and it put most of the world behind a wall for a
+// new player — the opposite of what a geography product is for. So there is
+// no locked state any more. Every country in every path is open and playable
+// from the first visit; what this module decides is only how far along you
+// are with each one, so the path reads as encouragement and orientation.
 //
-// No React Native or network import, so test/engine.test.js can exercise
-// this directly under tsx — same discipline as every other pure game/ module.
-import { MASTERY_MIN_ROUNDS, MASTERY_ACCURACY } from "../constants";
+// Three states, per COUNTRY (not per difficulty tier, as before — rounds now
+// capture per-country right/wrong in game_results.countries, so the coarse
+// "how did you do at this tier lately" proxy is no longer needed):
+//
+//   new         never asked about this country yet
+//   inProgress  asked, but not yet answered reliably
+//   mastered    answered right at least MASTERY_MIN_CORRECT times, at an
+//               accuracy of at least MASTERY_ACCURACY
+//
+// Pure (no RN, no network), so test/engine.test.js drives it directly.
+import { MASTERY_MIN_CORRECT, MASTERY_ACCURACY } from "../constants";
+import { countryStats } from "./reviewPolicy";
 
-const DIFFICULTY_ORDER = ["easy", "medium", "hard"];
+export const NODE_STATES = ["new", "inProgress", "mastered"];
 
-// Aggregate accuracy per difficulty tier across a player's round history.
-// Rounds played at difficulty "all" (every non-Daily mode's default, and the
-// Daily itself) mix every tier together, so they're not a signal for any one
-// tier and are left out. `results` is the same { mode, difficulty, score,
-// total } shape resultRowFromRound builds — callers can pass game_results
-// rows or local round records interchangeably.
-function tierStats(results) {
-  const stats = {};
-  for (const tier of DIFFICULTY_ORDER) stats[tier] = { rounds: 0, correct: 0, total: 0 };
-  for (const r of results ?? []) {
-    const stat = stats[r?.difficulty];
-    const total = Number(r?.total) || 0;
-    if (!stat || total <= 0) continue;
-    stat.rounds += 1;
-    stat.correct += Number(r.score) || 0;
-    stat.total += total;
+// One country's state and a 0..1 fill toward mastery, from its stats.
+export function nodeMastery(stat) {
+  if (!stat || !stat.seen) return { state: "new", progress: 0 };
+  const accuracy = stat.right / stat.seen;
+  if (stat.right >= MASTERY_MIN_CORRECT && accuracy >= MASTERY_ACCURACY) {
+    return { state: "mastered", progress: 1 };
   }
-  return stats;
+  // Progress fills with correct answers, damped by accuracy, so a country you
+  // keep getting wrong does not look nearly done. Never shows full while not
+  // mastered — "almost" must look different from "done".
+  const fill =
+    Math.min(1, stat.right / MASTERY_MIN_CORRECT) * Math.min(1, accuracy / MASTERY_ACCURACY);
+  return { state: "inProgress", progress: Math.max(0.08, Math.min(0.92, fill)) };
 }
 
-function isTierMastered(stat) {
-  return Boolean(stat) && stat.rounds >= MASTERY_MIN_ROUNDS && stat.correct / stat.total >= MASTERY_ACCURACY;
-}
-
-// Node states for one learning path, given a player's round history. A node
-// unlocks once every easier tier is mastered (the first tier has no
-// prerequisite, so its nodes start unlocked), and becomes mastered once its
-// own tier is.
+// Every node of a path with its state. `results` is game_results rows (or
+// anything with a `countries` [{ code, correct }] capture). No history at all
+// — a brand-new or signed-out player — means every node is "new", and every
+// one is still open.
 export function computeNodeStates(path, results) {
   if (!path?.nodes) return [];
-  const stats = tierStats(results);
-  const masteredTier = {};
-  for (const tier of DIFFICULTY_ORDER) masteredTier[tier] = isTierMastered(stats[tier]);
+  const stats = countryStats(results ?? []);
+  return path.nodes.map((node) => ({ ...node, ...nodeMastery(stats.get(node.code)) }));
+}
 
-  return path.nodes.map((node) => {
-    const rank = DIFFICULTY_ORDER.indexOf(node.difficulty);
-    const prereqsMet = rank <= 0 || DIFFICULTY_ORDER.slice(0, rank).every((tier) => masteredTier[tier]);
-    const state = !prereqsMet ? "locked" : masteredTier[node.difficulty] ? "mastered" : "unlocked";
-    return { ...node, state };
-  });
+// The region's headline numbers for the progress card.
+export function pathProgress(nodes) {
+  const counts = { new: 0, inProgress: 0, mastered: 0 };
+  for (const n of nodes ?? []) counts[n.state] = (counts[n.state] ?? 0) + 1;
+  const total = (nodes ?? []).length;
+  return {
+    ...counts,
+    total,
+    explored: counts.inProgress + counts.mastered,
+    ratio: total ? counts.mastered / total : 0,
+  };
 }

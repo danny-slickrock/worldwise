@@ -209,8 +209,9 @@ src/
   game/locatorRound.js     # PURE M2.3.7 step 2: Country Locator on the globe — neighbourhood
                            #   candidate selection, framing so all choices are visible, fill states,
                            #   and non-overlapping tap geometry
-  game/masteryPolicy.js    # PURE M2.4 step 2: computeNodeStates(path, results) — locked/unlocked/
-                           #   mastered per node, mined from game_results' per-round score/difficulty
+  game/masteryPolicy.js    # PURE: per-COUNTRY progress — new / inProgress / mastered — mined from
+                           #   game_results.countries. An INDICATOR, never a gate: no node is ever
+                           #   locked, for any player, in any path (a test pins it)
   game/achievementPolicy.js # PURE M2.5 step 1: computeAchievements(progress, results) — badge
                            #   unlock state + progress ratio, mined from progress.js/game_results
   game/levelPolicy.js      # PURE M2.5 step 5: computeLevel(xp) — an escalating leveling curve off

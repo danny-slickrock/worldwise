@@ -228,7 +228,7 @@ import {
   practicePrefsFromProfileRow,
   mergePracticePrefs,
 } from "../src/game/practicePrefsSync";
-import { computeNodeStates } from "../src/game/masteryPolicy";
+import { computeNodeStates, pathProgress, NODE_STATES } from "../src/game/masteryPolicy";
 import { ACHIEVEMENTS } from "../src/data/achievements";
 import { computeAchievements } from "../src/game/achievementPolicy";
 import { computeLevel } from "../src/game/levelPolicy";
@@ -2752,53 +2752,86 @@ check(
 );
 check(getLearningPath("atlantis") === null, "getLearningPath returns null for an unknown id");
 
-console.log("Mastery policy (M2.4 step 2)");
+console.log("Mastery policy — open paths, progress as an indicator");
 const oceania = getLearningPath("oceania");
-const round = (difficulty, score, total) => ({ mode: "flag", difficulty, score, total });
-const strongEasyRounds = [round("easy", 8, 8), round("easy", 7, 8), round("easy", 8, 8)];
+const mCapture = (pairs) => ({
+  mode: "flag",
+  difficulty: "all",
+  score: 0,
+  total: 0,
+  countries: pairs,
+});
+const mRight = (code) => ({ code, correct: true });
+const mWrong = (code) => ({ code, correct: false });
 
+// Nothing is ever locked — for a brand-new player above all.
 const noHistory = computeNodeStates(oceania, []);
 check(
-  noHistory.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked") &&
-    noHistory.filter((n) => n.difficulty !== "easy").every((n) => n.state === "locked"),
-  "with no round history, only the easy tier is unlocked"
+  noHistory.length === oceania.nodes.length && noHistory.every((n) => n.state === "new"),
+  "a zero-history player sees every country in the path as 'new'"
+);
+for (const path of LEARNING_PATHS) {
+  check(
+    computeNodeStates(path, []).every((n) => NODE_STATES.includes(n.state) && n.state !== "locked"),
+    `${path.region}: no node is ever locked — every country is open from the first visit`
+  );
+}
+check(!NODE_STATES.includes("locked"), "'locked' is not a state at all any more");
+check(
+  computeNodeStates(oceania, null).every((n) => n.state === "new"),
+  "missing history (signed out) also means every node is open"
 );
 
-const easyMastered = computeNodeStates(oceania, strongEasyRounds);
+// Per-country mastery from the captured right/wrong history.
+const au = oceania.nodes[0].code;
+const mThree = [mCapture([mRight(au)]), mCapture([mRight(au)]), mCapture([mRight(au)])];
 check(
-  easyMastered.filter((n) => n.difficulty === "easy").every((n) => n.state === "mastered"),
-  "3 strong easy rounds (>= the accuracy bar) master every easy node"
+  computeNodeStates(oceania, mThree).find((n) => n.code === au).state === "mastered",
+  "mThree right answers (100%) master a country"
 );
 check(
-  easyMastered.filter((n) => n.difficulty === "medium").every((n) => n.state === "unlocked"),
-  "mastering easy unlocks (but doesn't master) medium nodes"
+  computeNodeStates(oceania, mThree.slice(0, 2)).find((n) => n.code === au).state === "inProgress",
+  "two right answers is progress, not mastery — one lucky streak doesn't count"
+);
+const shaky = [...mThree, mCapture([mWrong(au)]), mCapture([mWrong(au)])];
+check(
+  computeNodeStates(oceania, shaky).find((n) => n.code === au).state === "inProgress",
+  "3 right of 5 (60%) is still in progress — accuracy matters, not just volume"
+);
+const mIp = computeNodeStates(oceania, mThree.slice(0, 1)).find((n) => n.code === au);
+check(
+  mIp.progress > 0 && mIp.progress < 1,
+  "an in-progress country reports a partial fill, never full"
 );
 check(
-  easyMastered.filter((n) => n.difficulty === "hard").every((n) => n.state === "locked"),
-  "hard nodes stay locked until medium is mastered too"
+  computeNodeStates(oceania, mThree)
+    .filter((n) => n.code !== au)
+    .every((n) => n.state === "new"),
+  "mastering one country doesn't touch the others"
+);
+// A hard country is open AND masterable with no easy history at all.
+const hardNode = oceania.nodes.find((n) => n.difficulty === "hard");
+check(
+  hardNode &&
+    computeNodeStates(oceania, [
+      mCapture([mRight(hardNode.code)]),
+      mCapture([mRight(hardNode.code)]),
+      mCapture([mRight(hardNode.code)]),
+    ]).find((n) => n.code === hardNode.code).state === "mastered",
+  "a 'deep cut' country can be mastered before any famous one — no tier gates it"
 );
 
-const tooFewRounds = computeNodeStates(oceania, strongEasyRounds.slice(0, 2));
-check(
-  tooFewRounds.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked") &&
-    tooFewRounds.filter((n) => n.difficulty !== "easy").every((n) => n.state === "locked"),
-  "fewer than MASTERY_MIN_ROUNDS strong rounds isn't enough to master a tier"
+const mProg = pathProgress(
+  computeNodeStates(oceania, [...mThree, mCapture([mWrong(oceania.nodes[1].code)])])
 );
-
-const weakEasyRounds = [round("easy", 2, 8), round("easy", 3, 8), round("easy", 2, 8)];
-const weakEasy = computeNodeStates(oceania, weakEasyRounds);
 check(
-  weakEasy.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked"),
-  "enough rounds but below the accuracy bar isn't enough to master a tier"
+  mProg.mastered === 1 && mProg.inProgress === 1 && mProg.total === oceania.nodes.length,
+  "pathProgress counts mastered / in progress / total"
 );
-
-const allDifficultyRounds = [round("all", 8, 8), round("all", 8, 8), round("all", 8, 8)];
-const allDifficulty = computeNodeStates(oceania, allDifficultyRounds);
 check(
-  allDifficulty.filter((n) => n.difficulty === "easy").every((n) => n.state === "unlocked"),
-  'difficulty:"all" rounds (Daily, or an untiered round) don\'t count toward any single tier'
+  mProg.explored === 2 && Math.abs(mProg.ratio - 1 / oceania.nodes.length) < 1e-9,
+  "...plus how many were explored, and the mastered ratio for the bar"
 );
-
 check(
   JSON.stringify(computeNodeStates(null, [])) === "[]",
   "computeNodeStates returns [] for an unknown path"
