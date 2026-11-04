@@ -52,6 +52,7 @@ import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_COLOR_SCHEME, statusBarStyle } from "./src/game/colorScheme";
 import { roundLengthFor } from "./src/game/questionCount";
+import { isComingSoon, MARATHON_MODES } from "./src/game/questions";
 import { bestKey, recordResult, mergeBests, bestsFromRows } from "./src/game/bestTimePolicy";
 import { loadPersonalBests, savePersonalBests } from "./src/storage/personalBests";
 import { useAppliedColorScheme, useOsColorScheme } from "./src/lib/appearance";
@@ -65,7 +66,6 @@ import PracticePrefsScreen from "./src/screens/PracticePrefsScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 import { DEFAULT_DIFFICULTY } from "./src/constants";
 import { hasTiers } from "./src/data/difficulties";
-import { isProMode } from "./src/game/entitlements";
 import { LEARNING_PATH_REGIONS } from "./src/data/learningPaths";
 import {
   TABS,
@@ -82,10 +82,12 @@ import {
 } from "./src/game/navigation";
 import { currentPath, pushPath, replacePath, subscribe } from "./src/lib/history";
 
-// The pro marathons run on their own screen and their own engine. Derived from
-// the entitlement catalog rather than a second hardcoded list, so adding a pro
-// game cannot forget to route it.
-const isMarathonMode = (mode) => isProMode(mode);
+// The two marathons run on their own screen and their own engine. This used to
+// be derived as "every Pro mode", which was true only while the marathons
+// were the only Pro games — once Currency, Language, Capital Reverse and
+// Higher or Lower became Pro, picking a tier for them launched the MARATHON
+// screen. Being a marathon is a property of the game, not of its price.
+const isMarathonMode = (mode) => MARATHON_MODES.includes(mode);
 
 // The safe-area inset takes `surface` — the page the world is printed on — so
 // the notch area reads as more page rather than as a band of chrome.
@@ -406,6 +408,12 @@ function AppShell({ osScheme }) {
     recordBest(round);
   }
 
+  useEffect(() => {
+    if ((route.name === "quiz" || route.name === "gameSetup") && isComingSoon(route.mode)) {
+      swap({ name: "play" });
+    }
+  }, [route, swap]);
+
   // A Pro round or sitting carries a stopwatch time; fold it into the bests.
   // (recordResult is pure and never lowers a best, so this is safe to call
   // for every round — a free round has no elapsedMs and is ignored.)
@@ -475,6 +483,14 @@ function AppShell({ osScheme }) {
   const playAgain = () => swap({ ...route, attempt: (route.attempt ?? 0) + 1 });
 
   function renderScreen() {
+    // A "coming" game (game/questions.js COMING_SOON_MODES) is never playable,
+    // including from a typed or old shared URL: its content is not sourced
+    // yet. Render the hub instead; the effect below corrects the URL.
+    if ((route.name === "quiz" || route.name === "gameSetup") && isComingSoon(route.mode)) {
+      return (
+        <HomeScreen progress={progress} onPlay={openGame} streakGoal={practicePrefs.streakGoal} />
+      );
+    }
     switch (route.name) {
       case "quiz":
         return (

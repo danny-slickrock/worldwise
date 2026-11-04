@@ -19,7 +19,16 @@ import {
   MAP_W,
   MAP_H,
 } from "../src/data/worldMap";
-import { buildRound, buildDaily, buildCountryRound, MODES, poolFor } from "../src/game/questions";
+import {
+  buildRound,
+  buildDaily,
+  buildCountryRound,
+  MODES,
+  poolFor,
+  COMING_SOON_MODES,
+  isComingSoon,
+  MARATHON_MODES,
+} from "../src/game/questions";
 import {
   CURRENCY_BY_CODE,
   currencyFor,
@@ -6901,9 +6910,45 @@ check(
   MODE_TIERS.capitalReverse === "pro" && MODES.capitalReverse != null,
   "Capital Reverse is kept as its own Pro game, not folded or retired"
 );
+// Six Pro games are "coming": their content was hand-compiled, not sourced,
+// and a product for students never invents its content.
+const EXPECTED_COMING = ["nationalAnimal", "foodOrigin", "city", "river", "mountain", "ocean"];
 check(
-  PRO_MODES.every((m) => MODES[m] && !MODES[m].comingSoon),
-  "every Pro game is built and playable — none is a 'coming' placeholder"
+  JSON.stringify([...COMING_SOON_MODES].sort()) === JSON.stringify([...EXPECTED_COMING].sort()),
+  "exactly the six unsourced games are flagged coming"
+);
+check(
+  EXPECTED_COMING.every((m) => isComingSoon(m) && isProMode(m)),
+  "...each still listed in the Pro catalog, so Home shows it as SOON"
+);
+check(
+  [
+    "flag",
+    "capital",
+    "shape",
+    "locator",
+    "capitalReverse",
+    "higherLower",
+    "currency",
+    "language",
+    "nameEveryCountry",
+    "identifyAllFlags",
+  ].every((m) => !isComingSoon(m)),
+  "every other game stays playable"
+);
+
+// Being a marathon is a property of the GAME, not its price. (It was once
+// derived from "is Pro", which routed every new Pro quiz to the marathon
+// screen the moment the roster changed.)
+check(
+  JSON.stringify(MARATHON_MODES) === JSON.stringify(["nameEveryCountry", "identifyAllFlags"]),
+  "exactly two marathons"
+);
+check(
+  ["currency", "language", "capitalReverse", "higherLower"].every(
+    (m) => isProMode(m) && !MARATHON_MODES.includes(m)
+  ),
+  "a Pro quiz is not a marathon"
 );
 check(
   MODE_TIERS.daily === "free" && MODE_TIERS.country === "free",
@@ -8522,7 +8567,9 @@ check(
 );
 const pbFaster = recordResult(pbFirst.bests, pbK, { score: 7, total: 10, elapsedMs: 61000 });
 check(
-  pbFaster.newBest && pbFaster.previous.elapsedMs === 80000 && pbFaster.bests[pbK].elapsedMs === 61000,
+  pbFaster.newBest &&
+    pbFaster.previous.elapsedMs === 80000 &&
+    pbFaster.bests[pbK].elapsedMs === 61000,
   "a faster equal score is a new best, and reports what it beat"
 );
 check(pbFirst.bests[pbK].elapsedMs === 80000, "recording never mutates the old map");

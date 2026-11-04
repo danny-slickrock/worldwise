@@ -122,6 +122,9 @@ export const MODES = {
   // shared lions, brown bears, and the three Gulf states' Arabian oryx are
   // exactly the case it exists for.
   nationalAnimal: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "nationalAnimal",
     title: "National Animal Quiz",
     blurb: "Name the national animal",
@@ -135,6 +138,9 @@ export const MODES = {
   // pavlova (Australia/New Zealand) and arepas (Colombia/Venezuela) are all
   // real, well-known shared or disputed claims in this catalog.
   foodOrigin: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "foodOrigin",
     title: "Food Origin Quiz",
     blurb: "Name the dish that originated here",
@@ -148,6 +154,9 @@ export const MODES = {
   // that split is the whole reason this mode exists rather than being a
   // reskin of Capital Quiz.
   city: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "city",
     title: "City Quiz",
     blurb: "Name the largest city",
@@ -159,6 +168,9 @@ export const MODES = {
   // itself, not a country — a river belongs to several countries at once,
   // unlike every per-country fact mode above it.
   river: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "river",
     title: "River Quiz",
     blurb: "Which country does it flow through?",
@@ -168,6 +180,9 @@ export const MODES = {
   // M2.7 step 7.2: the second feature-based game, same shape as river — the
   // TARGET is the range, not a country.
   mountain: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "mountain",
     title: "Mountain Quiz",
     blurb: "Which country does it cross?",
@@ -177,6 +192,9 @@ export const MODES = {
   // M2.7 step 8.2. The third and last feature-based game — same shape as
   // river/mountain, over OCEANS instead of RIVERS/MOUNTAIN_RANGES.
   ocean: {
+    // COMING — not playable until its content comes from a SOURCED pass
+    // (see COMING_SOON below). Never shipped on hand-compiled facts.
+    comingSoon: true,
     key: "ocean",
     title: "Ocean Quiz",
     blurb: "Which country borders it?",
@@ -215,6 +233,22 @@ export const MODES = {
     accent: modeAccents.identifyAllFlags,
   },
 };
+// The six games whose content was HAND-COMPILED (data/nationalAnimals.js,
+// foodOrigin.js, cities.js, rivers.js, mountains.js, oceans.js) rather than
+// drafted from the sourced Factbook/Wikidata pipeline. Per product decision
+// (Nov 2026) they are "coming", not playable: a geography product for
+// students never invents its content.
+//   · River / Mountain / Ocean wait on promoting the physical-geography
+//     enrichment pass to all 196.
+//   · National Animal / Food Origin / City need a new sourced-content pass.
+// The engine and data files stay, unused, so each game is one flag flip once
+// its sourced data lands — build it then with the stopwatch/PB pattern.
+export const COMING_SOON_MODES = Object.keys(MODES).filter((m) => MODES[m].comingSoon);
+export const isComingSoon = (mode) => Boolean(MODES[mode]?.comingSoon);
+
+// The games that are a timed SITTING (MarathonScreen + game/marathon.js)
+// rather than a round of questions. A property of the game, not its price.
+export const MARATHON_MODES = ["nameEveryCountry", "identifyAllFlags"];
 
 function shuffle(arr) {
   const a = [...arr];
