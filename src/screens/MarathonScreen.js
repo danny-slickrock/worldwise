@@ -57,6 +57,7 @@ import {
   marathonClock,
 } from "../game/marathonTiers";
 import { MARATHON_DURATION_MS, OPTIONS_PER_QUESTION } from "../constants";
+import { bestKey, recordResult, formatElapsed } from "../game/bestTimePolicy";
 
 // The two pro marathons (M2.12 steps 7-8) — one screen, because the tiers
 // differ only in how a target is prompted and how it is answered, and
@@ -96,6 +97,7 @@ export default function MarathonScreen({
   onFinish,
   onComplete,
   onOpenReview,
+  personalBests = null,
 }) {
   const meta = MODES[mode];
   const tierMeta = tierFor(mode, tier);
@@ -154,10 +156,22 @@ export default function MarathonScreen({
   // Report the finished sitting exactly once — the run is stamped once
   // (endRun is idempotent), and a ref guards against a re-render re-firing.
   const reported = useRef(false);
+  // Judged against the bests AS THEY WERE when the sitting ended — once App
+  // records this run, the live map already contains it and every run would
+  // read as merely "equal to your best".
+  const [bestOutcome, setBestOutcome] = useState(null);
   useEffect(() => {
     if (run.endedAt === null || reported.current) return;
     reported.current = true;
-    onComplete?.(marathonRoundResult(run, { mode, now: run.endedAt }));
+    const result = marathonRoundResult(run, { mode, now: run.endedAt });
+    setBestOutcome(
+      recordResult(personalBests, bestKey({ mode, tier: result.tier, total: result.total }), {
+        score: result.score,
+        total: result.total,
+        elapsedMs: result.elapsedMs,
+      })
+    );
+    onComplete?.(result);
     // onComplete is an inline prop; the run's end is the only trigger.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [run.endedAt]);
@@ -280,11 +294,26 @@ export default function MarathonScreen({
               <Text style={styles.resultStatLabel}>SCORE</Text>
             </View>
           </View>
-          {score.completedAll && (
+          {score.completedAll && score.speedBonus > 0 && (
             <Text style={styles.resultBonus}>
-              Every one — {score.speedBonus} bonus for finishing with time to spare.
+              Every one — {score.speedBonus} bonus for finishing under par.
             </Text>
           )}
+          {/* Racing yourself: the celebration, or the best still to beat. */}
+          {bestOutcome?.newBest ? (
+            <View style={styles.newBestPill}>
+              <Text style={styles.newBestText}>
+                ★ New personal best
+                {bestOutcome.previous
+                  ? ` — was ${bestOutcome.previous.score} in ${formatElapsed(bestOutcome.previous.elapsedMs)}`
+                  : ""}
+              </Text>
+            </View>
+          ) : bestOutcome?.best ? (
+            <Text style={styles.bestLine}>
+              Your best: {bestOutcome.best.score} in {formatElapsed(bestOutcome.best.elapsedMs)}
+            </Text>
+          ) : null}
           {/* The teaching half. A count alone says how you did; this says what
               to go and learn, which is the only part that improves the next run.
               A stopwatch run lists EVERY miss (it was persisted for Review, so
@@ -585,6 +614,21 @@ const styles = themed(() =>
     resultStat: { alignItems: "center" },
     resultStatValue: { ...type.h2 },
     resultStatLabel: { ...type.eyebrow, fontSize: 10, marginTop: 2 },
+    newBestPill: {
+      marginTop: spacing(4),
+      alignSelf: "center",
+      backgroundColor: colors.brass,
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(4),
+      paddingVertical: spacing(2),
+    },
+    newBestText: { ...type.label, fontSize: 14, color: onFill(colors.brass) },
+    bestLine: {
+      ...type.label,
+      color: colors.textSecondary,
+      marginTop: spacing(4),
+      textAlign: "center",
+    },
     resultBonus: {
       ...type.caption,
       color: colors.successInk,

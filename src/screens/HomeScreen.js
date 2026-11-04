@@ -279,7 +279,9 @@ export default function HomeScreen({
             </Text>
           </View>
         </Pressable>
-        <Text style={styles.hint}>10s per question — not applied to Daily.</Text>
+        <Text style={styles.hint}>
+          10s per question, free games only — Pro games race a stopwatch and your personal best.
+        </Text>
       </Container>
       <ChromeSpacer />
     </ScrollView>

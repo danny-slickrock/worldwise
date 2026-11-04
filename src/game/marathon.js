@@ -276,6 +276,9 @@ export function marathonRoundResult(run, { mode, now = 0 } = {}) {
     timed: true,
     score: s.found,
     total: s.total,
+    // The interaction tier the sitting was played at — a personal best on
+    // Hard is a different contest from one on Easy (game/bestTimePolicy.js).
+    tier: run.tier,
     xp: 0,
     elapsedMs: s.elapsedMs,
     countries: marathonResultCountries(run),

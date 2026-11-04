@@ -10,7 +10,7 @@
 // the kit, neither carries alpha: hierarchy on a dark ground comes from size,
 // case and weight, never from opacity.
 import React from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { Text, Pressable, StyleSheet } from "react-native";
 import { radius, spacing, type, map, colors, themed } from "../theme";
 import { BASEMAPS } from "../game/settings";
 import Glass from "./Glass";

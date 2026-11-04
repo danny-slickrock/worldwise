@@ -46,7 +46,7 @@ export function progressFromStatsRow(row) {
 // partial unique index keys on to enforce one entry per user per day.
 export function resultRowFromRound(userId, round, today) {
   const { mode, difficulty = "all", timed = false, score, total, xp, countries = [] } = round;
-  return {
+  const row = {
     user_id: userId,
     mode,
     difficulty,
@@ -57,6 +57,20 @@ export function resultRowFromRound(userId, round, today) {
     daily_date: mode === "daily" ? (today ?? null) : null,
     countries,
   };
+  // The stopwatch columns (20261104120000) ride along ONLY when the round has
+  // them — a Pro game. A free round's row is byte-identical to before, so it
+  // can never be the insert that trips over a database missing the columns.
+  if (Number.isFinite(round.elapsedMs)) row.elapsed_ms = Math.max(0, Math.round(round.elapsedMs));
+  if (round.tier) row.tier = round.tier;
+  return row;
+}
+
+// The same row with the stopwatch columns removed — the fallback insert when
+// the database predates them (see saveRoundResult). Losing a personal-best
+// time is acceptable; losing the round itself is not.
+export function withoutStopwatchColumns(row) {
+  const { elapsed_ms: _e, tier: _t, ...rest } = row;
+  return rest;
 }
 
 // Turn QuizScreen's per-question `history` into the { code, correct }[] the

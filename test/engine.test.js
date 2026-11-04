@@ -70,6 +70,7 @@ import {
   statsRowFromProgress,
   progressFromStatsRow,
   resultRowFromRound,
+  withoutStopwatchColumns,
   mergeProgress,
   countriesFromHistory,
 } from "../src/game/cloudSync";
@@ -265,6 +266,16 @@ import {
   marathonRoundResult,
 } from "../src/game/marathon";
 import { MARATHON_STOPWATCH_PAR_MS } from "../src/constants";
+import {
+  bestKey,
+  normalizeResult,
+  isBetter,
+  recordResult,
+  mergeBests,
+  bestsFromRows,
+  formatElapsed,
+  roundElapsed,
+} from "../src/game/bestTimePolicy";
 import { MARATHON_POINTS_PER_FIND } from "../src/constants";
 import { higherLowerBand } from "../src/game/higherLower";
 import { HIGHER_LOWER_TIERS } from "../src/constants";
@@ -8245,7 +8256,10 @@ check(
 
 console.log("\nName Every Country — stopwatch");
 check(marathonClock("nameEveryCountry") === "stopwatch", "Name Every Country runs on a stopwatch");
-check(marathonClock("identifyAllFlags") === "countdown", "Identify All Flags keeps its countdown");
+check(
+  marathonClock("identifyAllFlags") === "stopwatch",
+  "Identify All Flags is a stopwatch too — no Pro game has a countdown"
+);
 
 const SW_TARGETS = ["fr", "de", "jp", "br", "kE"];
 const codeMatch = (v, code) => v === code;
@@ -8451,6 +8465,133 @@ for (let i = 0; i < 300; i++) {
   if (q.options.includes("French")) coOfficialLeak = true;
 }
 check(!coOfficialLeak, "Easy never offers French as a wrong answer for Canada");
+
+console.log("\nPro stopwatch + personal bests");
+// No Pro game counts down.
+check(
+  PRO_MODES.filter((m) => m === "nameEveryCountry" || m === "identifyAllFlags").every(
+    (m) => marathonClock(m) === "stopwatch"
+  ),
+  "every Pro marathon runs on a stopwatch"
+);
+
+// The key: mode + tier + length — different shapes are different contests.
+check(
+  bestKey({ mode: "currency", tier: "hard", total: 10 }) === "currency|hard|10",
+  "a best is keyed by mode, tier and length"
+);
+check(
+  bestKey({ mode: "currency", tier: "hard", total: 10 }) !==
+    bestKey({ mode: "currency", tier: "easy", total: 10 }),
+  "...so a Hard best is never compared with an Easy one"
+);
+check(
+  bestKey({ mode: "x", tier: null, total: 5 }) === "x|easy|5",
+  "an untiered round keys as easy"
+);
+
+// Better = more correct; on a tie, pbFaster. Speed never outranks score.
+check(
+  isBetter({ score: 8, elapsedMs: 90000 }, { score: 7, elapsedMs: 10000 }),
+  "more correct wins, however slow"
+);
+check(
+  isBetter({ score: 8, elapsedMs: 50000 }, { score: 8, elapsedMs: 60000 }),
+  "on equal scores, faster wins"
+);
+check(
+  !isBetter({ score: 8, elapsedMs: 60000 }, { score: 8, elapsedMs: 60000 }),
+  "a dead heat is not a new best"
+);
+check(isBetter({ score: 1, elapsedMs: 1 }, null), "anything valid beats no best");
+check(
+  normalizeResult({ score: -1, elapsedMs: 5 }) === null &&
+    normalizeResult({ score: 3, elapsedMs: NaN }) === null &&
+    normalizeResult(null) === null,
+  "a malformed result is not a result"
+);
+
+// Recording.
+const pbK = bestKey({ mode: "currency", tier: "hard", total: 10 });
+const pbFirst = recordResult({}, pbK, { score: 7, total: 10, elapsedMs: 80000 });
+check(pbFirst.newBest && pbFirst.previous === null, "the first real round is a new best");
+const pbSlower = recordResult(pbFirst.bests, pbK, { score: 7, total: 10, elapsedMs: 90000 });
+check(
+  !pbSlower.newBest && pbSlower.bests === pbFirst.bests && pbSlower.best.elapsedMs === 80000,
+  "a slower equal score is not a best, and the map is untouched"
+);
+const pbFaster = recordResult(pbFirst.bests, pbK, { score: 7, total: 10, elapsedMs: 61000 });
+check(
+  pbFaster.newBest && pbFaster.previous.elapsedMs === 80000 && pbFaster.bests[pbK].elapsedMs === 61000,
+  "a faster equal score is a new best, and reports what it beat"
+);
+check(pbFirst.bests[pbK].elapsedMs === 80000, "recording never mutates the old map");
+check(
+  !recordResult({}, pbK, { score: 0, total: 10, elapsedMs: 1000 }).newBest,
+  "a zero-score round is never celebrated as a best, however fast"
+);
+
+// Local + cloud merge, and deriving from game_results rows.
+const pbMerged = mergeBests(
+  { [pbK]: { score: 7, total: 10, elapsedMs: 70000 }, other: { score: 1, total: 2, elapsedMs: 5 } },
+  { [pbK]: { score: 8, total: 10, elapsedMs: 99000 }, junk: { score: "x" } }
+);
+check(
+  pbMerged[pbK].score === 8 && pbMerged.other.score === 1 && !("junk" in pbMerged),
+  "merging keeps the better per key, both sides' unique keys, and drops junk"
+);
+const rowBests = bestsFromRows([
+  { mode: "currency", tier: "hard", total: 10, score: 6, elapsed_ms: 50000 },
+  { mode: "currency", tier: "hard", total: 10, score: 9, elapsed_ms: 70000 },
+  { mode: "currency", tier: "hard", total: 10, score: 9, elapsed_ms: 65000 },
+  { mode: "flag", tier: null, total: 10, score: 10, elapsed_ms: null }, // free round: no time
+]);
+check(
+  rowBests[pbK].score === 9 && rowBests[pbK].elapsedMs === 65000,
+  "bests derive from game_results history: best score, then fastest"
+);
+check(
+  Object.keys(rowBests).length === 1,
+  "rows without a stopwatch time (free rounds, pre-migration rows) contribute nothing"
+);
+
+// The clock is pure.
+check(roundElapsed(1000, 4500, 99999) === 3500, "a finished round's time is end - start");
+check(roundElapsed(1000, null, 2500) === 1500, "a running round reads against `now`");
+check(formatElapsed(83400) === "1:23.4", "m:ss.t under an hour — tenths matter on a stopwatch");
+check(formatElapsed(3723000) === "1:02:03", "h:mm:ss beyond an hour");
+
+// Persisted through the existing row, and ONLY when present.
+const proRow = resultRowFromRound(
+  "u1",
+  { mode: "currency", score: 7, total: 10, xp: 0, tier: "hard", elapsedMs: 61234.6 },
+  "2026-11-04"
+);
+check(
+  proRow.elapsed_ms === 61235 && proRow.tier === "hard",
+  "a Pro round's row carries its time and tier"
+);
+const freeRow = resultRowFromRound(
+  "u1",
+  { mode: "flag", score: 7, total: 10, xp: 90 },
+  "2026-11-04"
+);
+check(
+  !("elapsed_ms" in freeRow) && !("tier" in freeRow),
+  "a free round's row is byte-identical to before — it can never trip on missing columns"
+);
+const pbFallback = withoutStopwatchColumns(proRow);
+check(
+  !("elapsed_ms" in pbFallback) && !("tier" in pbFallback) && pbFallback.score === 7,
+  "the pre-migration fallback row drops only the stopwatch columns"
+);
+check(
+  marathonRoundResult(
+    endRun(startRun({ tier: "hard", targets: ["fr"], now: 0, durationMs: null }), 5000),
+    { mode: "identifyAllFlags", now: 5000 }
+  ).tier === "hard",
+  "a marathon result carries its tier, so its best is keyed by it"
+);
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

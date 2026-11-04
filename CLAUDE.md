@@ -219,6 +219,11 @@ src/
   game/collectionPolicy.js # PURE M2.5 step 6.2: computeCollections(results, countries) — folds
                            #   game_results.countries into per-region collected/total/progress,
                            #   mined the same way masteryPolicy/achievementPolicy are. No UI yet
+  game/bestTimePolicy.js   # PURE: Pro stopwatch personal bests. Keyed mode|tier|length;
+                           #   more correct wins, then faster; a 0-score run is never a best.
+                           #   Local-first (storage/personalBests.js), merged with bests derived
+                           #   from game_results' tier/elapsed_ms (20261104120000). NO Pro game
+                           #   counts down — Pro quiz rounds and both marathons are stopwatches
   game/questionCount.js    # PURE: questions per round — 10 for free, 2..unlimited for Pro
                            #   (hasFeature("questionCount")). Unlimited reaches buildRound as
                            #   Infinity and is resolved THERE to "the whole pool, once" —

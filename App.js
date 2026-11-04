@@ -30,7 +30,11 @@ import { AuthProvider, useAuth } from "./src/auth/AuthProvider";
 import { DEFAULT_PROGRESS, applyRoundResult, dayKey, streakStatus } from "./src/game/progress";
 import { roundSinks } from "./src/game/syncPolicy";
 import { loadProgress, saveProgress } from "./src/storage/progress";
-import { saveRoundResult, migrateLocalToCloud } from "./src/storage/cloudProgress";
+import {
+  saveRoundResult,
+  migrateLocalToCloud,
+  fetchRoundResults,
+} from "./src/storage/cloudProgress";
 import {
   loadInterests,
   saveInterests,
@@ -48,6 +52,8 @@ import { DEFAULT_SETTINGS } from "./src/game/settings";
 import { loadSettings, saveSettings } from "./src/storage/settings";
 import { DEFAULT_COLOR_SCHEME, statusBarStyle } from "./src/game/colorScheme";
 import { roundLengthFor } from "./src/game/questionCount";
+import { bestKey, recordResult, mergeBests, bestsFromRows } from "./src/game/bestTimePolicy";
+import { loadPersonalBests, savePersonalBests } from "./src/storage/personalBests";
 import { useAppliedColorScheme, useOsColorScheme } from "./src/lib/appearance";
 import { DEFAULT_PRACTICE_PREFS } from "./src/game/practicePrefsPolicy";
 import { loadPracticePrefs, savePracticePrefs } from "./src/storage/practicePrefs";
@@ -141,6 +147,7 @@ function AppShell({ osScheme }) {
   const [nav, setNav] = useState(() => navFromPath(currentPath()));
   const [progress, setProgress] = useState(DEFAULT_PROGRESS);
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
+  const [personalBests, setPersonalBests] = useState({});
   // Resolved against the OS and applied to the tokens before anything below
   // renders. Every token is a live view and every module-level style is
   // themed(), so a scheme change is an ordinary re-render — no remount, and a
@@ -202,20 +209,48 @@ function AppShell({ osScheme }) {
       loadInterests(),
       loadInterestsAskedAt(),
       loadPracticePrefs(),
-    ]).then(([savedProgress, savedSettings, savedInterests, savedAskedAt, savedPracticePrefs]) => {
-      if (active) {
-        setProgress(savedProgress);
-        setSettings(savedSettings);
-        setInterests(savedInterests);
-        setAskedAt(savedAskedAt);
-        setPracticePrefs(savedPracticePrefs);
-        setHydrated(true);
+      loadPersonalBests(),
+    ]).then(
+      ([
+        savedProgress,
+        savedSettings,
+        savedInterests,
+        savedAskedAt,
+        savedPracticePrefs,
+        savedBests,
+      ]) => {
+        if (active) {
+          setPersonalBests(savedBests);
+          setProgress(savedProgress);
+          setSettings(savedSettings);
+          setInterests(savedInterests);
+          setAskedAt(savedAskedAt);
+          setPracticePrefs(savedPracticePrefs);
+          setHydrated(true);
+        }
       }
-    });
+    );
     return () => {
       active = false;
     };
   }, []);
+
+  // Personal bests: local is the cache (signed in or out); a signed-in player
+  // also gets the bests re-derived from their game_results history, merged
+  // best-of-both, so a new device catches up.
+  useEffect(() => {
+    if (hydrated) savePersonalBests(personalBests);
+  }, [hydrated, personalBests]);
+  useEffect(() => {
+    if (!hydrated || !user) return undefined;
+    let live = true;
+    fetchRoundResults(user).then(({ rows }) => {
+      if (live && rows?.length) setPersonalBests((b) => mergeBests(b, bestsFromRows(rows)));
+    });
+    return () => {
+      live = false;
+    };
+  }, [hydrated, user]);
 
   // Local is written on every progress change — offline cache when signed in,
   // the only record when signed out. This is roundSinks().local in practice.
@@ -368,6 +403,16 @@ function AppShell({ osScheme }) {
     // Computed out here rather than inside the setProgress updater: React can
     // invoke an updater more than once, which would double-write the round.
     if (roundSinks(user).cloud) saveRoundResult(user, round, next);
+    recordBest(round);
+  }
+
+  // A Pro round or sitting carries a stopwatch time; fold it into the bests.
+  // (recordResult is pure and never lowers a best, so this is safe to call
+  // for every round — a free round has no elapsedMs and is ignored.)
+  function recordBest(round) {
+    if (!Number.isFinite(round?.elapsedMs)) return;
+    const key = bestKey({ mode: round.mode, tier: round.tier, total: round.total });
+    setPersonalBests((b) => recordResult(b, key, round).bests);
   }
 
   const openCountry = (code) => go({ name: "country", code });
@@ -457,6 +502,7 @@ function AppShell({ osScheme }) {
             // handleFinish's setProgress lands, same tick as this re-render.
             dailyStreak={streakStatus(progress, dayKey(new Date())).count}
             roundLength={roundLengthFor(settings.questionCount, settings.tier)}
+            personalBests={personalBests}
           />
         );
 
@@ -501,8 +547,10 @@ function AppShell({ osScheme }) {
             // collections see what was named and missed. Cloud only (the same
             // sink rule as a round), and it does NOT touch local progress: a
             // marathon awards its own score, not round XP or a "best round".
+            personalBests={personalBests}
             onComplete={(round) => {
               if (roundSinks(user).cloud) saveRoundResult(user, round, progress);
+              recordBest(round);
             }}
             // Replace, not push: Back from Review should not remount a finished
             // marathon (which would start a fresh run).

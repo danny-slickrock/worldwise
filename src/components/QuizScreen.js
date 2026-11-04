@@ -1,4 +1,4 @@
-/* global setTimeout, clearTimeout */
+/* global setTimeout, clearTimeout, setInterval, clearInterval */
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   View,
@@ -28,9 +28,11 @@ import {
 import Container from "./Container";
 import FadeInUp, { staggerDelay } from "./FadeInUp";
 import { MODES, buildRound, buildDaily, buildCountryRound } from "../game/questions";
-import { tierFor } from "../data/difficulties";
+import { tierFor, effectiveTier } from "../data/difficulties";
 import { matchAnswerAccepting, isCorrectAnswer } from "../game/answerMatch";
 import TypeAnswer from "./TypeAnswer";
+import { isProMode } from "../game/entitlements";
+import { bestKey, recordResult, formatElapsed, roundElapsed } from "../game/bestTimePolicy";
 import { computeXp } from "../game/scoring";
 import { streakBonusXp, metricReadout } from "../game/higherLower";
 import { countriesFromHistory } from "../game/cloudSync";
@@ -94,6 +96,9 @@ export default function QuizScreen({
   // choice (Infinity = unlimited — buildRound resolves it to the whole pool).
   // Daily and a country round keep their own lengths.
   roundLength = ROUND_LENGTH,
+  // The player's personal-bests map (game/bestTimePolicy.js). Pro modes run a
+  // STOPWATCH and compare the finished round against it.
+  personalBests = null,
 }) {
   const meta = MODES[mode];
   const questions = useMemo(() => {
@@ -109,7 +114,22 @@ export default function QuizScreen({
   // interaction isn't built yet still reads as the tier they chose, because
   // silently relabelling their choice would be the more confusing of the two.
   const tierLabel = tierFor(mode, tier)?.label ?? null;
-  const timedActive = timed && mode !== "daily"; // Daily always stays untimed
+  // Pro games never count DOWN: every Pro round runs a stopwatch that counts
+  // up instead, raced against your own best. So the per-question countdown
+  // ("timed mode") applies to free games only — and Daily stays untimed.
+  const stopwatch = isProMode(mode);
+  const timedActive = timed && mode !== "daily" && !stopwatch;
+  const startedAt = useRef(Date.now()).current;
+  const [endedAt, setEndedAt] = useState(null);
+  const [clockNow, setClockNow] = useState(startedAt);
+  const [bestOutcome, setBestOutcome] = useState(null); // { newBest, previous, best, elapsedMs }
+  // The stopwatch's one real interval. Tenths are shown, so 100ms; it stops
+  // the moment the round ends (endedAt freezes the display).
+  useEffect(() => {
+    if (!stopwatch || endedAt !== null) return undefined;
+    const id = setInterval(() => setClockNow(Date.now()), 100);
+    return () => clearInterval(id);
+  }, [stopwatch, endedAt]);
 
   const [idx, setIdx] = useState(0);
   const [score, setScore] = useState(0);
@@ -431,6 +451,20 @@ export default function QuizScreen({
       const xp = roundXp(score, bestStreak);
       setHistory(nextHistory);
       setDone(true);
+      const effective = effectiveTier(mode, tier);
+      let stopwatchResult = null;
+      if (stopwatch) {
+        const end = Date.now();
+        setEndedAt(end);
+        const elapsedMs = roundElapsed(startedAt, end, end);
+        const outcome = recordResult(
+          personalBests,
+          bestKey({ mode, tier: effective, total: questions.length }),
+          { score, total: questions.length, elapsedMs }
+        );
+        stopwatchResult = { elapsedMs };
+        setBestOutcome({ ...outcome, elapsedMs });
+      }
       // Report what the round actually was, not what was requested: the Daily
       // ignores both difficulty and the timer, and game_results should record
       // the round that happened.
@@ -443,6 +477,9 @@ export default function QuizScreen({
           total: questions.length,
           xp,
           countries: countriesFromHistory(nextHistory),
+          // Pro: the stopwatch time and the tier it was raced at, which is
+          // what a personal best is keyed and compared on.
+          ...(stopwatchResult ? { elapsedMs: stopwatchResult.elapsedMs, tier: effective } : null),
         });
     } else {
       setHistory(nextHistory);
@@ -494,6 +531,33 @@ export default function QuizScreen({
                   {score}/{questions.length}
                 </Text>
                 <Text style={[styles.resultPct, { color: cardInk }]}>{pct}% correct</Text>
+                {/* The stopwatch result: your time, and either the celebration
+                    or the best you are chasing. */}
+                {bestOutcome && (
+                  <View style={styles.resultMetaWrap}>
+                    <Text style={[styles.resultTime, { color: cardInk }]}>
+                      ⏱ {formatElapsed(bestOutcome.elapsedMs)}
+                    </Text>
+                    {bestOutcome.newBest ? (
+                      <View style={[styles.newBestPill, { backgroundColor: cardInk }]}>
+                        <Text style={[styles.newBestText, { color: meta.accent }]}>
+                          ★ New best
+                          {bestOutcome.previous
+                            ? formatElapsed(bestOutcome.previous.elapsedMs) ===
+                              formatElapsed(bestOutcome.elapsedMs)
+                              ? " — by a hair" // faster by under a tenth
+                              : ` — was ${bestOutcome.previous.score}/${bestOutcome.previous.total} in ${formatElapsed(bestOutcome.previous.elapsedMs)}`
+                            : ""}
+                        </Text>
+                      </View>
+                    ) : bestOutcome.best ? (
+                      <Text style={[styles.resultStreak, { color: cardInk }]}>
+                        Best {bestOutcome.best.score}/{bestOutcome.best.total} in{" "}
+                        {formatElapsed(bestOutcome.best.elapsedMs)}
+                      </Text>
+                    ) : null}
+                  </View>
+                )}
                 {mode === "daily" &&
                   ((Number.isFinite(dailyStreak) && dailyStreak > 0) || dailyRank) && (
                     <View style={styles.resultMetaWrap}>
@@ -581,7 +645,7 @@ export default function QuizScreen({
                   style={[styles.primaryBtn, { backgroundColor: meta.accent }]}
                   onPress={() => finishResult(onPlayAgain)}
                 >
-                  <Text style={styles.primaryBtnText}>Play again</Text>
+                  <Text style={[styles.primaryBtnText, { color: cardInk }]}>Play again</Text>
                 </Pressable>
               )}
               <Pressable style={styles.secondaryBtn} onPress={() => finishResult(onExit)}>
@@ -615,6 +679,13 @@ export default function QuizScreen({
             ]}
           />
         </View>
+        {stopwatch && (
+          <View style={styles.timerPill} accessibilityLabel="Time elapsed">
+            <Text style={styles.timerText}>
+              ⏱ {formatElapsed(roundElapsed(startedAt, endedAt, clockNow))}
+            </Text>
+          </View>
+        )}
         {timedActive && (
           <View style={[styles.timerPill, timeLeft <= 3 && styles.timerPillLow]}>
             <Text style={[styles.timerText, timeLeft <= 3 && styles.timerTextLow]}>
@@ -1122,6 +1193,16 @@ const styles = themed(() =>
       marginBottom: spacing(4),
     },
     resultStreak: { ...type.label, color: colors.onFill },
+    resultTime: { ...type.h3, fontSize: 20, color: colors.onFill },
+    // The "new best" moment: the card's own ink as the pill and its accent as
+    // the type — inverted, so it pops on every mode's card (brass included),
+    // at exactly the contrast the card's label already guarantees.
+    newBestPill: {
+      borderRadius: radius.pill,
+      paddingHorizontal: spacing(4),
+      paddingVertical: spacing(1.5),
+    },
+    newBestText: { ...type.label, fontSize: 13 },
     resultMark: { position: "absolute", top: -38, right: -44, opacity: 0.18 },
     xpPill: {
       backgroundColor: colors.brandDeep,
@@ -1129,7 +1210,8 @@ const styles = themed(() =>
       paddingHorizontal: spacing(5),
       paddingVertical: spacing(2),
     },
-    xpPillText: { color: colors.brand, fontSize: 16 },
+    // Parchment on nightwood, via onFill — pine on nightwood was ~1.3:1.
+    xpPillText: { color: onFill(colors.brandDeep), fontSize: 16 },
     // Outlined rather than filled, same reasoning as secondaryBtn below the
     // card: the XP pill is the one loud fill this card gets, so Share reads as
     // a lighter-weight utility action next to it, not a second reward.

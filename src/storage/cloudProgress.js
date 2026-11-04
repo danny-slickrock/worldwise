@@ -15,6 +15,7 @@ import {
   statsRowFromProgress,
   progressFromStatsRow,
   resultRowFromRound,
+  withoutStopwatchColumns,
   mergeProgress,
 } from "../game/cloudSync";
 import { noteSyncOk, noteSyncFailure } from "../game/syncStore";
@@ -48,9 +49,20 @@ export async function saveRoundResult(user, round, progress, client = supabase) 
       return { ok: false, error: statsError };
     }
 
-    const { error: resultError } = await client
-      .from("game_results")
-      .insert(resultRowFromRound(user.id, round, today));
+    const row = resultRowFromRound(user.id, round, today);
+    let { error: resultError } = await client.from("game_results").insert(row);
+    // PGRST204 = "column not found in the schema cache": a database that
+    // predates the stopwatch columns. Retry without them rather than losing
+    // the round — and say so, because a swallowed fallback must leave a trace.
+    if (resultError?.code === "PGRST204" && (row.elapsed_ms != null || row.tier != null)) {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "[worldwise:sync] game_results has no stopwatch columns yet — saved the round without its time"
+      );
+      ({ error: resultError } = await client
+        .from("game_results")
+        .insert(withoutStopwatchColumns(row)));
+    }
     // A duplicate Daily is a no-op, not an error — the stats upsert still landed.
     if (resultError && resultError.code !== UNIQUE_VIOLATION) {
       noteSyncFailure("game_results insert", resultError);
@@ -103,7 +115,7 @@ export async function fetchRoundResults(user, client = supabase) {
       // have not seen this in weeks" reason cannot be computed without it,
       // and an absent timestamp is treated as "no recency information"
       // rather than as the epoch (see reviewPolicy.countryStats).
-      .select("mode, difficulty, score, total, countries, played_at")
+      .select("*")
       .eq("user_id", user.id);
     if (error) return { rows: [], error };
     return { rows: data ?? [], error: null };

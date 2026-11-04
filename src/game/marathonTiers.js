@@ -97,9 +97,11 @@ const HINTS = {
 
 export const marathonHint = (mode, tier) => HINTS[mode]?.[tier] ?? HINTS.nameEveryCountry.easy;
 
-// Which clock a marathon runs on. Name Every Country is a STOPWATCH — the
-// question is "can you name them all, and how long did it take?", so there is
-// no time limit and the elapsed time is the result. Identify All Flags keeps
-// its countdown: "how many in five minutes?".
-const CLOCKS = { nameEveryCountry: "stopwatch", identifyAllFlags: "countdown" };
-export const marathonClock = (mode) => CLOCKS[mode] ?? "countdown";
+// Which clock a marathon runs on. Both are STOPWATCHES now: no Pro game has a
+// countdown. The question is "how many, and how fast?", raced against your
+// own personal best (game/bestTimePolicy.js) rather than against a buzzer.
+// The countdown mechanic itself stays in marathon.js (a run with a duration)
+// — tested, and the shape a future timed event might want — but no game
+// selects it.
+const CLOCKS = { nameEveryCountry: "stopwatch", identifyAllFlags: "stopwatch" };
+export const marathonClock = (mode) => CLOCKS[mode] ?? "stopwatch";
