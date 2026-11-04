@@ -109,7 +109,7 @@ export const MAP_WHEEL_ZOOM_SPEED = 0.0016;
 // sphere's radius, so 32x is a field of view of roughly 4 degrees — Luxembourg
 // fills a good part of the view and Malta is readable, which is what makes the
 // small countries actually reachable. (Finer coastlines at that depth are a
-// separate milestone: see docs/adr/0003-globe-level-of-detail.md.)
+// separate milestone: see docs/adr/0004-globe-level-of-detail.md.)
 export const GLOBE_ZOOM_MIN = 1;
 export const GLOBE_ZOOM_MAX = 32;
 // One tap of a + / − zoom button.
