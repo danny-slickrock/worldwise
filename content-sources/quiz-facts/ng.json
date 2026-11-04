@@ -1,0 +1,126 @@
+{
+  "iso": "ng",
+  "name": "Nigeria",
+  "fetchedAt": "2026-11-04T01:37:26.608Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "africa/ni.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Chappal Waddi",
+        "elevationM": 2419
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "contested",
+      "value": null,
+      "reasons": [
+        "Wikidata's largest city is Kano; the Factbook's largest urban area is Lagos"
+      ],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "usable",
+      "value": {
+        "name": "Niger",
+        "km": 4200
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "usable",
+      "value": {
+        "landlocked": false,
+        "bodies": [
+          "Gulf of Guinea"
+        ]
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "usable",
+      "value": {
+        "name": "eagle"
+      },
+      "reasons": [],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Chappal Waddi",
+        "elevationM": 2419
+      }
+    ],
+    "factbookHighestPoint": "Chappal Waddi 2,419 m",
+    "wikidataTopCities": [
+      {
+        "name": "Kano",
+        "population": 4348000,
+        "qid": "Q182984"
+      },
+      {
+        "name": "Port Harcourt",
+        "population": 3480000,
+        "qid": "Q217432"
+      },
+      {
+        "name": "Port Harcourt",
+        "population": 3325000,
+        "qid": "Q217432"
+      },
+      {
+        "name": "Ibadan",
+        "population": 2559853,
+        "qid": "Q183298"
+      },
+      {
+        "name": "Ibadan",
+        "population": 2550593,
+        "qid": "Q183298"
+      },
+      {
+        "name": "Benin City",
+        "population": 1780000,
+        "qid": "Q320704"
+      },
+      {
+        "name": "Abuja",
+        "population": 1693400,
+        "qid": "Q3787"
+      },
+      {
+        "name": "Onitsha",
+        "population": 1483000,
+        "qid": "Q852238"
+      }
+    ],
+    "factbookUrbanAreas": "15.946 million Lagos, 4.348 million Kano, 3.875 million Ibadan, 3.840 million ABUJA (capital), 3.480 million Port Harcourt, 1.905 million Benin City (2023)",
+    "factbookRivers": "Niger river mouth (shared with Guinea [s], Mali, Benin, and Niger) - 4,200 km<br><br><strong>note:</strong> [s] after country name indicates river source; [m] after country name indicates river mouth",
+    "factbookCoastline": "853 km",
+    "factbookLocation": "Western Africa, bordering the Gulf of Guinea, between Benin and Cameroon",
+    "factbookNationalSymbols": "eagle",
+    "symbolClassification": [
+      {
+        "symbol": "eagle",
+        "isAnimal": true,
+        "qid": "Q2092297"
+      }
+    ]
+  }
+}

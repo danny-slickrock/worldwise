@@ -1,0 +1,124 @@
+{
+  "iso": "np",
+  "name": "Nepal",
+  "fetchedAt": "2026-11-04T01:37:25.032Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "south-asia/np.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Mount Everest",
+        "elevationM": 8849
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "usable",
+      "value": {
+        "name": "Kathmandu",
+        "population": 845767
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "the Factbook lists no major river"
+      ],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "usable",
+      "value": {
+        "landlocked": true,
+        "bodies": []
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "no animal among the national symbols (rhododendron blossom)"
+      ],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Mount Everest",
+        "elevationM": 8848.86
+      }
+    ],
+    "factbookHighestPoint": "Mount Everest (highest peak in Asia and highest point on earth above sea level) 8,849 m",
+    "wikidataTopCities": [
+      {
+        "name": "Kathmandu",
+        "population": 845767,
+        "qid": "Q3037"
+      },
+      {
+        "name": "Lalitpur",
+        "population": 513200,
+        "qid": "Q6647"
+      },
+      {
+        "name": "Bharatpur",
+        "population": 369377,
+        "qid": "Q250220"
+      },
+      {
+        "name": "Pokhara",
+        "population": 353841,
+        "qid": "Q6640"
+      },
+      {
+        "name": "Biratnagar",
+        "population": 242548,
+        "qid": "Q8247"
+      },
+      {
+        "name": "Ghorahi",
+        "population": 156164,
+        "qid": "Q1447290"
+      },
+      {
+        "name": "Birgunj",
+        "population": 135904,
+        "qid": "Q8252"
+      },
+      {
+        "name": "Butwal",
+        "population": 118462,
+        "qid": "Q11283"
+      }
+    ],
+    "factbookUrbanAreas": "1.571 million KATHMANDU (capital) (2023)",
+    "factbookRivers": null,
+    "factbookCoastline": "0 km (landlocked)",
+    "factbookLocation": "Southern Asia, between China and India",
+    "factbookNationalSymbols": "rhododendron blossom",
+    "symbolClassification": [
+      {
+        "symbol": "rhododendron blossom",
+        "isAnimal": null,
+        "qid": null
+      }
+    ]
+  }
+}

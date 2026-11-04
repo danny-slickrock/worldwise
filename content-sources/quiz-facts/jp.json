@@ -1,0 +1,132 @@
+{
+  "iso": "jp",
+  "name": "Japan",
+  "fetchedAt": "2026-11-04T01:37:25.993Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "east-n-southeast-asia/ja.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Mount Fuji",
+        "elevationM": 3776
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "usable",
+      "value": {
+        "name": "Tokyo",
+        "population": 14264798
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "the Factbook lists no major river"
+      ],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "multiple",
+      "value": null,
+      "reasons": [
+        "borders North Pacific Ocean and Sea of Japan"
+      ],
+      "set": [
+        "North Pacific Ocean",
+        "Sea of Japan"
+      ],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "no animal among the national symbols (red sun disc, chrysanthemum)"
+      ],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Mount Fuji",
+        "elevationM": 3777.24
+      }
+    ],
+    "factbookHighestPoint": "Mount Fuji 3,776 m",
+    "wikidataTopCities": [
+      {
+        "name": "Tokyo",
+        "population": 14264798,
+        "qid": "Q1490"
+      },
+      {
+        "name": "Tokyo",
+        "population": 9640742,
+        "qid": "Q7473516"
+      },
+      {
+        "name": "Yokohama",
+        "population": 3757630,
+        "qid": "Q38283"
+      },
+      {
+        "name": "Osaka",
+        "population": 2751862,
+        "qid": "Q35765"
+      },
+      {
+        "name": "Nagoya",
+        "population": 2326844,
+        "qid": "Q11751"
+      },
+      {
+        "name": "Sapporo",
+        "population": 1959313,
+        "qid": "Q37951"
+      },
+      {
+        "name": "Fukuoka",
+        "population": 1603043,
+        "qid": "Q26600"
+      },
+      {
+        "name": "Kawasaki",
+        "population": 1539522,
+        "qid": "Q164234"
+      }
+    ],
+    "factbookUrbanAreas": "37.194 million TOKYO (capital), 19.013 million Osaka, 9.569 million Nagoya, 5.490 million Kitakyushu-Fukuoka, 2.937 million Shizuoka-Hamamatsu, 2.666 million Sapporo (2023)",
+    "factbookRivers": null,
+    "factbookCoastline": "29,751 km",
+    "factbookLocation": "Eastern Asia, island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula",
+    "factbookNationalSymbols": "red sun disc, chrysanthemum",
+    "symbolClassification": [
+      {
+        "symbol": "red sun disc",
+        "isAnimal": null,
+        "qid": null
+      },
+      {
+        "symbol": "chrysanthemum",
+        "isAnimal": false,
+        "qid": "Q59882"
+      }
+    ]
+  }
+}

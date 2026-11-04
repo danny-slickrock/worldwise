@@ -1,0 +1,139 @@
+{
+  "iso": "bo",
+  "name": "Bolivia",
+  "fetchedAt": "2026-11-04T01:37:27.974Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "south-america/bl.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Nevado Sajama",
+        "elevationM": 6542
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "usable",
+      "value": {
+        "name": "Santa Cruz de la Sierra",
+        "population": 3122605
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "the Factbook lists no major river"
+      ],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "usable",
+      "value": {
+        "landlocked": true,
+        "bodies": []
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "multiple",
+      "value": null,
+      "reasons": [
+        "2 animals: llama, Andean condor"
+      ],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Nevado Sajama",
+        "elevationM": 6542
+      }
+    ],
+    "factbookHighestPoint": "Nevado Sajama 6,542 m",
+    "wikidataTopCities": [
+      {
+        "name": "Santa Cruz de la Sierra",
+        "population": 3122605,
+        "qid": "Q170688"
+      },
+      {
+        "name": "El Alto",
+        "population": 885035,
+        "qid": "Q30996"
+      },
+      {
+        "name": "El Alto",
+        "population": 842378,
+        "qid": "Q30996"
+      },
+      {
+        "name": "La Paz",
+        "population": 755732,
+        "qid": "Q1491"
+      },
+      {
+        "name": "Cochabamba",
+        "population": 632013,
+        "qid": "Q183124"
+      },
+      {
+        "name": "Sucre",
+        "population": 360544,
+        "qid": "Q2907"
+      },
+      {
+        "name": "Oruro",
+        "population": 297497,
+        "qid": "Q35246"
+      },
+      {
+        "name": "Oruro",
+        "population": 264683,
+        "qid": "Q35246"
+      }
+    ],
+    "factbookUrbanAreas": "1.936 million LA PAZ (capital), 1.820 million Santa Cruz, 1.400 million Cochabamba (2022); 278,000 Sucre (constitutional capital) (2018)",
+    "factbookRivers": null,
+    "factbookCoastline": "0 km (landlocked)",
+    "factbookLocation": "Central South America, southwest of Brazil",
+    "factbookNationalSymbols": "llama, Andean condor; two national flowers, the cantuta and the patuju",
+    "symbolClassification": [
+      {
+        "symbol": "llama",
+        "isAnimal": true,
+        "qid": "Q42569"
+      },
+      {
+        "symbol": "Andean condor",
+        "isAnimal": true,
+        "qid": "Q170598"
+      },
+      {
+        "symbol": "cantuta",
+        "isAnimal": false,
+        "qid": "Q290394"
+      },
+      {
+        "symbol": "patuju",
+        "isAnimal": false,
+        "qid": "Q2703222"
+      }
+    ]
+  }
+}

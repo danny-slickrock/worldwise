@@ -280,6 +280,21 @@ import {
 } from "../src/game/marathon";
 import { MARATHON_STOPWATCH_PAR_MS } from "../src/constants";
 import {
+  validateHighestPoint,
+  parseFactbookHighest,
+  namesAgree,
+  validateLargestCity,
+  parseUrbanAreas,
+  parseRivers,
+  validateLongestRiver,
+  parseWaters,
+  validateWaters,
+  parseNationalSymbols,
+  validateNationalAnimal,
+  coverageReport,
+  isPromotable,
+} from "../src/game/quizFactPolicy";
+import {
   bestKey,
   normalizeResult,
   isBetter,
@@ -8723,6 +8738,212 @@ check(
     { mode: "identifyAllFlags", now: 5000 }
   ).tier === "hard",
   "a marathon result carries its tier, so its best is keyed by it"
+);
+
+console.log("\nQuiz facts — the one-unambiguous-answer gate");
+// Highest point: Wikidata x Factbook cross-check, on real strings.
+check(
+  JSON.stringify(
+    parseFactbookHighest(
+      "Mount Everest (highest peak in Asia and highest point on earth above sea level) 8,849 m"
+    )
+  ) === JSON.stringify({ name: "Mount Everest", elevationM: 8849 }),
+  "parses the Factbook's highest-point line, dropping the parenthetical"
+);
+check(
+  validateHighestPoint(
+    [{ name: "Mount Everest", elevationM: 8848.86 }],
+    "Mount Everest (highest peak in Asia) 8,849 m"
+  ).status === "usable",
+  "Everest: 8,848.86 m and 8,849 m are the same mountain — usable"
+);
+check(
+  namesAgree("Hüiten Peak", "Nayramadlin Orgil (Khuiten Peak)") &&
+    namesAgree("Dufourspitze", "Dufourspitze on Monte Rosa"),
+  "names agree across transliteration (Hüiten/Khuiten) and qualifiers (on Monte Rosa)"
+);
+check(
+  validateHighestPoint([{ name: "Mount Fuji", elevationM: 3777.24 }], "Mount Fuji 3,776 m").value
+    .elevationM === 3776,
+  "...and the usable value carries the Factbook's rounded metre"
+);
+check(
+  validateHighestPoint([{ name: "Peak A", elevationM: 3000 }], "Peak B 3,000 m").status ===
+    "contested",
+  "different names at the same height are contested, not merged"
+);
+check(
+  validateHighestPoint([{ name: "Peak A", elevationM: 3000 }], "Peak A 3,400 m").status ===
+    "contested",
+  "the same name at different heights is contested"
+);
+check(
+  validateHighestPoint(
+    [
+      { name: "Peak A", elevationM: 3000 },
+      { name: "Peak B", elevationM: 3001 },
+    ],
+    "Peak A 3,000 m"
+  ).status === "multiple",
+  "two highest points on Wikidata is multiple"
+);
+check(validateHighestPoint([], null).status === "missing", "nothing at all is missing");
+
+// Largest city.
+check(
+  validateLargestCity([
+    { name: "Istanbul", population: 15655924 },
+    { name: "Istanbul", population: 15655924 },
+    { name: "Ankara", population: 5803482 },
+  ]).value.name === "Istanbul",
+  "the most populous city wins; duplicate class paths don't count twice"
+);
+check(
+  validateLargestCity([
+    { name: "A", population: 1000000 },
+    { name: "B", population: 980000 },
+  ]).status === "contested",
+  "two cities within 5% are too close to call — contested"
+);
+check(validateLargestCity([]).status === "missing", "no city is missing");
+check(
+  JSON.stringify(
+    parseUrbanAreas(
+      "22.620 million S&atilde;o Paulo, 13.728 million Rio de Janeiro, 4.873 million BRAS&Iacute;LIA (capital) (2023)"
+    )
+  ) ===
+    JSON.stringify([
+      { name: "São Paulo", population: 22620000 },
+      { name: "Rio de Janeiro", population: 13728000 },
+      { name: "Brasília", population: 4873000 },
+    ]),
+  "parses the Factbook's urban areas, decoding entities and un-shouting the capital"
+);
+check(
+  validateLargestCity(
+    [
+      { name: "Kano", population: 4348000 },
+      { name: "Port Harcourt", population: 3480000 },
+    ],
+    "15.946 million Lagos, 4.348 million Kano (2023)"
+  ).status === "contested",
+  "a single-source #1 that the Factbook disagrees with (Kano vs Lagos) is contested, never usable"
+);
+check(
+  validateLargestCity(
+    [
+      { name: "Tokyo", population: 14264798 },
+      { name: "Yokohama", population: 3757630 },
+    ],
+    "37.194 million TOKYO (capital), 19.013 million Osaka (2023)"
+  ).value.name === "Tokyo",
+  "both sources naming the same #1 is usable"
+);
+
+// Rivers, on the Factbook's real format.
+const brRivers =
+  "Amazon river mouth (shared with Peru [s]) - 6,400 km; Río de la Plata/Paraná river source (shared with Paraguay, Argentina, and Uruguay [m]) - 4,880 km<br><br><strong>note:</strong> [s] after country name indicates river source";
+check(
+  JSON.stringify(parseRivers(brRivers)) ===
+    JSON.stringify([
+      { name: "Amazon", km: 6400 },
+      { name: "Río de la Plata/Paraná", km: 4880 },
+    ]),
+  "parses the length-ranked river list, dropping mouth/source and the footnote"
+);
+check(
+  validateLongestRiver(brRivers).value.name === "Amazon",
+  "the longest river is the top of the list"
+);
+check(validateLongestRiver("").status === "missing", "no list is missing — never guessed");
+
+// Waters.
+check(
+  JSON.stringify(
+    validateWaters("0 km (landlocked)", "Southern Asia, between China and India").value
+  ) === JSON.stringify({ landlocked: true, bodies: [] }),
+  "landlocked is itself a usable, unambiguous fact"
+);
+check(
+  JSON.stringify(
+    validateWaters("7,491 km", "Eastern South America, bordering the Atlantic Ocean").value.bodies
+  ) === JSON.stringify(["Atlantic Ocean"]),
+  "one named body is usable"
+);
+const jpW = validateWaters(
+  "29,751 km",
+  "Eastern Asia, island chain between the North Pacific Ocean and the Sea of Japan, east of the Korean Peninsula"
+);
+check(
+  jpW.status === "multiple" &&
+    jpW.set.includes("North Pacific Ocean") &&
+    jpW.set.includes("Sea of Japan"),
+  "two named bodies is multiple — the set is recorded but nothing is promoted"
+);
+check(
+  validateWaters("7,200 km", "Southeastern Europe and Southwestern Asia").status === "missing",
+  "coastal with no body named is missing, not guessed"
+);
+check(
+  JSON.stringify(
+    parseWaters("Western Africa, bordering the Gulf of Guinea, between Benin and Cameroon")
+  ) === JSON.stringify(["Gulf of Guinea"]),
+  "'Gulf of X' is a body of water"
+);
+
+// National animal: exactly one Wikidata-classified animal among the symbols.
+check(
+  JSON.stringify(
+    parseNationalSymbols(
+      "llama, Andean condor; two national flowers, the cantuta and the patuju; national colors: red, yellow, green"
+    )
+  ) === JSON.stringify(["llama", "Andean condor", "cantuta", "patuju"]),
+  "parses the symbols line, dropping colours and the 'two national flowers' preamble"
+);
+check(
+  JSON.stringify(parseNationalSymbols("red sun disc, chrysanthemum")) ===
+    JSON.stringify(["red sun disc", "chrysanthemum"]),
+  "a symbol containing 'anthem' (chrysANTHEMum) is not mistaken for the national anthem"
+);
+check(
+  validateNationalAnimal([{ symbol: "eagle", isAnimal: true }]).value.name === "eagle",
+  "exactly one animal is usable"
+);
+check(
+  validateNationalAnimal([
+    { symbol: "llama", isAnimal: true },
+    { symbol: "Andean condor", isAnimal: true },
+    { symbol: "cantuta", isAnimal: false },
+  ]).status === "multiple",
+  "two animals is multiple — no picking one"
+);
+check(
+  validateNationalAnimal([{ symbol: "rhododendron blossom", isAnimal: false }]).status ===
+    "missing",
+  "a plant symbol means no national animal — missing, not invented"
+);
+check(
+  validateNationalAnimal([{ symbol: "eagle", isAnimal: null }]).status === "missing",
+  "an unclassified symbol is not assumed to be an animal"
+);
+
+// Coverage + the promotion gate.
+const cov = coverageReport({
+  aa: { fields: { highestPoint: { status: "usable", review: "approved" } } },
+  bb: { fields: { highestPoint: { status: "usable", review: "pending" } } },
+  cc: { fields: { highestPoint: { status: "contested" } } },
+});
+check(
+  cov.highestPoint.usable === 2 &&
+    cov.highestPoint.approved === 1 &&
+    cov.highestPoint.contested === 1,
+  "coverage counts usable, approved and each failure kind per field"
+);
+check(
+  isPromotable({ status: "usable", review: "approved" }) &&
+    !isPromotable({ status: "usable", review: "pending" }) &&
+    !isPromotable({ status: "contested", review: "approved" }),
+  "only usable AND human-approved values may be promoted"
 );
 
 // The async sections. Everything above is synchronous, so the summary waits on

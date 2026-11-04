@@ -23,7 +23,9 @@
     "content:draft": "tsx scripts/draft-country-content.js",
     "content:validate": "tsx scripts/validate-drafts.js",
     "content:generate": "tsx scripts/draft-via-edge.js",
-    "content:promote": "tsx scripts/promote-drafts.js"
+    "content:promote": "tsx scripts/promote-drafts.js",
+    "content:quiz-facts": "tsx scripts/fetch-quiz-facts.js",
+    "content:promote-quiz-facts": "tsx scripts/promote-quiz-facts.js"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.4.2",

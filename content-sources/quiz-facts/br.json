@@ -1,0 +1,127 @@
+{
+  "iso": "br",
+  "name": "Brazil",
+  "fetchedAt": "2026-11-04T01:37:25.380Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "south-america/br.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Pico da Neblina",
+        "elevationM": 2994
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "usable",
+      "value": {
+        "name": "São Paulo",
+        "population": 11451999
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "usable",
+      "value": {
+        "name": "Amazon",
+        "km": 6400
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "usable",
+      "value": {
+        "landlocked": false,
+        "bodies": [
+          "Atlantic Ocean"
+        ]
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "no animal among the national symbols (Southern Cross constellation)"
+      ],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Pico da Neblina",
+        "elevationM": 2994
+      }
+    ],
+    "factbookHighestPoint": "Pico da Neblina 2,994 m",
+    "wikidataTopCities": [
+      {
+        "name": "São Paulo",
+        "population": 11451999,
+        "qid": "Q174"
+      },
+      {
+        "name": "Rio de Janeiro",
+        "population": 6211223,
+        "qid": "Q8678"
+      },
+      {
+        "name": "Brasília",
+        "population": 2996899,
+        "qid": "Q2844"
+      },
+      {
+        "name": "Salvador",
+        "population": 2417678,
+        "qid": "Q36947"
+      },
+      {
+        "name": "Belo Horizonte",
+        "population": 2315560,
+        "qid": "Q42800"
+      },
+      {
+        "name": "Manaus",
+        "population": 2303732,
+        "qid": "Q40236"
+      },
+      {
+        "name": "Curitiba",
+        "population": 1773718,
+        "qid": "Q4361"
+      },
+      {
+        "name": "Recife",
+        "population": 1488920,
+        "qid": "Q48344"
+      }
+    ],
+    "factbookUrbanAreas": "22.620 million S&atilde;o Paulo, 13.728 million Rio de Janeiro, 6.248 million Belo Horizonte, 4.873 million BRAS&Iacute;LIA (capital), 4.264 million Recife, 4.212 million Porto Alegre (2023)",
+    "factbookRivers": "Amazon river mouth (shared with Peru [s]) - 6,400 km; Río de la Plata/Paraná river source (shared with Paraguay, Argentina, and Uruguay [m]) - 4,880 km; Tocantins - 3,650 km; São Francisco - 3,180 km; Paraguay river source (shared with Argentina and Paraguay [m]) - 2,549 km; Rio Negro river mouth (shared with Colombia [s] and Venezuela) - 2,250 km; Uruguay river source (shared with Argentina and Uruguay [m]) - 1,610 km<br><br><strong>note:</strong> [s] after country name indicates river source; [m] after country name indicates river mouth",
+    "factbookCoastline": "7,491 km",
+    "factbookLocation": "Eastern South America, bordering the Atlantic Ocean",
+    "factbookNationalSymbols": "Southern Cross constellation",
+    "symbolClassification": [
+      {
+        "symbol": "Southern Cross constellation",
+        "isAnimal": null,
+        "qid": null
+      }
+    ]
+  }
+}

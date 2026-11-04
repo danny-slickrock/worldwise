@@ -1,0 +1,129 @@
+{
+  "iso": "tr",
+  "name": "Turkey",
+  "fetchedAt": "2026-11-04T01:37:26.266Z",
+  "sources": {
+    "wikidata": {
+      "license": "CC0 1.0",
+      "url": "https://www.wikidata.org"
+    },
+    "factbook": {
+      "license": "Public domain (US Government work)",
+      "path": "middle-east/tu.json",
+      "via": "github.com/factbook/factbook.json"
+    }
+  },
+  "fields": {
+    "highestPoint": {
+      "status": "usable",
+      "value": {
+        "name": "Mount Ararat",
+        "elevationM": 5137
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "largestCity": {
+      "status": "usable",
+      "value": {
+        "name": "Istanbul",
+        "population": 15655924
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "longestRiver": {
+      "status": "usable",
+      "value": {
+        "name": "Euphrates",
+        "km": 3596
+      },
+      "reasons": [],
+      "review": "pending"
+    },
+    "waters": {
+      "status": "multiple",
+      "value": null,
+      "reasons": [
+        "borders Black Sea and Aegean Sea and Mediterranean Sea"
+      ],
+      "set": [
+        "Black Sea",
+        "Aegean Sea",
+        "Mediterranean Sea"
+      ],
+      "review": "pending"
+    },
+    "nationalAnimal": {
+      "status": "missing",
+      "value": null,
+      "reasons": [
+        "no animal among the national symbols (vertical crescent moon with adjacent five-pointed star)"
+      ],
+      "review": "pending"
+    }
+  },
+  "evidence": {
+    "wikidataHighestPoints": [
+      {
+        "name": "Mount Ararat",
+        "elevationM": 5137
+      }
+    ],
+    "factbookHighestPoint": "Mount Ararat 5,137 m",
+    "wikidataTopCities": [
+      {
+        "name": "Istanbul",
+        "population": 15655924,
+        "qid": "Q406"
+      },
+      {
+        "name": "Ankara",
+        "population": 5803482,
+        "qid": "Q3640"
+      },
+      {
+        "name": "İzmir",
+        "population": 4493242,
+        "qid": "Q35997"
+      },
+      {
+        "name": "Bursa",
+        "population": 2901396,
+        "qid": "Q40738"
+      },
+      {
+        "name": "Antalya",
+        "population": 2426356,
+        "qid": "Q6487"
+      },
+      {
+        "name": "Konya Province",
+        "population": 2296347,
+        "qid": "Q81551"
+      },
+      {
+        "name": "Konya",
+        "population": 2232374,
+        "qid": "Q79857"
+      },
+      {
+        "name": "Konya Province",
+        "population": 2205609,
+        "qid": "Q81551"
+      }
+    ],
+    "factbookUrbanAreas": "15.848 million Istanbul, 5.397 million ANKARA (capital), 3.088 million Izmir, 2.086 million Bursa, 1.836 million Adana, 1.805 million Gaziantep (2023)",
+    "factbookRivers": "Euphrates river source (shared with Syria, Iran, and Iraq [m]) - 3,596 km; Tigris river source (shared with Syria, Iran, and Iraq [m]) - 1,950 km<br><br><strong>note:</strong> [s] after country name indicates river source; [m] after country name indicates river mouth",
+    "factbookCoastline": "7,200 km",
+    "factbookLocation": "Southeastern Europe and Southwestern Asia (that portion of Turkey west of the Bosporus is geographically part of Europe), bordering the Black Sea, between Bulgaria and Georgia, and bordering the Aegean Sea and the Mediterranean Sea, between Greece and Syria",
+    "factbookNationalSymbols": "vertical crescent moon with adjacent five-pointed star",
+    "symbolClassification": [
+      {
+        "symbol": "vertical crescent moon with adjacent five-pointed star",
+        "isAnimal": null,
+        "qid": null
+      }
+    ]
+  }
+}
