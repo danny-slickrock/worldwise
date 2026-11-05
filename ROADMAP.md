@@ -265,7 +265,11 @@ flagged, non-human-blocked gap from the backlog instead: `HomeScreen`'s "Daily c
 had the same `colors.brass`-on-`dusk` contrast bug M2.5 step 6.4.1 already found and fixed on
 `AchievementsScreen`, flagged there as a follow-up rather than fixed in that milestone's own run.
 See M2.11's entry below for the fix. **Phase 2 remains blocked on Danny** for any further progress.
-The Phase 1 backlog below gets picked up opportunistically, not as a gate.
+The Phase 1 backlog below gets picked up opportunistically, not as a gate. Re-checked again
+(2026-11-05): still no DANNY TO DO item had moved and every numbered milestone still reads done or
+blocked, so the daily build closed the other flagged, non-human-blocked gap from M2.5 step 6.4.2 —
+the World Map's and Country Index's region-pill chips' web tap targets, named there as unverified.
+See M2.11's entry below for the fix and for what's still open in that same `hitSlop` inventory.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1614,6 +1618,25 @@ teaching *how the world works*, not just *where things are*.
     `HomeScreen` uses `colors.brass` as a dark-ground label. Verified in a real browser (Playwright/
     Chromium, static export, placeholder Supabase env): the Daily Challenge card's "DAILY CHALLENGE"
     kicker now renders in legible parchment rather than low-contrast brass.
+  - **A second flagged follow-up closed (2026-11-05):** M2.5 step 6.4.2's tap-target audit named
+    two specific unverified surfaces — "the World Map's region-pill chips and the Country Locator's
+    tap targets" — as likely sharing `AchievementsScreen`'s Back-button gap, since react-native-web's
+    `Pressable` never implements `hitSlop` and both relied on it alone. With every numbered Phase 2
+    milestone still done or blocked, the daily build picked up the first of those two by name:
+    `WorldMapScreen`'s `regionChip` (the "World"/region pills above the globe) and
+    `CountryIndexScreen`'s identical `regionChip` (introduced in M2.2 step 3 from the same pattern)
+    both measured a 34px real web tap target — `paddingVertical: spacing(2)` (8px) plus the 18px
+    `type.label` line height plus a 1px border each side, 10px under the 44px floor — with
+    `hitSlop={8}` doing nothing on web. Both now use `paddingVertical: spacing(3)`, verified by
+    measuring the rendered box in a real browser rather than assuming from the padding math: a
+    Playwright/Chromium run against the static export (`npm run build`, placeholder Supabase env)
+    read every region chip's `getBoundingClientRect()` on both screens at exactly 44×N px. No visual
+    regression in the captured screenshots. **The Country Locator's tap targets are a different
+    mechanism** (`game/mapHitTargets.js`'s enlarged SVG bounding boxes, not a `Pressable`'s
+    `hitSlop`) and remain unverified — flagging that, plus the rest of the app-wide `hitSlop`
+    inventory (`WorldMapScreen`'s `resetPill`/`browseBtn`, `QuizScreen`'s several `hitSlop`-only
+    controls, `ProfileScreen`'s nav rows, and more — `grep -rn hitSlop src/` lists every remaining
+    candidate), as still open: auditing and fixing the rest in one pass is not "one scoped chunk."
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).

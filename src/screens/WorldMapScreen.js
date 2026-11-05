@@ -272,8 +272,12 @@ const styles = themed(() =>
       paddingHorizontal: spacing(5),
       marginBottom: spacing(4),
     },
+    // paddingVertical reaches the 44px tap-target floor on its own: on web,
+    // react-native-web's Pressable never implements hitSlop (M2.5 step 6.4.2),
+    // so the chip's own box, not the hitSlop={8} on its Pressable, is the
+    // real target.
     regionChip: {
-      paddingVertical: spacing(2),
+      paddingVertical: spacing(3),
       paddingHorizontal: spacing(3.5),
       borderRadius: radius.pill,
       backgroundColor: colors.surfaceRaised,
