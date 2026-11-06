@@ -270,6 +270,10 @@ The Phase 1 backlog below gets picked up opportunistically, not as a gate. Re-ch
 blocked, so the daily build closed the other flagged, non-human-blocked gap from M2.5 step 6.4.2 —
 the World Map's and Country Index's region-pill chips' web tap targets, named there as unverified.
 See M2.11's entry below for the fix and for what's still open in that same `hitSlop` inventory.
+Re-checked again (2026-11-06): still no DANNY TO DO item had moved, so the daily build closed the
+next two named items from that same `hitSlop` inventory — `WorldMapScreen`'s `resetPill` and
+`browseBtn`. See M2.11's entry below for the fix. Still open in the inventory: `QuizScreen`'s
+`hitSlop`-only controls, `ProfileScreen`'s nav rows, and the Country Locator's SVG hit targets.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1634,9 +1638,24 @@ teaching *how the world works*, not just *where things are*.
     regression in the captured screenshots. **The Country Locator's tap targets are a different
     mechanism** (`game/mapHitTargets.js`'s enlarged SVG bounding boxes, not a `Pressable`'s
     `hitSlop`) and remain unverified — flagging that, plus the rest of the app-wide `hitSlop`
-    inventory (`WorldMapScreen`'s `resetPill`/`browseBtn`, `QuizScreen`'s several `hitSlop`-only
-    controls, `ProfileScreen`'s nav rows, and more — `grep -rn hitSlop src/` lists every remaining
-    candidate), as still open: auditing and fixing the rest in one pass is not "one scoped chunk."
+    inventory (`QuizScreen`'s several `hitSlop`-only controls, `ProfileScreen`'s nav rows, and
+    more — `grep -rn hitSlop src/` lists every remaining candidate), as still open: auditing and
+    fixing the rest in one pass is not "one scoped chunk."
+  - **A third flagged follow-up closed (2026-11-06):** `WorldMapScreen`'s `resetPill` ("Reset
+    view", shown once the globe is panned/zoomed/region-selected off its default) and `browseBtn`
+    ("Browse all N ›", the index entry point under the title) were the two named-but-unverified
+    items from that same inventory. Same root cause as every other hit in it — react-native-web's
+    `Pressable` ignores `hitSlop`, so only the box itself is a real web tap target. `resetPill` had
+    `paddingVertical: spacing(2)` (8px) over an 18px label line height — 34px, the exact shortfall
+    the region chips were fixed from. `browseBtn` had no vertical padding at all, just a
+    `marginTop` — an 18px target, worse than any other hit in the inventory so far. Both now use
+    `paddingVertical: spacing(3.5)` (14px), reaching 46px, the same value `BasemapToggle` already
+    uses for the same reason. Verified in a real browser (Playwright/Chromium, static export,
+    placeholder Supabase env): `getBoundingClientRect()` on each control's own `Pressable` box read
+    46px tall both at rest (`browseBtn`) and after selecting a region to reveal `resetPill`. No
+    visual regression in the captured screenshot. The remaining inventory — `QuizScreen`'s
+    `hitSlop`-only controls, `ProfileScreen`'s nav rows, and the Country Locator's SVG hit targets
+    — is still open for a future scoped chunk.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).

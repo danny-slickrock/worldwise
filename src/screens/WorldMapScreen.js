@@ -259,7 +259,11 @@ const styles = themed(() =>
     // Explore tab's root — the title would sit hard against the chrome, so the
     // inset moves onto the wrapper rather than disappearing with the button.
     wrapNoBack: { paddingTop: spacing(8) },
-    browseBtn: { alignSelf: "flex-start", marginTop: spacing(2.5) },
+    // paddingVertical reaches the 44px tap-target floor on its own: on web,
+    // react-native-web's Pressable never implements hitSlop (M2.5 step
+    // 6.4.2), so this box, not the hitSlop={8} on its Pressable, is the real
+    // target. Unpadded, it was just the 18px label line height.
+    browseBtn: { alignSelf: "flex-start", marginTop: spacing(2.5), paddingVertical: spacing(3.5) },
     browseText: { ...type.label, color: colors.link },
     title: { ...type.h1, fontSize: 34 },
     subtitle: { ...type.eyebrow, fontSize: 11, marginTop: spacing(1.5) },
@@ -303,12 +307,15 @@ const styles = themed(() =>
 
     // Clear of the floating glass tab bar inset already applied to mapWrap.
     zoomControls: { right: spacing(3), bottom: spacing(3) },
+    // paddingVertical reaches the 44px tap-target floor on its own, the same
+    // reasoning as browseBtn above: react-native-web's Pressable ignores
+    // hitSlop, so the box is the real target. spacing(2) measured 34px.
     resetPill: {
       position: "absolute",
       top: spacing(4),
       right: spacing(4),
       paddingHorizontal: spacing(3.5),
-      paddingVertical: spacing(2),
+      paddingVertical: spacing(3.5),
       borderRadius: radius.pill,
       backgroundColor: colors.surfaceRaised,
       ...elevation(1),
