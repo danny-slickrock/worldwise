@@ -274,6 +274,10 @@ Re-checked again (2026-11-06): still no DANNY TO DO item had moved, so the daily
 next two named items from that same `hitSlop` inventory — `WorldMapScreen`'s `resetPill` and
 `browseBtn`. See M2.11's entry below for the fix. Still open in the inventory: `QuizScreen`'s
 `hitSlop`-only controls, `ProfileScreen`'s nav rows, and the Country Locator's SVG hit targets.
+Re-checked again (2026-11-07): still no DANNY TO DO item had moved, so the daily build closed the
+next named item — `QuizScreen`'s `hitSlop`-only controls (four separate shortfalls: `exit`,
+`soundPill`, `recenterPill`, `contextLink`). See M2.11's entry below for the fix. Still open in the
+inventory: `ProfileScreen`'s nav rows and the Country Locator's SVG hit targets.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1653,9 +1657,31 @@ teaching *how the world works*, not just *where things are*.
     uses for the same reason. Verified in a real browser (Playwright/Chromium, static export,
     placeholder Supabase env): `getBoundingClientRect()` on each control's own `Pressable` box read
     46px tall both at rest (`browseBtn`) and after selecting a region to reveal `resetPill`. No
-    visual regression in the captured screenshot. The remaining inventory — `QuizScreen`'s
-    `hitSlop`-only controls, `ProfileScreen`'s nav rows, and the Country Locator's SVG hit targets
-    — is still open for a future scoped chunk.
+    visual regression in the captured screenshot.
+  - **A fourth flagged follow-up closed (2026-11-07):** `QuizScreen`'s `hitSlop`-only controls —
+    named but unaudited in the inventory above — turned out to hold four separate shortfalls, all
+    the same root cause. `exit` (the ✕ that leaves the round) had no padding at all, just a 22px
+    glyph in a 28px-wide `Text`: its real web box was roughly 28×28. `soundPill` (the 🔊/🔇
+    toggle) was a fixed 34×34 square, the same shortfall the region chips were fixed from.
+    `recenterPill` (the Country Locator's "Recenter" pill, shown once a spin has carried a
+    candidate off the near face) had `paddingVertical: spacing(2)` (8px) over an 18px label line
+    height — 34px. `contextLink` ("Learn more about {country} →" under the Why It Matters card)
+    had no padding whatsoever, just a `marginTop` sitting outside the tap box — an 18px target,
+    the worst in the inventory. Fixed the same way as every prior hit: `exit` and `soundPill` now
+    reach a literal 44×44 (matching the floor exactly, the same convention `soundPill` already used
+    for its own box rather than `spacing()` padding math), `recenterPill` and `contextLink` both
+    move to `paddingVertical: spacing(3.5)` (14px), reaching 46px — identical to `resetPill`/
+    `browseBtn`'s fix. Verified in a real browser (Playwright/Chromium, static export, placeholder
+    Supabase env, 390px mobile width): `getBoundingClientRect()` on `exit` and `soundPill` read
+    exactly 44×44; the "Learn more" link's Pressable read 46-56px tall (its un-styled parent grows
+    a few px beyond the Text's own padded box, well clear of the floor either way). `recenterPill`
+    only renders once the Country Locator's globe has been spun off-centre mid-round, which needs a
+    drag gesture rather than a click target this pass didn't attempt to automate; its fix is the
+    identical one-line `paddingVertical` change already verified elsewhere in this same inventory,
+    so it's logged here rather than left unfixed. No visual regression in the captured screenshots —
+    the top bar and the post-answer context card both render cleanly at the new sizes. The remaining
+    inventory — `ProfileScreen`'s nav rows and the Country Locator's SVG hit targets — is still open
+    for a future scoped chunk.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).

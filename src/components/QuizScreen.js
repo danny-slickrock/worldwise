@@ -1007,7 +1007,18 @@ const styles = themed(() =>
       paddingTop: spacing(2),
       paddingBottom: spacing(3),
     },
-    exit: { fontSize: 22, color: colors.textMuted, width: 28 },
+    // react-native-web's Pressable never implements `hitSlop` (M2.5 step
+    // 6.4.2's finding) — exit had no padding at all, so its real web tap
+    // target was the bare glyph box (~22x28). width/height/lineHeight make
+    // the Text itself the full 44px square, centered on the ✕.
+    exit: {
+      fontSize: 22,
+      color: colors.textMuted,
+      width: 44,
+      height: 44,
+      lineHeight: 44,
+      textAlign: "center",
+    },
     progressTrack: {
       flex: 1,
       height: 8,
@@ -1024,11 +1035,13 @@ const styles = themed(() =>
       ...elevation(1),
     },
     streakText: { color: colors.brand, fontSize: 13 },
+    // 34px real tap target (hitSlop is a no-op on web) — under the 44px
+    // floor, same shortfall as every other hit in the app-wide inventory.
     soundPill: {
       backgroundColor: colors.surfaceRaised,
       borderRadius: radius.pill,
-      width: 34,
-      height: 34,
+      width: 44,
+      height: 44,
       alignItems: "center",
       justifyContent: "center",
       ...elevation(1),
@@ -1083,13 +1096,16 @@ const styles = themed(() =>
     // Sits on the dark globe stage, so it takes the map's own on-dark tokens
     // rather than the page's ink.
     basemapToggle: { position: "absolute", left: spacing(3), top: spacing(3) },
+    // paddingVertical spacing(2) (8px) + the 18px label line height = 34px —
+    // the same shortfall WorldMapScreen's resetPill/browseBtn were fixed
+    // from. spacing(3.5) (14px) reaches 46px, matching that fix exactly.
     recenterPill: {
       position: "absolute",
       right: spacing(3),
       bottom: spacing(3),
       backgroundColor: "rgba(22,41,63,0.82)",
       borderRadius: radius.pill,
-      paddingVertical: spacing(2),
+      paddingVertical: spacing(3.5),
       paddingHorizontal: spacing(3.5),
     },
     recenterText: { ...type.label, fontSize: 12, color: map.onMap },
@@ -1147,7 +1163,18 @@ const styles = themed(() =>
     contextKicker: { ...type.eyebrow },
     contextCountry: { ...type.h3, marginTop: spacing(1), marginBottom: spacing(1.5) },
     contextFact: { ...type.body, fontSize: 14, color: colors.textMuted, lineHeight: 21 },
-    contextLink: { ...type.label, fontSize: 13, color: colors.link, marginTop: spacing(2.5) },
+    // No padding at all previously — just marginTop, which sits outside the
+    // tap box. The 18px label line height alone was the whole real target.
+    // paddingVertical spacing(3.5) (14px) reaches 46px, matching every other
+    // fix in this inventory. The Pressable wrapping it has no style of its
+    // own, so it grows to contain the Text's padding.
+    contextLink: {
+      ...type.label,
+      fontSize: 13,
+      color: colors.link,
+      marginTop: spacing(2.5),
+      paddingVertical: spacing(3.5),
+    },
     nextBtn: {
       ...constrain.action,
       borderRadius: radius.sheet,
