@@ -278,6 +278,19 @@ Re-checked again (2026-11-07): still no DANNY TO DO item had moved, so the daily
 next named item — `QuizScreen`'s `hitSlop`-only controls (four separate shortfalls: `exit`,
 `soundPill`, `recenterPill`, `contextLink`). See M2.11's entry below for the fix. Still open in the
 inventory: `ProfileScreen`'s nav rows and the Country Locator's SVG hit targets.
+Re-checked again (2026-11-08): still no DANNY TO DO item had moved, so the daily build closed the
+last two named items from that same `hitSlop` inventory — **and this time measuring found no bug.**
+`ProfileScreen`'s `navRow` (Achievements/Leaderboard/Review) and `signOutBtn` don't rely on
+`hitSlop` at all; their own padding around two-line label+value content already clears the floor.
+The Country Locator's candidate hit targets are a third mechanism again — not a `Pressable`'s
+`hitSlop` (the two prior fixes) and not `mapHitTargets.js`'s flat-map circles (the Locator has run
+on the globe, `GlobeMap.js`, since M2.3.7 step 1 landed) — `GLOBE_LOCATOR_HIT_RADIUS` (29 viewBox
+units, `constants.js`), a circle drawn directly into the globe's fixed 400-unit SVG viewBox, whose
+on-screen size scales with the SVG's rendered pixel width rather than with zoom (the sphere grows
+inside the same viewBox, per `GlobeMap.js`'s own header comment). See M2.11's entry below for the
+measurements. **The app-wide `hitSlop`/tap-target inventory opened in M2.5 step 6.4.2 is now fully
+closed** — every named item has been either fixed or, for these last two, confirmed already correct
+by measuring the rendered box in a real browser rather than assuming from the component's props.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -1682,6 +1695,30 @@ teaching *how the world works*, not just *where things are*.
     the top bar and the post-answer context card both render cleanly at the new sizes. The remaining
     inventory — `ProfileScreen`'s nav rows and the Country Locator's SVG hit targets — is still open
     for a future scoped chunk.
+  - **The last two named items were closed (2026-11-08), and this time measuring found nothing to
+    fix.** `ProfileScreen`'s `navRow` (Achievements/Leaderboard/Review) carries `hitSlop={4}` —
+    another no-op on web — but unlike every prior hit in this inventory, the row's own box doesn't
+    need it: `padding: spacing(4)` (16px) around a two-line `navRowBody` (a 24px-line-height label plus
+    a marginTop-2, 20px-line-height value, per `theme.js`'s `type.body`/`type.caption`) already
+    yields a box far past the floor. `signOutBtn` likewise clears it from
+    `paddingVertical: spacing(3.5)` alone. Measured in a real browser (Playwright/Chromium, static
+    export, placeholder Supabase env, a spoofed signed-in session, 390px mobile width) rather than
+    taken on faith: `getBoundingClientRect()` on each row's own clickable box (the outermost
+    ancestor still carrying `cursor: pointer`, since `role="button"` isn't set) read 350×78 for
+    Achievements/Leaderboard/Review and 350×46 for Sign out. **The Country Locator's tap targets
+    are a different mechanism than the inventory assumed:** the flagged `game/mapHitTargets.js`
+    enlarged-circle approach belongs to the old flat `WorldMap`, and the Locator has answered on the
+    globe (`GlobeMap.js`) since M2.3.7 step 1 shipped — its candidates are `GLOBE_LOCATOR_HIT_RADIUS`
+    (29, `constants.js`), a `<Circle>` drawn straight into the globe's fixed 400×400 SVG viewBox,
+    whose on-screen size tracks the SVG's own rendered pixel width rather than the zoom level (the
+    sphere's drawn radius grows inside that same fixed viewBox — see the file's header comment).
+    Started a real Easy Country Locator round in the same browser session and read the rendered
+    `<circle r="29">` elements directly: at a 350px-wide globe stage (the measured size at 390px
+    viewport width, `QuizScreen`'s `mapBox` being a square fit to the shorter side minus its 20px
+    screen padding), each hit circle resolves to a 50.75px on-screen diameter — comfortably past the
+    44px floor. **The app-wide tap-target inventory opened in M2.5 step 6.4.2 is now fully closed**:
+    every named item across `WorldMapScreen`, `CountryIndexScreen`, `QuizScreen`, `ProfileScreen` and
+    the Country Locator has been either fixed or measured and confirmed already correct.
 - **M2.6 — Leaderboards & light social 🎮** — global/friends leaderboards, daily competition, and
   shareable Daily Challenge score cards (the parked Phase 1 "sharing" idea lands here).
   - **Ordered sub-checklist** (one scoped chunk per daily run; do these top-to-bottom, don't skip).
