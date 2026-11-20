@@ -291,6 +291,23 @@ inside the same viewBox, per `GlobeMap.js`'s own header comment). See M2.11's en
 measurements. **The app-wide `hitSlop`/tap-target inventory opened in M2.5 step 6.4.2 is now fully
 closed** — every named item has been either fixed or, for these last two, confirmed already correct
 by measuring the rendered box in a real browser rather than assuming from the component's props.
+Re-checked again (2026-11-20): still no DANNY TO DO item had moved, but a closer look at **M2.6**
+found that its own step 8 — the closing polish + a11y pass — had been left undone while step 7
+(Friends) sat blocked, even though step 8 doesn't actually touch Friends at all: it only audits
+what M2.6 already shipped (the ranking policy, the two leaderboard views' IO, `LeaderboardScreen`,
+and the Profile "Leaderboard" nav row). That makes M2.6 — not M2.7/M2.8/M2.11 — the correct
+lowest-numbered incomplete milestone with unblocked work, so the daily build resumed there instead
+of re-scanning for a new backlog item. Step 8 now has its own ordered sub-checklist, the same four
+chunks M2.4/M2.5/M2.6 step 6 each used (contrast → tap targets → offline/error states →
+transitions), and sub-step 8.1 (contrast) is done: no bug. `LeaderboardScreen` and the shared
+`navRow` style import no `materials` and put no colour on any background outside what
+`test/engine.test.js`'s `LIGHT_GROUNDS` sweep already pins — `colors.text`/`textMuted`/`brand`/
+`danger`/`link` and `onFill(colors.brand)`, all on plain `surface`/`surfaceRaised`/`surfaceSunken`
+grounds, never a material corner. See M2.6 step 8's own entry below. **Flagged for the next run:**
+sub-step 8.2 (tap targets) already has a named target — `LeaderboardScreen`'s `boardOption` (the
+Global/Daily toggle) sizes to `paddingVertical: spacing(1.5)` (12px) plus `type.label`'s 18px line
+height, a 30px web tap target short of the 44px floor, the same react-native-web
+`Pressable`-ignores-`hitSlop` trap M2.5 step 6.4.2 first found.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2046,8 +2063,38 @@ teaching *how the world works*, not just *where things are*.
        call, not a schema detail to default past. Needs Danny's steer before any sub-checklist gets
        written here; the daily build moves on to the next unblocked milestone (M2.7) rather than
        guessing.
-    8. ☐ **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step (contrast, tap targets,
-       offline/error states, transitions).
+    8. **Polish + a11y pass**, same shape as M2.2/M2.4/M2.5's closing step — and, same as step 6's
+       own closing pass, independent of step 7 (Friends): it only audits what M2.6 already shipped
+       (the ranking policy, the two leaderboard views' IO, `LeaderboardScreen`, and the Profile
+       "Leaderboard" nav row), never the blocked feature. Ordered sub-checklist, one scoped commit
+       per chunk, same four chunks as every prior closing pass:
+       1. ☑ **Contrast audit — no bug.** `LeaderboardScreen` (the header, the Global/Daily toggle,
+          every ranked row, the "you" rule, and every notice/skeleton state) and the shared
+          `navRow` style the Profile "Leaderboard" row reuses import no `materials` — the one
+          mechanism that caused every real contrast bug found so far (`AchievementsScreen`'s level
+          card, `HomeScreen`'s kicker, both on a `dusk` material's lit corner). Every colour this
+          screen puts on a background is a token `test/engine.test.js`'s `LIGHT_GROUNDS` sweep
+          already pins on a plain surface: `colors.text`/`textMuted` on `surface`/`surfaceRaised`,
+          `colors.danger` as the fetch-error notice (pinned against both light grounds), `colors.
+          link` on the Back button, `colors.brand` as the "you" row's rule + label ink (pine-on-
+          cream, the same ink every heading already uses), and `onFill(colors.brand)` for the
+          active toggle's label — the one function that owns fill-vs-ink contrast, already tested
+          against every fill it's handed. No new combination exists outside what the generic sweep
+          already proves, so there is nothing for a screen-specific test to add. No code change.
+       2. ☐ **Tap targets.** Flagged already: `boardOption` (the Global/Daily toggle) is a 30px web
+          tap target (`paddingVertical: spacing(1.5)` + `type.label`'s 18px line height), short of
+          the 44px floor — the same react-native-web `Pressable`-ignores-`hitSlop` trap M2.5 step
+          6.4.2 first found. `LeaderboardScreen`'s Back button already clears the floor (`padding
+          Bottom: spacing(3)`, fixed when the screen was first built, mirroring that same trap).
+       3. ☐ **Offline/error states.** Likely already covered — `LeaderboardScreen` shipped its
+          `loadingResults`-style `Skeleton` treatment, a fetch-error notice, a signed-out notice,
+          and (M2.6 step 5.4) a dedicated "haven't played today" notice directly in steps 4/5.4,
+          mirroring `AchievementsScreen`'s own M2.5 step 6.4.3 fix rather than deferring it here —
+          needs a real-browser pass to confirm rather than code review alone before checking it off.
+       4. ☐ **Transitions.** Likely already covered — `LeaderboardScreen` shipped its fade/rise-in,
+          fade/settle-out `screenAnim`/`handleExit` shape directly in step 4, mirroring
+          `AchievementsScreen`'s own M2.5 step 6.4.4 fix rather than deferring it here — needs a
+          real-browser pass to confirm rather than code review alone before checking it off.
 - **M2.12 — Game tiers & difficulty overhaul 🎚️** — the games stop being one-size-fits-all. Two
   independent axes land here, and keeping them independent is the whole design:
   - **Commercial tier** (free vs pro) — *which* games you may play. Six free games
