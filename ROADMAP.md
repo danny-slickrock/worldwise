@@ -303,11 +303,12 @@ transitions), and sub-step 8.1 (contrast) is done: no bug. `LeaderboardScreen` a
 `navRow` style import no `materials` and put no colour on any background outside what
 `test/engine.test.js`'s `LIGHT_GROUNDS` sweep already pins — `colors.text`/`textMuted`/`brand`/
 `danger`/`link` and `onFill(colors.brand)`, all on plain `surface`/`surfaceRaised`/`surfaceSunken`
-grounds, never a material corner. See M2.6 step 8's own entry below. **Flagged for the next run:**
-sub-step 8.2 (tap targets) already has a named target — `LeaderboardScreen`'s `boardOption` (the
-Global/Daily toggle) sizes to `paddingVertical: spacing(1.5)` (12px) plus `type.label`'s 18px line
-height, a 30px web tap target short of the 44px floor, the same react-native-web
-`Pressable`-ignores-`hitSlop` trap M2.5 step 6.4.2 first found.
+grounds, never a material corner. See M2.6 step 8's own entry below. Re-checked again (2026-11-21):
+sub-step 8.2 (tap targets) is now also done — `LeaderboardScreen`'s `boardOption` (the Global/Daily
+toggle) reached the 44px floor with the same `paddingVertical: spacing(3)` fix the region-pill chips
+already used for the identical shape. See M2.6 step 8's own entry below. **Next up:** sub-steps 8.3
+(offline/error states) and 8.4 (transitions) are both believed already covered by code written
+alongside step 4, but still need a real-browser pass to confirm before checking either off.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2081,11 +2082,17 @@ teaching *how the world works*, not just *where things are*.
           active toggle's label — the one function that owns fill-vs-ink contrast, already tested
           against every fill it's handed. No new combination exists outside what the generic sweep
           already proves, so there is nothing for a screen-specific test to add. No code change.
-       2. ☐ **Tap targets.** Flagged already: `boardOption` (the Global/Daily toggle) is a 30px web
-          tap target (`paddingVertical: spacing(1.5)` + `type.label`'s 18px line height), short of
-          the 44px floor — the same react-native-web `Pressable`-ignores-`hitSlop` trap M2.5 step
-          6.4.2 first found. `LeaderboardScreen`'s Back button already clears the floor (`padding
-          Bottom: spacing(3)`, fixed when the screen was first built, mirroring that same trap).
+       2. ☑ **Tap targets — fixed.** `boardOption` (the Global/Daily toggle) measured a 32px web tap
+          target (`paddingVertical: spacing(1.5)` + `type.label`'s 18px line height + a 1px border
+          each side), short of the 44px floor — the same react-native-web `Pressable`-ignores-
+          `hitSlop` trap M2.5 step 6.4.2 first found, and the exact fix the region-pill chips already
+          used for the identical shape (M2.10/M2.11's opportunistic pass): `paddingVertical` now
+          reaches `spacing(3)`. `LeaderboardScreen`'s Back button already cleared the floor
+          (`paddingBottom: spacing(3)`, fixed when the screen was first built, mirroring that same
+          trap) and needed no change. Verified in a real browser (Playwright/Chromium, static export,
+          placeholder Supabase env): both the "Global" and "Daily" `role="button"` elements now
+          measure exactly 44px tall via `getBoundingClientRect()`, with no visual regression in the
+          captured screenshot.
        3. ☐ **Offline/error states.** Likely already covered — `LeaderboardScreen` shipped its
           `loadingResults`-style `Skeleton` treatment, a fetch-error notice, a signed-out notice,
           and (M2.6 step 5.4) a dedicated "haven't played today" notice directly in steps 4/5.4,
