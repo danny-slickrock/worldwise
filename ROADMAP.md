@@ -306,9 +306,13 @@ transitions), and sub-step 8.1 (contrast) is done: no bug. `LeaderboardScreen` a
 grounds, never a material corner. See M2.6 step 8's own entry below. Re-checked again (2026-11-21):
 sub-step 8.2 (tap targets) is now also done — `LeaderboardScreen`'s `boardOption` (the Global/Daily
 toggle) reached the 44px floor with the same `paddingVertical: spacing(3)` fix the region-pill chips
-already used for the identical shape. See M2.6 step 8's own entry below. **Next up:** sub-steps 8.3
-(offline/error states) and 8.4 (transitions) are both believed already covered by code written
-alongside step 4, but still need a real-browser pass to confirm before checking either off.
+already used for the identical shape. See M2.6 step 8's own entry below. Re-checked again
+(2026-11-22): sub-step 8.3 (offline/error states) is now also done — a real-browser pass against
+mocked leaderboard responses confirmed the fetch-error notice, the loading `Skeleton` rows, the
+"haven't played today" notice, the empty-board notice, and the signed-out notice all render
+correctly; no bug found, no code change needed. See M2.6 step 8's own entry below. **Next up:**
+sub-step 8.4 (transitions) is believed already covered by code written alongside step 4, but still
+needs a real-browser pass to confirm before checking it off — the last item in M2.6 step 8.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2093,11 +2097,17 @@ teaching *how the world works*, not just *where things are*.
           placeholder Supabase env): both the "Global" and "Daily" `role="button"` elements now
           measure exactly 44px tall via `getBoundingClientRect()`, with no visual regression in the
           captured screenshot.
-       3. ☐ **Offline/error states.** Likely already covered — `LeaderboardScreen` shipped its
-          `loadingResults`-style `Skeleton` treatment, a fetch-error notice, a signed-out notice,
-          and (M2.6 step 5.4) a dedicated "haven't played today" notice directly in steps 4/5.4,
-          mirroring `AchievementsScreen`'s own M2.5 step 6.4.3 fix rather than deferring it here —
-          needs a real-browser pass to confirm rather than code review alone before checking it off.
+       3. ☑ **Offline/error states — confirmed, no bug.** Verified in a real browser
+          (Playwright/Chromium, static export, placeholder Supabase env) rather than from code
+          review alone, against mocked `leaderboard_global`/`leaderboard_daily` responses and a
+          spoofed signed-in session: a fetch error renders "⚠ Couldn't load the leaderboard — try
+          again shortly." above the board; a delayed fetch renders five `Skeleton` rows in place of
+          the ranked list while in flight, then resolves to real rows; a signed-in player with no
+          row on today's Daily (but other players' rows present) renders the dedicated "haven't
+          played today's Daily Challenge yet" notice rather than silence or a fetch error; an
+          entirely empty Daily board renders "Nobody's played today's Daily Challenge yet"; and a
+          signed-out player sees the signed-out notice with neither fetch firing at all. All five
+          states matched what steps 4/5.4 had already shipped — nothing needed fixing.
        4. ☐ **Transitions.** Likely already covered — `LeaderboardScreen` shipped its fade/rise-in,
           fade/settle-out `screenAnim`/`handleExit` shape directly in step 4, mirroring
           `AchievementsScreen`'s own M2.5 step 6.4.4 fix rather than deferring it here — needs a
