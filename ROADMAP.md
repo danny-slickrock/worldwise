@@ -310,9 +310,16 @@ already used for the identical shape. See M2.6 step 8's own entry below. Re-chec
 (2026-11-22): sub-step 8.3 (offline/error states) is now also done — a real-browser pass against
 mocked leaderboard responses confirmed the fetch-error notice, the loading `Skeleton` rows, the
 "haven't played today" notice, the empty-board notice, and the signed-out notice all render
-correctly; no bug found, no code change needed. See M2.6 step 8's own entry below. **Next up:**
-sub-step 8.4 (transitions) is believed already covered by code written alongside step 4, but still
-needs a real-browser pass to confirm before checking it off — the last item in M2.6 step 8.
+correctly; no bug found, no code change needed. See M2.6 step 8's own entry below. Re-checked again
+(2026-11-23): sub-step 8.4 (transitions) is now also done — a real-browser pass (Playwright/Chromium,
+static export, mocked leaderboard responses, a spoofed signed-in session) confirmed the screen eases
+in on open and genuinely waits for its fade/settle-out before Back navigates away, captured as a
+partial mid-fade frame still showing the leaderboard content; no bug found, no code change needed.
+**M2.6 step 8 (the closing polish + a11y pass) is now fully done, closing out everything in M2.6
+except step 7 (Friends), still blocked on Danny's product/privacy call.** **Next up:** with every
+numbered milestone again reading done or human-blocked, the next daily build should re-scan for the
+lowest-numbered milestone with unblocked work (none was found as of the last full scan, 2026-11-08)
+or pick up the next flagged, non-human-blocked gap from the Phase 1 backlog below.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -2108,10 +2115,16 @@ teaching *how the world works*, not just *where things are*.
           entirely empty Daily board renders "Nobody's played today's Daily Challenge yet"; and a
           signed-out player sees the signed-out notice with neither fetch firing at all. All five
           states matched what steps 4/5.4 had already shipped — nothing needed fixing.
-       4. ☐ **Transitions.** Likely already covered — `LeaderboardScreen` shipped its fade/rise-in,
-          fade/settle-out `screenAnim`/`handleExit` shape directly in step 4, mirroring
-          `AchievementsScreen`'s own M2.5 step 6.4.4 fix rather than deferring it here — needs a
-          real-browser pass to confirm rather than code review alone before checking it off.
+       4. ☑ **Transitions — confirmed, no bug.** Verified in a real browser (Playwright/Chromium,
+          static export, placeholder Supabase env, a spoofed signed-in session, and mocked
+          `leaderboard_global`/`leaderboard_daily` responses): the screen eased in on navigation to
+          `/leaderboard`, and tapping Back captured a genuinely partial, dimmed mid-fade frame still
+          showing the leaderboard content before the URL changed — confirming `handleExit` waits for
+          `screenAnim`'s fade/settle-out to finish before calling `onExit`, rather than navigating on
+          tap. A settled frame afterward showed the Account screen. Matches what step 4 already
+          shipped; nothing needed fixing. **M2.6 step 8 (the closing polish + a11y pass) is now fully
+          done end to end, and with it M2.6 — Leaderboards & light social is complete except for step
+          7 (Friends), still blocked on Danny's product/privacy call.**
 - **M2.12 — Game tiers & difficulty overhaul 🎚️** — the games stop being one-size-fits-all. Two
   independent axes land here, and keeping them independent is the whole design:
   - **Commercial tier** (free vs pro) — *which* games you may play. Six free games
