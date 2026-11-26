@@ -253,6 +253,12 @@ src/
                            #   marathonRoundResult() persists a sitting via game_results.countries
   game/marathonTiers.js    # PURE M2.12 steps 7-8: a marathon tier as (prompt, answer) rather
                            #   than as branches — which is why the flag game needed no new UI
+  game/speedRound.js       # PURE Phase 1 backlog, Speed Round step 1: the free 60s-sprint engine
+                           #   — a countdown clock + comboMultiplier(streak), scored by a capped
+                           #   combo multiplier rather than marathon.js's single-pool count. Takes
+                           #   a plain right/wrong boolean like marathon.js does, never a target
+                           #   itself, since a sprint question can be any mixed free-mode question
+                           #   shape. No UI/buildRound() wiring yet (step 2)
   game/reviewPolicy.js     # PURE M2.12 step 9: per-country accuracy/recency -> a REASON
                            #   (recent-miss | low-accuracy | stale). Never-seen is a fourth
                            #   state, deliberately excluded from the study list

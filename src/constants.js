@@ -60,6 +60,20 @@ export const MARATHON_SPEED_BONUS_MAX = 250;
 // earn none.
 export const MARATHON_STOPWATCH_PAR_MS = 15 * 60 * 1000;
 
+// Speed Round (Phase 1 backlog, step 1): a free, 60-second mixed sprint across
+// several question TYPES rather than one marathon's single country pool — see
+// game/speedRound.js. 60 seconds is short enough to fit into a spare minute
+// (unlike the pro marathons' 5+), so the combo is the whole scoring idea
+// rather than a bonus on top of a count.
+//
+// The multiplier steps up every SPEED_ROUND_COMBO_STEP consecutive correct
+// answers and caps at SPEED_ROUND_COMBO_MAX — uncapped, one long lucky streak
+// would make every later answer in the same run worth an unbounded amount,
+// which rewards the streak rather than the knowledge.
+export const SPEED_ROUND_DURATION_MS = 60 * 1000;
+export const SPEED_ROUND_COMBO_STEP = 3;
+export const SPEED_ROUND_COMBO_MAX = 5;
+
 // The Review surface (M2.12 step 9). Three different things mean "needs
 // study" — a recent miss, poor accuracy, and decay — and each gets its own
 // threshold, because collapsing them loses the reason, and the reason is the

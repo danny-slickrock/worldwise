@@ -282,7 +282,17 @@ import {
   marathonResultCountries,
   marathonRoundResult,
 } from "../src/game/marathon";
-import { MARATHON_STOPWATCH_PAR_MS } from "../src/constants";
+import { MARATHON_STOPWATCH_PAR_MS, SPEED_ROUND_COMBO_MAX } from "../src/constants";
+import {
+  startSpeedRun,
+  isSpeedRunOver,
+  remainingSpeedMs,
+  elapsedSpeedMs,
+  comboMultiplier,
+  submitSpeedAnswer,
+  endSpeedRun,
+  speedRunSummary,
+} from "../src/game/speedRound";
 import {
   validateHighestPoint,
   parseFactbookHighest,
@@ -9035,6 +9045,69 @@ check(
   "never more than GALLERY_MAX photos"
 );
 check(galleryFromMediaRows(null).length === 0, "no rows is an empty gallery");
+
+console.log("\nSpeed Round engine (Phase 1 backlog, step 1)");
+const sr0 = startSpeedRun(1000);
+check(
+  sr0.combo === 0 && sr0.score === 0 && sr0.correct === 0 && sr0.wrong === 0,
+  "a fresh run starts at zero on every counter"
+);
+check(remainingSpeedMs(sr0, 1000) === 60_000, "a fresh run has its whole 60s left");
+check(remainingSpeedMs(sr0, 30_000 + 1000) === 30_000, "the clock is a pure function of `now`");
+check(remainingSpeedMs(sr0, 999_999) === 0, "...and never goes negative");
+check(elapsedSpeedMs(sr0, 30_000 + 1000) === 30_000, "elapsed is the mirror of remaining");
+check(
+  elapsedSpeedMs(sr0, 999_999) === 60_000,
+  "elapsed is capped at the duration, the same way marathon.js's countdown caps it"
+);
+check(!isSpeedRunOver(sr0, 30_000) && isSpeedRunOver(sr0, 61_000), "the run ends when the clock does");
+
+// --- the combo multiplier ---
+check(comboMultiplier(0) === 1, "no streak yet is still 1x — a combo multiplies, never zeroes");
+check(comboMultiplier(2) === 1, "under one full step is still 1x");
+check(comboMultiplier(3) === 2, "SPEED_ROUND_COMBO_STEP correct answers earns the next multiplier");
+check(comboMultiplier(6) === 3, "two steps earns 3x");
+check(
+  comboMultiplier(999) === SPEED_ROUND_COMBO_MAX,
+  "an enormous streak is capped — one lucky run can't make every later answer worth infinity"
+);
+
+// --- scoring a run ---
+let sr = startSpeedRun(0);
+sr = submitSpeedAnswer(sr, true, 100); // combo 1 -> 1x
+sr = submitSpeedAnswer(sr, true, 200); // combo 2 -> 1x
+sr = submitSpeedAnswer(sr, true, 300); // combo 3 -> 2x
+check(
+  sr.combo === 3 && sr.bestCombo === 3 && sr.correct === 3 && sr.score === 1 + 1 + 2,
+  "three in a row: the third answer is the one that crosses the step and earns the new rate"
+);
+sr = submitSpeedAnswer(sr, false, 400);
+check(
+  sr.combo === 0 && sr.wrong === 1 && sr.correct === 3 && sr.score === 4,
+  "a wrong answer breaks the combo back to zero but costs no score and does not end the run"
+);
+check(!isSpeedRunOver(sr, 400), "a miss never ends a sprint — only the clock does");
+sr = submitSpeedAnswer(sr, true, 500); // combo back to 1 -> 1x
+check(sr.bestCombo === 3, "bestCombo remembers the run's peak streak after it's been broken");
+
+const srEnded = endSpeedRun(sr, 60_000);
+check(isSpeedRunOver(srEnded, 60_000), "ending the run stops the clock");
+check(
+  submitSpeedAnswer(srEnded, true, 60_500) === srEnded,
+  "answering after the end is a no-op, the same contract marathon.js's submitAnswer uses"
+);
+check(endSpeedRun(srEnded, 70_000) === srEnded, "ending an already-ended run is idempotent");
+
+const summary = speedRunSummary(srEnded, 60_000);
+check(
+  summary.score === 5 && summary.correct === 4 && summary.wrong === 1 && summary.bestCombo === 3,
+  "the summary carries the run's final score, tallies and peak combo"
+);
+check(
+  Math.abs(summary.accuracy - 4 / 5) < 1e-9,
+  "accuracy is correct answers over every answer attempted"
+);
+check(speedRunSummary(null).accuracy === 0, "a null run summarizes to a harmless all-zero result");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

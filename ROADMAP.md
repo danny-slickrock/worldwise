@@ -316,10 +316,17 @@ static export, mocked leaderboard responses, a spoofed signed-in session) confir
 in on open and genuinely waits for its fade/settle-out before Back navigates away, captured as a
 partial mid-fade frame still showing the leaderboard content; no bug found, no code change needed.
 **M2.6 step 8 (the closing polish + a11y pass) is now fully done, closing out everything in M2.6
-except step 7 (Friends), still blocked on Danny's product/privacy call.** **Next up:** with every
-numbered milestone again reading done or human-blocked, the next daily build should re-scan for the
-lowest-numbered milestone with unblocked work (none was found as of the last full scan, 2026-11-08)
-or pick up the next flagged, non-human-blocked gap from the Phase 1 backlog below.
+except step 7 (Friends), still blocked on Danny's product/privacy call.**
+Re-checked again (2026-11-26): no DANNY TO DO item had moved — M2.3.5's country-photo production
+run, M2.3.7's product call + device, M2.6 step 7's Friends call, and M2.9's lead-time items are all
+still open, and every other numbered Phase 2 milestone (through M2.12, the games-tiers overhaul)
+still reads done. With nothing newly unblocked in Phase 2 and the app-wide `hitSlop` inventory
+already fully closed (see M2.11's entry), the daily build picked up the next item from the Phase 1
+backlog instead: **Speed Round**, which now has its own ordered sub-checklist (see its entry above),
+and step 1 — the pure run engine, `src/game/speedRound.js` — is done. **Next up: Speed Round step 2**
+(the endless mixed-type question stream questions.js needs to actually feed it), unless a DANNY TO
+DO item moves first, in which case the lowest-numbered newly-unblocked Phase 2 milestone takes
+priority over continuing the backlog.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -342,7 +349,33 @@ appetite for polish, or before a public launch:
   The answer reveal reads both values back ("Italy 58.9m people · Tajikistan 9.5m people") — without
   it the mode is a coin flip with no payoff. Verified in a browser.
 - 🎮 **Landmark / photo guess** mode (image → country)
-- 🎮 **Speed Round** — 60-second mixed sprint with combo multipliers
+- 🎮 **Speed Round** — 60-second mixed sprint with combo multipliers. Now has its own ordered
+  sub-checklist, the same "pure engine first" order every Phase 2 milestone used:
+  - ☑ **Step 1 — the pure run engine.** `src/game/speedRound.js`: a 60-second countdown (not one
+    of game/marathon.js's two pro sittings — those score a single-pool *count*, this scores a
+    *combo multiplier* across mixed question types) plus `comboMultiplier(streak)`, which steps up
+    every `SPEED_ROUND_COMBO_STEP` consecutive correct answers and caps at
+    `SPEED_ROUND_COMBO_MAX` (both new in `constants.js`, alongside `SPEED_ROUND_DURATION_MS`) so one
+    long lucky streak can't make every later answer worth an unbounded amount. Deliberately does
+    not build questions or decide what counts as a match — like marathon.js, it takes a plain
+    "was this answer right?" boolean, because a Speed Round target can be any of flag/capital/
+    capitalReverse/shape/currency/language, each with its own `correct` shape, unlike a marathon's
+    single country code compared through one injected `isMatch`. No UI, no Home tile, no
+    `buildRound()`/`QuizScreen` wiring yet — that's step 2. Covered by new pure tests in
+    `test/engine.test.js` (fresh-run zeroing, the clock as a pure function of `now`, the
+    multiplier's step/cap boundaries, a scored streak broken by a miss, idempotent ending, and the
+    summary's tallies/accuracy). `npm test`/`typecheck`/`lint`/`npm run build` all green.
+  - ☐ **Step 2 — an endless mixed-type question stream.** A sibling to `buildDaily()` in
+    `questions.js`, but unbounded rather than a fixed `count`: cycles the free, non-map-answer
+    modes (flag/capital/capitalReverse/shape/currency/language — the ones `buildOne()` already
+    builds from a plain country target) rather than sampling a fixed pool once.
+  - ☐ **Step 3 — wiring: a Home tile + a sprint surface.** Reuses `QuizScreen`'s existing
+    per-question-type rendering; the new part is the running clock, the live combo readout, and
+    feeding `speedRound.js`'s `submitSpeedAnswer()` from whatever `QuizScreen` already computes as
+    right/wrong — plus persisting a finished sprint (score/bestCombo/accuracy) the way
+    `marathonRoundResult()` does for the two pro games.
+  - ☐ **Step 4 — the closing polish + a11y pass**, the same four chunks (contrast → tap targets →
+    offline/error states → transitions) every milestone above used.
 - ✨ **Onboarding** — first-run welcome, difficulty pick, "how to play" (do this before public launch)
 - 🧪 **Quality** — accessibility pass, empty/offline states, image-load error handling (ongoing)
 - 🧪 **Ship `v0.1`** — README/screenshots, tag the release (web deploy is already live on Vercel)
