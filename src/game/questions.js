@@ -892,3 +892,45 @@ export function buildDaily(count = DAILY_LENGTH, date = new Date()) {
     return buildOne(type, t);
   });
 }
+
+// Speed Round (Phase 1 backlog) step 2: the question types a sprint mixes.
+// Every one of these is a mode buildOne() already builds from a single plain
+// country target with a text/flag answer surface — not locator (the answer
+// surface is a tappable map, which a sprint has no room to render well in a
+// few seconds) and not higherLower (a question there is a PAIR of countries,
+// not one target). This list is independent of entitlements.js's MODE_TIERS —
+// a sprint is its own game, not a wrapper around the Pro paywall — so it
+// names its six modes directly rather than deriving them from FREE_MODES.
+const SPEED_ROUND_TYPES = ["flag", "capital", "capitalReverse", "shape", "currency", "language"];
+
+// Build an endless mixed-type question stream, `count` questions long. A
+// sibling to buildDaily() above — same "cycle a type list against a country
+// list" shape — but UNBOUNDED rather than a fixed ROUND_LENGTH/DAILY_LENGTH:
+// a sprint can easily run through more questions than one pass of any single
+// mode's own pool (shape's OUTLINE_COUNTRIES is well under COUNTRIES), so
+// both the type order and each type's own pool are CYCLED — reshuffled and
+// restarted once exhausted — rather than sampled once. That's the same
+// repeat-to-fill approach buildOceanRound() above already uses for a catalog
+// shorter than a round; here every pool involved is short relative to an
+// open-ended sprint. Never seeded, unlike the Daily — a sprint timed to the
+// player's own clock has no "identical for everyone today" requirement.
+export function buildSpeedStream(count) {
+  const types = [];
+  while (types.length < count) types.push(...shuffle(SPEED_ROUND_TYPES));
+
+  // One shuffled, cycling queue of targets PER TYPE — sharing a single queue
+  // across types would let the narrowest pool (shape) run dry first and then
+  // silently start handing out targets lacking what a later type actually
+  // needs (an outline, say).
+  const cycles = new Map();
+  const nextTarget = (type) => {
+    let cycle = cycles.get(type);
+    if (!cycle || cycle.length === 0) {
+      cycle = shuffle(poolFor(type, DEFAULT_DIFFICULTY));
+      cycles.set(type, cycle);
+    }
+    return cycle.pop();
+  };
+
+  return types.slice(0, count).map((type) => buildOne(type, nextTarget(type)));
+}

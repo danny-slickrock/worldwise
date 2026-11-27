@@ -22,6 +22,7 @@ import {
 import {
   buildRound,
   buildDaily,
+  buildSpeedStream,
   buildCountryRound,
   MODES,
   poolFor,
@@ -9108,6 +9109,32 @@ check(
   "accuracy is correct answers over every answer attempted"
 );
 check(speedRunSummary(null).accuracy === 0, "a null run summarizes to a harmless all-zero result");
+
+// --- step 2: the endless mixed-type question stream ---
+const SPEED_ROUND_TYPE_SET = new Set(["flag", "capital", "capitalReverse", "shape", "currency", "language"]);
+const speedStream = buildSpeedStream(40);
+check(speedStream.length === 40, "buildSpeedStream returns exactly as many questions as asked for");
+check(
+  speedStream.every((q) => SPEED_ROUND_TYPE_SET.has(q.type)),
+  "every question is one of the six single-target text/flag modes — never locator or higherLower"
+);
+check(
+  speedStream.every((q) => q.correct != null && Array.isArray(q.options) && q.options.length === 4),
+  "every question is a real, fully-built buildOne() question, not a stub"
+);
+check(
+  new Set(speedStream.map((q) => q.type)).size === SPEED_ROUND_TYPE_SET.size,
+  "a long enough stream mixes every type in, not just the first one drawn"
+);
+// shape's pool (OUTLINE_COUNTRIES) is well under 196, so a stream longer than
+// it has to cycle back through the pool rather than run dry.
+const longStream = buildSpeedStream(300);
+check(longStream.length === 300, "the stream is UNBOUNDED — far more than any one mode's own pool");
+check(
+  longStream.filter((q) => q.type === "shape").every((q) => !q.country.noOutline),
+  "cycling never hands a shape question a country with no outline, even past one full lap"
+);
+check(buildSpeedStream(0).length === 0, "a zero-length stream is just an empty array, not an error");
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

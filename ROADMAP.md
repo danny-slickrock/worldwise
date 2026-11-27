@@ -323,10 +323,13 @@ still open, and every other numbered Phase 2 milestone (through M2.12, the games
 still reads done. With nothing newly unblocked in Phase 2 and the app-wide `hitSlop` inventory
 already fully closed (see M2.11's entry), the daily build picked up the next item from the Phase 1
 backlog instead: **Speed Round**, which now has its own ordered sub-checklist (see its entry above),
-and step 1 — the pure run engine, `src/game/speedRound.js` — is done. **Next up: Speed Round step 2**
-(the endless mixed-type question stream questions.js needs to actually feed it), unless a DANNY TO
-DO item moves first, in which case the lowest-numbered newly-unblocked Phase 2 milestone takes
-priority over continuing the backlog.
+and step 1 — the pure run engine, `src/game/speedRound.js` — is done.
+Re-checked again (2026-11-27): still no DANNY TO DO item had moved, so the daily build continued the
+backlog: **Speed Round step 2 — the endless mixed-type question stream, `buildSpeedStream(count)` in
+`questions.js` — is now also done.** See the Speed Round entry above for the full writeup. **Next up:
+Speed Round step 3** (wiring — a Home tile + a sprint surface, feeding `speedRound.js`'s
+`submitSpeedAnswer()` from `QuizScreen`), unless a DANNY TO DO item moves first, in which case the
+lowest-numbered newly-unblocked Phase 2 milestone takes priority over continuing the backlog.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -365,10 +368,20 @@ appetite for polish, or before a public launch:
     `test/engine.test.js` (fresh-run zeroing, the clock as a pure function of `now`, the
     multiplier's step/cap boundaries, a scored streak broken by a miss, idempotent ending, and the
     summary's tallies/accuracy). `npm test`/`typecheck`/`lint`/`npm run build` all green.
-  - ☐ **Step 2 — an endless mixed-type question stream.** A sibling to `buildDaily()` in
-    `questions.js`, but unbounded rather than a fixed `count`: cycles the free, non-map-answer
-    modes (flag/capital/capitalReverse/shape/currency/language — the ones `buildOne()` already
-    builds from a plain country target) rather than sampling a fixed pool once.
+  - ☑ **Step 2 — an endless mixed-type question stream.** `buildSpeedStream(count)` in
+    `questions.js`, a sibling to `buildDaily()` — same "cycle a type list against a country list"
+    shape — but UNBOUNDED rather than a fixed `count`: it cycles the six single-target, non-map-
+    answer modes (flag/capital/capitalReverse/shape/currency/language — the ones `buildOne()`
+    already builds from a plain country target; named directly rather than drawn from
+    entitlements.js's `FREE_MODES`, since a sprint is its own game, not a paywall wrapper) rather
+    than sampling a fixed pool once. Each mode's own country pool (shape's `OUTLINE_COUNTRIES` is
+    well under the other five's `COUNTRIES`) is independently reshuffled and restarted once
+    exhausted — the same repeat-to-fill approach `buildOceanRound()` already uses for a catalog
+    shorter than a round — so a long sprint cycles cleanly instead of running one pool dry while
+    another still has slack. Covered by new pure tests (`buildSpeedStream` returns exactly the
+    length asked for, every question is one of the six types with a real 4-option shape, a long
+    stream mixes in every type, cycling never hands a shape question a country with no outline,
+    and a zero-length stream is just `[]`). `npm test`/`typecheck`/`lint`/`npm run build` all green.
   - ☐ **Step 3 — wiring: a Home tile + a sprint surface.** Reuses `QuizScreen`'s existing
     per-question-type rendering; the new part is the running clock, the live combo readout, and
     feeding `speedRound.js`'s `submitSpeedAnswer()` from whatever `QuizScreen` already computes as
