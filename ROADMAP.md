@@ -326,10 +326,14 @@ backlog instead: **Speed Round**, which now has its own ordered sub-checklist (s
 and step 1 — the pure run engine, `src/game/speedRound.js` — is done.
 Re-checked again (2026-11-27): still no DANNY TO DO item had moved, so the daily build continued the
 backlog: **Speed Round step 2 — the endless mixed-type question stream, `buildSpeedStream(count)` in
-`questions.js` — is now also done.** See the Speed Round entry above for the full writeup. **Next up:
-Speed Round step 3** (wiring — a Home tile + a sprint surface, feeding `speedRound.js`'s
-`submitSpeedAnswer()` from `QuizScreen`), unless a DANNY TO DO item moves first, in which case the
-lowest-numbered newly-unblocked Phase 2 milestone takes priority over continuing the backlog.
+`questions.js` — is now also done.** See the Speed Round entry above for the full writeup.
+Re-checked again (2026-11-28): still no DANNY TO DO item had moved, so the daily build continued the
+backlog: **Speed Round step 3 — the Home entry point and a dedicated sprint screen
+(`src/screens/SpeedRoundScreen.js`), wired to a new `speed` route — is now also done.** See the Speed
+Round entry above for the full writeup. **Next up: Speed Round step 4** (the closing polish + a11y
+pass — contrast → tap targets → offline/error states → transitions, the same four chunks every
+milestone above used), unless a DANNY TO DO item moves first, in which case the lowest-numbered
+newly-unblocked Phase 2 milestone takes priority over continuing the backlog.
 
 ### Deferred to the Phase 1 backlog (not a gate)
 
@@ -382,11 +386,38 @@ appetite for polish, or before a public launch:
     length asked for, every question is one of the six types with a real 4-option shape, a long
     stream mixes in every type, cycling never hands a shape question a country with no outline,
     and a zero-length stream is just `[]`). `npm test`/`typecheck`/`lint`/`npm run build` all green.
-  - ☐ **Step 3 — wiring: a Home tile + a sprint surface.** Reuses `QuizScreen`'s existing
-    per-question-type rendering; the new part is the running clock, the live combo readout, and
-    feeding `speedRound.js`'s `submitSpeedAnswer()` from whatever `QuizScreen` already computes as
-    right/wrong — plus persisting a finished sprint (score/bestCombo/accuracy) the way
-    `marathonRoundResult()` does for the two pro games.
+  - ☑ **Step 3 — wiring: a Home tile + a sprint surface.** A sprint's answer surface turned out to
+    be plain multiple-choice for all six types — `buildSpeedStream()` calls `buildOne()` with no
+    interaction tier, and `typedAnswer(tier, …)` returns nothing for a null tier — so every question
+    is the same four-option shape `QuizScreen` already renders for flag/capital/capitalReverse/
+    currency/language, with no locator globe and no typed answer to support. But a sprint's FLOW
+    is genuinely different from an ordinary round in the ways that matter — an endless stream
+    instead of a fixed-length array, a clock that ends the run instead of running out of questions,
+    and a combo-multiplied score instead of a correct count — the same reasoning that gave the two
+    pro marathons their own screen rather than retrofitting `QuizScreen`'s fixed-round assumptions.
+    So this is a new `src/screens/SpeedRoundScreen.js`, mirroring `MarathonScreen.js`'s shape: it
+    owns the one real clock and the rendering, and every decision about the run itself (the clock,
+    the combo, the score) comes from the pure `game/speedRound.js`, which never reads `Date.now()`.
+    `buildSpeedStream(SPEED_ROUND_STREAM_LENGTH)` (200, a new `constants.js` value — nobody answers
+    more than a few dozen questions in 60 seconds, so a generous fixed buffer is simpler than
+    growing the stream mid-run) is built once per sitting; each answer flashes right/wrong for
+    350ms, then feeds `submitSpeedAnswer()` and advances. A new pure `speedRoundResult(run, history,
+    opts)` in `speedRound.js` builds the round object `saveRoundResult()` writes — the same shape
+    `marathonRoundResult()` builds for the two pro games (`xp: 0`, since a sprint awards its own
+    score, not round XP; `countries` via the existing `countriesFromHistory()`, fed the same
+    `{question, picked, isRight}` history shape `QuizScreen` already produces) — covered by new pure
+    tests in `test/engine.test.js`. Speed Round isn't a `MODES`/`entitlements.js` catalog entry — it
+    has no interaction tier, no difficulty pool choice, and isn't part of the free/pro split, so it
+    doesn't belong in `buildRound()`'s world any more than the two marathons' own engine does; Home
+    gets a plain "Speed Round" row (mirroring the existing Learning paths/Review rows) rather than a
+    `FREE_MODES` tile. A new `speed` route joins `navigation.js`'s table (focus mode, like `quiz`/
+    `marathon` — a running clock should have exactly one way out) with full URL round-trip coverage.
+    Verified in a real browser (Playwright/Chromium, static export, placeholder Supabase env):
+    opened Speed Round from Home, saw the clock/score pills and a legible mixed-type question
+    (capital/capitalReverse/currency/language/shape all rotated through in one short sitting),
+    answered several questions with the score pill updating, let the full 60s clock run out and
+    confirmed the result screen (points/correct/wrong/best combo, a Done button that returns Home),
+    and confirmed the ✕ exits mid-sprint back to Home with no console errors either way.
   - ☐ **Step 4 — the closing polish + a11y pass**, the same four chunks (contrast → tap targets →
     offline/error states → transitions) every milestone above used.
 - ✨ **Onboarding** — first-run welcome, difficulty pick, "how to play" (do this before public launch)

@@ -293,6 +293,7 @@ import {
   submitSpeedAnswer,
   endSpeedRun,
   speedRunSummary,
+  speedRoundResult,
 } from "../src/game/speedRound";
 import {
   validateHighestPoint,
@@ -3318,6 +3319,7 @@ const roundTrips = [
   { name: "gameSetup", mode: "flag" },
   { name: "review" },
   { name: "marathon", mode: "nameEveryCountry", tier: "easy" },
+  { name: "speed" },
 ];
 check(
   roundTrips.every((r) => routeToPath(pathToRoute(routeToPath(r))) === routeToPath(r)),
@@ -9135,6 +9137,40 @@ check(
   "cycling never hands a shape question a country with no outline, even past one full lap"
 );
 check(buildSpeedStream(0).length === 0, "a zero-length stream is just an empty array, not an error");
+
+// --- step 3: persisting a finished sprint ---
+const speedStreamForHistory = buildSpeedStream(3);
+let srForResult = startSpeedRun(0);
+const speedHistory = [];
+speedStreamForHistory.forEach((q, i) => {
+  const picked = i === 1 ? "__wrong__" : q.correct;
+  const isRight = picked === q.correct;
+  speedHistory.push({ question: q, picked, isRight });
+  srForResult = submitSpeedAnswer(srForResult, isRight, i * 100);
+});
+srForResult = endSpeedRun(srForResult, 60_000);
+const speedResult = speedRoundResult(srForResult, speedHistory, { now: 60_000 });
+check(speedResult.mode === "speed", "the round is stamped with its mode, defaulting to \"speed\"");
+check(
+  speedResult.difficulty === "all" && speedResult.timed === true,
+  "a sprint draws from the untiered pool and is always a timed sitting"
+);
+check(
+  speedResult.score === srForResult.score && speedResult.total === 3,
+  "score is the combo-multiplied total, not a correct count; total is every attempt, right or wrong"
+);
+check(speedResult.xp === 0, "a sprint awards its own score, not round XP — mirrors the two marathons");
+check(speedResult.elapsedMs === 60_000, "elapsedMs is the sitting's own clock, read from the ended run");
+check(
+  speedResult.countries.length === 3 &&
+    speedResult.countries[1].correct === false &&
+    speedResult.countries.filter((c) => c.correct).length === 2,
+  "countries is derived from the history via the existing countriesFromHistory(), one entry per question"
+);
+check(
+  speedRoundResult(srForResult, speedHistory, { mode: "speed", now: 60_000 }).mode === "speed",
+  "the mode can also be passed explicitly"
+);
 
 // The async sections. Everything above is synchronous, so the summary waits on
 // just these two promises before deciding the exit code.

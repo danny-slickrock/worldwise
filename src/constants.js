@@ -73,6 +73,12 @@ export const MARATHON_STOPWATCH_PAR_MS = 15 * 60 * 1000;
 export const SPEED_ROUND_DURATION_MS = 60 * 1000;
 export const SPEED_ROUND_COMBO_STEP = 3;
 export const SPEED_ROUND_COMBO_MAX = 5;
+// Step 3 (wiring): how long a stream buildSpeedStream() builds up front.
+// Nobody answers more than a few dozen questions in 60 seconds, so this is a
+// generous, fixed buffer rather than a truly infinite generator — simpler
+// than growing the stream mid-run, and the pool-cycling inside
+// buildSpeedStream() already makes a stream this long cheap to build.
+export const SPEED_ROUND_STREAM_LENGTH = 200;
 
 // The Review surface (M2.12 step 9). Three different things mean "needs
 // study" — a recent miss, poor accuracy, and decay — and each gets its own

@@ -88,6 +88,10 @@ export const ROUTES = {
   // The pro marathons (M2.12 step 7). Focus mode like the quiz: a timed
   // sitting with a clock running should have exactly one way out.
   marathon: { tab: "play", root: false, chrome: false },
+  // Speed Round (Phase 1 backlog). A 60-second timed sprint, the same focus-
+  // mode reasoning as quiz/marathon: the clock is running, so there is
+  // exactly one way out — its own ✕ — and no tab bar inviting a detour.
+  speed: { tab: "play", root: false, chrome: false },
 };
 
 // A stack can't grow forever. Bouncing country → map → country → map is a
@@ -254,6 +258,8 @@ export function routeToPath(route) {
       const q = route.tier && route.tier !== defaultTier ? `?tier=${route.tier}` : "";
       return `/marathon/${route.mode}${q}`;
     }
+    case "speed":
+      return "/speed";
     case "quiz": {
       // Difficulty and timed ride as query params, and only when they differ
       // from the default — so the common link is a clean `/play/flag`, but a
@@ -328,6 +334,8 @@ export function pathToRoute(path) {
       return second
         ? { name: "marathon", mode: second, tier: normalizeTier(second, query.tier) }
         : null;
+    case "speed":
+      return { name: "speed" };
     case "play":
       return second
         ? {

@@ -56,6 +56,12 @@ export default function HomeScreen({
   onPlay,
   onOpenReview,
   onOpenLearningPaths,
+  // Phase 1 backlog, Speed Round step 3: a 60-second sprint. Not a MODES
+  // entry — it has its own screen/engine (speedRound.js), not a
+  // buildRound() round — so it gets its own callback rather than routing
+  // through `onPlay`, the same reason Daily gets its own hero card below
+  // rather than a row in the generic game stack.
+  onPlaySpeedRound,
   // M2.8 step 5: the goal set on PracticePrefsScreen, or null if the player
   // never set one — streakGoalProgress() itself treats null as "render
   // nothing", so a caller with no goal needn't branch before passing it.
@@ -233,6 +239,21 @@ export default function HomeScreen({
           </View>
         </PressableTint>
 
+        {onPlaySpeedRound && (
+          <PressableTint
+            onPress={onPlaySpeedRound}
+            radius={radius.sheet}
+            style={styles.row}
+            accessibilityRole="button"
+            accessibilityLabel="Speed Round — 60 seconds, mixed questions, chase the combo"
+          >
+            <View style={styles.rowBody}>
+              <Text style={styles.rowLabel}>Speed Round</Text>
+              <Text style={styles.rowValue}>60 seconds, mixed questions, chase the combo</Text>
+            </View>
+            <Text style={styles.chevron}>›</Text>
+          </PressableTint>
+        )}
         {onOpenLearningPaths && (
           <PressableTint
             onPress={onOpenLearningPaths}

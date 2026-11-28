@@ -17,6 +17,7 @@ import CountryIndexScreen from "./src/screens/CountryIndexScreen";
 import WorldMapScreen from "./src/screens/WorldMapScreen";
 import GameSetupScreen from "./src/screens/GameSetupScreen";
 import MarathonScreen from "./src/screens/MarathonScreen";
+import SpeedRoundScreen from "./src/screens/SpeedRoundScreen";
 import ReviewScreen from "./src/screens/ReviewScreen";
 import InterestsScreen from "./src/screens/InterestsScreen";
 import LearningPathScreen from "./src/screens/LearningPathScreen";
@@ -574,6 +575,22 @@ function AppShell({ osScheme }) {
           />
         );
 
+      case "speed":
+        return (
+          <SpeedRoundScreen
+            onExit={backHandler}
+            onFinish={backHandler}
+            soundEnabled={settings.soundEnabled}
+            // A finished sprint is persisted like a marathon sitting — same
+            // game_results row, same countries capture — but awards its own
+            // combo score, not round XP or local progress (see
+            // speedRoundResult's own xp: 0).
+            onComplete={(round) => {
+              if (roundSinks(user).cloud) saveRoundResult(user, round, progress);
+            }}
+          />
+        );
+
       case "country":
         return (
           <CountryPageScreen
@@ -721,6 +738,7 @@ function AppShell({ osScheme }) {
             onPlay={openGame}
             onOpenReview={() => go({ name: "review" })}
             onOpenLearningPaths={() => go({ name: "learn", pathId: null })}
+            onPlaySpeedRound={() => go({ name: "speed" })}
             streakGoal={practicePrefs.streakGoal}
           />
         );

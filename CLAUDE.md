@@ -253,12 +253,14 @@ src/
                            #   marathonRoundResult() persists a sitting via game_results.countries
   game/marathonTiers.js    # PURE M2.12 steps 7-8: a marathon tier as (prompt, answer) rather
                            #   than as branches — which is why the flag game needed no new UI
-  game/speedRound.js       # PURE Phase 1 backlog, Speed Round step 1: the free 60s-sprint engine
-                           #   — a countdown clock + comboMultiplier(streak), scored by a capped
-                           #   combo multiplier rather than marathon.js's single-pool count. Takes
-                           #   a plain right/wrong boolean like marathon.js does, never a target
-                           #   itself, since a sprint question can be any mixed free-mode question
-                           #   shape. No UI/buildRound() wiring yet (step 2)
+  game/speedRound.js       # PURE Phase 1 backlog, Speed Round steps 1 & 3: the free 60s-sprint
+                           #   engine — a countdown clock + comboMultiplier(streak), scored by a
+                           #   capped combo multiplier rather than marathon.js's single-pool count.
+                           #   Takes a plain right/wrong boolean like marathon.js does, never a
+                           #   target itself, since a sprint question can be any mixed free-mode
+                           #   question shape. speedRoundResult() (step 3) builds the persisted
+                           #   round object the same way marathonRoundResult() does, via the
+                           #   existing countriesFromHistory() — xp: 0, a sprint awards its own score
   game/reviewPolicy.js     # PURE M2.12 step 9: per-country accuracy/recency -> a REASON
                            #   (recent-miss | low-accuracy | stale). Never-seen is a fourth
                            #   state, deliberately excluded from the study list
@@ -360,6 +362,11 @@ scripts/build-globe-texture.mjs # Rebuilds it from Wikimedia Commons (npm run bu
   screens/GameSetupScreen.js # M2.12 step 2: the pre-game difficulty menu (/game/<mode>)
   screens/MarathonScreen.js # M2.12 steps 7-8: BOTH pro marathons. Owns the one real clock
                            #   and the rendering; every decision about the run is marathon.js
+  screens/SpeedRoundScreen.js # Phase 1 backlog, Speed Round step 3: the free 60s sprint, mirroring
+                           #   MarathonScreen's shape (owns the clock + rendering, game/speedRound.js
+                           #   owns the run) — its own screen/route rather than a QuizScreen mode,
+                           #   since every question is ordinary multiple-choice but the FLOW isn't
+                           #   (endless stream, a clock that ends the run, combo-multiplied score)
   screens/ReviewScreen.js  # M2.12 step 9: study analytics — what to go and learn, reached
                            #   from Home AND Profile
   components/TypeAnswer.js # M2.12 step 3: the typed answer surface. One component for Medium

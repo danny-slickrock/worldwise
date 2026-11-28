@@ -20,6 +20,7 @@ import {
   SPEED_ROUND_COMBO_STEP,
   SPEED_ROUND_COMBO_MAX,
 } from "../constants";
+import { countriesFromHistory } from "./cloudSync";
 
 export function startSpeedRun(now = 0) {
   return {
@@ -103,5 +104,39 @@ export function speedRunSummary(run, now = 0) {
     bestCombo: run.bestCombo,
     elapsedMs: elapsedSpeedMs(run, now),
     accuracy: total > 0 ? run.correct / total : 0,
+  };
+}
+
+// Step 3 (wiring): a finished sprint as the round object cloudSync's
+// resultRowFromRound writes — the same shape marathonRoundResult() builds for
+// the two pro sittings, so App.js persists either one through the one
+// existing saveRoundResult() path rather than a second one.
+//
+//   score        the combo-multiplied point total, not a correct count — a
+//                sprint's whole idea is that a streak is worth more than the
+//                sum of its answers.
+//   total        every question attempted (correct + wrong), the same
+//                denominator `accuracy` uses.
+//   difficulty   "all" — a sprint draws from DEFAULT_DIFFICULTY's pool
+//                (buildSpeedStream), never a chosen tier.
+//   xp           0, mirroring the two marathons: a sprint awards its own
+//                score, not round XP, so it can't quietly inflate the XP
+//                curve just by running long.
+//   countries    derived from the per-question `history` the screen keeps
+//                (the same {question, picked, isRight} shape QuizScreen
+//                already produces), via the existing countriesFromHistory() —
+//                this file doesn't know what a country IS, only that
+//                cloudSync.js already knows how to pull one out of a history.
+export function speedRoundResult(run, history, { mode = "speed", now = 0 } = {}) {
+  const s = speedRunSummary(run, now);
+  return {
+    mode,
+    difficulty: "all",
+    timed: true,
+    score: s.score,
+    total: s.correct + s.wrong,
+    xp: 0,
+    elapsedMs: s.elapsedMs,
+    countries: countriesFromHistory(history),
   };
 }
